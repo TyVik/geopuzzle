@@ -4,8 +4,8 @@ from django.contrib.gis.geos import Polygon
 from django.core.management import BaseCommand
 from django.db import connection
 
-from map.converter import decode
-from map.models import World
+from maps.converter import decode
+from maps.models import World
 
 __authors__ = "Viktor Tyshchenko"
 __copyright__ = "Copyright (C) 3D4Medical.com, LLC - All Rights Reserved"

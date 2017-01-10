@@ -9,7 +9,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('map', '0001_initial'),
+        ('maps', '0001_initial'),
     ]
 
     operations = [
