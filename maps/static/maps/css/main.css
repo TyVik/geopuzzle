@@ -1,0 +1,42 @@
+html, body, #map {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#buttons {
+    margin: 0 auto;
+    text-align: center;
+    position: fixed;
+    z-index: 999;
+    left: 30%;
+}
+
+.button {
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    color: #777;
+    cursor: pointer;
+    font-weight: bold;
+    height: 19px;
+    padding-bottom: 5px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 5px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: white 1px 1px 34px;
+    display: inline-block;
+}
+
+#give_up {
+    background-color: #BBFFBB;
+    width: 200px;
+}
+
+#retry {
+    background-color: #FFBBBB;
+    width: 200px;
+}
