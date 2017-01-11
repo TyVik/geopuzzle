@@ -10,4 +10,8 @@ class MetaAdmin(admin.ModelAdmin):
 
 @admin.register(World)
 class World(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'difficulty')
+    list_filter = ('difficulty',)
+    list_editable = ('difficulty',)
+    search_fields = ('name',)
+    ordering = ('name',)

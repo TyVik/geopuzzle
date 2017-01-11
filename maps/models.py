@@ -6,6 +6,14 @@ from django.contrib.gis.geos import Point
 from django.db import models
 
 
+DIFFICULTY_LEVELS = (
+    (0, 'disabled'),
+    (1, 'easy'),
+    (2, 'normal'),
+    (3, 'hard'),
+)
+
+
 class Meta(models.Model):
     name = models.CharField(max_length=15)
     table_name = models.CharField(max_length=15)
@@ -19,7 +27,7 @@ class Meta(models.Model):
 
 class World(models.Model):
     name = models.CharField(max_length=50)
-    is_available = models.BooleanField(default=True)
+    difficulty = models.PositiveSmallIntegerField(choices=DIFFICULTY_LEVELS, default=0)
     polygon = MultiPolygonField(geography=True)
     answer = MultiPointField(geography=True, null=True)
 
