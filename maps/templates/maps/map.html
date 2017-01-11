@@ -13,8 +13,13 @@
         <script src="{% static 'maps/js/google.maps.Polygon.moveTo.js' %}"></script>
         <script src="{% static 'maps/js/country.js' %}"></script>
         <script type="text/javascript">
-            var countries = [{{ countries.polygon.geojson|safe }}];
-            var answers = [new google.maps.LatLngBounds(new google.maps.LatLng(0, 0), new google.maps.LatLng(90, 90))];
+            var countries = [{{ question|safe }}];
+            var answers = {{ answer|safe }}.map(function(answer) {
+                return new google.maps.LatLngBounds(
+                    new google.maps.LatLng(answer[0][1], answer[0][0]),
+                    new google.maps.LatLng(answer[1][1], answer[1][0])
+                );
+            });
         </script>
         <script type="text/javascript" src="{% static 'maps/js/main.js' %}"></script>
     </head>
