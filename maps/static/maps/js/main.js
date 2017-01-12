@@ -33,7 +33,7 @@ function initialize(zoom, center, default_position) {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: zoom,
         center: new google.maps.LatLng(center[0], center[1]),
-        mapTypeId: google.maps.MapTypeId.SATELLITE,
+        mapTypeId: google.maps.MapTypeId.TERRAIN,
         streetViewControl: true,
     });
     addCountries(default_position);
