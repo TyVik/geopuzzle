@@ -25,8 +25,9 @@ class Meta(models.Model):
         return self.name
 
 
-class World(models.Model):
+class Map(models.Model):
     name = models.CharField(max_length=50)
+    meta = models.ForeignKey(Meta)
     difficulty = models.PositiveSmallIntegerField(choices=DIFFICULTY_LEVELS, default=0)
     polygon = MultiPolygonField(geography=True)
     answer = MultiPointField(geography=True, null=True)
