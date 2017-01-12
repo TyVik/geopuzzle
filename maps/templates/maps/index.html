@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Mercator Puzzle!</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     <h1>Mercator Puzzle</h1>
     <p>Любителям политической географии посвящаяется :) Цель игры - расставить страны по своим местам.</p>
     <ul>
@@ -12,5 +8,4 @@
             <li><a href="/maps/{{ item.table_name }}/">{{ item.name }}</a></li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
