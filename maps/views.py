@@ -4,7 +4,7 @@ from django import forms
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 
-from maps.models import Meta, Map, DIFFICULTY_LEVELS
+from maps.models import Country, Area, DIFFICULTY_LEVELS
 
 
 class MapForm(forms.Form):
@@ -13,11 +13,11 @@ class MapForm(forms.Form):
 
     def countries(self):
         # return Map.objects.filter(meta_id=2, difficulty__gt=0, difficulty__lte=self.cleaned_data['difficulty'])[:self.cleaned_data['count']]
-        return Map.objects.filter(meta_id=2)[:5]
+        return Area.objects.filter(country_id=2)
 
 
 def index(request):
-    countries = Meta.objects.all()
+    countries = Country.objects.all()
     return render(request, 'maps/index.html', context={'countries': countries})
 
 
@@ -26,8 +26,8 @@ def maps(request, name):
     if not form.is_valid():
         return HttpResponseBadRequest(json.dumps(form.errors))
     countries = form.countries()
-    world = Meta.objects.get(pk=2)
+    world = Country.objects.get(pk=2)
     meta = {'zoom': world.zoom, 'position': world.position, 'center': world.center}
     question = ', '.join([country.polygon.geojson for country in countries])
     answer = [list([list(country.answer.coords[0]), list(country.answer.coords[1])]) for country in countries]
-    return render(request, 'maps/map.html', context={'question': question, 'meta': meta, 'answer': answer})
+    return render(request, 'maps/map.html', context={'question': question, 'country': meta, 'answer': answer})

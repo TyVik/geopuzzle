@@ -13,21 +13,34 @@ DIFFICULTY_LEVELS = (
     (3, 'hard'),
 )
 
+ZOOMS = (
+    (3, 'world'),
+    (4, 'large country'),
+    (5, 'big country'),
+    (6, 'country'),
+    (7, 'small country'),
+    (8, 'little country'),
+    (9, 'region'),
+)
 
-class Meta(models.Model):
+
+class Country(models.Model):
     name = models.CharField(max_length=15)
-    table_name = models.CharField(max_length=15)
+    slug = models.CharField(max_length=15)
     center = PointField(geography=True)
     position = PointField(geography=True)
-    zoom = models.PositiveSmallIntegerField()
+    zoom = models.PositiveSmallIntegerField(choices=ZOOMS)
+
+    class Meta:
+        verbose_name_plural = 'Countries'
 
     def __str__(self):
         return self.name
 
 
-class Map(models.Model):
+class Area(models.Model):
+    country = models.ForeignKey(Country)
     name = models.CharField(max_length=50)
-    meta = models.ForeignKey(Meta)
     difficulty = models.PositiveSmallIntegerField(choices=DIFFICULTY_LEVELS, default=0)
     polygon = MultiPolygonField(geography=True)
     answer = MultiPointField(geography=True, null=True)

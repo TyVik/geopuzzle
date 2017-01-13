@@ -21,6 +21,6 @@
                 new google.maps.LatLng(answer[1][1], answer[1][0])
             );
         });
-        google.maps.event.addDomListener(window, 'load', initialize({{ meta.zoom }}, [{{ meta.position.1 }}, {{ meta.position.0 }}], [{{ meta.center.1 }}, {{ meta.center.0 }}]));
+        google.maps.event.addDomListener(window, 'load', initialize({{ country.zoom }}, [{{ country.position.1 }}, {{ country.position.0 }}], [{{ country.center.1 }}, {{ country.center.0 }}]));
     </script>
 {% endblock %}

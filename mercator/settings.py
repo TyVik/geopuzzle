@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'mercator.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'mercator',
-        'USER': 'mercator',
-        'PASSWORD': 'mercator',
+        'NAME': 'geopuzzle',
+        'USER': 'geopuzzle',
+        'PASSWORD': 'geopuzzle',
         'HOST': 'localhost',
         'PORT': '5432',
         'ATOMIC_REQUESTS': True,
