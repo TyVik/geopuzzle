@@ -1,9 +1,12 @@
+import tempfile
+
 from django.contrib.gis.gdal import DataSource
 
 from django import forms
 from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.gis.geos import MultiPolygon
 from django.contrib.messages import success
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
@@ -17,13 +20,15 @@ class KMLImportForm(forms.Form):
     kml = forms.FileField()
 
     def save(self):
-        source = DataSource(self.cleaned_data['kml'].name)
-        # source = DataSource('data/GBR_adm0.kmz')
-        # source = DataSource('/Users/tyvik/Downloads/2426.kml')
-        for layer in source:
-            for feat in layer:
-                map = Map.objects.create(name=feat['Name'].value, meta=self.cleaned_data['map'], polygon=feat.geom.geos)
-                map.recalc_answer()
+        with tempfile.NamedTemporaryFile(delete=True) as temp:
+            temp.write(self.cleaned_data['kml'].read())
+            temp.seek(0)
+            source = DataSource(temp.name)
+            for layer in source:
+                for feat in layer:
+                    polygon = feat.geom.geos if isinstance(feat.geom.geos, MultiPolygon) else MultiPolygon(feat.geom.geos)
+                    map = Map.objects.create(name=feat['Name'].value, meta=self.cleaned_data['map'], polygon=polygon)
+                    map.recalc_answer()
 
 
 @admin.register(Meta)
