@@ -2,7 +2,7 @@
 {% load i18n admin_urls static admin_modify %}
 
 {% block object-tools %}
-    {% if not is_popup %}
+    {% if change %}{% if not is_popup %}
         <ul class="object-tools">
             {% block object-tools-items %}
             <li>
@@ -15,5 +15,5 @@
             {% if has_absolute_url %}<li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif %}
             {% endblock %}
         </ul>
-    {% endif %}
+    {% endif %}{% endif %}
 {% endblock %}
