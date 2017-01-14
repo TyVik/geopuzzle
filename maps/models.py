@@ -30,6 +30,7 @@ class Country(models.Model):
     center = PointField(geography=True)
     position = PointField(geography=True)
     zoom = models.PositiveSmallIntegerField(choices=ZOOMS)
+    default_count = models.PositiveSmallIntegerField(default=0)
 
     class Meta:
         verbose_name_plural = 'Countries'

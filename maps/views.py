@@ -8,24 +8,30 @@ from maps.models import Country, Area, DIFFICULTY_LEVELS
 
 
 class MapForm(forms.Form):
+    country = forms.ModelChoiceField(queryset=Country.objects.all(), to_field_name='slug')
     difficulty = forms.ChoiceField(choices=DIFFICULTY_LEVELS, required=False, initial=1)
     count = forms.IntegerField(required=False, initial=3)
 
-    def __init__(self, *args, **kwargs):
-        self.country = Country.objects.get(slug=kwargs.pop('slug', 'world'))
-        super().__init__(*args, **kwargs)
+    def clean_country(self):
+        self.meta = self.cleaned_data.get('country', None)
+        return self.meta
 
     def areas(self):
-        # return Map.objects.filter(meta_id=2, difficulty__gt=0, difficulty__lte=self.cleaned_data['difficulty'])[:self.cleaned_data['count']]
-        return Area.objects.filter(country=self.country)
+        queryset = Area.objects.filter(country=self.cleaned_data['country']).order_by('?')
+        count = self.cleaned_data['count'] if self.cleaned_data['count'] is not None else self.meta.default_count
+        if count > 0:
+            queryset = queryset[:self.cleaned_data['count']]
+        return queryset
 
 
 def maps(request, name):
-    form = MapForm(request.GET, slug=name)
+    params = request.GET.copy()
+    params['country'] = name
+    form = MapForm(params)
     if not form.is_valid():
         return HttpResponseBadRequest(json.dumps(form.errors))
     areas = form.areas()
-    country = {'zoom': form.country.zoom, 'position': form.country.position, 'center': form.country.center}
+    country = {'zoom': form.meta.zoom, 'position': form.meta.position, 'center': form.meta.center}
     question = ', '.join([country.polygon.geojson for country in areas])
     answer = [list([list(country.answer.coords[0]), list(country.answer.coords[1])]) for country in areas]
     return render(request, 'maps/map.html', context={'question': question, 'country': country, 'answer': answer})
