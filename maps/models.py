@@ -52,6 +52,9 @@ class Area(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return '{}?id={}'.format(reverse('maps_map', args=(self.country.slug,)), self.id)
+
     def recalc_answer(self):
         diff = (-1, -1, 1, 1)
         extent = self.polygon.extent

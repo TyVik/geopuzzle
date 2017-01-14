@@ -9,6 +9,7 @@ from maps.models import Country, Area, DIFFICULTY_LEVELS
 
 class MapForm(forms.Form):
     country = forms.ModelChoiceField(queryset=Country.objects.all(), to_field_name='slug')
+    id = forms.ModelMultipleChoiceField(queryset=Area.objects.all(), required=False)
     difficulty = forms.ChoiceField(choices=DIFFICULTY_LEVELS, required=False, initial=1)
     count = forms.IntegerField(required=False, initial=3)
 
@@ -17,6 +18,9 @@ class MapForm(forms.Form):
         return self.meta
 
     def areas(self):
+        if len(self.cleaned_data['id']) > 0:
+            return self.cleaned_data['id']
+
         queryset = Area.objects.filter(country=self.cleaned_data['country']).exclude(difficulty=0).order_by('?')
         if self.cleaned_data['difficulty'] != '':
             queryset = queryset.filter(difficulty__lte=int(self.cleaned_data['difficulty']))
