@@ -17,10 +17,12 @@ class MapForm(forms.Form):
         return self.meta
 
     def areas(self):
-        queryset = Area.objects.filter(country=self.cleaned_data['country']).order_by('?')
+        queryset = Area.objects.filter(country=self.cleaned_data['country']).exclude(difficulty=0).order_by('?')
+        if self.cleaned_data['difficulty'] != '':
+            queryset = queryset.filter(difficulty__lte=int(self.cleaned_data['difficulty']))
         count = self.cleaned_data['count'] if self.cleaned_data['count'] is not None else self.meta.default_count
         if count > 0:
-            queryset = queryset[:self.cleaned_data['count']]
+            queryset = queryset[:count]
         return queryset
 
 
