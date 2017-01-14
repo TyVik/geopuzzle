@@ -28,7 +28,7 @@
     <div class="container">
         <nav class="navbar navbar-default">
             <div class="navbar-header">
-              <a class="navbar-brand" href="#">Geo!Puzzle</a>
+              <a class="navbar-brand" href="/">Geo!Puzzle</a>
             </div>
         </nav>
         <div class="jumbotron">
@@ -41,19 +41,19 @@
         <div class="world_maps">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="{% static 'images/world/easy.png' %}" alt="easy">
+                    <a href="{% url 'maps_map' 'world' %}?difficulty=1"><img src="{% static 'images/world/easy.png' %}" alt="easy"></a>
                 </div>
                 <div class="panel-footer text-center">easy</div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="{% static 'images/world/normal.png' %}" alt="normal">
+                    <a href="{% url 'maps_map' 'world' %}?difficulty=2"><img src="{% static 'images/world/normal.png' %}" alt="normal"></a>
                 </div>
                 <div class="panel-footer text-center">normal</div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="{% static 'images/world/hard.png' %}" alt="hard">
+                    <a href="{% url 'maps_map' 'world' %}?difficulty=3"><img src="{% static 'images/world/hard.png' %}" alt="hard"></a>
                 </div>
                 <div class="panel-footer text-center">hard</div>
             </div>
