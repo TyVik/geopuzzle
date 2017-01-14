@@ -11,23 +11,21 @@ class MapForm(forms.Form):
     difficulty = forms.ChoiceField(choices=DIFFICULTY_LEVELS, required=False, initial=1)
     count = forms.IntegerField(required=False, initial=3)
 
-    def countries(self):
+    def __init__(self, *args, **kwargs):
+        self.country = Country.objects.get(slug=kwargs.pop('slug', 'world'))
+        super().__init__(*args, **kwargs)
+
+    def areas(self):
         # return Map.objects.filter(meta_id=2, difficulty__gt=0, difficulty__lte=self.cleaned_data['difficulty'])[:self.cleaned_data['count']]
-        return Area.objects.filter(country_id=2)
-
-
-def index(request):
-    countries = Country.objects.all()
-    return render(request, 'maps/index.html', context={'countries': countries})
+        return Area.objects.filter(country=self.country)
 
 
 def maps(request, name):
-    form = MapForm(request.GET)
+    form = MapForm(request.GET, slug=name)
     if not form.is_valid():
         return HttpResponseBadRequest(json.dumps(form.errors))
-    countries = form.countries()
-    world = Country.objects.get(pk=2)
-    meta = {'zoom': world.zoom, 'position': world.position, 'center': world.center}
-    question = ', '.join([country.polygon.geojson for country in countries])
-    answer = [list([list(country.answer.coords[0]), list(country.answer.coords[1])]) for country in countries]
-    return render(request, 'maps/map.html', context={'question': question, 'country': meta, 'answer': answer})
+    areas = form.areas()
+    country = {'zoom': form.country.zoom, 'position': form.country.position, 'center': form.country.center}
+    question = ', '.join([country.polygon.geojson for country in areas])
+    answer = [list([list(country.answer.coords[0]), list(country.answer.coords[1])]) for country in areas]
+    return render(request, 'maps/map.html', context={'question': question, 'country': country, 'answer': answer})
