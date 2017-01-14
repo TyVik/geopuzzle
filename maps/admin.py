@@ -47,9 +47,17 @@ class CountryAdmin(admin.ModelAdmin):
         ] + super(CountryAdmin, self).get_urls()
 
 
+def recalc_answer(modeladmin, request, queryset):
+    for area in queryset:
+        area.recalc_answer()
+    success(request, 'Answers were recalculated.')
+recalc_answer.short_description = "Recalc answer"
+
+
 @admin.register(Area)
 class AreaAdmin(admin.ModelAdmin):
     list_display = ('name', 'country', 'difficulty')
     list_filter = ('difficulty', 'country')
     list_editable = ('difficulty',)
     search_fields = ('name',)
+    actions = [recalc_answer]

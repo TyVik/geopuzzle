@@ -51,6 +51,7 @@ class Area(models.Model):
     def recalc_answer(self):
         diff = (-1, -1, 1, 1)
         extent = self.polygon.extent
-        points = [extent[i] + diff[i] for i in range(4)]
+        scale = 1.0 / (self.country.zoom - 2)
+        points = [extent[i] + diff[i] * scale for i in range(4)]
         self.answer = MultiPoint(Point(points[0], points[1]), Point(points[2], points[3]))
         self.save()
