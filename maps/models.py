@@ -4,7 +4,7 @@ from django.contrib.gis.db.models import PointField
 from django.contrib.gis.geos import MultiPoint
 from django.contrib.gis.geos import Point
 from django.db import models
-
+from django.urls import reverse
 
 DIFFICULTY_LEVELS = (
     (0, 'disabled'),
@@ -37,6 +37,9 @@ class Country(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('maps_map', args=(self.slug,))
 
 
 class Area(models.Model):

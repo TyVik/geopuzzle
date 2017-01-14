@@ -14,7 +14,7 @@ from maps.models import Country, Area
 class CountryAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields':
-                    (('name', 'slug', 'zoom'), 'center', 'position')
+                    (('name', 'slug'), ('zoom', 'default_count'), 'center', 'position')
                 }),
     )
 
