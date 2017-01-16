@@ -73,7 +73,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     {% thumbnail country.image "196x196" as im %}
-                    <img src="{{ im.url }}" alt="{{ country.name }}">
+                        <a href="{% url 'maps_map' country.slug %}"><img src="{{ im.url }}" alt="{{ country.name }}"></a>
                     {% endthumbnail %}
                 </div>
                 <div class="panel-footer text-center">{{ country.name }}</div>
