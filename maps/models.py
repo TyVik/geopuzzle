@@ -49,6 +49,7 @@ class Area(models.Model):
     difficulty = models.PositiveSmallIntegerField(choices=DIFFICULTY_LEVELS, default=0)
     polygon = MultiPolygonField(geography=True)
     answer = MultiPointField(geography=True, null=True)
+    infobox = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.name
