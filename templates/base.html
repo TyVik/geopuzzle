@@ -12,13 +12,30 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="{% static 'maps/css/main.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
         {% block extra_css %}{% endblock %}
     </head>
 
     <body>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="/">Geo!Puzzle</a>
+                </div>
+            </div>
+        </nav>
+
         {% block content %}
         {% endblock %}
-    </body>
 
+        <footer class="footer">
+            <div class="container">
+                <div class="social-wrap">
+                    <a class="btn btn-social-icon btn-vk"><span class="fa fa-vk"></span></a>
+                    <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a>
+                    <a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a>
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>

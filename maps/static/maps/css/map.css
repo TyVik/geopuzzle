@@ -1,4 +1,12 @@
-html, body, #map {
+nav.navbar {
+    margin-bottom: 0;
+}
+
+.wrapper {
+    height: 1000px;
+}
+
+#map {
     height: 100%;
     margin: 0;
     padding: 0;

@@ -3,41 +3,11 @@
 
 {% block extra_css %}
 <style>
-    footer {
-        bottom: 0;
-        width: 100%;
-        height: 80px;
-        background-color: #f5f5f5;
-    }
-    footer .social-wrap {
-        float: right;
-        padding: 20px;
-    }
-    .world_maps .panel {
-        width: 33%;
-        display: inline-block;
-    }
-    .world_maps .panel img {
-        width: 100%;
-    }
-
-    .country_maps .panel {
-        width: 20%;
-        display: inline-block;
-    }
-    .country_maps .panel img {
-        width: 100%;
-    }
 </style>
 {% endblock %}
 
 {% block content %}
     <div class="container">
-        <nav class="navbar navbar-default">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="/">Geo!Puzzle</a>
-            </div>
-        </nav>
         <div class="jumbotron">
             <h1>Hello!</h1>
             <p>some welcome text...</p>
@@ -80,12 +50,5 @@
             </div>
             {% endfor %}
         </div>
-        <footer class="footer">
-                <div class="social-wrap">
-                    <a class="btn btn-social-icon btn-vk"><span class="fa fa-vk"></span></a>
-                    <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a>
-                    <a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a>
-                </div>
-        </footer>
     </div>
 {% endblock %}

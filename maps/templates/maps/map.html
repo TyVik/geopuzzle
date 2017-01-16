@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'maps/css/map.css' %}">
+{% endblock %}
+
 {% block content %}
-    <div id="buttons">
-        <div class="button" id="give_up" onclick = "giveUp()">Сдаюсь!</div>
-        <div class="button" id="retry" onclick = "reload()">Ещё раз?</div>
+{#    <div id="buttons">#}
+{#        <div class="button" id="give_up" onclick = "giveUp()">Сдаюсь!</div>#}
+{#        <div class="button" id="retry" onclick = "reload()">Ещё раз?</div>#}
+{#    </div>#}
+    <div class="wrapper">
+        <div id="map"></div>
     </div>
-    <div id="map"></div>
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry&language=en"></script>
     <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
     <script src="{% static 'maps/js/google.maps.Polygon.getBounds.js' %}"></script>
