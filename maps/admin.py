@@ -2,19 +2,26 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.messages import success
+from django.db.models import ImageField
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
 
+from common.admin import ImageMixin, AdminImageWidget
 from maps.forms import KMLImportForm
 from maps.models import Country, Area
 
 
 @admin.register(Country)
-class CountryAdmin(admin.ModelAdmin):
+class CountryAdmin(ImageMixin, admin.ModelAdmin):
+    list_display = ('id', 'image_tag', 'name', 'slug')
+    list_display_links = ('image_tag', 'name', 'id',)
+    formfield_overrides = {
+        ImageField: {'widget': AdminImageWidget},
+    }
     fieldsets = (
         (None, {'fields':
-                    (('name', 'slug'), ('zoom', 'default_count'), 'center', 'position')
+                    (('name', 'slug'), 'image', ('zoom', 'default_count'), 'center', 'position')
                 }),
     )
 

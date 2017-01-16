@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+
+    'sorl.thumbnail',
+
     'maps',
 ]
 
@@ -114,3 +117,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ['static']
+
+MEDIA_URL = '/upload/'
+MEDIA_ROOT = 'upload'
+
+THUMBNAIL_DUMMY = True
+THUMBNAIL_DUMMY_SOURCE = '/static/images/world/default_%(width)s.png'
+THUMBNAIL_DUMMY_RATIO = 1
