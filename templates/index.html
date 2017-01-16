@@ -72,7 +72,7 @@
             {% for country in countries %}
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {% thumbnail country.image "344x344" as im %}
+                    {% thumbnail country.image "196x196" as im %}
                     <img src="{{ im.url }}" alt="{{ country.name }}">
                     {% endthumbnail %}
                 </div>
