@@ -49,3 +49,15 @@ if (!google.maps.Polygon.prototype.replacePiece) {
         this.setOptions(options);
     }
 }
+
+if (!google.maps.Polygon.prototype.showInfobox) {
+    google.maps.Polygon.prototype.showInfobox = function() {
+        fetch(location.origin + '/maps/infobox/' + this.id + '/')
+            .then(function(response) {
+                return response.text();
+            }).then(function(text) {
+                document.getElementById('wrap_infobox').innerHTML = text;
+            });
+        return true;
+    }
+}

@@ -11,6 +11,8 @@
 {#        <div class="button" id="retry" onclick = "reload()">Ещё раз?</div>#}
 {#    </div>#}
     <div class="wrapper">
+        <div id="wrap_infobox">
+        </div>
         <div id="map"></div>
     </div>
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry&language=en"></script>
@@ -20,13 +22,7 @@
     <script src="{% static 'maps/js/country.js' %}"></script>
     <script type="text/javascript" src="{% static 'maps/js/main.js' %}"></script>
     <script type='text/javascript'>
-        var countries = [{{ question|safe }}];
-        var answers = {{ answer|safe }}.map(function(answer) {
-            return new google.maps.LatLngBounds(
-                new google.maps.LatLng(answer[0][1], answer[0][0]),
-                new google.maps.LatLng(answer[1][1], answer[1][0])
-            );
-        });
+        var geodata = {{ data|safe }};
         google.maps.event.addDomListener(window, 'load', initialize({{ country.zoom }}, [{{ country.position.1 }}, {{ country.position.0 }}], [{{ country.center.1 }}, {{ country.center.0 }}]));
     </script>
 {% endblock %}

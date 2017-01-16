@@ -33,6 +33,10 @@ class MapForm(forms.Form):
 def index(request):
     return render(request, 'index.html', {'countries': Country.objects.exclude(slug='world').order_by('name').all()})
 
+def infobox(request, pk):
+    obj = Area.objects.get(pk=pk)
+    return render(request, 'maps/infobox.html', {'html': obj.infobox})
+
 
 def maps(request, name):
     params = request.GET.copy()
@@ -42,6 +46,9 @@ def maps(request, name):
         return HttpResponseBadRequest(json.dumps(form.errors))
     areas = form.areas()
     country = {'zoom': form.meta.zoom, 'position': form.meta.position, 'center': form.meta.center}
-    question = ', '.join([country.polygon.geojson for country in areas])
-    answer = [list([list(country.answer.coords[0]), list(country.answer.coords[1])]) for country in areas]
-    return render(request, 'maps/map.html', context={'question': question, 'country': country, 'answer': answer})
+    data = [{
+        'id': country.id,
+        'polygon': country.polygon.geojson,
+        'answer': [list(country.answer.coords[0]), list(country.answer.coords[1])]}
+            for country in areas]
+    return render(request, 'maps/map.html', context={'data': data, 'country': country})

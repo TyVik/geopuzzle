@@ -13,20 +13,25 @@ function addCountries(position) {
         draggable: true,
         zIndex: 2,
     };
-  for (var i = countries.length - 1; i >= 0; i--) {
-    var country = new google.maps.Polygon(options);
-    country.polygon = countries[i];
-    country.answer = answers[i];
-    country.setPaths(country.pathMultipolygonToArray(country.polygon));
-    google.maps.event.addListener(country, 'dragend', function() {
-        if (this.boundsContains()) {
-            this.replacePiece();
-        }
+    geodata.forEach(function(item, i, arr) {
+        var country = new google.maps.Polygon(options);
+        country.id = item.id;
+        country.polygon = JSON.parse(item.polygon);
+        country.answer = new google.maps.LatLngBounds(
+                new google.maps.LatLng(item.answer[0][1], item.answer[0][0]),
+                new google.maps.LatLng(item.answer[1][1], item.answer[1][0])
+            );
+        country.setPaths(country.pathMultipolygonToArray(country.polygon));
+        google.maps.event.addListener(country, 'dragend', function() {
+            if (this.boundsContains()) {
+                this.replacePiece();
+                this.showInfobox();
+            }
+        });
+        country.moveTo(new google.maps.LatLng(position[0], position[1]));
+        puzzle.push(country);
+        country = null;
     });
-    country.moveTo(new google.maps.LatLng(position[0], position[1]));
-    puzzle.push(country);
-    country = null;
-  };
 }
 
 function initialize(zoom, center, default_position) {
