@@ -17,17 +17,13 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.shortcuts import render
 
-
-def index(request):
-    return render(request, 'index.html')
-
+import maps
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^maps/', include('maps.urls')),
-    url(r'^$', index, name='index'),
+    url(r'^$', maps.views.index, name='index'),
 ]
 
 if settings.DEBUG:

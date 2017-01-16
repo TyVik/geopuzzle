@@ -27,7 +27,7 @@ ZOOMS = (
 class Country(models.Model):
     name = models.CharField(max_length=15)
     image = models.ImageField(upload_to='countries', blank=True)
-    slug = models.CharField(max_length=15)
+    slug = models.CharField(max_length=15, db_index=True)
     center = PointField(geography=True)
     position = PointField(geography=True)
     zoom = models.PositiveSmallIntegerField(choices=ZOOMS)

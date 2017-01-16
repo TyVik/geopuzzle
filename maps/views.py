@@ -30,6 +30,10 @@ class MapForm(forms.Form):
         return queryset
 
 
+def index(request):
+    return render(request, 'index.html', {'countries': Country.objects.exclude(slug='world').order_by('name').all()})
+
+
 def maps(request, name):
     params = request.GET.copy()
     params['country'] = name

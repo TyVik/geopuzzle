@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static thumbnail %}
 
 {% block extra_css %}
 <style>
     footer {
-{#        position: absolute;#}
         bottom: 0;
         width: 100%;
         height: 80px;
@@ -19,6 +18,14 @@
         display: inline-block;
     }
     .world_maps .panel img {
+        width: 100%;
+    }
+
+    .country_maps .panel {
+        width: 20%;
+        display: inline-block;
+    }
+    .country_maps .panel img {
         width: 100%;
     }
 </style>
@@ -61,25 +68,17 @@
         <div class="page-header">
             <h1>Country regions</h1>
         </div>
-        <div class="world_maps">
+        <div class="country_maps">
+            {% for country in countries %}
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="{% static 'images/world/easy.png' %}" alt="easy">
+                    {% thumbnail country.image "344x344" as im %}
+                    <img src="{{ im.url }}" alt="{{ country.name }}">
+                    {% endthumbnail %}
                 </div>
-                <div class="panel-footer text-center">easy</div>
+                <div class="panel-footer text-center">{{ country.name }}</div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <img src="{% static 'images/world/normal.png' %}" alt="normal">
-                </div>
-                <div class="panel-footer text-center">normal</div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <img src="{% static 'images/world/hard.png' %}" alt="hard">
-                </div>
-                <div class="panel-footer text-center">hard</div>
-            </div>
+            {% endfor %}
         </div>
         <footer class="footer">
                 <div class="social-wrap">
