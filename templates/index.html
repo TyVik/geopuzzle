@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static thumbnail %}
+{% load static thumbnail i18n %}
 
 {% block extra_css %}
 <style>
@@ -9,34 +9,34 @@
 {% block content %}
     <div class="container">
         <div class="jumbotron">
-            <h1>Hello!</h1>
-            <p>some welcome text...</p>
+            <h1>{% trans 'Hello!' %}</h1>
+            <p>{% trans 'some welcome text...' %}</p>
         </div>
         <div class="page-header">
-            <h1>World</h1>
+            <h1>{% trans 'World' %}</h1>
         </div>
         <div class="world_maps">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <a href="{% url 'maps_map' 'world' %}?difficulty=1"><img src="{% static 'images/world/easy.png' %}" alt="easy"></a>
                 </div>
-                <div class="panel-footer text-center">easy</div>
+                <div class="panel-footer text-center">{% trans 'easy' %}</div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <a href="{% url 'maps_map' 'world' %}?difficulty=2"><img src="{% static 'images/world/normal.png' %}" alt="normal"></a>
                 </div>
-                <div class="panel-footer text-center">normal</div>
+                <div class="panel-footer text-center">{% trans 'normal' %}</div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <a href="{% url 'maps_map' 'world' %}?difficulty=3"><img src="{% static 'images/world/hard.png' %}" alt="hard"></a>
                 </div>
-                <div class="panel-footer text-center">hard</div>
+                <div class="panel-footer text-center">{% trans 'hard' %}</div>
             </div>
         </div>
         <div class="page-header">
-            <h1>Country regions</h1>
+            <h1>{% trans 'Country regions' %}</h1>
         </div>
         <div class="country_maps">
             {% for country in countries %}
