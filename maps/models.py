@@ -3,8 +3,11 @@ from django.contrib.gis.db.models import MultiPolygonField
 from django.contrib.gis.db.models import PointField
 from django.contrib.gis.geos import MultiPoint
 from django.contrib.gis.geos import Point
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.urls import reverse
+
+from maps.infobox import query
 
 DIFFICULTY_LEVELS = (
     (0, 'disabled'),
@@ -49,13 +52,18 @@ class Area(models.Model):
     difficulty = models.PositiveSmallIntegerField(choices=DIFFICULTY_LEVELS, default=0)
     polygon = MultiPolygonField(geography=True)
     answer = MultiPointField(geography=True, null=True)
-    infobox = models.TextField(blank=True, null=True)
+    infobox = JSONField(null=True)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return '{}?id={}'.format(reverse('maps_map', args=(self.country.slug,)), self.id)
+
+    def update_infobox(self):
+        self.infobox = query(self.name)
+        print(self.infobox)
+        self.save()
 
     def recalc_answer(self):
         diff = (-1, -1, 1, 1)

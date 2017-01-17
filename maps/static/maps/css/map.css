@@ -59,4 +59,15 @@ nav.navbar {
     background: white;
     padding: 10px;
     margin-top: 50px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+#wrap_infobox tr {
+    line-height: 1.8em;
+}
+
+#wrap_infobox img {
+    border: 1px solid black;
+    max-width: 200px;
 }

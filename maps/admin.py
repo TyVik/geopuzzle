@@ -61,10 +61,17 @@ def recalc_answer(modeladmin, request, queryset):
 recalc_answer.short_description = "Recalc answer"
 
 
+def update_infobox(modeladmin, request, queryset):
+    for area in queryset:
+        area.update_infobox()
+    success(request, 'Infoboxes were updated.')
+update_infobox.short_description = "Update infobox"
+
+
 @admin.register(Area)
 class AreaAdmin(admin.ModelAdmin):
     list_display = ('name', 'country', 'difficulty')
     list_filter = ('difficulty', 'country')
     list_editable = ('difficulty',)
     search_fields = ('name',)
-    actions = [recalc_answer]
+    actions = [recalc_answer, update_infobox]

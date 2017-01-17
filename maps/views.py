@@ -35,7 +35,7 @@ def index(request):
 
 def infobox(request, pk):
     obj = Area.objects.get(pk=pk)
-    return render(request, 'maps/infobox.html', {'html': obj.infobox})
+    return render(request, 'maps/infobox.html', {'data': obj.infobox})
 
 
 def maps(request, name):
