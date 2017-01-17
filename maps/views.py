@@ -33,6 +33,7 @@ class MapForm(forms.Form):
 def index(request):
     return render(request, 'index.html', {'countries': Country.objects.exclude(slug='world').order_by('name').all()})
 
+
 def infobox(request, pk):
     obj = Area.objects.get(pk=pk)
     return render(request, 'maps/infobox.html', {'data': obj.infobox})

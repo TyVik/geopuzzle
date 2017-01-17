@@ -20,31 +20,31 @@ msgstr ""
 
 #: maps/templates/admin/maps/country/change_form.html:10
 msgid "History"
-msgstr ""
+msgstr "История"
 
 #: maps/templates/admin/maps/country/change_form.html:13
 msgid "Import KML"
-msgstr ""
+msgstr "Импорт KML"
 
 #: maps/templates/admin/maps/country/change_form.html:15
 msgid "View on site"
-msgstr ""
+msgstr "Посмотреть на сайте"
 
 #: maps/templates/admin/maps/country/map_kml_import.html:14
 msgid "Please correct the error below."
-msgstr ""
+msgstr "Пожалуйста, исправьте ошибки."
 
 #: maps/templates/admin/maps/country/map_kml_import.html:15
 msgid "Please correct the errors below."
-msgstr ""
+msgstr "Пожалуйста, исправьте ошибки."
 
 #: templates/index.html:12
-msgid "Hello!"
-msgstr ""
+msgid "Fans of political geography is devoted!"
+msgstr "Любителям политической географии посвящается!"
 
 #: templates/index.html:13
-msgid "some welcome text..."
-msgstr ""
+msgid "Arrange regions for the right places."
+msgstr "Расставьте регионы по правильным местам."
 
 #: templates/index.html:16
 msgid "World"
