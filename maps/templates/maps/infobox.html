@@ -1,4 +1,4 @@
-{% load humanize %}
+{% load humanize i18n %}
 
 <table>
     <tbody>
@@ -17,7 +17,7 @@
     {% if data.capital %}
     <tr>
         <td scope="row">
-            <div>•&nbsp;Capital</div>
+            <div>{% trans 'Capital' %}</div>
         </td>
         <td>{{ data.capital }}</td>
     </tr>
@@ -26,16 +26,16 @@
     {% if data.area %}
     <tr>
         <td scope="row">
-            <div>•&nbsp;Area</div>
+            <div>{% trans 'Area' %}</div>
         </td>
-        <td>{{ data.area|intcomma }}&nbsp;km<sup>2</sup></td>
+        <td>{{ data.area|intcomma }}&nbsp;{% trans 'km' %}<sup>2</sup></td>
     </tr>
     {% endif %}
 
     {% if data.population %}
     <tr>
         <td scope="row">
-            <div>•&nbsp;Population</div>
+            <div>{% trans 'Population' %}</div>
         </td>
         <td>{{ data.population|intcomma }}</td>
     </tr>

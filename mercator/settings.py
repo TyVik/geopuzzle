@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     'sorl.thumbnail',
+    'jsoneditor',
 
     'maps',
 ]
@@ -130,3 +131,6 @@ MEDIA_ROOT = 'upload'
 THUMBNAIL_DUMMY = True
 THUMBNAIL_DUMMY_SOURCE = '/static/images/world/default_%(width)s.png'
 THUMBNAIL_DUMMY_RATIO = 1
+
+JSON_EDITOR_JS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.js'
+JSON_EDITOR_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.css'

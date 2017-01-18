@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-18 05:24+0000\n"
+"POT-Creation-Date: 2017-01-18 06:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,23 +20,7 @@ msgstr ""
 
 #: maps/apps.py:6
 msgid "maps"
-msgstr "Картыcom"
-
-#: maps/models.py:41
-msgid "Country"
-msgstr "Страна"
-
-#: maps/models.py:42
-msgid "Countries"
-msgstr "Страны"
-
-#: maps/models.py:60
-msgid "Area"
-msgstr "Область"
-
-#: maps/models.py:61
-msgid "Areas"
-msgstr "Области"
+msgstr ""
 
 #: maps/templates/admin/maps/country/change_form.html:10
 msgid "History"
@@ -57,6 +41,22 @@ msgstr "Пожалуйста, исправьте ошибки."
 #: maps/templates/admin/maps/country/map_kml_import.html:15
 msgid "Please correct the errors below."
 msgstr "Пожалуйста, исправьте ошибки."
+
+#: maps/templates/maps/infobox.html:20
+msgid "Capital"
+msgstr "Столица"
+
+#: maps/templates/maps/infobox.html:29
+msgid "Area"
+msgstr "Площадь"
+
+#: maps/templates/maps/infobox.html:31
+msgid "km"
+msgstr "км"
+
+#: maps/templates/maps/infobox.html:38
+msgid "Population"
+msgstr "Население"
 
 #: templates/index.html:12
 msgid "Fans of political geography is devoted!"

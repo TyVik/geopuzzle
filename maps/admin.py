@@ -2,10 +2,12 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.messages import success
+from django.contrib.postgres.fields import JSONField
 from django.db.models import ImageField
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
+from jsoneditor.forms import JSONEditor
 
 from common.admin import ImageMixin, AdminImageWidget
 from maps.forms import KMLImportForm
@@ -18,6 +20,7 @@ class CountryAdmin(ImageMixin, admin.ModelAdmin):
     list_display_links = ('image_tag', 'name', 'id',)
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
+        JSONField: {'widget': JSONEditor},
     }
     fieldsets = (
         (None, {'fields':
@@ -75,3 +78,7 @@ class AreaAdmin(admin.ModelAdmin):
     list_editable = ('difficulty',)
     search_fields = ('name',)
     actions = [recalc_answer, update_infobox]
+    formfield_overrides = {
+        ImageField: {'widget': AdminImageWidget},
+        JSONField: {'widget': JSONEditor},
+    }

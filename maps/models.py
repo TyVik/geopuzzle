@@ -1,4 +1,3 @@
-from django.utils.translation import ugettext as _
 from django.contrib.gis.db.models import MultiPointField
 from django.contrib.gis.db.models import MultiPolygonField
 from django.contrib.gis.db.models import PointField
@@ -39,8 +38,8 @@ class Country(models.Model):
     sparql = models.TextField(blank=True, null=True)
 
     class Meta:
-        verbose_name = _('Country')
-        verbose_name_plural = _('Countries')
+        verbose_name = 'Country'
+        verbose_name_plural = 'Countries'
 
     def __str__(self):
         return self.name
@@ -58,8 +57,8 @@ class Area(models.Model):
     infobox = JSONField(null=True)
 
     class Meta:
-        verbose_name = _('Area')
-        verbose_name_plural = _('Areas')
+        verbose_name = 'Area'
+        verbose_name_plural = 'Areas'
 
     def __str__(self):
         return self.name
