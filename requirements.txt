@@ -3,3 +3,4 @@ psycopg2==2.6.2
 pillow==4.0.0
 sorl-thumbnail==12.4a1
 sparqlwrapper
+django-hvad==1.6.0

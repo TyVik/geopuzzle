@@ -6,6 +6,7 @@ from django.contrib.gis.geos import Point
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.urls import reverse
+from hvad.models import TranslatableModel, TranslatedFields
 
 from maps.infobox import query
 
@@ -27,8 +28,7 @@ ZOOMS = (
 )
 
 
-class Country(models.Model):
-    name = models.CharField(max_length=15)
+class Country(TranslatableModel):
     image = models.ImageField(upload_to='countries', blank=True)
     slug = models.CharField(max_length=15, db_index=True)
     center = PointField(geography=True)
@@ -37,31 +37,38 @@ class Country(models.Model):
     default_count = models.PositiveSmallIntegerField(default=0)
     sparql = models.TextField(blank=True, null=True)
 
+    translations = TranslatedFields(
+        name = models.CharField(max_length=15)
+    )
+
     class Meta:
         verbose_name = 'Country'
         verbose_name_plural = 'Countries'
 
     def __str__(self):
-        return self.name
+        return self.slug
 
     def get_absolute_url(self):
         return reverse('maps_map', args=(self.slug,))
 
 
-class Area(models.Model):
+class Area(TranslatableModel):
     country = models.ForeignKey(Country)
-    name = models.CharField(max_length=50)
     difficulty = models.PositiveSmallIntegerField(choices=DIFFICULTY_LEVELS, default=0)
     polygon = MultiPolygonField(geography=True)
     answer = MultiPointField(geography=True, null=True)
-    infobox = JSONField(null=True)
+
+    translations = TranslatedFields(
+        name = models.CharField(max_length=50),
+        infobox = JSONField(null=True)
+    )
 
     class Meta:
         verbose_name = 'Area'
         verbose_name_plural = 'Areas'
 
     def __str__(self):
-        return self.name
+        return str(self.id)
 
     def get_absolute_url(self):
         return '{}?id={}'.format(reverse('maps_map', args=(self.country.slug,)), self.id)

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'sorl.thumbnail',
     'jsoneditor',
+    'hvad',
 
     'maps',
 ]

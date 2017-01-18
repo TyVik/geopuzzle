@@ -7,6 +7,7 @@ from django.db.models import ImageField
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
+from hvad.admin import TranslatableAdmin
 from jsoneditor.forms import JSONEditor
 
 from common.admin import ImageMixin, AdminImageWidget
@@ -15,18 +16,18 @@ from maps.models import Country, Area
 
 
 @admin.register(Country)
-class CountryAdmin(ImageMixin, admin.ModelAdmin):
-    list_display = ('id', 'image_tag', 'name', 'slug')
-    list_display_links = ('image_tag', 'name', 'id',)
+class CountryAdmin(ImageMixin, TranslatableAdmin):
+    list_display = ('id', '_name', 'image_tag', 'slug')
+    list_display_links = ('image_tag', 'id', '_name')
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
-        JSONField: {'widget': JSONEditor},
     }
-    fieldsets = (
-        (None, {'fields':
-                    (('name', 'slug'), 'image', ('zoom', 'default_count'), 'center', 'position', 'sparql')
-                }),
-    )
+
+    def _name(self, obj):
+        return obj.name
+
+    def get_queryset(self, request):
+        return super(CountryAdmin, self).get_queryset(request)
 
     def kml_import(self, request, pk):
         opts = self.model._meta
@@ -72,13 +73,15 @@ update_infobox.short_description = "Update infobox"
 
 
 @admin.register(Area)
-class AreaAdmin(admin.ModelAdmin):
-    list_display = ('name', 'country', 'difficulty')
+class AreaAdmin(TranslatableAdmin):
+    list_display = ('_name', 'difficulty',)
     list_filter = ('difficulty', 'country')
     list_editable = ('difficulty',)
-    search_fields = ('name',)
     actions = [recalc_answer, update_infobox]
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
         JSONField: {'widget': JSONEditor},
     }
+
+    def _name(self, obj):
+        return obj.name
