@@ -60,3 +60,10 @@ function debugAnswers() {
     rect.setBounds(answers[i]);
   }
 }
+
+function resizeWrapper() {
+    var map_wrapper = document.querySelector('#map_wrapper');
+    map_wrapper.style.height = (window.innerHeight - 110) + 'px';
+}
+
+window.onload = resizeWrapper;

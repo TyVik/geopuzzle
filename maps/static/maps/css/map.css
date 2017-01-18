@@ -2,7 +2,7 @@ nav.navbar {
     margin-bottom: 0;
 }
 
-.wrapper {
+#map_wrapper {
     height: 1000px;
 }
 
