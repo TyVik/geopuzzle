@@ -9,19 +9,17 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 
-SELECT ?country ?name ?capital ?area ?population ?thumbnail (group_concat(?language;separator=",") as ?languages) WHERE {{
+SELECT ?country ?name ?capital ?area ?population ?thumbnail ?wiki WHERE {{
     ?country a dbo:Country.
     ?country rdfs:label ?name.
-    ?country dbo:capital ?capital_raw.
-    ?capital_raw dbp:name ?capital.
+    ?country dbo:capital ?capital.
     ?country dbp:areaKm ?area.
     ?country dbo:populationTotal ?population.
+    ?country foaf:isPrimaryTopicOf ?wiki.
     ?country dbo:thumbnail ?thumbnail.
 
-    OPTIONAL {{?country dbo:officialLanguage ?language}}
-
     FILTER (?name = "{}"@en)
-}} group by ?country ?name ?capital ?area ?population ?thumbnail
+}}
 """
 
 
@@ -35,5 +33,8 @@ def query(name):
     if len(results) > 0:
         results = results[0]
         for field in results:
-            result[field] = results[field]['value']
+            value = results[field]['value']
+            if field == 'capital':
+                value = value.split('/')[-1]
+            result[field] = value
     return result
