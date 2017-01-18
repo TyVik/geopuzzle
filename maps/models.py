@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext as _
 from django.contrib.gis.db.models import MultiPointField
 from django.contrib.gis.db.models import MultiPolygonField
 from django.contrib.gis.db.models import PointField
@@ -37,7 +38,8 @@ class Country(models.Model):
     default_count = models.PositiveSmallIntegerField(default=0)
 
     class Meta:
-        verbose_name_plural = 'Countries'
+        verbose_name = _('Country')
+        verbose_name_plural = _('Countries')
 
     def __str__(self):
         return self.name
@@ -53,6 +55,10 @@ class Area(models.Model):
     polygon = MultiPolygonField(geography=True)
     answer = MultiPointField(geography=True, null=True)
     infobox = JSONField(null=True)
+
+    class Meta:
+        verbose_name = _('Area')
+        verbose_name_plural = _('Areas')
 
     def __str__(self):
         return self.name

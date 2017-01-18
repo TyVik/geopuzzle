@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-06 11:11+0000\n"
+"POT-Creation-Date: 2017-01-18 05:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: maps/apps.py:6
+msgid "maps"
+msgstr "Картыcom"
+
+#: maps/models.py:41
+msgid "Country"
+msgstr "Страна"
+
+#: maps/models.py:42
+msgid "Countries"
+msgstr "Страны"
+
+#: maps/models.py:60
+msgid "Area"
+msgstr "Область"
+
+#: maps/models.py:61
+msgid "Areas"
+msgstr "Области"
 
 #: maps/templates/admin/maps/country/change_form.html:10
 msgid "History"
