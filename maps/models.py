@@ -36,6 +36,7 @@ class Country(models.Model):
     position = PointField(geography=True)
     zoom = models.PositiveSmallIntegerField(choices=ZOOMS)
     default_count = models.PositiveSmallIntegerField(default=0)
+    sparql = models.TextField(blank=True, null=True)
 
     class Meta:
         verbose_name = _('Country')
@@ -67,7 +68,7 @@ class Area(models.Model):
         return '{}?id={}'.format(reverse('maps_map', args=(self.country.slug,)), self.id)
 
     def update_infobox(self):
-        self.infobox = query(self.name)
+        self.infobox = query(self.country.sparql, self.name)
         print(self.infobox)
         self.save()
 

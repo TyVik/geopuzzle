@@ -21,7 +21,7 @@ class CountryAdmin(ImageMixin, admin.ModelAdmin):
     }
     fieldsets = (
         (None, {'fields':
-                    (('name', 'slug'), 'image', ('zoom', 'default_count'), 'center', 'position')
+                    (('name', 'slug'), 'image', ('zoom', 'default_count'), 'center', 'position', 'sparql')
                 }),
     )
 
