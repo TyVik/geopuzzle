@@ -2,9 +2,9 @@ from SPARQLWrapper import JSON
 from SPARQLWrapper import SPARQLWrapper
 
 
-def query(statement, name):
+def query(statement, **kwargs):
     sparql = SPARQLWrapper("http://dbpedia.org/sparql")
-    sparql.setQuery(statement.format(name))
+    sparql.setQuery(statement.format(**kwargs))
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     results = results['results']['bindings']

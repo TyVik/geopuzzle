@@ -46,7 +46,7 @@ class Country(TranslatableModel):
         verbose_name_plural = 'Countries'
 
     def __str__(self):
-        return self.slug
+        return self.safe_translation_getter('name', str(self.pk))
 
     def get_absolute_url(self):
         return reverse('maps_map', args=(self.slug,))
@@ -68,15 +68,15 @@ class Area(TranslatableModel):
         verbose_name_plural = 'Areas'
 
     def __str__(self):
-        return str(self.id)
+        return self.safe_translation_getter('name', str(self.pk))
 
     def get_absolute_url(self):
         return '{}?id={}'.format(reverse('maps_map', args=(self.country.slug,)), self.id)
 
     def update_infobox(self):
-        self.infobox = query(self.country.sparql, self.name)
-        print(self.infobox)
-        self.save()
+        for language in self.get_available_languages():
+            self.infobox = query(self.country.sparql, language=language, name=self.safe_translation_getter('name', ''))
+            self.save()
 
     def recalc_answer(self):
         diff = (-1, -1, 1, 1)
