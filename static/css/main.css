@@ -10,6 +10,11 @@ footer .social-wrap {
     padding: 20px;
 }
 
+#copyright {
+    padding: 20px;
+    display: inline-block;
+}
+
 .world_maps .panel {
     width: 33%;
     display: inline-block;
