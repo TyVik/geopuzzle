@@ -25,7 +25,7 @@ SECRET_KEY = 'ape=+ghu&-o&$12=^=huhywfeg+dx5-n5(31odnicpy7am!rq7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['geopuzzle.org', '188.166.83.63']
+ALLOWED_HOSTS = ['geopuzzle.org', '188.166.83.63', '127.0.0.1']
 
 
 # Application definition
