@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-18 06:45+0000\n"
+"POT-Creation-Date: 2017-01-20 19:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,30 +58,44 @@ msgstr "км"
 msgid "Population"
 msgstr "Население"
 
-#: templates/index.html:12
+#: templates/base.html:6 templates/index.html:12
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
 
-#: templates/index.html:12
-msgid "Thank you for attention :)"
-msgstr "Спасибо что заглянули :) Это мой домашний проект, но я был настолько вдохновлён идеей, что решил сделать полноценный сайт. Он ещё не закончен - будут обновления как самих данных, так и функционала. Все пожелания можно направить мне на <a href=\"mailto:tyvik8@gmail.com?&subject=Geo!Puzzle\">почту</a>, в <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a> или в <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
+msgid ""
+"Thank you for attention :) I was so impressed with this idea that I decided "
+"to make a website. It is\n"
+"not over yet - will update both the data and functionality. All suggestions "
+"for improvement can be sent to me via\n"
+"<a href=\"mailto:tyvik8@gmail.com?&subject=Geo!Puzzle\">email</a>, <a href="
+"\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
+"or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank"
+"\">facebook</a>."
+msgstr ""
+"Спасибо что заглянули :) Это мой домашний проект, но я был настолько "
+"вдохновлён идеей, что решил сделать полноценный сайт. Он ещё не закончен - "
+"будут обновления как самих данных, так и функционала. Все пожелания можно "
+"направить мне на <a href=\"mailto:tyvik8@gmail.com?&subject=Geo!Puzzle"
+"\">почту</a>, в <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a> "
+"или в <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank"
+"\">facebook</a>."
 
-#: templates/index.html:16
+#: templates/index.html:21
 msgid "World"
 msgstr "Мир"
 
-#: templates/index.html:23
+#: templates/index.html:28
 msgid "easy"
 msgstr "лёгкий"
 
-#: templates/index.html:29
+#: templates/index.html:34
 msgid "normal"
 msgstr "средний"
 
-#: templates/index.html:35
+#: templates/index.html:40
 msgid "hard"
 msgstr "тяжёлый"
 
-#: templates/index.html:39
+#: templates/index.html:44
 msgid "Country regions"
 msgstr "Регионы стран"
