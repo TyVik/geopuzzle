@@ -1,10 +1,12 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>Geo!Puzzle</title>
+        <meta name="Description" content="{% trans 'Arrange the pieces of the world!' %}">
+        <meta name="Keywords" content="geopuzzle, mercator, puzzle, паззл, меркатор">
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <meta charset="utf-8">
-        <title>Geo Puzzle!</title>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
@@ -31,7 +33,7 @@
         <footer class="footer">
             <div class="container">
                 <div id="copyright">
-                    <span><a href="mailto:tyvik8@gmail.com?&subject=Geo!Puzzle">TyVik</a> &copy; 2017</span>
+                    <span><a href="https://tyvik.ru">TyVik</a> &copy; 2017</span>
                 </div>
 
                 <div class="social-wrap">

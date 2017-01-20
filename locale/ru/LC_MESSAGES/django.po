@@ -59,12 +59,12 @@ msgid "Population"
 msgstr "Население"
 
 #: templates/index.html:12
-msgid "Fans of political geography is devoted!"
-msgstr "Любителям политической географии посвящается!"
+msgid "Arrange the pieces of the world!"
+msgstr "Собери мир по кусочкам!"
 
-#: templates/index.html:13
-msgid "Arrange regions for the right places."
-msgstr "Расставьте регионы по правильным местам."
+#: templates/index.html:12
+msgid "Thank you for attention :)"
+msgstr "Спасибо что заглянули :) Это мой домашний проект, но я был настолько вдохновлён идеей, что решил сделать полноценный сайт. Он ещё не закончен - будут обновления как самих данных, так и функционала. Все пожелания можно направить мне на <a href=\"mailto:tyvik8@gmail.com?&subject=Geo!Puzzle\">почту</a>, в <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a> или в <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
 
 #: templates/index.html:16
 msgid "World"
