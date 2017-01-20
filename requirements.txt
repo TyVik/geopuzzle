@@ -1,6 +1,11 @@
+# apt install postgresql postgresql-contrib postgis gdal-bin gettext
+
+# create extension postgis postgis_topology postgis_sfcgal fuzzystrmatch address_standardizer postgis_tiger_geocoder
+
 Django==1.10.5
 psycopg2==2.6.2
 pillow==4.0.0
 sorl-thumbnail==12.4a1
 sparqlwrapper
 django-hvad==1.6.0
+django-jsoneditor-ng==0.0.3
