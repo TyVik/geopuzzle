@@ -67,7 +67,7 @@ class Area(TranslatableModel):
 
     translations = TranslatedFields(
         name = models.CharField(max_length=50),
-        infobox = JSONField(null=True)
+        infobox = JSONField(null=True, blank=True)
     )
 
     class Meta:
