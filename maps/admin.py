@@ -80,7 +80,7 @@ class AreaAdmin(TranslatableAdmin):
     actions = [recalc_answer, update_infobox]
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
-        JSONField: {'widget': JSONEditor},
+        # JSONField: {'widget': JSONEditor},
     }
 
     def _name(self, obj):
