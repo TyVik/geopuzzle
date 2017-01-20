@@ -56,7 +56,9 @@ if (!google.maps.Polygon.prototype.showInfobox) {
             .then(function(response) {
                 return response.text();
             }).then(function(text) {
-                document.getElementById('wrap_infobox').innerHTML = text;
+                var infobox = document.getElementById('wrap_infobox');
+                infobox.innerHTML = text;
+                infobox.style.display = 'inline-block';
             });
         return true;
     }
