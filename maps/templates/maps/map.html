@@ -23,6 +23,6 @@
     <script type="text/javascript" src="{% static 'maps/js/main.js' %}"></script>
     <script type='text/javascript'>
         var geodata = {{ data|safe }};
-        google.maps.event.addDomListener(window, 'load', initialize({{ country.zoom }}, [{{ country.position.1|safe }}, {{ country.position.0|safe }}], [{{ country.center.1|safe }}, {{ country.center.0|safe }}]));
+        var init = {{ init|safe }};
     </script>
 {% endblock %}

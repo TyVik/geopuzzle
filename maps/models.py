@@ -51,6 +51,13 @@ class Country(TranslatableModel):
     def get_absolute_url(self):
         return reverse('maps_map', args=(self.slug,))
 
+    def get_init_params(self):
+        return {
+            'zoom': self.zoom,
+            'position': list(self.position.coords),
+            'center': list(self.center.coords)
+        }
+
 
 class Area(TranslatableModel):
     country = models.ForeignKey(Country)

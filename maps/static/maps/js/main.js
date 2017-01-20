@@ -28,20 +28,10 @@ function addCountries(position) {
                 this.showInfobox();
             }
         });
-        country.moveTo(new google.maps.LatLng(position[0], position[1]));
+        country.moveTo(new google.maps.LatLng(position[1], position[0]));
         puzzle.push(country);
         country = null;
     });
-}
-
-function initialize(zoom, center, default_position) {
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: zoom,
-        center: new google.maps.LatLng(center[0], center[1]),
-        mapTypeId: google.maps.MapTypeId.TERRAIN,
-        streetViewControl: true,
-    });
-    addCountries(default_position);
 }
 
 function giveUp() {
@@ -64,6 +54,13 @@ function debugAnswers() {
 function resizeWrapper() {
     var map_wrapper = document.querySelector('#map_wrapper');
     map_wrapper.style.height = (window.innerHeight - 110) + 'px';
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: init.zoom,
+        center: new google.maps.LatLng(init.center[1], init.center[0]),
+        mapTypeId: google.maps.MapTypeId.TERRAIN,
+        streetViewControl: true,
+    });
+    addCountries(init.position);
 }
 
 window.onload = resizeWrapper;

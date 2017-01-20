@@ -46,10 +46,9 @@ def maps(request, name):
     if not form.is_valid():
         return HttpResponseBadRequest(json.dumps(form.errors))
     areas = form.areas()
-    country = {'zoom': form.meta.zoom, 'position': form.meta.position, 'center': form.meta.center}
     data = [{
         'id': country.id,
         'polygon': country.polygon.geojson,
         'answer': [list(country.answer.coords[0]), list(country.answer.coords[1])]}
             for country in areas]
-    return render(request, 'maps/map.html', context={'data': data, 'country': country})
+    return render(request, 'maps/map.html', context={'data': data, 'init': form.meta.get_init_params()})
