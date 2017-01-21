@@ -17,7 +17,7 @@ from maps.models import Country, Area
 
 @admin.register(Country)
 class CountryAdmin(ImageMixin, TranslatableAdmin):
-    list_display = ('id', '_name', 'image_tag', 'slug')
+    list_display = ('id', '_name', 'image_tag', 'slug', 'is_published')
     list_display_links = ('image_tag', 'id', '_name')
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},

@@ -31,7 +31,7 @@ class MapForm(forms.Form):
 
 
 def index(request):
-    return render(request, 'index.html', {'countries': Country.objects.language(request.LANGUAGE_CODE).exclude(slug='world').order_by('name').all()})
+    return render(request, 'index.html', {'countries': Country.objects.language(request.LANGUAGE_CODE).filter(is_published=True).exclude(slug='world').order_by('name').all()})
 
 
 def infobox(request, pk):

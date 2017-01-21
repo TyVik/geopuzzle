@@ -36,6 +36,7 @@ class Country(TranslatableModel):
     zoom = models.PositiveSmallIntegerField(choices=ZOOMS)
     default_count = models.PositiveSmallIntegerField(default=0)
     sparql = models.TextField(blank=True, null=True)
+    is_published = models.BooleanField(default=False)
 
     translations = TranslatedFields(
         name = models.CharField(max_length=15)
