@@ -83,8 +83,9 @@ class Area(TranslatableModel):
 
     def update_infobox(self):
         for language in self.get_available_languages():
-            self.infobox = query(self.country.sparql, language=language, name=self.safe_translation_getter('name', ''))
-            self.save()
+            obj = Area.objects.language(language).get(pk=self.pk)
+            obj.infobox = query(self.country.sparql, language=language, name=obj.safe_translation_getter('name', ''))
+            obj.save()
 
     def recalc_answer(self):
         diff = (-1, -1, 1, 1)
