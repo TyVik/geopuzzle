@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-22 19:55+0000\n"
+"POT-Creation-Date: 2017-01-22 20:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,9 +74,13 @@ msgstr "сдаюсь"
 msgid "once again"
 msgstr "ещё раз"
 
-#: templates/base.html:6 templates/index.html:12
+#: templates/base.html:6 templates/base.html:14 templates/index.html:12
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
+
+#: templates/base.html:15
+msgid "Game-puzzle with political maps"
+msgstr "Паззл из стран"
 
 #: templates/index.html:14
 msgid ""
