@@ -26,6 +26,7 @@ SECRET_KEY = 'ape=+ghu&-o&$12=^=huhywfeg+dx5-n5(31odnicpy7am!rq7'
 DEBUG = True
 
 ALLOWED_HOSTS = ['geopuzzle.org', '188.166.83.63', '127.0.0.1']
+INTERNAL_IPS = ('0.0.0.0', '127.0.0.1')
 
 
 # Application definition
@@ -128,7 +129,10 @@ STATICFILES_DIRS = ['static']
 STATIC_ROOT = '../static'
 
 MEDIA_URL = '/upload/'
-MEDIA_ROOT = '../upload'
+if DEBUG:
+    MEDIA_ROOT = 'upload'
+else:
+    MEDIA_ROOT = '../upload'
 
 THUMBNAIL_DUMMY = True
 THUMBNAIL_DUMMY_SOURCE = '/static/images/world/default_%(width)s.png'
