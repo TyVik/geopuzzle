@@ -51,6 +51,11 @@ function debugAnswers() {
   }
 }
 
+function close_infobox() {
+    var wrap_infobox = document.getElementById('wrap_infobox');
+    wrap_infobox.style.display = 'none';
+}
+
 function resizeWrapper() {
     var map_wrapper = document.querySelector('#map_wrapper');
     map_wrapper.style.height = (window.innerHeight - 110) + 'px';

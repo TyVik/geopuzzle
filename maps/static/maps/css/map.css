@@ -70,3 +70,7 @@ nav.navbar {
     border: 1px solid black;
     width: 200px;
 }
+
+#wrap_infobox .close {
+    position: fixed;
+}
