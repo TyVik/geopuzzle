@@ -10,7 +10,7 @@
     </tr>
     <tr>
         <td colspan="2">
-            <div><img src="{{ data.thumbnail }}"></div>
+            <div><img src="{{ data.flag }}"></div>
         </td>
     </tr>
 
@@ -41,6 +41,23 @@
     </tr>
     {% endif %}
 
+    {% if data.currency %}
+    <tr>
+        <td scope="row">
+            <div>{% trans 'Currency' %}</div>
+        </td>
+        <td>{{ data.currency }}</td>
+    </tr>
+    {% endif %}
+
+    {% if data.phone %}
+    <tr>
+        <td scope="row">
+            <div>{% trans 'Phone' %}</div>
+        </td>
+        <td>{{ data.phone }}</td>
+    </tr>
+    {% endif %}
 
     </tbody>
 </table>
