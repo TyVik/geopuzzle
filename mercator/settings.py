@@ -129,10 +129,7 @@ STATICFILES_DIRS = ['static']
 STATIC_ROOT = '../static'
 
 MEDIA_URL = '/upload/'
-if DEBUG:
-    MEDIA_ROOT = 'upload'
-else:
-    MEDIA_ROOT = '../upload'
+MEDIA_ROOT = 'upload'
 
 THUMBNAIL_DUMMY = True
 THUMBNAIL_DUMMY_SOURCE = '/static/images/world/default_%(width)s.png'
