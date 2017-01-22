@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-20 19:07+0000\n"
+"POT-Creation-Date: 2017-01-22 19:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,10 +58,27 @@ msgstr "км"
 msgid "Population"
 msgstr "Население"
 
+#: maps/templates/maps/infobox.html:47
+msgid "Currency"
+msgstr "Валюта"
+
+#: maps/templates/maps/infobox.html:56
+msgid "Phone"
+msgstr "Телефонный код"
+
+#: maps/templates/maps/map.html:10
+msgid "give up"
+msgstr "сдаюсь"
+
+#: maps/templates/maps/map.html:11
+msgid "once again"
+msgstr "ещё раз"
+
 #: templates/base.html:6 templates/index.html:12
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
 
+#: templates/index.html:14
 msgid ""
 "Thank you for attention :) I was so impressed with this idea that I decided "
 "to make a website. It is\n"

@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'maps/css/map.css' %}">
 {% endblock %}
 
 {% block content %}
-{#    <div id="buttons">#}
-{#        <div class="button" id="give_up" onclick = "giveUp()">Сдаюсь!</div>#}
-{#        <div class="button" id="retry" onclick = "reload()">Ещё раз?</div>#}
-{#    </div>#}
+    <div class="btn-group btn-group-sm" id="buttons">
+        <button type="button" class="btn btn-success" onclick = "giveUp()">{% trans 'give up' %}</button>
+        <button type="button" class="btn btn-warning" onclick = "reload()">{% trans 'once again' %}</button>
+    </div>
     <div id="map_wrapper">
         <div id="wrap_infobox" style="display: none">
             <button type="button" class="close" aria-label="Close" onclick="close_infobox()">
