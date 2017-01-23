@@ -52,15 +52,17 @@ if (!google.maps.Polygon.prototype.replacePiece) {
 
 if (!google.maps.Polygon.prototype.showInfobox) {
     google.maps.Polygon.prototype.showInfobox = function() {
-        fetch(location.origin + '/maps/infobox/' + this.id + '/')
-            .then(function(response) {
-                return response.text();
-            }).then(function(text) {
-                var infobox = document.getElementById('infobox');
-                var wrap_infobox = document.getElementById('wrap_infobox');
-                infobox.innerHTML = text;
-                wrap_infobox.style.display = 'inline-block';
-            });
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', location.origin + '/maps/infobox/' + this.id + '/', false);
+        xhr.send();
+        if (xhr.status != 200) {
+          alert( xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
+        } else {
+            var infobox = document.getElementById('infobox');
+            var wrap_infobox = document.getElementById('wrap_infobox');
+            infobox.innerHTML = xhr.responseText;
+            wrap_infobox.style.display = 'inline-block';
+        }
         return true;
     }
 }
