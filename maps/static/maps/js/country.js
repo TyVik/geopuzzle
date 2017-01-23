@@ -53,16 +53,18 @@ if (!google.maps.Polygon.prototype.replacePiece) {
 if (!google.maps.Polygon.prototype.showInfobox) {
     google.maps.Polygon.prototype.showInfobox = function() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', location.origin + '/maps/infobox/' + this.id + '/', false);
+        xhr.open('GET', '/maps/infobox/' + this.id + '/', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if(xhr.status == 200) {
+                    var infobox = document.getElementById('infobox');
+                    var wrap_infobox = document.getElementById('wrap_infobox');
+                    infobox.innerHTML = xhr.responseText;
+                    wrap_infobox.style.display = 'inline-block';
+                }
+            }
+        };
         xhr.send();
-        if (xhr.status != 200) {
-          alert( xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
-        } else {
-            var infobox = document.getElementById('infobox');
-            var wrap_infobox = document.getElementById('wrap_infobox');
-            infobox.innerHTML = xhr.responseText;
-            wrap_infobox.style.display = 'inline-block';
-        }
         return true;
     }
 }
