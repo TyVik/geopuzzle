@@ -13,6 +13,8 @@ function addCountries(position) {
         draggable: true,
         zIndex: 2,
     };
+    var counter = document.getElementById('counter_total');
+    counter.innerText = geodata.length;
     geodata.forEach(function(item, i, arr) {
         var country = new google.maps.Polygon(options);
         country.id = item.id;

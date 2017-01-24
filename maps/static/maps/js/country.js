@@ -57,9 +57,11 @@ if (!google.maps.Polygon.prototype.showInfobox) {
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
                 if(xhr.status == 200) {
+                    var counter = document.getElementById('counter_current');
+                    counter.innerText = parseInt(counter.innerText, 10) + 1;
                     var infobox = document.getElementById('infobox');
-                    var wrap_infobox = document.getElementById('wrap_infobox');
                     infobox.innerHTML = xhr.responseText;
+                    var wrap_infobox = document.getElementById('wrap_infobox');
                     wrap_infobox.style.display = 'inline-block';
                 }
             }

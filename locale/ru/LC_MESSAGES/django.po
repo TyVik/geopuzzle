@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-22 20:55+0000\n"
+"POT-Creation-Date: 2017-01-24 08:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,11 +66,15 @@ msgstr "Валюта"
 msgid "Phone"
 msgstr "Телефонный код"
 
-#: maps/templates/maps/map.html:10
+#: maps/templates/maps/map.html:11
+msgid "Found"
+msgstr "Найдено"
+
+#: maps/templates/maps/map.html:13
 msgid "give up"
 msgstr "сдаюсь"
 
-#: maps/templates/maps/map.html:11
+#: maps/templates/maps/map.html:14
 msgid "once again"
 msgstr "ещё раз"
 

@@ -20,6 +20,13 @@ nav.navbar {
     left: 50%;
 }
 
+#counter {
+    position: relative;
+    float: left;
+    padding: 5px;
+    background-color: white;
+}
+
 #wrap_infobox {
     position: fixed;
     right: 0;

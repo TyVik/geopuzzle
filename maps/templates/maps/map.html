@@ -7,6 +7,9 @@
 
 {% block content %}
     <div class="btn-group btn-group-sm" id="buttons">
+        <div id="counter">
+            {% trans 'Found' %}: <span id="counter_current">0</span>/<span id="counter_total">0</span>
+        </div>
         <button type="button" class="btn btn-success" onclick = "giveUp()">{% trans 'give up' %}</button>
         <button type="button" class="btn btn-warning" onclick = "reload()">{% trans 'once again' %}</button>
     </div>
