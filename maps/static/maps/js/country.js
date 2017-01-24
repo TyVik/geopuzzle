@@ -65,7 +65,7 @@ if (!google.maps.Polygon.prototype.showInfobox) {
                         geodata.forEach(function(item, i, arr) {
                             names.push(item.name);
                         });
-                        shape_names.innerText = names.join();
+                        shape_names.innerText = names.join(', ');
                         $('#congrats').modal({});
                     }
                     counter.innerText = found;
