@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-24 09:25+0000\n"
+"POT-Creation-Date: 2017-01-24 12:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,7 +100,39 @@ msgstr "Паззл из стран"
 
 #: templates/index.html:14
 msgid ""
-"Thank you for attention :) I was so impressed with this idea that I decided "
+"Thank you for attention :) You came to the site of cognitive games Geo "
+"Puzzle. Here you can learn some\n"
+"geography and fun to pass the time. The task - drag the shapes of countries "
+"on the right place.\n"
+"Good luck ;)"
+msgstr ""
+"Спасибо что заглянули. Это сайт познавательной игры Geo Puzzle. "
+"Здесь можно подучить географию и увлекательно скоротать время. Задача - "
+"перетащить контуры стран по правильным местам. Удачи ;)"
+
+#: templates/index.html:20
+msgid "World"
+msgstr "Мир"
+
+#: templates/index.html:27
+msgid "easy"
+msgstr "лёгкий"
+
+#: templates/index.html:33
+msgid "normal"
+msgstr "средний"
+
+#: templates/index.html:39
+msgid "hard"
+msgstr "тяжёлый"
+
+#: templates/index.html:43
+msgid "Country regions"
+msgstr "Регионы стран"
+
+#: templates/index.html:59
+msgid ""
+"This is my pet project, but I was so impressed with this idea that I decided "
 "to make a website. It is\n"
 "not over yet - will update both the data and functionality. All suggestions "
 "for improvement can be sent to me via\n"
@@ -109,30 +141,9 @@ msgid ""
 "or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank"
 "\">facebook</a>."
 msgstr ""
-"Спасибо что заглянули :) Это мой домашний проект, но я был настолько "
-"вдохновлён идеей, что решил сделать полноценный сайт. Он ещё не закончен - "
-"будут обновления как самих данных, так и функционала. Все пожелания можно "
-"направить мне на <a href=\"mailto:tyvik8@gmail.com?&subject=Geo!Puzzle"
-"\">почту</a>, в <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a> "
-"или в <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank"
-"\">facebook</a>."
-
-#: templates/index.html:21
-msgid "World"
-msgstr "Мир"
-
-#: templates/index.html:28
-msgid "easy"
-msgstr "лёгкий"
-
-#: templates/index.html:34
-msgid "normal"
-msgstr "средний"
-
-#: templates/index.html:40
-msgid "hard"
-msgstr "тяжёлый"
-
-#: templates/index.html:44
-msgid "Country regions"
-msgstr "Регионы стран"
+"Это мой домашний проект, но я был настолько вдохновлён идеей, что решил "
+"сделать полноценный сайт. Он ещё не закончен - будут обновления как самих "
+"данных, так и функционала. Все пожелания можно направить мне на <a href="
+"\"mailto:tyvik8@gmail.com?&subject=Geo!Puzzle\">почту</a>, в <a href="
+"\"https://vk.com/tyvik\" target=\"_blank\">Vk</a> или в <a href=\"https://"
+"www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
