@@ -1,6 +1,7 @@
 import json
 
 from django import forms
+from django.conf import settings
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 
@@ -12,6 +13,7 @@ class MapForm(forms.Form):
     id = forms.ModelMultipleChoiceField(queryset=Area.objects.all(), required=False)
     difficulty = forms.ChoiceField(choices=DIFFICULTY_LEVELS, required=False, initial=1)
     count = forms.IntegerField(required=False, initial=3)
+    lang = forms.ChoiceField(choices=settings.LANGUAGES, required=False, initial='en')
 
     def clean_country(self):
         self.meta = self.cleaned_data.get('country', None)
@@ -21,7 +23,7 @@ class MapForm(forms.Form):
         if len(self.cleaned_data['id']) > 0:
             return self.cleaned_data['id']
 
-        queryset = Area.objects.filter(country=self.cleaned_data['country']).exclude(difficulty=0).order_by('?')
+        queryset = Area.objects.language(self.cleaned_data['lang']).filter(country=self.cleaned_data['country']).exclude(difficulty=0).order_by('?')
         if self.cleaned_data['difficulty'] != '':
             queryset = queryset.filter(difficulty=int(self.cleaned_data['difficulty']))
         count = self.cleaned_data['count'] if self.cleaned_data['count'] is not None else self.meta.default_count
@@ -42,13 +44,15 @@ def infobox(request, pk):
 def maps(request, name):
     params = request.GET.copy()
     params['country'] = name
+    params['lang'] = request.LANGUAGE_CODE
     form = MapForm(params)
     if not form.is_valid():
         return HttpResponseBadRequest(json.dumps(form.errors))
     areas = form.areas()
     data = [{
         'id': country.id,
+        'name': country.name,
         'polygon': country.polygon.geojson,
         'answer': [list(country.answer.coords[0]), list(country.answer.coords[1])]}
             for country in areas]
-    return render(request, 'maps/map.html', context={'data': data, 'init': form.meta.get_init_params()})
+    return render(request, 'maps/map.html', context={'data': data, 'init': form.meta.get_init_params(), 'global': form.meta.id == 1})

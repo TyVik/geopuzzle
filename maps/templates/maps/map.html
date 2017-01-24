@@ -22,6 +22,23 @@
         </div>
         <div id="map"></div>
     </div>
+    <div class="modal fade" id="congrats" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">{% trans 'Congratulations!' %}</h4>
+                </div>
+                <div class="modal-body">
+                    {% if global %}
+                        {% trans 'You found next countries' %}: <span id="shape_names"></span>.
+                    {% else %}
+                        {% trans 'You found next regions' %}: <span id="shape_names"></span>.
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
     {% if debug %}
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry&language=en"></script>
     {% else %}

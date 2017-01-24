@@ -58,7 +58,17 @@ if (!google.maps.Polygon.prototype.showInfobox) {
             if (xhr.readyState == 4) {
                 if(xhr.status == 200) {
                     var counter = document.getElementById('counter_current');
-                    counter.innerText = parseInt(counter.innerText, 10) + 1;
+                    var found = parseInt(counter.innerText, 10) + 1;
+                    if (found == geodata.length) {
+                        var shape_names = document.getElementById('shape_names');
+                        var names = [];
+                        geodata.forEach(function(item, i, arr) {
+                            names.push(item.name);
+                        });
+                        shape_names.innerText = names.join();
+                        $('#congrats').modal({});
+                    }
+                    counter.innerText = found;
                     var infobox = document.getElementById('infobox');
                     infobox.innerHTML = xhr.responseText;
                     var wrap_infobox = document.getElementById('wrap_infobox');
