@@ -15,15 +15,16 @@ function addCountries(position) {
     };
     var counter = document.getElementById('counter_total');
     counter.innerText = geodata.length;
+
     geodata.forEach(function(item, i, arr) {
         var country = new google.maps.Polygon(options);
         country.id = item.id;
-        country.polygon = JSON.parse(item.polygon);
+        country.polygon = item.polygon;
         country.answer = new google.maps.LatLngBounds(
                 new google.maps.LatLng(item.answer[0][1], item.answer[0][0]),
                 new google.maps.LatLng(item.answer[1][1], item.answer[1][0])
             );
-        country.setPaths(country.pathMultipolygonToArray(country.polygon));
+        country.setPaths(country.pathStringsToArray(country.polygon));
         google.maps.event.addListener(country, 'dragend', function() {
             if (this.boundsContains()) {
                 this.replacePiece();

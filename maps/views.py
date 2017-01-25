@@ -52,7 +52,7 @@ def maps(request, name):
     data = [{
         'id': country.id,
         'name': country.name,
-        'polygon': country.polygon.geojson,
+        'polygon': country.polygon_gmap,
         'answer': [list(country.answer.coords[0]), list(country.answer.coords[1])]}
             for country in areas]
     return render(request, 'maps/map.html', context={'data': data, 'init': form.meta.get_init_params(), 'global': form.meta.id == 1})

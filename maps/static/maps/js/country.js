@@ -7,17 +7,12 @@ if (!google.maps.Polygon.prototype.answer) {
     google.maps.Polygon.prototype.answer = "";
 }
 
-if (!google.maps.Polygon.prototype.pathMultipolygonToArray) {
-    google.maps.Polygon.prototype.pathMultipolygonToArray = function(multipolygon) {
+if (!google.maps.Polygon.prototype.pathStringsToArray) {
+    google.maps.Polygon.prototype.pathStringsToArray = function(paths) {
         var result = [];
-        _.each(multipolygon.coordinates, function(polygon) {
-            result.push(_.map(polygon[0], function(point) {
-                return new google.maps.LatLng(point[1], point[0]);
-            }));
-            result.push(_.map(polygon[1], function(point) {
-                return new google.maps.LatLng(point[1], point[0]);
-            }));
-        });
+        for (var i = 0; i < paths.length; i++) {
+            result.push(google.maps.geometry.encoding.decodePath(paths[i]));
+        }
         return result;
     }
 }
@@ -45,7 +40,7 @@ if (!google.maps.Polygon.prototype.replacePiece) {
             draggable: false,
             zIndex: 1,
         };
-        options.paths = this.pathMultipolygonToArray(this.polygon);
+        options.paths = this.pathStringsToArray(this.polygon);
         this.setOptions(options);
     }
 }

@@ -8,6 +8,7 @@ from django.db import models
 from django.urls import reverse
 from hvad.models import TranslatableModel, TranslatedFields
 
+from maps.converter import encode_coords
 from maps.infobox import query
 
 DIFFICULTY_LEVELS = (
@@ -80,6 +81,15 @@ class Area(TranslatableModel):
 
     def get_absolute_url(self):
         return '{}?id={}'.format(reverse('maps_map', args=(self.country.slug,)), self.id)
+
+    @property
+    def polygon_gmap(self):
+        result = []
+        for polygon in self.polygon:
+            result.append(encode_coords(polygon.coords[0]))
+            if len(polygon.coords) > 1:
+                result.append(encode_coords(polygon.coords[1]))
+        return result
 
     def update_infobox(self):
         for language in self.get_available_languages():
