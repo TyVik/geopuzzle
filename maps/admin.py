@@ -74,7 +74,7 @@ update_infobox.short_description = "Update infobox"
 
 @admin.register(Area)
 class AreaAdmin(TranslatableAdmin):
-    list_display = ('_name', 'difficulty',)
+    list_display = ('_name', 'difficulty', 'num_points')
     list_filter = ('difficulty', 'country')
     list_editable = ('difficulty',)
     actions = [recalc_answer, update_infobox]
@@ -85,3 +85,6 @@ class AreaAdmin(TranslatableAdmin):
 
     def _name(self, obj):
         return obj.name
+
+    def num_points(self, obj):
+        return obj.polygon.num_points
