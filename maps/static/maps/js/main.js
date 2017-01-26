@@ -45,8 +45,7 @@ function addCountries(position) {
 
                 var buttons = document.getElementById('buttons');
                 buttons.className = buttons.className.replace(' fade', '');
-                var loading = document.getElementById('loading');
-                loading.className = buttons.className + ' fade';
+                document.getElementById('loading_wrapper').remove();
             }
         }
     };
