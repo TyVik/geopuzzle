@@ -11,7 +11,7 @@ from hvad.admin import TranslatableAdmin
 from jsoneditor.forms import JSONEditor
 
 from common.admin import ImageMixin, AdminImageWidget
-from maps.forms import KMLImportForm
+from maps.forms import KMLCountryImportForm, KMLAreaImportForm
 from maps.models import Country, Area
 
 
@@ -33,14 +33,14 @@ class CountryAdmin(ImageMixin, TranslatableAdmin):
         opts = self.model._meta
         user = None
         if request.method == 'POST':
-            form = KMLImportForm(request.POST, request.FILES, initial={"country": pk})
+            form = KMLCountryImportForm(request.POST, request.FILES, initial={"country": pk})
             if form.is_valid():
                 form.save()
                 redirect_url = reverse('admin:{app}_{model}_changelist'.format(app=opts.app_label, model='country')) + '?meta__id__exact={}'.format(pk)
                 success(request, 'KML "{}" was imported successfully.'.format(form.cleaned_data['kml']))
                 return HttpResponseRedirect(redirect_url)
         else:
-            form = KMLImportForm(initial={"country": pk})
+            form = KMLCountryImportForm(initial={"country": pk})
 
         context = dict(
             self.admin_site.each_context(request),
@@ -54,7 +54,7 @@ class CountryAdmin(ImageMixin, TranslatableAdmin):
 
     def get_urls(self):
         return [
-            url(r'^(.+)/kml_import/$', staff_member_required(self.kml_import), name='map_kml_import'),
+            url(r'^(.+)/kml_import/$', staff_member_required(self.kml_import), name='country_kml_import'),
         ] + super(CountryAdmin, self).get_urls()
 
 
@@ -88,3 +88,31 @@ class AreaAdmin(TranslatableAdmin):
 
     def num_points(self, obj):
         return obj.polygon.num_points
+
+    def kml_import(self, request, pk):
+        opts = self.model._meta
+        user = None
+        if request.method == 'POST':
+            form = KMLAreaImportForm(request.POST, request.FILES, initial={"area": pk})
+            if form.is_valid():
+                form.save()
+                redirect_url = reverse('admin:{app}_{model}_changelist'.format(app=opts.app_label, model='area')) + '?meta__id__exact={}'.format(pk)
+                success(request, 'KML "{}" was imported successfully.'.format(form.cleaned_data['kml']))
+                return HttpResponseRedirect(redirect_url)
+        else:
+            form = KMLAreaImportForm(initial={"area": pk})
+
+        context = dict(
+            self.admin_site.each_context(request),
+            title='KML Import',
+            opts=opts,
+            app_label=opts.app_label,
+            form=form,
+            user=user
+        )
+        return TemplateResponse(request, 'admin/maps/area/map_kml_import.html', context)
+
+    def get_urls(self):
+        return [
+            url(r'^(.+)/kml_import/$', staff_member_required(self.kml_import), name='area_kml_import'),
+        ] + super(AreaAdmin, self).get_urls()
