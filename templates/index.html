@@ -2,8 +2,8 @@
 {% load static thumbnail i18n %}
 
 {% block extra_css %}
-<style>
-</style>
+    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/social.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -63,4 +63,19 @@ or <a href="https://www.facebook.com/TyVikZero" target="_blank">facebook</a>.{% 
             </p>
         </div>
     </div>
+    <footer class="footer">
+        <div class="container">
+            <div id="copyright">
+                <span><a href="https://tyvik.ru">TyVik</a> &copy; 2017</span>
+            </div>
+
+            <div class="social-wrap">
+                <a class="btn btn-social-icon btn-vk" href="http://vk.com/share.php?url=https://geopuzzle.org" target="_blank"><span class="fa fa-vk"></span></a>
+                <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://geopuzzle.org" target="_blank"><span class="fa fa-facebook"></span></a>
+                <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/home?status=https%3A//geopuzzle.org%20%23geopuzzle" target="_blank"><span class="fa fa-twitter"></span></a>
+                <a class="btn btn-social-icon btn-google" href="https://plus.google.com/share?url=https://geopuzzle.org" target="_blank"><span class="fa fa-google-plus"></span></a>
+            </div>
+        </div>
+    </footer>
+
 {% endblock %}

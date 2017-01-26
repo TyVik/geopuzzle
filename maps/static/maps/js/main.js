@@ -61,7 +61,7 @@ function close_infobox() {
 
 function resizeWrapper() {
     var map_wrapper = document.querySelector('#map_wrapper');
-    map_wrapper.style.height = (window.innerHeight - 110) + 'px';
+    map_wrapper.style.height = (window.innerHeight - 50) + 'px';
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: init.zoom,
         center: new google.maps.LatLng(init.center[1], init.center[0]),
