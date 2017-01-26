@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-24 12:10+0000\n"
+"POT-Creation-Date: 2017-01-26 17:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,22 +22,27 @@ msgstr ""
 msgid "maps"
 msgstr ""
 
+#: maps/templates/admin/maps/area/change_form.html:10
 #: maps/templates/admin/maps/country/change_form.html:10
 msgid "History"
 msgstr "История"
 
+#: maps/templates/admin/maps/area/change_form.html:13
 #: maps/templates/admin/maps/country/change_form.html:13
 msgid "Import KML"
 msgstr "Импорт KML"
 
+#: maps/templates/admin/maps/area/change_form.html:15
 #: maps/templates/admin/maps/country/change_form.html:15
 msgid "View on site"
 msgstr "Посмотреть на сайте"
 
+#: maps/templates/admin/maps/area/map_kml_import.html:14
 #: maps/templates/admin/maps/country/map_kml_import.html:14
 msgid "Please correct the error below."
 msgstr "Пожалуйста, исправьте ошибки."
 
+#: maps/templates/admin/maps/area/map_kml_import.html:15
 #: maps/templates/admin/maps/country/map_kml_import.html:15
 msgid "Please correct the errors below."
 msgstr "Пожалуйста, исправьте ошибки."
@@ -66,35 +71,39 @@ msgstr "Валюта"
 msgid "Phone"
 msgstr "Телефонный код"
 
-#: maps/templates/maps/map.html:11
+#: maps/templates/maps/map.html:12
 msgid "Found"
 msgstr "Найдено"
 
-#: maps/templates/maps/map.html:13
+#: maps/templates/maps/map.html:14
 msgid "give up"
 msgstr "сдаюсь"
 
-#: maps/templates/maps/map.html:14
+#: maps/templates/maps/map.html:15
 msgid "once again"
 msgstr "ещё раз"
 
-#: maps/templates/maps/map.html:30
+#: maps/templates/maps/map.html:24
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: maps/templates/maps/map.html:31
 msgid "Congratulations!"
 msgstr "Поздравляем!"
 
-#: maps/templates/maps/map.html:34
+#: maps/templates/maps/map.html:35
 msgid "You found next countries"
 msgstr "Вы нашли следующие страны"
 
-#: maps/templates/maps/map.html:36
+#: maps/templates/maps/map.html:37
 msgid "You found next regions"
 msgstr "Вы нашли следующие регионы"
 
-#: templates/base.html:6 templates/base.html:14 templates/index.html:12
+#: templates/base.html:6 templates/base.html:22 templates/index.html:12
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
 
-#: templates/base.html:15
+#: templates/base.html:23
 msgid "Game-puzzle with political maps"
 msgstr "Паззл из стран"
 
@@ -106,9 +115,9 @@ msgid ""
 "on the right place.\n"
 "Good luck ;)"
 msgstr ""
-"Спасибо что заглянули. Это сайт познавательной игры Geo Puzzle. "
-"Здесь можно подучить географию и увлекательно скоротать время. Задача - "
-"перетащить контуры стран по правильным местам. Удачи ;)"
+"Спасибо что заглянули. Это сайт познавательной игры Geo Puzzle. Здесь можно "
+"подучить географию и увлекательно скоротать время. Задача - перетащить "
+"контуры стран по правильным местам. Удачи ;)"
 
 #: templates/index.html:20
 msgid "World"

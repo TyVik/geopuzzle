@@ -6,14 +6,14 @@
 {% endblock %}
 
 {% block content %}
-    <div class="btn-group btn-group-sm" id="buttons">
-        <div id="counter">
-            {% trans 'Found' %}: <span id="counter_current">0</span>/<span id="counter_total">0</span>
-        </div>
-        <button type="button" class="btn btn-success" onclick = "giveUp()">{% trans 'give up' %}</button>
-        <button type="button" class="btn btn-warning" onclick = "reload()">{% trans 'once again' %}</button>
-    </div>
     <div id="map_wrapper">
+        <div class="btn-group btn-group-sm fade" id="buttons">
+            <div id="counter">
+                {% trans 'Found' %}: <span id="counter_current">0</span>/<span id="counter_total">0</span>
+            </div>
+            <button type="button" class="btn btn-success" onclick = "giveUp()">{% trans 'give up' %}</button>
+            <button type="button" class="btn btn-warning" onclick = "reload()">{% trans 'once again' %}</button>
+        </div>
         <div id="wrap_infobox" style="display: none">
             <button type="button" class="close" aria-label="Close" onclick="close_infobox()">
                 <span aria-hidden="true">&times;</span>
@@ -21,6 +21,7 @@
             <div id="infobox"></div>
         </div>
         <div id="map"></div>
+        <div id="loading_wrapper"><h2 id="loading">{% trans 'Loading...' %}</h2></div>
     </div>
     <div class="modal fade" id="congrats" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-sm">
@@ -49,7 +50,6 @@
     <script src="{% static 'maps/js/country.js' %}"></script>
     <script type="text/javascript" src="{% static 'maps/js/main.js' %}"></script>
     <script type='text/javascript'>
-        var geodata = {{ data|safe }};
         var init = {{ init|safe }};
     </script>
 {% endblock %}

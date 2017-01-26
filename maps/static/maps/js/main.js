@@ -13,28 +13,44 @@ function addCountries(position) {
         draggable: true,
         zIndex: 2,
     };
-    var counter = document.getElementById('counter_total');
-    counter.innerText = geodata.length;
+    var xhr = new XMLHttpRequest();
+    var url = location.pathname.replace('/maps/', '/maps/questions/') + location.search;
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if(xhr.status == 200) {
+                geodata = JSON.parse(xhr.response);  // global!
+                var counter = document.getElementById('counter_total');
+                counter.innerText = geodata.length;
 
-    geodata.forEach(function(item, i, arr) {
-        var country = new google.maps.Polygon(options);
-        country.id = item.id;
-        country.polygon = item.polygon;
-        country.answer = new google.maps.LatLngBounds(
-                new google.maps.LatLng(item.answer[0][1], item.answer[0][0]),
-                new google.maps.LatLng(item.answer[1][1], item.answer[1][0])
-            );
-        country.setPaths(country.pathStringsToArray(country.polygon));
-        google.maps.event.addListener(country, 'dragend', function() {
-            if (this.boundsContains()) {
-                this.replacePiece();
-                this.showInfobox();
+                geodata.forEach(function(item, i, arr) {
+                    var country = new google.maps.Polygon(options);
+                    country.id = item.id;
+                    country.polygon = item.polygon;
+                    country.answer = new google.maps.LatLngBounds(
+                            new google.maps.LatLng(item.answer[0][1], item.answer[0][0]),
+                            new google.maps.LatLng(item.answer[1][1], item.answer[1][0])
+                        );
+                    country.setPaths(country.pathStringsToArray(country.polygon));
+                    google.maps.event.addListener(country, 'dragend', function() {
+                        if (this.boundsContains()) {
+                            this.replacePiece();
+                            this.showInfobox();
+                        }
+                    });
+                    country.moveTo(new google.maps.LatLng(position[1], position[0]));
+                    puzzle.push(country);
+                    country = null;
+                });
+
+                var buttons = document.getElementById('buttons');
+                buttons.className = buttons.className.replace(' fade', '');
+                var loading = document.getElementById('loading');
+                loading.className = buttons.className + ' fade';
             }
-        });
-        country.moveTo(new google.maps.LatLng(position[1], position[0]));
-        puzzle.push(country);
-        country = null;
-    });
+        }
+    };
+    xhr.send();
 }
 
 function giveUp() {

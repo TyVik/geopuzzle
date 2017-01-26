@@ -2,7 +2,7 @@ import json
 
 from django import forms
 from django.conf import settings
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseBadRequest, JsonResponse
 from django.shortcuts import render
 
 from maps.models import Country, Area, DIFFICULTY_LEVELS
@@ -42,7 +42,7 @@ def infobox(request, pk):
     return render(request, 'maps/infobox.html', {'data': obj.infobox})
 
 
-def maps(request, name):
+def questions(request, name):
     params = request.GET.copy()
     params['country'] = name
     params['lang'] = request.LANGUAGE_CODE
@@ -50,10 +50,14 @@ def maps(request, name):
     if not form.is_valid():
         return HttpResponseBadRequest(json.dumps(form.errors))
     areas = form.areas()
-    data = [{
+    return JsonResponse([{
         'id': country.id,
         'name': country.name,
         'polygon': country.polygon_gmap,
         'answer': [list(country.answer.coords[0]), list(country.answer.coords[1])]}
-            for country in areas]
-    return render(request, 'maps/map.html', context={'data': data, 'init': form.meta.get_init_params(), 'global': form.meta.id == 1})
+            for country in areas], safe=False)
+
+
+def maps(request, name):
+    country = Country.objects.get(slug=name)
+    return render(request, 'maps/map.html', context={'init': country.get_init_params(), 'global': country.id == 1})
