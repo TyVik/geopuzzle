@@ -16,8 +16,8 @@ nav.navbar {
     margin: 0 auto;
     text-align: center;
     position: fixed;
-    z-index: 999;
-    left: 50%;
+    z-index: 2;
+    left: 20%;
 }
 
 #counter {

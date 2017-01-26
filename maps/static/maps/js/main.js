@@ -67,6 +67,7 @@ function resizeWrapper() {
         center: new google.maps.LatLng(init.center[1], init.center[0]),
         mapTypeId: google.maps.MapTypeId.TERRAIN,
         streetViewControl: true,
+        mapTypeControl: false
     });
     addCountries(init.position);
 }
