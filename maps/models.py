@@ -4,8 +4,12 @@ from django.contrib.gis.db.models import PointField
 from django.contrib.gis.geos import MultiPoint
 from django.contrib.gis.geos import Point
 from django.contrib.postgres.fields import JSONField
+from django.core.cache import cache
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.urls import reverse
+from django.utils.functional import cached_property
 from hvad.models import TranslatableModel, TranslatedFields
 
 from maps.converter import encode_coords
@@ -72,6 +76,10 @@ class Area(TranslatableModel):
         infobox = JSONField(null=True, blank=True)
     )
 
+    caches = {
+        'polygon_gmap': 'area{id}gmap'
+    }
+
     class Meta:
         verbose_name = 'Area'
         verbose_name_plural = 'Areas'
@@ -84,11 +92,15 @@ class Area(TranslatableModel):
 
     @property
     def polygon_gmap(self):
-        result = []
-        for polygon in self.polygon:
-            result.append(encode_coords(polygon.coords[0]))
-            if len(polygon.coords) > 1:
-                result.append(encode_coords(polygon.coords[1]))
+        cache_key = self.caches['polygon_gmap'].format(id=self.id)
+        result = cache.get(cache_key)
+        if result is None:
+            result = []
+            for polygon in self.polygon:
+                result.append(encode_coords(polygon.coords[0]))
+                if len(polygon.coords) > 1:
+                    result.append(encode_coords(polygon.coords[1]))
+            cache.set(cache_key, result)
         return result
 
     def update_infobox(self):
@@ -104,3 +116,9 @@ class Area(TranslatableModel):
         points = [extent[i] + diff[i] * scale for i in range(4)]
         self.answer = MultiPoint(Point(points[0], points[1]), Point(points[2], points[3]))
         self.save()
+
+
+@receiver(post_save, sender=Area, dispatch_uid="clear_area_cache")
+def clear_area_cache(sender, instance, **kwargs):
+    for key in instance.caches:
+        cache.delete(instance.caches[key].format(id=instance.id))

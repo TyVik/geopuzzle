@@ -9,3 +9,4 @@ sorl-thumbnail==12.4a1
 sparqlwrapper
 django-hvad==1.6.0
 django-jsoneditor-ng==0.0.3
+django-redis==4.7.0
