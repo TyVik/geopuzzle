@@ -101,7 +101,7 @@ class Area(TranslatableModel):
                 result.append(encode_coords(polygon.coords[0]))
                 if len(polygon.coords) > 1:
                     result.append(encode_coords(polygon.coords[1]))
-            cache.set(cache_key, result)
+            cache.set(cache_key, result, timeout=None)
         return result
 
     def update_infobox(self):
