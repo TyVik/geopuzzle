@@ -92,6 +92,7 @@ class Area(TranslatableModel):
 
     @property
     def polygon_gmap(self):
+        # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
         cache_key = self.caches['polygon_gmap'].format(id=self.id)
         result = cache.get(cache_key)
         if result is None:

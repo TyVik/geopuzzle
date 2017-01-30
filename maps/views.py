@@ -59,5 +59,4 @@ def questions(request, name):
 
 
 def maps(request, name):
-    country = Country.objects.get(slug=name)
-    return render(request, 'maps/map.html', context={'init': country.get_init_params(), 'global': country.id == 1})
+    return render(request, 'maps/map.html', context={'country': Country.objects.get(slug=name)})

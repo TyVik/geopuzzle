@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static i18n %}
 
+{% block title %}{{ country.name }}{% endblock %}
+
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'maps/css/map.css' %}">
 {% endblock %}
@@ -31,7 +33,7 @@
                     <h4 class="modal-title" id="myModalLabel">{% trans 'Congratulations!' %}</h4>
                 </div>
                 <div class="modal-body">
-                    {% if global %}
+                    {% if country.id == 1 %}
                         {% trans 'You found next countries' %}: <span id="shape_names"></span>.
                     {% else %}
                         {% trans 'You found next regions' %}: <span id="shape_names"></span>.
@@ -50,6 +52,6 @@
     <script src="{% static 'maps/js/country.js' %}"></script>
     <script type="text/javascript" src="{% static 'maps/js/main.js' %}"></script>
     <script type='text/javascript'>
-        var init = {{ init|safe }};
+        var init = {{ country.get_init_params|safe }};
     </script>
 {% endblock %}

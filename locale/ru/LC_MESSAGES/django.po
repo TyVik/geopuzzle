@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-26 17:18+0000\n"
+"POT-Creation-Date: 2017-01-30 09:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,6 +98,10 @@ msgstr "Вы нашли следующие страны"
 #: maps/templates/maps/map.html:37
 msgid "You found next regions"
 msgstr "Вы нашли следующие регионы"
+
+#: templates/base.html:5
+msgid "Mercator puzzle of"
+msgstr "Паззл Меркатора - "
 
 #: templates/base.html:6 templates/base.html:22 templates/index.html:12
 msgid "Arrange the pieces of the world!"
