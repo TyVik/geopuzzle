@@ -20,20 +20,6 @@ footer .social-wrap {
     display: inline-block;
 }
 
-.world_maps .panel {
-    width: 33%;
-    display: inline-block;
-}
-
-.world_maps .panel img {
-    width: 100%;
-}
-
-.country_maps .panel {
-    width: 20%;
-    display: inline-block;
-}
-
-.country_maps .panel img {
+.panel-body img {
     width: 100%;
 }
