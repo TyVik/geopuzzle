@@ -17,11 +17,13 @@ def query(statement, **kwargs):
         for field in results:
             if field == 'area':
                 result[field] = str(int(float(results[field]['value'])))
+                """
             if field == 'flag':
                 png_name = 'flags/' + results[field]['value'].split('/')[-1].replace('svg', 'png')
                 png_path = default_storage.path(png_name)
                 PNGSurface.convert(url=results[field]['value'], write_to=png_path)
                 result[field] = default_storage.url(png_name)
+                """
             else:
                 result[field] = results[field]['value']
     return result
