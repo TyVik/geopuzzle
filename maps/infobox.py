@@ -1,3 +1,6 @@
+from django.core.files.storage import default_storage
+
+from cairosvg.surface import PNGSurface
 from SPARQLWrapper import JSON
 from SPARQLWrapper import SPARQLWrapper
 
@@ -12,5 +15,13 @@ def query(statement, **kwargs):
     if len(results) > 0:
         results = results[0]
         for field in results:
-            result[field] = results[field]['value']
+            if field == 'area':
+                result[field] = str(int(float(results[field]['value'])))
+            if field == 'flag':
+                png_name = 'flags/' + results[field]['value'].split('/')[-1].replace('svg', 'png')
+                png_path = default_storage.path(png_name)
+                PNGSurface.convert(url=results[field]['value'], write_to=png_path)
+                result[field] = default_storage.url(png_name)
+            else:
+                result[field] = results[field]['value']
     return result
