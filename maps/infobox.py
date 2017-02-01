@@ -1,6 +1,6 @@
 from django.core.files.storage import default_storage
 
-from cairosvg.surface import PNGSurface
+# from cairosvg.surface import PNGSurface
 from SPARQLWrapper import JSON
 from SPARQLWrapper import SPARQLWrapper
 
