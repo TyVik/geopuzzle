@@ -4,6 +4,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.messages import success
 from django.contrib.postgres.fields import JSONField
 from django.db.models import ImageField
+from django.contrib.gis.db.models import MultiPolygonField
+from django.contrib.gis.forms import OSMWidget
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
@@ -80,6 +82,7 @@ class AreaAdmin(TranslatableAdmin):
     actions = [recalc_answer, update_infobox]
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
+        MultiPolygonField: {'widget': OSMWidget},
         # JSONField: {'widget': JSONEditor},
     }
 
@@ -96,7 +99,7 @@ class AreaAdmin(TranslatableAdmin):
             form = KMLAreaImportForm(request.POST, request.FILES, initial={"area": pk})
             if form.is_valid():
                 form.save()
-                redirect_url = reverse('admin:{app}_{model}_changelist'.format(app=opts.app_label, model='area')) + '?meta__id__exact={}'.format(pk)
+                redirect_url = reverse('admin:{app}_{model}_change'.format(app=opts.app_label, model='area'), args=(pk,))
                 success(request, 'KML "{}" was imported successfully.'.format(form.cleaned_data['kml']))
                 return HttpResponseRedirect(redirect_url)
         else:

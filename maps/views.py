@@ -34,7 +34,8 @@ class MapForm(forms.Form):
 
 def index(request):
     countries = Country.objects.language(request.LANGUAGE_CODE).filter(is_published=True).exclude(slug='world').order_by('name').all()
-    return render(request, 'index.html', {'countries': countries})
+    parts = Country.objects.filter(pk__in=[7, 9])
+    return render(request, 'index.html', {'countries': countries, 'parts': parts})
 
 
 def infobox(request, pk):

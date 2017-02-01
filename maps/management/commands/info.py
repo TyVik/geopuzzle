@@ -12,15 +12,6 @@ __license__ = "Unauthorized copying of this file, via any medium is strictly pro
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        area = Area.objects.language('en').get(pk=10)
-        infobox = area.infobox
-        png_name = 'flags/' + infobox['flag'].split('/')[-1].replace('svg', 'png')
-        png_path = default_storage.path(png_name)
-        PNGSurface.convert({'url': infobox['flag'], 'write_to': png_path})
-        infobox['flag'] = default_storage.url(png_name)
-        print(infobox)
-
-        """
         for lang in ('en', 'ru'):
             for area in Area.objects.language(lang).all():
                 infobox = area.infobox
@@ -34,9 +25,8 @@ class Command(BaseCommand):
 
                 png_name = 'flags/' + infobox['flag'].split('/')[-1].replace('svg', 'png')
                 png_path = default_storage.path(png_name)
-                PNGSurface.convert({'url': infobox['flag'], 'write_to': png_path})
+                PNGSurface.convert(url=infobox['flag'], write_to=png_path)
                 infobox['flag'] = default_storage.url(png_name)
 
                 area.infobox = infobox
                 area.save()
-        """
