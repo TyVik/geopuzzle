@@ -1,8 +1,8 @@
-import json
-
 from django import forms
 from django.conf import settings
-from django.http import HttpResponseBadRequest, JsonResponse
+from django.core.handlers.wsgi import WSGIRequest
+from django.db.models import QuerySet
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 from maps.models import Country, Area, DIFFICULTY_LEVELS
@@ -15,11 +15,11 @@ class MapForm(forms.Form):
     count = forms.IntegerField(required=False, initial=3)
     lang = forms.ChoiceField(choices=settings.LANGUAGES, required=False, initial='en')
 
-    def clean_country(self):
+    def clean_country(self) -> Country:
         self.meta = self.cleaned_data.get('country', None)
         return self.meta
 
-    def areas(self):
+    def areas(self) -> QuerySet:
         if len(self.cleaned_data['id']) > 0:
             return self.cleaned_data['id']
 
@@ -32,24 +32,24 @@ class MapForm(forms.Form):
         return queryset
 
 
-def index(request):
+def index(request: WSGIRequest) -> HttpResponse:
     countries = Country.objects.language(request.LANGUAGE_CODE).filter(is_published=True).exclude(slug='world').order_by('name').all()
     parts = Country.objects.filter(pk__in=[5, 6, 7, 9])
     return render(request, 'index.html', {'countries': countries, 'parts': parts})
 
 
-def infobox(request, pk):
+def infobox(request: WSGIRequest, pk: str) -> HttpResponse:
     obj = Area.objects.get(pk=pk)
     return render(request, 'maps/infobox.html', {'data': obj.infobox})
 
 
-def questions(request, name):
+def questions(request: WSGIRequest, name: str) -> JsonResponse:
     params = request.GET.copy()
     params['country'] = name
     params['lang'] = request.LANGUAGE_CODE
     form = MapForm(params)
     if not form.is_valid():
-        return HttpResponseBadRequest(json.dumps(form.errors))
+        return JsonResponse(form.errors, status=400)
     areas = form.areas()
     return JsonResponse([{
         'id': country.id,
@@ -59,5 +59,5 @@ def questions(request, name):
             for country in areas], safe=False)
 
 
-def maps(request, name):
+def maps(request: WSGIRequest, name: str) -> HttpResponse:
     return render(request, 'maps/map.html', context={'country': Country.objects.get(slug=name)})

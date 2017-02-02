@@ -1,3 +1,5 @@
+from typing import List
+
 from django.contrib.gis.db.models import MultiPointField
 from django.contrib.gis.db.models import MultiPolygonField
 from django.contrib.gis.db.models import PointField
@@ -9,7 +11,6 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
-from django.utils.functional import cached_property
 from hvad.models import TranslatableModel, TranslatedFields
 
 from maps.converter import encode_coords
@@ -84,14 +85,14 @@ class Area(TranslatableModel):
         verbose_name = 'Area'
         verbose_name_plural = 'Areas'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.safe_translation_getter('name', str(self.pk))
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         return '{}?id={}'.format(reverse('maps_map', args=(self.country.slug,)), self.id)
 
     @property
-    def polygon_gmap(self):
+    def polygon_gmap(self) -> List:
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
         cache_key = self.caches['polygon_gmap'].format(id=self.id)
         result = cache.get(cache_key)
@@ -104,13 +105,13 @@ class Area(TranslatableModel):
             cache.set(cache_key, result, timeout=None)
         return result
 
-    def update_infobox(self):
+    def update_infobox(self) -> None:
         for language in self.get_available_languages():
             obj = Area.objects.language(language).get(pk=self.pk)
             obj.infobox = query(self.country.sparql, language=language, name=obj.safe_translation_getter('name', ''))
             obj.save()
 
-    def recalc_answer(self):
+    def recalc_answer(self) -> None:
         diff = (-1, -1, 1, 1)
         extent = self.polygon.extent
         scale = 1.0 / (self.country.zoom - 2)

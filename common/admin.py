@@ -4,7 +4,7 @@ from sorl.thumbnail.admin.current import AdminImageWidget as SorlImageWidget
 
 
 class AdminImageWidget(SorlImageWidget):
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None) -> str:
         try:
             result = super(AdminImageWidget, self).render(name, value, attrs)
         except TypeError:  # base image does not exists
@@ -15,14 +15,14 @@ class AdminImageWidget(SorlImageWidget):
 class ImageMixin(object):
     image_field = 'image'
 
-    def image_tag(self, obj):
+    def image_tag(self, obj) -> str:
         return self.base_image_tag(obj)
 
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
 
     @classmethod
-    def base_image_tag(cls, obj):
+    def base_image_tag(cls, obj) -> str:
         image = getattr(obj, cls.image_field)
         url = settings.THUMBNAIL_DUMMY_SOURCE.format(width=80)
         try:

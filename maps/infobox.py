@@ -1,11 +1,11 @@
-from django.core.files.storage import default_storage
+from typing import Dict
 
 # from cairosvg.surface import PNGSurface
 from SPARQLWrapper import JSON
 from SPARQLWrapper import SPARQLWrapper
 
 
-def query(statement, **kwargs):
+def query(statement: str, **kwargs) -> Dict:
     sparql = SPARQLWrapper("https://query.wikidata.org/bigdata/namespace/wdq/sparql")
     sparql.setQuery(statement.format(**kwargs))
     sparql.setReturnFormat(JSON)

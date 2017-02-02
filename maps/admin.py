@@ -1,16 +1,18 @@
+from typing import List
+
 from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.messages import success
-from django.contrib.postgres.fields import JSONField
+from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import ImageField
-from django.contrib.gis.db.models import MultiPolygonField
+from django.contrib.gis.db.models import MultiPolygonField, QuerySet
 from django.contrib.gis.forms import OSMWidget
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
 from hvad.admin import TranslatableAdmin
-from jsoneditor.forms import JSONEditor
 
 from common.admin import ImageMixin, AdminImageWidget
 from maps.forms import KMLCountryImportForm, KMLAreaImportForm
@@ -25,13 +27,13 @@ class CountryAdmin(ImageMixin, TranslatableAdmin):
         ImageField: {'widget': AdminImageWidget},
     }
 
-    def _name(self, obj):
+    def _name(self, obj: Country) -> str:
         return obj.name
 
-    def get_queryset(self, request):
+    def get_queryset(self, request: WSGIRequest) -> QuerySet:
         return super(CountryAdmin, self).get_queryset(request)
 
-    def kml_import(self, request, pk):
+    def kml_import(self, request: WSGIRequest, pk: str) -> HttpResponse:
         opts = self.model._meta
         user = None
         if request.method == 'POST':
@@ -54,20 +56,20 @@ class CountryAdmin(ImageMixin, TranslatableAdmin):
         )
         return TemplateResponse(request, 'admin/maps/country/map_kml_import.html', context)
 
-    def get_urls(self):
+    def get_urls(self) -> List:
         return [
             url(r'^(.+)/kml_import/$', staff_member_required(self.kml_import), name='country_kml_import'),
         ] + super(CountryAdmin, self).get_urls()
 
 
-def recalc_answer(modeladmin, request, queryset):
+def recalc_answer(modeladmin, request, queryset) -> None:
     for area in queryset:
         area.recalc_answer()
     success(request, 'Answers were recalculated.')
 recalc_answer.short_description = "Recalc answer"
 
 
-def update_infobox(modeladmin, request, queryset):
+def update_infobox(modeladmin, request, queryset) -> None:
     for area in queryset:
         area.update_infobox()
     success(request, 'Infoboxes were updated.')
@@ -83,16 +85,15 @@ class AreaAdmin(TranslatableAdmin):
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
         MultiPolygonField: {'widget': OSMWidget},
-        # JSONField: {'widget': JSONEditor},
     }
 
-    def _name(self, obj):
+    def _name(self, obj: Area) -> str:
         return obj.name
 
-    def num_points(self, obj):
+    def num_points(self, obj: Area) -> int:
         return obj.polygon.num_points
 
-    def kml_import(self, request, pk):
+    def kml_import(self, request:WSGIRequest, pk: str) -> HttpResponse:
         opts = self.model._meta
         user = None
         if request.method == 'POST':
@@ -115,7 +116,7 @@ class AreaAdmin(TranslatableAdmin):
         )
         return TemplateResponse(request, 'admin/maps/area/map_kml_import.html', context)
 
-    def get_urls(self):
+    def get_urls(self) -> List:
         return [
             url(r'^(.+)/kml_import/$', staff_member_required(self.kml_import), name='area_kml_import'),
         ] + super(AreaAdmin, self).get_urls()

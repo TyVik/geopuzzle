@@ -11,7 +11,7 @@ class KMLCountryImportForm(forms.Form):
     country = forms.ModelChoiceField(queryset=Country.objects.all(), disabled=True)
     kml = forms.FileField()
 
-    def save(self):
+    def save(self) -> None:
         with tempfile.NamedTemporaryFile(delete=True) as temp:
             temp.write(self.cleaned_data['kml'].read())
             temp.seek(0)
@@ -27,7 +27,7 @@ class KMLAreaImportForm(forms.Form):
     area = forms.ModelChoiceField(queryset=Area.objects.all(), disabled=True)
     kml = forms.FileField()
 
-    def save(self):
+    def save(self) -> None:
         area = self.cleaned_data['area']
         with tempfile.NamedTemporaryFile(delete=True) as temp:
             temp.write(self.cleaned_data['kml'].read())
