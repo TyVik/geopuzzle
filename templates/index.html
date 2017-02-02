@@ -50,7 +50,7 @@ Good luck ;){% endblocktrans %}
             <div class="col-md-3 col-sm-3 col-xs-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        {% thumbnail part.image "133x133" format="PNG" quality=80 as im %}
+                        {% thumbnail part.image "250x250" format="PNG" quality=80 as im %}
                         <a href="{% url 'maps_map' part.slug %}"><img src="{{ im.url }}" alt="{{ part.name }}"></a>
                         {% endthumbnail %}
                     </div>
