@@ -37,6 +37,7 @@ nav.navbar {
     margin-top: 50px;
     border-radius: 5px;
     border: 1px solid black;
+    max-width: 220px;
 }
 
 #wrap_infobox tr {
