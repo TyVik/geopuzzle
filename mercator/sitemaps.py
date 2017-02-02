@@ -24,7 +24,7 @@ class WorldSitemap(Sitemap):
     priority = 0.8
 
     def items(self):
-        return 'index', 'world', 'america', 'europe', 'africa'
+        return 'index', 'world'
 
     def location(self, object):
         if object == 'index':

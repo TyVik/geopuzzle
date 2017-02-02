@@ -43,6 +43,7 @@ class Country(TranslatableModel):
     default_count = models.PositiveSmallIntegerField(default=0)
     sparql = models.TextField(blank=True, null=True)
     is_published = models.BooleanField(default=False)
+    is_global = models.BooleanField(default=False)
 
     translations = TranslatedFields(
         name = models.CharField(max_length=15)
@@ -53,7 +54,7 @@ class Country(TranslatableModel):
         verbose_name_plural = 'Countries'
 
     def __str__(self):
-        return self.safe_translation_getter('name', str(self.pk))
+        return self.name
 
     def get_absolute_url(self):
         return reverse('maps_map', args=(self.slug,))
@@ -86,7 +87,7 @@ class Area(TranslatableModel):
         verbose_name_plural = 'Areas'
 
     def __str__(self) -> str:
-        return self.safe_translation_getter('name', str(self.pk))
+        return self.name
 
     def get_absolute_url(self) -> str:
         return '{}?id={}'.format(reverse('maps_map', args=(self.country.slug,)), self.id)

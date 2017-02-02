@@ -33,8 +33,9 @@ class MapForm(forms.Form):
 
 
 def index(request: WSGIRequest) -> HttpResponse:
-    countries = Country.objects.language(request.LANGUAGE_CODE).filter(is_published=True).exclude(slug='world').order_by('name').all()
-    parts = Country.objects.filter(pk__in=[5, 6, 7, 9])
+    query = Country.objects.language(request.LANGUAGE_CODE).filter(is_published=True).order_by('name').all()
+    parts = query.filter(is_global=True)
+    countries = query.filter(is_global=False)
     return render(request, 'index.html', {'countries': countries, 'parts': parts})
 
 
