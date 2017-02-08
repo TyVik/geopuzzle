@@ -1,7 +1,7 @@
 var map;
 var puzzle = [];
 
-function addCountries(position) {
+function addCountries() {
     var options = {
         strokeColor: '#FF0000',
         strokeOpacity: 0.8,
@@ -38,7 +38,7 @@ function addCountries(position) {
                             this.showInfobox();
                         }
                     });
-                    country.moveTo(new google.maps.LatLng(position[1], position[0]));
+                    country.moveTo(new google.maps.LatLng(item.default_position[1], item.default_position[0]));
                     puzzle.push(country);
                     country = null;
                 });
@@ -84,7 +84,7 @@ function resizeWrapper() {
         streetViewControl: true,
         mapTypeControl: false
     });
-    addCountries(init.position);
+    addCountries();
 }
 
 window.onload = resizeWrapper;

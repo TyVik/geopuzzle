@@ -56,7 +56,8 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
         'id': country.id,
         'name': country.name,
         'polygon': country.polygon_gmap,
-        'answer': [list(country.answer.coords[0]), list(country.answer.coords[1])]}
+        'answer': [list(country.answer.coords[0]), list(country.answer.coords[1])],
+        'default_position': country.default_position.coords if country.default_position is not None else country.country.position.coords}
             for country in areas], safe=False)
 
 

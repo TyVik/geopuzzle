@@ -62,7 +62,6 @@ class Country(TranslatableModel):
     def get_init_params(self):
         return {
             'zoom': self.zoom,
-            'position': list(self.position.coords),
             'center': list(self.center.coords)
         }
 
@@ -72,6 +71,7 @@ class Area(TranslatableModel):
     difficulty = models.PositiveSmallIntegerField(choices=DIFFICULTY_LEVELS, default=0)
     polygon = MultiPolygonField(geography=True)
     answer = MultiPointField(geography=True, null=True)
+    default_position = PointField(geography=True, null=True)
 
     translations = TranslatedFields(
         name = models.CharField(max_length=50),
