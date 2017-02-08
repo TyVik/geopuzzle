@@ -51,14 +51,14 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
     form = MapForm(params)
     if not form.is_valid():
         return JsonResponse(form.errors, status=400)
-    areas = form.areas()
-    return JsonResponse([{
-        'id': country.id,
-        'name': country.name,
-        'polygon': country.polygon_gmap,
-        'answer': [list(country.answer.coords[0]), list(country.answer.coords[1])],
-        'default_position': country.default_position.coords if country.default_position is not None else country.country.position.coords}
-            for country in areas], safe=False)
+    result = [{
+        'id': area.id,
+        'name': area.name,
+        'polygon': area.polygon_gmap,
+        'answer': [list(area.answer.coords[0]), list(area.answer.coords[1])],
+        'default_position': area.country.pop_position()}
+            for area in form.areas()]
+    return JsonResponse(result, safe=False)
 
 
 def maps(request: WSGIRequest, name: str) -> HttpResponse:

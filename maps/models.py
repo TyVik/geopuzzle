@@ -1,4 +1,5 @@
-from typing import List
+import random
+from typing import List, Dict, Tuple
 
 from django.contrib.gis.db.models import MultiPointField
 from django.contrib.gis.db.models import MultiPolygonField
@@ -39,6 +40,7 @@ class Country(TranslatableModel):
     slug = models.CharField(max_length=15, db_index=True)
     center = PointField(geography=True)
     position = PointField(geography=True)
+    default_positions = MultiPointField(geography=True, null=True)
     zoom = models.PositiveSmallIntegerField(choices=ZOOMS)
     default_count = models.PositiveSmallIntegerField(default=0)
     sparql = models.TextField(blank=True, null=True)
@@ -53,17 +55,29 @@ class Country(TranslatableModel):
         verbose_name = 'Country'
         verbose_name_plural = 'Countries'
 
-    def __str__(self):
+    def __init__(self, *args, **kwargs):
+        self.__default_positions = []
+        super(Country, self).__init__(*args, **kwargs)
+
+    def __str__(self) -> str:
         return self.name
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         return reverse('maps_map', args=(self.slug,))
 
-    def get_init_params(self):
+    def get_init_params(self) -> Dict:
         return {
             'zoom': self.zoom,
             'center': list(self.center.coords)
         }
+
+    def pop_position(self) -> Tuple:
+        if self.default_positions is None:
+            return self.position.coords
+        if len(self.__default_positions) == 0:
+            self.__default_positions = self.default_positions
+            random.shuffle(self.__default_positions)
+        return self.__default_positions.pop().coords
 
 
 class Area(TranslatableModel):
@@ -71,7 +85,6 @@ class Area(TranslatableModel):
     difficulty = models.PositiveSmallIntegerField(choices=DIFFICULTY_LEVELS, default=0)
     polygon = MultiPolygonField(geography=True)
     answer = MultiPointField(geography=True, null=True)
-    default_position = PointField(geography=True, null=True)
 
     translations = TranslatedFields(
         name = models.CharField(max_length=50),
