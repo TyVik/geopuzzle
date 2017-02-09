@@ -75,7 +75,7 @@ class Country(TranslatableModel):
         if self.default_positions is None:
             return self.position.coords
         if len(self.__default_positions) == 0:
-            self.__default_positions = self.default_positions
+            self.__default_positions = self.default_positions[:]
             random.shuffle(self.__default_positions)
         return self.__default_positions.pop().coords
 
