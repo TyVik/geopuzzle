@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Host: geopuzzle.org
+Host: https://geopuzzle.org
 
 Sitemap: https://geopuzzle.org/sitemap.xml
