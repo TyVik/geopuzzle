@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the maps like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LOG_DIR = os.path.join(BASE_DIR, 'logs')
 
 
 # Quick-start development settings - unsuitable for production
@@ -108,6 +109,28 @@ CACHES = {
             "SOCKET_TIMEOUT": 2,
         }
     }
+}
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": True,
+    "formatters": {
+        "simple": {
+            "format": "%(levelname)s %(message)s"
+        },
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s"
+        }
+    },
+    "handlers": {
+        "file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            'filename': os.path.join(LOG_DIR, 'django.errors'),
+            "formatter": "verbose",
+            "level": "DEBUG",
+            "maxBytes": 10485760
+        },
+    },
 }
 
 # Password validation
