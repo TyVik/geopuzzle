@@ -1,4 +1,7 @@
 __pycache__/
 .idea/
 upload/
+logs/
 *.py[cod]
+*.mo
+reload
