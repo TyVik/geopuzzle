@@ -60,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+if DEBUG:
+    MIDDLEWARE.append('common.middleware.CORSMiddleware')
 
 ROOT_URLCONF = 'mercator.urls'
 
