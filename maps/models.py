@@ -36,7 +36,7 @@ ZOOMS = (
 
 
 class Country(TranslatableModel):
-    image = models.ImageField(upload_to='countries', blank=True)
+    image = models.ImageField(upload_to='countries', blank=True, null=True)
     slug = models.CharField(max_length=15, db_index=True)
     center = PointField(geography=True)
     position = PointField(geography=True)
@@ -92,7 +92,7 @@ class Area(TranslatableModel):
     )
 
     caches = {
-        'polygon_gmap': 'area{id}gmap'
+        'polygon_gmap': 'area{id}gmap',
     }
 
     class Meta:
@@ -107,7 +107,6 @@ class Area(TranslatableModel):
 
     @property
     def polygon_gmap(self) -> List:
-        # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
         cache_key = self.caches['polygon_gmap'].format(id=self.id)
         result = cache.get(cache_key)
         if result is None:
@@ -118,6 +117,11 @@ class Area(TranslatableModel):
                     result.append(encode_coords(polygon.coords[1]))
             cache.set(cache_key, result, timeout=None)
         return result
+
+    @property
+    def center(self) -> List:
+        # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
+        return list(self.polygon.centroid)
 
     def update_infobox(self) -> None:
         for language in self.get_available_languages():

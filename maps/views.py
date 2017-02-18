@@ -55,6 +55,7 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
         'id': area.id,
         'name': area.name,
         'polygon': area.polygon_gmap,
+        'center': area.center,
         'answer': [list(area.answer.coords[0]), list(area.answer.coords[1])],
         'default_position': area.country.pop_position()}
             for area in form.areas()]
