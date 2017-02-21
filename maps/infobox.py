@@ -6,17 +6,10 @@ from SPARQLWrapper import SPARQLWrapper
 
 
 def query(statement: str, **kwargs) -> Dict:
-    sparql = SPARQLWrapper("https://query.wikidata.org/bigdata/namespace/wdq/sparql")
-    sparql.setQuery(statement.format(**kwargs))
-    sparql.setReturnFormat(JSON)
-    results = sparql.query().convert()
-    results = results['results']['bindings']
-    result = {'wiki': 'https://{language}.wikipedia.org/wiki/{name}'.format(**kwargs), 'name': kwargs['name']}
-    if len(results) > 0:
-        results = results[0]
-        for field in results:
+    def prepare_row(row: Dict) -> Dict:
+        for field in row:
             if field == 'area':
-                result[field] = str(int(float(results[field]['value'])))
+                row[field] = str(int(float(row[field]['value'])))
                 """
             if field == 'flag':
                 png_name = 'flags/' + results[field]['value'].split('/')[-1].replace('svg', 'png')
@@ -25,5 +18,17 @@ def query(statement: str, **kwargs) -> Dict:
                 result[field] = default_storage.url(png_name)
                 """
             else:
-                result[field] = results[field]['value']
+                row[field] = row[field]['value']
+        return row
+
+    sparql = SPARQLWrapper("https://query.wikidata.org/bigdata/namespace/wdq/sparql")
+    sparql.setQuery(statement.format(**kwargs))
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    results = results['results']['bindings']
+    result = {}
+    for row in results:
+        lang = row.pop('lang')['value']
+        result[lang] = prepare_row(row)
+        result[lang]['wiki'] = 'https://{language}.wikipedia.org/wiki/{name}'.format(language=lang, name=result[lang]['name'])
     return result

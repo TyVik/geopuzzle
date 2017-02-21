@@ -13,6 +13,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
 from hvad.models import TranslatableModel, TranslatedFields
+from hvad.utils import load_translation
 
 from maps.converter import encode_coords
 from maps.infobox import query
@@ -123,11 +124,16 @@ class Area(TranslatableModel):
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
         return list(self.polygon.centroid)
 
-    def update_infobox(self) -> None:
-        for language in self.get_available_languages():
-            obj = Area.objects.language(language).get(pk=self.pk)
-            obj.infobox = query(self.country.sparql, language=language, name=obj.safe_translation_getter('name', ''))
-            obj.save()
+    def update_infobox(self, name=None, language='en') -> None:
+        obj = Area.objects.language('en').get(pk=self.pk)
+        name = obj.safe_translation_getter('name', '') if name is None else name
+        rows = query(self.country.sparql, language=language, name=name)
+        for lang, infobox in rows.items():
+            trans = load_translation(obj, lang, enforce=True)
+            trans.master = obj
+            trans.infobox = infobox
+            trans.name = infobox['name']
+            trans.save()
 
     def recalc_answer(self) -> None:
         diff = (-1, -1, 1, 1)
