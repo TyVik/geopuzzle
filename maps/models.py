@@ -1,4 +1,5 @@
 import random
+import time
 from typing import List, Dict, Tuple
 
 from django.contrib.gis.db.models import MultiPointField
@@ -125,7 +126,8 @@ class Area(TranslatableModel):
         return list(self.polygon.centroid)
 
     def update_infobox(self, name=None, language='en') -> None:
-        obj = Area.objects.language('en').get(pk=self.pk)
+        time.sleep(5)  # protection for DDoS
+        obj = Area.objects.get(pk=self.pk)
         name = obj.safe_translation_getter('name', '') if name is None else name
         rows = query(self.country.sparql, language=language, name=name)
         for lang, infobox in rows.items():

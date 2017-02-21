@@ -10,7 +10,7 @@
     </tr>
     <tr>
         <td colspan="2">
-            <div><img src="{{ data.flag }}"></div>
+            <div><img src="{% if data.flag %}{{ data.flag }}{% else %}{{ data.coat_of_arms }}{% endif %}"></div>
         </td>
     </tr>
 
