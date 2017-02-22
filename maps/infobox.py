@@ -43,8 +43,9 @@ def query(statement: str, **kwargs) -> Dict:
         lang = row.pop('lang')['value']
         result[lang] = prepare_row(row)
 
-    wiki_links = get_wiki_link(result['en']['instance'], list(result.keys()))
-    for lang, values in wiki_links.items():
-        result[lang]['wiki'] = values['wiki']
-        result[lang]['name'] = values['name']
+    if 'instance' in result['en']:
+        wiki_links = get_wiki_link(result['en']['instance'], list(result.keys()))
+        for lang, values in wiki_links.items():
+            result[lang]['wiki'] = values['wiki']
+            result[lang]['name'] = values['name']
     return result
