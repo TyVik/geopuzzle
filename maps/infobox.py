@@ -1,4 +1,4 @@
-from typing import Dict, List, Set
+from typing import Dict, List
 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
@@ -29,7 +29,8 @@ def query(statement: str, **kwargs) -> Dict:
         result = {}
         for lang in langs:
             link = soup.find("a", attrs={'hreflang': lang})
-            result[lang] = {'wiki': link.get('href'), 'name': link.get('title')}
+            if link is not None:
+                result[lang] = {'wiki': link.get('href'), 'name': link.get('title')}
         return result
 
     sparql = SPARQLWrapper("https://query.wikidata.org/bigdata/namespace/wdq/sparql")
