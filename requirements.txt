@@ -12,3 +12,4 @@ django-jsoneditor-ng==0.0.3
 django-redis==4.7.0
 cffi==1.9.1
 cairosvg==2.0.1
+bs4==0.0.1
