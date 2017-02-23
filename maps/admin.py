@@ -21,8 +21,9 @@ from maps.models import Country, Area
 
 @admin.register(Country)
 class CountryAdmin(ImageMixin, TranslatableAdmin):
-    list_display = ('id', '_name', 'image_tag', 'slug', 'is_published', 'is_global')
+    list_display = ('id', '_name', 'image_tag', 'slug', 'wikidata_id', 'is_published', 'is_global')
     list_display_links = ('image_tag', 'id', '_name')
+    list_editable = ('wikidata_id',)
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
     }
@@ -78,7 +79,7 @@ update_infobox.short_description = "Update infobox"
 
 @admin.register(Area)
 class AreaAdmin(TranslatableAdmin):
-    list_display = ('_name', 'difficulty', 'num_points')
+    list_display = ('_name', 'difficulty', 'wiki_id', 'num_points')
     list_filter = ('difficulty', 'country')
     list_editable = ('difficulty',)
     actions = [recalc_answer, update_infobox]
@@ -92,6 +93,15 @@ class AreaAdmin(TranslatableAdmin):
 
     def num_points(self, obj: Area) -> int:
         return obj.polygon.num_points
+
+    def wiki_id(self, obj: Area) -> str:
+        infobox = obj.infobox
+        if infobox is None:
+            return ''
+        instance = infobox.get('instance', None)
+        return '' if instance is None else '<a href="{link}">{id}</a>'.format(link=instance, id=instance.split('/')[-1])
+    wiki_id.short_description = 'Wiki ID'
+    wiki_id.allow_tags = True
 
     def kml_import(self, request:WSGIRequest, pk: str) -> HttpResponse:
         opts = self.model._meta
