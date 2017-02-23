@@ -15,7 +15,6 @@ SELECT DISTINCT ?lang {select} ?name ?flag ?coat_of_arms ?population ?area ?capi
     BIND(LANG(?name) AS ?lang)
     FILTER((?lang = "ru") || (?lang = "en"))
     {item_id} wdt:P1566 ?geonamesID.
-    {item_id} wdt:P94 ?coat_of_arms.
     OPTIONAL {{
         {item_id} wdt:P36/rdfs:label ?capital.
         FILTER(lang(?capital) = ?lang)
@@ -23,6 +22,7 @@ SELECT DISTINCT ?lang {select} ?name ?flag ?coat_of_arms ?population ?area ?capi
     OPTIONAL {{ {item_id} wdt:P41 ?flag. }}
     OPTIONAL {{ {item_id} wdt:P1082 ?population. }}
     OPTIONAL {{ {item_id} wdt:P2046 ?area. }}
+    OPTIONAL {{ {item_id} wdt:P94 ?coat_of_arms. }}
 }}
 """
 
