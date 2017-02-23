@@ -91,5 +91,5 @@ def query_by_name(country_id: str, name: str, language: str) -> Dict:
     if 'en' in result and 'instance' in result['en']:
         links = get_links(result['en']['instance'].split('/')[-1])
         for lang in result:
-            result[lang].update(links[lang])
-    return result
+            links[lang].update(result[lang])
+    return links

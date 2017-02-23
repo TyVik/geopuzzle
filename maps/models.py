@@ -131,7 +131,7 @@ class Area(TranslatableModel):
             trans = load_translation(self, lang, enforce=True)
             trans.master = self
             trans.infobox = infobox
-            trans.name = infobox['name']
+            trans.name = infobox.get('name', '')
             trans.save()
 
     def update_infobox_by_instance(self) -> None:
