@@ -1,6 +1,6 @@
-from typing import Dict, List
+import json
+from typing import Dict
 
-from bs4 import BeautifulSoup
 from urllib.request import urlopen
 # from cairosvg.surface import PNGSurface
 from SPARQLWrapper import JSON
@@ -23,16 +23,6 @@ def query(statement: str, **kwargs) -> Dict:
                 row[field] = row[field]['value']
         return row
 
-    def get_wiki_link(instance: str, langs: List) -> Dict:
-        html = urlopen(instance)
-        soup = BeautifulSoup(html)
-        result = {}
-        for lang in langs:
-            link = soup.find("a", attrs={'hreflang': lang})
-            if link is not None:
-                result[lang] = {'wiki': link.get('href'), 'name': link.get('title')}
-        return result
-
     sparql = SPARQLWrapper("https://query.wikidata.org/bigdata/namespace/wdq/sparql")
     sparql.setQuery(statement.format(**kwargs))
     sparql.setReturnFormat(JSON)
@@ -43,9 +33,15 @@ def query(statement: str, **kwargs) -> Dict:
         lang = row.pop('lang')['value']
         result[lang] = prepare_row(row)
 
-    if 'instance' in result['en']:
-        wiki_links = get_wiki_link(result['en']['instance'], list(result.keys()))
-        for lang, values in wiki_links.items():
-            result[lang]['wiki'] = values['wiki']
-            result[lang]['name'] = values['name']
+    if 'en' in result and 'instance' in result['en']:
+        instance = result['en']['instance']
+        response = urlopen(instance).read().decode('utf8')
+        response = json.loads(response)
+        for lang in result:
+            try:
+                links = response['entities'][instance.split('/')[-1]]['sitelinks']['{}wiki'.format(lang)]
+                result[lang]['wiki'] = links['url']
+                result[lang]['name'] = links['title']
+            except:
+                pass
     return result
