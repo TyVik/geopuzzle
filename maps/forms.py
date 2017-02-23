@@ -23,7 +23,7 @@ class KMLCountryImportForm(forms.Form):
                     area = Area.objects.create(name=feat['Name'].value, country=self.cleaned_data["country"],
                                                polygon=polygon, difficulty=2)
                     area.recalc_answer()
-                    area.update_infobox(name=feat['Name'].value, language=self.cleaned_data['language'])
+                    area.update_infobox_by_name(name=feat['Name'].value, language=self.cleaned_data['language'])
 
 
 class KMLAreaImportForm(forms.Form):

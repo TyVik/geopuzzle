@@ -17,7 +17,7 @@ from hvad.models import TranslatableModel, TranslatedFields
 from hvad.utils import load_translation
 
 from maps.converter import encode_coords
-from maps.infobox import query
+from maps.infobox import query, query_by_instance, query_by_name
 
 DIFFICULTY_LEVELS = (
     (0, 'disabled'),
@@ -48,6 +48,7 @@ class Country(TranslatableModel):
     sparql = models.TextField(blank=True, null=True)
     is_published = models.BooleanField(default=False)
     is_global = models.BooleanField(default=False)
+    wikidata_id = models.CharField(max_length=15)
 
     translations = TranslatedFields(
         name = models.CharField(max_length=15)
@@ -125,17 +126,26 @@ class Area(TranslatableModel):
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
         return list(self.polygon.centroid)
 
-    def update_infobox(self, name=None, language='en') -> None:
-        time.sleep(5)  # protection for DDoS
-        obj = Area.objects.get(pk=self.pk)
-        name = obj.safe_translation_getter('name', '') if name is None else name
-        rows = query(self.country.sparql, language=language, name=name)
+    def _update_infobox(self, rows):
         for lang, infobox in rows.items():
-            trans = load_translation(obj, lang, enforce=True)
-            trans.master = obj
+            trans = load_translation(self, lang, enforce=True)
+            trans.master = self
             trans.infobox = infobox
             trans.name = infobox['name']
             trans.save()
+
+    def update_infobox_by_instance(self) -> None:
+        time.sleep(5)  # protection for DDoS
+        infobox = self.safe_translation_getter('infobox', None)
+        instance = infobox.get('instance', None)
+        if instance is not None:
+            rows = query_by_instance(country_id=self.country.wikidata_id, item_id=instance.split('/')[-1])
+            self._update_infobox(rows)
+
+    def update_infobox_by_name(self, name, language) -> None:
+        time.sleep(5)  # protection for DDoS
+        rows = query_by_name(country_id=self.country.wikidata_id, language=language, name=name)
+        self._update_infobox(rows)
 
     def recalc_answer(self) -> None:
         diff = (-1, -1, 1, 1)

@@ -71,7 +71,7 @@ recalc_answer.short_description = "Recalc answer"
 
 def update_infobox(modeladmin, request, queryset) -> None:
     for area in queryset:
-        area.update_infobox()
+        area.update_infobox_by_instance()
     success(request, 'Infoboxes were updated.')
 update_infobox.short_description = "Update infobox"
 
