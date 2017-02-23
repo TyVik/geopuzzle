@@ -88,6 +88,7 @@ def query_by_name(country_id: str, name: str, language: str) -> Dict:
         return STATEMENT.format(item_id='?instance', country_id=country_id, select='?instance', condition=condition)
 
     result = query(statement_by_name(country_id=country_id, name=name, language=language))
+    links = result
     if 'en' in result and 'instance' in result['en']:
         links = get_links(result['en']['instance'].split('/')[-1])
         for lang in result:
