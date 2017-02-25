@@ -72,7 +72,7 @@ recalc_answer.short_description = "Recalc answer"
 
 def update_infobox(modeladmin, request, queryset) -> None:
     for area in queryset:
-        area.update_infobox_by_instance()
+        area.update_infobox_by_wikidata_id()
     success(request, 'Infoboxes were updated.')
 update_infobox.short_description = "Update infobox"
 
@@ -95,11 +95,7 @@ class AreaAdmin(TranslatableAdmin):
         return obj.polygon.num_points
 
     def wiki_id(self, obj: Area) -> str:
-        infobox = obj.infobox
-        if infobox is None:
-            return ''
-        instance = infobox.get('instance', None)
-        return '' if instance is None else '<a href="{link}">{id}</a>'.format(link=instance, id=instance.split('/')[-1])
+        return '' if obj.wikidata_id is None else '<a href="https://www.wikidata.org/wiki/{id}">{id}</a>'.format(id=obj.wikidata_id)
     wiki_id.short_description = 'Wiki ID'
     wiki_id.allow_tags = True
 

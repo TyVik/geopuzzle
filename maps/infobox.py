@@ -71,7 +71,7 @@ def query(statement: str) -> Dict:
     return result
 
 
-def query_by_instance(country_id: str, item_id: str) -> Dict:
+def query_by_wikidata_id(country_id: str, item_id: str) -> Dict:
     def statement_by_instance(country_id: str, item_id: str) -> str:
         return STATEMENT.format(item_id='wd:{}'.format(item_id), country_id=country_id, select='', condition='')
 
