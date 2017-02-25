@@ -79,9 +79,9 @@ update_infobox.short_description = "Update infobox"
 
 @admin.register(Area)
 class AreaAdmin(TranslatableAdmin):
-    list_display = ('_name', 'difficulty', 'wiki_id', 'num_points')
+    list_display = ('_name', 'difficulty', 'wiki_id', 'wikidata_id', 'num_points')
     list_filter = ('difficulty', 'country')
-    list_editable = ('difficulty',)
+    list_editable = ('difficulty', 'wikidata_id')
     actions = [recalc_answer, update_infobox]
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},

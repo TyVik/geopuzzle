@@ -88,6 +88,7 @@ class Area(TranslatableModel):
     difficulty = models.PositiveSmallIntegerField(choices=DIFFICULTY_LEVELS, default=0)
     polygon = MultiPolygonField(geography=True)
     answer = MultiPointField(geography=True, null=True)
+    wikidata_id = models.CharField(max_length=15, null=True, blank=True)
 
     translations = TranslatedFields(
         name = models.CharField(max_length=50),
