@@ -8,11 +8,13 @@
             {{ data.name }} <sup><a href="{{ data.wiki }}" target="_blank">wiki</a></sup>
         </th>
     </tr>
+    {% if data.flag or data.coat_of_arms %}
     <tr>
         <td colspan="2">
             <div><img src="{% if data.flag %}{{ data.flag }}{% else %}{{ data.coat_of_arms }}{% endif %}"></div>
         </td>
     </tr>
+    {% endif %}
 
     {% if data.capital %}
     <tr>
