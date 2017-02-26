@@ -1,3 +1,5 @@
+from django.utils.translation import ugettext as _
+
 from django import forms
 from django.conf import settings
 from django.core.handlers.wsgi import WSGIRequest
@@ -42,6 +44,17 @@ def index(request: WSGIRequest) -> HttpResponse:
 def infobox(request: WSGIRequest, pk: str) -> HttpResponse:
     obj = Area.objects.get(pk=pk)
     return render(request, 'maps/infobox.html', {'data': obj.infobox})
+
+
+def infobox_by_id(request: WSGIRequest, pk: str) -> HttpResponse:
+    obj = Area.objects.get(pk=pk)
+    items = obj.infobox
+    name = items.pop('name', None)
+    wiki = items.pop('wiki', None)
+    flag = items.pop('flag', None)
+    coat_of_arms = items.pop('coat_of_arms', None)
+    items = [{'title': _(key.title()), 'value': value} for key, value in items.items()]
+    return JsonResponse({'name': name, 'wiki': wiki, 'image': flag if flag else coat_of_arms, 'items': items})
 
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
