@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ country.name }}{% endblock %}
+
+{% block extra_css %}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'maps/css/map.css' %}">#}
+{% endblock %}
+
+{% block content %}
+    <div id="puzzle"></div>
+    {% if debug %}
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry&language=en"></script>
+    {% else %}
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry&language=en&key=AIzaSyDOo6Kqpq0_luQUBgq83WZJ9yL6Icg5BWc"></script>
+    {% endif %}
+    <script type='text/javascript'>
+        window.__INIT__ = {{ country.get_init_params|safe }};
+    </script>
+    <script type="text/javascript" src={% static "puzzle.js" %}></script>
+{% endblock %}
