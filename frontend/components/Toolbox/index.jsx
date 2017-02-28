@@ -26,7 +26,7 @@ class Toolbox extends React.Component {
             <div className="toolbox_wrapper">
                 <div className="btn-group btn-group-sm toolbox">
                     <div className="toolbox_counter">
-                        Найдено: <span id="counter_current">0</span>/<span id="counter_total">20</span>
+                        Найдено: <span>{this.props.solved}</span>/<span>{this.props.total}</span>
                     </div>
                     <button type="button" className="btn btn-success" onClick={this.giveUp}>сдаюсь</button>
                     <button type="button" className="btn btn-warning" onClick={this.reload}>ещё раз</button>
@@ -37,4 +37,9 @@ class Toolbox extends React.Component {
 };
 
 
-export default connect(state => (state.infobox))(Toolbox);
+export default connect(state => {
+    return {
+        total: state.map.polygons.length,
+        solved: state.map.polygons.filter(obj => (obj.isSolved)).length
+    };
+})(Toolbox);

@@ -54,6 +54,7 @@ function extractPolygons(countries) {
         return {
             id: country.id,
             draggable: true,
+            isSolved: false,
             paths: moveTo(
                 originalPath,
                 new google.maps.LatLng(country.center[0], country.center[1]),
@@ -80,6 +81,7 @@ const map = (state = {...window.__INIT__, isLoaded: null, polygons: []}, action)
                     if (polygon.id === action.id) {
                         return {...polygon,
                             draggable: false,
+                            isSolved: true,
                             paths: polygon.originalPath,
                         };
                     }
