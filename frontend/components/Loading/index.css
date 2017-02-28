@@ -1,0 +1,17 @@
+.loading_wrapper {
+    left: 0;
+    top: 0;
+    position: fixed;
+    right: 0;
+    z-index: 3;
+    padding: 10px;
+    display: inline-block;
+    margin-top: 50px;
+}
+
+.loading {
+    margin: 0 auto;
+    display: table;
+    background: wheat;
+    padding: 5px;
+}

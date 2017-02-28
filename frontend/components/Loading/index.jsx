@@ -1,12 +1,20 @@
 import React from "react";
 import { connect } from 'react-redux'
 
+import styles from './index.css';
+
 
 const Loading = ({isLoaded}) => {
     if (isLoaded === true) {
         return null;
     }
-    return <h2>{isLoaded === null ? 'Loading...' : 'Something wrong'}</h2>
+    return (
+        <div className={styles.loading_wrapper}>
+            <h2 className={styles.loading}>
+                {isLoaded === null ? 'Loading...' : 'Something wrong'}
+            </h2>
+        </div>
+    );
 };
 
 

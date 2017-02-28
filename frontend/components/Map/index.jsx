@@ -38,8 +38,8 @@ class MapContainer extends React.Component {
         return <GoogleMap
             zoom={this.props.zoom}
             center={this.props.center}
-            containerElement={<div style={{height: `500px`}}/>}
-            mapElement={<div style={{height: `500px`}} id="map"/>}
+            containerElement={<div style={{height: window.innerHeight - 50, marginTop: '-20px'}}/>}
+            mapElement={<div style={{height: '100%', margin: 0, padding: 0}} id="map"/>}
             onMapLoad={this.handleMapLoad}
             polygons={this.preparePolygons(this.props.polygons)}
         />
