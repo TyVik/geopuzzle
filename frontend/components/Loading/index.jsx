@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux'
 
-import styles from './index.css';
+import './index.css'
 
 
 const Loading = ({isLoaded}) => {
@@ -9,8 +9,8 @@ const Loading = ({isLoaded}) => {
         return null;
     }
     return (
-        <div className={styles.loading_wrapper}>
-            <h2 className={styles.loading}>
+        <div className="loading_wrapper">
+            <h2 className="loading">
                 {isLoaded === null ? 'Loading...' : 'Something wrong'}
             </h2>
         </div>

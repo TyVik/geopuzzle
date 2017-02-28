@@ -1,4 +1,4 @@
-.container {
+.infobox {
     position: fixed;
     right: 0;
     top: 0;
@@ -11,11 +11,11 @@
     max-width: 220px;
 }
 
-.container tr {
+.infobox tr {
     line-height: 1.8em;
 }
 
-.container img {
+.infobox img {
     border: 1px solid black;
     width: 200px;
 }
