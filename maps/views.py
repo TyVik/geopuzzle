@@ -58,6 +58,8 @@ def infobox_by_id(request: WSGIRequest, pk: str) -> HttpResponse:
 
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
+    import time
+    time.sleep(1)
     params = request.GET.copy()
     params['country'] = name
     params['lang'] = request.LANGUAGE_CODE
