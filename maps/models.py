@@ -71,7 +71,7 @@ class Country(TranslatableModel):
     def get_init_params(self) -> Dict:
         return {
             'zoom': self.zoom,
-            'center': list(self.center.coords)
+            'center': {'lng': self.center.coords[0], 'lat': self.center.coords[1]}
         }
 
     def pop_position(self) -> Tuple:
