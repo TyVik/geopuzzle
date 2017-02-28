@@ -1,13 +1,10 @@
-import {GET_COUNTRIES_DONE, DRAG_END_POLYGON} from '../actions';
+import {GET_COUNTRIES_DONE} from '../actions';
 
 
 const countries = (state = [], action) => {
     switch (action.type) {
-        case DRAG_END_POLYGON:
-            return state;
         case GET_COUNTRIES_DONE:
-            let result = action.countries.map(country => { return {...country, infobox: {}}});
-            return result;
+            return action.countries.map(country => { return {...country, infobox: {}}});
         default:
             return state
     }
