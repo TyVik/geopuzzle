@@ -1,0 +1,46 @@
+.container {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 3;
+    background: white;
+    padding: 10px;
+    margin-top: 50px;
+    border-radius: 5px;
+    border: 1px solid black;
+    max-width: 220px;
+}
+
+.container tr {
+    line-height: 1.8em;
+}
+
+.container img {
+    border: 1px solid black;
+    width: 200px;
+}
+
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    position: fixed;
+}
+
+.row_name {
+    text-align: center;
+    font-weight: bold;
+    padding: 0.25em 0.33em 0.33em;
+    line-height: 1.2em;
+    font-size: 1.25em;
+}
