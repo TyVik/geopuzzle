@@ -32,8 +32,4 @@ class Polygon extends GooglePolygon {
 }
 
 
-const mapStateToProps = (state, ownProps) => {
-    return state.map.polygons.find(x => x.id === ownProps.options.id);
-};
-
-export default connect(mapStateToProps)(Polygon);
+export default connect((state, ownProps) => (state.map.polygons.find(x => x.id === ownProps.options.id)))(Polygon);

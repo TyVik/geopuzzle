@@ -46,8 +46,5 @@ class MapContainer extends React.Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return state.map;
-};
 
-export default connect(mapStateToProps)(MapContainer);
+export default connect(state => (state.map))(MapContainer);

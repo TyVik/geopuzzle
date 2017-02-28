@@ -10,10 +10,6 @@ const Loading = ({isLoaded}) => {
 };
 
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    isLoaded: state.map.isLoaded
-  }
-};
-
-export default connect(mapStateToProps)(Loading);
+export default connect(state => ({
+    isLoaded: state.map.isLoaded}
+))(Loading);
