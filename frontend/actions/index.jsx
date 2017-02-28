@@ -6,6 +6,7 @@ export const DRAG_END_POLYGON_FAIL = 'DRAG_END_POLYGON_FAIL';
 export const GET_INFOBOX_DONE = 'GET_INFOBOX_DONE';
 export const GET_INFOBOX_FAIL = 'GET_INFOBOX_FAIL';
 export const CLOSE_INFOBOX = 'CLOSE_INFOBOX';
+export const GIVE_UP = 'GIVE_UP';
 
 
 export const sendRequest = () => ({
@@ -55,4 +56,9 @@ export const dragEndPolygon = (polygon) => dispatch => {
 
 export const closeInfobox = () => ({
     type: CLOSE_INFOBOX,
+});
+
+
+export const giveUp = () => ({
+    type: GIVE_UP,
 });

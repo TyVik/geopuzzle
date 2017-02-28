@@ -1,8 +1,10 @@
-import {GET_INFOBOX_DONE, CLOSE_INFOBOX} from '../actions';
+import {GET_INFOBOX_DONE, CLOSE_INFOBOX, GIVE_UP} from '../actions';
 
 
 const infobox = (state = {}, action) => {
     switch (action.type) {
+        case GIVE_UP:
+            return {};
         case CLOSE_INFOBOX:
             return {};
         case GET_INFOBOX_DONE:
