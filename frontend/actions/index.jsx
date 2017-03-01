@@ -6,6 +6,8 @@ export const DRAG_END_POLYGON_FAIL = 'DRAG_END_POLYGON_FAIL';
 export const GET_INFOBOX_DONE = 'GET_INFOBOX_DONE';
 export const GET_INFOBOX_FAIL = 'GET_INFOBOX_FAIL';
 export const CLOSE_INFOBOX = 'CLOSE_INFOBOX';
+export const SHOW_INFOBOX = 'SHOW_INFOBOX';
+export const SHOW_INFOBOX_BY_ID = 'SHOW_INFOBOX_BY_ID';
 export const GIVE_UP = 'GIVE_UP';
 
 
@@ -41,16 +43,16 @@ export const updateInfobox = (success, id, json) => {
 };
 
 
-export const dragEndPolygon = (polygon) => dispatch => {
-    if (polygon.isBounded()) {
-        dispatch({type: DRAG_END_POLYGON, id: polygon.props.id, paths: polygon.getPaths()});
-        return fetch(`http://127.0.0.1:8000/maps/area/` + polygon.props.id + '/infobox/')
-            .then(response => response.json())
-            .then(json => dispatch(updateInfobox(true, polygon.props.id, json)))
-            .catch(response => dispatch(updateInfobox(false)));
-    } else {
-        return {type: DRAG_END_POLYGON_FAIL};
-    }
+export const showInfoboxById = (id, data) => {
+    return {type: SHOW_INFOBOX_BY_ID, id: id, data: data};
+};
+
+
+export const showInfobox = (polygonId) => dispatch => {
+    return fetch(`http://127.0.0.1:8000/maps/area/` + polygonId + '/infobox/')
+        .then(response => response.json())
+        .then(json => dispatch(updateInfobox(true, polygonId, json)))
+        .catch(response => dispatch(updateInfobox(false)));
 };
 
 
