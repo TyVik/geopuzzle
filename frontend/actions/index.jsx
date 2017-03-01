@@ -2,13 +2,13 @@ export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_COUNTRIES_FAIL = 'GET_COUNTRIES_FAIL';
 export const GET_COUNTRIES_DONE = 'GET_COUNTRIES_DONE';
 export const DRAG_END_POLYGON = 'DRAG_END_POLYGON';
-export const DRAG_END_POLYGON_FAIL = 'DRAG_END_POLYGON_FAIL';
 export const GET_INFOBOX_DONE = 'GET_INFOBOX_DONE';
 export const GET_INFOBOX_FAIL = 'GET_INFOBOX_FAIL';
 export const CLOSE_INFOBOX = 'CLOSE_INFOBOX';
-export const SHOW_INFOBOX = 'SHOW_INFOBOX';
 export const SHOW_INFOBOX_BY_ID = 'SHOW_INFOBOX_BY_ID';
 export const GIVE_UP = 'GIVE_UP';
+export const SHOW_CONGRATULATION = 'SHOW_CONGRATULATION';
+export const CLOSE_CONGRATULATION = 'CLOSE_CONGRATULATION';
 
 
 export const sendRequest = () => ({
@@ -63,4 +63,14 @@ export const closeInfobox = () => ({
 
 export const giveUp = () => ({
     type: GIVE_UP,
+});
+
+
+export const showCongratulation = (text) =>({
+    type: SHOW_CONGRATULATION, text: text
+});
+
+
+export const closeCongratulation = () => ({
+    type: CLOSE_CONGRATULATION,
 });

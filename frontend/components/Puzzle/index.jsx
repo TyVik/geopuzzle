@@ -3,6 +3,7 @@ import Map from '../Map';
 import Loading from '../Loading';
 import Infobox from '../Infobox';
 import Toolbox from '../Toolbox';
+import Congratulation from '../Congratulation';
 
 
 const Puzzle = () => {
@@ -12,6 +13,7 @@ const Puzzle = () => {
             <Map/>
             <Infobox/>
             <Toolbox/>
+            <Congratulation/>
         </div>
     )
 };
