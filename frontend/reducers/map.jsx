@@ -2,7 +2,7 @@
 import {GET_COUNTRIES, GET_COUNTRIES_FAIL, GET_COUNTRIES_DONE} from "../actions";
 
 
-const map = (state = {...window.__INIT__, isLoaded: null}, action) => {
+const map = (state = {...window.__MAP__, isLoaded: null}, action) => {
     switch (action.type) {
         case GET_COUNTRIES:
             return {...state, isLoaded: null};

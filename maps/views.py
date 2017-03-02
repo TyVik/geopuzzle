@@ -53,7 +53,7 @@ def infobox_by_id(request: WSGIRequest, pk: str) -> HttpResponse:
     wiki = items.pop('wiki', None)
     flag = items.pop('flag', None)
     coat_of_arms = items.pop('coat_of_arms', None)
-    items = [{'title': _(key.title()), 'value': value} for key, value in items.items()]
+    items = [{'title': key, 'value': value} for key, value in items.items()]
     return JsonResponse({'name': name, 'wiki': wiki, 'image': flag if flag else coat_of_arms, 'items': items})
 
 
@@ -82,4 +82,9 @@ def maps(request: WSGIRequest, name: str) -> HttpResponse:
 
 
 def react(request: WSGIRequest) -> HttpResponse:
-    return render(request, 'map.html', context={'country': Country.objects.get(slug='italy')})
+    country = Country.objects.get(slug='italy')
+    context = {
+        'country': country,
+        'congratulation': _('You found next countries') if country.is_global else _('You found next regions')
+    }
+    return render(request, 'map.html', context=context)

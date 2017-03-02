@@ -20,7 +20,7 @@ class Congratulation extends React.Component {
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-lg">Congratulations!</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>{this.props.text}</Modal.Body>
+                <Modal.Body>{this.props.template}: {this.props.text}.</Modal.Body>
             </Modal>
         );
     }
