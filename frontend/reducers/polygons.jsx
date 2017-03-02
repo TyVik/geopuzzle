@@ -57,7 +57,7 @@ function extractPolygons(countries) {
             infobox: {},
             paths: moveTo(
                 originalPath,
-                new google.maps.LatLng(country.center[0], country.center[1]),
+                new google.maps.LatLng(country.center[1], country.center[0]),
                 new google.maps.LatLng(country.default_position[0], country.default_position[1])),
             originalPath: originalPath,
             answer: new google.maps.LatLngBounds(

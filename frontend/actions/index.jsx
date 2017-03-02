@@ -27,7 +27,7 @@ export const updateCountries = (success, countries) => {
 
 export const getCountries = () => dispatch => {
     dispatch(sendRequest());
-    return fetch(`http://127.0.0.1:8000/maps/questions/italy?id=15&id=16`)
+    return fetch(location.pathname.replace('/maps/', '/maps/questions/') + location.search)
         .then(response => response.json())
         .then(json => dispatch(updateCountries(true, json)))
         .catch(response => dispatch(updateCountries(false)));
@@ -49,7 +49,7 @@ export const showInfoboxById = (id, data) => {
 
 
 export const showInfobox = (polygonId) => dispatch => {
-    return fetch(`http://127.0.0.1:8000/maps/area/` + polygonId + '/infobox/')
+    return fetch(location.origin + `/maps/area/` + polygonId + '/infobox/')
         .then(response => response.json())
         .then(json => dispatch(updateInfobox(true, polygonId, json)))
         .catch(response => dispatch(updateInfobox(false)));

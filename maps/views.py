@@ -83,11 +83,7 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
 
 
 def maps(request: WSGIRequest, name: str) -> HttpResponse:
-    return render(request, 'maps/map.html', context={'country': Country.objects.get(slug=name)})
-
-
-def react(request: WSGIRequest) -> HttpResponse:
-    country = Country.objects.get(slug='italy')
+    country = Country.objects.get(slug=name)
     context = {
         'language': request.LANGUAGE_CODE,
         'country': country,
