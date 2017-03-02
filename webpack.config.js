@@ -5,10 +5,17 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-    entry: './frontend/geopuzzle.js',
+    context: __dirname + '/frontend',
+    entry: {
+        puzzle: './geopuzzle',
+        localization: './localization',
+        // about: './about',
+        // common: ['./common', './welcome'],
+    },
     output: {
         path: path.resolve(__dirname, 'static'),
-        filename: 'puzzle.js'
+        filename: "[name].js",
+        library: "[name]"
     },
     resolve: {
         extensions: ['.js', '.jsx'],

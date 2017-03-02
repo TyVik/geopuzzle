@@ -44,6 +44,7 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
-    "react-bootstrap": "^0.30.7"
+    "react-bootstrap": "^0.30.7",
+    "react-localization": "0.0.12"
   }
 }

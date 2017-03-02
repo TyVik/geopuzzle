@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {giveUp, showCongratulation} from "../../actions";
+import localization from "../../localization";
 import "./index.css";
 
 
@@ -30,10 +31,10 @@ class Toolbox extends React.Component {
             <div className="toolbox_wrapper">
                 <div className="btn-group btn-group-sm toolbox">
                     <div className="toolbox_counter">
-                        Найдено: <span>{this.props.solved}</span>/<span>{this.props.total}</span>
+                        {localization.found}: <span>{this.props.solved}</span>/<span>{this.props.total}</span>
                     </div>
-                    <button type="button" className="btn btn-success" onClick={this.giveUp}>сдаюсь</button>
-                    <button type="button" className="btn btn-warning" onClick={this.reload}>ещё раз</button>
+                    <button type="button" className="btn btn-success" onClick={this.giveUp}>{localization.give_up}</button>
+                    <button type="button" className="btn btn-warning" onClick={this.reload}>{localization.once_again}</button>
                 </div>
             </div>
         )

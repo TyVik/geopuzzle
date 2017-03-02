@@ -1,5 +1,6 @@
 import React from "react";
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import localization from '../../localization';
 
 import './index.css'
 
@@ -11,7 +12,7 @@ const Loading = ({isLoaded}) => {
     return (
         <div className="loading_wrapper">
             <h2 className="loading">
-                {isLoaded === null ? 'Loading...' : 'Something wrong'}
+                {isLoaded === null ? localization.loading : 'Something wrong'}
             </h2>
         </div>
     );

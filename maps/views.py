@@ -1,3 +1,4 @@
+from django.contrib.humanize.templatetags.humanize import intcomma
 from django.utils.translation import ugettext as _
 
 from django import forms
@@ -53,13 +54,17 @@ def infobox_by_id(request: WSGIRequest, pk: str) -> HttpResponse:
     wiki = items.pop('wiki', None)
     flag = items.pop('flag', None)
     coat_of_arms = items.pop('coat_of_arms', None)
-    items = [{'title': key, 'value': value} for key, value in items.items()]
-    return JsonResponse({'name': name, 'wiki': wiki, 'image': flag if flag else coat_of_arms, 'items': items})
+    attributes = []
+    for key, value in items.items():
+        if key == 'area':
+            value = '{} {}'.format(value, _('km'))
+        elif key == 'population':
+            value = intcomma(value)
+        attributes.append({'title': key, 'value': value})
+    return JsonResponse({'name': name, 'wiki': wiki, 'image': flag if flag else coat_of_arms, 'items': attributes})
 
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
-    import time
-    time.sleep(1)
     params = request.GET.copy()
     params['country'] = name
     params['lang'] = request.LANGUAGE_CODE
@@ -84,6 +89,7 @@ def maps(request: WSGIRequest, name: str) -> HttpResponse:
 def react(request: WSGIRequest) -> HttpResponse:
     country = Country.objects.get(slug='italy')
     context = {
+        'language': request.LANGUAGE_CODE,
         'country': country,
         'congratulation': _('You found next countries') if country.is_global else _('You found next regions')
     }

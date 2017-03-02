@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from 'react-redux'
 
 import {closeInfobox} from '../../actions'
+import localization from '../../localization';
 
 import './index.css'
 
@@ -10,7 +11,7 @@ const InfoboxAttribute = (props) => {
     return (
         <tr>
             <td scope="row">
-                <div>{props.title}</div>
+                <div>{localization[props.title]}</div>
             </td>
             <td>{props.value}</td>
         </tr>
