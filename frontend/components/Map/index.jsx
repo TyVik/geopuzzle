@@ -47,4 +47,4 @@ class MapContainer extends React.Component {
 }
 
 
-export default connect(state => (state.map))(MapContainer);
+export default connect(state => ({...state.map, polygons: state.polygons}))(MapContainer);

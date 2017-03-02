@@ -1,9 +1,7 @@
 import React from "react";
-import { connect } from 'react-redux'
-
-import {giveUp} from '../../actions'
-
-import './index.css'
+import {connect} from "react-redux";
+import {giveUp, showCongratulation} from "../../actions";
+import "./index.css";
 
 
 class Toolbox extends React.Component {
@@ -21,6 +19,12 @@ class Toolbox extends React.Component {
         this.props.dispatch(giveUp());
     }
 
+    componentWillReceiveProps(props) {
+        if (props.total === props.solved) {
+            this.props.dispatch(showCongratulation());
+        }
+    }
+
     render() {
         return (
             <div className="toolbox_wrapper">
@@ -34,12 +38,13 @@ class Toolbox extends React.Component {
             </div>
         )
     }
-};
+}
+;
 
 
 export default connect(state => {
     return {
-        total: state.map.polygons.length,
-        solved: state.map.polygons.filter(obj => (obj.isSolved)).length
+        total: state.polygons.length,
+        solved: state.polygons.filter(obj => (obj.isSolved)).length
     };
 })(Toolbox);

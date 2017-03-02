@@ -66,8 +66,8 @@ export const giveUp = () => ({
 });
 
 
-export const showCongratulation = (text) =>({
-    type: SHOW_CONGRATULATION, text: text
+export const showCongratulation = () =>({
+    type: SHOW_CONGRATULATION,
 });
 
 

@@ -29,7 +29,7 @@ class Infobox extends React.Component {
     }
 
     render() {
-        if ('id' in this.props) {
+        if (this.props.show) {
             return (
                 <div className="infobox">
                     <button type="button" className="close" onClick={this.closeSelf}>

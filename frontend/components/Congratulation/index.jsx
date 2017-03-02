@@ -1,9 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {closeCongratulation} from "../../actions";
-import {Modal, Button} from 'react-bootstrap/lib';
-
-// import './index.css'
+import {Modal} from 'react-bootstrap/lib';
 
 
 class Congratulation extends React.Component {
@@ -18,14 +16,11 @@ class Congratulation extends React.Component {
 
     render() {
         return (
-            <Modal show={this.props.show} onHide={this.closeSelf} bsSize="small">
+            <Modal show={this.props.show} onHide={this.closeSelf} bsSize="large" aria-labelledby="contained-modal-title-lg">
                 <Modal.Header closeButton>
-                    <Modal.Title>Congratulations!</Modal.Title>
+                    <Modal.Title id="contained-modal-title-lg">Congratulations!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>{this.props.text}</Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={this.closeSelf}>Close</Button>
-                </Modal.Footer>
             </Modal>
         );
     }

@@ -27,7 +27,7 @@ class Polygon extends GooglePolygon {
     componentDidMount() {
         google.maps.event.addListener(this.state[_constants.POLYGON], 'dragend', () => {
             if (this.isBounded()) {
-                this.props.dispatch({type: DRAG_END_POLYGON, id: this.props.id, paths: this.getPaths()});
+                this.props.dispatch({type: DRAG_END_POLYGON, id: this.props.id});
                 this.props.dispatch(showInfobox(this.props.id));
             }
         });
@@ -45,7 +45,5 @@ class Polygon extends GooglePolygon {
 
 
 export default connect((state, ownProps) => {
-    let result = state.map.polygons.find(x => x.id === ownProps.options.id);
-    let country = state.countries.find(x => x.id === ownProps.options.id);
-    return {...result, infobox: country.infobox};
+    return state.polygons.find(x => x.id === ownProps.options.id);
 })(Polygon);

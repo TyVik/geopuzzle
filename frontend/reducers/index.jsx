@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux'
-import countries from './countries'
 import map from './map'
 import infobox from './infobox'
+import polygons from './polygons'
 import congratulation from './congratulation'
 
 const puzzle = combineReducers({
-    countries,
+    congratulation,
+    polygons,
     map,
     infobox,
-    congratulation
 });
 
 export default puzzle

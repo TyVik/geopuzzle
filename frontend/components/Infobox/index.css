@@ -20,7 +20,7 @@
     width: 200px;
 }
 
-.close {
+.infobox .close {
     float: right;
     font-size: 21px;
     font-weight: 700;
@@ -37,7 +37,7 @@
     position: fixed;
 }
 
-.row_name {
+.infobox .row_name {
     text-align: center;
     font-weight: bold;
     padding: 0.25em 0.33em 0.33em;
