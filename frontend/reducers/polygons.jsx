@@ -1,4 +1,4 @@
-import {GET_INFOBOX_DONE, GET_COUNTRIES_DONE, DRAG_END_POLYGON, GIVE_UP} from '../actions';
+import {GET_INFOBOX_DONE, GET_COUNTRIES_DONE, DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL, GIVE_UP} from '../actions';
 
 
 function moveTo(paths, src, latLng) {
@@ -86,6 +86,13 @@ const polygons = (state = [], action) => {
                             draggable: false,
                             paths: polygon.originalPath,
                         };
+                    }
+                    return polygon
+                });
+        case DRAG_END_POLYGON_FAIL:
+            return state.map((polygon) => {
+                    if (polygon.id === action.id) {
+                        return {...polygon, paths: action.paths};
                     }
                     return polygon
                 });
