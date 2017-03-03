@@ -1,4 +1,3 @@
-from django.contrib.humanize.templatetags.humanize import intcomma
 from django.utils.translation import ugettext as _
 
 from django import forms
@@ -42,11 +41,6 @@ def index(request: WSGIRequest) -> HttpResponse:
     return render(request, 'index.html', {'countries': countries, 'parts': parts})
 
 
-def infobox(request: WSGIRequest, pk: str) -> HttpResponse:
-    obj = Area.objects.get(pk=pk)
-    return render(request, 'maps/infobox.html', {'data': obj.infobox})
-
-
 def infobox_by_id(request: WSGIRequest, pk: str) -> HttpResponse:
     obj = get_object_or_404(Area, pk=pk)
     return JsonResponse(obj.infobox)
@@ -71,10 +65,10 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
 
 
 def maps(request: WSGIRequest, name: str) -> HttpResponse:
-    country = Country.objects.get(slug=name)
+    country = get_object_or_404(Country, slug=name)
     context = {
         'language': request.LANGUAGE_CODE,
         'country': country,
         'congratulation': _('You found next countries') if country.is_global else _('You found next regions')
     }
-    return render(request, 'map.html', context=context)
+    return render(request, 'maps/map.html', context=context)

@@ -3,55 +3,20 @@
 
 {% block title %}{{ country.name }}{% endblock %}
 
-{% block extra_css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'maps/css/map.css' %}">
-{% endblock %}
-
 {% block content %}
-    <div id="map_wrapper">
-        <div class="btn-group btn-group-sm fade" id="buttons">
-            <div id="counter">
-                {% trans 'Found' %}: <span id="counter_current">0</span>/<span id="counter_total">0</span>
-            </div>
-            <button type="button" class="btn btn-success" onclick = "giveUp()">{% trans 'give up' %}</button>
-            <button type="button" class="btn btn-warning" onclick = "reload()">{% trans 'once again' %}</button>
-        </div>
-        <div id="wrap_infobox" style="display: none">
-            <button type="button" class="close" aria-label="Close" onclick="close_infobox()">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <div id="infobox"></div>
-        </div>
-        <div id="map"></div>
-        <div id="loading_wrapper"><h2 id="loading">{% trans 'Loading...' %}</h2></div>
-    </div>
-    <div class="modal fade" id="congrats" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">{% trans 'Congratulations!' %}</h4>
-                </div>
-                <div class="modal-body">
-                    {% if country.id == 1 %}
-                        {% trans 'You found next countries' %}: <span id="shape_names"></span>.
-                    {% else %}
-                        {% trans 'You found next regions' %}: <span id="shape_names"></span>.
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="puzzle"></div>
     {% if debug %}
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry&language=en"></script>
     {% else %}
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry&language=en&key=AIzaSyDOo6Kqpq0_luQUBgq83WZJ9yL6Icg5BWc"></script>
     {% endif %}
+    <script type='text/javascript'>
+        window.__LANGUAGE__ = '{{ language }}';
+        window.__MAP__ = {{ country.get_init_params|safe }};
+        window.__CONGRATULATION__ = {show: false, template: '{{ congratulation }}'};
+    </script>
     <script src="{% static 'maps/js/google.maps.Polygon.getBounds.js' %}"></script>
     <script src="{% static 'maps/js/google.maps.Polygon.moveTo.js' %}"></script>
-    <script src="{% static 'maps/js/country.js' %}"></script>
-    <script type="text/javascript" src="{% static 'maps/js/main.js' %}"></script>
-    <script type='text/javascript'>
-        var init = {{ country.get_init_params|safe }};
-    </script>
+    <script type="text/javascript" src={% static "localization.js" %}></script>
+    <script type="text/javascript" src={% static "puzzle.js" %}></script>
 {% endblock %}
