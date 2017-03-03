@@ -19,6 +19,8 @@
         window.__MAP__ = {{ country.get_init_params|safe }};
         window.__CONGRATULATION__ = {show: false, template: '{{ congratulation }}'};
     </script>
+    <script src="{% static 'maps/js/google.maps.Polygon.getBounds.js' %}"></script>
+    <script src="{% static 'maps/js/google.maps.Polygon.moveTo.js' %}"></script>
     <script type="text/javascript" src={% static "localization.js" %}></script>
     <script type="text/javascript" src={% static "puzzle.js" %}></script>
 {% endblock %}
