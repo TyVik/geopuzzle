@@ -11,6 +11,8 @@ export const GIVE_UP = 'GIVE_UP';
 export const SHOW_CONGRATULATION = 'SHOW_CONGRATULATION';
 export const CLOSE_CONGRATULATION = 'CLOSE_CONGRATULATION';
 
+import localization from '../localization';
+
 
 export const sendRequest = () => ({
   type: GET_COUNTRIES,
@@ -39,6 +41,12 @@ export const updateInfobox = (success, id, json) => {
     if (success === false) {
         return {type: GET_INFOBOX_FAIL};
     } else {
+        if (json.area) {
+            json.area = Number(json.area).toLocaleString() + ' ' + localization.km2;
+        }
+        if (json.population) {
+            json.population = Number(json.population).toLocaleString()
+        }
         return {type: GET_INFOBOX_DONE, id: id, data: json}
     }
 };

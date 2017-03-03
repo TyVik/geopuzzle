@@ -29,8 +29,22 @@ class Infobox extends React.Component {
         this.props.dispatch(closeInfobox());
     }
 
+    renderAttribute(name) {
+        if (this.props[name]) {
+            return (
+                <tr>
+                    <td>{localization[name]}</td>
+                    <td>{this.props[name]}</td>
+                </tr>
+            );
+        } else {
+            return null;
+        }
+    }
+
     render() {
         if (this.props.show) {
+            let image = this.props.flag ? this.props.flag : this.props.coat_of_arms;
             return (
                 <div className="infobox">
                     <button type="button" className="close" onClick={this.closeSelf}>
@@ -45,12 +59,13 @@ class Infobox extends React.Component {
                         </tr>
                         <tr>
                             <td colSpan="2">
-                                <div><img src={this.props.image}/></div>
+                                <img src={image}/>
                             </td>
                         </tr>
-                        {this.props.items.map(obj => (
-                            <InfoboxAttribute key={obj.title} {...obj} />
-                        ))}
+                        {this.renderAttribute('capital')}
+                        {this.renderAttribute('area')}
+                        {this.renderAttribute('population')}
+                        {this.renderAttribute('currency')}
                         </tbody>
                     </table>
                 </div>

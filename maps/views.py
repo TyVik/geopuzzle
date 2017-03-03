@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import QuerySet
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from maps.models import Country, Area, DIFFICULTY_LEVELS
 
@@ -48,20 +48,8 @@ def infobox(request: WSGIRequest, pk: str) -> HttpResponse:
 
 
 def infobox_by_id(request: WSGIRequest, pk: str) -> HttpResponse:
-    obj = Area.objects.get(pk=pk)
-    items = obj.infobox
-    name = items.pop('name', None)
-    wiki = items.pop('wiki', None)
-    flag = items.pop('flag', None)
-    coat_of_arms = items.pop('coat_of_arms', None)
-    attributes = []
-    for key, value in items.items():
-        if key == 'area':
-            value = '{} {}'.format(value, _('km'))
-        elif key == 'population':
-            value = intcomma(value)
-        attributes.append({'title': key, 'value': value})
-    return JsonResponse({'name': name, 'wiki': wiki, 'image': flag if flag else coat_of_arms, 'items': attributes})
+    obj = get_object_or_404(Area, pk=pk)
+    return JsonResponse(obj.infobox)
 
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:

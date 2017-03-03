@@ -12,6 +12,7 @@ let localization = new LocalizedStrings({
         give_up: 'give up',
         once_again: 'once again',
         congratulations: 'Congratulations!',
+        km2: 'sq. km.',
         loading: 'Loading...'
     },
     ru: {
@@ -24,6 +25,7 @@ let localization = new LocalizedStrings({
         give_up: 'сдаюсь',
         once_again: 'ещё раз',
         congratulations: 'Поздравляем!',
+        km2: 'кв. км.',
         loading: 'Загрузка...'
     }
 });
