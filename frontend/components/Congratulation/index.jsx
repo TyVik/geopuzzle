@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {closeCongratulation} from "../../actions";
-import {Modal} from 'react-bootstrap/lib';
+import {Modal} from 'react-bootstrap';
 import localization from '../../localization';
 
 

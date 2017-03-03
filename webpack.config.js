@@ -1,4 +1,5 @@
 'use strict';
+// var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const webpack = require('webpack');
@@ -9,13 +10,11 @@ module.exports = {
     entry: {
         puzzle: './geopuzzle',
         localization: './localization',
-        // about: './about',
-        // common: ['./common', './welcome'],
+        // react: ['react', 'react-dom', 'redux', 'react-redux', 'react-google-maps', 'react-bootstrap'],
     },
     output: {
         path: path.resolve(__dirname, 'static'),
-        filename: "[name].js",
-        library: "[name]"
+        filename: "js/[name].js",
     },
     resolve: {
         extensions: ['.js', '.jsx'],
@@ -27,11 +26,16 @@ module.exports = {
     target: 'node',
     devtool: 'cheap-inline-module-source-map',
     plugins: [
-        new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
-            NODE_ENV: JSON.stringify(NODE_ENV),
-            'process.env': {NODE_ENV: JSON.stringify(NODE_ENV)}
-        })
+            process: {
+                env: {
+                    NODE_ENV: JSON.stringify(NODE_ENV)
+                }
+            }
+        }),
+        // new BundleAnalyzerPlugin({
+        //     analyzerMode: 'static'
+        // })
     ],
     module: {
         loaders: [
