@@ -3,5 +3,6 @@ __pycache__/
 upload/
 logs/
 *.py[cod]
+node_modules/
 *.mo
 reload
