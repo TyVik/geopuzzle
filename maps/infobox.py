@@ -3,6 +3,7 @@ from typing import Dict
 
 from urllib.request import urlopen
 # from cairosvg.surface import PNGSurface
+import requests
 from SPARQLWrapper import JSON
 from SPARQLWrapper import SPARQLWrapper
 
@@ -46,6 +47,9 @@ def get_links(instance: str) -> Dict:
 def query(statement: str) -> Dict:
     def prepare_row(row: Dict) -> Dict:
         for field in row:
+            if field in ('flag', 'coat_of_arms'):
+                response = requests.head(row[field]['value'], allow_redirects=True)
+                row[field] = response.url
             if field == 'area':
                 row[field] = str(int(float(row[field]['value'])))
                 """
