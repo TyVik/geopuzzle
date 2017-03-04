@@ -35,9 +35,7 @@ class MapContainer extends React.Component {
     }
 
     render() {
-        return <GoogleMap
-            zoom={this.props.zoom}
-            center={this.props.center}
+        return <GoogleMap {...this.props}
             containerElement={<div style={{height: window.innerHeight - 50, marginTop: '-20px'}}/>}
             mapElement={<div style={{height: '100%', margin: 0, padding: 0}} id="map"/>}
             onMapLoad={this.handleMapLoad}

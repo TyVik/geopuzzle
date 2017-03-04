@@ -2,7 +2,16 @@
 import {GET_COUNTRIES, GET_COUNTRIES_FAIL, GET_COUNTRIES_DONE} from "../actions";
 
 
-const map = (state = {...window.__MAP__, isLoaded: null}, action) => {
+let init_map = {
+    ...window.__MAP__,
+    mapTypeId: google.maps.MapTypeId.TERRAIN,
+    options: {
+        streetViewControl: false,
+        mapTypeControl: false
+    }
+};
+
+const map = (state = {...init_map, isLoaded: null}, action) => {
     switch (action.type) {
         case GET_COUNTRIES:
             return {...state, isLoaded: null};

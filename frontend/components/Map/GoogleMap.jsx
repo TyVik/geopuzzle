@@ -9,6 +9,8 @@ export default withGoogleMap(props => {
         ref={props.onMapLoad}
         defaultZoom={props.zoom}
         defaultCenter={props.center}
+        mapTypeId={props.mapTypeId}
+        options={props.options}
     >
         {props.polygons.map(polygon => (
             <Polygon key={polygon.options.id} {...polygon} />
