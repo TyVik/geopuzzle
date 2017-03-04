@@ -1,5 +1,5 @@
 'use strict';
-// var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const webpack = require('webpack');
@@ -33,9 +33,6 @@ module.exports = {
                 }
             }
         }),
-        // new BundleAnalyzerPlugin({
-        //     analyzerMode: 'static'
-        // })
     ],
     module: {
         loaders: [
@@ -54,3 +51,12 @@ module.exports = {
         ]
     },
 };
+
+
+if (NODE_ENV == 'production') {
+    module.exports.plugins.push(
+        new BundleAnalyzerPlugin({
+            analyzerMode: 'static'
+        })
+    );
+}
