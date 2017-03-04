@@ -34,6 +34,7 @@
     "sass-loader": "^6.0.2",
     "style-loader": "^0.13.2",
     "webpack": "^2.2.1",
+    "whatwg-fetch": "^2.0.3",
     "webpack-bundle-analyzer": "^2.3.0"
   },
   "dependencies": {
@@ -43,10 +44,5 @@
     "react-google-maps": "^6.0.1",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
-    "lodash": "^4.17.4",
-    "bootstrap": "^3.3.7",
-    "react-bootstrap": "^0.30.7",
-    "react-localization": "0.0.12",
-    "redux-thunk": "^2.2.0"
   }
 }

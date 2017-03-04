@@ -1,3 +1,5 @@
+import 'whatwg-fetch';
+
 export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_COUNTRIES_FAIL = 'GET_COUNTRIES_FAIL';
 export const GET_COUNTRIES_DONE = 'GET_COUNTRIES_DONE';
