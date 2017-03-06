@@ -41,7 +41,7 @@ class Congratulation extends React.Component {
                 <Modal.Footer>
                     <p className="pull-left" style={{display: "inline-block", margin: "7px 0"}}>{this.props.share}.</p>
                     <div className="pull-right">
-                        <a className="btn btn-social-icon btn-vk"
+                        <a className="btn btn-social-icon btn-vk" target="_blank"
                            href={"https://vk.com/share.php?url=" + this.props.url + "&title=" + this.props.share}><span className="fa fa-vk"></span></a>
                         <a className="btn btn-social-icon btn-facebook"
                            href="#" onClick={this.share_fb}

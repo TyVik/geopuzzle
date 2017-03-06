@@ -9,7 +9,7 @@ const infobox = (state = window.__CONGRATULATION__, action) => {
             return window.__CONGRATULATION__;
         case SHOW_CONGRATULATION:
             let time = new Date(Date.now() - state.time);
-            let time_result = (time > 24 * 60 * 60 * 1000) ? 'more then day' : time.toLocaleTimeString([], {timeZone: 'UTC'});
+            let time_result = (time > 24 * 60 * 60 * 1000) ? 'more then day' : time.toLocaleTimeString('ru-RU', {timeZone: 'UTC'});
             let share = state.share + time_result;
             let url = location.href;
             return {...state, show: true, share: share, url: url};
