@@ -22,8 +22,8 @@ class Congratulation extends React.Component {
             app_id: 1273749826026102,
             method: 'feed',
             display: 'popup',
-            link: 'https://geopuzzle.org/' + this.props.slug + '/'
-            // href: 'https://developers.facebook.com/docs/',
+            link: this.props.url,
+            caption: this.props.share
         }, function(response){});
     }
 
@@ -32,10 +32,6 @@ class Congratulation extends React.Component {
     }
 
     render() {
-        let time = new Date(Date.now() - this.props.time);
-        let time_result = (time > 24 * 60 * 60 * 1000) ? 'more then day' : time.toLocaleTimeString([], {timeZone: 'UTC'});
-        let share = this.props.share + time_result;
-        let url = 'https://geopuzzle.org/maps/' + this.props.slug + '/';
         return (
             <Modal show={this.props.show} onHide={this.closeSelf} bsSize="large" aria-labelledby="contained-modal-title-lg">
                 <Modal.Header closeButton>
@@ -43,17 +39,17 @@ class Congratulation extends React.Component {
                 </Modal.Header>
                 <Modal.Body>{this.props.template}: {this.props.text}.</Modal.Body>
                 <Modal.Footer>
-                    <p className="pull-left" style={{display: "inline-block", margin: "7px 0"}}>{share}.</p>
+                    <p className="pull-left" style={{display: "inline-block", margin: "7px 0"}}>{this.props.share}.</p>
                     <div className="pull-right">
                         <a className="btn btn-social-icon btn-vk"
-                           href={"https://vk.com/share.php?url=" + url + "&title=" + share}><span className="fa fa-vk"></span></a>
+                           href={"https://vk.com/share.php?url=" + this.props.url + "&title=" + this.props.share}><span className="fa fa-vk"></span></a>
                         <a className="btn btn-social-icon btn-facebook"
                            href="#" onClick={this.share_fb}
                            target="_blank"><span className="fa fa-facebook"></span></a>
                         <a className="btn btn-social-icon btn-twitter"
-                           href={"https://twitter.com/intent/tweet?text=" + share + "&url=" + url + "&hashtags=geopuzzle"}
+                           href={"https://twitter.com/intent/tweet?text=" + this.props.share + "&url=" + this.props.url + "&hashtags=geopuzzle"}
                            target="_blank"><span className="fa fa-twitter"></span></a>
-                        <a href={"https://plus.google.com/share?url=" + url } onClick={this.share_google}><img
+                        <a href={"https://plus.google.com/share?url=" + this.props.url } onClick={this.share_google}><img
   src="https://www.gstatic.com/images/icons/gplus-32.png" alt="Share on Google+"/></a>
                     </div>
                 </Modal.Footer>

@@ -20,7 +20,7 @@
         window.__LANGUAGE__ = '{{ language }}';
         window.__MAP__ = {{ country.get_init_params|safe }};
         window.__CONGRATULATION__ = {show: false, template: '{{ congratulation }}', time: Date.now(),
-            share: '{{ share }}', slug: '{{ country.slug }}'};
+            share: '{{ share }}'};
     </script>
     <script src="{% static 'maps/js/google.maps.Polygon.getBounds.js' %}"></script>
     <script src="{% static 'maps/js/google.maps.Polygon.moveTo.js' %}"></script>
