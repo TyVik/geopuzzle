@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n share_image %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,19 +8,7 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
         <meta charset="utf-8"/>
 
-        <meta property="og:type" content="website"/>
-        <meta property="og:url" content="https://geopuzzle.org/" />
-        <meta property="og:image" content="http://geopuzzle.org/static/images/share.png" />
-        <meta property="og:image:url" content="http://geopuzzle.org/static/images/share.png" />
-        <meta property="og:image:secure_url" content="https://geopuzzle.org/static/images/share.png" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="750" />
-        <meta property="og:image:height" content="750" />
-        <meta property="og:image:secure_url" content="https://geopuzzle.org/static/images/share.png" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:locale:alternate" content="ru_RU" />
-        <meta property="og:title" content="{% trans 'Arrange the pieces of the world!'%}" />
-        <meta property="og:description" content="{% trans 'Game-puzzle with political maps' %}" />
+        {% share_image request country %}
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
         {% block extra_css %}
@@ -38,6 +26,25 @@
 
         {% block content %}
         {% endblock %}
+
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '1273749826026102',
+                    xfbml      : true,
+                    version    : 'v2.8'
+                });
+                FB.AppEvents.logPageView();
+            };
+
+            (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
 
         {% if not debug %}
         <!-- Yandex.Metrika counter -->

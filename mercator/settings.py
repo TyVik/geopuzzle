@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'jsoneditor',
     'hvad',
 
+    'common',
     'maps',
 ]
 

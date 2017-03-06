@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static i18n %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/social.css' %}">
+    <script type="text/javascript" src="https://vk.com/js/api/share.js?94" charset="windows-1251"></script>
+{% endblock %}
+
 {% block title %}{{ country.name }}{% endblock %}
 
 {% block content %}
@@ -13,7 +19,8 @@
     <script type='text/javascript'>
         window.__LANGUAGE__ = '{{ language }}';
         window.__MAP__ = {{ country.get_init_params|safe }};
-        window.__CONGRATULATION__ = {show: false, template: '{{ congratulation }}'};
+        window.__CONGRATULATION__ = {show: false, template: '{{ congratulation }}', time: Date.now(),
+            share: '{{ share }}', slug: '{{ country.slug }}'};
     </script>
     <script src="{% static 'maps/js/google.maps.Polygon.getBounds.js' %}"></script>
     <script src="{% static 'maps/js/google.maps.Polygon.moveTo.js' %}"></script>

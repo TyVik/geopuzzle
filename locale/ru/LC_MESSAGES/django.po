@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 17:45+0000\n"
+"POT-Creation-Date: 2017-03-06 11:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,6 +55,14 @@ msgstr "Вы нашли следующие страны"
 msgid "You found next regions"
 msgstr "Вы нашли следующие регионы"
 
+#: maps/views.py:73
+msgid "{} was assembled! My time is "
+msgstr "{} собрана! Моё время "
+
+#: maps/views.py:73
+msgid "World map"
+msgstr "Карта мира"
+
 #: templates/base.html:5
 msgid "Mercator puzzle of"
 msgstr "Паззл Меркатора - "
@@ -63,13 +71,9 @@ msgstr "Паззл Меркатора - "
 msgid "World"
 msgstr "Мир"
 
-#: templates/base.html:6 templates/base.html:22 templates/index.html:13
+#: templates/base.html:6 templates/index.html:13 templates/share_image.html:7
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
-
-#: templates/base.html:23
-msgid "Game-puzzle with political maps"
-msgstr "Паззл из стран"
 
 #: templates/index.html:15
 msgid ""
@@ -116,3 +120,7 @@ msgstr ""
 "\"mailto:tyvik8@gmail.com?&subject=Geo!Puzzle\">почту</a>, в <a href="
 "\"https://vk.com/tyvik\" target=\"_blank\">Vk</a> или в <a href=\"https://"
 "www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
+
+#: templates/share_image.html:8
+msgid "Game-puzzle with political maps"
+msgstr "Паззл из стран"
