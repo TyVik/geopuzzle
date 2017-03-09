@@ -40,9 +40,23 @@ class MapContainer extends React.Component {
             mapElement={<div style={{height: '100%', margin: 0, padding: 0}} id="map"/>}
             onMapLoad={this.handleMapLoad}
             polygons={this.preparePolygons(this.props.polygons)}
+            marker={this.props.marker}
         />
     }
 }
 
 
-export default connect(state => ({...state.map, polygons: state.polygons}))(MapContainer);
+export default connect(state => {
+    let result = {...state.map, polygons: state.polygons};
+    if (state.infobox.capital) {
+        result.marker = {
+            key: state.infobox.capital.name,
+            defaultAnimation: 2,
+            position: {
+                lat: state.infobox.capital.lat,
+                lng: state.infobox.capital.lon
+            }
+        }
+    }
+    return result;
+})(MapContainer);

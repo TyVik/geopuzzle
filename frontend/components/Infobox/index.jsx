@@ -7,18 +7,6 @@ import localization from '../../localization';
 import './index.css'
 
 
-const InfoboxAttribute = (props) => {
-    return (
-        <tr>
-            <td scope="row">
-                <div>{localization[props.title]}</div>
-            </td>
-            <td>{props.value}</td>
-        </tr>
-    )
-};
-
-
 class Infobox extends React.Component {
     constructor(props) {
         super(props);
@@ -62,7 +50,10 @@ class Infobox extends React.Component {
                                 <img src={image}/>
                             </td>
                         </tr>
-                        {this.renderAttribute('capital')}
+                        <tr>
+                            <td>{localization['capital']}</td>
+                            <td><a href={this.props.capital.wiki} target="_blank">{this.props.capital.name}</a></td>
+                        </tr>
                         {this.renderAttribute('area')}
                         {this.renderAttribute('population')}
                         {this.renderAttribute('currency')}

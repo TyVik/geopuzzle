@@ -1,6 +1,6 @@
 import React from "react";
 
-import {GoogleMap, withGoogleMap} from "react-google-maps";
+import {GoogleMap, withGoogleMap, Marker} from "react-google-maps";
 import Polygon from "../Polygon";
 
 
@@ -15,5 +15,6 @@ export default withGoogleMap(props => {
         {props.polygons.map(polygon => (
             <Polygon key={polygon.options.id} {...polygon} />
         ))}
+        <Marker {...props.marker}/>
     </GoogleMap>
 });
