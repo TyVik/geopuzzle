@@ -1,0 +1,35 @@
+SELECT DISTINCT
+  ?lang ?name ?geonamesID
+  ?flag ?coat_of_arms
+  ?population ?area
+  ?capital_name ?capital_id ?capital_lon ?capital_lat
+  {% if country_id is None %} ?currency {% endif %}
+  WHERE {
+    {% if country_id %}
+        wd:{{ item_id }} wdt:P17 wd:{{ country_id }}.
+    {% endif %}
+
+    wd:{{ item_id }} rdfs:label ?name.
+    BIND(LANG(?name) AS ?lang)
+    FILTER((?lang = "ru") || (?lang = "en"))
+    wd:{{ item_id }} wdt:P1566 ?geonamesID.
+    OPTIONAL {
+        wd:{{ item_id }} wdt:P36 ?capital_id.
+        ?capital_id p:P625 ?coordinates.
+        ?coordinates psv:P625 ?coordinate_node.
+        ?coordinate_node wikibase:geoLatitude ?capital_lat.
+        ?coordinate_node wikibase:geoLongitude ?capital_lon.
+        wd:{{ item_id }} wdt:P36/rdfs:label ?capital_name.
+        FILTER(lang(?capital_name) = ?lang)
+    }
+    OPTIONAL { wd:{{ item_id }} wdt:P41 ?flag. }
+    OPTIONAL { wd:{{ item_id }} wdt:P1082 ?population. }
+    OPTIONAL { wd:{{ item_id }} wdt:P2046 ?area. }
+    OPTIONAL { wd:{{ item_id }} wdt:P94 ?coat_of_arms. }
+    {% if country_id is None %}
+        OPTIONAL {
+            wd:{{ item_id }} wdt:P38/rdfs:label ?currency.
+            FILTER(lang(?currency) = ?lang)
+        }
+    {% endif %}
+}

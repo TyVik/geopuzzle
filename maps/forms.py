@@ -1,8 +1,10 @@
 import tempfile
 
 from django import forms
+from django.conf import settings
 from django.contrib.gis.gdal import DataSource
 from django.contrib.gis.geos import MultiPolygon
+from hvad.utils import load_translation
 
 from maps.models import Country, Area
 
@@ -22,8 +24,12 @@ class KMLCountryImportForm(forms.Form):
                     polygon = feat.geom.geos if isinstance(feat.geom.geos, MultiPolygon) else MultiPolygon(feat.geom.geos)
                     area = Area.objects.create(name=feat['Name'].value, country=self.cleaned_data["country"],
                                                polygon=polygon, difficulty=2)
+                    for lang, _ in settings.LANGUAGES:
+                        trans = load_translation(area, lang, enforce=True)
+                        trans.master = self
+                        trans.name = feat['Name'].value
+                        trans.save()
                     area.recalc_answer()
-                    area.update_infobox_by_name(name=feat['Name'].value, language=self.cleaned_data['language'])
 
 
 class KMLAreaImportForm(forms.Form):

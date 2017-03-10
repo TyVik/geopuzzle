@@ -17,7 +17,7 @@ from hvad.models import TranslatableModel, TranslatedFields
 from hvad.utils import load_translation
 
 from maps.converter import encode_coords
-from maps.infobox import query_by_wikidata_id, query_by_name
+from maps.infobox import query_by_wikidata_id
 
 DIFFICULTY_LEVELS = (
     (0, 'disabled'),
@@ -139,17 +139,6 @@ class Area(TranslatableModel):
         time.sleep(5)  # protection for DDoS
         rows = query_by_wikidata_id(country_id=self.country.wikidata_id, item_id=self.wikidata_id)
         self._update_infobox(rows)
-
-    def update_infobox_by_name(self, name, language) -> None:
-        time.sleep(5)  # protection for DDoS
-        rows = query_by_name(country_id=self.country.wikidata_id, language=language, name=name)
-        self._update_infobox(rows)
-        for infobox in rows.values():
-            wiki_id = infobox.get('instance', None)
-            if wiki_id is not None:
-                self.wikidata_id = wiki_id.split('/')[-1]
-                self.save()
-                break
 
     def recalc_answer(self) -> None:
         diff = (-1, -1, 1, 1)
