@@ -1,7 +1,7 @@
 import json
 from typing import Dict
 
-from urllib.request import urlopen
+from urllib.request import urlopen, unquote
 # from cairosvg.surface import PNGSurface
 import requests
 from SPARQLWrapper import JSON
@@ -17,7 +17,7 @@ def get_links(instance: str) -> Dict:
     for lang in result:
         try:
             links = response['entities'][instance]['sitelinks']['{}wiki'.format(lang)]
-            result[lang]['wiki'] = links['url']
+            result[lang]['wiki'] = unquote(links['url'], 'utf-8')
             result[lang]['name'] = links['title']
         except:
             pass
@@ -41,7 +41,7 @@ def query(statement: str) -> Dict:
                 if key == 'id':
                     result['capital'][key] = value.split('/')[-1]
                     links = get_links(result['capital'][key])
-                    result['capital']['wiki'] = links[lang]['wiki']
+                    result['capital']['wiki'] = links[lang].get('wiki', '')
                 elif key in ('lat', 'lon'):
                     result['capital'][key] = float(value)
                 else:

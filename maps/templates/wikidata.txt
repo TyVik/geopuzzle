@@ -23,7 +23,13 @@ SELECT DISTINCT
         FILTER(lang(?capital_name) = ?lang)
     }
     OPTIONAL { wd:{{ item_id }} wdt:P41 ?flag. }
-    OPTIONAL { wd:{{ item_id }} wdt:P1082 ?population. }
+    OPTIONAL {
+        SELECT ?population ?qualifier WHERE {
+            wd:{{ item_id }} p:P1082 ?population_statemens.
+            ?population_statemens ps:P1082 ?population.
+            OPTIONAL { ?population_statemens pq:P585 ?qualifier. }
+        } order by desc(?qualifier) limit 1
+    }
     OPTIONAL { wd:{{ item_id }} wdt:P2046 ?area. }
     OPTIONAL { wd:{{ item_id }} wdt:P94 ?coat_of_arms. }
     {% if country_id is None %}
