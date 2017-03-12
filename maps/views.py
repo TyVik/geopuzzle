@@ -43,6 +43,10 @@ def index(request: WSGIRequest) -> HttpResponse:
 
 def infobox_by_id(request: WSGIRequest, pk: str) -> HttpResponse:
     obj = get_object_or_404(Area, pk=pk)
+    result = obj.infobox
+    del(result['geonamesID'])
+    if 'capital' in result:
+        del(result['capital']['id'])
     return JsonResponse(obj.infobox)
 
 
