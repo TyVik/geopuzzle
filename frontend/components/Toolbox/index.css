@@ -29,6 +29,19 @@
     background-color: white;
 }
 
+.toolbox_counter .glyphicon {
+    float: right;
+    cursor: pointer;
+}
+
+.toolbox .panel {
+    margin-bottom: 0;
+}
+
+.toolbox .panel-body {
+    padding: 0;
+}
+
 .map_switcher_wrapper {
     display: flex;
     justify-content: center;
@@ -49,4 +62,8 @@
 .listname-wrapper .list-group-item {
     padding: 2px 4px;
     text-align: left;
+}
+
+.listname-wrapper .list-group-item.clickable {
+    cursor: pointer;
 }

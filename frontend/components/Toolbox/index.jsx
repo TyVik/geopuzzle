@@ -2,7 +2,8 @@
 /* global google */
 import React from "react";
 import {connect} from "react-redux";
-import {giveUp, showCongratulation, setMapType} from "../../actions";
+import {Panel} from 'react-bootstrap';
+import {giveUp, showCongratulation, setMapType, showInfobox} from "../../actions";
 import localization from "../../localization";
 import "./index.css";
 
@@ -10,7 +11,10 @@ import "./index.css";
 const NameListItem = (props) => {
     if (!props.polygon.draggable) {
         return (
-            <li key={props.polygon.id} className={"list-group-item list-group-item-" + (props.polygon.isSolved ? 'success' : 'danger')}>
+            <li key={props.polygon.id}
+                className={"clickable list-group-item list-group-item-" + (props.polygon.isSolved ? 'success' : 'danger')}
+                onClick={props.click}
+            >
                 {props.polygon.infobox.name}
             </li>
         );
@@ -30,6 +34,7 @@ class Toolbox extends React.Component {
         this.setMapTerrain = this.setMapTerrain.bind(this);
         this.setMapHybrid = this.setMapHybrid.bind(this);
         this.setMapSatellite = this.setMapSatellite.bind(this);
+        this.showInfobox = this.showInfobox.bind(this);
     }
 
     componentWillMount() {
@@ -41,6 +46,10 @@ class Toolbox extends React.Component {
 
     reload() {
         location.reload();
+    }
+
+    showInfobox(polygon) {
+        this.props.dispatch(showInfobox(polygon));
     }
 
     giveUp() {
@@ -80,14 +89,18 @@ class Toolbox extends React.Component {
                     </div>
                     <div className="toolbox_counter">
                         {localization.found}: <span>{this.props.solved}</span>/<span>{this.props.total}</span>
+                        <span
+                            className={"glyphicon glyphicon-chevron-" + (this.state.listNameClose ? 'up': 'down')}
+                            onClick={ ()=> this.setState({ listNameClose: !this.state.listNameClose })}
+                        ></span>
                     </div>
-                    {!this.state.listNameClose &&
+                    <Panel collapsible expanded={!this.state.listNameClose}>
                         <ul className="list-group listname-wrapper" style={{maxHeight: this.state.listNameMaxHeight}}>
                             {this.props.countries.map(polygon => (
-                                <NameListItem key={polygon.id} polygon={polygon} />
+                                <NameListItem key={polygon.id} polygon={polygon} click={() => this.showInfobox(polygon)}/>
                             ))}
                         </ul>
-                    }
+                    </Panel>
                 </div>
             </div>
         )
