@@ -1,3 +1,4 @@
+'use strict';
 import {GET_COUNTRIES_DONE, CLOSE_CONGRATULATION, SHOW_CONGRATULATION} from '../actions';
 
 

@@ -1,3 +1,4 @@
+'use strict';
 import 'whatwg-fetch';
 
 export const GET_COUNTRIES = 'GET_COUNTRIES';
@@ -63,7 +64,7 @@ export const updateInfobox = (success, id, json) => {
     }
 };
 export const showInfobox = (polygon) => dispatch => {
-    if (polygon.infobox) {
+    if ('name' in polygon.infobox) {
         return {type: SHOW_INFOBOX, id: polygon.id, data: polygon.infobox};
     } else {
         return fetch(location.origin + `/maps/area/` + polygon.id + '/infobox/')

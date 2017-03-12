@@ -29,12 +29,11 @@ module.exports = (env) => {
         resolve: {
             extensions: ['.js', '.jsx'],
         },
-        // watch: NODE_ENV == 'development',
-        // watchOptions: {
-        //     aggregateTimeout: 100
-        // },
-        // target: 'node',
-        // devtool: 'cheap-inline-module-source-map',
+        watch: NODE_ENV == 'development',
+        watchOptions: {
+            aggregateTimeout: 100
+        },
+        devtool: 'cheap-inline-module-source-map',
         plugins: [
             new webpack.DefinePlugin({
                 process: {

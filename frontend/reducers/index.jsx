@@ -1,3 +1,4 @@
+'use strict';
 import { combineReducers } from 'redux'
 import map from './map'
 import infobox from './infobox'

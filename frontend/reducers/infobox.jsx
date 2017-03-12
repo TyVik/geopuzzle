@@ -1,3 +1,4 @@
+'use strict';
 import {GET_INFOBOX_DONE, CLOSE_INFOBOX, GIVE_UP, SHOW_INFOBOX} from '../actions';
 
 

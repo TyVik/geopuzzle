@@ -1,3 +1,4 @@
+'use strict';
 /* global google */
 import {GET_COUNTRIES, GET_COUNTRIES_FAIL, GET_COUNTRIES_DONE} from "../actions";
 
@@ -6,8 +7,7 @@ let init_map = {
     ...window.__MAP__,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     options: {
-        streetViewControl: false,
-        mapTypeControl: false
+        streetViewControl: false
     }
 };
 

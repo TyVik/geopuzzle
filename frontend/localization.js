@@ -1,3 +1,4 @@
+'use strict';
 import LocalizedStrings from "react-localization";
 
 

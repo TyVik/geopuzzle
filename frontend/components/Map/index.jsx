@@ -1,3 +1,4 @@
+'use strict';
 import React from 'react';
 import { connect } from 'react-redux'
 import {getCountries} from '../../actions';
@@ -19,10 +20,10 @@ class MapContainer extends React.Component {
             return {
                 map: this._mapComponent,
                 options: {
-                    strokeColor: polygon.isSolved ? '#00FF00' : '#FF0000',
+                    strokeColor: polygon.isSolved ? '#419641' : '#d9534f',
                     strokeOpacity: 0.8,
                     strokeWeight: 2,
-                    fillColor: polygon.isSolved ? '#00FF00' : '#FF0000',
+                    fillColor: polygon.isSolved ? '#419641' : '#d9534f',
                     fillOpacity: 0.35,
                     geodesic: true,
                     draggable: polygon.draggable,

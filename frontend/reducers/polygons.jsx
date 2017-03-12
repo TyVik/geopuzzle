@@ -1,3 +1,4 @@
+'use strict';
 import {GET_INFOBOX_DONE, GET_COUNTRIES_DONE, DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL, GIVE_UP} from '../actions';
 
 
