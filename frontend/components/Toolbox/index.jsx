@@ -7,6 +7,21 @@ import localization from "../../localization";
 import "./index.css";
 
 
+const NameListItem = (props) => {
+    if (!props.polygon.draggable) {
+        return (
+            <li key={props.polygon.id} className={"list-group-item list-group-item-" + (props.polygon.isSolved ? 'success' : 'danger')}>
+                {props.polygon.infobox.name}
+            </li>
+        );
+    } else {
+        return (
+            <li key={props.polygon.id} className="list-group-item list-group-item-danger">---</li>
+        );
+    }
+};
+
+
 class Toolbox extends React.Component {
     constructor(props) {
         super(props);
@@ -15,6 +30,13 @@ class Toolbox extends React.Component {
         this.setMapTerrain = this.setMapTerrain.bind(this);
         this.setMapHybrid = this.setMapHybrid.bind(this);
         this.setMapSatellite = this.setMapSatellite.bind(this);
+    }
+
+    componentWillMount() {
+        this.setState({
+            listNameMaxHeight: window.innerHeight - 220 + "px",
+            listNameClose: false
+        });
     }
 
     reload() {
@@ -34,7 +56,6 @@ class Toolbox extends React.Component {
     }
 
     setMapSatellite() {
-        console.log(this);
         this.props.dispatch(setMapType(google.maps.MapTypeId.SATELLITE));
     }
 
@@ -48,9 +69,6 @@ class Toolbox extends React.Component {
         return (
             <div className="toolbox_wrapper">
                 <div className="btn-group btn-group-sm toolbox">
-                    <div className="toolbox_counter">
-                        {localization.found}: <span>{this.props.solved}</span>/<span>{this.props.total}</span>
-                    </div>
                     <div>
                         <button type="button" className="btn btn-success" onClick={this.giveUp}>{localization.give_up}</button>
                         <button type="button" className="btn btn-warning" onClick={this.reload}>{localization.once_again}</button>
@@ -60,6 +78,16 @@ class Toolbox extends React.Component {
                         <img className="map_switcher" src="/static/images/map/hybrid.png" onClick={this.setMapHybrid} />
                         <img className="map_switcher" src="/static/images/map/satellite.png" onClick={this.setMapSatellite} />
                     </div>
+                    <div className="toolbox_counter">
+                        {localization.found}: <span>{this.props.solved}</span>/<span>{this.props.total}</span>
+                    </div>
+                    {!this.state.listNameClose &&
+                        <ul className="list-group listname-wrapper" style={{maxHeight: this.state.listNameMaxHeight}}>
+                            {this.props.countries.map(polygon => (
+                                <NameListItem key={polygon.id} polygon={polygon} />
+                            ))}
+                        </ul>
+                    }
                 </div>
             </div>
         )
@@ -71,6 +99,7 @@ class Toolbox extends React.Component {
 export default connect(state => {
     return {
         total: state.polygons.length,
-        solved: state.polygons.filter(obj => (obj.isSolved)).length
+        solved: state.polygons.filter(obj => (obj.isSolved)).length,
+        countries: state.polygons
     };
 })(Toolbox);

@@ -16,7 +16,7 @@ function extractPolygons(countries) {
             id: country.id,
             draggable: true,
             isSolved: false,
-            infobox: {},
+            infobox: {name: country.name, loaded: false},
             paths: moveTo(
                 originalPath,
                 new google.maps.LatLng(country.default_position[1], country.default_position[0])),
@@ -25,7 +25,7 @@ function extractPolygons(countries) {
                 new google.maps.LatLng(country.answer[0][1], country.answer[0][0]),
                 new google.maps.LatLng(country.answer[1][1], country.answer[1][0])),
         }
-    });
+    }).sort((one, another) => {return one.infobox.name > another.infobox.name ? 1 : -1 });
 }
 
 
@@ -34,7 +34,7 @@ const polygons = (state = [], action) => {
         case GET_INFOBOX_DONE:
             return state.map((country) => {
                 if (country.id === action.id) {
-                    return {...country, infobox: action.data};
+                    return {...country, infobox: {...action.data, loaded: true}};
                 }
                 return country
             });

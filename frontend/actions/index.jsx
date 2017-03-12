@@ -65,7 +65,7 @@ export const updateInfobox = (success, id, json) => {
     }
 };
 export const showInfobox = (polygon) => dispatch => {
-    if ('name' in polygon.infobox) {
+    if (polygon.infobox.loaded) {
         return dispatch({type: SHOW_INFOBOX, id: polygon.id, data: polygon.infobox});
     } else {
         return fetch(location.origin + `/maps/area/` + polygon.id + '/infobox/')

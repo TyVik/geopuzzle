@@ -21,7 +21,7 @@
 }
 
 .toolbox .btn {
-    margin: 0 10px;
+    margin: 8px 8px;
 }
 
 .toolbox_counter {
@@ -39,4 +39,14 @@
     height: 60px;
     cursor: pointer;
     padding: 3px;
+}
+
+.listname-wrapper {
+    overflow: scroll;
+    margin-bottom: 0px;
+}
+
+.listname-wrapper .list-group-item {
+    padding: 2px 4px;
+    text-align: left;
 }

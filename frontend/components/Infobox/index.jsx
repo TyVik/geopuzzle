@@ -47,17 +47,17 @@ class Infobox extends React.Component {
                             </th>
                         </tr>
                         {image &&
-                        <tr>
-                            <td colSpan="2">
-                                <img src={image}/>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colSpan="2">
+                                    <img src={image}/>
+                                </td>
+                            </tr>
                         }
                         {this.props.capital &&
-                        <tr>
-                            <td>{localization['capital']}</td>
-                            <td><a href={this.props.capital.wiki} target="_blank">{this.props.capital.name}</a></td>
-                        </tr>
+                            <tr>
+                                <td>{localization['capital']}</td>
+                                <td><a href={this.props.capital.wiki} target="_blank">{this.props.capital.name}</a></td>
+                            </tr>
                         }
                         {this.renderAttribute('area')}
                         {this.renderAttribute('population')}
