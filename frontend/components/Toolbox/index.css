@@ -1,12 +1,12 @@
 .toolbox_wrapper {
     left: 0;
-    top: 30px;
+    top: 0;
     position: fixed;
     right: 0;
     z-index: 3;
-    padding: 10px;
     display: inline-block;
     margin-top: 50px;
+    width: 180px;
 }
 
 .toolbox {
@@ -14,9 +14,29 @@
     text-align: center;
     position: fixed;
     z-index: 2;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    max-width: 186px;
+}
+
+.toolbox .btn {
+    margin: 0 10px;
 }
 
 .toolbox_counter {
     padding: 5px;
     background-color: white;
+}
+
+.map_switcher_wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.map_switcher {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    padding: 3px;
 }
