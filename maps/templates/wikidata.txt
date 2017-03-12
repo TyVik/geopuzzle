@@ -5,10 +5,6 @@ SELECT DISTINCT
   ?capital_name ?capital_id ?capital_lon ?capital_lat
   {% if country_id is None %} ?currency {% endif %}
   WHERE {
-    {% if country_id %}
-        wd:{{ item_id }} wdt:P17 wd:{{ country_id }}.
-    {% endif %}
-
     wd:{{ item_id }} rdfs:label ?name.
     BIND(LANG(?name) AS ?lang)
     FILTER((?lang = "ru") || (?lang = "en"))
@@ -34,7 +30,9 @@ SELECT DISTINCT
     OPTIONAL { wd:{{ item_id }} wdt:P94 ?coat_of_arms. }
     {% if country_id is None %}
         OPTIONAL {
-            wd:{{ item_id }} wdt:P38/rdfs:label ?currency.
+            wd:{{ item_id }} p:P38 ?currency_statement.
+            FILTER NOT EXISTS {?currency_statement pq:P582 ?t.}.
+            ?currency_statement ps:P38/rdfs:label ?currency.
             FILTER(lang(?currency) = ?lang)
         }
     {% endif %}

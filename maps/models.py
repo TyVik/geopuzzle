@@ -137,7 +137,8 @@ class Area(TranslatableModel):
 
     def update_infobox_by_wikidata_id(self) -> None:
         time.sleep(5)  # protection for DDoS
-        rows = query_by_wikidata_id(country_id=self.country.wikidata_id, item_id=self.wikidata_id)
+        country_id = self.country.wikidata_id if not self.country.is_global else None
+        rows = query_by_wikidata_id(country_id=country_id, item_id=self.wikidata_id)
         self._update_infobox(rows)
 
     def recalc_answer(self) -> None:
