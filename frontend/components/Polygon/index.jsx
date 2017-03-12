@@ -3,7 +3,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Polygon as GooglePolygon} from "react-google-maps";
 import * as _constants from "react-google-maps/lib/constants";
-import {showInfobox, showInfoboxById, DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL} from "../../actions";
+import {showInfobox, DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL} from "../../actions";
 
 
 class Polygon extends GooglePolygon {
@@ -28,18 +28,14 @@ class Polygon extends GooglePolygon {
         google.maps.event.addListener(this.state[_constants.POLYGON], 'dragend', () => {
             if (this.isBounded()) {
                 this.props.dispatch({type: DRAG_END_POLYGON, id: this.props.id});
-                this.props.dispatch(showInfobox(this.props.id));
+                this.props.dispatch(showInfobox(this.props));
             } else {
                 this.props.dispatch({type: DRAG_END_POLYGON_FAIL, id: this.props.id, paths: this.getPaths()});
             }
         });
         google.maps.event.addListener(this.state[_constants.POLYGON], 'click', () => {
             if (!this.props.draggable) {
-                if (this.props.isSolved) {
-                    this.props.dispatch(showInfoboxById(this.props.id, this.props.infobox));
-                } else {
-                    this.props.dispatch(showInfobox(this.props.id));
-                }
+                this.props.dispatch(showInfobox(this.props));
             }
         });
     }

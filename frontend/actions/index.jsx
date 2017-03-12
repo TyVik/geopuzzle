@@ -8,7 +8,7 @@ export const DRAG_END_POLYGON_FAIL = 'DRAG_END_POLYGON_FAIL';
 export const GET_INFOBOX_DONE = 'GET_INFOBOX_DONE';
 export const GET_INFOBOX_FAIL = 'GET_INFOBOX_FAIL';
 export const CLOSE_INFOBOX = 'CLOSE_INFOBOX';
-export const SHOW_INFOBOX_BY_ID = 'SHOW_INFOBOX_BY_ID';
+export const SHOW_INFOBOX = 'SHOW_INFOBOX';
 export const GIVE_UP = 'GIVE_UP';
 export const SHOW_CONGRATULATION = 'SHOW_CONGRATULATION';
 export const CLOSE_CONGRATULATION = 'CLOSE_CONGRATULATION';
@@ -62,36 +62,21 @@ export const updateInfobox = (success, id, json) => {
         return {type: GET_INFOBOX_DONE, id: id, data: json}
     }
 };
-
-
-export const showInfoboxById = (id, data) => {
-    return {type: SHOW_INFOBOX_BY_ID, id: id, data: data};
+export const showInfobox = (polygon) => dispatch => {
+    if (polygon.infobox) {
+        return {type: SHOW_INFOBOX, id: polygon.id, data: polygon.infobox};
+    } else {
+        return fetch(location.origin + `/maps/area/` + polygon.id + '/infobox/')
+            .then(response => response.json())
+            .then(json => dispatch(updateInfobox(true, polygon.id, json)))
+            .catch(response => dispatch(updateInfobox(false)));
+    }
 };
+export const closeInfobox = () => ({type: CLOSE_INFOBOX});
 
 
-export const showInfobox = (polygonId) => dispatch => {
-    return fetch(location.origin + `/maps/area/` + polygonId + '/infobox/')
-        .then(response => response.json())
-        .then(json => dispatch(updateInfobox(true, polygonId, json)))
-        .catch(response => dispatch(updateInfobox(false)));
-};
+export const giveUp = () => ({type: GIVE_UP});
 
 
-export const closeInfobox = () => ({
-    type: CLOSE_INFOBOX,
-});
-
-
-export const giveUp = () => ({
-    type: GIVE_UP,
-});
-
-
-export const showCongratulation = () =>({
-    type: SHOW_CONGRATULATION,
-});
-
-
-export const closeCongratulation = () => ({
-    type: CLOSE_CONGRATULATION,
-});
+export const showCongratulation = () =>({type: SHOW_CONGRATULATION});
+export const closeCongratulation = () => ({type: CLOSE_CONGRATULATION});
