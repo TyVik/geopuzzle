@@ -5,58 +5,93 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
 const path = require('path');
 
-module.exports = {
-    context: __dirname + '/frontend',
-    entry: {
-        puzzle: './geopuzzle',
-        localization: './localization',
-        // react: ['react', 'react-dom', 'redux', 'react-redux', 'react-google-maps', 'react-bootstrap'],
-    },
-    output: {
-        path: path.resolve(__dirname, 'static'),
-        filename: "js/[name].js",
-    },
-    resolve: {
-        extensions: ['.js', '.jsx'],
-    },
-    watch: NODE_ENV == 'development',
-    watchOptions: {
-        aggregateTimeout: 100
-    },
-    target: 'node',
-    devtool: 'cheap-inline-module-source-map',
-    plugins: [
-        new webpack.DefinePlugin({
-            process: {
-                env: {
-                    NODE_ENV: JSON.stringify(NODE_ENV)
-                }
-            }
-        }),
-    ],
-    module: {
-        loaders: [
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                include: [
-                    path.resolve(__dirname, "frontend")
-                ],
-                loader: 'babel-loader',
-            },
-            {
-                test: /\.css$/,
-                loader: 'style-loader!css-loader'
-            }
-        ]
-    },
-};
-
-
-if (NODE_ENV == 'production') {
-    module.exports.plugins.push(
-        new BundleAnalyzerPlugin({
-            analyzerMode: 'static'
-        })
-    );
+function _isVendor(module) {
+    return module.context && module.context.indexOf('node_modules') !== -1;
 }
+
+function _isCSS(module) {
+    return module.context && /\.css$/.test(module.context);
+}
+
+module.exports = (env) => {
+    env = env || {};
+    const config = {
+        context: __dirname + '/frontend',
+        entry: {
+            puzzle: './geopuzzle',
+            localization: './localization',
+            react: ['react', 'react-dom', 'redux', 'react-redux'],
+        },
+        output: {
+            path: path.resolve(__dirname, 'static'),
+            filename: "js/[name].js",
+        },
+        resolve: {
+            extensions: ['.js', '.jsx'],
+        },
+        // watch: NODE_ENV == 'development',
+        // watchOptions: {
+        //     aggregateTimeout: 100
+        // },
+        // target: 'node',
+        // devtool: 'cheap-inline-module-source-map',
+        plugins: [
+            new webpack.DefinePlugin({
+                process: {
+                    env: {
+                        NODE_ENV: JSON.stringify(NODE_ENV)
+                    }
+                }
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'react',
+                chunks: ['puzzle'],
+                minChunks: Infinity,
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'vendor',
+                chunks: ['puzzle'],
+                minChunks: function (module) {
+                    return _isVendor(module) && !_isCSS(module);
+                }
+            })
+        ],
+        module: {
+            rules: [
+                {
+                    test: /\.jsx?$/,
+                    exclude: /node_modules/,
+                    use: [
+                        {loader: 'babel-loader'}
+                    ]
+                },
+                {
+                    test: /\.css$/,
+                    exclude: /node_modules/,
+                    use: [
+                        {
+                            loader: 'style-loader'
+                        },
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1
+                            }
+                        },
+                    ]
+                }
+
+            ]
+        }
+    };
+
+    if (NODE_ENV == 'production') {
+        config.plugins.push(
+            new BundleAnalyzerPlugin({
+                analyzerMode: 'static'
+            })
+        );
+    }
+    return config;
+}
+    ;
