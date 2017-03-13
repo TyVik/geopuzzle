@@ -2,7 +2,7 @@
 /* global google */
 import React from "react";
 import {connect} from "react-redux";
-import {Panel} from 'react-bootstrap';
+import {Button, Panel} from 'react-bootstrap';
 import {giveUp, showCongratulation, setMapType, showInfobox} from "../../actions";
 import localization from "../../localization";
 import "./index.css";
@@ -78,29 +78,29 @@ class Toolbox extends React.Component {
         return (
             <div className="toolbox_wrapper">
                 <div className="btn-group btn-group-sm toolbox">
-                    <div>
-                        <button type="button" className="btn btn-success" onClick={this.giveUp}>{localization.give_up}</button>
-                        <button type="button" className="btn btn-warning" onClick={this.reload}>{localization.once_again}</button>
-                    </div>
                     <div className="map_switcher_wrapper">
                         <img className="map_switcher" src="/static/images/map/terrain.png" onClick={this.setMapTerrain} />
                         <img className="map_switcher" src="/static/images/map/hybrid.png" onClick={this.setMapHybrid} />
                         <img className="map_switcher" src="/static/images/map/satellite.png" onClick={this.setMapSatellite} />
                     </div>
-                    <div className="toolbox_counter">
+                    <div className="buttons_wrapper">
+                        <Button bsStyle="success" onClick={this.giveUp}>{localization.give_up}</Button>
+                        <Button bsStyle="warning" onClick={this.reload}>{localization.once_again}</Button>
+                    </div>
+                    <div className="listname-wrapper">
                         {localization.found}: <span>{this.props.solved}</span>/<span>{this.props.total}</span>
                         <span
                             className={"glyphicon glyphicon-chevron-" + (this.state.listNameClose ? 'up': 'down')}
                             onClick={ ()=> this.setState({ listNameClose: !this.state.listNameClose })}
                         ></span>
+                        <Panel collapsible expanded={!this.state.listNameClose}>
+                            <ul className="list-group" style={{maxHeight: this.state.listNameMaxHeight}}>
+                                {this.props.countries.map(polygon => (
+                                    <NameListItem key={polygon.id} polygon={polygon} click={() => this.showInfobox(polygon)}/>
+                                ))}
+                            </ul>
+                        </Panel>
                     </div>
-                    <Panel collapsible expanded={!this.state.listNameClose}>
-                        <ul className="list-group listname-wrapper" style={{maxHeight: this.state.listNameMaxHeight}}>
-                            {this.props.countries.map(polygon => (
-                                <NameListItem key={polygon.id} polygon={polygon} click={() => this.showInfobox(polygon)}/>
-                            ))}
-                        </ul>
-                    </Panel>
                 </div>
             </div>
         )

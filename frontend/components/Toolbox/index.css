@@ -1,37 +1,25 @@
 .toolbox_wrapper {
     left: 0;
-    top: 0;
+    top: 50px;
     position: fixed;
-    right: 0;
     z-index: 3;
     display: inline-block;
-    margin-top: 50px;
-    width: 180px;
 }
 
 .toolbox {
-    margin: 0 auto;
     text-align: center;
-    position: fixed;
     z-index: 2;
     background-color: white;
     border-radius: 5px;
     border: 1px solid black;
     max-width: 186px;
+    display: flex;
+    flex-direction: column;
 }
 
-.toolbox .btn {
-    margin: 8px 8px;
-}
-
-.toolbox_counter {
-    padding: 5px;
-    background-color: white;
-}
-
-.toolbox_counter .glyphicon {
-    float: right;
-    cursor: pointer;
+.toolbox .buttons_wrapper {
+    display: flex;
+    justify-content: space-around;
 }
 
 .toolbox .panel {
@@ -55,6 +43,16 @@
 }
 
 .listname-wrapper {
+    padding-top: 5px;
+}
+
+.listname-wrapper .glyphicon {
+    float: right;
+    cursor: pointer;
+    padding-right: 5px;
+}
+
+.listname-wrapper .list-group {
     overflow: scroll;
     margin-bottom: 0px;
 }
