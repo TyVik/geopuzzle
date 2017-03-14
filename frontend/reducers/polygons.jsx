@@ -1,5 +1,9 @@
 'use strict';
-import {GET_INFOBOX_DONE, INIT_PUZZLE_DONE, DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL, GIVE_UP, CHECK_QUIZ_SUCCESS} from '../actions';
+import {
+    GET_INFOBOX_DONE, INIT_PUZZLE_DONE, INIT_QUIZ_DONE,
+    DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL, CHECK_QUIZ_SUCCESS,
+    GIVE_UP
+} from "../actions";
 
 
 function moveTo(paths, latLng) {
@@ -9,7 +13,7 @@ function moveTo(paths, latLng) {
 }
 
 
-function extractPolygons(countries) {
+function extractForPuzzle(countries) {
     return countries.map(country => {
         let originalPath = country.polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)));
         return {
@@ -25,9 +29,24 @@ function extractPolygons(countries) {
                 new google.maps.LatLng(country.answer[0][1], country.answer[0][0]),
                 new google.maps.LatLng(country.answer[1][1], country.answer[1][0])),
         }
-    }).sort((one, another) => {return one.infobox.name > another.infobox.name ? 1 : -1 });
+    }).sort((one, another) => {
+        return one.infobox.name > another.infobox.name ? 1 : -1
+    });
 }
 
+function extractForQuiz(polygons) {
+    return polygons.map(polygon => {
+        return {
+            id: polygon.id,
+            draggable: true,
+            isSolved: false,
+            infobox: {name: polygon.name, loaded: false},
+            paths: []
+        }
+    }).sort((one, another) => {
+        return one.infobox.name > another.infobox.name ? 1 : -1
+    });
+}
 
 const polygons = (state = [], action) => {
     switch (action.type) {
@@ -39,44 +58,52 @@ const polygons = (state = [], action) => {
                 return country
             });
         case CHECK_QUIZ_SUCCESS:
-            state.push({
-                draggable: false,
-                id: action.id,
-                isSolved: true,
-                infobox: action.infobox,
-                paths: action.polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)))
+            return state.map((polygon) => {
+                if (polygon.id === action.id) {
+                    return {
+                        draggable: false,
+                        id: action.id,
+                        isSolved: true,
+                        infobox: action.infobox,
+                        paths: action.polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)))
+                    };
+                }
+                return polygon
             });
-            return state;
         case INIT_PUZZLE_DONE:
-            return extractPolygons(action.countries);
+            return extractForPuzzle(action.countries);
+        case INIT_QUIZ_DONE:
+            return extractForQuiz(action.questions);
         case GIVE_UP:
             return state.map((polygon) => {
-                    if (!polygon.isSolved) {
-                        return {...polygon,
-                            draggable: false,
-                            paths: polygon.originalPath,
-                        };
-                    }
-                    return polygon
-                });
+                if (!polygon.isSolved) {
+                    return {
+                        ...polygon,
+                        draggable: false,
+                        paths: polygon.originalPath,
+                    };
+                }
+                return polygon
+            });
         case DRAG_END_POLYGON_FAIL:
             return state.map((polygon) => {
-                    if (polygon.id === action.id) {
-                        return {...polygon, paths: action.paths};
-                    }
-                    return polygon
-                });
+                if (polygon.id === action.id) {
+                    return {...polygon, paths: action.paths};
+                }
+                return polygon
+            });
         case DRAG_END_POLYGON:
             return state.map((polygon) => {
-                    if (polygon.id === action.id) {
-                        return {...polygon,
-                            draggable: false,
-                            isSolved: true,
-                            paths: polygon.originalPath,
-                        };
-                    }
-                    return polygon
-                });
+                if (polygon.id === action.id) {
+                    return {
+                        ...polygon,
+                        draggable: false,
+                        isSolved: true,
+                        paths: polygon.originalPath,
+                    };
+                }
+                return polygon
+            });
         default:
             return state
     }
