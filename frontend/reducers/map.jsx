@@ -16,9 +16,11 @@ const map = (state = {...init_map, isLoaded: null}, action) => {
     switch (action.type) {
         case GET_COUNTRIES:
             return {...state, isLoaded: null};
-        case GET_COUNTRIES_FAIL, INIT_QUIZ_FAIL:
+        case INIT_QUIZ_FAIL:
+        case GET_COUNTRIES_FAIL:
             return {...state, isLoaded: false};
-        case GET_COUNTRIES_DONE, INIT_QUIZ_DONE:
+        case INIT_QUIZ_DONE:
+        case GET_COUNTRIES_DONE:
             return {...state, isLoaded: true};
         case SET_MAP_TYPE:
             return {...state, mapTypeId: action.value};

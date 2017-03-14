@@ -1,21 +1,22 @@
 'use strict';
 import React from "react";
 import {connect} from "react-redux";
-import {closeCongratulation} from "../../actions";
-import {Modal, Button} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 import localization from '../../localization';
 
 
 class Congratulation extends React.Component {
+    closeSelf = this.closeSelf.bind(this);
+    share_fb = this.share_fb.bind(this);
+    share_google = this.share_google.bind(this);
+
     constructor(props) {
         super(props);
-        this.closeSelf = this.closeSelf.bind(this);
-        this.share_fb = this.share_fb.bind(this);
-        this.share_google = this.share_google.bind(this);
+        this.state = {show: true};
     }
 
     closeSelf() {
-        this.props.dispatch(closeCongratulation());
+        this.setState({show: false});
     }
 
     share_fb() {
@@ -34,7 +35,8 @@ class Congratulation extends React.Component {
 
     render() {
         return (
-            <Modal show={this.props.show} onHide={this.closeSelf} bsSize="large" aria-labelledby="contained-modal-title-lg">
+            <Modal show={this.state.show && this.props.show} onHide={this.closeSelf}
+                   bsSize="large" aria-labelledby="contained-modal-title-lg">
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-lg">{localization.congratulations}</Modal.Title>
                 </Modal.Header>

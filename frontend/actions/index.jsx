@@ -17,7 +17,6 @@ export const SHOW_INFOBOX = 'SHOW_INFOBOX';
 export const GIVE_UP = 'GIVE_UP';
 export const SET_MAP_TYPE = 'SET_MAP_TYPE';
 export const SHOW_CONGRATULATION = 'SHOW_CONGRATULATION';
-export const CLOSE_CONGRATULATION = 'CLOSE_CONGRATULATION';
 
 
 export const sendRequest = () => ({type: GET_COUNTRIES});
@@ -90,13 +89,12 @@ export const showInfobox = (polygon) => dispatch => {
         return fetch(location.origin + `/maps/area/` + polygon.id + '/infobox/')
             .then(response => response.json())
             .then(json => dispatch(updateInfobox(true, polygon.id, json)))
-            .catch(response => dispatch(updateInfobox(false)));
+            .catch(response => dispatch({type: GET_INFOBOX_FAIL}));
     }
 };
 
 export const giveUp = () => ({type: GIVE_UP});
 
 export const showCongratulation = () => ({type: SHOW_CONGRATULATION});
-export const closeCongratulation = () => ({type: CLOSE_CONGRATULATION});
 
 export const setMapType = (mapType) => ({type: SET_MAP_TYPE, value: mapType});
