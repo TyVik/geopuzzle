@@ -1,21 +1,24 @@
 'use strict';
 import React from "react";
-import { connect } from 'react-redux'
-
-import {closeInfobox} from '../../actions'
-import localization from '../../localization';
-
-import './index.css'
+import {connect} from "react-redux";
+import localization from "../../localization";
+import "./index.css";
 
 
 class Infobox extends React.Component {
+    closeSelf = this.closeSelf.bind(this);
+
     constructor(props) {
         super(props);
-        this.closeSelf = this.closeSelf.bind(this);
+        this.state = {show: false};
     }
 
     closeSelf() {
-        this.props.dispatch(closeInfobox());
+        this.setState({show: false});
+    }
+
+    componentWillReceiveProps(props) {
+        this.setState({show: true});
     }
 
     renderAttribute(name) {
@@ -32,7 +35,7 @@ class Infobox extends React.Component {
     }
 
     render() {
-        if (this.props.show) {
+        if (this.state.show) {
             let image = this.props.flag ? this.props.flag : this.props.coat_of_arms;
             return (
                 <div className="infobox">
@@ -47,17 +50,17 @@ class Infobox extends React.Component {
                             </th>
                         </tr>
                         {image &&
-                            <tr>
-                                <td colSpan="2">
-                                    <img src={image}/>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colSpan="2">
+                                <img src={image}/>
+                            </td>
+                        </tr>
                         }
                         {this.props.capital &&
-                            <tr>
-                                <td>{localization['capital']}</td>
-                                <td><a href={this.props.capital.wiki} target="_blank">{this.props.capital.name}</a></td>
-                            </tr>
+                        <tr>
+                            <td>{localization['capital']}</td>
+                            <td><a href={this.props.capital.wiki} target="_blank">{this.props.capital.name}</a></td>
+                        </tr>
                         }
                         {this.renderAttribute('area')}
                         {this.renderAttribute('population')}
@@ -70,6 +73,7 @@ class Infobox extends React.Component {
             return null;
         }
     }
-};
+}
+;
 
 export default connect(state => (state.infobox))(Infobox);

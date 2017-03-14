@@ -13,7 +13,6 @@ export const DRAG_END_POLYGON = 'DRAG_END_POLYGON';
 export const DRAG_END_POLYGON_FAIL = 'DRAG_END_POLYGON_FAIL';
 export const GET_INFOBOX_DONE = 'GET_INFOBOX_DONE';
 export const GET_INFOBOX_FAIL = 'GET_INFOBOX_FAIL';
-export const CLOSE_INFOBOX = 'CLOSE_INFOBOX';
 export const SHOW_INFOBOX = 'SHOW_INFOBOX';
 export const GIVE_UP = 'GIVE_UP';
 export const SET_MAP_TYPE = 'SET_MAP_TYPE';
@@ -94,7 +93,6 @@ export const showInfobox = (polygon) => dispatch => {
             .catch(response => dispatch(updateInfobox(false)));
     }
 };
-export const closeInfobox = () => ({type: CLOSE_INFOBOX});
 
 export const giveUp = () => ({type: GIVE_UP});
 
