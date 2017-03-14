@@ -18,28 +18,6 @@ export const SET_MAP_TYPE = 'SET_MAP_TYPE';
 export const SHOW_CONGRATULATION = 'SHOW_CONGRATULATION';
 
 
-export const checkQuiz = (id, latLng) => dispatch => {
-    let formData = new FormData();
-    formData.append('lat', latLng.lat());
-    formData.append('lng', latLng.lng());
-    let options = {
-        method: 'POST',
-        body: formData
-    };
-    return fetch('//' + location.host + '/quiz/' + id + '/check/', options)
-        .then(response => response.json())
-        .then(json => {
-            if (json.success) {
-                return dispatch({...json, type: CHECK_QUIZ_SUCCESS, id: id})
-            } else {
-                return dispatch({type: CHECK_QUIZ_FAIL});
-            }
-        })
-        .catch(response => {
-            return dispatch({type: CHECK_QUIZ_FAIL});
-        });
-};
-
 export const updateInfobox = (success, id, json) => {
     if (success === false) {
         return {type: GET_INFOBOX_FAIL};

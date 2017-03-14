@@ -7,7 +7,7 @@ import Loading from '../Loading';
 import Infobox from '../Infobox';
 import QuizQuestion from '../QuizQuestion';
 import Toolbox from '../Toolbox';
-import {checkQuiz, INIT_LOAD, INIT_LOAD_FAIL, INIT_QUIZ_DONE} from '../../actions';
+import {checkQuiz, INIT_LOAD, INIT_LOAD_FAIL, INIT_QUIZ_DONE, CHECK_QUIZ_FAIL, CHECK_QUIZ_SUCCESS} from '../../actions';
 
 
 class Quiz extends React.Component {
@@ -25,7 +25,27 @@ class Quiz extends React.Component {
     }
 
     mapClick(e) {
-        return checkQuiz(this.props.id, e.latLng);
+        return (dispatch) => {
+            let formData = new FormData();
+            formData.append('lat', e.latLng.lat());
+            formData.append('lng', e.latLng.lng());
+            let options = {
+                method: 'POST',
+                body: formData
+            };
+            return fetch('//' + location.host + '/quiz/' + this.props.id + '/check/', options)
+                .then(response => response.json())
+                .then(json => {
+                    if (json.success) {
+                        return dispatch({...json, type: CHECK_QUIZ_SUCCESS, id: this.props.id})
+                    } else {
+                        return dispatch({type: CHECK_QUIZ_FAIL});
+                    }
+                })
+                .catch(response => {
+                    return dispatch({type: CHECK_QUIZ_FAIL});
+                });
+        };
     }
 
     render() {
