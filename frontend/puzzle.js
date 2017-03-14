@@ -7,6 +7,7 @@ import configureStore from './store';
 import Map from './components/Map';
 import Loading from './components/Loading';
 import Infobox from './components/Infobox';
+import PuzzleBox from './components/PuzzleBox';
 import Toolbox from './components/Toolbox';
 import {INIT_LOAD, INIT_LOAD_FAIL, INIT_PUZZLE_DONE} from './actions';
 import Congratulation from './components/Congratulation';
@@ -34,7 +35,8 @@ class Puzzle extends React.Component {
                 <Loading/>
                 <Map initCallback={this.mapInit} mapClick={this.mapClick}/>
                 <Infobox/>
-                <Toolbox showButtons={true}/>
+                <PuzzleBox/>
+                <Toolbox/>
                 <Congratulation/>
             </div>
         )

@@ -1,11 +1,7 @@
-import json
-
 from django.contrib.gis.geos import Point
-from django.http import JsonResponse
-from django.utils.translation import ugettext as _
-
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
@@ -32,7 +28,12 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
     form = MapForm(params)
     if not form.is_valid():
         return JsonResponse(form.errors, status=400)
-    result = [{'id': area.id, 'name': area.name} for area in form.areas()]
+    result = [{
+        'id': area.id,
+        'name': area.name,
+        'image': area.infobox.get('flag', area.infobox.get('coat_of_arms', None)),
+        'capital': area.infobox['capital']['name'] if 'capital' in area.infobox else None
+    } for area in form.areas()]
     return JsonResponse(result, safe=False)
 
 

@@ -10,7 +10,6 @@ import './index.css'
 class QuizQuestion extends React.Component {
     render() {
         if (this.props.show) {
-            let image = this.props.flag ? this.props.flag : this.props.coat_of_arms;
             return (
                 <div className="quiz-question">
                     <table>
@@ -20,17 +19,17 @@ class QuizQuestion extends React.Component {
                                 {this.props.name}
                             </th>
                         </tr>
-                        {image &&
+                        {this.props.image &&
                             <tr>
                                 <td colSpan="2">
-                                    <img src={image}/>
+                                    <img src={this.props.image}/>
                                 </td>
                             </tr>
                         }
                         {this.props.capital &&
                             <tr>
                                 <td>{localization['capital']}</td>
-                                <td><a href={this.props.capital.wiki} target="_blank">{this.props.capital.name}</a></td>
+                                <td>{this.props.capital}</td>
                             </tr>
                         }
                         </tbody>

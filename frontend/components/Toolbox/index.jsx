@@ -2,8 +2,8 @@
 /* global google */
 import React from "react";
 import {connect} from "react-redux";
-import {Button, Panel} from "react-bootstrap";
-import {GIVE_UP, SHOW_CONGRATULATION, SET_MAP_TYPE, showInfobox} from "../../actions";
+import {Panel} from "react-bootstrap";
+import {SHOW_CONGRATULATION, SET_MAP_TYPE, showInfobox} from "../../actions";
 import localization from "../../localization";
 import "./index.css";
 
@@ -26,13 +26,6 @@ const NameListItem = (props) => {
 
 
 class Toolbox extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showButtons: props.showButtons
-        };
-    }
-
     componentWillMount() {
         this.setState({...this.state,
             listNameMaxHeight: window.innerHeight - 220 + "px",
@@ -67,14 +60,6 @@ class Toolbox extends React.Component {
                                  value: google.maps.MapTypeId.SATELLITE
                              })}/>
                     </div>
-                    {this.state.showButtons &&
-                        <div className="buttons_wrapper">
-                            <Button bsStyle="success" onClick={() => this.props.dispatch({type: GIVE_UP})}>
-                                {localization.give_up}
-                            </Button>
-                            <Button bsStyle="warning" onClick={() => location.reload()}>{localization.once_again}</Button>
-                        </div>
-                    }
                     <div className="listname-wrapper">
                         {localization.found}: <span>{this.props.solved}</span>/<span>{this.props.total}</span>
                         <span

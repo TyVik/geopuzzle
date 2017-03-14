@@ -17,11 +17,6 @@
     flex-direction: column;
 }
 
-.toolbox .buttons_wrapper {
-    display: flex;
-    justify-content: space-around;
-}
-
 .toolbox .panel {
     margin-bottom: 0;
 }
