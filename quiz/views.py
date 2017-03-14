@@ -20,7 +20,7 @@ def check(request: WSGIRequest, pk: str) -> JsonResponse:
     lat = request.POST.get('lat', None)
     lng = request.POST.get('lng', None)
     lat, lng = float(lat), float(lng)
-    if area.polygon.contains(Point(lat, lng)):
+    if area.polygon.contains(Point(lng, lat)):
         result = {'success': True, 'infobox': area.strip_infobox, 'polygon': area.polygon_gmap}
     return JsonResponse(result)
 

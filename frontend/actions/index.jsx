@@ -1,5 +1,6 @@
 'use strict';
-import 'whatwg-fetch';
+import "whatwg-fetch";
+import localization from "../localization";
 
 export const INIT_QUIZ_FAIL = 'INIT_QUIZ_FAIL';
 export const INIT_QUIZ_DONE = 'INIT_QUIZ_DONE';
@@ -19,52 +20,45 @@ export const SET_MAP_TYPE = 'SET_MAP_TYPE';
 export const SHOW_CONGRATULATION = 'SHOW_CONGRATULATION';
 export const CLOSE_CONGRATULATION = 'CLOSE_CONGRATULATION';
 
-import localization from '../localization';
-
 
 export const sendRequest = () => ({type: GET_COUNTRIES});
 
 export const checkQuiz = (id, latLng) => dispatch => {
+    let formData = new FormData();
+    formData.append('lat', latLng.lat());
+    formData.append('lng', latLng.lng());
     let options = {
         method: 'POST',
-        body: {lat: latLng.lat(), lng: latLng.lng()}
+        body: formData
     };
     return fetch('//' + location.host + '/quiz/' + id + '/check/', options)
         .then(response => response.json())
-        .then(json => {console.log(json); return dispatch(updateQuiz(true, json))})
-        .catch(response => { console.log(response); return dispatch(updateQuiz(false))});
-};
-
-export const updateQuiz = (success, countries) => {
-    if (success === false) {
-        return {type: INIT_QUIZ_FAIL};
-    } else {
-        return {type: INIT_QUIZ_DONE, countries}
-    }
+        .then(json => {
+            if (json.success) {
+                return dispatch({...json, type: CHECK_QUIZ_SUCCESS, id: id})
+            } else {
+                return dispatch({type: CHECK_QUIZ_FAIL});
+            }
+        })
+        .catch(response => {
+            return dispatch({type: CHECK_QUIZ_FAIL});
+        });
 };
 
 export const initQuiz = () => dispatch => {
     dispatch(sendRequest());
     return fetch(location.pathname.replace('/quiz/', '/quiz/questions/') + location.search)
         .then(response => response.json())
-        .then(json => dispatch(updateQuiz(true, json)))
-        .catch(response => dispatch(updateQuiz(false)));
-};
-
-export const updateCountries = (success, countries) => {
-    if (success === false) {
-        return {type: GET_COUNTRIES_FAIL};
-    } else {
-        return {type: GET_COUNTRIES_DONE, countries}
-    }
+        .then(questions => dispatch({type: INIT_QUIZ_DONE, questions}))
+        .catch(response => dispatch({type: INIT_QUIZ_FAIL}));
 };
 
 export const getCountries = () => dispatch => {
     dispatch(sendRequest());
     return fetch(location.pathname.replace('/maps/', '/maps/questions/') + location.search)
         .then(response => response.json())
-        .then(json => dispatch(updateCountries(true, json)))
-        .catch(response => dispatch(updateCountries(false)));
+        .then(countries => dispatch({type: GET_COUNTRIES_DONE, countries}))
+        .catch(response => dispatch({type: GET_COUNTRIES_FAIL}));
 };
 
 export const updateInfobox = (success, id, json) => {
@@ -104,7 +98,7 @@ export const closeInfobox = () => ({type: CLOSE_INFOBOX});
 
 export const giveUp = () => ({type: GIVE_UP});
 
-export const showCongratulation = () =>({type: SHOW_CONGRATULATION});
+export const showCongratulation = () => ({type: SHOW_CONGRATULATION});
 export const closeCongratulation = () => ({type: CLOSE_CONGRATULATION});
 
 export const setMapType = (mapType) => ({type: SET_MAP_TYPE, value: mapType});
