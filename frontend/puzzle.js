@@ -1,11 +1,15 @@
 'use strict';
+
 import React from "react";
-import Map from '../Map';
-import Loading from '../Loading';
-import Infobox from '../Infobox';
-import Toolbox from '../Toolbox';
-import {INIT_LOAD, INIT_LOAD_FAIL, INIT_PUZZLE_DONE} from '../../actions';
-import Congratulation from '../Congratulation';
+import {render} from "react-dom";
+import {Provider} from "react-redux";
+import configureStore from './store';
+import Map from './components/Map';
+import Loading from './components/Loading';
+import Infobox from './components/Infobox';
+import Toolbox from './components/Toolbox';
+import {INIT_LOAD, INIT_LOAD_FAIL, INIT_PUZZLE_DONE} from './actions';
+import Congratulation from './components/Congratulation';
 
 
 class Puzzle extends React.Component {
@@ -38,4 +42,11 @@ class Puzzle extends React.Component {
 }
 
 
-export default Puzzle
+let store = configureStore();
+
+render(
+    <Provider store={store}>
+        <Puzzle />
+    </Provider>,
+    document.getElementById('puzzle')
+);

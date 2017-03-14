@@ -19,7 +19,7 @@ module.exports = (env) => {
         context: __dirname + '/frontend',
         entry: {
             quiz: './quiz',
-            puzzle: './geopuzzle',
+            puzzle: './puzzle',
             localization: './localization',
             react: ['react', 'react-dom', 'redux', 'react-redux'],
         },
