@@ -13,8 +13,7 @@ const NameListItem = (props) => {
         return (
             <li key={props.polygon.id}
                 className={"clickable list-group-item list-group-item-" + (props.polygon.isSolved ? 'success' : 'danger')}
-                onClick={props.click}
-            >
+                onClick={props.click}>
                 {props.polygon.infobox.name}
             </li>
         );
@@ -29,11 +28,6 @@ const NameListItem = (props) => {
 class Toolbox extends React.Component {
     constructor(props) {
         super(props);
-        this.reload = this.reload.bind(this);
-        this.giveUp = this.giveUp.bind(this);
-        this.setMapTerrain = this.setMapTerrain.bind(this);
-        this.setMapHybrid = this.setMapHybrid.bind(this);
-        this.setMapSatellite = this.setMapSatellite.bind(this);
         this.showInfobox = this.showInfobox.bind(this);
     }
 
@@ -42,30 +36,6 @@ class Toolbox extends React.Component {
             listNameMaxHeight: window.innerHeight - 220 + "px",
             listNameClose: false
         });
-    }
-
-    reload() {
-        location.reload();
-    }
-
-    showInfobox(polygon) {
-        this.props.dispatch(showInfobox(polygon));
-    }
-
-    giveUp() {
-        this.props.dispatch({type: GIVE_UP});
-    }
-
-    setMapTerrain() {
-        this.props.dispatch({type: SET_MAP_TYPE, value: google.maps.MapTypeId.TERRAIN});
-    }
-
-    setMapHybrid() {
-        this.props.dispatch({type: SET_MAP_TYPE, value: google.maps.MapTypeId.HYBRID});
-    }
-
-    setMapSatellite() {
-        this.props.dispatch({type: SET_MAP_TYPE, value: google.maps.MapTypeId.SATELLITE});
     }
 
     componentWillReceiveProps(props) {
@@ -79,24 +49,30 @@ class Toolbox extends React.Component {
             <div className="toolbox_wrapper">
                 <div className="btn-group btn-group-sm toolbox">
                     <div className="map_switcher_wrapper">
-                        <img className="map_switcher" src="/static/images/map/terrain.png" onClick={this.setMapTerrain} />
-                        <img className="map_switcher" src="/static/images/map/hybrid.png" onClick={this.setMapHybrid} />
-                        <img className="map_switcher" src="/static/images/map/satellite.png" onClick={this.setMapSatellite} />
+                        <img className="map_switcher" src="/static/images/map/terrain.png"
+                             onClick={() => this.props.dispatch({type: SET_MAP_TYPE, value: google.maps.MapTypeId.TERRAIN})} />
+                        <img className="map_switcher" src="/static/images/map/hybrid.png"
+                             onClick={() => this.props.dispatch({type: SET_MAP_TYPE, value: google.maps.MapTypeId.HYBRID})} />
+                        <img className="map_switcher" src="/static/images/map/satellite.png"
+                             onClick={() => this.props.dispatch({type: SET_MAP_TYPE, value: google.maps.MapTypeId.SATELLITE})} />
                     </div>
                     <div className="buttons_wrapper">
-                        <Button bsStyle="success" onClick={this.giveUp}>{localization.give_up}</Button>
-                        <Button bsStyle="warning" onClick={this.reload}>{localization.once_again}</Button>
+                        <Button bsStyle="success" onClick={() => this.props.dispatch({type: GIVE_UP})}>
+                            {localization.give_up}
+                        </Button>
+                        <Button bsStyle="warning" onClick={() => location.reload()}>{localization.once_again}</Button>
                     </div>
                     <div className="listname-wrapper">
                         {localization.found}: <span>{this.props.solved}</span>/<span>{this.props.total}</span>
                         <span
                             className={"glyphicon glyphicon-chevron-" + (this.state.listNameClose ? 'up': 'down')}
-                            onClick={ ()=> this.setState({ listNameClose: !this.state.listNameClose })}
-                        ></span>
+                            onClick={() => this.setState({ listNameClose: !this.state.listNameClose })}>
+                        </span>
                         <Panel collapsible expanded={!this.state.listNameClose}>
                             <ul className="list-group" style={{maxHeight: this.state.listNameMaxHeight}}>
                                 {this.props.countries.map(polygon => (
-                                    <NameListItem key={polygon.id} polygon={polygon} click={() => this.showInfobox(polygon)}/>
+                                    <NameListItem key={polygon.id} polygon={polygon}
+                                                  click={() => this.props.dispatch(showInfobox(polygon))}/>
                                 ))}
                             </ul>
                         </Panel>
@@ -105,8 +81,7 @@ class Toolbox extends React.Component {
             </div>
         )
     }
-}
-;
+};
 
 
 export default connect(state => {
