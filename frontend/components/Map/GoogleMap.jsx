@@ -12,6 +12,7 @@ export default withGoogleMap(props => {
         defaultCenter={props.center}
         mapTypeId={props.mapTypeId}
         options={props.options}
+        onClick={props.onMapClick}
     >
         {props.polygons.map(polygon => (
             <Polygon key={polygon.options.id} {...polygon} />

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     'common',
     'maps',
+    'quiz',
 ]
 
 MIDDLEWARE = [

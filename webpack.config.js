@@ -18,6 +18,7 @@ module.exports = (env) => {
     const config = {
         context: __dirname + '/frontend',
         entry: {
+            quiz: './quiz',
             puzzle: './geopuzzle',
             localization: './localization',
             react: ['react', 'react-dom', 'redux', 'react-redux'],
@@ -44,12 +45,12 @@ module.exports = (env) => {
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'react',
-                chunks: ['puzzle'],
+                chunks: ['puzzle', 'quiz'],
                 minChunks: Infinity,
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'vendor',
-                chunks: ['puzzle'],
+                chunks: ['puzzle', 'quiz'],
                 minChunks: function (module) {
                     return _isVendor(module) && !_isCSS(module);
                 }

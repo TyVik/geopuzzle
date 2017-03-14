@@ -34,6 +34,7 @@ sitemaps = {
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^maps/', include('maps.urls')),
+    url(r'^quiz/', include('quiz.urls')),
 
     url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt'), name='robots'),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='sitemap'),

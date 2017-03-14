@@ -1,18 +1,22 @@
 'use strict';
 import React from 'react';
 import { connect } from 'react-redux'
-import {getCountries} from '../../actions';
 import GoogleMap from './GoogleMap';
 
 
 class MapContainer extends React.Component {
     handleMapLoad = this.handleMapLoad.bind(this);
+    handleMapClick = this.handleMapClick.bind(this);
 
     handleMapLoad(map) {
         this._mapComponent = map;
         if (map) {
-            this.props.dispatch(getCountries());
+            this.props.dispatch(this.props.initCallback());
         }
+    }
+
+    handleMapClick(e) {
+        this.props.dispatch(this.props.mapClick(e));
     }
 
     preparePolygons(polygons) {
@@ -40,6 +44,7 @@ class MapContainer extends React.Component {
             containerElement={<div style={{height: window.innerHeight - 50, marginTop: '-20px'}}/>}
             mapElement={<div style={{height: '100%', margin: 0, padding: 0}} id="map"/>}
             onMapLoad={this.handleMapLoad}
+            onMapClick={this.handleMapClick}
             polygons={this.preparePolygons(this.props.polygons)}
             marker={this.props.marker}
         />
