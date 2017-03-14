@@ -3,7 +3,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Button, Panel} from 'react-bootstrap';
-import {giveUp, showCongratulation, setMapType, showInfobox} from "../../actions";
+import {GIVE_UP, SHOW_CONGRATULATION, SET_MAP_TYPE, showInfobox} from "../../actions";
 import localization from "../../localization";
 import "./index.css";
 
@@ -53,24 +53,24 @@ class Toolbox extends React.Component {
     }
 
     giveUp() {
-        this.props.dispatch(giveUp());
+        this.props.dispatch({type: GIVE_UP});
     }
 
     setMapTerrain() {
-        this.props.dispatch(setMapType(google.maps.MapTypeId.TERRAIN));
+        this.props.dispatch({type: SET_MAP_TYPE, value: google.maps.MapTypeId.TERRAIN});
     }
 
     setMapHybrid() {
-        this.props.dispatch(setMapType(google.maps.MapTypeId.HYBRID));
+        this.props.dispatch({type: SET_MAP_TYPE, value: google.maps.MapTypeId.HYBRID});
     }
 
     setMapSatellite() {
-        this.props.dispatch(setMapType(google.maps.MapTypeId.SATELLITE));
+        this.props.dispatch({type: SET_MAP_TYPE, value: google.maps.MapTypeId.SATELLITE});
     }
 
     componentWillReceiveProps(props) {
         if (props.total === props.solved) {
-            this.props.dispatch(showCongratulation());
+            this.props.dispatch({type: SHOW_CONGRATULATION});
         }
     }
 

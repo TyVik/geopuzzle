@@ -1,5 +1,5 @@
 'use strict';
-import {GET_INFOBOX_DONE, GET_COUNTRIES_DONE, DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL, GIVE_UP, CHECK_QUIZ_SUCCESS} from '../actions';
+import {GET_INFOBOX_DONE, INIT_PUZZLE_DONE, DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL, GIVE_UP, CHECK_QUIZ_SUCCESS} from '../actions';
 
 
 function moveTo(paths, latLng) {
@@ -47,7 +47,7 @@ const polygons = (state = [], action) => {
                 paths: action.polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)))
             });
             return state;
-        case GET_COUNTRIES_DONE:
+        case INIT_PUZZLE_DONE:
             return extractPolygons(action.countries);
         case GIVE_UP:
             return state.map((polygon) => {

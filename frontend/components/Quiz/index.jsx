@@ -7,7 +7,7 @@ import Loading from '../Loading';
 import Infobox from '../Infobox';
 import QuizQuestion from '../QuizQuestion';
 import Toolbox from '../Toolbox';
-import {initQuiz, checkQuiz} from '../../actions';
+import {checkQuiz, INIT_LOAD, INIT_LOAD_FAIL, INIT_QUIZ_DONE} from '../../actions';
 
 
 class Quiz extends React.Component {
@@ -15,7 +15,13 @@ class Quiz extends React.Component {
     mapClick = this.mapClick.bind(this);
 
     mapInit() {
-        return initQuiz();
+        return (dispatch) => {
+            dispatch({type: INIT_LOAD});
+            return fetch(location.pathname.replace('/quiz/', '/quiz/questions/') + location.search)
+                .then(response => response.json())
+                .then(questions => dispatch({type: INIT_QUIZ_DONE, questions}))
+                .catch(response => dispatch({type: INIT_LOAD_FAIL}));
+        };
     }
 
     mapClick(e) {

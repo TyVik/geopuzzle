@@ -1,10 +1,10 @@
 'use strict';
-import {GET_COUNTRIES_DONE, SHOW_CONGRATULATION} from '../actions';
+import {INIT_PUZZLE_DONE, SHOW_CONGRATULATION} from '../actions';
 
 
 const infobox = (state = window.__CONGRATULATION__, action) => {
     switch (action.type) {
-        case GET_COUNTRIES_DONE:
+        case INIT_PUZZLE_DONE:
             return {...state, text: action.countries.map(country => (country.name)).join(', ')};
         case SHOW_CONGRATULATION:
             let time = new Date(Date.now() - state.time);
