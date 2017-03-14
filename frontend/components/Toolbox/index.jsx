@@ -26,11 +26,6 @@ const NameListItem = (props) => {
 
 
 class Toolbox extends React.Component {
-    constructor(props) {
-        super(props);
-        this.showInfobox = this.showInfobox.bind(this);
-    }
-
     componentWillMount() {
         this.setState({
             listNameMaxHeight: window.innerHeight - 220 + "px",
