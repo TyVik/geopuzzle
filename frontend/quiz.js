@@ -56,7 +56,7 @@ class QuizClass extends React.Component {
                 <Map initCallback={this.mapInit} mapClick={this.mapClick}/>
                 <QuizQuestion/>
                 <Infobox/>
-                <Toolbox/>
+                <Toolbox showButtons={false}/>
             </div>
         )
     };

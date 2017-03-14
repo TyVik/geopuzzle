@@ -34,7 +34,7 @@ class Puzzle extends React.Component {
                 <Loading/>
                 <Map initCallback={this.mapInit} mapClick={this.mapClick}/>
                 <Infobox/>
-                <Toolbox/>
+                <Toolbox showButtons={true}/>
                 <Congratulation/>
             </div>
         )

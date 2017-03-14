@@ -2,7 +2,7 @@
 /* global google */
 import React from "react";
 import {connect} from "react-redux";
-import {Button, Panel} from 'react-bootstrap';
+import {Button, Panel} from "react-bootstrap";
 import {GIVE_UP, SHOW_CONGRATULATION, SET_MAP_TYPE, showInfobox} from "../../actions";
 import localization from "../../localization";
 import "./index.css";
@@ -26,8 +26,15 @@ const NameListItem = (props) => {
 
 
 class Toolbox extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showButtons: props.showButtons
+        };
+    }
+
     componentWillMount() {
-        this.setState({
+        this.setState({...this.state,
             listNameMaxHeight: window.innerHeight - 220 + "px",
             listNameClose: false
         });
@@ -45,23 +52,34 @@ class Toolbox extends React.Component {
                 <div className="btn-group btn-group-sm toolbox">
                     <div className="map_switcher_wrapper">
                         <img className="map_switcher" src="/static/images/map/terrain.png"
-                             onClick={() => this.props.dispatch({type: SET_MAP_TYPE, value: google.maps.MapTypeId.TERRAIN})} />
+                             onClick={() => this.props.dispatch({
+                                 type: SET_MAP_TYPE,
+                                 value: google.maps.MapTypeId.TERRAIN
+                             })}/>
                         <img className="map_switcher" src="/static/images/map/hybrid.png"
-                             onClick={() => this.props.dispatch({type: SET_MAP_TYPE, value: google.maps.MapTypeId.HYBRID})} />
+                             onClick={() => this.props.dispatch({
+                                 type: SET_MAP_TYPE,
+                                 value: google.maps.MapTypeId.HYBRID
+                             })}/>
                         <img className="map_switcher" src="/static/images/map/satellite.png"
-                             onClick={() => this.props.dispatch({type: SET_MAP_TYPE, value: google.maps.MapTypeId.SATELLITE})} />
+                             onClick={() => this.props.dispatch({
+                                 type: SET_MAP_TYPE,
+                                 value: google.maps.MapTypeId.SATELLITE
+                             })}/>
                     </div>
-                    <div className="buttons_wrapper">
-                        <Button bsStyle="success" onClick={() => this.props.dispatch({type: GIVE_UP})}>
-                            {localization.give_up}
-                        </Button>
-                        <Button bsStyle="warning" onClick={() => location.reload()}>{localization.once_again}</Button>
-                    </div>
+                    {this.state.showButtons &&
+                        <div className="buttons_wrapper">
+                            <Button bsStyle="success" onClick={() => this.props.dispatch({type: GIVE_UP})}>
+                                {localization.give_up}
+                            </Button>
+                            <Button bsStyle="warning" onClick={() => location.reload()}>{localization.once_again}</Button>
+                        </div>
+                    }
                     <div className="listname-wrapper">
                         {localization.found}: <span>{this.props.solved}</span>/<span>{this.props.total}</span>
                         <span
-                            className={"glyphicon glyphicon-chevron-" + (this.state.listNameClose ? 'up': 'down')}
-                            onClick={() => this.setState({ listNameClose: !this.state.listNameClose })}>
+                            className={"glyphicon glyphicon-chevron-" + (this.state.listNameClose ? 'up' : 'down')}
+                            onClick={() => this.setState({listNameClose: !this.state.listNameClose})}>
                         </span>
                         <Panel collapsible expanded={!this.state.listNameClose}>
                             <ul className="list-group" style={{maxHeight: this.state.listNameMaxHeight}}>
@@ -76,7 +94,8 @@ class Toolbox extends React.Component {
             </div>
         )
     }
-};
+}
+;
 
 
 export default connect(state => {
