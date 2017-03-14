@@ -127,6 +127,14 @@ class Area(TranslatableModel):
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
         return list(self.polygon.centroid)
 
+    @property
+    def strip_infobox(self) -> Dict:
+        result = self.infobox
+        del (result['geonamesID'])
+        if 'capital' in result:
+            del (result['capital']['id'])
+        return result
+
     def _update_infobox(self, rows):
         for lang, infobox in rows.items():
             trans = load_translation(self, lang, enforce=True)
