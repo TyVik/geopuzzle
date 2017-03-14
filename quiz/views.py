@@ -21,12 +21,7 @@ def check(request: WSGIRequest, pk: str) -> JsonResponse:
     lng = request.POST.get('lng', None)
     lat, lng = float(lat), float(lng)
     if area.polygon.contains(Point(lat, lng)):
-        infobox = area.infobox
-        del (infobox['geonamesID'])
-        if 'capital' in infobox:
-            del (infobox['capital']['id'])
-
-        result = {'success': True, 'infobox': infobox, 'polygon': area.polygon_gmap}
+        result = {'success': True, 'infobox': area.strip_infobox, 'polygon': area.polygon_gmap}
     return JsonResponse(result)
 
 
