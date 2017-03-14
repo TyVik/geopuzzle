@@ -2,7 +2,7 @@
 import {
     GET_INFOBOX_DONE, INIT_PUZZLE_DONE, INIT_QUIZ_DONE,
     DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL, CHECK_QUIZ_SUCCESS,
-    GIVE_UP
+    GIVE_UP, prepareInfobox
 } from "../actions";
 
 
@@ -58,13 +58,14 @@ const polygons = (state = [], action) => {
                 return country
             });
         case CHECK_QUIZ_SUCCESS:
+            let infobox = prepareInfobox(action.infobox);
             return state.map((polygon) => {
                 if (polygon.id === action.id) {
                     return {
                         draggable: false,
                         id: action.id,
                         isSolved: true,
-                        infobox: action.infobox,
+                        infobox: {...infobox, loaded: true},
                         paths: action.polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)))
                     };
                 }

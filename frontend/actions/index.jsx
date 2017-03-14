@@ -18,36 +18,33 @@ export const SET_MAP_TYPE = 'SET_MAP_TYPE';
 export const SHOW_CONGRATULATION = 'SHOW_CONGRATULATION';
 
 
-export const updateInfobox = (success, id, json) => {
-    if (success === false) {
-        return {type: GET_INFOBOX_FAIL};
-    } else {
-        if (json.area) {
-            json.area = Number(json.area).toLocaleString() + ' ' + localization.km2;
-        }
-        if (json.population) {
-            json.population = Number(json.population).toLocaleString()
-        }
-        if (json.capital) {
-            json.capital.marker = {
-                key: json.capital.name,
-                defaultAnimation: 2,
-                position: {
-                    lat: json.capital.lat,
-                    lng: json.capital.lon,
-                }
+export const prepareInfobox = (json) => {
+    if (json.area) {
+        json.area = Number(json.area).toLocaleString() + ' ' + localization.km2;
+    }
+    if (json.population) {
+        json.population = Number(json.population).toLocaleString()
+    }
+    if (json.capital) {
+        json.capital.marker = {
+            key: json.capital.name,
+            defaultAnimation: 2,
+            position: {
+                lat: json.capital.lat,
+                lng: json.capital.lon,
             }
         }
-        return {type: GET_INFOBOX_DONE, id: id, data: json}
     }
+    return json;
 };
+
 export const showInfobox = (polygon) => dispatch => {
     if (polygon.infobox.loaded) {
         return dispatch({type: SHOW_INFOBOX, id: polygon.id, data: polygon.infobox});
     } else {
         return fetch(location.origin + `/maps/area/` + polygon.id + '/infobox/')
             .then(response => response.json())
-            .then(json => dispatch(updateInfobox(true, polygon.id, json)))
+            .then(json => dispatch({type: GET_INFOBOX_DONE, id: polygon.id, data: prepareInfobox(json)}))
             .catch(response => dispatch({type: GET_INFOBOX_FAIL}));
     }
 };
