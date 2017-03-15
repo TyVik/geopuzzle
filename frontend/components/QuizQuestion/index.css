@@ -8,7 +8,7 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid black;
-    max-width: 220px;
+    max-width: 200px;
     margin: 0 auto;
 }
 
@@ -22,7 +22,7 @@
 
 .quiz-question img {
     border: 1px solid black;
-    width: 200px;
+    width: 160px;
 }
 
 .quiz-question .row_name {

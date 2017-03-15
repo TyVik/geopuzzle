@@ -19,7 +19,7 @@ const NameListItem = (props) => {
         );
     } else {
         return (
-            <li key={props.polygon.id} className="list-group-item list-group-item-danger">---</li>
+            <li key={props.polygon.id} className="list-group-item list-group-item-danger">&nbsp;</li>
         );
     }
 };

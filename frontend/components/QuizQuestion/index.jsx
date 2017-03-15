@@ -29,23 +29,17 @@ class QuizQuestion extends React.Component {
                 <div className="quiz-question">
                     <table>
                         <tbody>
-                        <tr>
-                            <th colSpan="2" className="row_name">
-                                {question.name}
-                            </th>
-                        </tr>
-                        {question.image &&
-                            <tr>
-                                <td colSpan="2">
-                                    <img src={question.image}/>
-                                </td>
-                            </tr>
+                        {question.name &&
+                            <tr><th className="row_name">{question.name}</th></tr>
+                        }
+                        {question.flag &&
+                            <tr><td className="row_name"><img src={question.flag}/></td></tr>
+                        }
+                        {question.coat_of_arms &&
+                            <tr><td className="row_name"><img src={question.coat_of_arms}/></td></tr>
                         }
                         {question.capital &&
-                            <tr>
-                                <td>{localization['capital']}</td>
-                                <td>{question.capital}</td>
-                            </tr>
+                            <tr><td className="row_name">{question.capital}</td></tr>
                         }
                         </tbody>
                     </table>
