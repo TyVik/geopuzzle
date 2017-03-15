@@ -4,12 +4,23 @@ import { connect } from 'react-redux'
 import {Button} from "react-bootstrap";
 
 import localization from '../../localization';
-import {QUIZ_GIVEUP, QUIZ_NEXT, QUIZ_PREVIOUS} from "../../actions";
+import {QUIZ_GIVEUP, QUIZ_NEXT, QUIZ_PREVIOUS, INIT_LOAD_FAIL} from "../../actions";
 
 import './index.css'
 
 
 class QuizQuestion extends React.Component {
+    giveUp = this.giveUp.bind(this);
+
+    giveUp() {
+        return (dispatch) => {
+            let question = this.props.questions[this.props.question_index];
+            return fetch('//' + location.host + '/quiz/' + question.id + '/giveup/')
+                .then(response => response.json())
+                .then(json => dispatch({...json, type: QUIZ_GIVEUP, id: question.id}))
+                .catch(response => dispatch({type: INIT_LOAD_FAIL}));
+        };
+    }
     render() {
         if (this.props.questions && (this.props.questions.length > 0)) {
             let question = this.props.questions[this.props.question_index];
@@ -43,7 +54,7 @@ class QuizQuestion extends React.Component {
                             className="glyphicon glyphicon-chevron-left"
                             onClick={() => this.props.dispatch({type: QUIZ_PREVIOUS})}>
                         </span>
-                        <Button bsStyle="success" onClick={() => this.props.dispatch({type: QUIZ_GIVEUP, id: this.props.id})}>
+                        <Button bsStyle="success" onClick={() => this.props.dispatch(this.giveUp())}>
                             {localization.give_up}
                         </Button>
                         <span

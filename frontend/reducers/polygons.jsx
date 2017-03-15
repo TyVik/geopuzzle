@@ -1,6 +1,6 @@
 'use strict';
 import {
-    GET_INFOBOX_DONE, INIT_PUZZLE_DONE, INIT_QUIZ_DONE,
+    GET_INFOBOX_DONE, INIT_PUZZLE_DONE, INIT_QUIZ_DONE, QUIZ_GIVEUP,
     DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL, CHECK_QUIZ_SUCCESS,
     PUZZLE_GIVEUP, prepareInfobox
 } from "../actions";
@@ -58,13 +58,14 @@ const polygons = (state = [], action) => {
                 return country
             });
         case CHECK_QUIZ_SUCCESS:
+        case QUIZ_GIVEUP:
             let infobox = prepareInfobox(action.infobox);
             return state.map((polygon) => {
                 if (polygon.id === action.id) {
                     return {
                         draggable: false,
                         id: action.id,
-                        isSolved: true,
+                        isSolved: action.type === CHECK_QUIZ_SUCCESS,
                         infobox: {...infobox, loaded: true},
                         paths: action.polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)))
                     };
