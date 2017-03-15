@@ -6,14 +6,14 @@ import {Button} from "react-bootstrap";
 import localization from '../../localization';
 
 import './index.css'
-import {GIVE_UP} from "../../actions";
+import {PUZZLE_GIVEUP} from "../../actions";
 
 
 class PuzzleBox extends React.Component {
     render() {
         return (
             <div className="puzzle-box">
-                <Button bsStyle="success" onClick={() => this.props.dispatch({type: GIVE_UP})}>
+                <Button bsStyle="success" onClick={() => this.props.dispatch({type: PUZZLE_GIVEUP})}>
                     {localization.give_up}
                 </Button>
             </div>

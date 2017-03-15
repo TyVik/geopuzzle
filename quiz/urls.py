@@ -3,7 +3,7 @@ from django.conf.urls import url, include
 from quiz import views
 
 area_patterns = [
-    # url(r'^(?P<pk>\d+)/question/', views.question, name='quiz_question'),
+    url(r'^(?P<pk>\d+)/giveup/', views.giveup, name='quiz_giveup'),
     url(r'^(?P<pk>\d+)/check/', views.check, name='quiz_question'),
 ]
 

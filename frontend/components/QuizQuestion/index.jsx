@@ -1,8 +1,10 @@
 'use strict';
 import React from "react";
 import { connect } from 'react-redux'
+import {Button} from "react-bootstrap";
 
 import localization from '../../localization';
+import {QUIZ_GIVEUP} from "../../actions";
 
 import './index.css'
 
@@ -34,6 +36,9 @@ class QuizQuestion extends React.Component {
                         }
                         </tbody>
                     </table>
+                    <Button bsStyle="success" onClick={() => this.props.dispatch({type: QUIZ_GIVEUP, id: this.props.id})}>
+                        {localization.give_up}
+                    </Button>
                 </div>
             )
         } else {

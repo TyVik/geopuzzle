@@ -2,7 +2,7 @@
 import {
     GET_INFOBOX_DONE, INIT_PUZZLE_DONE, INIT_QUIZ_DONE,
     DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL, CHECK_QUIZ_SUCCESS,
-    GIVE_UP, prepareInfobox
+    PUZZLE_GIVEUP, prepareInfobox
 } from "../actions";
 
 
@@ -75,7 +75,7 @@ const polygons = (state = [], action) => {
             return extractForPuzzle(action.countries);
         case INIT_QUIZ_DONE:
             return extractForQuiz(action.questions);
-        case GIVE_UP:
+        case PUZZLE_GIVEUP:
             return state.map((polygon) => {
                 if (!polygon.isSolved) {
                     return {

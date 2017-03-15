@@ -1,3 +1,5 @@
+from typing import Dict
+
 from django.contrib.gis.geos import Point
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
@@ -9,16 +11,24 @@ from maps.models import Country, Area
 from maps.views import MapForm
 
 
+def quiz_area(area: Area) -> Dict:
+    return {'success': True, 'infobox': area.strip_infobox, 'polygon': area.polygon_gmap}
+
+
 @csrf_exempt
 def check(request: WSGIRequest, pk: str) -> JsonResponse:
-    result = {'success': False}
     area = get_object_or_404(Area, pk=pk)
     lat = request.POST.get('lat', None)
     lng = request.POST.get('lng', None)
     lat, lng = float(lat), float(lng)
     if area.polygon.contains(Point(lng, lat)):
-        result = {'success': True, 'infobox': area.strip_infobox, 'polygon': area.polygon_gmap}
-    return JsonResponse(result)
+        return JsonResponse(quiz_area(area))
+    return JsonResponse({'success': False})
+
+
+def giveup(request: WSGIRequest, pk: str) -> JsonResponse:
+    area = get_object_or_404(Area, pk=pk)
+    return JsonResponse(quiz_area(area))
 
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
