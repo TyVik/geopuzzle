@@ -34,11 +34,12 @@ class QuizClass extends React.Component {
                 method: 'POST',
                 body: formData
             };
-            return fetch('//' + location.host + '/quiz/' + this.props.id + '/check/', options)
+            let question = this.props.questions[this.props.question_index];
+            return fetch('//' + location.host + '/quiz/' + question.id + '/check/', options)
                 .then(response => response.json())
                 .then(json => {
                     if (json.success) {
-                        return dispatch({...json, type: CHECK_QUIZ_SUCCESS, id: this.props.id})
+                        return dispatch({...json, type: CHECK_QUIZ_SUCCESS, id: question.id})
                     } else {
                         return dispatch({type: CHECK_QUIZ_FAIL});
                     }
@@ -63,7 +64,7 @@ class QuizClass extends React.Component {
 }
 
 let store = configureStore();
-let Quiz = connect(state => (state.quiz.question))(QuizClass);
+let Quiz = connect(state => (state.quiz))(QuizClass);
 
 render(
     <Provider store={store}>

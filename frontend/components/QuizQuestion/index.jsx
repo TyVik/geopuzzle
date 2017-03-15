@@ -11,27 +11,29 @@ import './index.css'
 
 class QuizQuestion extends React.Component {
     render() {
-        if (this.props.show) {
+        if (this.props.questions && (this.props.questions.length > 0)) {
+            let question = this.props.questions[this.props.question_index];
+            console.log(question);
             return (
                 <div className="quiz-question">
                     <table>
                         <tbody>
                         <tr>
                             <th colSpan="2" className="row_name">
-                                {this.props.name}
+                                {question.name}
                             </th>
                         </tr>
-                        {this.props.image &&
+                        {question.image &&
                             <tr>
                                 <td colSpan="2">
-                                    <img src={this.props.image}/>
+                                    <img src={question.image}/>
                                 </td>
                             </tr>
                         }
-                        {this.props.capital &&
+                        {question.capital &&
                             <tr>
                                 <td>{localization['capital']}</td>
-                                <td>{this.props.capital}</td>
+                                <td>{question.capital}</td>
                             </tr>
                         }
                         </tbody>
@@ -47,4 +49,4 @@ class QuizQuestion extends React.Component {
     }
 };
 
-export default connect(state => (state.quiz.question))(QuizQuestion);
+export default connect(state => (state.quiz))(QuizQuestion);
