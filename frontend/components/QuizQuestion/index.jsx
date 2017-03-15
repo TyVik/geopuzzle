@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {Button} from "react-bootstrap";
 
 import localization from '../../localization';
-import {QUIZ_GIVEUP} from "../../actions";
+import {QUIZ_GIVEUP, QUIZ_NEXT, QUIZ_PREVIOUS} from "../../actions";
 
 import './index.css'
 
@@ -38,9 +38,19 @@ class QuizQuestion extends React.Component {
                         }
                         </tbody>
                     </table>
-                    <Button bsStyle="success" onClick={() => this.props.dispatch({type: QUIZ_GIVEUP, id: this.props.id})}>
-                        {localization.give_up}
-                    </Button>
+                    <div className="quiz-bottom">
+                        <span
+                            className="glyphicon glyphicon-chevron-left"
+                            onClick={() => this.props.dispatch({type: QUIZ_PREVIOUS})}>
+                        </span>
+                        <Button bsStyle="success" onClick={() => this.props.dispatch({type: QUIZ_GIVEUP, id: this.props.id})}>
+                            {localization.give_up}
+                        </Button>
+                        <span
+                            className="glyphicon glyphicon-chevron-right"
+                            onClick={() => this.props.dispatch({type: QUIZ_NEXT})}>
+                        </span>
+                    </div>
                 </div>
             )
         } else {

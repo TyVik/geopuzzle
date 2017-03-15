@@ -15,6 +15,8 @@ export const GET_INFOBOX_FAIL = 'GET_INFOBOX_FAIL';
 export const SHOW_INFOBOX = 'SHOW_INFOBOX';
 export const PUZZLE_GIVEUP = 'PUZZLE_GIVEUP';
 export const QUIZ_GIVEUP = 'QUIZ_GIVEUP';
+export const QUIZ_NEXT = 'QUIZ_NEXT';
+export const QUIZ_PREVIOUS = 'QUIZ_PREVIOUS';
 export const SET_MAP_TYPE = 'SET_MAP_TYPE';
 export const SHOW_CONGRATULATION = 'SHOW_CONGRATULATION';
 

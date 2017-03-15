@@ -33,7 +33,16 @@
     font-size: 1.25em;
 }
 
+.quiz-question .quiz-bottom {
+    display: flex;
+    justify-content: space-around;
+}
+
+.quiz-question .quiz-bottom .glyphicon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
 .quiz-question .btn {
-    display: block;
-    width: 100%
+    display: inline-block;
 }
