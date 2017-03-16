@@ -1,12 +1,10 @@
 .loading_wrapper {
     left: 0;
-    top: 0;
+    top: 50px;
     position: fixed;
     right: 0;
-    z-index: 3;
-    padding: 10px;
+    z-index: 99;
     display: inline-block;
-    margin-top: 50px;
 }
 
 .loading {
@@ -14,4 +12,5 @@
     display: table;
     background: wheat;
     padding: 5px;
+    font-size: 45px;
 }
