@@ -26,7 +26,7 @@ class KMLCountryImportForm(forms.Form):
                                                polygon=polygon, difficulty=2)
                     for lang, _ in settings.LANGUAGES:
                         trans = load_translation(area, lang, enforce=True)
-                        trans.master = self
+                        trans.master = area
                         trans.name = feat['Name'].value
                         trans.save()
                     area.recalc_answer()
