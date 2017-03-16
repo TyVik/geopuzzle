@@ -1,81 +1,104 @@
 {% load static i18n share_image %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>GeoPuzzle - {% trans 'Mercator puzzle of' %} {% block title %}{% trans 'World' %}{% endblock %}</title>
-        <meta name="Description" content="{% trans 'Arrange the pieces of the world!' %}"/>
-        <meta name="Keywords" content="geopuzzle, геопаззл, mercator puzzle, паззл меркатора"/>
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-        <meta charset="utf-8"/>
+<head>
+    <title>GeoPuzzle - {% trans 'Mercator puzzle of' %} {% block title %}{% trans 'World' %}{% endblock %}</title>
+    <meta name="Description" content="{% trans 'Arrange the pieces of the world!' %}"/>
+    <meta name="Keywords" content="geopuzzle, геопаззл, mercator puzzle, паззл меркатора"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8"/>
 
-        {% share_image request country %}
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-        {% block extra_css %}
-        {% endblock %}
-    </head>
+    {% share_image request country %}
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    {% block extra_css %}
+    {% endblock %}
+</head>
 
-    <body>
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-header">
-                  <a class="navbar-brand" href="/">GeoPuzzle</a>
-                </div>
-            </div>
-        </nav>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">GeoPuzzle</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li {% if request.path == '/' %}class="active"{% endif %}><a href="/">GeoPuzzle</a></li>
+                <li {% if request.path == '/quiz/' %}class="active"{% endif %}><a href="/quiz/">GeoQuiz</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-        {% block content %}
-        {% endblock %}
+{% block content %}
+{% endblock %}
 
-        <script>
-            window.fbAsyncInit = function() {
-                FB.init({
-                    appId      : '1273749826026102',
-                    xfbml      : true,
-                    version    : 'v2.8'
-                });
-                FB.AppEvents.logPageView();
-            };
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1273749826026102',
+            xfbml: true,
+            version: 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+    };
 
-            (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
-        {% if not debug %}
-        <!-- Yandex.Metrika counter -->
-        <script type="text/javascript">
-            (function (d, w, c) {
-                (w[c] = w[c] || []).push(function() {
-                    try {
-                        w.yaCounter42253364 = new Ya.Metrika({
-                            id:42253364,
-                            clickmap:true,
-                            trackLinks:true,
-                            accurateTrackBounce:true,
-                            webvisor:true
-                        });
-                    } catch(e) { }
-                });
+{% if not debug %}
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function () {
+                try {
+                    w.yaCounter42253364 = new Ya.Metrika({
+                        id: 42253364,
+                        clickmap: true,
+                        trackLinks: true,
+                        accurateTrackBounce: true,
+                        webvisor: true
+                    });
+                } catch (e) {
+                }
+            });
 
-                var n = d.getElementsByTagName("script")[0],
-                    s = d.createElement("script"),
-                    f = function () { n.parentNode.insertBefore(s, n); };
-                s.type = "text/javascript";
-                s.async = true;
-                s.src = "https://mc.yandex.ru/metrika/watch.js";
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () {
+                    n.parentNode.insertBefore(s, n);
+                };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
 
-                if (w.opera == "[object Opera]") {
-                    d.addEventListener("DOMContentLoaded", f, false);
-                } else { f(); }
-            })(document, window, "yandex_metrika_callbacks");
-        </script>
-        <noscript><div><img src="https://mc.yandex.ru/watch/42253364" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-        <!-- /Yandex.Metrika counter -->
-        {% endif %}
-    </body>
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else {
+                f();
+            }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/42253364" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+{% endif %}
+</body>
 </html>
