@@ -41,7 +41,8 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
     result = [{
         'id': area.id,
         'name': area.name,
-        'image': area.infobox.get('flag', area.infobox.get('coat_of_arms', None)),
+        'flag': area.infobox.get('flag', None),
+        'coat_of_arms': area.infobox.get('coat_of_arms', None),
         'capital': area.infobox['capital']['name'] if 'capital' in area.infobox else None
     } for area in form.areas()]
     return JsonResponse(result, safe=False)
