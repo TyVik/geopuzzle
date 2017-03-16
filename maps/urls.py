@@ -8,6 +8,6 @@ area_patterns = [
 
 urlpatterns = [
     url(r'^area/', include(area_patterns)),
-    url(r'^questions/(?P<name>[a-zA-Z0-9]+)/', views.questions, name='maps_questions'),
-    url(r'^(?P<name>[a-zA-Z0-9]+)/', views.maps, name='maps_map'),
+    url(r'^questions/(?P<name>[a-zA-Z0-9]+)/', views.questions, name='puzzle_questions'),
+    url(r'^(?P<name>[a-zA-Z0-9]+)/', views.maps, name='puzzle_map'),
 ]

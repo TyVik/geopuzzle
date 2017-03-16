@@ -66,7 +66,7 @@ class Country(TranslatableModel):
         return self.name
 
     def get_absolute_url(self) -> str:
-        return reverse('maps_map', args=(self.slug,))
+        return reverse('puzzle_map', args=(self.slug,))
 
     def get_init_params(self) -> Dict:
         return {
@@ -107,7 +107,7 @@ class Area(TranslatableModel):
         return self.name
 
     def get_absolute_url(self) -> str:
-        return '{}?id={}'.format(reverse('maps_map', args=(self.country.slug,)), self.id)
+        return '{}?id={}'.format(reverse('puzzle_map', args=(self.country.slug,)), self.id)
 
     @property
     def polygon_gmap(self) -> List:
