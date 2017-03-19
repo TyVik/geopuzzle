@@ -20,6 +20,22 @@ footer .social-wrap {
     display: inline-block;
 }
 
-.panel-body img {
+.item-container img {
     width: 100%;
+}
+
+.panel .img-caption {
+    max-width: 20%;
+}
+
+.item-container {
+    margin: 10px 0;
+}
+
+.puzzle-tab {
+    background-color: rgba(132, 132, 56, 0.1);
+}
+
+.quiz-tab {
+    background-color: rgba(56, 132, 132, 0.1);
 }

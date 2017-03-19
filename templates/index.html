@@ -9,7 +9,107 @@
 
 {% block content %}
     <div class="container">
-        {% block index_content %}{% endblock %}
+        <div class="jumbotron row">
+            <h2>{% trans 'Arrange the pieces of the world!' %}</h2>
+            <p>Спасибо что заглянули. Этот сайт посвящён играм на политической карте мира. Здесь вы можете изучить не
+                только
+                где находится какая страна, но также её флаг, герб или столицу.
+            </p>
+        </div>
+        <div class="row">
+            <ul class="nav nav-tabs nav-justified">
+                {% for game in games %}
+                    <li{% if forloop.first %} class="active"{% endif %}>
+                        <a href="#{{ game }}" data-toggle="tab" class="{{ game }}-tab">{{ game }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <div class="tab-content">
+                {% for game, params in games.items %}
+                    <div class="tab-pane{% if forloop.first %} active{% endif %}" id="{{ game }}">
+                        <div class="panel {{ game }}-tab">
+                            <div class="panel-body">
+                                <div class="media">
+                                    {% with "images/"|add:game|add:".png" as image_link %}
+                                        <img src="{% static image_link %}" alt="{{ game }}"
+                                             class="pull-left img-responsive img-rounded img-caption">
+                                    {% endwith %}
+                                    <div class="media-body">
+                                        <h4 class="media-heading">{{ params.rules }}</h4>
+                                    </div>
+                                </div>
+                                <h1>{% trans 'World' %}</h1>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-4 item-container">
+                                        <a href="{% url params.link 'world' %}?difficulty=1">
+                                            <img class="img-responsive img-rounded"
+                                                 src="{% static 'images/world/easy.png' %}" alt="easy">
+                                        </a>
+                                        <div class="text-center">{% trans 'easy' %}</div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-4 item-container">
+                                        <a href="{% url params.link 'world' %}?difficulty=2">
+                                            <img class="img-responsive img-rounded"
+                                                 src="{% static 'images/world/normal.png' %}" alt="normal">
+                                        </a>
+                                        <div class="text-center">{% trans 'normal' %}</div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-4 item-container">
+                                        <a href="{% url params.link 'world' %}?difficulty=3">
+                                            <img class="img-responsive img-rounded"
+                                                 src="{% static 'images/world/hard.png' %}" alt="hard">
+                                        </a>
+                                        <div class="text-center">{% trans 'hard' %}</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {% for part in parts %}
+                                        <div class="col-md-3 col-sm-3 col-xs-4 item-container">
+                                            {% thumbnail part.image "250x250" format="PNG" quality=80 as im %}
+                                                <a href="{% url params.link part.slug %}">
+                                                    <img class="img-responsive img-rounded" src="{{ im.url }}"
+                                                         alt="{{ part.name }}">
+                                                </a>
+                                            {% endthumbnail %}
+                                            <div class="text-center">{{ part.name }}</div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <h1>{% trans 'Country regions' %}</h1>
+                                <div class="row">
+                                    {% for country in countries %}
+                                        <div class="col-md-2 col-sm-3 col-xs-4 item-container">
+                                            {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
+                                                <a href="{% url params.link country.slug %}">
+                                                    <img class="img-responsive img-rounded" src="{{ im.url }}"
+                                                         alt="{{ country.name }}">
+                                                </a>
+                                            {% endthumbnail %}
+                                            <div class="text-center">{{ country.name }}</div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="jumbotron row">
+            <p>
+                {% blocktrans %}This is my pet project, but I was so impressed with this idea that I decided to make a
+                    website. It is
+                    not over yet - will update both the data and functionality. All suggestions for improvement can be
+                    sent
+                    to me via
+                    <a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle">email</a>,
+                    <a href="https://vk.com/tyvik" target="_blank">Vk</a>
+                    or <a href="https://www.facebook.com/TyVikZero" target="_blank">facebook</a>.{% endblocktrans %}
+            </p>
+        </div>
     </div>
     <footer class="footer">
         <div class="container">
@@ -18,13 +118,20 @@
             </div>
 
             <div class="social-wrap">
-                <a class="btn btn-social-icon btn-vk" href="http://vk.com/share.php?url=https://geopuzzle.org" target="_blank"><span class="fa fa-vk"></span></a>
-                <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://geopuzzle.org" target="_blank"><span class="fa fa-facebook"></span></a>
-                <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/home?status=https%3A//geopuzzle.org%20%23geopuzzle" target="_blank"><span class="fa fa-twitter"></span></a>
-                <a class="btn btn-social-icon btn-google" href="https://plus.google.com/share?url=https://geopuzzle.org" target="_blank"><span class="fa fa-google-plus"></span></a>
+                <a class="btn btn-social-icon btn-vk" href="http://vk.com/share.php?url=https://geopuzzle.org"
+                   target="_blank"><span class="fa fa-vk"></span></a>
+                <a class="btn btn-social-icon btn-facebook"
+                   href="https://www.facebook.com/sharer/sharer.php?u=https://geopuzzle.org" target="_blank"><span
+                        class="fa fa-facebook"></span></a>
+                <a class="btn btn-social-icon btn-twitter"
+                   href="https://twitter.com/home?status=https%3A//geopuzzle.org%20%23geopuzzle" target="_blank"><span
+                        class="fa fa-twitter"></span></a>
+                <a class="btn btn-social-icon btn-google" href="https://plus.google.com/share?url=https://geopuzzle.org"
+                   target="_blank"><span class="fa fa-google-plus"></span></a>
             </div>
         </div>
     </footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 {% endblock %}

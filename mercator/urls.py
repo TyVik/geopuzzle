@@ -21,7 +21,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.views.generic import TemplateView
 
 
-import maps
+from mercator import views
 from .sitemaps import WorldSitemap, RegionSitemap
 
 
@@ -33,13 +33,13 @@ sitemaps = {
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^maps/', include('maps.urls')),
+    url(r'^puzzle/', include('maps.urls')),
     url(r'^quiz/', include('quiz.urls')),
 
     url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt'), name='robots'),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 
-    url(r'^$', maps.views.index, name='index'),
+    url(r'^$', views.index, name='index'),
 ]
 
 if settings.DEBUG:

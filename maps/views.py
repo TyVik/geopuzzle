@@ -31,13 +31,6 @@ class MapForm(forms.Form):
         return queryset
 
 
-def index(request: WSGIRequest) -> HttpResponse:
-    query = Country.objects.language(request.LANGUAGE_CODE).filter(is_published=True).order_by('name').all()
-    parts = query.filter(is_global=True)
-    countries = query.filter(is_global=False)
-    return render(request, 'maps/index.html', {'countries': countries, 'parts': parts})
-
-
 def infobox_by_id(request: WSGIRequest, pk: str) -> HttpResponse:
     obj = get_object_or_404(Area, pk=pk)
     return JsonResponse(obj.strip_infobox)

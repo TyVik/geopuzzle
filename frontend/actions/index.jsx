@@ -45,7 +45,7 @@ export const showInfobox = (polygon) => dispatch => {
     if (polygon.infobox.loaded) {
         return dispatch({type: SHOW_INFOBOX, id: polygon.id, data: polygon.infobox});
     } else {
-        return fetch(location.origin + `/maps/area/` + polygon.id + '/infobox/')
+        return fetch(location.origin + `/puzzle/area/` + polygon.id + '/infobox/')
             .then(response => response.json())
             .then(json => dispatch({type: GET_INFOBOX_DONE, id: polygon.id, data: prepareInfobox(json)}))
             .catch(response => dispatch({type: GET_INFOBOX_FAIL}));

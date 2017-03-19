@@ -42,8 +42,8 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
         'id': area.id,
         'name': area.name,
         'flag': area.infobox.get('flag', None),
-        'coat_of_arms': area.infobox.get('coat_of_arms', None),
-        'capital': area.infobox['capital']['name'] if 'capital' in area.infobox else None
+        # 'coat_of_arms': area.infobox.get('coat_of_arms', None),
+        # 'capital': area.infobox['capital']['name'] if 'capital' in area.infobox else None
     } for area in form.areas()]
     return JsonResponse(result, safe=False)
 
@@ -55,10 +55,3 @@ def quiz(request: WSGIRequest, name: str) -> HttpResponse:
         'country': country,
     }
     return render(request, 'quiz/map.html', context=context)
-
-
-def index(request: WSGIRequest) -> HttpResponse:
-    query = Country.objects.language(request.LANGUAGE_CODE).filter(is_published=True).order_by('name').all()
-    parts = query.filter(is_global=True)
-    countries = query.filter(is_global=False)
-    return render(request, 'quiz/index.html', {'countries': countries, 'parts': parts})
