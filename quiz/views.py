@@ -1,6 +1,5 @@
 from typing import Dict
 
-from django.contrib.gis.geos import Point
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.http import JsonResponse
@@ -8,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from maps.models import Country, Area
-from maps.views import MapForm
+from quiz.forms import PointContainsForm, QuizInfoboxForm
 
 
 def quiz_area(area: Area) -> Dict:
@@ -18,12 +17,9 @@ def quiz_area(area: Area) -> Dict:
 @csrf_exempt
 def check(request: WSGIRequest, pk: str) -> JsonResponse:
     area = get_object_or_404(Area, pk=pk)
-    lat = request.POST.get('lat', None)
-    lng = request.POST.get('lng', None)
-    lat, lng = float(lat), float(lng)
-    if area.polygon.contains(Point(lng, lat)):
-        return JsonResponse(quiz_area(area))
-    return JsonResponse({'success': False})
+    form = PointContainsForm(request.POST, area=area)
+    result = quiz_area(area) if form.is_valid() else {'success': False}
+    return JsonResponse(result)
 
 
 def giveup(request: WSGIRequest, pk: str) -> JsonResponse:
@@ -32,29 +28,10 @@ def giveup(request: WSGIRequest, pk: str) -> JsonResponse:
 
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
-    params = request.GET.copy()
-    fields = request.GET.get('fields').split(',')
-    params['country'] = name
-    params['lang'] = request.LANGUAGE_CODE
-    form = MapForm(params)
+    form = QuizInfoboxForm(data=request.GET, country=name, lang=request.LANGUAGE_CODE)
     if not form.is_valid():
         return JsonResponse(form.errors, status=400)
-    result = [{
-        'id': area.id,
-        'name': area.name,
-        'flag': area.infobox.get('flag', None),
-        'coat_of_arms': area.infobox.get('coat_of_arms', None),
-        'capital': area.infobox['capital']['name'] if 'capital' in area.infobox else None
-    } for area in form.areas()]
-
-    def reduce(item):
-        result = {}
-        for k, v in item.items():
-            if k == 'id' or k in fields:
-                result[k] = v
-        return result
-    result = [reduce(item) for item in result]
-    return JsonResponse(result, safe=False)
+    return JsonResponse(form.json(), safe=False)
 
 
 def quiz(request: WSGIRequest, name: str) -> HttpResponse:

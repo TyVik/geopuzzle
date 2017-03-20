@@ -11,20 +11,19 @@ from maps.models import Country, Area, DIFFICULTY_LEVELS
 
 
 class MapForm(forms.Form):
-    country = forms.ModelChoiceField(queryset=Country.objects.all(), to_field_name='slug')
     id = forms.ModelMultipleChoiceField(queryset=Area.objects.all(), required=False)
     difficulty = forms.ChoiceField(choices=DIFFICULTY_LEVELS, required=False, initial=1)
-    lang = forms.ChoiceField(choices=settings.LANGUAGES, required=False, initial='en')
 
-    def clean_country(self) -> Country:
-        self.meta = self.cleaned_data.get('country', None)
-        return self.meta
+    def __init__(self, country, lang, *args, **kwargs):
+        self.country = get_object_or_404(Country, slug=country)
+        self.lang = lang
+        super(MapForm, self).__init__(*args, **kwargs)
 
     def areas(self) -> QuerySet:
         if len(self.cleaned_data['id']) > 0:
             return self.cleaned_data['id']
 
-        queryset = Area.objects.language(self.cleaned_data['lang']).filter(country=self.cleaned_data['country']).exclude(difficulty=0).order_by('?')
+        queryset = Area.objects.language(self.lang).filter(country=self.country).exclude(difficulty=0).order_by('?')
         if self.cleaned_data['difficulty'] != '':
             queryset = queryset.filter(difficulty=int(self.cleaned_data['difficulty']))
         return queryset
@@ -36,10 +35,7 @@ def infobox_by_id(request: WSGIRequest, pk: str) -> HttpResponse:
 
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
-    params = request.GET.copy()
-    params['country'] = name
-    params['lang'] = request.LANGUAGE_CODE
-    form = MapForm(params)
+    form = MapForm(request.GET, country=name, lang=request.LANGUAGE_CODE)
     if not form.is_valid():
         return JsonResponse(form.errors, status=400)
     result = [{
