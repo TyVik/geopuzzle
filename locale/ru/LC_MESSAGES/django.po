@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-06 11:33+0000\n"
+"POT-Creation-Date: 2017-03-20 20:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,27 +47,47 @@ msgstr "Пожалуйста, исправьте ошибки."
 msgid "Please correct the errors below."
 msgstr "Пожалуйста, исправьте ошибки."
 
-#: maps/views.py:72
+#: maps/views.py:57
 msgid "You found next countries"
 msgstr "Вы нашли следующие страны"
 
-#: maps/views.py:72
+#: maps/views.py:57
 msgid "You found next regions"
 msgstr "Вы нашли следующие регионы"
 
-#: maps/views.py:73
+#: maps/views.py:58
 msgid "{} was assembled! My time is "
 msgstr "{} собрана! Моё время "
 
-#: maps/views.py:73
+#: maps/views.py:58
 msgid "World map"
 msgstr "Карта мира"
+
+#: mercator/views.py:17
+msgid "puzzle"
+msgstr "Паззл"
+
+#: mercator/views.py:18
+msgid "Drag the shapes of countries on the right place."
+msgstr "Перетащите контуры стран на правильные места."
+
+#: mercator/views.py:22
+msgid "quiz"
+msgstr "Викторина"
+
+#: mercator/views.py:23
+msgid ""
+"Find all countries or regions by their attributes: name, flag, emblem or "
+"capital."
+msgstr ""
+"Найдите все страны или регионы по их атрибутике: названию, флагу, гербу или "
+"столице."
 
 #: templates/base.html:5
 msgid "Mercator puzzle of"
 msgstr "Паззл Меркатора - "
 
-#: templates/base.html:5 templates/index.html:21
+#: templates/base.html:5 templates/index.html:41
 msgid "World"
 msgstr "Мир"
 
@@ -75,40 +95,28 @@ msgstr "Мир"
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
 
-#: templates/index.html:15
-msgid ""
-"Thank you for attention :) You came to the site of cognitive games Geo "
-"Puzzle. Here you can learn some\n"
-"geography and fun to pass the time. The task - drag the shapes of countries "
-"on the right place.\n"
-"Good luck ;)"
-msgstr ""
-"Спасибо что заглянули. Это сайт познавательной игры Geo Puzzle. Здесь можно "
-"подучить географию и увлекательно скоротать время. Задача - перетащить "
-"контуры стран по правильным местам. Удачи ;)"
-
-#: templates/index.html:29
+#: templates/index.html:48
 msgid "easy"
 msgstr "лёгкий"
 
-#: templates/index.html:37
+#: templates/index.html:55
 msgid "normal"
 msgstr "средний"
 
-#: templates/index.html:45
+#: templates/index.html:62
 msgid "hard"
 msgstr "тяжёлый"
 
-#: templates/index.html:64
+#: templates/index.html:78
 msgid "Country regions"
 msgstr "Регионы стран"
 
-#: templates/index.html:82
+#: templates/index.html:102
 msgid ""
 "This is my pet project, but I was so impressed with this idea that I decided "
-"to make a website. It is\n"
-"not over yet - will update both the data and functionality. All suggestions "
-"for improvement can be sent to me via\n"
+"to make a website. It is not over yet -\n"
+"will update both the data and functionality. All suggestions for improvement "
+"can be sent to me via\n"
 "<a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">email</a>, <a href="
 "\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
 "or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank"
@@ -122,5 +130,5 @@ msgstr ""
 "www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
 
 #: templates/share_image.html:8
-msgid "Game-puzzle with political maps"
-msgstr "Паззл из стран"
+msgid "Games on political maps"
+msgstr "Игры на политической карте"

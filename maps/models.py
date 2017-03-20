@@ -130,7 +130,7 @@ class Area(TranslatableModel):
     @property
     def strip_infobox(self) -> Dict:
         result = self.infobox
-        del (result['geonamesID'])
+        result.pop('geonamesID', None)
         if 'capital' in result:
             del (result['capital']['id'])
         return result
