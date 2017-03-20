@@ -1,13 +1,15 @@
 'use strict';
 import React from "react";
 import {connect} from "react-redux";
+import localization from '../../localization';
 import {Button, Modal, FormGroup, Checkbox} from "react-bootstrap";
-import {INIT_QUIZ_DONE, INIT_LOAD_FAIL} from '../../actions';
-// import "./index.css";
+import {INIT_QUIZ_DONE, INIT_LOAD_FAIL} from "../../actions";
+import "./index.css";
 
 
 class QuizInit extends React.Component {
     loadQuiz = this.loadQuiz.bind(this);
+    allow = this.allow.bind(this);
 
     constructor(props) {
         super(props);
@@ -29,25 +31,37 @@ class QuizInit extends React.Component {
 
     toggle(param) {
         this.setState({...this.state, [param]: !this.state[param]});
-        console.log(this.state);
+    }
+
+    allow() {
+        console.log(this.state.name || this.state.flag || this.state.coat_of_arms || this.state.capital);
+        return this.state.name || this.state.flag || this.state.coat_of_arms || this.state.capital;
     }
 
     render() {
         return (
             <Modal show={this.state.show} dialogClassName="custom-modal">
                 <Modal.Header>
-                    <Modal.Title id="contained-modal-title-lg">Choose elements</Modal.Title>
+                    <Modal.Title id="contained-modal-title-lg">{localization.quizInitCaption}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <FormGroup>
-                        <Checkbox inline onClick={() => this.toggle('name')}>Название</Checkbox>
-                        <Checkbox inline onClick={() => this.toggle('flag')}>Флаг</Checkbox>
-                        <Checkbox inline onClick={() => this.toggle('coat_of_arms')}>Герб</Checkbox>
-                        <Checkbox inline onClick={() => this.toggle('capital')}>Столица</Checkbox>
+                    <FormGroup className="checkbox-group">
+                        <Checkbox inline onClick={() => this.toggle('name')}>{localization.title}</Checkbox>
+                        <Checkbox inline onClick={() => this.toggle('flag')}>{localization.flag}</Checkbox>
+                        <Checkbox inline onClick={() => this.toggle('coat_of_arms')}>{localization.coat_of_arms}</Checkbox>
+                        <Checkbox inline onClick={() => this.toggle('capital')}>{localization.capital}</Checkbox>
                     </FormGroup>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={() => this.props.dispatch(this.loadQuiz())}>Start</Button>
+                    {!this.allow() &&
+                    <div>
+                        {localization.quizInitCheck}&nbsp;
+                        <Button disabled>{localization.start}</Button>
+                    </div>
+                    }
+                    {this.allow() &&
+                    <Button onClick={() => this.props.dispatch(this.loadQuiz())}>{localization.start}</Button>
+                    }
                 </Modal.Footer>
             </Modal>
         );

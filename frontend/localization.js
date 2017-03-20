@@ -5,6 +5,9 @@ import LocalizedStrings from "react-localization";
 let localization = new LocalizedStrings({
     en: {
         capital: 'Capital',
+        flag: 'Flag',
+        coat_of_arms: 'Coat of arms',
+        title: 'Title',
         area: 'Area',
         population: 'Population',
         currency: 'Currency',
@@ -14,10 +17,16 @@ let localization = new LocalizedStrings({
         once_again: 'once again',
         congratulations: 'Congratulations!',
         km2: 'sq. km.',
-        loading: 'Loading...'
+        loading: 'Loading...',
+        start: 'Start',
+        quizInitCaption: "I'll search the regions by",
+        quizInitCheck: "Choose at least one option",
     },
     ru: {
         capital: 'Столица',
+        flag: 'Флаг',
+        coat_of_arms: 'Герб',
+        title: 'Название',
         area: 'Площадь',
         population: 'Население',
         currency: 'Валюта',
@@ -27,7 +36,10 @@ let localization = new LocalizedStrings({
         once_again: 'ещё раз',
         congratulations: 'Поздравляем!',
         km2: 'кв. км.',
-        loading: 'Загрузка...'
+        loading: 'Загрузка...',
+        start: 'Начали!',
+        quizInitCaption: "Я буду искать регионы по",
+        quizInitCheck: "Выберите хотя бы один вариант",
     }
 });
 
