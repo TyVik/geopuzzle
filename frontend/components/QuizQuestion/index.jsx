@@ -24,7 +24,6 @@ class QuizQuestion extends React.Component {
     render() {
         if (this.props.questions && (this.props.questions.length > 0)) {
             let question = this.props.questions[this.props.question_index];
-            console.log(question);
             return (
                 <div className="quiz-question">
                     <table>

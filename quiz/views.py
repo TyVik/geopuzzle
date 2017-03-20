@@ -33,6 +33,7 @@ def giveup(request: WSGIRequest, pk: str) -> JsonResponse:
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
     params = request.GET.copy()
+    fields = request.GET.get('fields').split(',')
     params['country'] = name
     params['lang'] = request.LANGUAGE_CODE
     form = MapForm(params)
@@ -42,9 +43,17 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
         'id': area.id,
         'name': area.name,
         'flag': area.infobox.get('flag', None),
-        # 'coat_of_arms': area.infobox.get('coat_of_arms', None),
-        # 'capital': area.infobox['capital']['name'] if 'capital' in area.infobox else None
+        'coat_of_arms': area.infobox.get('coat_of_arms', None),
+        'capital': area.infobox['capital']['name'] if 'capital' in area.infobox else None
     } for area in form.areas()]
+
+    def reduce(item):
+        result = {}
+        for k, v in item.items():
+            if k == 'id' or k in fields:
+                result[k] = v
+        return result
+    result = [reduce(item) for item in result]
     return JsonResponse(result, safe=False)
 
 

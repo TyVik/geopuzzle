@@ -14,7 +14,6 @@ class MapForm(forms.Form):
     country = forms.ModelChoiceField(queryset=Country.objects.all(), to_field_name='slug')
     id = forms.ModelMultipleChoiceField(queryset=Area.objects.all(), required=False)
     difficulty = forms.ChoiceField(choices=DIFFICULTY_LEVELS, required=False, initial=1)
-    count = forms.IntegerField(required=False, initial=3)
     lang = forms.ChoiceField(choices=settings.LANGUAGES, required=False, initial='en')
 
     def clean_country(self) -> Country:

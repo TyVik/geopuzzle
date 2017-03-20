@@ -7,6 +7,7 @@ import Map from './components/Map';
 import Loading from './components/Loading';
 import Infobox from './components/Infobox';
 import QuizQuestion from './components/QuizQuestion';
+import QuizInit from './components/QuizInit';
 import Toolbox from './components/Toolbox';
 import {checkQuiz, INIT_LOAD, INIT_LOAD_FAIL, INIT_QUIZ_DONE, CHECK_QUIZ_FAIL, CHECK_QUIZ_SUCCESS} from './actions';
 
@@ -16,13 +17,7 @@ class QuizClass extends React.Component {
     mapClick = this.mapClick.bind(this);
 
     mapInit() {
-        return (dispatch) => {
-            dispatch({type: INIT_LOAD});
-            return fetch(location.pathname.replace('/quiz/', '/quiz/questions/') + location.search)
-                .then(response => response.json())
-                .then(questions => dispatch({type: INIT_QUIZ_DONE, questions}))
-                .catch(response => dispatch({type: INIT_LOAD_FAIL}));
-        };
+        return {type: INIT_LOAD};
     }
 
     mapClick(e) {
@@ -55,6 +50,7 @@ class QuizClass extends React.Component {
             <div>
                 <Loading/>
                 <Map initCallback={this.mapInit} mapClick={this.mapClick}/>
+                <QuizInit/>
                 <QuizQuestion/>
                 <Infobox/>
                 <Toolbox/>
