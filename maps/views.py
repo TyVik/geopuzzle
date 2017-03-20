@@ -35,7 +35,7 @@ def infobox_by_id(request: WSGIRequest, pk: str) -> HttpResponse:
 
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
-    form = MapForm(request.GET, country=name, lang=request.LANGUAGE_CODE)
+    form = MapForm(data=request.GET, country=name, lang=request.LANGUAGE_CODE)
     if not form.is_valid():
         return JsonResponse(form.errors, status=400)
     result = [{

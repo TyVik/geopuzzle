@@ -18,8 +18,8 @@ class QuizInit extends React.Component {
         return (dispatch) => {
             this.setState({show: false});
             let quizBy = ['name', 'flag', 'coat_of_arms', 'capital'].filter((param) => this.state[param]);
-            let get_params = location.search ? location.search + '&fields=' : '?fields=';
-            get_params += quizBy.join();
+            let get_params = location.search ? location.search + '&' : '?';
+            get_params += 'params=' + quizBy.join();
             return fetch(location.pathname.replace('/quiz/', '/quiz/questions/') + get_params)
                 .then(response => response.json())
                 .then(questions => dispatch({type: INIT_QUIZ_DONE, questions}))

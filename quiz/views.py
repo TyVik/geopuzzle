@@ -17,7 +17,7 @@ def quiz_area(area: Area) -> Dict:
 @csrf_exempt
 def check(request: WSGIRequest, pk: str) -> JsonResponse:
     area = get_object_or_404(Area, pk=pk)
-    form = PointContainsForm(request.POST, area=area)
+    form = PointContainsForm(data=request.POST, area=area)
     result = quiz_area(area) if form.is_valid() else {'success': False}
     return JsonResponse(result)
 
