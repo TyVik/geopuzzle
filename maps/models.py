@@ -135,19 +135,16 @@ class Area(TranslatableModel):
             del (result['capital']['id'])
         return result
 
-    def _update_infobox(self, rows):
+    def update_infobox_by_wikidata_id(self) -> None:
+        time.sleep(5)  # protection for DDoS
+        country_id = self.country.wikidata_id if not self.country.is_global else None
+        rows = query_by_wikidata_id(country_id=country_id, item_id=self.wikidata_id)
         for lang, infobox in rows.items():
             trans = load_translation(self, lang, enforce=True)
             trans.master = self
             trans.infobox = infobox
             trans.name = infobox.get('name', '')
             trans.save()
-
-    def update_infobox_by_wikidata_id(self) -> None:
-        time.sleep(5)  # protection for DDoS
-        country_id = self.country.wikidata_id if not self.country.is_global else None
-        rows = query_by_wikidata_id(country_id=country_id, item_id=self.wikidata_id)
-        self._update_infobox(rows)
 
     def recalc_answer(self) -> None:
         diff = (-1, -1, 1, 1)
