@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^puzzle/', include('maps.urls')),
     url(r'^quiz/', include('quiz.urls')),
+    url(r'^maps/(?P<name>[a-zA-Z0-9]+)/', views.deprecated_redirect),
 
     url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt'), name='robots'),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='sitemap'),

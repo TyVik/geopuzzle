@@ -1,3 +1,5 @@
+from django.http import HttpResponsePermanentRedirect
+from django.urls import reverse
 from django.utils.translation import ugettext as _
 
 from django.core.handlers.wsgi import WSGIRequest
@@ -24,3 +26,7 @@ def index(request: WSGIRequest) -> HttpResponse:
         }
     }
     return render(request, 'index.html', {'countries': countries, 'parts': parts, 'games': games})
+
+
+def deprecated_redirect(request: WSGIRequest, name: str) -> HttpResponsePermanentRedirect:
+    return HttpResponsePermanentRedirect(reverse('puzzle_map', kwargs={'name': name}))
