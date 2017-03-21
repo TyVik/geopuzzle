@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-20 20:05+0000\n"
+"POT-Creation-Date: 2017-03-20 20:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,7 +87,7 @@ msgstr ""
 msgid "Mercator puzzle of"
 msgstr "Паззл Меркатора - "
 
-#: templates/base.html:5 templates/index.html:41
+#: templates/base.html:5 templates/index.html:42
 msgid "World"
 msgstr "Мир"
 
@@ -95,23 +95,36 @@ msgstr "Мир"
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
 
-#: templates/index.html:48
+#: templates/index.html:14
+msgid ""
+"Thank you for attention. This site is dedicated to study of the political "
+"map of the\n"
+"world. Here you can study not only where is any country or region, but also "
+"its flag, coat of arms or capital. Now\n"
+"available 2 games: puzzle and quiz. Good luck ;)"
+msgstr ""
+"Спасибо что заглянули. Этот сайт посвящён изучению политической карты мира. "
+"Здесь вы можете узнать не только где находится какая страна или регион, но "
+"также её флаг, герб или столицу. Сейчас доступно 2 игры: паззл и викторина. "
+"Удачи ;)"
+
+#: templates/index.html:49
 msgid "easy"
 msgstr "лёгкий"
 
-#: templates/index.html:55
+#: templates/index.html:56
 msgid "normal"
 msgstr "средний"
 
-#: templates/index.html:62
+#: templates/index.html:63
 msgid "hard"
 msgstr "тяжёлый"
 
-#: templates/index.html:78
+#: templates/index.html:79
 msgid "Country regions"
 msgstr "Регионы стран"
 
-#: templates/index.html:102
+#: templates/index.html:103
 msgid ""
 "This is my pet project, but I was so impressed with this idea that I decided "
 "to make a website. It is not over yet -\n"
