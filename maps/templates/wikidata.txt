@@ -27,7 +27,9 @@ SELECT DISTINCT
         } order by desc(?qualifier) limit 1
     }
     OPTIONAL { wd:{{ item_id }} wdt:P2046 ?area. }
-    OPTIONAL { wd:{{ item_id }} wdt:P94 ?coat_of_arms. }
+    OPTIONAL { wd:{{ item_id }} wdt:P94 ?raw_coat_of_arms. }
+    OPTIONAL { wd:{{ item_id }} wdt:P158 ?seal. }
+    BIND(coalesce(?raw_coat_of_arms, ?seal) as ?coat_of_arms)
     {% if country_id is None %}
         OPTIONAL {
             wd:{{ item_id }} p:P38 ?currency_statement.
