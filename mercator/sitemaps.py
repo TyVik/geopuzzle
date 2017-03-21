@@ -15,8 +15,15 @@ class RegionSitemap(Sitemap):
     def lastmod(self, country):
         return timezone.now()
 
+
+class PuzzleSitemap(RegionSitemap):
     def location(self, country):
-        return country.get_absolute_url()
+        return reverse('puzzle_map', kwargs={'name': country.slug})
+
+
+class QuizSitemap(RegionSitemap):
+    def location(self, country):
+        return reverse('quiz_map', kwargs={'name': country.slug})
 
 
 class WorldSitemap(Sitemap):

@@ -22,12 +22,13 @@ from django.views.generic import TemplateView
 
 
 from mercator import views
-from .sitemaps import WorldSitemap, RegionSitemap
+from .sitemaps import WorldSitemap, PuzzleSitemap, QuizSitemap
 
 
 sitemaps = {
     'world': WorldSitemap,
-    'country': RegionSitemap,
+    'puzzle': PuzzleSitemap,
+    'quiz': QuizSitemap,
 }
 
 
