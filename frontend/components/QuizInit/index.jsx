@@ -34,8 +34,24 @@ class QuizInit extends React.Component {
     }
 
     allow() {
-        console.log(this.state.name || this.state.flag || this.state.coat_of_arms || this.state.capital);
         return this.state.name || this.state.flag || this.state.coat_of_arms || this.state.capital;
+    }
+
+    show_checkbox(param) {
+        let country = location.pathname.split('/')[2];
+        switch (param) {
+            case 'flag':
+                if (['india', 'romania'].indexOf(country) !== -1) {
+                    return false;
+                }
+                break;
+            case 'coat_of_arms':
+                if (['japan', 'india'].indexOf(country) !== -1) {
+                    return false;
+                }
+                break;
+        }
+        return true;
     }
 
     render() {
@@ -47,8 +63,12 @@ class QuizInit extends React.Component {
                 <Modal.Body>
                     <FormGroup className="checkbox-group">
                         <Checkbox inline onClick={() => this.toggle('name')}>{localization.title}</Checkbox>
+                        {this.show_checkbox('flag') &&
                         <Checkbox inline onClick={() => this.toggle('flag')}>{localization.flag}</Checkbox>
+                        }
+                        {this.show_checkbox('coat_of_arms') &&
                         <Checkbox inline onClick={() => this.toggle('coat_of_arms')}>{localization.coat_of_arms}</Checkbox>
+                        }
                         <Checkbox inline onClick={() => this.toggle('capital')}>{localization.capital}</Checkbox>
                     </FormGroup>
                 </Modal.Body>
