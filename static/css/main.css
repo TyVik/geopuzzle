@@ -40,14 +40,18 @@ footer .social-wrap {
     background-color: rgba(56, 132, 132, 0.1);
 }
 
+.nav-tabs {
+    font-size: xx-large;
+}
+
 .nav-tabs>li.active>a.puzzle-tab, .nav-tabs>li.active>a.puzzle-tab:focus, .nav-tabs>li.active>a.puzzle-tab:hover,
 .nav-tabs>li>a.puzzle-tab:hover {
-    background-color: rgba(132, 132, 56, 0.2);
+    background-color: rgba(132, 132, 56, 0.1);
 }
 
 .nav-tabs>li.active>a.quiz-tab, .nav-tabs>li.active>a.quiz-tab:focus, .nav-tabs>li.active>a.quiz-tab:hover,
 .nav-tabs>li>a.quiz-tab:hover {
-    background-color: rgba(56, 132, 132, 0.2);
+    background-color: rgba(56, 132, 132, 0.1);
 }
 
 .nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:focus, .nav-tabs.nav-justified>.active>a:hover {
