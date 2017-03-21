@@ -30,7 +30,10 @@ class QuizInfoboxForm(MapForm):
         for area in self.areas():
             k = {'id': area.id}
             for param in self.cleaned_data['params']:
-                value = area.infobox['capital']['name'] if param == 'capital' else area.infobox.get(param, None)
+                if param == 'capital':
+                    value = area.infobox.get('name', None) if 'capital' not in area.infobox else area.infobox['capital']['name']
+                else:
+                    value = area.infobox.get(param, None)
                 k[param] = value
             result.append(k)
         return result
