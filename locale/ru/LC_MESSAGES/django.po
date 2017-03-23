@@ -51,10 +51,6 @@ msgstr "Пожалуйста, исправьте ошибки."
 msgid "You found next countries"
 msgstr "Вы нашли следующие страны"
 
-#: maps/views.py:57
-msgid "You found next regions"
-msgstr "Вы нашли следующие регионы"
-
 #: maps/views.py:58
 msgid "{} was assembled! My time is "
 msgstr "{} собрана! Моё время "

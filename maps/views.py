@@ -54,7 +54,6 @@ def maps(request: WSGIRequest, name: str) -> HttpResponse:
     context = {
         'language': request.LANGUAGE_CODE,
         'country': country,
-        'congratulation': _('You found next countries') if country.is_global else _('You found next regions'),
-        'share': _('{} was assembled! My time is ').format(country.name if country != 1 else _('World map'))
+        'text': _('{} was assembled! My time is ').format(country.name if country != 1 else _('World map'))
     }
     return render(request, 'maps/map.html', context=context)
