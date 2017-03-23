@@ -1,7 +1,6 @@
 from django.utils.translation import ugettext as _
 
 from django import forms
-from django.conf import settings
 from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import QuerySet
 from django.http import HttpResponse, JsonResponse
@@ -54,6 +53,6 @@ def maps(request: WSGIRequest, name: str) -> HttpResponse:
     context = {
         'language': request.LANGUAGE_CODE,
         'country': country,
-        'text': _('{} was assembled! My time is ').format(country.name if country != 1 else _('World map'))
+        'text': _('{} was assembled! You time is ').format(country.name if country.id != 1 else _('World map'))
     }
     return render(request, 'maps/map.html', context=context)

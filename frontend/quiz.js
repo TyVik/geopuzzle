@@ -9,7 +9,8 @@ import Infobox from './components/Infobox';
 import QuizQuestion from './components/QuizQuestion';
 import QuizInit from './components/QuizInit';
 import Toolbox from './components/Toolbox';
-import {checkQuiz, INIT_LOAD, INIT_LOAD_FAIL, INIT_QUIZ_DONE, CHECK_QUIZ_FAIL, CHECK_QUIZ_SUCCESS} from './actions';
+import Congratulation from './components/Congratulation';
+import {checkQuiz, INIT_LOAD, CHECK_QUIZ_FAIL, CHECK_QUIZ_SUCCESS} from './actions';
 
 
 class QuizClass extends React.Component {
@@ -54,6 +55,7 @@ class QuizClass extends React.Component {
                 <QuizQuestion/>
                 <Infobox/>
                 <Toolbox/>
+                <Congratulation/>
             </div>
         )
     };

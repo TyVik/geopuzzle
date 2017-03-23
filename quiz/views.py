@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext as _
 from typing import Dict
 
 from django.core.handlers.wsgi import WSGIRequest
@@ -39,5 +40,8 @@ def quiz(request: WSGIRequest, name: str) -> HttpResponse:
     context = {
         'language': request.LANGUAGE_CODE,
         'country': country,
+        'text': _('{name} has been studied! You guessed all {subjects}. You time is ').format(
+            name=country.name if country.id != 1 else _('World map'),
+            subjects=_('countries') if country.is_global else _('regions'))
     }
     return render(request, 'quiz/map.html', context=context)

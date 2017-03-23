@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-20 20:18+0000\n"
+"POT-Creation-Date: 2017-03-23 08:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,37 +47,46 @@ msgstr "Пожалуйста, исправьте ошибки."
 msgid "Please correct the errors below."
 msgstr "Пожалуйста, исправьте ошибки."
 
-#: maps/views.py:57
-msgid "You found next countries"
-msgstr "Вы нашли следующие страны"
+#: maps/views.py:56
+msgid "{} was assembled! You time is "
+msgstr "{} собрана! Ваше время "
 
-#: maps/views.py:58
-msgid "{} was assembled! My time is "
-msgstr "{} собрана! Моё время "
-
-#: maps/views.py:58
+#: maps/views.py:56 quiz/views.py:44
 msgid "World map"
 msgstr "Карта мира"
 
-#: mercator/views.py:17
+#: mercator/views.py:19
 msgid "puzzle"
 msgstr "Паззл"
 
-#: mercator/views.py:18
+#: mercator/views.py:20
 msgid "Drag the shapes of countries on the right place."
 msgstr "Перетащите контуры стран на правильные места."
 
-#: mercator/views.py:22
+#: mercator/views.py:24
 msgid "quiz"
 msgstr "Викторина"
 
-#: mercator/views.py:23
+#: mercator/views.py:25
 msgid ""
 "Find all countries or regions by their attributes: name, flag, emblem or "
 "capital."
 msgstr ""
 "Найдите все страны или регионы по их атрибутике: названию, флагу, гербу или "
 "столице."
+
+#: quiz/views.py:43
+#, python-brace-format
+msgid "{name} has been studied! You guessed all {subjects}. You time is "
+msgstr "{name} была изучена! Вы нашли все {subjects}. Ваше время "
+
+#: quiz/views.py:45
+msgid "countries"
+msgstr "страны"
+
+#: quiz/views.py:45
+msgid "regions"
+msgstr "регионы"
 
 #: templates/base.html:5
 msgid "Mercator puzzle of"
