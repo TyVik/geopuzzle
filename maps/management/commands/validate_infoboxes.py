@@ -1,0 +1,65 @@
+import requests
+from django.conf import settings
+from django.core.management import BaseCommand
+from hvad.utils import load_translation
+
+from maps.models import Area
+
+__authors__ = "Viktor Tyshchenko"
+__copyright__ = "Copyright (C) 3D4Medical.com, LLC - All Rights Reserved"
+__license__ = "Unauthorized copying of this file, via any medium is strictly prohibited. Proprietary and confidential"
+
+
+def log(area, lang, text):
+    print('Area {} with language {}: {}'.format(area.id, lang, text))
+
+
+def check_link(area, lang, infobox, name, is_image):
+    response = requests.get(infobox[name])
+    if response.status_code != 200:
+        log(area, lang, '- {} link'.format(name))
+    if is_image and response.headers['content-type'] != 'image/svg+xml':
+        log(area, lang, '- {} svg'.format(name))
+
+
+class Command(BaseCommand):
+    def handle(self, *args, **options):
+        for area in Area.objects.order_by('id').all():
+            for lang in settings.LANGUAGES:
+                trans = load_translation(area, lang[0], enforce=True)
+                infobox = trans.infobox
+                if 'area' not in infobox:
+                    log(area, lang[0], '- area')
+                if 'population' not in infobox:
+                    log(area, lang[0], '- population')
+                if 'name' not in infobox:
+                    log(area, lang[0], '- name')
+                if 'geonamesID' not in infobox:
+                    log(area, lang[0], '- geonamesID')
+                if 'currency' not in infobox and area.country.is_global:
+                    log(area, lang[0], '- currency')
+
+                if 'capital' not in infobox or not isinstance(infobox['capital'], dict):
+                    log(area, lang[0], '- capital')
+                else:
+                    if not isinstance(infobox['capital']['lat'], float):
+                        log(area, lang[0], '- capital/lat')
+                    if not isinstance(infobox['capital']['lon'], float):
+                        log(area, lang[0], '- capital/lon')
+                    if 'wiki' not in infobox['capital']:
+                        log(area, lang[0], '- capital/wiki')
+                    else:
+                        check_link(area, lang[0], infobox['capital'], 'wiki', False)
+
+                if 'wiki' not in infobox:
+                    log(area, lang[0], '- wiki')
+                else:
+                    check_link(area, lang[0], infobox, 'wiki', False)
+                if 'flag' not in infobox:
+                    log(area, lang[0], '- flag')
+                else:
+                    check_link(area, lang[0], infobox, 'flag', True)
+                if 'coat_of_arms' not in infobox:
+                    log(area, lang[0], '- coat_of_arms')
+                else:
+                    check_link(area, lang[0], infobox, 'coat_of_arms', True)
