@@ -102,7 +102,7 @@ class Area(TranslatableModel):
         return self.name
 
     def get_absolute_url(self) -> str:
-        return '{}?id={}'.format(reverse('puzzle_map', args=(self.country.slug,)), self.id)
+        return '{}?id={}'.format(reverse('quiz_map', args=(self.country.slug,)), self.id)
 
     @property
     def polygon_gmap(self) -> List:
@@ -121,6 +121,13 @@ class Area(TranslatableModel):
     def center(self) -> List:
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
         return list(self.polygon.centroid)
+
+    def infobox_status(self) -> Dict:
+        fields = ('name', 'wiki', 'capital', 'coat_of_arms', 'flag')
+        result = {field: field in self.infobox for field in fields}
+        result['capital'] = result['capital'] and isinstance(self.infobox['capital'], dict)
+        print("{}\n{}".format(self.id, result))
+        return result
 
     @property
     def strip_infobox(self) -> Dict:

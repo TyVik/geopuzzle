@@ -27,6 +27,14 @@ class CountryAdmin(ImageMixin, TranslatableAdmin):
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
     }
+    """
+    fieldsets = (
+        (None, {'fields': (
+            ('wikidata_id', 'is_published', 'is_global', 'name'),
+            ('image', 'slug', 'zoom'),
+            'center', 'default_positions')}),
+    )
+    """
 
     def _name(self, obj: Country) -> str:
         return obj.name
@@ -79,7 +87,7 @@ update_infobox.short_description = "Update infobox"
 
 @admin.register(Area)
 class AreaAdmin(TranslatableAdmin):
-    list_display = ('_name', 'difficulty', 'wiki_id', 'wikidata_id', 'num_points')
+    list_display = ('_name', 'difficulty', 'wiki_id', 'wikidata_id', 'num_points', 'infobox_status')
     list_filter = ('difficulty', 'country')
     list_editable = ('difficulty', 'wikidata_id')
     actions = [recalc_answer, update_infobox]
@@ -98,6 +106,14 @@ class AreaAdmin(TranslatableAdmin):
         return '' if obj.wikidata_id is None else '<a href="https://www.wikidata.org/wiki/{id}">{id}</a>'.format(id=obj.wikidata_id)
     wiki_id.short_description = 'Wiki ID'
     wiki_id.allow_tags = True
+
+    def infobox_status(self, obj: Area) -> str:
+        result = ''
+        for key, value in obj.infobox_status().items():
+            result += '<img src="/static/admin/img/icon-{}.svg" title="{}"/>'.format('yes' if value else 'no', key)
+        return result
+    infobox_status.short_description = 'Infobox'
+    infobox_status.allow_tags = True
 
     def kml_import(self, request:WSGIRequest, pk: str) -> HttpResponse:
         opts = self.model._meta
