@@ -43,8 +43,6 @@ class Country(TranslatableModel):
     center = PointField(geography=True)
     default_positions = MultiPointField(geography=True)
     zoom = models.PositiveSmallIntegerField(choices=ZOOMS)
-    default_count = models.PositiveSmallIntegerField(default=0)  # deprecated
-    sparql = models.TextField(blank=True, null=True)
     is_published = models.BooleanField(default=False)
     is_global = models.BooleanField(default=False)
     wikidata_id = models.CharField(max_length=15)
