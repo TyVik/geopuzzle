@@ -26,12 +26,18 @@ class QuizInfoboxForm(MapForm):
         return self.cleaned_data['params'].split(',')
 
     def json(self):
+        def extract_capital(capital):
+            return capital['name'] if isinstance(capital, dict) else capital
+
         result = []
         for area in self.areas():
+            if area.infobox is None:
+                continue
             k = {'id': area.id}
             for param in self.cleaned_data['params']:
                 if param == 'capital':
-                    value = area.infobox.get('name', None) if 'capital' not in area.infobox else area.infobox['capital']['name']
+                    capital = area.infobox.get('capital', None)
+                    value = area.infobox.get('name', None) if capital is None else extract_capital(capital)
                 else:
                     value = area.infobox.get(param, None)
                 k[param] = value

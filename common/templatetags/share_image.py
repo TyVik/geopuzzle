@@ -16,7 +16,7 @@ def share_image(request, country):
         result = {
             'slug': country.slug,
             'image': {
-                'url': request.build_absolute_uri(country.image.url),
+                'url': request.build_absolute_uri(country.image.url) if country.image else '',
                 'size': 250
             }
         }
