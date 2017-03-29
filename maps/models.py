@@ -41,8 +41,7 @@ class Country(TranslatableModel):
     image = models.ImageField(upload_to='countries', blank=True, null=True)
     slug = models.CharField(max_length=15, db_index=True)
     center = PointField(geography=True)
-    position = PointField(geography=True)
-    default_positions = MultiPointField(geography=True, null=True)
+    default_positions = MultiPointField(geography=True)
     zoom = models.PositiveSmallIntegerField(choices=ZOOMS)
     default_count = models.PositiveSmallIntegerField(default=0)  # deprecated
     sparql = models.TextField(blank=True, null=True)
@@ -75,8 +74,6 @@ class Country(TranslatableModel):
         }
 
     def pop_position(self) -> Tuple:
-        if self.default_positions is None:
-            return self.position.coords
         if len(self.__default_positions) == 0:
             self.__default_positions = self.default_positions[:]
             random.shuffle(self.__default_positions)
