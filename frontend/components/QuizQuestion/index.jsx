@@ -21,6 +21,7 @@ class QuizQuestion extends React.Component {
                 .catch(response => dispatch({type: INIT_LOAD_FAIL}));
         };
     }
+
     render() {
         if (this.props.questions && (this.props.questions.length > 0)) {
             let question = this.props.questions[this.props.question_index];

@@ -3,10 +3,28 @@ import tempfile
 from django import forms
 from django.conf import settings
 from django.contrib.gis.gdal import DataSource
-from django.contrib.gis.geos import MultiPolygon
+from django.contrib.gis.geos import MultiPolygon, Point
 from hvad.utils import load_translation
 
 from maps.models import Country, Area
+
+
+ONE_DEGREE = 111
+
+
+class PointCenterForm(forms.Form):
+    lat = forms.FloatField()
+    lng = forms.FloatField()
+
+    def __init__(self, area, *args, **kwargs):
+        self.area = area
+        super(PointCenterForm, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super(PointCenterForm, self).clean()
+        point = Point(cleaned_data.get('lng'), cleaned_data.get('lat'))
+        if self.area.polygon.centroid.distance(point)*100 > ONE_DEGREE * (1.0 / (self.area.country.zoom - 2)):
+            raise forms.ValidationError('Point not in polygons')
 
 
 class KMLCountryImportForm(forms.Form):
