@@ -126,7 +126,6 @@ class Area(TranslatableModel):
         fields = ('name', 'wiki', 'capital', 'coat_of_arms', 'flag')
         result = {field: field in self.infobox for field in fields}
         result['capital'] = result['capital'] and isinstance(self.infobox['capital'], dict)
-        print("{}\n{}".format(self.id, result))
         return result
 
     @property
