@@ -43,11 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.sitemaps',
 
+    'common',
+    'floppyforms',
     'sorl.thumbnail',
     'jsoneditor',
     'hvad',
 
-    'common',
     'maps',
     'quiz',
 ]

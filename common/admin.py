@@ -1,4 +1,5 @@
 from django.conf import settings
+import floppyforms as forms
 from sorl.thumbnail import get_thumbnail
 from sorl.thumbnail.admin.current import AdminImageWidget as SorlImageWidget
 
@@ -31,3 +32,16 @@ class ImageMixin(object):
         except Exception as e:
             print(e)
         return '<img src="{}"/>'.format(url)
+
+
+class MultiPolygonWidget(forms.gis.MultiPolygonWidget, forms.gis.BaseGMapWidget):
+    @property
+    def media(self):
+        return super(MultiPolygonWidget, self).media + forms.Media(js=('gis/MapBoxExtend.js', ))
+
+    # google_maps_api_key = 'YOUR-GOOGLE-MAPS-API-KEY-HERE'
+
+
+class MultiPointWidget(forms.gis.MultiPointWidget, forms.gis.BaseGMapWidget):
+    pass
+    # google_maps_api_key = 'YOUR-GOOGLE-MAPS-API-KEY-HERE'

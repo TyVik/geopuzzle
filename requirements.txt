@@ -13,3 +13,4 @@ django-redis==4.7.0
 cffi==1.9.1
 cairosvg==2.0.1
 requests==2.13.0
+django-floppyforms==1.7.0

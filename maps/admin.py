@@ -6,15 +6,14 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.messages import success
 from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import ImageField
-from django.contrib.gis.db.models import MultiPolygonField, QuerySet
-from django.contrib.gis.forms import OSMWidget
+from django.contrib.gis.db.models import MultiPolygonField, QuerySet, MultiPointField
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
 from hvad.admin import TranslatableAdmin
 
-from common.admin import ImageMixin, AdminImageWidget
+from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget, MultiPointWidget
 from maps.forms import KMLCountryImportForm, KMLAreaImportForm
 from maps.models import Country, Area
 
@@ -93,7 +92,8 @@ class AreaAdmin(TranslatableAdmin):
     actions = [recalc_answer, update_infobox]
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
-        MultiPolygonField: {'widget': OSMWidget},
+        MultiPolygonField: {'widget': MultiPolygonWidget},
+        MultiPointField: {'widget': MultiPointWidget},
     }
 
     def _name(self, obj: Area) -> str:
