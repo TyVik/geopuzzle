@@ -6,16 +6,20 @@ import {
 } from "../actions";
 
 
-function moveTo(paths, latLng) {
+function moveTo(paths, from, to) {
     let polygon = new google.maps.Polygon({geodesic: true, paths: paths});
-    polygon.moveTo(latLng);
+    polygon.moveTo(from, to);
     return polygon.getPaths();
 }
 
 
+function decodePolygon(polygon) {
+    return polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)));
+}
+
 function extractForPuzzle(countries) {
     return countries.map(country => {
-        let paths = country.polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)));
+        let paths = decodePolygon(country.polygon);
         return {
             id: country.id,
             draggable: true,
@@ -23,7 +27,8 @@ function extractForPuzzle(countries) {
             infobox: {name: country.name, loaded: false},
             paths: moveTo(
                 paths,
-                new google.maps.LatLng(country.default_position[1], country.default_position[0])),
+                new google.maps.LatLng(country.center[1], country.center[0]),
+                new google.maps.LatLng(country.default_position[1], country.default_position[0]))
         }
     }).sort((one, another) => {
         return one.infobox.name > another.infobox.name ? 1 : -1
@@ -42,10 +47,6 @@ function extractForQuiz(polygons) {
     }).sort((one, another) => {
         return one.infobox.name > another.infobox.name ? 1 : -1
     });
-}
-
-function decodePolygon(polygon) {
-    return polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)));
 }
 
 const polygons = (state = [], action) => {

@@ -9,7 +9,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
-from maps.forms import PointCenterForm
+from maps.forms import AreaContainsForm
 from maps.models import Country, Area, DIFFICULTY_LEVELS
 
 
@@ -48,7 +48,7 @@ def giveup(request: WSGIRequest, name: str) -> JsonResponse:
 @csrf_exempt
 def check(request: WSGIRequest, pk: str) -> JsonResponse:
     area = get_object_or_404(Area, pk=pk)
-    form = PointCenterForm(data=request.POST, area=area)
+    form = AreaContainsForm(data=request.POST, area=area)
     result = puzzle_area(area) if form.is_valid() else {'success': False}
     return JsonResponse(result)
 
@@ -66,6 +66,7 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
         'id': area.id,
         'name': area.name,
         'polygon': area.polygon_gmap,
+        'center': area.polygon.centroid.coords,
         'default_position': area.country.pop_position()}
             for area in form.areas()]
     return JsonResponse(result, safe=False)

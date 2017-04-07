@@ -8,6 +8,10 @@ import {showInfobox, DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL} from "../../action
 
 
 class Polygon extends GooglePolygon {
+    getBounds() {
+        return this.state[_constants.POLYGON].getBounds();
+    }
+
     getPaths() {
         return this.state[_constants.POLYGON].getPaths();
     }
@@ -19,9 +23,12 @@ class Polygon extends GooglePolygon {
     componentDidMount() {
         google.maps.event.addListener(this.state[_constants.POLYGON], 'dragend', () => {
             let formData = new FormData();
-            let latLng = this.getCenter();
-            formData.append('lat', latLng.lat());
-            formData.append('lng', latLng.lng());
+            let latLng = this.getBounds();
+            let coords = JSON.parse(JSON.stringify(latLng));
+            formData.append('north', coords.north);
+            formData.append('east', coords.east);
+            formData.append('south', coords.south);
+            formData.append('west', coords.west);
             let options = {
                 method: 'POST',
                 body: formData
