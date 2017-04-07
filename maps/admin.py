@@ -96,6 +96,11 @@ class AreaAdmin(TranslatableAdmin):
         MultiPolygonField: {'widget': OSMWidget},
     }
 
+    class Media:
+        css = {
+            'all': ('css/admin.css',)
+        }
+
     def _name(self, obj: Area) -> str:
         return obj.name
 
