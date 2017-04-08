@@ -39,6 +39,19 @@ class MapContainer extends React.Component {
         });
     }
 
+    showMarker(infobox) {
+        if (infobox.capital) {
+            return {
+                key: infobox.capital.name,
+                defaultAnimation: 2,
+                position: {
+                    lat: infobox.capital.lat,
+                    lng: infobox.capital.lon
+                }
+            }
+        }
+    }
+
     render() {
         return <GoogleMap {...this.props}
             containerElement={<div style={{height: window.innerHeight - 50, marginTop: '-20px'}}/>}
@@ -46,14 +59,14 @@ class MapContainer extends React.Component {
             onMapLoad={this.handleMapLoad}
             onMapClick={this.handleMapClick}
             polygons={this.preparePolygons(this.props.polygons)}
-            marker={this.props.marker}
+            marker={this.showMarker(this.props.infobox)}
         />
     }
 }
 
 
 export default connect(state => {
-    let result = {...state.map, polygons: state.polygons};
+    let result = {...state.map, polygons: state.polygons, infobox: state.infobox};
     if (state.infobox.capital) {
         result.marker = {
             key: state.infobox.capital.name,

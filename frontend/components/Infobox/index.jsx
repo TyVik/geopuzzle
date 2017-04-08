@@ -2,25 +2,11 @@
 import React from "react";
 import {connect} from "react-redux";
 import localization from "../../localization";
+import {CLOSE_INFOBOX} from '../../actions';
 import "./index.css";
 
 
 class Infobox extends React.Component {
-    closeSelf = this.closeSelf.bind(this);
-
-    constructor(props) {
-        super(props);
-        this.state = {show: false};
-    }
-
-    closeSelf() {
-        this.setState({show: false});
-    }
-
-    componentWillReceiveProps(props) {
-        this.setState({show: true});
-    }
-
     renderAttribute(name) {
         if (this.props[name]) {
             return (
@@ -35,11 +21,11 @@ class Infobox extends React.Component {
     }
 
     render() {
-        if (this.state.show) {
+        if (this.props.show) {
             let image = this.props.flag ? this.props.flag : this.props.coat_of_arms;
             return (
                 <div className="infobox">
-                    <button type="button" className="close" onClick={this.closeSelf}>
+                    <button type="button" className="close" onClick={() => this.props.dispatch({type: CLOSE_INFOBOX})}>
                         <span>&times;</span>
                     </button>
                     <table>
