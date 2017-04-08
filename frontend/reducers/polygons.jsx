@@ -6,28 +6,29 @@ import {
 } from "../actions";
 
 
-function moveTo(paths, latLng) {
+function moveTo(paths, from, to) {
     let polygon = new google.maps.Polygon({geodesic: true, paths: paths});
-    polygon.moveTo(latLng);
+    polygon.moveTo(from, to);
     return polygon.getPaths();
 }
 
 
+function decodePolygon(polygon) {
+    return polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)));
+}
+
 function extractForPuzzle(countries) {
     return countries.map(country => {
-        let originalPath = country.polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)));
+        let paths = decodePolygon(country.polygon);
         return {
             id: country.id,
             draggable: true,
             isSolved: false,
             infobox: {name: country.name, loaded: false},
             paths: moveTo(
-                originalPath,
-                new google.maps.LatLng(country.default_position[1], country.default_position[0])),
-            originalPath: originalPath,
-            answer: new google.maps.LatLngBounds(
-                new google.maps.LatLng(country.answer[0][1], country.answer[0][0]),
-                new google.maps.LatLng(country.answer[1][1], country.answer[1][0])),
+                paths,
+                new google.maps.LatLng(country.center[1], country.center[0]),
+                new google.maps.LatLng(country.default_position[1], country.default_position[0]))
         }
     }).sort((one, another) => {
         return one.infobox.name > another.infobox.name ? 1 : -1
@@ -79,10 +80,12 @@ const polygons = (state = [], action) => {
         case PUZZLE_GIVEUP:
             return state.map((polygon) => {
                 if (!polygon.isSolved) {
+                    let solve = action.solves[polygon.id];
                     return {
                         ...polygon,
                         draggable: false,
-                        paths: polygon.originalPath,
+                        infobox: solve.infobox,
+                        paths: decodePolygon(solve.polygon),
                     };
                 }
                 return polygon
@@ -101,7 +104,8 @@ const polygons = (state = [], action) => {
                         ...polygon,
                         draggable: false,
                         isSolved: true,
-                        paths: polygon.originalPath,
+                        infobox: action.infobox,
+                        paths: decodePolygon(action.polygon),
                     };
                 }
                 return polygon

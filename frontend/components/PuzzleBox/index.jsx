@@ -10,10 +10,21 @@ import {PUZZLE_GIVEUP} from "../../actions";
 
 
 class PuzzleBox extends React.Component {
+    giveUp = this.giveUp.bind(this);
+
+    giveUp() {
+        return (dispatch) => {
+            let ids = this.props.ids.join(',');
+            return fetch(location.pathname + 'giveup/?ids=' + ids)
+                .then(response => response.json())
+                .then(json => dispatch({solves: json, type: PUZZLE_GIVEUP}));
+        };
+    }
+
     render() {
         return (
             <div className="puzzle-box">
-                <Button bsStyle="success" onClick={() => this.props.dispatch({type: PUZZLE_GIVEUP})}>
+                <Button bsStyle="success" onClick={() => this.props.dispatch(this.giveUp())}>
                     {localization.give_up}
                 </Button>
             </div>
@@ -21,4 +32,8 @@ class PuzzleBox extends React.Component {
     }
 };
 
-export default connect()(PuzzleBox);
+export default connect(state => {
+    return {
+        ids: state.polygons.filter(obj => (!obj.isSolved)).map(polygon => (polygon.id))
+    }
+})(PuzzleBox);

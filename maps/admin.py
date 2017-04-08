@@ -70,13 +70,6 @@ class CountryAdmin(ImageMixin, TranslatableAdmin):
         ] + super(CountryAdmin, self).get_urls()
 
 
-def recalc_answer(modeladmin, request, queryset) -> None:
-    for area in queryset:
-        area.recalc_answer()
-    success(request, 'Answers were recalculated.')
-recalc_answer.short_description = "Recalc answer"
-
-
 def update_infobox(modeladmin, request, queryset) -> None:
     for area in queryset:
         area.update_infobox_by_wikidata_id()
@@ -89,12 +82,17 @@ class AreaAdmin(TranslatableAdmin):
     list_display = ('_name', 'difficulty', 'wiki_id', 'wikidata_id', 'num_points', 'infobox_status')
     list_filter = ('difficulty', 'country')
     list_editable = ('difficulty', 'wikidata_id')
-    actions = [recalc_answer, update_infobox]
+    actions = (update_infobox,)
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
         MultiPolygonField: {'widget': MultiPolygonWidget},
         MultiPointField: {'widget': MultiPointWidget},
     }
+
+    class Media:
+        css = {
+            'all': ('css/admin.css',)
+        }
 
     def _name(self, obj: Area) -> str:
         return obj.name

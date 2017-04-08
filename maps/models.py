@@ -82,7 +82,6 @@ class Area(TranslatableModel):
     country = models.ForeignKey(Country)
     difficulty = models.PositiveSmallIntegerField(choices=DIFFICULTY_LEVELS, default=0)
     polygon = MultiPolygonField(geography=True)
-    answer = MultiPointField(geography=True, null=True)
     wikidata_id = models.CharField(max_length=15, null=True, blank=True)
 
     translations = TranslatedFields(
@@ -92,6 +91,7 @@ class Area(TranslatableModel):
 
     caches = {
         'polygon_gmap': 'area{id}gmap',
+        'polygon_bounds': 'area{id}bounds'
     }
 
     class Meta:
@@ -103,6 +103,18 @@ class Area(TranslatableModel):
 
     def get_absolute_url(self) -> str:
         return '{}?id={}'.format(reverse('quiz_map', args=(self.country.slug,)), self.id)
+
+    @property
+    def polygon_bounds(self) -> List:
+        cache_key = self.caches['polygon_bounds'].format(id=self.id)
+        points = cache.get(cache_key)
+        if points is None:
+            diff = (-1, -1, 1, 1)
+            extent = self.polygon.extent
+            scale = 1.0 / (self.country.zoom - 2)
+            points = [extent[i] + diff[i] * scale for i in range(4)]
+            cache.set(cache_key, points, timeout=None)
+        return points
 
     @property
     def polygon_gmap(self) -> List:
@@ -126,7 +138,6 @@ class Area(TranslatableModel):
         fields = ('name', 'wiki', 'capital', 'coat_of_arms', 'flag')
         result = {field: field in self.infobox for field in fields}
         result['capital'] = result['capital'] and isinstance(self.infobox['capital'], dict)
-        print("{}\n{}".format(self.id, result))
         return result
 
     @property
@@ -147,14 +158,6 @@ class Area(TranslatableModel):
             trans.infobox = infobox
             trans.name = infobox.get('name', '')
             trans.save()
-
-    def recalc_answer(self) -> None:
-        diff = (-1, -1, 1, 1)
-        extent = self.polygon.extent
-        scale = 1.0 / (self.country.zoom - 2)
-        points = [extent[i] + diff[i] * scale for i in range(4)]
-        self.answer = MultiPoint(Point(points[0], points[1]), Point(points[2], points[3]))
-        self.save()
 
 
 @receiver(post_save, sender=Area, dispatch_uid="clear_area_cache")

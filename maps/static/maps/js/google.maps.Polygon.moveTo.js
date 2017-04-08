@@ -6,10 +6,10 @@
  * @requires  google.maps.geometry
  */
 if (!google.maps.Polygon.prototype.moveTo) {
-    google.maps.Polygon.prototype.moveTo = function(latLng) {
+    google.maps.Polygon.prototype.moveTo = function(from, latLng) {
 
         // our vars
-        var boundsCenter = this.getBounds().getCenter(), // center of the polygonbounds
+        var boundsCenter = from, // center of the polygonbounds
             paths = this.getPaths(), // paths that make up the polygon
             newPoints =[], // array on which we'll store our new points
             newPaths = []; // array containing the new paths that make up the polygon

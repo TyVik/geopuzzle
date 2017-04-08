@@ -9,7 +9,7 @@ import Loading from './components/Loading';
 import Infobox from './components/Infobox';
 import PuzzleBox from './components/PuzzleBox';
 import Toolbox from './components/Toolbox';
-import {INIT_LOAD, INIT_LOAD_FAIL, INIT_PUZZLE_DONE} from './actions';
+import {INIT_LOAD, INIT_LOAD_FAIL, INIT_PUZZLE_DONE, NOOP} from './actions';
 import Congratulation from './components/Congratulation';
 
 
@@ -27,7 +27,9 @@ class Puzzle extends React.Component {
         }
     }
 
-    mapClick(e) {}
+    mapClick(e) {
+        return {type: NOOP};
+    }
 
     render() {
         return (

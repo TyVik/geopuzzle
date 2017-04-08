@@ -2,6 +2,7 @@
 import "whatwg-fetch";
 import localization from "../localization";
 
+export const NOOP = 'NOOP';
 export const INIT_QUIZ_DONE = 'INIT_QUIZ_DONE';
 export const CHECK_QUIZ_SUCCESS = 'CHECK_QUIZ_SUCCESS';
 export const CHECK_QUIZ_FAIL = 'CHECK_QUIZ_FAIL';
@@ -13,6 +14,7 @@ export const DRAG_END_POLYGON_FAIL = 'DRAG_END_POLYGON_FAIL';
 export const GET_INFOBOX_DONE = 'GET_INFOBOX_DONE';
 export const GET_INFOBOX_FAIL = 'GET_INFOBOX_FAIL';
 export const SHOW_INFOBOX = 'SHOW_INFOBOX';
+export const CLOSE_INFOBOX = 'CLOSE_INFOBOX';
 export const PUZZLE_GIVEUP = 'PUZZLE_GIVEUP';
 export const QUIZ_GIVEUP = 'QUIZ_GIVEUP';
 export const QUIZ_NEXT = 'QUIZ_NEXT';

@@ -1,3 +1,5 @@
+from typing import Dict
+
 from django.utils.translation import ugettext as _
 
 from django import forms
@@ -5,7 +7,9 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import QuerySet
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 
+from maps.forms import AreaContainsForm
 from maps.models import Country, Area, DIFFICULTY_LEVELS
 
 
@@ -28,6 +32,27 @@ class MapForm(forms.Form):
         return queryset
 
 
+def puzzle_area(area: Area) -> Dict:
+    return {'success': True, 'infobox': area.strip_infobox, 'polygon': area.polygon_gmap}
+
+
+@csrf_exempt
+def giveup(request: WSGIRequest, name: str) -> JsonResponse:
+    form = MapForm(data=request.GET, country=name, lang=request.LANGUAGE_CODE)
+    if not form.is_valid():
+        return JsonResponse(form.errors, status=400)
+    result = {area.id: puzzle_area(area) for area in form.areas()}
+    return JsonResponse(result)
+
+
+@csrf_exempt
+def check(request: WSGIRequest, pk: str) -> JsonResponse:
+    area = get_object_or_404(Area, pk=pk)
+    form = AreaContainsForm(data=request.POST, area=area)
+    result = puzzle_area(area) if form.is_valid() else {'success': False}
+    return JsonResponse(result)
+
+
 def infobox_by_id(request: WSGIRequest, pk: str) -> HttpResponse:
     obj = get_object_or_404(Area, pk=pk)
     return JsonResponse(obj.strip_infobox)
@@ -41,8 +66,7 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
         'id': area.id,
         'name': area.name,
         'polygon': area.polygon_gmap,
-        'center': area.center,
-        'answer': [list(area.answer.coords[0]), list(area.answer.coords[1])],
+        'center': area.polygon.centroid.coords,
         'default_position': area.country.pop_position()}
             for area in form.areas()]
     return JsonResponse(result, safe=False)

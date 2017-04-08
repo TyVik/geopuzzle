@@ -8,31 +8,45 @@ import {showInfobox, DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL} from "../../action
 
 
 class Polygon extends GooglePolygon {
-    isBounded() {
-        let paths = this.getPaths().getArray();
-        for (let i = 0; i < paths.length; i++) {
-            let p = paths[i].getArray();
-            for (let j = 0; j < p.length; j++) {
-                if (!this.props.answer.contains(p[j])) {
-                    return false;
-                }
-            }
-        }
-        return true;
+    getBounds() {
+        return this.state[_constants.POLYGON].getBounds();
     }
 
     getPaths() {
         return this.state[_constants.POLYGON].getPaths();
     }
 
+    getCenter() {
+        return this.state[_constants.POLYGON].getBounds().getCenter();
+    }
+
     componentDidMount() {
         google.maps.event.addListener(this.state[_constants.POLYGON], 'dragend', () => {
-            if (this.isBounded()) {
-                this.props.dispatch({type: DRAG_END_POLYGON, id: this.props.id});
-                this.props.dispatch(showInfobox(this.props));
-            } else {
-                this.props.dispatch({type: DRAG_END_POLYGON_FAIL, id: this.props.id, paths: this.getPaths()});
-            }
+            let formData = new FormData();
+            let latLng = this.getBounds();
+            let coords = JSON.parse(JSON.stringify(latLng));
+            formData.append('north', coords.north);
+            formData.append('east', coords.east);
+            formData.append('south', coords.south);
+            formData.append('west', coords.west);
+            let options = {
+                method: 'POST',
+                body: formData
+            };
+            this.props.dispatch((dispatch) =>
+                fetch('//' + location.host + '/puzzle/' + this.props.id + '/check/', options)
+                    .then(response => response.json())
+                    .then(json => {
+                        if (json.success) {
+                            return dispatch({...json, type: DRAG_END_POLYGON, id: this.props.id})
+                        } else {
+                            return dispatch({type: DRAG_END_POLYGON_FAIL, id: this.props.id, paths: this.getPaths()});
+                        }
+                    })
+                    .catch(response => {
+                        return {type: DRAG_END_POLYGON_FAIL, id: this.props.id, paths: this.getPaths()};
+                    })
+            );
         });
         google.maps.event.addListener(this.state[_constants.POLYGON], 'click', () => {
             if (!this.props.draggable) {
