@@ -2,6 +2,7 @@
 import "whatwg-fetch";
 import localization from "../localization";
 
+export const NOOP = 'NOOP';
 export const INIT_QUIZ_DONE = 'INIT_QUIZ_DONE';
 export const CHECK_QUIZ_SUCCESS = 'CHECK_QUIZ_SUCCESS';
 export const CHECK_QUIZ_FAIL = 'CHECK_QUIZ_FAIL';
