@@ -8,7 +8,7 @@ __license__ = "Unauthorized copying of this file, via any medium is strictly pro
 
 IDS = (208, 183, 174, 110, 106, 69, 48)
 COUNTRY_ID = 9
-COPY_SQL = 'INSERT INTO maps_area(difficulty, polygon, answer, country_id) SELECT 2, polygon, answer, {country_id} from maps_area where id = {id} returning ID'
+COPY_SQL = 'INSERT INTO maps_area(difficulty, polygon, country_id) SELECT 2, polygon, {country_id} from maps_area where id = {id} returning ID'
 COPY_SQL_TRANS = 'INSERT INTO maps_area_translation(name, infobox, language_code, master_id) SELECT name, infobox, language_code, {new_id} from maps_area_translation where master_id = {id}'
 
 

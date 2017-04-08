@@ -52,7 +52,6 @@ class KMLCountryImportForm(KMLImportForm):
                         trans.master = area
                         trans.name = feat['Name'].value
                         trans.save()
-                    area.recalc_answer()
 
 
 class KMLAreaImportForm(KMLImportForm):
@@ -68,5 +67,4 @@ class KMLAreaImportForm(KMLImportForm):
             for layer in source:
                 for feat in layer:
                     area.polygon = self.extract_polygon(feat.geom.geos)
-                    area.recalc_answer()
                     area.save()

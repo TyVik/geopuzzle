@@ -82,7 +82,6 @@ class Area(TranslatableModel):
     country = models.ForeignKey(Country)
     difficulty = models.PositiveSmallIntegerField(choices=DIFFICULTY_LEVELS, default=0)
     polygon = MultiPolygonField(geography=True)
-    answer = MultiPointField(geography=True, null=True)
     wikidata_id = models.CharField(max_length=15, null=True, blank=True)
 
     translations = TranslatedFields(
@@ -159,14 +158,6 @@ class Area(TranslatableModel):
             trans.infobox = infobox
             trans.name = infobox.get('name', '')
             trans.save()
-
-    def recalc_answer(self) -> None:
-        diff = (-1, -1, 1, 1)
-        extent = self.polygon.extent
-        scale = 1.0 / (self.country.zoom - 2)
-        points = [extent[i] + diff[i] * scale for i in range(4)]
-        self.answer = MultiPoint(Point(points[0], points[1]), Point(points[2], points[3]))
-        self.save()
 
 
 @receiver(post_save, sender=Area, dispatch_uid="clear_area_cache")
