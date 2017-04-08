@@ -92,6 +92,7 @@ class Area(TranslatableModel):
 
     caches = {
         'polygon_gmap': 'area{id}gmap',
+        'polygon_bounds': 'area{id}bounds'
     }
 
     class Meta:
@@ -103,6 +104,18 @@ class Area(TranslatableModel):
 
     def get_absolute_url(self) -> str:
         return '{}?id={}'.format(reverse('quiz_map', args=(self.country.slug,)), self.id)
+
+    @property
+    def polygon_bounds(self) -> List:
+        cache_key = self.caches['polygon_bounds'].format(id=self.id)
+        points = cache.get(cache_key)
+        if points is None:
+            diff = (-1, -1, 1, 1)
+            extent = self.polygon.extent
+            scale = 1.0 / (self.country.zoom - 2)
+            points = [extent[i] + diff[i] * scale for i in range(4)]
+            cache.set(cache_key, points, timeout=None)
+        return points
 
     @property
     def polygon_gmap(self) -> List:

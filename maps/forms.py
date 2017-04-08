@@ -22,10 +22,7 @@ class AreaContainsForm(forms.Form):
     def clean(self):
         cleaned_data = super(AreaContainsForm, self).clean()
         data = {part: cleaned_data[part] for part in ['north', 'south', 'west', 'east']}
-        diff = (-1, -1, 1, 1)
-        extent = self.area.polygon.extent
-        scale = 1.0 / (self.area.country.zoom - 2)
-        points = [extent[i] + diff[i] * scale for i in range(4)]
+        points = self.area.polygon_bounds
         if not (data['north'] < points[3] and data['south'] > points[1] and
                         data['east'] < points[2] and data['west'] > points[0]):
             raise forms.ValidationError('Point not in polygons')
