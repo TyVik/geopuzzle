@@ -4,7 +4,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Polygon as GooglePolygon} from "react-google-maps";
 import * as _constants from "react-google-maps/lib/constants";
-import {showInfobox, DRAG_END_POLYGON_FAIL, PUZZLE_CHECK} from "../../actions";
+import {showInfobox, DRAG_END_POLYGON, PUZZLE_CHECK} from "../../actions";
 
 
 class Polygon extends GooglePolygon {
@@ -23,7 +23,7 @@ class Polygon extends GooglePolygon {
     componentDidMount() {
         google.maps.event.addListener(this.state[_constants.POLYGON], 'dragend', () => {
             let coords = JSON.parse(JSON.stringify(this.getBounds()));
-            this.props.dispatch({type: DRAG_END_POLYGON_FAIL, id: this.props.id, paths: this.getPaths()});
+            this.props.dispatch({type: DRAG_END_POLYGON, id: this.props.id, paths: this.getPaths()});
             this.props.dispatch({type: PUZZLE_CHECK, coords: coords, id: this.props.id});
         });
         google.maps.event.addListener(this.state[_constants.POLYGON], 'click', () => {

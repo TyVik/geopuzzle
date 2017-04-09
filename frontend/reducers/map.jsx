@@ -1,6 +1,6 @@
 'use strict';
 /* global google */
-import {INIT_LOAD, INIT_LOAD_FAIL, INIT_PUZZLE_DONE, SET_MAP_TYPE, INIT_QUIZ_DONE} from "../actions";
+import {INIT_LOAD, INIT_LOAD_FAIL, PUZZLE_INIT_DONE, SET_MAP_TYPE, QUIZ_INIT_DONE} from "../actions";
 
 
 let init_map = {
@@ -18,8 +18,8 @@ const map = (state = {...init_map, isLoaded: null}, action) => {
             return {...state, isLoaded: null};
         case INIT_LOAD_FAIL:
             return {...state, isLoaded: false};
-        case INIT_QUIZ_DONE:
-        case INIT_PUZZLE_DONE:
+        case QUIZ_INIT_DONE:
+        case PUZZLE_INIT_DONE:
             return {...state, isLoaded: true};
         case SET_MAP_TYPE:
             return {...state, mapTypeId: action.value};

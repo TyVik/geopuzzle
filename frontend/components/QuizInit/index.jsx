@@ -3,7 +3,7 @@ import React from "react";
 import {connect} from "react-redux";
 import localization from '../../localization';
 import {Button, Modal, FormGroup, Checkbox} from "react-bootstrap";
-import {INIT_QUIZ_DONE, INIT_LOAD_FAIL} from "../../actions";
+import {QUIZ_INIT_DONE, INIT_LOAD_FAIL} from "../../actions";
 import "./index.css";
 
 
@@ -24,7 +24,7 @@ class QuizInit extends React.Component {
             get_params += 'params=' + quizBy.join();
             return fetch(location.pathname.replace('/quiz/', '/quiz/questions/') + get_params)
                 .then(response => response.json())
-                .then(questions => dispatch({type: INIT_QUIZ_DONE, questions}))
+                .then(questions => dispatch({type: QUIZ_INIT_DONE, questions}))
                 .catch(response => dispatch({type: INIT_LOAD_FAIL}));
         };
     }

@@ -3,25 +3,29 @@ import "whatwg-fetch";
 import localization from "../localization";
 
 export const NOOP = 'NOOP';
-export const INIT_QUIZ_DONE = 'INIT_QUIZ_DONE';
-export const CHECK_QUIZ_SUCCESS = 'CHECK_QUIZ_SUCCESS';
-export const CHECK_QUIZ_FAIL = 'CHECK_QUIZ_FAIL';
 export const INIT_LOAD = 'INIT_LOAD';
 export const INIT_LOAD_FAIL = 'INIT_LOAD_FAIL';
-export const INIT_PUZZLE_DONE = 'INIT_PUZZLE_DONE';
-export const DRAG_END_POLYGON_FAIL = 'DRAG_END_POLYGON_FAIL';
+
+export const DRAG_END_POLYGON = 'DRAG_END_POLYGON';
+export const SET_MAP_TYPE = 'SET_MAP_TYPE';
+export const SHOW_CONGRATULATION = 'SHOW_CONGRATULATION';
+
 export const GET_INFOBOX_DONE = 'GET_INFOBOX_DONE';
 export const GET_INFOBOX_FAIL = 'GET_INFOBOX_FAIL';
 export const SHOW_INFOBOX = 'SHOW_INFOBOX';
 export const CLOSE_INFOBOX = 'CLOSE_INFOBOX';
-export const PUZZLE_GIVEUP = 'PUZZLE_GIVEUP';
+
+export const PUZZLE_INIT_DONE = 'PUZZLE_INIT_DONE';
 export const PUZZLE_CHECK = 'PUZZLE_CHECK';
 export const PUZZLE_CHECK_SUCCESS = 'PUZZLE_CHECK_SUCCESS';
+export const PUZZLE_GIVEUP = 'PUZZLE_GIVEUP';
+
+export const QUIZ_INIT_DONE = 'QUIZ_INIT_DONE';
+export const QUIZ_CHECK_SUCCESS = 'QUIZ_CHECK_SUCCESS';
+export const QUIZ_CHECK_FAIL = 'QUIZ_CHECK_FAIL';
 export const QUIZ_GIVEUP = 'QUIZ_GIVEUP';
 export const QUIZ_NEXT = 'QUIZ_NEXT';
 export const QUIZ_PREVIOUS = 'QUIZ_PREVIOUS';
-export const SET_MAP_TYPE = 'SET_MAP_TYPE';
-export const SHOW_CONGRATULATION = 'SHOW_CONGRATULATION';
 
 
 export const prepareInfobox = (json) => {

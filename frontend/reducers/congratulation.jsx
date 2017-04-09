@@ -1,11 +1,11 @@
 'use strict';
-import {INIT_PUZZLE_DONE, INIT_QUIZ_DONE, SHOW_CONGRATULATION} from '../actions';
+import {PUZZLE_INIT_DONE, QUIZ_INIT_DONE, SHOW_CONGRATULATION} from '../actions';
 
 
 const infobox = (state = window.__CONGRATULATION__, action) => {
     switch (action.type) {
-        case INIT_PUZZLE_DONE:
-        case INIT_QUIZ_DONE:
+        case PUZZLE_INIT_DONE:
+        case QUIZ_INIT_DONE:
             return {...state, time: Date.now()};
         case SHOW_CONGRATULATION:
             let time = new Date(Date.now() - state.time);

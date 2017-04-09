@@ -1,12 +1,12 @@
 'use strict';
-import {GET_INFOBOX_DONE, SHOW_INFOBOX, CLOSE_INFOBOX, CHECK_QUIZ_SUCCESS, QUIZ_GIVEUP, PUZZLE_CHECK_SUCCESS} from '../actions';
+import {GET_INFOBOX_DONE, SHOW_INFOBOX, CLOSE_INFOBOX, QUIZ_CHECK_SUCCESS, QUIZ_GIVEUP, PUZZLE_CHECK_SUCCESS} from '../actions';
 
 
 let init_infobox = {show: false};
 
 const infobox = (state = init_infobox, action) => {
     switch (action.type) {
-        case CHECK_QUIZ_SUCCESS:
+        case QUIZ_CHECK_SUCCESS:
         case PUZZLE_CHECK_SUCCESS:
         case QUIZ_GIVEUP:
             return {...action.infobox, show: true};

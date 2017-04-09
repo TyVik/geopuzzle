@@ -10,7 +10,7 @@ import QuizQuestion from './components/QuizQuestion';
 import QuizInit from './components/QuizInit';
 import Toolbox from './components/Toolbox';
 import Congratulation from './components/Congratulation';
-import {checkQuiz, INIT_LOAD, CHECK_QUIZ_FAIL, CHECK_QUIZ_SUCCESS} from './actions';
+import {checkQuiz, INIT_LOAD, QUIZ_CHECK_FAIL, QUIZ_CHECK_SUCCESS} from './actions';
 
 
 class QuizClass extends React.Component {
@@ -18,7 +18,7 @@ class QuizClass extends React.Component {
     mapClick = this.mapClick.bind(this);
 
     mapInit() {
-        return {type: INIT_LOAD};
+        return {type: INIT_LOAD, url: 'ws://' + window.location.host + '/quiz/'};
     }
 
     mapClick(e) {
@@ -35,13 +35,13 @@ class QuizClass extends React.Component {
                 .then(response => response.json())
                 .then(json => {
                     if (json.success) {
-                        return dispatch({...json, type: CHECK_QUIZ_SUCCESS, id: question.id})
+                        return dispatch({...json, type: QUIZ_CHECK_SUCCESS, id: question.id})
                     } else {
-                        return dispatch({type: CHECK_QUIZ_FAIL});
+                        return dispatch({type: QUIZ_CHECK_FAIL});
                     }
                 })
                 .catch(response => {
-                    return dispatch({type: CHECK_QUIZ_FAIL});
+                    return dispatch({type: QUIZ_CHECK_FAIL});
                 });
         };
     }
