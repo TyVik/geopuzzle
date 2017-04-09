@@ -1,27 +1,11 @@
-from typing import Dict
-
 from django.utils.translation import ugettext as _
 
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
-from django.views.decorators.csrf import csrf_exempt
 
 from maps.forms import MapForm
 from maps.models import Country, Area
-
-
-def puzzle_area(area: Area) -> Dict:
-    return {'success': True, 'infobox': area.strip_infobox, 'polygon': area.polygon_gmap}
-
-
-@csrf_exempt
-def giveup(request: WSGIRequest, name: str) -> JsonResponse:
-    form = MapForm(data=request.GET, country=name, lang=request.LANGUAGE_CODE)
-    if not form.is_valid():
-        return JsonResponse(form.errors, status=400)
-    result = {area.id: puzzle_area(area) for area in form.areas()}
-    return JsonResponse(result)
 
 
 def infobox_by_id(request: WSGIRequest, pk: str) -> HttpResponse:
@@ -43,11 +27,11 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
     return JsonResponse(result, safe=False)
 
 
-def maps(request: WSGIRequest, name: str) -> HttpResponse:
+def puzzle(request: WSGIRequest, name: str) -> HttpResponse:
     country = get_object_or_404(Country, slug=name)
     context = {
         'language': request.LANGUAGE_CODE,
         'country': country,
         'text': _('{} was assembled! You time is ').format(country.name if country.id != 1 else _('World map'))
     }
-    return render(request, 'maps/map.html', context=context)
+    return render(request, 'puzzle/map.html', context=context)
