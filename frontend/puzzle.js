@@ -19,7 +19,8 @@ class Puzzle extends React.Component {
 
     mapInit() {
         return (dispatch) => {
-            dispatch({type: INIT_LOAD, url: 'wss://' + window.location.host + '/ws/puzzle/'});
+            let ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
+            dispatch({type: INIT_LOAD, url: ws_scheme + '://' + window.location.host + '/ws/puzzle/'});
             return fetch(location.pathname.replace('/puzzle/', '/puzzle/questions/') + location.search)
                 .then(response => response.json())
                 .then(countries => dispatch({type: PUZZLE_INIT_DONE, countries}))

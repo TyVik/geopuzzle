@@ -18,7 +18,8 @@ class QuizClass extends React.Component {
     mapClick = this.mapClick.bind(this);
 
     mapInit() {
-        return {type: INIT_LOAD, url: 'wss://' + window.location.host + '/ws/quiz/'};
+        let ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
+        return {type: INIT_LOAD, url: ws_scheme + '://' + window.location.host + '/ws/quiz/'};
     }
 
     mapClick(e) {
