@@ -154,6 +154,10 @@ class Area(TranslatableModel):
             del (result['capital']['id'])
         return result
 
+    @property
+    def full_info(self) -> Dict:
+        return {'infobox': self.strip_infobox, 'polygon': self.polygon_gmap, 'id': self.id}
+
     def update_infobox_by_wikidata_id(self) -> None:
         time.sleep(5)  # protection for DDoS
         country_id = self.country.wikidata_id if not self.country.is_global else None

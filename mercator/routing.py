@@ -2,8 +2,8 @@ from channels import route
 from channels.sessions import channel_session
 from django.utils.translation.trans_real import parse_accept_lang_header, get_supported_language_variant
 
-from puzzle.socket_urls import routes as puzzle_routes
-from quiz.socket_urls import routes as quiz_routes
+from puzzle.consumer import routes as puzzle_routes
+from quiz.consumer import routes as quiz_routes
 
 
 @channel_session
