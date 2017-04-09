@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 
-from maps import views
+from puzzle import views
 
 area_patterns = [
     url(r'^(?P<pk>\d+)/infobox/', views.infobox_by_id, name='infobox_by_id'),
@@ -8,7 +8,6 @@ area_patterns = [
 
 check_patterns = [
     url(r'^(?P<name>[a-zA-Z0-9]+)/giveup/', views.giveup, name='quiz_giveup'),
-    url(r'^(?P<pk>\d+)/check/', views.check, name='quiz_question'),
 ]
 
 

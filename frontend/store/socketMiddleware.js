@@ -1,4 +1,4 @@
-import {INIT_LOAD, PUZZLE_CHECK} from "../actions";
+import {INIT_LOAD} from "../actions";
 
 const socketMiddleware = (function () {
     let socket = null;
@@ -6,7 +6,6 @@ const socketMiddleware = (function () {
 
     const onOpen = (ws, store) => evt => {
         console.log('connected');
-        // store.dispatch(actions.connected());
     };
 
     const onClose = (ws, store) => evt => {
@@ -21,15 +20,7 @@ const socketMiddleware = (function () {
     };
 
     const onMessage = (ws, store) => evt => {
-        let msg = JSON.parse(evt.data);
-        switch (msg.type) {
-            case "PUZZLE_CHECK_SUCCESS":
-                store.dispatch(msg);
-                break;
-            default:
-                console.log("Received unknown message type: '" + msg.type + "'");
-                break;
-        }
+        store.dispatch(JSON.parse(evt.data));
     };
 
     const init = (ws, store) => {
@@ -46,16 +37,15 @@ const socketMiddleware = (function () {
     };
 
     return store => next => action => {
-        switch (action.type) {
-            case INIT_LOAD:
-                addr = action.url;
-                socket = init(socket, store);
-                break;
-            case PUZZLE_CHECK:
+        if (action.type === INIT_LOAD) {
+            addr = action.url;
+            socket = init(socket, store);
+        } else {
+            if (action.ws) {
                 socket.send(JSON.stringify(action));
-                break;
-            default:
+            } else {
                 return next(action);
+            }
         }
     }
 })();

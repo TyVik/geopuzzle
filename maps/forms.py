@@ -3,29 +3,31 @@ import tempfile
 from django import forms
 from django.conf import settings
 from django.contrib.gis.gdal import DataSource
-from django.contrib.gis.geos import MultiPolygon, Point
+from django.contrib.gis.geos import MultiPolygon
+from django.db.models import QuerySet
+from django.shortcuts import get_object_or_404
 from hvad.utils import load_translation
 
-from maps.models import Country, Area
+from maps.models import Country, Area, DIFFICULTY_LEVELS
 
 
-class AreaContainsForm(forms.Form):
-    north = forms.FloatField()
-    east = forms.FloatField()
-    south = forms.FloatField()
-    west = forms.FloatField()
+class MapForm(forms.Form):
+    id = forms.ModelMultipleChoiceField(queryset=Area.objects.all(), required=False)
+    difficulty = forms.ChoiceField(choices=DIFFICULTY_LEVELS, required=False, initial=1)
 
-    def __init__(self, area, *args, **kwargs):
-        self.area = area
-        super(AreaContainsForm, self).__init__(*args, **kwargs)
+    def __init__(self, country, lang, *args, **kwargs):
+        self.country = get_object_or_404(Country, slug=country)
+        self.lang = lang
+        super(MapForm, self).__init__(*args, **kwargs)
 
-    def clean(self):
-        cleaned_data = super(AreaContainsForm, self).clean()
-        data = {part: cleaned_data[part] for part in ['north', 'south', 'west', 'east']}
-        points = self.area.polygon_bounds
-        if not (data['north'] < points[3] and data['south'] > points[1] and
-                        data['east'] < points[2] and data['west'] > points[0]):
-            raise forms.ValidationError('Point not in polygons')
+    def areas(self) -> QuerySet:
+        if len(self.cleaned_data['id']) > 0:
+            return self.cleaned_data['id']
+
+        queryset = Area.objects.language(self.lang).filter(country=self.country).exclude(difficulty=0).order_by('?')
+        if self.cleaned_data['difficulty'] != '':
+            queryset = queryset.filter(difficulty=int(self.cleaned_data['difficulty']))
+        return queryset
 
 
 class KMLImportForm(forms.Form):

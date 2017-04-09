@@ -1,6 +1,6 @@
 from channels.routing import route
 
-from maps.socket_events import receive, connect, disconnect
+from puzzle.socket_events import receive, connect, disconnect
 
 routes = [
     route('websocket.connect', connect, path=r'^/puzzle/$'),

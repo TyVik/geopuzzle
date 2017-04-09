@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.gis.geos import Point
 
-from maps.views import MapForm
+from maps.forms import MapForm
 
 
 class PointContainsForm(forms.Form):

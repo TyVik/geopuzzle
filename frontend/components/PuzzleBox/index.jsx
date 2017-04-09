@@ -13,12 +13,7 @@ class PuzzleBox extends React.Component {
     giveUp = this.giveUp.bind(this);
 
     giveUp() {
-        return (dispatch) => {
-            let ids = this.props.ids.join(',');
-            return fetch(location.pathname + 'giveup/?ids=' + ids)
-                .then(response => response.json())
-                .then(json => dispatch({solves: json, type: PUZZLE_GIVEUP}));
-        };
+        return {ids: this.props.ids, type: PUZZLE_GIVEUP, ws: true};
     }
 
     render() {

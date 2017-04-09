@@ -2,34 +2,13 @@ from typing import Dict
 
 from django.utils.translation import ugettext as _
 
-from django import forms
 from django.core.handlers.wsgi import WSGIRequest
-from django.db.models import QuerySet
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
-from maps.forms import AreaContainsForm
-from maps.models import Country, Area, DIFFICULTY_LEVELS
-
-
-class MapForm(forms.Form):
-    id = forms.ModelMultipleChoiceField(queryset=Area.objects.all(), required=False)
-    difficulty = forms.ChoiceField(choices=DIFFICULTY_LEVELS, required=False, initial=1)
-
-    def __init__(self, country, lang, *args, **kwargs):
-        self.country = get_object_or_404(Country, slug=country)
-        self.lang = lang
-        super(MapForm, self).__init__(*args, **kwargs)
-
-    def areas(self) -> QuerySet:
-        if len(self.cleaned_data['id']) > 0:
-            return self.cleaned_data['id']
-
-        queryset = Area.objects.language(self.lang).filter(country=self.country).exclude(difficulty=0).order_by('?')
-        if self.cleaned_data['difficulty'] != '':
-            queryset = queryset.filter(difficulty=int(self.cleaned_data['difficulty']))
-        return queryset
+from maps.forms import MapForm
+from maps.models import Country, Area
 
 
 def puzzle_area(area: Area) -> Dict:
@@ -42,14 +21,6 @@ def giveup(request: WSGIRequest, name: str) -> JsonResponse:
     if not form.is_valid():
         return JsonResponse(form.errors, status=400)
     result = {area.id: puzzle_area(area) for area in form.areas()}
-    return JsonResponse(result)
-
-
-@csrf_exempt
-def check(request: WSGIRequest, pk: str) -> JsonResponse:
-    area = get_object_or_404(Area, pk=pk)
-    form = AreaContainsForm(data=request.POST, area=area)
-    result = puzzle_area(area) if form.is_valid() else {'success': False}
     return JsonResponse(result)
 
 
