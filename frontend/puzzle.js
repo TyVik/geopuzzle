@@ -9,7 +9,7 @@ import Loading from './components/Loading';
 import Infobox from './components/Infobox';
 import PuzzleBox from './components/PuzzleBox';
 import Toolbox from './components/Toolbox';
-import {INIT_LOAD, INIT_LOAD_FAIL, PUZZLE_INIT_DONE, NOOP} from './actions';
+import {INIT_LOAD, INIT_LOAD_FAIL, PUZZLE_INIT_DONE} from './actions';
 import Congratulation from './components/Congratulation';
 
 
@@ -19,7 +19,7 @@ class Puzzle extends React.Component {
 
     mapInit() {
         return (dispatch) => {
-            dispatch({type: INIT_LOAD, url: 'ws://127.0.0.1:8000/puzzle/'});
+            dispatch({type: INIT_LOAD, url: 'ws://' + window.location.host + '/quiz/'});
             return fetch(location.pathname.replace('/puzzle/', '/puzzle/questions/') + location.search)
                 .then(response => response.json())
                 .then(countries => dispatch({type: PUZZLE_INIT_DONE, countries}))
@@ -28,7 +28,6 @@ class Puzzle extends React.Component {
     }
 
     mapClick(e) {
-        return {type: NOOP};
     }
 
     render() {

@@ -1,5 +1,5 @@
 'use strict';
-import {QUIZ_INIT_DONE, QUIZ_CHECK_SUCCESS, QUIZ_NEXT, QUIZ_PREVIOUS, QUIZ_GIVEUP} from '../actions';
+import {QUIZ_INIT_DONE, QUIZ_CHECK_SUCCESS, QUIZ_NEXT, QUIZ_PREVIOUS, QUIZ_GIVEUP_DONE} from '../actions';
 
 
 let init_quiz = {question: {show: false}};
@@ -23,7 +23,7 @@ const quiz = (state = init_quiz, action) => {
             question_index = question_index < 0 ? state.questions.length - 1 : question_index;
             return {...state, question_index: question_index};
         case QUIZ_CHECK_SUCCESS:
-        case QUIZ_GIVEUP:
+        case QUIZ_GIVEUP_DONE:
             questions = state.questions.filter(element => {return element.id !== action.id});
             question_index = state.question_index % questions.length;
             return {...state, questions: questions, question_index: question_index};

@@ -10,7 +10,7 @@ import QuizQuestion from './components/QuizQuestion';
 import QuizInit from './components/QuizInit';
 import Toolbox from './components/Toolbox';
 import Congratulation from './components/Congratulation';
-import {checkQuiz, INIT_LOAD, QUIZ_CHECK_FAIL, QUIZ_CHECK_SUCCESS} from './actions';
+import {checkQuiz, INIT_LOAD, QUIZ_CHECK} from './actions';
 
 
 class QuizClass extends React.Component {
@@ -22,28 +22,8 @@ class QuizClass extends React.Component {
     }
 
     mapClick(e) {
-        return (dispatch) => {
-            let formData = new FormData();
-            formData.append('lat', e.latLng.lat());
-            formData.append('lng', e.latLng.lng());
-            let options = {
-                method: 'POST',
-                body: formData
-            };
-            let question = this.props.questions[this.props.question_index];
-            return fetch('//' + location.host + '/quiz/' + question.id + '/check/', options)
-                .then(response => response.json())
-                .then(json => {
-                    if (json.success) {
-                        return dispatch({...json, type: QUIZ_CHECK_SUCCESS, id: question.id})
-                    } else {
-                        return dispatch({type: QUIZ_CHECK_FAIL});
-                    }
-                })
-                .catch(response => {
-                    return dispatch({type: QUIZ_CHECK_FAIL});
-                });
-        };
+        let question = this.props.questions[this.props.question_index];
+        this.props.dispatch({type: QUIZ_CHECK, coords: {lat: e.latLng.lat(), lng: e.latLng.lng()}, id: question.id, ws: true});
     }
 
     render() {

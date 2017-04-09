@@ -1,31 +1,12 @@
 from django.utils.translation import ugettext as _
-from typing import Dict
 
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
-from django.views.decorators.csrf import csrf_exempt
 
-from maps.models import Country, Area
-from quiz.forms import PointContainsForm, QuizInfoboxForm
-
-
-def quiz_area(area: Area) -> Dict:
-    return {'success': True, 'infobox': area.strip_infobox, 'polygon': area.polygon_gmap}
-
-
-@csrf_exempt
-def check(request: WSGIRequest, pk: str) -> JsonResponse:
-    area = get_object_or_404(Area, pk=pk)
-    form = PointContainsForm(data=request.POST, area=area)
-    result = quiz_area(area) if form.is_valid() else {'success': False}
-    return JsonResponse(result)
-
-
-def giveup(request: WSGIRequest, pk: str) -> JsonResponse:
-    area = get_object_or_404(Area, pk=pk)
-    return JsonResponse(quiz_area(area))
+from maps.models import Country
+from quiz.forms import QuizInfoboxForm
 
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
