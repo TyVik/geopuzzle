@@ -24,5 +24,5 @@ def receive(message):
 
 
 routes = [
-    route('websocket.receive', receive, path=r'^/quiz/$'),
+    route('websocket.receive', receive, path=r'^/ws/quiz/$'),
 ]

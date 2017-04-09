@@ -18,7 +18,7 @@ class QuizClass extends React.Component {
     mapClick = this.mapClick.bind(this);
 
     mapInit() {
-        return {type: INIT_LOAD, url: 'ws://' + window.location.host + '/quiz/'};
+        return {type: INIT_LOAD, url: 'wss://' + window.location.host + '/ws/quiz/'};
     }
 
     mapClick(e) {

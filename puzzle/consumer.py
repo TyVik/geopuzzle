@@ -25,5 +25,5 @@ def receive(message):
         message.reply_channel.send({'text': json.dumps(result)})
 
 routes = [
-    route('websocket.receive', receive, path=r'^/puzzle/$'),
+    route('websocket.receive', receive, path=r'^/ws/puzzle/$'),
 ]
