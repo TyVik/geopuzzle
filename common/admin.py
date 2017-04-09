@@ -35,7 +35,7 @@ class ImageMixin(object):
 
 
 class MultiPolygonWidget(forms.gis.MultiPolygonWidget, forms.gis.BaseGMapWidget):
-    google_maps_api_key = 'YOUR-GOOGLE-MAPS-API-KEY-HERE'
+    google_maps_api_key = settings.GOOGLE_KEY
 
     @property
     def media(self):
@@ -43,4 +43,4 @@ class MultiPolygonWidget(forms.gis.MultiPolygonWidget, forms.gis.BaseGMapWidget)
 
 
 class MultiPointWidget(forms.gis.MultiPointWidget, forms.gis.BaseGMapWidget):
-    google_maps_api_key = 'YOUR-GOOGLE-MAPS-API-KEY-HERE'
+    google_maps_api_key = settings.GOOGLE_KEY
