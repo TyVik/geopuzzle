@@ -19,7 +19,7 @@ class Puzzle extends React.Component {
 
     mapInit() {
         return (dispatch) => {
-            dispatch({type: INIT_LOAD});
+            dispatch({type: INIT_LOAD, url: 'ws://127.0.0.1:8000/puzzle/'});
             return fetch(location.pathname.replace('/puzzle/', '/puzzle/questions/') + location.search)
                 .then(response => response.json())
                 .then(countries => dispatch({type: INIT_PUZZLE_DONE, countries}))

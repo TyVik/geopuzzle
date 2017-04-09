@@ -4,7 +4,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Polygon as GooglePolygon} from "react-google-maps";
 import * as _constants from "react-google-maps/lib/constants";
-import {showInfobox, DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL} from "../../actions";
+import {showInfobox, DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL, PUZZLE_CHECK} from "../../actions";
 
 
 class Polygon extends GooglePolygon {
@@ -33,6 +33,7 @@ class Polygon extends GooglePolygon {
                 method: 'POST',
                 body: formData
             };
+            this.props.dispatch({type: PUZZLE_CHECK, coords: coords, id: this.props.id});
             this.props.dispatch((dispatch) =>
                 fetch('//' + location.host + '/puzzle/' + this.props.id + '/check/', options)
                     .then(response => response.json())
