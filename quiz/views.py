@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.utils.translation import ugettext as _
 
 from django.core.handlers.wsgi import WSGIRequest
@@ -19,6 +20,7 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
 def quiz(request: WSGIRequest, name: str) -> HttpResponse:
     country = get_object_or_404(Country, slug=name)
     context = {
+        'google_key': settings.GOOGLE_KEY,
         'language': request.LANGUAGE_CODE,
         'country': country,
         'text': _('{name} has been studied! You guessed all {subjects}. You time is ').format(

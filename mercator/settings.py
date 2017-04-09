@@ -190,6 +190,8 @@ THUMBNAIL_DUMMY_RATIO = 1
 JSON_EDITOR_JS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.js'
 JSON_EDITOR_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.css'
 
+GOOGLE_KEY = 'AIzaSyDOo6Kqpq0_luQUBgq83WZJ9yL6Icg5BWc'
+
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_DB = 2
 

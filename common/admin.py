@@ -35,13 +35,12 @@ class ImageMixin(object):
 
 
 class MultiPolygonWidget(forms.gis.MultiPolygonWidget, forms.gis.BaseGMapWidget):
+    google_maps_api_key = 'YOUR-GOOGLE-MAPS-API-KEY-HERE'
+
     @property
     def media(self):
         return super(MultiPolygonWidget, self).media + forms.Media(js=('gis/MapBoxExtend.js', ))
 
-    # google_maps_api_key = 'YOUR-GOOGLE-MAPS-API-KEY-HERE'
-
 
 class MultiPointWidget(forms.gis.MultiPointWidget, forms.gis.BaseGMapWidget):
-    pass
-    # google_maps_api_key = 'YOUR-GOOGLE-MAPS-API-KEY-HERE'
+    google_maps_api_key = 'YOUR-GOOGLE-MAPS-API-KEY-HERE'
