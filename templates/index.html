@@ -18,9 +18,9 @@ available 2 games: puzzle and quiz. Good luck ;){% endblocktrans %}
         </div>
         <div class="row">
             <ul class="nav nav-tabs nav-justified">
-                {% for game, params in games.items %}
+                {% for game, caption in captions %}
                     <li{% if forloop.first %} class="active"{% endif %}>
-                        <a href="#{{ game }}" data-toggle="tab" class="{{ game }}-tab">{{ params.caption|title }}</a>
+                        <a href="#{{ game }}" data-toggle="tab" class="{{ game }}-tab">{{ caption|title }}</a>
                     </li>
                 {% endfor %}
             </ul>

@@ -38,7 +38,8 @@ const socketMiddleware = (function () {
 
     return store => next => action => {
         if (action.type === INIT_LOAD) {
-            addr = action.url;
+            let ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
+            addr = ws_scheme + '://' + window.location.host + '/ws/' + action.game + '/';
             socket = init(socket, store);
         } else {
             if (action.ws) {
