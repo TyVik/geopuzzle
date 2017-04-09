@@ -1,7 +1,7 @@
 'use strict';
 import {
     GET_INFOBOX_DONE, INIT_PUZZLE_DONE, INIT_QUIZ_DONE, QUIZ_GIVEUP,
-    DRAG_END_POLYGON, DRAG_END_POLYGON_FAIL, CHECK_QUIZ_SUCCESS,
+    PUZZLE_CHECK_SUCCESS, DRAG_END_POLYGON_FAIL, CHECK_QUIZ_SUCCESS,
     PUZZLE_GIVEUP, prepareInfobox
 } from "../actions";
 
@@ -97,7 +97,7 @@ const polygons = (state = [], action) => {
                 }
                 return polygon
             });
-        case DRAG_END_POLYGON:
+        case PUZZLE_CHECK_SUCCESS:
             return state.map((polygon) => {
                 if (polygon.id === action.id) {
                     return {

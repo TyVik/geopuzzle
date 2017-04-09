@@ -21,12 +21,10 @@ const socketMiddleware = (function () {
     };
 
     const onMessage = (ws, store) => evt => {
-        //Parse the JSON message received on the websocket
         let msg = JSON.parse(evt.data);
         switch (msg.type) {
-            case "CHAT_MESSAGE":
-                //Dispatch an action that adds the received message to our state
-                store.dispatch(actions.messageReceived(msg));
+            case "PUZZLE_CHECK_SUCCESS":
+                store.dispatch(msg);
                 break;
             default:
                 console.log("Received unknown message type: '" + msg.type + "'");

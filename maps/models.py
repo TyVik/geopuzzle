@@ -1,12 +1,12 @@
 import random
 import time
+
+from hvad.manager import TranslationManager
 from typing import List, Dict, Tuple
 
 from django.contrib.gis.db.models import MultiPointField
 from django.contrib.gis.db.models import MultiPolygonField
 from django.contrib.gis.db.models import PointField
-from django.contrib.gis.geos import MultiPoint
-from django.contrib.gis.geos import Point
 from django.contrib.postgres.fields import JSONField
 from django.core.cache import cache
 from django.db import models
@@ -78,12 +78,18 @@ class Country(TranslatableModel):
         return self.__default_positions.pop().coords
 
 
+class AreaManager(TranslationManager):
+    def get_queryset(self):
+        return super(AreaManager, self).get_queryset().defer('polygon')
+
+
 class Area(TranslatableModel):
     country = models.ForeignKey(Country)
     difficulty = models.PositiveSmallIntegerField(choices=DIFFICULTY_LEVELS, default=0)
     polygon = MultiPolygonField(geography=True)
     wikidata_id = models.CharField(max_length=15, null=True, blank=True)
 
+    objects = AreaManager()
     translations = TranslatedFields(
         name = models.CharField(max_length=50),
         infobox = JSONField(null=True, blank=True)
