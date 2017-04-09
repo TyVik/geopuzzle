@@ -16,3 +16,4 @@ requests==2.13.0
 django-floppyforms==1.7.0
 channels==1.1.3
 asgi-redis==1.3.0
+django-redis-sessions==0.5.6

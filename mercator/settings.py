@@ -136,7 +136,16 @@ LOGGING = {
             "level": "DEBUG",
             "maxBytes": 10485760
         },
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
     },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': [],
+        },
+    }
 }
 
 # Password validation
@@ -180,6 +189,8 @@ THUMBNAIL_DUMMY_RATIO = 1
 JSON_EDITOR_JS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.js'
 JSON_EDITOR_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.css'
 
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS_DB = 2
 
 CHANNEL_LAYERS = {
     'default': {
