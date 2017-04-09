@@ -66,16 +66,5 @@ class MapContainer extends React.Component {
 
 
 export default connect(state => {
-    let result = {...state.map, polygons: state.polygons, infobox: state.infobox};
-    if (state.infobox.capital) {
-        result.marker = {
-            key: state.infobox.capital.name,
-            defaultAnimation: 2,
-            position: {
-                lat: state.infobox.capital.lat,
-                lng: state.infobox.capital.lon
-            }
-        }
-    }
-    return result;
+    return {...state.map, polygons: state.polygons, infobox: state.infobox};
 })(MapContainer);
