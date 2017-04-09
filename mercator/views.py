@@ -16,16 +16,16 @@ def index(request: WSGIRequest) -> HttpResponse:
     games = {
         'puzzle': {
             'link': 'puzzle_map',
-            'caption': _('puzzle'),
             'rules': _('Drag the shapes of countries on the right place.')
         },
         'quiz': {
             'link': 'quiz_map',
-            'caption': _('quiz'),
             'rules': _('Find all countries or regions by their attributes: name, flag, emblem or capital.')
         }
     }
-    return render(request, 'index.html', {'countries': countries, 'parts': parts, 'games': games})
+    captions = (('puzzle', _('puzzle')), ('quiz', _('quiz')))
+    return render(request, 'index.html', {'countries': countries, 'parts': parts, 'games': games,
+                                          'captions': captions})
 
 
 def deprecated_redirect(request: WSGIRequest, name: str) -> HttpResponsePermanentRedirect:
