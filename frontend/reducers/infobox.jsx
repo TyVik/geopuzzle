@@ -1,6 +1,6 @@
 'use strict';
 import {GET_INFOBOX_DONE, SHOW_INFOBOX, CLOSE_INFOBOX, QUIZ_CHECK_SUCCESS, QUIZ_GIVEUP, PUZZLE_CHECK_SUCCESS,
-e3wprepareInfobox} from '../actions';
+prepareInfobox} from '../actions';
 
 
 let init_infobox = {show: false};
