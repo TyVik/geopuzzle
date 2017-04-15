@@ -32,6 +32,10 @@ footer .social-wrap {
     margin: 10px 0;
 }
 
+.game-rules {
+    font-size: 21px;
+}
+
 .active > .puzzle-tab {
     background-color: rgba(132, 132, 56, 0.2);
 }

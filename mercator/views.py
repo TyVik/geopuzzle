@@ -16,11 +16,11 @@ def index(request: WSGIRequest) -> HttpResponse:
     games = {
         'puzzle': {
             'link': 'puzzle_map',
-            'rules': _('Drag the shapes of countries on the right place.')
+            'rules': _('In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!')
         },
         'quiz': {
             'link': 'quiz_map',
-            'rules': _('Find all countries or regions by their attributes: name, flag, emblem or capital.')
+            'rules': _('In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!')
         }
     }
     captions = (('puzzle', _('puzzle')), ('quiz', _('quiz')))

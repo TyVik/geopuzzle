@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-23 08:01+0000\n"
+"POT-Creation-Date: 2017-04-15 19:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,44 +47,55 @@ msgstr "Пожалуйста, исправьте ошибки."
 msgid "Please correct the errors below."
 msgstr "Пожалуйста, исправьте ошибки."
 
-#: maps/views.py:56
-msgid "{} was assembled! You time is "
-msgstr "{} собрана! Ваше время "
-
-#: maps/views.py:56 quiz/views.py:44
-msgid "World map"
-msgstr "Карта мира"
-
 #: mercator/views.py:19
+msgid ""
+"In the Puzzle you need to drag the shape of the territory to the right "
+"place. Just like in childhood we collected pictures piece by piece, so here "
+"you can collect a country from regions or whole continents from countries!"
+msgstr ""
+"В игре \"Паззл\" нужно перетащить контур территории на её место. В детстве "
+"мы собирали картины кусочек за кусочком, а здесь можно собрать страну из "
+"регионов или целые континенты из стран!"
+
+#: mercator/views.py:23
+msgid ""
+"In the Quiz you need find the country by flag, emblem or the capital. Did "
+"you know that Monaco and Indonesia have the same flags? And that the flags "
+"of the United States and Liberia differ only in the number of stars? So, "
+"these and other interesting things can be learned and remembered after "
+"brainstorming right now!"
+msgstr ""
+"В игре «Викторина» искать страну нужно будет по флагу, гербу или столице. "
+"Знали ли вы, что у Монако и Индонезии одинаковые флаги? А что флаги США и "
+"Либерии отличаются только количеством звёзд? Так вот, эти и другие "
+"интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
+
+#: mercator/views.py:26
 msgid "puzzle"
 msgstr "Паззл"
 
-#: mercator/views.py:20
-msgid "Drag the shapes of countries on the right place."
-msgstr "Перетащите контуры стран на правильные места."
-
-#: mercator/views.py:24
+#: mercator/views.py:26
 msgid "quiz"
 msgstr "Викторина"
 
-#: mercator/views.py:25
-msgid ""
-"Find all countries or regions by their attributes: name, flag, emblem or "
-"capital."
-msgstr ""
-"Найдите все страны или регионы по их атрибутике: названию, флагу, гербу или "
-"столице."
+#: puzzle/views.py:37
+msgid "{} was assembled! You time is "
+msgstr "{} собрана! Ваше время "
 
-#: quiz/views.py:43
+#: puzzle/views.py:37 quiz/views.py:27
+msgid "World map"
+msgstr "Карта мира"
+
+#: quiz/views.py:26
 #, python-brace-format
 msgid "{name} has been studied! You guessed all {subjects}. You time is "
 msgstr "{name} была изучена! Вы нашли все {subjects}. Ваше время "
 
-#: quiz/views.py:45
+#: quiz/views.py:28
 msgid "countries"
 msgstr "страны"
 
-#: quiz/views.py:45
+#: quiz/views.py:28
 msgid "regions"
 msgstr "регионы"
 
@@ -92,7 +103,7 @@ msgstr "регионы"
 msgid "Mercator puzzle of"
 msgstr "Паззл Меркатора - "
 
-#: templates/base.html:5 templates/index.html:42
+#: templates/base.html:5 templates/index.html:44
 msgid "World"
 msgstr "Мир"
 
@@ -100,45 +111,59 @@ msgstr "Мир"
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
 
-#: templates/index.html:14
+#: templates/index.html:15
 msgid ""
-"Thank you for attention. This site is dedicated to study of the political "
-"map of the\n"
-"world. Here you can study not only where is any country or region, but also "
-"its flag, coat of arms or capital. Now\n"
-"available 2 games: puzzle and quiz. Good luck ;)"
+"\"It turns out that the tallest people live in Rwanda,\" one day they told "
+"you. And then you shyly thought about what Rwanda is and with what it's "
+"eaten, but nothing came to your mind ... Then you went to the right page!"
 msgstr ""
-"Спасибо что заглянули. Этот сайт посвящён изучению политической карты мира. "
-"Здесь вы можете узнать не только где находится какая страна или регион, но "
-"также её флаг, герб или столицу. Сейчас доступно 2 игры: паззл и викторина. "
-"Удачи ;)"
+"\"Оказывается, самая высокорослая народность живёт в Руанде\", — однажды "
+"сказали вам. И тут вы стыдливо подумали о том, что такое Руанда и с чем её "
+"едят, но ничего так и не пришло в голову… Тогда вы зашли на нужную страницу!"
 
-#: templates/index.html:49
+#: templates/index.html:18
+msgid ""
+"In the game form, you can remember not only the location and name of the "
+"country, but also its flag, coat of arms and the capital. Under your hand "
+"all the states of the world - study them, move them and compare them. And "
+"then your brain will work another time faster and remember, for example, "
+"that Rwanda is one of the smallest countries in Africa. ;)"
+msgstr ""
+"В игровой форме здесь можно запомнить не только расположение и название "
+"страны, но и её флаг, герб и столицу. Под вашей рукой все государства мира — "
+"изучайте их, перемещайте и сравнивайте. И тогда ваш мозг в другой раз "
+"сработает быстрее и вспомнит, например, и о том, что Руанда — одна из самых "
+"маленьких стран Африки. :)"
+
+#: templates/index.html:51
 msgid "easy"
 msgstr "лёгкий"
 
-#: templates/index.html:56
+#: templates/index.html:58
 msgid "normal"
 msgstr "средний"
 
-#: templates/index.html:63
+#: templates/index.html:65
 msgid "hard"
 msgstr "тяжёлый"
 
-#: templates/index.html:79
+#: templates/index.html:81
 msgid "Country regions"
 msgstr "Регионы стран"
 
-#: templates/index.html:103
+#: templates/index.html:105
 msgid ""
 "This is my pet project, but I was so impressed with this idea that I decided "
-"to make a website. It is not over yet -\n"
-"will update both the data and functionality. All suggestions for improvement "
-"can be sent to me via\n"
-"<a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">email</a>, <a href="
-"\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
-"or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank"
-"\">facebook</a>."
+"to make a\n"
+"                    website. It is not over yet -\n"
+"                    will update both the data and functionality. All "
+"suggestions for improvement can be sent to me via\n"
+"                    <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle"
+"\">email</a>,\n"
+"                    <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</"
+"a>\n"
+"                    or <a href=\"https://www.facebook.com/TyVikZero\" target="
+"\"_blank\">facebook</a>."
 msgstr ""
 "Это мой домашний проект, но я был настолько вдохновлён идеей, что решил "
 "сделать полноценный сайт. Он ещё не закончен - будут обновления как самих "

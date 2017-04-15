@@ -11,9 +11,11 @@
     <div class="container">
         <div class="jumbotron row">
             <h2>{% trans 'Arrange the pieces of the world!' %}</h2>
-            <p>{% blocktrans %}Thank you for attention. This site is dedicated to study of the political map of the
-world. Here you can study not only where is any country or region, but also its flag, coat of arms or capital. Now
-available 2 games: puzzle and quiz. Good luck ;){% endblocktrans %}
+            <p>
+{% blocktrans %}"It turns out that the tallest people live in Rwanda," one day they told you. And then you shyly thought about what Rwanda is and with what it's eaten, but nothing came to your mind ... Then you went to the right page!{% endblocktrans %}
+            </p>
+            <p>
+{% blocktrans %}In the game form, you can remember not only the location and name of the country, but also its flag, coat of arms and the capital. Under your hand all the states of the world - study them, move them and compare them. And then your brain will work another time faster and remember, for example, that Rwanda is one of the smallest countries in Africa. ;){% endblocktrans %}
             </p>
         </div>
         <div class="row">
@@ -36,7 +38,7 @@ available 2 games: puzzle and quiz. Good luck ;){% endblocktrans %}
                                              class="pull-left img-responsive img-rounded img-caption">
                                     {% endwith %}
                                     <div class="media-body">
-                                        <h4 class="media-heading">{{ params.rules }}</h4>
+                                        <p class="game-rules">{{ params.rules }}</p>
                                     </div>
                                 </div>
                                 <h1>{% trans 'World' %}</h1>
@@ -100,10 +102,12 @@ available 2 games: puzzle and quiz. Good luck ;){% endblocktrans %}
 
         <div class="jumbotron row">
             <p>
-                {% blocktrans %}This is my pet project, but I was so impressed with this idea that I decided to make a website. It is not over yet -
-will update both the data and functionality. All suggestions for improvement can be sent to me via
-<a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle">email</a>, <a href="https://vk.com/tyvik" target="_blank">Vk</a>
-or <a href="https://www.facebook.com/TyVikZero" target="_blank">facebook</a>.{% endblocktrans %}
+                {% blocktrans %}This is my pet project, but I was so impressed with this idea that I decided to make a
+                    website. It is not over yet -
+                    will update both the data and functionality. All suggestions for improvement can be sent to me via
+                    <a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle">email</a>,
+                    <a href="https://vk.com/tyvik" target="_blank">Vk</a>
+                    or <a href="https://www.facebook.com/TyVikZero" target="_blank">facebook</a>.{% endblocktrans %}
             </p>
         </div>
     </div>
