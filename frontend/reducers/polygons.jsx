@@ -54,7 +54,8 @@ const polygons = (state = [], action) => {
         case GET_INFOBOX_DONE:
             return state.map((country) => {
                 if (country.id === action.id) {
-                    return {...country, infobox: {...action.data, loaded: true}};
+                    let data = prepareInfobox(action.infobox);
+                    return {...country, infobox: {...data, loaded: true}};
                 }
                 return country
             });
@@ -84,7 +85,7 @@ const polygons = (state = [], action) => {
                     return {
                         ...polygon,
                         draggable: false,
-                        infobox: solve.infobox,
+                        infobox: prepareInfobox(solve.infobox),
                         paths: decodePolygon(solve.polygon),
                     };
                 }
@@ -104,7 +105,7 @@ const polygons = (state = [], action) => {
                         ...polygon,
                         draggable: false,
                         isSolved: true,
-                        infobox: action.infobox,
+                        infobox: prepareInfobox(action.infobox),
                         paths: decodePolygon(action.polygon),
                     };
                 }

@@ -51,11 +51,11 @@ export const prepareInfobox = (json) => {
 
 export const showInfobox = (polygon) => dispatch => {
     if (polygon.infobox.loaded) {
-        return dispatch({type: SHOW_INFOBOX, id: polygon.id, data: polygon.infobox});
+        return dispatch({type: SHOW_INFOBOX, id: polygon.id, infobox: polygon.infobox});
     } else {
         return fetch(location.origin + `/puzzle/area/` + polygon.id + '/infobox/')
             .then(response => response.json())
-            .then(json => dispatch({type: GET_INFOBOX_DONE, id: polygon.id, data: prepareInfobox(json)}))
+            .then(json => dispatch({type: GET_INFOBOX_DONE, id: polygon.id, infobox: json}))
             .catch(response => dispatch({type: GET_INFOBOX_FAIL}));
     }
 };
