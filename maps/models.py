@@ -142,8 +142,8 @@ class Area(TranslatableModel):
 
     def infobox_status(self) -> Dict:
         fields = ('name', 'wiki', 'capital', 'coat_of_arms', 'flag')
-        result = {field: field in self.infobox for field in fields}
-        result['capital'] = result['capital'] and isinstance(self.infobox['capital'], dict)
+        result = {} if self.infobox is None else {field: field in self.infobox for field in fields}
+        result['capital'] = result.get('capital') and isinstance(self.infobox['capital'], dict)
         return result
 
     @property
