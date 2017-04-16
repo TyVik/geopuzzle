@@ -20,45 +20,45 @@
         </div>
         <div class="row">
             <ul class="nav nav-tabs nav-justified">
-                {% for game, caption in captions %}
+                {% for game in games %}
                     <li{% if forloop.first %} class="active"{% endif %}>
-                        <a href="#{{ game }}" data-toggle="tab" class="{{ game }}-tab">{{ caption|title }}</a>
+                        <a href="#{{ game.name }}" data-toggle="tab" class="{{ game.name }}-tab">{{ game.caption|title }}</a>
                     </li>
                 {% endfor %}
             </ul>
 
             <div class="tab-content">
-                {% for game, params in games.items %}
-                    <div class="tab-pane{% if forloop.first %} active{% endif %}" id="{{ game }}">
-                        <div class="panel {{ game }}-tab">
+                {% for game in games %}
+                    <div class="tab-pane{% if forloop.first %} active{% endif %}" id="{{ game.name }}">
+                        <div class="panel {{ game.name }}-tab">
                             <div class="panel-body">
                                 <div class="media">
-                                    {% with "images/"|add:game|add:".png" as image_link %}
-                                        <img src="{% static image_link %}" alt="{{ game }}"
+                                    {% with "images/"|add:game.name|add:".png" as image_link %}
+                                        <img src="{% static image_link %}" alt="{{ game.name }}"
                                              class="pull-left img-responsive img-rounded img-caption">
                                     {% endwith %}
                                     <div class="media-body">
-                                        <p class="game-rules">{{ params.rules }}</p>
+                                        <p class="game-rules">{{ game.rules }}</p>
                                     </div>
                                 </div>
                                 <h1>{% trans 'World' %}</h1>
                                 <div class="row">
                                     <div class="col-md-4 col-sm-4 col-xs-4 item-container">
-                                        <a href="{% url params.link 'world' %}?difficulty=1">
+                                        <a href="{% url game.link 'world' %}?difficulty=1">
                                             <img class="img-responsive img-rounded"
                                                  src="{% static 'images/world/easy.png' %}" alt="easy">
                                         </a>
                                         <div class="text-center">{% trans 'easy' %}</div>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-4 item-container">
-                                        <a href="{% url params.link 'world' %}?difficulty=2">
+                                        <a href="{% url game.link 'world' %}?difficulty=2">
                                             <img class="img-responsive img-rounded"
                                                  src="{% static 'images/world/normal.png' %}" alt="normal">
                                         </a>
                                         <div class="text-center">{% trans 'normal' %}</div>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-4 item-container">
-                                        <a href="{% url params.link 'world' %}?difficulty=3">
+                                        <a href="{% url game.link 'world' %}?difficulty=3">
                                             <img class="img-responsive img-rounded"
                                                  src="{% static 'images/world/hard.png' %}" alt="hard">
                                         </a>
@@ -69,7 +69,7 @@
                                     {% for part in parts %}
                                         <div class="col-md-3 col-sm-3 col-xs-4 item-container">
                                             {% thumbnail part.image "250x250" format="PNG" quality=80 as im %}
-                                                <a href="{% url params.link part.slug %}">
+                                                <a href="{% url game.link part.slug %}">
                                                     <img class="img-responsive img-rounded" src="{{ im.url }}"
                                                          alt="{{ part.name }}">
                                                 </a>
@@ -83,7 +83,7 @@
                                     {% for country in countries %}
                                         <div class="col-md-2 col-sm-3 col-xs-4 item-container">
                                             {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
-                                                <a href="{% url params.link country.slug %}">
+                                                <a href="{% url game.link country.slug %}">
                                                     <img class="img-responsive img-rounded" src="{{ im.url }}"
                                                          alt="{{ country.name }}">
                                                 </a>
