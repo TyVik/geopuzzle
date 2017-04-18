@@ -21,7 +21,7 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
     result = [{
         'id': area.id,
         'name': area.name,
-        'polygon': area.polygon_gmap,
+        'polygon': area.polygon_strip,
         'center': area.polygon.centroid.coords,
         'default_position': area.country.pop_position()}
             for area in form.areas()]

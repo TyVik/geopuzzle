@@ -97,7 +97,8 @@ class Area(TranslatableModel):
 
     caches = {
         'polygon_gmap': 'area{id}gmap',
-        'polygon_bounds': 'area{id}bounds'
+        'polygon_bounds': 'area{id}bounds',
+        'polygon_strip': 'area{id}strip',
     }
 
     class Meta:
@@ -121,6 +122,23 @@ class Area(TranslatableModel):
             points = [extent[i] + diff[i] * scale for i in range(4)]
             cache.set(cache_key, points, timeout=None)
         return points
+
+    @property
+    def polygon_strip(self) -> List:
+        cache_key = self.caches['polygon_strip'].format(id=self.id)
+        result = cache.get(cache_key)
+        if result is None:
+            result = []
+            simplify = self.polygon.simplify(0.01)
+            for polygon in simplify:
+                if isinstance(polygon.coords[0][0], float):
+                    result.append(encode_coords(polygon.coords))
+                else:
+                    result.append(encode_coords(polygon.coords[0]))
+                    if len(polygon.coords) > 1:
+                        result.append(encode_coords(polygon.coords[1]))
+            cache.set(cache_key, result, timeout=None)
+        return result
 
     @property
     def polygon_gmap(self) -> List:
