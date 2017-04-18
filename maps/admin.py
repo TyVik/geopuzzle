@@ -79,9 +79,9 @@ update_infobox.short_description = "Update infobox"
 
 @admin.register(Area)
 class AreaAdmin(TranslatableAdmin):
-    list_display = ('_name', 'difficulty', 'wiki_id', 'wikidata_id', 'num_points', 'infobox_status')
+    list_display = ('_name', 'difficulty', 'wikidata_id', 'osm_id', 'num_points', 'infobox_status')
     list_filter = ('difficulty', 'country')
-    list_editable = ('difficulty', 'wikidata_id')
+    list_editable = ('difficulty', 'wikidata_id', 'osm_id')
     actions = (update_infobox,)
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
@@ -99,11 +99,6 @@ class AreaAdmin(TranslatableAdmin):
 
     def num_points(self, obj: Area) -> int:
         return obj.polygon.num_points
-
-    def wiki_id(self, obj: Area) -> str:
-        return '' if obj.wikidata_id is None else '<a href="https://www.wikidata.org/wiki/{id}">{id}</a>'.format(id=obj.wikidata_id)
-    wiki_id.short_description = 'Wiki ID'
-    wiki_id.allow_tags = True
 
     def infobox_status(self, obj: Area) -> str:
         result = ''

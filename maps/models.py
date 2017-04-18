@@ -17,6 +17,7 @@ from hvad.models import TranslatableModel, TranslatedFields
 from hvad.utils import load_translation
 
 from maps.converter import encode_coords
+from maps.fields import ExternalIdField
 from maps.infobox import query_by_wikidata_id
 
 DIFFICULTY_LEVELS = (
@@ -45,7 +46,7 @@ class Country(TranslatableModel):
     zoom = models.PositiveSmallIntegerField(choices=ZOOMS)
     is_published = models.BooleanField(default=False)
     is_global = models.BooleanField(default=False)
-    wikidata_id = models.CharField(max_length=15)
+    wikidata_id = ExternalIdField(max_length=15, link='https://www.wikidata.org/wiki/{id}')
 
     translations = TranslatedFields(
         name = models.CharField(max_length=15)
@@ -87,7 +88,8 @@ class Area(TranslatableModel):
     country = models.ForeignKey(Country)
     difficulty = models.PositiveSmallIntegerField(choices=DIFFICULTY_LEVELS, default=0)
     polygon = MultiPolygonField(geography=True)
-    wikidata_id = models.CharField(max_length=15, null=True, blank=True)
+    wikidata_id = ExternalIdField(max_length=15, null=True, blank=True, link='https://www.wikidata.org/wiki/{id}')
+    osm_id = ExternalIdField(max_length=15, null=True, blank=True)
 
     objects = AreaManager()
     translations = TranslatedFields(
