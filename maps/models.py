@@ -1,9 +1,14 @@
+import json
 import random
 import time
+from zipfile import ZipFile
 
+import requests
+from django.contrib.gis.geos import GEOSGeometry
 from hvad.manager import TranslationManager
 from typing import List, Dict, Tuple
 
+from django.conf import settings
 from django.contrib.gis.db.models import MultiPointField
 from django.contrib.gis.db.models import MultiPolygonField
 from django.contrib.gis.db.models import PointField
@@ -15,6 +20,7 @@ from django.dispatch import receiver
 from django.urls import reverse
 from hvad.models import TranslatableModel, TranslatedFields
 from hvad.utils import load_translation
+from io import BytesIO
 
 from maps.converter import encode_coords
 from maps.fields import ExternalIdField
@@ -177,6 +183,20 @@ class Area(TranslatableModel):
     @property
     def full_info(self) -> Dict:
         return {'infobox': self.strip_infobox, 'polygon': self.polygon_gmap, 'id': self.id}
+
+    def import_osm_polygon(self) -> None:
+        url = settings.OSM_URL.format(id=self.osm_id, key=settings.OSM_KEY, level=2 if self.country.is_global else 4)
+        response = requests.get(url)
+        if response.status_code != 200:
+            raise Exception('Bad request')
+        zipfile = ZipFile(BytesIO(response.content))
+        zip_names = zipfile.namelist()
+        if len(zip_names) != 1:
+            raise Exception('Too many geometries')
+        filename = zip_names.pop()
+        geojson = json.loads(zipfile.open(filename).read().decode())
+        self.polygon = GEOSGeometry(json.dumps(geojson['features'][0]['geometry']))
+        self.save()
 
     def update_infobox_by_wikidata_id(self) -> None:
         time.sleep(5)  # protection for DDoS

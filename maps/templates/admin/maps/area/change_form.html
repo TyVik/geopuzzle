@@ -11,6 +11,7 @@
             </li>
             <li>
                 <a href="{% url 'admin:area_kml_import' original.pk %}" class="historylink">{% trans "Import KML" %}</a>
+                <a href="{% url 'admin:area_osm_import' original.pk %}" class="historylink">{% trans "Import from OSM" %}</a>
             </li>
             {% if has_absolute_url %}<li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif %}
             {% endblock %}

@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext as _
 from typing import List
 
 from django.conf.urls import url
@@ -9,6 +10,7 @@ from django.db.models import ImageField
 from django.contrib.gis.db.models import MultiPolygonField, QuerySet, MultiPointField
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.template.response import TemplateResponse
 from django.urls import reverse
 from hvad.admin import TranslatableAdmin
@@ -48,7 +50,8 @@ class CountryAdmin(ImageMixin, TranslatableAdmin):
             form = KMLCountryImportForm(request.POST, request.FILES, initial={"country": pk})
             if form.is_valid():
                 form.save()
-                redirect_url = reverse('admin:{app}_{model}_changelist'.format(app=opts.app_label, model='country')) + '?meta__id__exact={}'.format(pk)
+                redirect_url = reverse('admin:{app}_{model}_changelist'.format(app=opts.app_label, model='country')) + \
+                               '?meta__id__exact={}'.format(pk)
                 success(request, 'KML "{}" was imported successfully.'.format(form.cleaned_data['kml']))
                 return HttpResponseRedirect(redirect_url)
         else:
@@ -70,11 +73,18 @@ class CountryAdmin(ImageMixin, TranslatableAdmin):
         ] + super(CountryAdmin, self).get_urls()
 
 
-def update_infobox(modeladmin, request, queryset) -> None:
+def update_infoboxes(modeladmin, request, queryset) -> None:
     for area in queryset:
         area.update_infobox_by_wikidata_id()
-    success(request, 'Infoboxes were updated.')
-update_infobox.short_description = "Update infobox"
+    success(request, _('Infoboxes were updated.'))
+update_infoboxes.short_description = _("Update infoboxes")
+
+
+def update_polygons(modeladmin, request, queryset) -> None:
+    for area in queryset:
+        area.import_osm_polygon()
+    success(request, _('Polygons were updated.'))
+update_polygons.short_description = _("Update polygons")
 
 
 @admin.register(Area)
@@ -82,7 +92,7 @@ class AreaAdmin(TranslatableAdmin):
     list_display = ('_name', 'difficulty', 'wikidata_id', 'osm_id', 'num_points', 'infobox_status')
     list_filter = ('difficulty', 'country')
     list_editable = ('difficulty', 'wikidata_id', 'osm_id')
-    actions = (update_infobox,)
+    actions = (update_infoboxes, update_polygons)
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
         MultiPolygonField: {'widget': MultiPolygonWidget},
@@ -105,8 +115,17 @@ class AreaAdmin(TranslatableAdmin):
         for key, value in obj.infobox_status().items():
             result += '<img src="/static/admin/img/icon-{}.svg" title="{}"/>'.format('yes' if value else 'no', key)
         return result
-    infobox_status.short_description = 'Infobox'
+    infobox_status.short_description = _('Infobox')
     infobox_status.allow_tags = True
+
+    def formchange_url(self, pk: str) -> str:
+        return reverse('admin:{app}_{model}_change'.format(app=self.model._meta.app_label, model='area'), args=(pk,))
+
+    def osm_import(self, request: WSGIRequest, pk: str) -> HttpResponse:
+        area = get_object_or_404(Area, pk=pk)
+        area.import_osm_polygon()
+        success(request, _('Polygon was imported successfully.'))
+        return HttpResponseRedirect(self.formchange_url(pk))
 
     def kml_import(self, request:WSGIRequest, pk: str) -> HttpResponse:
         opts = self.model._meta
@@ -115,9 +134,8 @@ class AreaAdmin(TranslatableAdmin):
             form = KMLAreaImportForm(request.POST, request.FILES, initial={"area": pk})
             if form.is_valid():
                 form.save()
-                redirect_url = reverse('admin:{app}_{model}_change'.format(app=opts.app_label, model='area'), args=(pk,))
                 success(request, 'KML "{}" was imported successfully.'.format(form.cleaned_data['kml']))
-                return HttpResponseRedirect(redirect_url)
+                return HttpResponseRedirect(self.formchange_url(pk))
         else:
             form = KMLAreaImportForm(initial={"area": pk})
 
@@ -134,4 +152,5 @@ class AreaAdmin(TranslatableAdmin):
     def get_urls(self) -> List:
         return [
             url(r'^(.+)/kml_import/$', staff_member_required(self.kml_import), name='area_kml_import'),
+            url(r'^(.+)/osm_import/$', staff_member_required(self.osm_import), name='area_osm_import'),
         ] + super(AreaAdmin, self).get_urls()
