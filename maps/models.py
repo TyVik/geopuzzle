@@ -1,10 +1,11 @@
 import json
+import os
 import random
 import time
 from zipfile import ZipFile
 
 import requests
-from django.contrib.gis.geos import GEOSGeometry
+from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
 from hvad.manager import TranslationManager
 from typing import List, Dict, Tuple
 
@@ -22,7 +23,7 @@ from hvad.models import TranslatableModel, TranslatedFields
 from hvad.utils import load_translation
 from io import BytesIO
 
-from maps.converter import encode_coords
+from maps.converter import encode_geometry
 from maps.fields import ExternalIdField
 from maps.infobox import query_by_wikidata_id
 
@@ -85,6 +86,24 @@ class Country(TranslatableModel):
         return self.__default_positions.pop().coords
 
 
+class Region(TranslatableModel):
+    title = models.CharField(max_length=128)
+    polygon = MultiPolygonField(geography=True)
+    parent = models.ForeignKey('Region', null=True, blank=True)
+    modified = models.DateTimeField(auto_now=True)
+    wikidata_id = ExternalIdField(max_length=15, link='https://www.wikidata.org/wiki/{id}', null=True)
+    osm_id = models.PositiveIntegerField(unique=True)
+    osm_data = JSONField(default={})
+
+    translations = TranslatedFields(
+        name=models.CharField(max_length=120),
+        infobox=JSONField(default={})
+    )
+
+    def __str__(self):
+        return self.title
+
+
 class AreaManager(TranslationManager):
     def get_queryset(self):
         return super(AreaManager, self).get_queryset().defer('polygon')
@@ -136,15 +155,8 @@ class Area(TranslatableModel):
         cache_key = self.caches['polygon_strip'].format(id=self.id)
         result = cache.get(cache_key)
         if result is None:
-            result = []
-            simplify = self.polygon.simplify(0.01)
-            for polygon in simplify:
-                if isinstance(polygon.coords[0][0], float):
-                    result.append(encode_coords(polygon.coords))
-                else:
-                    result.append(encode_coords(polygon.coords[0]))
-                    if len(polygon.coords) > 1:
-                        result.append(encode_coords(polygon.coords[1]))
+            simplify = self.polygon.simplify(0.01, preserve_topology=True)
+            result = encode_geometry(simplify, min_points=15)
             cache.set(cache_key, result, timeout=None)
         return result
 
@@ -153,11 +165,7 @@ class Area(TranslatableModel):
         cache_key = self.caches['polygon_gmap'].format(id=self.id)
         result = cache.get(cache_key)
         if result is None:
-            result = []
-            for polygon in self.polygon:
-                result.append(encode_coords(polygon.coords[0]))
-                if len(polygon.coords) > 1:
-                    result.append(encode_coords(polygon.coords[1]))
+            result = encode_geometry(self.polygon)
             cache.set(cache_key, result, timeout=None)
         return result
 
@@ -185,17 +193,28 @@ class Area(TranslatableModel):
         return {'infobox': self.strip_infobox, 'polygon': self.polygon_gmap, 'id': self.id}
 
     def import_osm_polygon(self) -> None:
-        url = settings.OSM_URL.format(id=self.osm_id, key=settings.OSM_KEY, level=2 if self.country.is_global else 4)
-        response = requests.get(url)
-        if response.status_code != 200:
-            raise Exception('Bad request')
-        zipfile = ZipFile(BytesIO(response.content))
-        zip_names = zipfile.namelist()
-        if len(zip_names) != 1:
-            raise Exception('Too many geometries')
-        filename = zip_names.pop()
-        geojson = json.loads(zipfile.open(filename).read().decode())
+        def content():
+            cache = os.path.join(settings.GEOJSON_DIR, '{}.geojson'.format(self.osm_id))
+            if not os.path.exists(cache):
+                url = settings.OSM_URL.format(id=self.osm_id, key=settings.OSM_KEY, level=2 if self.country.is_global else 4)
+                response = requests.get(url)
+                if response.status_code != 200:
+                    raise Exception('Bad request')
+                zipfile = ZipFile(BytesIO(response.content))
+                zip_names = zipfile.namelist()
+                if len(zip_names) != 1:
+                    raise Exception('Too many geometries')
+                filename = zip_names.pop()
+                with open(cache, 'wb') as c:
+                    c.write(zipfile.open(filename).read())
+            with open(cache, 'r') as c:
+                return json.loads(c.read())
+        geojson = content()
         self.polygon = GEOSGeometry(json.dumps(geojson['features'][0]['geometry']))
+        simplify = self.polygon.simplify(0.01, preserve_topology=True)
+        if not isinstance(simplify, MultiPolygon):
+            simplify = MultiPolygon(simplify)
+        self.polygon = simplify
         self.save()
 
     def update_infobox_by_wikidata_id(self) -> None:

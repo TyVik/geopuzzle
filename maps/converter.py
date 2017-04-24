@@ -1,6 +1,7 @@
 '''Provides utility functions for encoding and decoding linestrings using the
 Google encoded polyline algorithm.
 '''
+from django.contrib.gis.geos import MultiPolygon
 
 
 def encode_coords(coords):
@@ -120,3 +121,21 @@ def decode(point_str):
         points.append((round(prev_x, 6), round(prev_y, 6)))
 
     return points
+
+
+def encode_geometry(polygon, min_points=None):
+    def encode_part(subpolygon):
+        subpart = [encode_coords(subpolygon.coords[0])]
+        if len(subpolygon.coords) > 1:
+            subpart.append(encode_coords(subpolygon.coords[1]))
+        return subpart
+
+    result = []
+    if isinstance(polygon, MultiPolygon):
+        for part in polygon:
+            if min_points is not None and part.num_points < min_points:
+                continue
+            result += encode_part(part)
+    else:
+        result += encode_part(polygon)
+    return result

@@ -17,7 +17,7 @@ from hvad.admin import TranslatableAdmin
 
 from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget, MultiPointWidget
 from maps.forms import KMLCountryImportForm, KMLAreaImportForm
-from maps.models import Country, Area
+from maps.models import Country, Area, Region
 
 
 @admin.register(Country)
@@ -89,7 +89,7 @@ update_polygons.short_description = _("Update polygons")
 
 @admin.register(Area)
 class AreaAdmin(TranslatableAdmin):
-    list_display = ('_name', 'difficulty', 'wikidata_id', 'osm_id', 'num_points', 'infobox_status')
+    list_display = ('_name', 'difficulty', 'wikidata_id', 'osm_id', 'num_strip_points', 'num_points', 'infobox_status')
     list_filter = ('difficulty', 'country')
     list_editable = ('difficulty', 'wikidata_id', 'osm_id')
     actions = (update_infoboxes, update_polygons)
@@ -109,6 +109,9 @@ class AreaAdmin(TranslatableAdmin):
 
     def num_points(self, obj: Area) -> int:
         return obj.polygon.num_points
+
+    def num_strip_points(self, obj: Area) -> int:
+        return obj.polygon.simplify(0.01).num_points
 
     def infobox_status(self, obj: Area) -> str:
         result = ''
@@ -154,3 +157,18 @@ class AreaAdmin(TranslatableAdmin):
             url(r'^(.+)/kml_import/$', staff_member_required(self.kml_import), name='area_kml_import'),
             url(r'^(.+)/osm_import/$', staff_member_required(self.osm_import), name='area_osm_import'),
         ] + super(AreaAdmin, self).get_urls()
+
+
+@admin.register(Region)
+class RegionAdmin(TranslatableAdmin):
+    list_display = ('title', 'wikidata_id', 'osm_id')
+    list_editable = ('wikidata_id', 'osm_id')
+    actions = (update_infoboxes, update_polygons)
+    formfield_overrides = {
+        MultiPolygonField: {'widget': MultiPolygonWidget},
+    }
+
+    class Media:
+        css = {
+            'all': ('css/admin.css',)
+        }
