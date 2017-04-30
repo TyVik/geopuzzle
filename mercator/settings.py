@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'jsoneditor',
     'hvad',
     'channels',
+    'admirarchy',
 
     'maps',
     'puzzle',

@@ -94,6 +94,7 @@ class Region(TranslatableModel):
     wikidata_id = ExternalIdField(max_length=15, link='https://www.wikidata.org/wiki/{id}', null=True)
     osm_id = models.PositiveIntegerField(unique=True)
     osm_data = JSONField(default={})
+    is_enabled = models.BooleanField(default=True)
 
     translations = TranslatedFields(
         name=models.CharField(max_length=120),
