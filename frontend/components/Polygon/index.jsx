@@ -24,7 +24,7 @@ class Polygon extends GooglePolygon {
         google.maps.event.addListener(this.state[_constants.POLYGON], 'dragend', () => {
             let coords = JSON.parse(JSON.stringify(this.getBounds()));
             this.props.dispatch({type: DRAG_END_POLYGON, id: this.props.id, paths: this.getPaths()});
-            this.props.dispatch({type: PUZZLE_CHECK, coords: coords, id: this.props.id, ws: true});
+            this.props.dispatch({type: PUZZLE_CHECK, coords: coords, id: this.props.id, ws: true, zoom: 3});
         });
         google.maps.event.addListener(this.state[_constants.POLYGON], 'click', () => {
             if (!this.props.draggable) {

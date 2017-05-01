@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    {% for part in parts %}
+                                    {% for part in game.items.parts %}
                                         <div class="col-md-3 col-sm-3 col-xs-4 item-container">
                                             {% thumbnail part.image "250x250" format="PNG" quality=80 as im %}
                                                 <a href="{% url game.link part.slug %}">
@@ -80,7 +80,7 @@
                                 </div>
                                 <h1>{% trans 'Country regions' %}</h1>
                                 <div class="row">
-                                    {% for country in countries %}
+                                    {% for country in game.items.countries %}
                                         <div class="col-md-2 col-sm-3 col-xs-4 item-container">
                                             {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
                                                 <a href="{% url game.link country.slug %}">

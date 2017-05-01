@@ -101,8 +101,80 @@ class Region(TranslatableModel):
         infobox=JSONField(default={})
     )
 
+    caches = {
+        'polygon_gmap': 'region{id}gmap',
+        'polygon_bounds': 'region{id}bounds',
+        'polygon_strip': 'region{id}strip',
+    }
+
+    class Meta:
+        verbose_name = 'Region'
+        verbose_name_plural = 'Regions'
+
     def __str__(self):
         return self.title
+
+    @property
+    def polygon_bounds(self) -> List:
+        cache_key = self.caches['polygon_bounds'].format(id=self.id)
+        points = cache.get(cache_key)
+        if points is None:
+            points = self.polygon.extent
+            cache.set(cache_key, points, timeout=None)
+        return points
+
+    @property
+    def polygon_strip(self) -> List:
+        cache_key = self.caches['polygon_strip'].format(id=self.id)
+        result = cache.get(cache_key)
+        if result is None:
+            simplify = self.polygon.simplify(0.01, preserve_topology=True)
+            result = encode_geometry(simplify, min_points=15)
+            cache.set(cache_key, result, timeout=None)
+        return result
+
+    @property
+    def polygon_gmap(self) -> List:
+        cache_key = self.caches['polygon_gmap'].format(id=self.id)
+        result = cache.get(cache_key)
+        if result is None:
+            result = encode_geometry(self.polygon)
+            cache.set(cache_key, result, timeout=None)
+        return result
+
+    @property
+    def center(self) -> List:
+        # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
+        return list(self.polygon.centroid)
+
+    def infobox_status(self) -> Dict:
+        fields = ('name', 'wiki', 'capital', 'coat_of_arms', 'flag')
+        result = {} if self.infobox is None else {field: field in self.infobox for field in fields}
+        result['capital'] = result.get('capital') and isinstance(self.infobox['capital'], dict)
+        return result
+
+    @property
+    def strip_infobox(self) -> Dict:
+        result = self.infobox
+        result.pop('geonamesID', None)
+        if 'capital' in result and isinstance(result['capital'], dict):
+            del (result['capital']['id'])
+        return result
+
+    @property
+    def full_info(self) -> Dict:
+        return {'infobox': self.strip_infobox, 'polygon': self.polygon_strip, 'id': self.id}
+
+    def update_infobox_by_wikidata_id(self) -> None:
+        time.sleep(5)  # protection for DDoS
+        country_id = self.parent.wikidata_id
+        rows = query_by_wikidata_id(country_id=country_id, item_id=self.wikidata_id)
+        for lang, infobox in rows.items():
+            trans = load_translation(self, lang, enforce=True)
+            trans.master = self
+            trans.infobox = infobox
+            trans.name = infobox.get('name', '')
+            trans.save()
 
 
 class AreaManager(TranslationManager):

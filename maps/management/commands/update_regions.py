@@ -90,7 +90,7 @@ class Command(BaseCommand):
         with open(os.path.join(settings.GEOJSON_DIR, 'root.json')) as root_file:
             root = json.loads(root_file.read())
         for country in root:
-            if country['id'] in (1428125, 167454, 51684, 51477, 21335, 365331, 62273, 382313, 295480):
+            if country['id'] in (1428125, 167454, 51684, 51477, 21335, 62273, 382313, 295480, 60199):
                 continue
             print(country['a_attr'])
             if not Region.objects.filter(osm_id=country['id']).exists():
