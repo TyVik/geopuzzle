@@ -1,12 +1,7 @@
 from django.contrib import admin
 
 from maps.admin import GameAdmin
-from quiz.models import Option, Quiz
-
-
-@admin.register(Option)
-class OptionAdmin(admin.ModelAdmin):
-    filter_horizontal = ('countries',)
+from quiz.models import Quiz
 
 
 @admin.register(Quiz)

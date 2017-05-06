@@ -189,7 +189,9 @@ class RegionAdmin(HierarchicalModelAdmin, TranslatableAdmin):
         return RegionChangeList
 
 
-class GameAdmin(TranslatableAdmin):
+class GameAdmin(ImageMixin, TranslatableAdmin):
+    list_display = ('id', 'image_tag', 'slug', 'is_published', 'is_global')
+    list_display_links = ('image_tag', 'id')
     filter_horizontal = ('regions',)
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
