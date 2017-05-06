@@ -312,3 +312,31 @@ class Area(TranslatableModel):
 def clear_area_cache(sender, instance, **kwargs):
     for key in instance.caches:
         cache.delete(instance.caches[key].format(id=instance.id))
+
+
+@receiver(post_save, sender=Region, dispatch_uid="clear_region_cache")
+def clear_region_cache(sender, instance, **kwargs):
+    for key in instance.caches:
+        cache.delete(instance.caches[key].format(id=instance.id))
+
+
+class Game(TranslatableModel):
+    image = models.ImageField(upload_to='puzzles', blank=True, null=True)
+    slug = models.CharField(max_length=15, db_index=True)
+    center = PointField(geography=True)
+    zoom = models.PositiveSmallIntegerField(choices=ZOOMS)
+    is_published = models.BooleanField(default=False)
+    is_global = models.BooleanField(default=False)
+    regions = models.ManyToManyField(Region)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self) -> str:
+        return self.slug
+
+    def get_init_params(self) -> Dict:
+        return {
+            'zoom': self.zoom,
+            'center': {'lng': self.center.coords[0], 'lat': self.center.coords[1]}
+        }
