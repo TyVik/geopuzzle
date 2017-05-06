@@ -1,4 +1,4 @@
-from admirarchy.utils import HierarchicalModelAdmin, AdjacencyList
+from admirarchy.utils import HierarchicalModelAdmin, AdjacencyList, HierarchicalChangeList, Hierarchy
 from django.utils.translation import ugettext as _
 from typing import List
 
@@ -160,6 +160,13 @@ class AreaAdmin(TranslatableAdmin):
         ] + super(AreaAdmin, self).get_urls()
 
 
+class RegionChangeList(HierarchicalChangeList):
+    def get_query_string(self, new_params=None, remove=None):
+        result = super(RegionChangeList, self).get_query_string(new_params, remove)
+        result = result.replace(self.model_admin.hierarchy.pid_field, self.model_admin.hierarchy.PARENT_ID_QS_PARAM)
+        return result
+
+
 @admin.register(Region)
 class RegionAdmin(HierarchicalModelAdmin, TranslatableAdmin):
     list_display = ('title', 'wikidata_id', 'osm_id')
@@ -174,3 +181,7 @@ class RegionAdmin(HierarchicalModelAdmin, TranslatableAdmin):
         css = {
             'all': ('css/admin.css',)
         }
+
+    def get_changelist(self, request, **kwargs):
+        Hierarchy.init_hierarchy(self)
+        return RegionChangeList

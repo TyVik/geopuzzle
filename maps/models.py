@@ -86,12 +86,17 @@ class Country(TranslatableModel):
         return self.__default_positions.pop().coords
 
 
+class RegionManager(TranslationManager):
+    def get_queryset(self):
+        return super(RegionManager, self).get_queryset().defer('polygon')
+
+
 class Region(TranslatableModel):
     title = models.CharField(max_length=128)
     polygon = MultiPolygonField(geography=True)
     parent = models.ForeignKey('Region', null=True, blank=True)
     modified = models.DateTimeField(auto_now=True)
-    wikidata_id = ExternalIdField(max_length=15, link='https://www.wikidata.org/wiki/{id}', null=True)
+    wikidata_id = ExternalIdField(max_length=20, link='https://www.wikidata.org/wiki/{id}', null=True)
     osm_id = models.PositiveIntegerField(unique=True)
     osm_data = JSONField(default={})
     is_enabled = models.BooleanField(default=True)
@@ -101,6 +106,7 @@ class Region(TranslatableModel):
         infobox=JSONField(default={})
     )
 
+    objects = RegionManager()
     caches = {
         'polygon_gmap': 'region{id}gmap',
         'polygon_bounds': 'region{id}bounds',
