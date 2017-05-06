@@ -3,7 +3,7 @@ from django.core.files.storage import default_storage
 
 from cairosvg.surface import PNGSurface
 
-from maps.models import Area
+from maps.models import Region
 
 __authors__ = "Viktor Tyshchenko"
 __copyright__ = "Copyright (C) 3D4Medical.com, LLC - All Rights Reserved"
@@ -13,7 +13,7 @@ __license__ = "Unauthorized copying of this file, via any medium is strictly pro
 class Command(BaseCommand):
     def handle(self, *args, **options):
         for lang in ('en', 'ru'):
-            for area in Area.objects.language(lang).all():
+            for area in Region.objects.language(lang).all():
                 infobox = area.infobox
 
                 for key in ('s', 'label'):

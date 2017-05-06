@@ -22,3 +22,4 @@ django-admirarchy==0.2.2
 
 # https://osm.wno-edv-service.de/boundaries/
 # http://global.mapit.mysociety.org/areas/O03 - http://mapit.poplus.org/docs/self-hosted/how-data-is-stored/
+# http://geo.koltyrin.ru/

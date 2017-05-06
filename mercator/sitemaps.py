@@ -1,29 +1,32 @@
 from django.contrib.sitemaps import Sitemap
 from django.core.urlresolvers import reverse
+from django.db.models import Q
 from django.utils import timezone
 
-from maps.models import Country
+from maps.models import Game
+from puzzle.models import Puzzle
+from quiz.models import Quiz
 
 
 class RegionSitemap(Sitemap):
     changefreq = "weekly"
     priority = 0.5
 
-    def items(self):
-        return Country.objects.filter(is_published=True)
+    def location(self, game: Game):
+        return game.get_absolute_url()
 
-    def lastmod(self, country):
+    def lastmod(self, obj: Game):
         return timezone.now()
 
 
 class PuzzleSitemap(RegionSitemap):
-    def location(self, country):
-        return reverse('puzzle_map', kwargs={'name': country.slug})
+    def items(self):
+        return Puzzle.objects.filter(Q(is_published=True) | Q(slug='world'))
 
 
 class QuizSitemap(RegionSitemap):
-    def location(self, country):
-        return reverse('quiz_map', kwargs={'name': country.slug})
+    def items(self):
+        return Quiz.objects.filter(Q(is_published=True) | Q(slug='world'))
 
 
 class WorldSitemap(Sitemap):
@@ -31,10 +34,8 @@ class WorldSitemap(Sitemap):
     priority = 0.8
 
     def items(self):
-        return 'index', 'world'
+        return ['index']
 
     def location(self, object):
         if object == 'index':
             return reverse(object)
-        country = Country.objects.get(slug=object)
-        return country.get_absolute_url()

@@ -5,8 +5,8 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 
+from maps.forms import RegionForm
 from maps.models import Region
-from puzzle.forms import RegionForm
 from puzzle.models import Puzzle
 
 
@@ -17,16 +17,16 @@ def infobox_by_id(request: WSGIRequest, pk: str) -> JsonResponse:
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
     puzzle = get_object_or_404(Puzzle, slug=name)
-    form = RegionForm(data=request.GET, puzzle=puzzle, lang=request.LANGUAGE_CODE)
+    form = RegionForm(data=request.GET, game=puzzle, lang=request.LANGUAGE_CODE)
     if not form.is_valid():
         return JsonResponse(form.errors, status=400)
     result = [{
-        'id': area.id,
-        'name': area.name,
-        'polygon': area.polygon_strip,
-        'center': area.center,
+        'id': region.id,
+        'name': region.name,
+        'polygon': region.polygon_strip,
+        'center': region.center,
         'default_position': puzzle.pop_position()}
-            for area in form.areas()]
+            for region in form.regions]
     return JsonResponse(result, safe=False)
 
 

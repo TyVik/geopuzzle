@@ -1,21 +1,4 @@
 from django import forms
-from django.db.models import QuerySet
-
-from maps.models import Region
-
-
-class RegionForm(forms.Form):
-    id = forms.ModelMultipleChoiceField(queryset=Region.objects.all(), required=False)
-
-    def __init__(self, puzzle, lang, *args, **kwargs):
-        self.country = puzzle
-        self.lang = lang
-        super(RegionForm, self).__init__(*args, **kwargs)
-
-    def areas(self) -> QuerySet:
-        if len(self.cleaned_data['id']) > 0:
-            return self.cleaned_data['id']
-        return self.country.regions.language(self.lang).order_by('?')
 
 
 class RegionContainsForm(forms.Form):

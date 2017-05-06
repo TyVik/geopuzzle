@@ -3,7 +3,7 @@ from django.db import models
 from django.urls import reverse
 from hvad.models import TranslatedFields
 
-from maps.models import Country, Game
+from maps.models import Game
 
 
 QUIZ_OPTIONS = (
@@ -12,14 +12,6 @@ QUIZ_OPTIONS = (
     ('flag', 'flag'),
     ('coat_of_arms', 'coat_of_arms')
 )
-
-
-class Option(models.Model):
-    name = models.CharField(max_length=20)
-    countries = models.ManyToManyField(Country)
-
-    def __str__(self):
-        return self.name
 
 
 class Quiz(Game):

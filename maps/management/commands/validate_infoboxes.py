@@ -3,7 +3,7 @@ from django.conf import settings
 from django.core.management import BaseCommand
 from hvad.utils import load_translation
 
-from maps.models import Area
+from maps.models import Region
 
 __authors__ = "Viktor Tyshchenko"
 __copyright__ = "Copyright (C) 3D4Medical.com, LLC - All Rights Reserved"
@@ -11,7 +11,7 @@ __license__ = "Unauthorized copying of this file, via any medium is strictly pro
 
 
 def log(area, lang, text):
-    print('Area {} with language {}: {}'.format(area.id, lang, text))
+    print('Region {} with language {}: {}'.format(area.id, lang, text))
 
 
 def check_link(area, lang, infobox, name, is_image):
@@ -24,7 +24,7 @@ def check_link(area, lang, infobox, name, is_image):
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        for area in Area.objects.order_by('id').all():
+        for area in Region.objects.order_by('id').all():
             for lang in settings.LANGUAGES:
                 trans = load_translation(area, lang[0], enforce=True)
                 infobox = trans.infobox

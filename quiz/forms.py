@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.gis.geos import Point
 
-from maps.forms import MapForm
+from maps.forms import RegionForm
 
 
 class PointContainsForm(forms.Form):
@@ -19,7 +19,7 @@ class PointContainsForm(forms.Form):
             raise forms.ValidationError('Point not in polygons')
 
 
-class QuizInfoboxForm(MapForm):
+class QuizInfoboxForm(RegionForm):
     params = forms.CharField()
 
     def clean_params(self):
@@ -30,16 +30,16 @@ class QuizInfoboxForm(MapForm):
             return capital['name'] if isinstance(capital, dict) else capital
 
         result = []
-        for area in self.areas():
-            if area.infobox is None:
+        for region in self.regions:
+            if region.infobox is None:
                 continue
-            k = {'id': area.id}
+            k = {'id': region.id}
             for param in self.cleaned_data['params']:
                 if param == 'capital':
-                    capital = area.infobox.get('capital', None)
-                    value = area.infobox.get('name', None) if capital is None else extract_capital(capital)
+                    capital = region.infobox.get('capital', None)
+                    value = region.infobox.get('name', None) if capital is None else extract_capital(capital)
                 else:
-                    value = area.infobox.get(param, None)
+                    value = region.infobox.get(param, None)
                 k[param] = value
             result.append(k)
         return result
