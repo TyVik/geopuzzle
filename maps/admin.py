@@ -1,4 +1,5 @@
 from admirarchy.utils import HierarchicalModelAdmin, AdjacencyList, HierarchicalChangeList, Hierarchy
+from django.contrib.gis.forms import OSMWidget
 from django.utils.translation import ugettext as _
 from typing import List
 
@@ -172,7 +173,8 @@ class RegionAdmin(HierarchicalModelAdmin, TranslatableAdmin):
     list_display = ('title', 'wikidata_id', 'osm_id')
     actions = (update_infoboxes, update_polygons)
     formfield_overrides = {
-        MultiPolygonField: {'widget': MultiPolygonWidget},
+        MultiPolygonField: {'widget': OSMWidget},
+        # MultiPolygonField: {'widget': MultiPolygonWidget},
     }
     hierarchy = AdjacencyList('parent')
     list_per_page = 20
