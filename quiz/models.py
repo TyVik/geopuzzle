@@ -23,7 +23,8 @@ class Option(models.Model):
 
 
 class Quiz(Game):
-    options = ArrayField(models.CharField(max_length=12, choices=QUIZ_OPTIONS))
+    options = ArrayField(models.CharField(max_length=12, choices=QUIZ_OPTIONS),
+                         default=['name', 'capital', 'flag', 'coat_of_arms'])
     translations = TranslatedFields(
         name=models.CharField(max_length=15)
     )

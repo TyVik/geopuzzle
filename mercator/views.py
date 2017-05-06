@@ -7,11 +7,12 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from puzzle.models import Puzzle
+from quiz.models import Quiz
 
 
 def index(request: WSGIRequest) -> HttpResponse:
     puzzles = Puzzle.objects.language(request.LANGUAGE_CODE).filter(is_published=True).order_by('name').all()
-    # quizzes = Quiz.objects.language(request.LANGUAGE_CODE).filter(is_published=True).order_by('name').all()
+    quizzes = Quiz.objects.language(request.LANGUAGE_CODE).filter(is_published=True).order_by('name').all()
     games = [{
         'items': {
             'parts': puzzles.filter(is_global=True),
@@ -23,8 +24,8 @@ def index(request: WSGIRequest) -> HttpResponse:
         'rules': _('In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!')
     }, {
         'items': {
-            'parts': puzzles.filter(is_global=True),
-            'countries': puzzles.filter(is_global=False)
+            'parts': quizzes.filter(is_global=True),
+            'countries': quizzes.filter(is_global=False)
         },
         'name': 'quiz',
         'link': 'quiz_map',

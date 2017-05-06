@@ -187,3 +187,10 @@ class RegionAdmin(HierarchicalModelAdmin, TranslatableAdmin):
     def get_changelist(self, request, **kwargs):
         Hierarchy.init_hierarchy(self)
         return RegionChangeList
+
+
+class GameAdmin(TranslatableAdmin):
+    filter_horizontal = ('regions',)
+    formfield_overrides = {
+        ImageField: {'widget': AdminImageWidget},
+    }
