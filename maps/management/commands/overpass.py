@@ -12,26 +12,31 @@ __license__ = "Unauthorized copying of this file, via any medium is strictly pro
 
 
 COMMAND = """
-relation["boundary"="administrative"]["admin_level"="4"](43648);
+relation["boundary"="administrative"]["admin_level"="4"](44879);
 (._;>;); out body geom;
 """
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        import overpass
-        api = overpass.API()
-        response = api.Get(COMMAND, build=False, responseformat='xml')
-        with open('tmp.osm', 'w') as f:
-            f.write(response)
-        os.system('osmtogeojson tmp.osm > tmp.geojson')
+        # import overpass
+        # api = overpass.API()
+        # response = api.Get(COMMAND, build=False, responseformat='xml')
+        # with open('tmp.osm', 'w') as f:
+        #     f.write(response)
+        # os.system('osmtogeojson tmp.osm > tmp.geojson')
         with open('tmp.geojson', 'r') as f:
             geojson = json.loads(f.read())
-        region = Region.objects.get(pk=7810)
+        region = Region.objects.get(pk=7793)
         polygons = []
         for geom in geojson['features']:
             if geom['geometry']['type'] == 'Polygon':
                 polygons.append(GEOSGeometry(json.dumps(geom['geometry'])))
-        region.polygon = MultiPolygon(polygons)
-        region.save()
-        print(response)
+            elif geom['geometry']['type'] == 'MultiPolygon':
+                region.polygon = GEOSGeometry(json.dumps(geom['geometry']))
+                region.save()
+                polygons = []
+                break
+        if polygons:
+            region.polygon = MultiPolygon(*polygons)
+            region.save()

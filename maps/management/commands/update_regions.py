@@ -21,14 +21,14 @@ __license__ = "Unauthorized copying of this file, via any medium is strictly pro
 class Command(BaseCommand):
     def handle(self, *args, **options):
         def import_tree(id):
-            def extract_data(properties):
-                result = {'level': properties['admin_level']}
-                fields = ['boundary', 'ISO3166-1:alpha3', 'timezone']
-                for field in fields:
-                    result[field] = properties['tags'].get(field, None)
-                return result
-
             def import_region(feature):
+                def extract_data(properties):
+                    result = {'level': properties['admin_level']}
+                    fields = ['boundary', 'ISO3166-1:alpha3', 'timezone']
+                    for field in fields:
+                        result[field] = properties['tags'].get(field, None)
+                    return result
+
                 print(feature['properties']['name'])
                 parent = None
                 if len(feature['rpath']) > 2:
@@ -64,13 +64,15 @@ class Command(BaseCommand):
             zip_names = zipfile.namelist()
             for zip_name in zip_names:
                 print(zip_name)
-                if not (zip_name.endswith('AL2.GeoJson') or zip_name.endswith('AL3.GeoJson') or zip_name.endswith('AL4.GeoJson')):
+                # if zip_name.endswith('AL2.GeoJson') or zip_name.endswith('AL3.GeoJson') or zip_name.endswith('AL4.GeoJson'):
+                if not zip_name.endswith('AL6.GeoJson'):
                     continue
                 level = json.loads(zipfile.open(zip_name).read().decode())
                 not_passed = []
                 for feature in level['features']:
                     try:
-                        import_region(feature)
+                        if not Region.objects.filter(osm_id=feature['id']).exists():
+                            import_region(feature)
                     except Region.DoesNotExist:
                         not_passed.append(feature)
                         continue
@@ -90,9 +92,9 @@ class Command(BaseCommand):
         with open(os.path.join(settings.GEOJSON_DIR, 'root.json')) as root_file:
             root = json.loads(root_file.read())
         for country in root:
-            if country['id'] in (1428125, 167454, 51684, 51477, 21335, 62273, 382313, 295480, 60199):
+            if country['id'] in (1428125, 167454, 51684, 51477, 21335, 62273, 382313, 295480, 60199, 2184073):
                 continue
             print(country['a_attr'])
-            if not Region.objects.filter(osm_id=country['id']).exists():
-                with transaction.atomic():
-                    import_tree(country['id'])
+            # if not Region.objects.filter(osm_id=country['id']).exists():
+            with transaction.atomic():
+                import_tree(country['id'])

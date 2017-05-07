@@ -15,7 +15,7 @@ __license__ = "Unauthorized copying of this file, via any medium is strictly pro
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        for region in Region.objects.filter(wikidata_id__isnull=False).order_by('id').all():
+        for region in Region.objects.filter(wikidata_id__isnull=False, pk__gt=6603).order_by('id').all():
             time.sleep(5)  # protection for DDoS
             wikidata_id = None if region.parent is None else region.parent.wikidata_id
             rows = query_by_wikidata_id(country_id=wikidata_id, item_id=region.wikidata_id)
