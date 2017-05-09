@@ -9,7 +9,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.messages import success
 from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import ImageField
-from django.contrib.gis.db.models import MultiPolygonField, QuerySet
+from django.contrib.gis.db.models import MultiPolygonField
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404

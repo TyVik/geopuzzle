@@ -137,6 +137,7 @@ class Region(TranslatableModel):
                     c.write(zipfile.open(filename).read())
             with open(cache, 'r') as c:
                 return json.loads(c.read())
+
         geojson = content()
         self.polygon = GEOSGeometry(json.dumps(geojson['features'][0]['geometry']))
         simplify = self.polygon.simplify(0.01, preserve_topology=True)
@@ -158,7 +159,7 @@ class Region(TranslatableModel):
 
 
 @receiver(post_save, sender=Region, dispatch_uid="clear_region_cache")
-def clear_region_cache(sender, instance, **kwargs):
+def clear_region_cache(sender, instance: Region, **kwargs):
     for key in instance.caches:
         cache.delete(instance.caches[key].format(id=instance.id))
 

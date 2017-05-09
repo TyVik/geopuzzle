@@ -1,4 +1,4 @@
-# apt install postgresql postgresql-contrib postgis gdal-bin gettext
+# apt install postgresql postgresql-contrib postgis gdal-bin gettext build-essential python3-dev libpq-dev
 
 # create extension postgis postgis_topology postgis_sfcgal fuzzystrmatch address_standardizer postgis_tiger_geocoder
 
@@ -8,10 +8,10 @@ pillow==4.0.0
 sorl-thumbnail==12.4a1
 sparqlwrapper
 django-hvad==1.7.0
-django-jsoneditor-ng==0.0.3
+#django-jsoneditor-ng==0.0.3
 django-redis==4.7.0
-cffi==1.9.1
-cairosvg==2.0.1
+#cffi==1.9.1
+#cairosvg==2.0.1
 requests==2.13.0
 django-floppyforms==1.7.0
 channels==1.1.3
