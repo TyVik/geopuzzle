@@ -14,8 +14,8 @@ import os
 
 # Build paths inside the maps like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LOG_DIR = os.path.join(BASE_DIR, 'logs')
-GEOJSON_DIR = os.path.join(BASE_DIR, 'geojson')
+LOG_DIR = os.path.join(BASE_DIR, '../../logs')
+GEOJSON_DIR = os.path.join(BASE_DIR, '../../geojson')
 
 
 # Quick-start development settings - unsuitable for production
@@ -78,7 +78,7 @@ ROOT_URLCONF = 'mercator.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, '../../templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -174,7 +174,7 @@ LANGUAGES = (
     ('ru', 'Russian'),
 )
 LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'),
+    os.path.join(BASE_DIR, '../../locale'),
 )
 
 
@@ -183,7 +183,7 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ['static']
-STATIC_ROOT = '../static'
+STATIC_ROOT = '../mercator/static'
 
 MEDIA_URL = '/upload/'
 MEDIA_ROOT = 'upload'
