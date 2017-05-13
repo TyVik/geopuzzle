@@ -158,6 +158,17 @@ class Region(TranslatableModel):
             trans.save()
 
 
+class RegionTranslationProxy(models.Model):
+    name = models.CharField(max_length=120)
+    infobox = JSONField(default={})
+    language_code = models.CharField(max_length=2)
+    master = models.ForeignKey(Region)
+
+    class Meta:
+        managed = False
+        db_table = 'maps_region_translation'
+
+
 @receiver(post_save, sender=Region, dispatch_uid="clear_region_cache")
 def clear_region_cache(sender, instance: Region, **kwargs):
     for key in instance.caches:

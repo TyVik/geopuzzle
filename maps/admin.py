@@ -18,7 +18,7 @@ from django.urls import reverse
 from hvad.admin import TranslatableAdmin
 
 from common.admin import ImageMixin, AdminImageWidget
-from maps.models import Region
+from maps.models import Region, RegionTranslationProxy
 
 
 def update_infoboxes(modeladmin, request, queryset) -> None:
@@ -36,6 +36,10 @@ update_polygons.short_description = _("Update polygons")
 
 
 class RegionChangeList(HierarchicalChangeList):
+
+    def get_queryset(self, request):
+        return super(RegionChangeList, self).get_queryset(request).defer('polygon')
+
     def get_query_string(self, new_params=None, remove=None):
         result = super(RegionChangeList, self).get_query_string(new_params, remove)
         result = result.replace(self.model_admin.hierarchy.pid_field, self.model_admin.hierarchy.PARENT_ID_QS_PARAM)
@@ -73,15 +77,21 @@ class OSMSecureWidget(BaseGeometryWidget):
             return 900913
 
 
+class RegionTranslationProxyAdmin(admin.TabularInline):
+    model = RegionTranslationProxy
+    extra = 0
+
+
 @admin.register(Region)
-class RegionAdmin(HierarchicalModelAdmin, TranslatableAdmin):
+class RegionAdmin(HierarchicalModelAdmin):
     list_display = ('title', 'wikidata_id', 'osm_id')
     actions = (update_infoboxes, update_polygons)
     formfield_overrides = {
-        MultiPolygonField: {'widget': OSMSecureWidget},
-        # MultiPolygonField: {'widget': MultiPolygonWidget},
+        # MultiPolygonField: {'widget': OSMSecureWidget},
+        MultiPolygonField: {'widget': MultiPolygonWidget},
     }
     hierarchy = AdjacencyList('parent')
+    inlines = (RegionTranslationProxyAdmin,)
     list_per_page = 20
 
     class Media:
