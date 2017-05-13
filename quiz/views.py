@@ -15,7 +15,7 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
     form = QuizInfoboxForm(data=request.GET, game=quiz, lang=request.LANGUAGE_CODE)
     if not form.is_valid():
         return JsonResponse(form.errors, status=400)
-    return JsonResponse(form.json(), safe=False)
+    return JsonResponse(form.json())
 
 
 def quiz(request: WSGIRequest, name: str) -> HttpResponse:
@@ -23,7 +23,7 @@ def quiz(request: WSGIRequest, name: str) -> HttpResponse:
     context = {
         'google_key': settings.GOOGLE_KEY,
         'language': request.LANGUAGE_CODE,
-        'country': quiz,
+        'game': quiz,
         'text': _('{name} has been studied! You guessed all {subjects}. You time is ').format(
             name=quiz.name if quiz.id != 1 else _('World map'),
             subjects=_('countries') if quiz.is_global else _('regions'))

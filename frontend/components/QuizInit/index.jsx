@@ -24,7 +24,7 @@ class QuizInit extends React.Component {
             get_params += 'params=' + quizBy.join();
             return fetch(location.pathname.replace('/quiz/', '/quiz/questions/') + get_params)
                 .then(response => response.json())
-                .then(questions => dispatch({type: QUIZ_INIT_DONE, questions}))
+                .then(questions => dispatch({type: QUIZ_INIT_DONE, ...questions}))
                 .catch(response => dispatch({type: INIT_LOAD_FAIL}));
         };
     }
@@ -38,20 +38,7 @@ class QuizInit extends React.Component {
     }
 
     show_checkbox(param) {
-        let country = location.pathname.split('/')[2];
-        switch (param) {
-            case 'flag':
-                if (['india', 'romania'].indexOf(country) !== -1) {
-                    return false;
-                }
-                break;
-            case 'coat_of_arms':
-                if (['japan', 'india'].indexOf(country) !== -1) {
-                    return false;
-                }
-                break;
-        }
-        return true;
+        return window.__OPTIONS__.indexOf(param) >= 0;
     }
 
     render() {
