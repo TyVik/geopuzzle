@@ -1,1 +1,1 @@
-import mercator.settings.settings
+from mercator.settings.settings import *

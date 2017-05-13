@@ -1,4 +1,4 @@
-from mercator.settings import *
+from mercator.settings.settings import *
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG

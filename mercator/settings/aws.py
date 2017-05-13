@@ -11,7 +11,7 @@ DATABASES['default']['HOST'] = 'geopuzzle.cdihw1nj9qxz.eu-west-1.rds.amazonaws.c
 CACHES['default']['LOCATION'] = 'redis://geopuzzle.hxeqqh.0001.euw1.cache.amazonaws.com:6379/1'
 SESSION_REDIS_HOST = 'geopuzzle.hxeqqh.0001.euw1.cache.amazonaws.com'
 CHANNEL_LAYERS['default']['CONFIG']['hosts'] = [('geopuzzle.hxeqqh.0001.euw1.cache.amazonaws.com', 6379)]
-SETTINGS_MODULE = 'mercator.aws'
+SETTINGS_MODULE = 'mercator.settings.aws'
 
 LOGGING["loggers"] = {
     "django": {
