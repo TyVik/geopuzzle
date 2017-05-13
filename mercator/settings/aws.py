@@ -10,6 +10,8 @@ MEDIA_URL = '/media/'
 DATABASES['default']['HOST'] = 'geopuzzle.cdihw1nj9qxz.eu-west-1.rds.amazonaws.com'
 CACHES['default']['LOCATION'] = 'redis://geopuzzle.hxeqqh.0001.euw1.cache.amazonaws.com:6379/1'
 SESSION_REDIS_HOST = 'geopuzzle.hxeqqh.0001.euw1.cache.amazonaws.com'
+THUMBNAIL_REDIS_HOST = 'geopuzzle.hxeqqh.0001.euw1.cache.amazonaws.com'
+THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 CHANNEL_LAYERS['default']['CONFIG']['hosts'] = [('geopuzzle.hxeqqh.0001.euw1.cache.amazonaws.com', 6379)]
 SETTINGS_MODULE = 'mercator.settings.aws'
 
@@ -21,13 +23,13 @@ LOGGING["loggers"] = {
     }
 }
 
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
+#SECURE_SSL_REDIRECT = True
+#SESSION_COOKIE_SECURE = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 CSRF_COOKIE_HTTPONLY = True
-CSRF_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
 SECURE_HSTS_SECONDS = 1
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
