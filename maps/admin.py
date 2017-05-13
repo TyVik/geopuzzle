@@ -1,5 +1,5 @@
 from admirarchy.utils import HierarchicalModelAdmin, AdjacencyList, HierarchicalChangeList, Hierarchy
-from django.contrib.gis.forms import OSMWidget
+from django.contrib.gis.forms import BaseGeometryWidget
 from django.utils.translation import ugettext as _
 from typing import List
 
@@ -9,6 +9,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.messages import success
 from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import ImageField
+from django.contrib.gis import gdal
 from django.contrib.gis.db.models import MultiPolygonField
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -41,12 +42,43 @@ class RegionChangeList(HierarchicalChangeList):
         return result
 
 
+class OSMSecureWidget(BaseGeometryWidget):
+    """
+    An OpenLayers/OpenStreetMap-based widget.
+    """
+    template_name = 'gis/openlayers-osm.html'
+    default_lon = 5
+    default_lat = 47
+
+    class Media:
+        js = (
+            'https://openlayers.org/api/2.13.1/OpenLayers.js',
+            'gis/js/OLMapWidget.js',
+        )
+
+    def __init__(self, attrs=None):
+        super(OSMSecureWidget, self).__init__()
+        for key in ('default_lon', 'default_lat'):
+            self.attrs[key] = getattr(self, key)
+        if attrs:
+            self.attrs.update(attrs)
+
+    @property
+    def map_srid(self):
+        # Use the official spherical mercator projection SRID when GDAL is
+        # available; otherwise, fallback to 900913.
+        if gdal.HAS_GDAL:
+            return 3857
+        else:
+            return 900913
+
+
 @admin.register(Region)
 class RegionAdmin(HierarchicalModelAdmin, TranslatableAdmin):
     list_display = ('title', 'wikidata_id', 'osm_id')
     actions = (update_infoboxes, update_polygons)
     formfield_overrides = {
-        MultiPolygonField: {'widget': OSMWidget},
+        MultiPolygonField: {'widget': OSMSecureWidget},
         # MultiPolygonField: {'widget': MultiPolygonWidget},
     }
     hierarchy = AdjacencyList('parent')
@@ -60,12 +92,6 @@ class RegionAdmin(HierarchicalModelAdmin, TranslatableAdmin):
     def get_changelist(self, request, **kwargs):
         Hierarchy.init_hierarchy(self)
         return RegionChangeList
-
-    def num_points(self, obj: Region) -> int:
-        return obj.polygon.num_points
-
-    def num_strip_points(self, obj: Region) -> int:
-        return obj.polygon.simplify(0.01).num_points
 
     def infobox_status(self, obj: Region) -> str:
         result = ''
