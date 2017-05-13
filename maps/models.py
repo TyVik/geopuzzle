@@ -57,6 +57,7 @@ class Region(TranslatableModel):
 
     objects = RegionManager()
     caches = {
+        'polygon_center': 'region{id}center',
         'polygon_gmap': 'region{id}gmap',
         'polygon_bounds': 'region{id}bounds',
         'polygon_strip': 'region{id}strip',
@@ -100,7 +101,12 @@ class Region(TranslatableModel):
     @property
     def center(self) -> List:
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
-        return list(self.polygon.centroid)
+        cache_key = self.caches['polygon_center'].format(id=self.id)
+        result = cache.get(cache_key)
+        if result is None:
+            result = list(self.polygon.centroid)
+            cache.set(cache_key, result, timeout=None)
+        return result
 
     def infobox_status(self) -> Dict:
         fields = ('name', 'wiki', 'capital', 'coat_of_arms', 'flag')
