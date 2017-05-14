@@ -10,14 +10,14 @@ from quiz.forms import PointContainsForm
 def receive(message):
     payload = json.loads(message.content['text'])
     if payload['type'] == 'QUIZ_CHECK':
-        region = Region.objects.language(message.channel_session['lang']).get(pk=payload['id'])
+        region = Region.get(payload['id'], message.channel_session['lang'])
         form = PointContainsForm(data=payload['coords'], area=region)
         if form.is_valid():
             result = region.full_info
             result['type'] = 'QUIZ_CHECK_SUCCESS'
             message.reply_channel.send({'text': json.dumps(result)})
     elif payload['type'] == 'QUIZ_GIVEUP':
-        region = Region.objects.language(message.channel_session['lang']).get(pk=payload['id'])
+        region = Region.get(payload['id'], message.channel_session['lang'])
         result = region.full_info
         result['type'] = 'QUIZ_GIVEUP_DONE'
         message.reply_channel.send({'text': json.dumps(result)})

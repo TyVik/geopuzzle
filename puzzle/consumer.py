@@ -11,7 +11,7 @@ from maps.models import Region
 def receive(message):
     payload = json.loads(message.content['text'])
     if payload['type'] == 'PUZZLE_CHECK':
-        region = Region.objects.language(message.channel_session['lang']).get(pk=payload['id'])
+        region = Region.get(payload['id'], message.channel_session['lang'])
         form = RegionContainsForm(data=payload['coords'], region=region, zoom=payload['zoom'])
         if form.is_valid():
             result = region.full_info
@@ -20,7 +20,7 @@ def receive(message):
     elif payload['type'] == 'PUZZLE_GIVEUP':
         result = {'type': 'PUZZLE_GIVEUP_DONE', 'solves': {}}
         for id in payload['ids']:
-            region = Region.objects.language(message.channel_session['lang']).get(pk=id)
+            region = Region.get(id, message.channel_session['lang'])
             result['solves'][id] = region.full_info
         message.reply_channel.send({'text': json.dumps(result)})
 
