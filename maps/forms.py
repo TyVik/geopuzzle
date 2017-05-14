@@ -16,4 +16,4 @@ class RegionForm(forms.Form):
     def regions(self) -> QuerySet:
         if len(self.cleaned_data['id']) > 0:
             return self.cleaned_data['id']
-        return self.game.regions.language(self.lang).order_by('?')
+        return self.game.regions.language(self.lang).defer('polygon').order_by('?')
