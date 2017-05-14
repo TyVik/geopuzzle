@@ -61,6 +61,7 @@ class Region(TranslatableModel):
         'polygon_gmap': 'region{id}gmap',
         'polygon_bounds': 'region{id}bounds',
         'polygon_strip': 'region{id}strip',
+        'strip_infobox': 'region{id}infobox',
     }
 
     class Meta:
@@ -69,6 +70,10 @@ class Region(TranslatableModel):
 
     def __str__(self):
         return self.title
+
+    @classmethod
+    def get(cls, id, lang):
+        return cls.objects.language(lang).defer('polygon').get(pk=id)
 
     @property
     def polygon_bounds(self) -> List:
@@ -116,10 +121,14 @@ class Region(TranslatableModel):
 
     @property
     def strip_infobox(self) -> Dict:
-        result = self.infobox
-        result.pop('geonamesID', None)
-        if 'capital' in result and isinstance(result['capital'], dict):
-            del (result['capital']['id'])
+        cache_key = self.caches['strip_infobox'].format(id=self.id)
+        result = cache.get(cache_key)
+        if result is None:
+            result = self.infobox
+            result.pop('geonamesID', None)
+            if 'capital' in result and isinstance(result['capital'], dict):
+                del (result['capital']['id'])
+            cache.set(cache_key, result, timeout=None)
         return result
 
     @property
