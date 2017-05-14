@@ -44,17 +44,17 @@ class Toolbox extends React.Component {
             <div className="toolbox_wrapper">
                 <div className="btn-group btn-group-sm toolbox">
                     <div className="map_switcher_wrapper">
-                        <img className="map_switcher" src="/static/images/map/terrain.png"
+                        <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/terrain.png"
                              onClick={() => this.props.dispatch({
                                  type: SET_MAP_TYPE,
                                  value: google.maps.MapTypeId.TERRAIN
                              })}/>
-                        <img className="map_switcher" src="/static/images/map/hybrid.png"
+                        <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/hybrid.png"
                              onClick={() => this.props.dispatch({
                                  type: SET_MAP_TYPE,
                                  value: google.maps.MapTypeId.HYBRID
                              })}/>
-                        <img className="map_switcher" src="/static/images/map/satellite.png"
+                        <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/satellite.png"
                              onClick={() => this.props.dispatch({
                                  type: SET_MAP_TYPE,
                                  value: google.maps.MapTypeId.SATELLITE
