@@ -5,7 +5,6 @@ from zipfile import ZipFile
 
 import requests
 from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
-from hvad.manager import TranslationManager
 from typing import List, Dict
 
 from django.conf import settings
@@ -16,8 +15,7 @@ from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from hvad.models import TranslatableModel, TranslatedFields
-from hvad.utils import load_translation
+from django.utils.translation import get_language
 from io import BytesIO
 
 from maps.converter import encode_geometry
@@ -35,12 +33,12 @@ ZOOMS = (
 )
 
 
-class RegionManager(TranslationManager):
+class RegionManager(models.Manager):
     def get_queryset(self):
         return super(RegionManager, self).get_queryset().defer('polygon')
 
 
-class Region(TranslatableModel):
+class Region(models.Model):
     title = models.CharField(max_length=128)
     polygon = MultiPolygonField(geography=True)
     parent = models.ForeignKey('Region', null=True, blank=True)
@@ -50,18 +48,13 @@ class Region(TranslatableModel):
     osm_data = JSONField(default={})
     is_enabled = models.BooleanField(default=True)
 
-    translations = TranslatedFields(
-        name=models.CharField(max_length=120),
-        infobox=JSONField(default={})
-    )
-
     objects = RegionManager()
     caches = {
         'polygon_center': 'region{id}center',
         'polygon_gmap': 'region{id}gmap',
         'polygon_bounds': 'region{id}bounds',
         'polygon_strip': 'region{id}strip',
-        'strip_infobox': 'region{id}infobox',
+        'polygon_infobox': 'region{id}infobox{lang}',
     }
 
     class Meta:
@@ -71,9 +64,8 @@ class Region(TranslatableModel):
     def __str__(self):
         return self.title
 
-    @classmethod
-    def get(cls, id, lang):
-        return cls.objects.language(lang).defer('polygon').get(pk=id)
+    def __init__(self, *args, **kwargs):
+        super(Region, self).__init__(*args, **kwargs)
 
     @property
     def polygon_bounds(self) -> List:
@@ -113,27 +105,27 @@ class Region(TranslatableModel):
             cache.set(cache_key, result, timeout=None)
         return result
 
-    def infobox_status(self) -> Dict:
+    def infobox_status(self, lang: str) -> Dict:
         fields = ('name', 'wiki', 'capital', 'coat_of_arms', 'flag')
-        result = {} if self.infobox is None else {field: field in self.infobox for field in fields}
-        result['capital'] = result.get('capital') and isinstance(self.infobox['capital'], dict)
+        trans = self.load_translation(lang)
+        result = {field: field in trans.infobox for field in fields}
+        result['capital'] = result.get('capital') and isinstance(trans.infobox['capital'], dict)
         return result
 
-    @property
-    def strip_infobox(self) -> Dict:
-        cache_key = self.caches['strip_infobox'].format(id=self.id)
+    def strip_infobox(self, lang: str) -> Dict:
+        cache_key = self.caches['polygon_infobox'].format(id=self.id, lang=lang)
         result = cache.get(cache_key)
         if result is None:
-            result = self.infobox
+            trans = self.load_translation(lang)
+            result = trans.infobox
             result.pop('geonamesID', None)
             if 'capital' in result and isinstance(result['capital'], dict):
                 del (result['capital']['id'])
             cache.set(cache_key, result, timeout=None)
         return result
 
-    @property
-    def full_info(self) -> Dict:
-        return {'infobox': self.strip_infobox, 'polygon': self.polygon_strip, 'id': self.id}
+    def full_info(self, lang: str) -> Dict:
+        return {'infobox': self.strip_infobox(lang), 'polygon': self.polygon_strip, 'id': self.id}
 
     def import_osm_polygon(self) -> None:
         def content():
@@ -161,26 +153,34 @@ class Region(TranslatableModel):
         self.polygon = simplify
         self.save()
 
+    @property
+    def translation(self):
+        return self.load_translation(get_language())
+
+    def load_translation(self, lang):
+        result, _ = RegionTranslation.objects.get_or_create(language_code=lang, master=self)
+        return result
+
     def update_infobox_by_wikidata_id(self) -> None:
         time.sleep(5)  # protection for DDoS
         country_id = self.parent.wikidata_id
         rows = query_by_wikidata_id(country_id=country_id, item_id=self.wikidata_id)
         for lang, infobox in rows.items():
-            trans = load_translation(self, lang, enforce=True)
+            trans = self.load_translation(lang)
             trans.master = self
             trans.infobox = infobox
             trans.name = infobox.get('name', '')
             trans.save()
 
 
-class RegionTranslationProxy(models.Model):
+class RegionTranslation(models.Model):
     name = models.CharField(max_length=120)
     infobox = JSONField(default={})
-    language_code = models.CharField(max_length=2)
-    master = models.ForeignKey(Region)
+    language_code = models.CharField(max_length=15, db_index=True)
+    master = models.ForeignKey(Region, related_name='translations', editable=False)
 
     class Meta:
-        managed = False
+        unique_together = ('language_code', 'master')
         db_table = 'maps_region_translation'
 
 
@@ -190,7 +190,7 @@ def clear_region_cache(sender, instance: Region, **kwargs):
         cache.delete(instance.caches[key].format(id=instance.id))
 
 
-class Game(TranslatableModel):
+class Game(models.Model):
     image = models.ImageField(upload_to='upload/puzzles', blank=True, null=True)
     slug = models.CharField(max_length=15, db_index=True)
     center = PointField(geography=True)
@@ -213,3 +213,13 @@ class Game(TranslatableModel):
             'zoom': self.zoom,
             'center': {'lng': self.center.coords[0], 'lat': self.center.coords[1]}
         }
+
+
+class GameTranslation(models.Model):
+    name = models.CharField(max_length=15)
+    language_code = models.CharField(max_length=15, db_index=True)
+    master = models.ForeignKey(Game, related_name='translations', editable=False)
+
+    class Meta:
+        unique_together = ('language_code', 'master')
+        abstract = True

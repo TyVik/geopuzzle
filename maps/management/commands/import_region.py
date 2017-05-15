@@ -2,7 +2,6 @@ import json
 
 from django.contrib.gis.geos import GEOSGeometry
 from django.core.management import BaseCommand
-from hvad.utils import load_translation
 
 from maps.models import Region
 
@@ -33,7 +32,7 @@ class Command(BaseCommand):
                 osm_data=extract_data(feature['properties'])
             )
             for lang in ('en', 'ru'):
-                trans = load_translation(region, lang, enforce=True)
+                trans = region.load_translation(lang)
                 trans.master = region
                 trans.name = region.title
                 trans.save()

@@ -1,7 +1,6 @@
 import requests
 from django.conf import settings
 from django.core.management import BaseCommand
-from hvad.utils import load_translation
 
 from maps.models import Region
 
@@ -26,7 +25,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         for area in Region.objects.order_by('id').all():
             for lang in settings.LANGUAGES:
-                trans = load_translation(area, lang[0], enforce=True)
+                trans = area.load_translation(lang[0])
                 infobox = trans.infobox
                 if 'area' not in infobox:
                     log(area, lang[0], '- area')

@@ -9,7 +9,6 @@ from django.contrib.gis.geos import GEOSGeometry
 from django.core.management import BaseCommand
 
 from django.db import transaction
-from hvad.utils import load_translation
 
 from maps.models import Region
 
@@ -45,7 +44,7 @@ class Command(BaseCommand):
                     osm_data=extract_data(feature['properties'])
                 )
                 for lang in ('en', 'ru'):
-                    trans = load_translation(region, lang, enforce=True)
+                    trans = region.load_translation(lang)
                     trans.master = region
                     trans.name = region.title
                     trans.save()
@@ -65,8 +64,8 @@ class Command(BaseCommand):
             for zip_name in zip_names:
                 print(zip_name)
                 # if zip_name.endswith('AL2.GeoJson') or zip_name.endswith('AL3.GeoJson') or zip_name.endswith('AL4.GeoJson'):
-                if not zip_name.endswith('AL6.GeoJson'):
-                    continue
+                # if not zip_name.endswith('AL6.GeoJson'):
+                #     continue
                 level = json.loads(zipfile.open(zip_name).read().decode())
                 not_passed = []
                 for feature in level['features']:
@@ -91,10 +90,15 @@ class Command(BaseCommand):
 
         with open(os.path.join(settings.GEOJSON_DIR, 'root.json')) as root_file:
             root = json.loads(root_file.read())
-        for country in root:
-            if country['id'] in (1428125, 167454, 51684, 51477, 21335, 62273, 382313, 295480, 60199, 2184073):
-                continue
-            print(country['a_attr'])
+        # for country in root:
+        #     if country['id'] in ():
+        #         continue
+        #     print(country['a_attr'])
             # if not Region.objects.filter(osm_id=country['id']).exists():
-            with transaction.atomic():
-                import_tree(country['id'])
+        with transaction.atomic():
+            # import_tree(21335)
+            # import_tree(51684)
+            # import_tree(2184073)
+            # import_tree(295480)
+            import_tree(60199)
+            # import_tree(1428125)

@@ -2,6 +2,7 @@ from typing import List, Dict
 
 from django import forms
 from django.contrib.gis.geos import Point
+from django.utils.translation import get_language
 
 from maps.forms import RegionForm
 
@@ -34,14 +35,16 @@ class QuizInfoboxForm(RegionForm):
         questions = []
         founded = []
         for region in self.regions:
-            if region.infobox is None:
+            trans = region.translation
+            if trans.infobox is None:
                 founded.append(region)
+            k = {}
             for param in self.cleaned_data['params']:
                 if param == 'capital':
-                    capital = region.infobox.get('capital', None)
-                    value = region.infobox.get('name', None) if capital is None else extract_capital(capital)
+                    capital = trans.infobox.get('capital', None)
+                    value = trans.infobox.get('name', None) if capital is None else extract_capital(capital)
                 else:
-                    value = region.infobox.get(param, None)
+                    value = trans.infobox.get(param, None)
                 if value is not None:
                     k[param] = value
 
@@ -50,5 +53,5 @@ class QuizInfoboxForm(RegionForm):
                 k = {'id': region.id}
                 questions.append(k)
             else:
-                founded.append(region)
+                founded.append(region.full_info(get_language()))
         return {'questions': questions, 'founded': founded}

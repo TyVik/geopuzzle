@@ -12,17 +12,17 @@ from puzzle.models import Puzzle
 
 def infobox_by_id(request: WSGIRequest, pk: str) -> JsonResponse:
     obj = get_object_or_404(Region, pk=pk)
-    return JsonResponse(obj.strip_infobox)
+    return JsonResponse(obj.strip_infobox(request.LANGUAGE_CODE))
 
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
     puzzle = get_object_or_404(Puzzle, slug=name)
-    form = RegionForm(data=request.GET, game=puzzle, lang=request.LANGUAGE_CODE)
+    form = RegionForm(data=request.GET, game=puzzle)
     if not form.is_valid():
         return JsonResponse(form.errors, status=400)
     result = [{
         'id': region.id,
-        'name': region.name,
+        'name': region.translation.name,
         'polygon': region.polygon_strip,
         'center': region.center,
         'default_position': puzzle.pop_position()}
@@ -32,10 +32,11 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
 
 def puzzle(request: WSGIRequest, name: str) -> HttpResponse:
     puzzle = get_object_or_404(Puzzle, slug=name)
+    trans = puzzle.load_translation(request.LANGUAGE_CODE)
     context = {
         'google_key': settings.GOOGLE_KEY,
         'language': request.LANGUAGE_CODE,
         'game': puzzle,
-        'text': _('{} was assembled! You time is ').format(puzzle.name if puzzle.id != 1 else _('World map'))
+        'text': _('{} was assembled! You time is ').format(trans.name if puzzle.id != 1 else _('World map'))
     }
     return render(request, 'puzzle/map.html', context=context)

@@ -4,6 +4,7 @@ from django.utils.translation import ugettext as _
 from typing import List
 
 from django.conf.urls import url
+from django.utils.translation import get_language
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.messages import success
@@ -16,10 +17,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from floppyforms.gis.widgets import MultiPolygonWidget
-from hvad.admin import TranslatableAdmin
 
 from common.admin import ImageMixin, AdminImageWidget
-from maps.models import Region, RegionTranslationProxy
+from maps.models import Region, RegionTranslation
 
 
 def update_infoboxes(modeladmin, request, queryset) -> None:
@@ -78,21 +78,21 @@ class OSMSecureWidget(BaseGeometryWidget):
             return 900913
 
 
-class RegionTranslationProxyAdmin(admin.TabularInline):
-    model = RegionTranslationProxy
+class RegionTranslationAdmin(admin.TabularInline):
+    model = RegionTranslation
     extra = 0
 
 
 @admin.register(Region)
 class RegionAdmin(HierarchicalModelAdmin):
-    list_display = ('title', 'wikidata_id', 'osm_id')
+    list_display = ('title', 'wikidata_id', 'osm_id', 'infobox_status')
     actions = (update_infoboxes, update_polygons)
     formfield_overrides = {
         # MultiPolygonField: {'widget': OSMSecureWidget},
         MultiPolygonField: {'widget': MultiPolygonWidget},
     }
     hierarchy = AdjacencyList('parent')
-    inlines = (RegionTranslationProxyAdmin,)
+    inlines = (RegionTranslationAdmin,)
     list_per_page = 20
 
     class Media:
@@ -106,7 +106,7 @@ class RegionAdmin(HierarchicalModelAdmin):
 
     def infobox_status(self, obj: Region) -> str:
         result = ''
-        for key, value in obj.infobox_status().items():
+        for key, value in obj.infobox_status(get_language()).items():
             result += '<img src="/static/admin/img/icon-{}.svg" title="{}"/>'.format('yes' if value else 'no', key)
         return result
     infobox_status.short_description = _('Infobox')
@@ -125,7 +125,7 @@ class RegionAdmin(HierarchicalModelAdmin):
         ] + super(RegionAdmin, self).get_urls()
 
 
-class GameAdmin(ImageMixin, TranslatableAdmin):
+class GameAdmin(ImageMixin, admin.ModelAdmin):
     list_display = ('id', 'image_tag', 'slug', 'is_published', 'is_global')
     list_display_links = ('image_tag', 'id')
     filter_horizontal = ('regions',)

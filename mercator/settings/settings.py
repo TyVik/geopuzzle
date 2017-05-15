@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'floppyforms',
     'sorl.thumbnail',
     'jsoneditor',
-    'hvad',
     'channels',
     'admirarchy',
 
@@ -183,7 +182,7 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ['static']
-STATIC_ROOT = '../mercator/static'
+STATIC_ROOT = 'mercator/static'
 
 MEDIA_URL = '/upload/'
 MEDIA_ROOT = 'upload'

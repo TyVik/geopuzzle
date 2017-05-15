@@ -3,7 +3,6 @@ import pprint
 
 import time
 from django.core.management import BaseCommand
-from hvad.utils import load_translation
 
 from maps.infobox import query_by_wikidata_id
 from maps.models import Region
@@ -20,7 +19,7 @@ class Command(BaseCommand):
             wikidata_id = None if region.parent is None else region.parent.wikidata_id
             rows = query_by_wikidata_id(country_id=wikidata_id, item_id=region.wikidata_id)
             for lang, infobox in rows.items():
-                trans = load_translation(region, lang, enforce=True)
+                trans = region.load_translation(lang)
                 print('{} {} ========================================================='.format(region.id, lang))
                 diff = ('\n' + '\n'.join(difflib.ndiff(
                     pprint.pformat(trans.infobox).splitlines(),
