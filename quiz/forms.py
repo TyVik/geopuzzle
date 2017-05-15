@@ -50,7 +50,7 @@ class QuizInfoboxForm(RegionForm):
 
             # if question has not values - set them as founded
             if k != {}:
-                k = {'id': region.id}
+                k['id'] = region.id
                 questions.append(k)
             else:
                 founded.append(region.full_info(get_language()))
