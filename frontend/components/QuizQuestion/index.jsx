@@ -24,8 +24,8 @@ class QuizQuestion extends React.Component {
                 <div className="quiz-question">
                     <table>
                         <tbody>
-                        {question.name &&
-                            <tr><th className="row_name">{question.name}</th></tr>
+                        {question.title &&
+                            <tr><th className="row_name">{question.title}</th></tr>
                         }
                         {question.flag &&
                             <tr><td className="row_name"><img src={question.flag}/></td></tr>

@@ -50,7 +50,7 @@ function extractForQuiz(polygons, founded) {
             draggable: false,
             isSolved: true,
             infobox: region.infobox,
-            paths: region.polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)))
+            paths: decodePolygon(region.polygon)
         }
     })).sort((one, another) => {
         return one.infobox.name > another.infobox.name ? 1 : -1
@@ -77,7 +77,7 @@ const polygons = (state = [], action) => {
                         id: action.id,
                         isSolved: action.type === QUIZ_CHECK_SUCCESS,
                         infobox: {...infobox, loaded: true},
-                        paths: action.polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)))
+                        paths: decodePolygon(action.polygon)
                     };
                 }
                 return polygon

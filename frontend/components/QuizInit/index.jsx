@@ -13,13 +13,13 @@ class QuizInit extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {show: true, name: false, flag: false, coat_of_arms: false, capital: false};
+        this.state = {show: true, title: false, flag: false, coat_of_arms: false, capital: false};
     }
 
     loadQuiz() {
         return (dispatch) => {
             this.setState({show: false});
-            let quizBy = ['name', 'flag', 'coat_of_arms', 'capital'].filter((param) => this.state[param]);
+            let quizBy = ['title', 'flag', 'coat_of_arms', 'capital'].filter((param) => this.state[param]);
             let get_params = location.search ? location.search + '&' : '?';
             get_params += 'params=' + quizBy.join();
             return fetch(location.pathname.replace('/quiz/', '/quiz/questions/') + get_params)
@@ -34,7 +34,7 @@ class QuizInit extends React.Component {
     }
 
     allow() {
-        return this.state.name || this.state.flag || this.state.coat_of_arms || this.state.capital;
+        return this.state.title || this.state.flag || this.state.coat_of_arms || this.state.capital;
     }
 
     show_checkbox(param) {
@@ -49,7 +49,7 @@ class QuizInit extends React.Component {
                 </Modal.Header>
                 <Modal.Body>
                     <FormGroup className="checkbox-group">
-                        <Checkbox inline onClick={() => this.toggle('name')}>{localization.title}</Checkbox>
+                        <Checkbox inline onClick={() => this.toggle('title')}>{localization.title}</Checkbox>
                         {this.show_checkbox('flag') &&
                         <Checkbox inline onClick={() => this.toggle('flag')}>{localization.flag}</Checkbox>
                         }
