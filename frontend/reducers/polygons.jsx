@@ -35,7 +35,7 @@ function extractForPuzzle(countries) {
     });
 }
 
-function extractForQuiz(polygons) {
+function extractForQuiz(polygons, founded) {
     return polygons.map(polygon => {
         return {
             id: polygon.id,
@@ -44,7 +44,15 @@ function extractForQuiz(polygons) {
             infobox: {name: polygon.name, loaded: false},
             paths: []
         }
-    }).sort((one, another) => {
+    }).concat(founded.map(region => {
+        return {
+            id: region.id,
+            draggable: false,
+            isSolved: true,
+            infobox: region.infobox,
+            paths: region.polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)))
+        }
+    })).sort((one, another) => {
         return one.infobox.name > another.infobox.name ? 1 : -1
     });
 }
@@ -77,7 +85,7 @@ const polygons = (state = [], action) => {
         case PUZZLE_INIT_DONE:
             return extractForPuzzle(action.countries);
         case QUIZ_INIT_DONE:
-            return extractForQuiz(action.questions);
+            return extractForQuiz(action.questions, action.founded);
         case PUZZLE_GIVEUP_DONE:
             return state.map((polygon) => {
                 if (!polygon.isSolved) {
