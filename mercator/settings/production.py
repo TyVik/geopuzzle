@@ -1,7 +1,6 @@
 from mercator.settings.settings import *
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ('www.geopuzzle.org', 'geopuzzle.org', '52.213.89.12', '127.0.0.1')
 MEDIA_ROOT = '../upload'
