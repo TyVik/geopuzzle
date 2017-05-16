@@ -1,6 +1,7 @@
 from typing import List, Dict
 
 from django import forms
+from django.db import connection
 from django.contrib.gis.geos import Point
 from django.utils.translation import get_language
 
@@ -11,14 +12,21 @@ class PointContainsForm(forms.Form):
     lat = forms.FloatField()
     lng = forms.FloatField()
 
+    CONTAINS_SQL = """SELECT ST_Covers(polygon, p) 
+FROM (SELECT polygon from maps_region where id = {id}) As polygon,  
+    ST_Point({lon}, {lat}) as p;"""
+
     def __init__(self, area, *args, **kwargs):
         self.area = area
         super(PointContainsForm, self).__init__(*args, **kwargs)
 
     def clean(self):
         cleaned_data = super(PointContainsForm, self).clean()
-        point = Point(cleaned_data.get('lng'), cleaned_data.get('lat'))
-        if not self.area.polygon.contains(point):
+        with connection.cursor() as cursor:
+            cursor.execute(self.CONTAINS_SQL.format(id=self.area.id, lat=cleaned_data.get('lat'), lon=cleaned_data.get('lng')))
+            row = cursor.fetchone()
+            result = row[0]
+        if not result:
             raise forms.ValidationError('Point not in polygons')
 
 
