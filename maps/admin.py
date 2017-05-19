@@ -1,5 +1,4 @@
 from admirarchy.utils import HierarchicalModelAdmin, AdjacencyList, HierarchicalChangeList, Hierarchy
-from django.contrib.gis.forms import BaseGeometryWidget
 from django.utils.translation import ugettext as _
 from typing import List
 
@@ -10,11 +9,11 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.messages import success
 from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import ImageField
-from django.contrib.gis import gdal
 from django.contrib.gis.db.models import MultiPolygonField
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.templatetags.static import static
 from django.urls import reverse
 
 from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget
@@ -74,7 +73,8 @@ class RegionAdmin(HierarchicalModelAdmin):
     def infobox_status(self, obj: Region) -> str:
         result = ''
         for key, value in obj.infobox_status(get_language()).items():
-            result += '<img src="/static/admin/img/icon-{}.svg" title="{}"/>'.format('yes' if value else 'no', key)
+            name = 'icon-{}.svg'.format('yes' if value else 'no')
+            result += '<img src="{}" title="{}"/>'.format(static('admin/img/' + name), key)
         return result
     infobox_status.short_description = _('Infobox')
     infobox_status.allow_tags = True
