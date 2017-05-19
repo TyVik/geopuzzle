@@ -16,9 +16,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
-from floppyforms.gis.widgets import MultiPolygonWidget
 
-from common.admin import ImageMixin, AdminImageWidget
+from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget
 from maps.models import Region, RegionTranslation
 
 
@@ -47,37 +46,6 @@ class RegionChangeList(HierarchicalChangeList):
         return result
 
 
-class OSMSecureWidget(BaseGeometryWidget):
-    """
-    An OpenLayers/OpenStreetMap-based widget.
-    """
-    template_name = 'gis/openlayers-osm.html'
-    default_lon = 5
-    default_lat = 47
-
-    class Media:
-        js = (
-            'https://openlayers.org/api/2.13.1/OpenLayers.js',
-            'gis/js/OLMapWidget.js',
-        )
-
-    def __init__(self, attrs=None):
-        super(OSMSecureWidget, self).__init__()
-        for key in ('default_lon', 'default_lat'):
-            self.attrs[key] = getattr(self, key)
-        if attrs:
-            self.attrs.update(attrs)
-
-    @property
-    def map_srid(self):
-        # Use the official spherical mercator projection SRID when GDAL is
-        # available; otherwise, fallback to 900913.
-        if gdal.HAS_GDAL:
-            return 3857
-        else:
-            return 900913
-
-
 class RegionTranslationAdmin(admin.TabularInline):
     model = RegionTranslation
     extra = 0
@@ -88,7 +56,6 @@ class RegionAdmin(HierarchicalModelAdmin):
     list_display = ('title', 'wikidata_id', 'osm_id', 'infobox_status')
     actions = (update_infoboxes, update_polygons)
     formfield_overrides = {
-        # MultiPolygonField: {'widget': OSMSecureWidget},
         MultiPolygonField: {'widget': MultiPolygonWidget},
     }
     hierarchy = AdjacencyList('parent')
