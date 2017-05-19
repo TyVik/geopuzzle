@@ -41,7 +41,8 @@ class RegionChangeList(HierarchicalChangeList):
 
     def get_query_string(self, new_params=None, remove=None):
         result = super(RegionChangeList, self).get_query_string(new_params, remove)
-        result = result.replace(self.model_admin.hierarchy.pid_field, self.model_admin.hierarchy.PARENT_ID_QS_PARAM)
+        if not 'parent=None' in result:
+            result = result.replace(self.model_admin.hierarchy.pid_field, self.model_admin.hierarchy.PARENT_ID_QS_PARAM)
         return result
 
 
@@ -72,9 +73,10 @@ class RegionAdmin(HierarchicalModelAdmin):
 
     def infobox_status(self, obj: Region) -> str:
         result = ''
-        for key, value in obj.infobox_status(get_language()).items():
-            name = 'icon-{}.svg'.format('yes' if value else 'no')
-            result += '<img src="{}" title="{}"/>'.format(static('admin/img/' + name), key)
+        if obj.id is not None:
+            for key, value in obj.infobox_status(get_language()).items():
+                name = 'icon-{}.svg'.format('yes' if value else 'no')
+                result += '<img src="{}" title="{}"/>'.format(static('admin/img/' + name), key)
         return result
     infobox_status.short_description = _('Infobox')
     infobox_status.allow_tags = True
