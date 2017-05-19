@@ -125,7 +125,7 @@ class Region(models.Model):
         return result
 
     def full_info(self, lang: str) -> Dict:
-        return {'infobox': self.strip_infobox(lang), 'polygon': self.polygon_strip, 'id': self.id}
+        return {'infobox': self.strip_infobox(lang), 'polygon': self.polygon_gmap, 'id': self.id}
 
     def import_osm_polygon(self) -> None:
         def content():
