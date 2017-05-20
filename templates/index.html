@@ -43,26 +43,19 @@
                                 </div>
                                 <h1>{% trans 'World' %}</h1>
                                 <div class="row">
-                                    <div class="col-md-4 col-sm-4 col-xs-4 item-container">
-                                        <a href="{% url game.link 'world' %}?difficulty=1">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 item-container">
+                                        <a href="{% url game.link 'easy' %}">
                                             <img class="img-responsive img-rounded"
                                                  src="{% static 'images/world/easy.png' %}" alt="easy">
                                         </a>
-                                        <div class="text-center">{% trans 'easy' %}</div>
+                                        <div class="text-center">{% trans 'easy countries' %}</div>
                                     </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-4 item-container">
-                                        <a href="{% url game.link 'world' %}?difficulty=2">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 item-container">
+                                        <a href="{% url game.link 'world' %}">
                                             <img class="img-responsive img-rounded"
-                                                 src="{% static 'images/world/normal.png' %}" alt="normal">
+                                                 src="{% static 'images/world/all.png' %}" alt="normal">
                                         </a>
-                                        <div class="text-center">{% trans 'normal' %}</div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-4 item-container">
-                                        <a href="{% url game.link 'world' %}?difficulty=3">
-                                            <img class="img-responsive img-rounded"
-                                                 src="{% static 'images/world/hard.png' %}" alt="hard">
-                                        </a>
-                                        <div class="text-center">{% trans 'hard' %}</div>
+                                        <div class="text-center">{% trans 'all countries' %}</div>
                                     </div>
                                 </div>
                                 <div class="row">

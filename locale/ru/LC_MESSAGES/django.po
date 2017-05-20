@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-15 19:42+0000\n"
+"POT-Creation-Date: 2017-05-20 14:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,36 +18,73 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: maps/admin.py:26
+msgid "Infoboxes were updated."
+msgstr "Инфобоксы обновлены"
+
+#: maps/admin.py:27
+msgid "Update infoboxes"
+msgstr "Обновить инфобоксы"
+
+#: maps/admin.py:33
+msgid "Polygons were updated."
+msgstr "Полигоны обновлены"
+
+#: maps/admin.py:34
+msgid "Update polygons"
+msgstr "Обновить полигоны"
+
+#: maps/admin.py:81
+msgid "Infobox"
+msgstr "Инфобокс"
+
+#: maps/admin.py:87
+msgid "Infobox was updated successfully."
+msgstr "Инфобокс обновлён успешно"
+
+#: maps/admin.py:94
+msgid "Polygon was imported successfully."
+msgstr "Полигон загружен успешно"
+
 #: maps/apps.py:6
 msgid "maps"
-msgstr ""
+msgstr "карты"
 
-#: maps/templates/admin/maps/area/change_form.html:10
-#: maps/templates/admin/maps/country/change_form.html:10
+#: maps/templates/admin/maps/region/change_form.html:10
 msgid "History"
 msgstr "История"
 
-#: maps/templates/admin/maps/area/change_form.html:13
 #: maps/templates/admin/maps/country/change_form.html:13
 msgid "Import KML"
 msgstr "Импорт KML"
 
-#: maps/templates/admin/maps/area/change_form.html:15
-#: maps/templates/admin/maps/country/change_form.html:15
+#: maps/templates/admin/maps/region/change_form.html:16
 msgid "View on site"
 msgstr "Посмотреть на сайте"
 
-#: maps/templates/admin/maps/area/map_kml_import.html:14
-#: maps/templates/admin/maps/country/map_kml_import.html:14
+#: maps/templates/admin/maps/region/map_kml_import.html:14
 msgid "Please correct the error below."
 msgstr "Пожалуйста, исправьте ошибки."
 
-#: maps/templates/admin/maps/area/map_kml_import.html:15
-#: maps/templates/admin/maps/country/map_kml_import.html:15
+#: maps/templates/admin/maps/region/map_kml_import.html:15
 msgid "Please correct the errors below."
 msgstr "Пожалуйста, исправьте ошибки."
 
-#: mercator/views.py:19
+#: maps/templates/admin/maps/region/change_form.html:13
+msgid "Update Infobox"
+msgstr ""
+
+#: maps/templates/admin/maps/region/change_form.html:14
+#, fuzzy
+#| msgid "Import KML"
+msgid "Import from OSM"
+msgstr "Импорт KML"
+
+#: mercator/views.py:23
+msgid "puzzle"
+msgstr "Паззл"
+
+#: mercator/views.py:24
 msgid ""
 "In the Puzzle you need to drag the shape of the territory to the right "
 "place. Just like in childhood we collected pictures piece by piece, so here "
@@ -57,7 +94,11 @@ msgstr ""
 "мы собирали картины кусочек за кусочком, а здесь можно собрать страну из "
 "регионов или целые континенты из стран!"
 
-#: mercator/views.py:23
+#: mercator/views.py:32
+msgid "quiz"
+msgstr "Викторина"
+
+#: mercator/views.py:33
 msgid ""
 "In the Quiz you need find the country by flag, emblem or the capital. Did "
 "you know that Monaco and Indonesia have the same flags? And that the flags "
@@ -70,32 +111,24 @@ msgstr ""
 "Либерии отличаются только количеством звёзд? Так вот, эти и другие "
 "интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
 
-#: mercator/views.py:26
-msgid "puzzle"
-msgstr "Паззл"
-
-#: mercator/views.py:26
-msgid "quiz"
-msgstr "Викторина"
-
-#: puzzle/views.py:37
+#: puzzle/views.py:40
 msgid "{} was assembled! You time is "
 msgstr "{} собрана! Ваше время "
 
-#: puzzle/views.py:37 quiz/views.py:27
+#: puzzle/views.py:40 quiz/views.py:29
 msgid "World map"
 msgstr "Карта мира"
 
-#: quiz/views.py:26
+#: quiz/views.py:28
 #, python-brace-format
 msgid "{name} has been studied! You guessed all {subjects}. You time is "
 msgstr "{name} была изучена! Вы нашли все {subjects}. Ваше время "
 
-#: quiz/views.py:28
+#: quiz/views.py:30
 msgid "countries"
 msgstr "страны"
 
-#: quiz/views.py:28
+#: quiz/views.py:30
 msgid "regions"
 msgstr "регионы"
 
@@ -136,22 +169,18 @@ msgstr ""
 "маленьких стран Африки. :)"
 
 #: templates/index.html:51
-msgid "easy"
-msgstr "лёгкий"
+msgid "easy countries"
+msgstr "лёгкие страны"
 
 #: templates/index.html:58
-msgid "normal"
-msgstr "средний"
+msgid "all countries"
+msgstr "все страны"
 
-#: templates/index.html:65
-msgid "hard"
-msgstr "тяжёлый"
-
-#: templates/index.html:81
+#: templates/index.html:74
 msgid "Country regions"
 msgstr "Регионы стран"
 
-#: templates/index.html:105
+#: templates/index.html:98
 msgid ""
 "This is my pet project, but I was so impressed with this idea that I decided "
 "to make a\n"
