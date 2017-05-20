@@ -22,10 +22,6 @@ class Puzzle(Game):
     def get_absolute_url(self) -> str:
         return reverse('puzzle_map', args=(self.slug,))
 
-    def load_translation(self, lang):
-        result, _ = PuzzleTranslation.objects.get_or_create(language_code=lang, master=self)
-        return result
-
     def pop_position(self) -> Tuple:
         if len(self.__default_positions) == 0:
             self.__default_positions = self.default_positions[:]

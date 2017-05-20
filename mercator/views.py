@@ -15,8 +15,8 @@ def index(request: WSGIRequest) -> HttpResponse:
     quizzes = Quiz.objects.filter(translations__language_code=request.LANGUAGE_CODE, is_published=True).order_by('translations__name').all()
     games = [{
         'items': {
-            'parts': puzzles.filter(is_global=True),
-            'countries': puzzles.filter(is_global=False)
+            'parts': [item.index for item in puzzles.filter(is_global=True).all()],
+            'countries': [item.index for item in puzzles.filter(is_global=False).all()]
         },
         'name': 'puzzle',
         'link': 'puzzle_map',
@@ -24,8 +24,8 @@ def index(request: WSGIRequest) -> HttpResponse:
         'rules': _('In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!')
     }, {
         'items': {
-            'parts': quizzes.filter(is_global=True),
-            'countries': quizzes.filter(is_global=False)
+            'parts': [item.index for item in quizzes.filter(is_global=True).all()],
+            'countries': [item.index for item in quizzes.filter(is_global=False).all()]
         },
         'name': 'quiz',
         'link': 'quiz_map',

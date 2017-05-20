@@ -1,6 +1,5 @@
 import json
 import os
-import time
 from zipfile import ZipFile
 
 import requests
@@ -206,6 +205,14 @@ class Game(models.Model):
 
     def get_absolute_url(self) -> str:
         raise NotImplementedError
+
+    def load_translation(self, lang):
+        return self.translations.filter(language_code=lang).first()
+
+    @property
+    def index(self) -> Dict:
+        trans = self.load_translation(get_language())
+        return {'image': self.image, 'slug': self.slug, 'name': trans.name}
 
     def get_init_params(self) -> Dict:
         return {

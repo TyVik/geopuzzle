@@ -21,10 +21,6 @@ class Quiz(Game):
         verbose_name = 'Quiz'
         verbose_name_plural = 'Quizzes'
 
-    def load_translation(self, lang):
-        result, _ = QuizTranslation.objects.get_or_create(language_code=lang, master=self)
-        return result
-
     def get_absolute_url(self) -> str:
         return reverse('quiz_map', args=(self.slug,))
 
