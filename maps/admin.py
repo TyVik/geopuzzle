@@ -81,6 +81,13 @@ class RegionAdmin(HierarchicalModelAdmin):
     infobox_status.short_description = _('Infobox')
     infobox_status.allow_tags = True
 
+    def infobox_import(self, request: WSGIRequest, pk: str) -> HttpResponse:
+        region = get_object_or_404(Region, pk=pk)
+        region.update_infobox_by_wikidata_id()
+        success(request, _('Infobox was updated successfully.'))
+        url = reverse('admin:{app}_{model}_change'.format(app=self.model._meta.app_label, model='region'), args=(pk,))
+        return HttpResponseRedirect(url)
+
     def osm_import(self, request: WSGIRequest, pk: str) -> HttpResponse:
         region = get_object_or_404(Region, pk=pk)
         region.import_osm_polygon()
@@ -90,7 +97,8 @@ class RegionAdmin(HierarchicalModelAdmin):
 
     def get_urls(self) -> List:
         return [
-            url(r'^(.+)/osm_import/$', staff_member_required(self.osm_import), name='area_osm_import'),
+            url(r'^(.+)/infobox_import/$', staff_member_required(self.infobox_import), name='infobox_import'),
+            url(r'^(.+)/osm_import/$', staff_member_required(self.osm_import), name='osm_import'),
         ] + super(RegionAdmin, self).get_urls()
 
 

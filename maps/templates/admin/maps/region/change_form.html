@@ -10,8 +10,8 @@
                 <a href="{% add_preserved_filters history_url %}" class="historylink">{% trans "History" %}</a>
             </li>
             <li>
-                <a href="{% url 'admin:area_kml_import' original.pk %}" class="historylink">{% trans "Import KML" %}</a>
-                <a href="{% url 'admin:area_osm_import' original.pk %}" class="historylink">{% trans "Import from OSM" %}</a>
+                <a href="{% url 'admin:infobox_import' original.pk %}" class="historylink">{% trans "Update Infobox" %}</a>
+                <a href="{% url 'admin:osm_import' original.pk %}" class="historylink">{% trans "Import from OSM" %}</a>
             </li>
             {% if has_absolute_url %}<li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif %}
             {% endblock %}

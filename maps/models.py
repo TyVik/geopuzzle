@@ -162,9 +162,8 @@ class Region(models.Model):
         return result
 
     def update_infobox_by_wikidata_id(self) -> None:
-        time.sleep(5)  # protection for DDoS
-        country_id = self.parent.wikidata_id
-        rows = query_by_wikidata_id(country_id=country_id, item_id=self.wikidata_id)
+        wikidata_id = None if self.parent is None else self.parent.wikidata_id
+        rows = query_by_wikidata_id(country_id=wikidata_id, item_id=self.wikidata_id)
         for lang, infobox in rows.items():
             trans = self.load_translation(lang)
             trans.master = self
