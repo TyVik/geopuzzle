@@ -21,7 +21,8 @@ class Command(LabelCommand):
             if label not in Region.caches.keys():
                 raise CommandError('`%s` unknown cache' % label)
             with open('geocache_{}.json'.format(label), 'r') as f:
-                region = json.loads(f.readline())
-                for rec in region.keys():
-                    cache_key = Region.caches[label].format(id=rec)
-                    cache.set(cache_key, region[rec], timeout=None)
+                while True:
+                    region = json.loads(f.readline())
+                    for rec in region.keys():
+                        cache_key = Region.caches[label].format(id=rec)
+                        cache.set(cache_key, region[rec], timeout=None)
