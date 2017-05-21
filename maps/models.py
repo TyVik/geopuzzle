@@ -90,7 +90,8 @@ class Region(models.Model):
         cache_key = self.caches['polygon_gmap'].format(id=self.id)
         result = cache.get(cache_key)
         if result is None:
-            result = encode_geometry(self.polygon)
+            simplify = self.polygon.simplify(0.005, preserve_topology=True)
+            result = encode_geometry(simplify)
             cache.set(cache_key, result, timeout=None)
         return result
 
