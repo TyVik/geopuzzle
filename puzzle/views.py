@@ -12,7 +12,7 @@ from puzzle.models import Puzzle
 
 def infobox_by_id(request: WSGIRequest, pk: str) -> JsonResponse:
     obj = get_object_or_404(Region, pk=pk)
-    return JsonResponse(obj.strip_infobox(request.LANGUAGE_CODE))
+    return JsonResponse(obj.polygon_infobox[request.LANGUAGE_CODE])
 
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
@@ -24,7 +24,7 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
         'id': region.id,
         'name': region.translation.name,
         'polygon': region.polygon_strip,
-        'center': region.center,
+        'center': region.polygon_center,
         'default_position': puzzle.pop_position()}
             for region in form.regions]
     return JsonResponse(result, safe=False)

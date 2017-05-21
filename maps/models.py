@@ -17,6 +17,7 @@ from django.dispatch import receiver
 from django.utils.translation import get_language
 from io import BytesIO
 
+from common.cachable import CacheablePropertyMixin, cacheable
 from maps.converter import encode_geometry
 from maps.fields import ExternalIdField
 from maps.infobox import query_by_wikidata_id
@@ -37,7 +38,7 @@ class RegionManager(models.Manager):
         return super(RegionManager, self).get_queryset().defer('polygon')
 
 
-class Region(models.Model):
+class Region(CacheablePropertyMixin, models.Model):
     title = models.CharField(max_length=128)
     polygon = MultiPolygonField(geography=True)
     parent = models.ForeignKey('Region', null=True, blank=True)
@@ -53,7 +54,7 @@ class Region(models.Model):
         'polygon_gmap': 'region{id}gmap',
         'polygon_bounds': 'region{id}bounds',
         'polygon_strip': 'region{id}strip',
-        'polygon_infobox': 'region{id}infobox{lang}',
+        'polygon_infobox': 'region{id}infobox',
     }
 
     class Meta:
@@ -67,43 +68,27 @@ class Region(models.Model):
         super(Region, self).__init__(*args, **kwargs)
 
     @property
+    @cacheable
     def polygon_bounds(self) -> List:
-        cache_key = self.caches['polygon_bounds'].format(id=self.id)
-        points = cache.get(cache_key)
-        if points is None:
-            points = self.polygon.extent
-            cache.set(cache_key, points, timeout=None)
-        return points
+        return self.polygon.extent
 
     @property
+    @cacheable
     def polygon_strip(self) -> List:
-        cache_key = self.caches['polygon_strip'].format(id=self.id)
-        result = cache.get(cache_key)
-        if result is None:
-            simplify = self.polygon.simplify(0.01, preserve_topology=True)
-            result = encode_geometry(simplify, min_points=15)
-            cache.set(cache_key, result, timeout=None)
-        return result
+        simplify = self.polygon.simplify(0.01, preserve_topology=True)
+        return encode_geometry(simplify, min_points=15)
 
     @property
+    @cacheable
     def polygon_gmap(self) -> List:
-        cache_key = self.caches['polygon_gmap'].format(id=self.id)
-        result = cache.get(cache_key)
-        if result is None:
-            simplify = self.polygon.simplify(0.005, preserve_topology=True)
-            result = encode_geometry(simplify)
-            cache.set(cache_key, result, timeout=None)
-        return result
+        simplify = self.polygon.simplify(0.005, preserve_topology=True)
+        return encode_geometry(simplify)
 
     @property
-    def center(self) -> List:
+    @cacheable
+    def polygon_center(self) -> List:
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
-        cache_key = self.caches['polygon_center'].format(id=self.id)
-        result = cache.get(cache_key)
-        if result is None:
-            result = list(self.polygon.centroid)
-            cache.set(cache_key, result, timeout=None)
-        return result
+        return list(self.polygon.centroid)
 
     def infobox_status(self, lang: str) -> Dict:
         fields = ('name', 'wiki', 'capital', 'coat_of_arms', 'flag')
@@ -112,20 +97,20 @@ class Region(models.Model):
         result['capital'] = result.get('capital') and isinstance(trans.infobox['capital'], dict)
         return result
 
-    def strip_infobox(self, lang: str) -> Dict:
-        cache_key = self.caches['polygon_infobox'].format(id=self.id, lang=lang)
-        result = cache.get(cache_key)
-        if result is None:
-            trans = self.load_translation(lang)
-            result = trans.infobox
-            result.pop('geonamesID', None)
-            if 'capital' in result and isinstance(result['capital'], dict):
-                del (result['capital']['id'])
-            cache.set(cache_key, result, timeout=None)
+    @property
+    @cacheable
+    def polygon_infobox(self) -> Dict:
+        result = {}
+        for trans in self.translations.all():
+            infobox = trans.infobox
+            infobox.pop('geonamesID', None)
+            if 'capital' in infobox and isinstance(infobox['capital'], dict):
+                del (infobox['capital']['id'])
+            result[trans.language_code] = infobox
         return result
 
     def full_info(self, lang: str) -> Dict:
-        return {'infobox': self.strip_infobox(lang), 'polygon': self.polygon_gmap, 'id': self.id}
+        return {'infobox': self.polygon_infobox[lang], 'polygon': self.polygon_gmap, 'id': self.id}
 
     def update_polygon(self) -> None:
         def content():
@@ -158,8 +143,7 @@ class Region(models.Model):
         return self.load_translation(get_language())
 
     def load_translation(self, lang):
-        result, _ = RegionTranslation.objects.get_or_create(language_code=lang, master=self)
-        return result
+        return self.translations.filter(language_code=lang).first()
 
     def update_infobox(self) -> None:
         wikidata_id = None if self.parent is None else self.parent.wikidata_id
