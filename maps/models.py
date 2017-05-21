@@ -126,7 +126,7 @@ class Region(models.Model):
     def full_info(self, lang: str) -> Dict:
         return {'infobox': self.strip_infobox(lang), 'polygon': self.polygon_gmap, 'id': self.id}
 
-    def import_osm_polygon(self) -> None:
+    def update_polygon(self) -> None:
         def content():
             cache = os.path.join(settings.GEOJSON_DIR, '{}.geojson'.format(self.osm_id))
             if not os.path.exists(cache):
@@ -160,7 +160,7 @@ class Region(models.Model):
         result, _ = RegionTranslation.objects.get_or_create(language_code=lang, master=self)
         return result
 
-    def update_infobox_by_wikidata_id(self) -> None:
+    def update_infobox(self) -> None:
         wikidata_id = None if self.parent is None else self.parent.wikidata_id
         rows = query_by_wikidata_id(country_id=wikidata_id, item_id=self.wikidata_id)
         for lang, infobox in rows.items():
