@@ -7,9 +7,34 @@ import {
 
 
 function moveTo(paths, from, to) {
-    let polygon = new google.maps.Polygon({geodesic: true, paths: paths});
-    polygon.moveTo(from, to);
-    return polygon.getPaths();
+    let newPoints =[];
+    let newPaths = [];
+
+    for (let p = 0; p < paths.length; p++) {
+        let path = paths[p];
+        newPoints.push([]);
+
+        for (let i = 0; i < path.length; i++) {
+            newPoints[newPoints.length-1].push({
+                heading: google.maps.geometry.spherical.computeHeading(from, path[i]),
+                distance: google.maps.geometry.spherical.computeDistanceBetween(from, path[i])
+            });
+        }
+    }
+
+    for (let j = 0, jl = newPoints.length; j < jl; j++) {
+        let shapeCoords = [],
+            relativePoint = newPoints[j];
+        for (let k = 0, kl = relativePoint.length; k < kl; k++) {
+            shapeCoords.push(google.maps.geometry.spherical.computeOffset(
+                to,
+                relativePoint[k].distance,
+                relativePoint[k].heading
+            ));
+        }
+        newPaths.push(shapeCoords);
+    }
+    return newPaths;
 }
 
 
