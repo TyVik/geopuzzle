@@ -75,13 +75,15 @@ class Region(CacheablePropertyMixin, models.Model):
     @property
     @cacheable
     def polygon_strip(self) -> List:
-        simplify = self.polygon.simplify(0.01, preserve_topology=True)
+        precision = 0.01 + 0.002 * (self.polygon.area / 100.0)
+        simplify = self.polygon.simplify(precision, preserve_topology=True)
         return encode_geometry(simplify, min_points=15)
 
     @property
     @cacheable
     def polygon_gmap(self) -> List:
-        simplify = self.polygon.simplify(0.005, preserve_topology=True)
+        precision = 0.005 + 0.001 * (self.polygon.area / 100.0)
+        simplify = self.polygon.simplify(precision, preserve_topology=True)
         return encode_geometry(simplify)
 
     @property
@@ -132,10 +134,6 @@ class Region(CacheablePropertyMixin, models.Model):
 
         geojson = content()
         self.polygon = GEOSGeometry(json.dumps(geojson['features'][0]['geometry']))
-        simplify = self.polygon.simplify(0.01, preserve_topology=True)
-        if not isinstance(simplify, MultiPolygon):
-            simplify = MultiPolygon(simplify)
-        self.polygon = simplify
         self.save()
 
     @property
