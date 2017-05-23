@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'common',
     'floppyforms',
     'sorl.thumbnail',
-    'jsoneditor',
     'channels',
     'admirarchy',
 
