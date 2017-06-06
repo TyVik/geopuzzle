@@ -35,7 +35,8 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 AWS_ACCESS_KEY_ID = 'AKIAIY6XKWEZVZ5A67DQ'
 AWS_SECRET_ACCESS_KEY = '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'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+CLOUDFRONT_DOMAIN = 'd3mrnwpzw0hkkh.cloudfront.net'
+DEFAULT_FILE_STORAGE = 'mercator.storages.CloudFrontStorage'
 THUMBNAIL_STORAGE = DEFAULT_FILE_STORAGE
 
 AWS_S3_SECURE_URLS = True
@@ -44,6 +45,6 @@ AWS_S3_USE_SSL = True
 
 AWS_REGION = 'eu-west-1'
 AWS_STORAGE_BUCKET_NAME = 'geo-puzzle'
-STATIC_URL = 'https://{}.s3.amazonaws.com/static/'.format(AWS_STORAGE_BUCKET_NAME)
+STATIC_URL = 'https://{}/static/'.format(CLOUDFRONT_DOMAIN)
 
 THUMBNAIL_DUMMY_SOURCE = '{}images/world/default_%(width)s.png'.format(STATIC_URL)
