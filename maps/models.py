@@ -75,9 +75,9 @@ class Region(CacheablePropertyMixin, models.Model):
     @property
     @cacheable
     def polygon_strip(self) -> List:
-        precision = 0.01 + 0.002 * (self.polygon.area / 100.0)
+        precision = 0.01 + 0.004 * (self.polygon.area / 10.0)
         simplify = self.polygon.simplify(precision, preserve_topology=True)
-        return encode_geometry(simplify, min_points=15)
+        return encode_geometry(simplify, min_points=10)
 
     @property
     @cacheable

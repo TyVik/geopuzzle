@@ -21,4 +21,6 @@ class Command(LabelCommand):
                 raise CommandError('`%s` unknown cache' % label)
             for region in Region.objects.all().iterator():
                 cache.delete(region.caches[label].format(id=region.id))
+                print('===========================')
+                print(region.title)
                 print(getattr(region, label))

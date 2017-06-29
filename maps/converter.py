@@ -138,4 +138,4 @@ def encode_geometry(polygon, min_points=None):
             result += encode_part(part)
     else:
         result += encode_part(polygon)
-    return result
+    return result if len(result) > 0 else encode_geometry(polygon)
