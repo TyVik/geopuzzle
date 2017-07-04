@@ -1,28 +1,29 @@
-import json
-from channels.routing import route
-from channels.sessions import channel_session
+from channels.routing import route_class
+from django_redux import action
 
+from common.consumer import LanguageConsumer
 from maps.models import Region
 from quiz.forms import PointContainsForm
 
 
-@channel_session
-def receive(message):
-    payload = json.loads(message.content['text'])
-    if payload['type'] == 'QUIZ_CHECK':
-        region = Region.objects.get(pk=payload['id'])
-        form = PointContainsForm(data=payload['coords'], area=region)
+class QuizConsumer(LanguageConsumer):
+    @action('QUIZ_CHECK')
+    def check(self, message, *args, **kwargs):
+        region = Region.objects.get(pk=message['id'])
+        form = PointContainsForm(data=message['coords'], area=region)
         if form.is_valid():
-            result = region.full_info(message.channel_session['lang'])
+            result = region.full_info(self.message.channel_session['lang'])
             result['type'] = 'QUIZ_CHECK_SUCCESS'
-            message.reply_channel.send({'text': json.dumps(result)})
-    elif payload['type'] == 'QUIZ_GIVEUP':
-        region = Region.objects.get(pk=payload['id'])
-        result = region.full_info(message.channel_session['lang'])
+            self.send(result)
+
+    @action('QUIZ_GIVEUP')
+    def give_up(self, message, *args, **kwargs):
+        region = Region.objects.get(pk=message['id'])
+        result = region.full_info(self.message.channel_session['lang'])
         result['type'] = 'QUIZ_GIVEUP_DONE'
-        message.reply_channel.send({'text': json.dumps(result)})
+        self.send(result)
 
 
 routes = [
-    route('websocket.receive', receive, path=r'^/ws/quiz/$'),
+    route_class(QuizConsumer, path=r"^/ws/quiz/"),
 ]
