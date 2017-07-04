@@ -1,13 +1,13 @@
 from django import forms
 from django.db.models import QuerySet
 
-from maps.models import Region
+from maps.models import Region, Game
 
 
 class RegionForm(forms.Form):
     id = forms.ModelMultipleChoiceField(queryset=Region.objects.all(), required=False)
 
-    def __init__(self, game, *args, **kwargs):
+    def __init__(self, game: Game, *args, **kwargs):
         self.game = game
         super(RegionForm, self).__init__(*args, **kwargs)
 
