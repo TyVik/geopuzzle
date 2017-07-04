@@ -73,10 +73,14 @@ class Region(CacheablePropertyMixin, models.Model):
         return self.polygon.extent
 
     @property
+    def _strip_polygon(self):
+        precision = 0.01 + 0.004 * (self.polygon.area / 10.0)
+        return self.polygon.simplify(precision, preserve_topology=True)
+
+    @property
     @cacheable
     def polygon_strip(self) -> List:
-        precision = 0.01 + 0.004 * (self.polygon.area / 10.0)
-        simplify = self.polygon.simplify(precision, preserve_topology=True)
+        simplify = self._strip_polygon
         return encode_geometry(simplify, min_points=10)
 
     @property
@@ -90,7 +94,23 @@ class Region(CacheablePropertyMixin, models.Model):
     @cacheable
     def polygon_center(self) -> List:
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
-        return list(self.polygon.centroid)
+        strip = self._strip_polygon
+
+        def calc_part(result, subpolygon):
+            for point in subpolygon.coords[0]:
+                result['count'] += 1
+                result['lat'] += point[0]
+                result['lng'] += point[1]
+            return result
+
+        result = {'lat': 0.0, 'lng': 0.0, 'count': 0}
+        if isinstance(strip, MultiPolygon):
+            for part in strip:
+                if part.num_points > 10:
+                    result = calc_part(result, part)
+        else:
+            result = calc_part(result, strip)
+        return [result['lat'] / result['count'], result['lng'] / result['count']]
 
     def infobox_status(self, lang: str) -> Dict:
         fields = ('name', 'wiki', 'capital', 'coat_of_arms', 'flag')
