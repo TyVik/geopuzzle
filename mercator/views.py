@@ -1,11 +1,12 @@
-from django.http import HttpResponsePermanentRedirect
+from django.http import HttpResponsePermanentRedirect, JsonResponse
 from django.urls import reverse
 from django.utils.translation import ugettext as _
 
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
+from maps.models import Region
 from puzzle.models import Puzzle
 from quiz.models import Quiz
 
@@ -33,6 +34,11 @@ def index(request: WSGIRequest) -> HttpResponse:
         'rules': _('In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!')
     }]
     return render(request, 'index.html', {'games': games})
+
+
+def infobox_by_id(request: WSGIRequest, pk: str) -> JsonResponse:
+    obj = get_object_or_404(Region, pk=pk)
+    return JsonResponse(obj.polygon_infobox[request.LANGUAGE_CODE])
 
 
 def deprecated_redirect(request: WSGIRequest, name: str) -> HttpResponsePermanentRedirect:

@@ -6,13 +6,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 
 from maps.forms import RegionForm
-from maps.models import Region
 from puzzle.models import Puzzle
-
-
-def infobox_by_id(request: WSGIRequest, pk: str) -> JsonResponse:
-    obj = get_object_or_404(Region, pk=pk)
-    return JsonResponse(obj.polygon_infobox[request.LANGUAGE_CODE])
 
 
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
