@@ -53,7 +53,7 @@ class RegionTranslationAdmin(admin.TabularInline):
 
 @admin.register(Region)
 class RegionAdmin(HierarchicalModelAdmin):
-    list_display = ('title', 'wikidata_id', 'osm_id', 'infobox_status')
+    list_display = ('__str__', 'wikidata_id', 'osm_id', 'infobox_status')
     actions = (update_infoboxes, update_polygons)
     formfield_overrides = {
         MultiPolygonField: {'widget': MultiPolygonWidget},

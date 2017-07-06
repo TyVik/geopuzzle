@@ -62,7 +62,7 @@ class Region(CacheablePropertyMixin, models.Model):
         verbose_name_plural = 'Regions'
 
     def __str__(self):
-        return self.title
+        return '{} ({})'.format(self.title, self.id)
 
     def __init__(self, *args, **kwargs):
         super(Region, self).__init__(*args, **kwargs)
@@ -94,22 +94,26 @@ class Region(CacheablePropertyMixin, models.Model):
     @cacheable
     def polygon_center(self) -> List:
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
-        strip = self._strip_polygon
+        def calc_polygon(strip, force):
+            def calc_part(result, subpolygon):
+                for point in subpolygon.coords[0]:
+                    result['count'] += 1
+                    result['lat'] += point[0]
+                    result['lng'] += point[1]
+                return result
 
-        def calc_part(result, subpolygon):
-            for point in subpolygon.coords[0]:
-                result['count'] += 1
-                result['lat'] += point[0]
-                result['lng'] += point[1]
+            result = {'lat': 0.0, 'lng': 0.0, 'count': 0}
+            if isinstance(strip, MultiPolygon):
+                for part in strip:
+                    if force or part.num_points > 10:
+                        result = calc_part(result, part)
+            else:
+                result = calc_part(result, strip)
             return result
 
-        result = {'lat': 0.0, 'lng': 0.0, 'count': 0}
-        if isinstance(strip, MultiPolygon):
-            for part in strip:
-                if part.num_points > 10:
-                    result = calc_part(result, part)
-        else:
-            result = calc_part(result, strip)
+        result = calc_polygon(self._strip_polygon, force=False)
+        if result['count'] == 0:
+            result = calc_polygon(self._strip_polygon, force=True)
         return [result['lat'] / result['count'], result['lng'] / result['count']]
 
     def infobox_status(self, lang: str) -> Dict:
@@ -161,7 +165,10 @@ class Region(CacheablePropertyMixin, models.Model):
         return self.load_translation(get_language())
 
     def load_translation(self, lang):
-        return self.translations.filter(language_code=lang).first()
+        result = self.translations.filter(language_code=lang).first()
+        if result is None:
+            result = RegionTranslation.objects.create(language_code=lang, master=self, name='(empty)')
+        return result
 
     def update_infobox(self) -> None:
         wikidata_id = None if self.parent is None else self.parent.wikidata_id
