@@ -24,7 +24,7 @@ GEOJSON_DIR = os.path.join(BASE_DIR, '../geojson')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ape=+ghu&-o&$12=^=huhywfeg+dx5-n5(31odnicpy7am!rq7'
 OSM_KEY = 'bba75f5a-0e9d-43ab-bcf4-02da18c8212b'
-OSM_URL = "https://osm.wno-edv-service.de/boundaries/exportBoundaries?apiversion=1.0&apikey={key}&" \
+OSM_URL = "https://wambachers-osm.website/boundaries/exportBoundaries?apiversion=1.0&apikey={key}&" \
           "exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}"
 
 # SECURITY WARNING: don't run with debug turned on in production!
