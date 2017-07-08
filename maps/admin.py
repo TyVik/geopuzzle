@@ -1,4 +1,5 @@
 from admirarchy.utils import HierarchicalModelAdmin, AdjacencyList, HierarchicalChangeList, Hierarchy
+from django.contrib.gis.admin import OSMGeoAdmin
 from django.utils.translation import ugettext as _
 from typing import List
 
@@ -102,7 +103,7 @@ class RegionAdmin(HierarchicalModelAdmin):
         ] + super(RegionAdmin, self).get_urls()
 
 
-class GameAdmin(ImageMixin, admin.ModelAdmin):
+class GameAdmin(ImageMixin, OSMGeoAdmin):
     list_display = ('id', 'image_tag', 'slug', 'is_published', 'is_global')
     list_display_links = ('image_tag', 'id')
     filter_horizontal = ('regions',)
