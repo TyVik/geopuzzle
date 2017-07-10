@@ -54,7 +54,7 @@ class MapContainer extends React.Component {
 
     render() {
         return <GoogleMap {...this.props}
-            containerElement={<div style={{height: window.innerHeight - 50, marginTop: '-20px'}}/>}
+            containerElement={<div style={{height: '100%'}}/>}
             mapElement={<div style={{height: '100%', margin: 0, padding: 0}} id="map"/>}
             onMapLoad={this.handleMapLoad}
             onMapClick={this.handleMapClick}

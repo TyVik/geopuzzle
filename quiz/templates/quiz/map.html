@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <div id="quiz"></div>
+    <div id="quiz" class="gmap-game"></div>
     {{ block.super }}
     <script type='text/javascript'>
         window.__OPTIONS__ = {{ game.options|safe }};

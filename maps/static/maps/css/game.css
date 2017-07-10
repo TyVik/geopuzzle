@@ -1,0 +1,11 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.gmap-game, .gmap-game > div {
+    height: 100%;
+}
