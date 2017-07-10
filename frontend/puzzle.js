@@ -6,9 +6,7 @@ import {Provider} from "react-redux";
 import configureStore from './store';
 import Map from './components/Map';
 import Loading from './components/Loading';
-import Infobox from './components/Infobox';
 import PuzzleBox from './components/PuzzleBox';
-import Toolbox from './components/Toolbox';
 import {INIT_LOAD, INIT_LOAD_FAIL, PUZZLE_INIT_DONE} from './actions';
 import Congratulation from './components/Congratulation';
 
@@ -35,9 +33,7 @@ class Puzzle extends React.Component {
             <div>
                 <Loading/>
                 <Map initCallback={this.mapInit} mapClick={this.mapClick}/>
-                <Infobox/>
                 <PuzzleBox/>
-                <Toolbox/>
                 <Congratulation/>
             </div>
         )

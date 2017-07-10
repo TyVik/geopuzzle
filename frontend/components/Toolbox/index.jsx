@@ -29,7 +29,7 @@ class Toolbox extends React.Component {
     componentWillMount() {
         this.setState({...this.state,
             listNameMaxHeight: window.innerHeight - 220 + "px",
-            listNameClose: false
+            collapse: localStorage.getItem('toolbox_collapse') || false
         });
     }
 
@@ -39,34 +39,40 @@ class Toolbox extends React.Component {
         }
     }
 
+    toggleCollapse() {
+        let value = !this.state.collapse;
+        localStorage.setItem('toolbox_collapse', value);
+        this.setState({collapse: value});
+    }
+
     render() {
         return (
             <div className="toolbox_wrapper">
-                <div className="btn-group btn-group-sm toolbox">
-                    <div className="map_switcher_wrapper">
-                        <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/terrain.png"
-                             onClick={() => this.props.dispatch({
-                                 type: SET_MAP_TYPE,
-                                 value: google.maps.MapTypeId.TERRAIN
-                             })}/>
-                        <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/hybrid.png"
-                             onClick={() => this.props.dispatch({
-                                 type: SET_MAP_TYPE,
-                                 value: google.maps.MapTypeId.HYBRID
-                             })}/>
-                        <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/satellite.png"
-                             onClick={() => this.props.dispatch({
-                                 type: SET_MAP_TYPE,
-                                 value: google.maps.MapTypeId.SATELLITE
-                             })}/>
-                    </div>
+                <div className="toolbox">
                     <div className="listname-wrapper">
                         {localization.found}: <span>{this.props.solved}</span>/<span>{this.props.total}</span>
                         <span
-                            className={"glyphicon glyphicon-chevron-" + (this.state.listNameClose ? 'up' : 'down')}
-                            onClick={() => this.setState({listNameClose: !this.state.listNameClose})}>
+                            className={"glyphicon glyphicon-chevron-" + (this.state.collapse ? 'up' : 'down')}
+                            onClick={() => this.toggleCollapse()}>
                         </span>
-                        <Panel collapsible expanded={!this.state.listNameClose}>
+                        <Panel collapsible expanded={!this.state.collapse}>
+                            <div className="map_switcher_wrapper">
+                                <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/terrain.png"
+                                     onClick={() => this.props.dispatch({
+                                         type: SET_MAP_TYPE,
+                                         value: google.maps.MapTypeId.TERRAIN
+                                     })}/>
+                                <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/hybrid.png"
+                                     onClick={() => this.props.dispatch({
+                                         type: SET_MAP_TYPE,
+                                         value: google.maps.MapTypeId.HYBRID
+                                     })}/>
+                                <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/satellite.png"
+                                     onClick={() => this.props.dispatch({
+                                         type: SET_MAP_TYPE,
+                                         value: google.maps.MapTypeId.SATELLITE
+                                     })}/>
+                            </div>
                             <ul className="list-group" style={{maxHeight: this.state.listNameMaxHeight}}>
                                 {this.props.countries.map(polygon => (
                                     <NameListItem key={polygon.id} polygon={polygon}

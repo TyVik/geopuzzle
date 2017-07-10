@@ -1,6 +1,8 @@
 'use strict';
 import React from "react";
 import { connect } from 'react-redux'
+import Infobox from '../Infobox';
+import Toolbox from '../Toolbox';
 import {Button} from "react-bootstrap";
 
 import localization from '../../localization';
@@ -19,9 +21,13 @@ class PuzzleBox extends React.Component {
     render() {
         return (
             <div className="puzzle-box">
+                <Toolbox/>
                 <Button bsStyle="success" onClick={() => this.props.dispatch(this.giveUp())}>
                     {localization.give_up}
                 </Button>
+                <div className="infobox-wrapper">
+                    <Infobox/>
+                </div>
             </div>
         )
     }

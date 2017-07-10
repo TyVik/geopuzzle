@@ -5,10 +5,8 @@ import {Provider, connect} from "react-redux";
 import configureStore from './store';
 import Map from './components/Map';
 import Loading from './components/Loading';
-import Infobox from './components/Infobox';
-import QuizQuestion from './components/QuizQuestion';
+import QuizBox from './components/QuizBox';
 import QuizInit from './components/QuizInit';
-import Toolbox from './components/Toolbox';
 import Congratulation from './components/Congratulation';
 import {checkQuiz, INIT_LOAD, QUIZ_CHECK} from './actions';
 
@@ -32,9 +30,7 @@ class QuizClass extends React.Component {
                 <Loading/>
                 <Map initCallback={this.mapInit} mapClick={this.mapClick}/>
                 <QuizInit/>
-                <QuizQuestion/>
-                <Infobox/>
-                <Toolbox/>
+                <QuizBox/>
                 <Congratulation/>
             </div>
         )

@@ -1,9 +1,6 @@
 .toolbox_wrapper {
-    left: 0;
-    top: 52px;
-    position: fixed;
     z-index: 3;
-    display: inline-block;
+    width: 184px;
 }
 
 .toolbox {

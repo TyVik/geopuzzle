@@ -24,6 +24,10 @@ footer .social-wrap {
     width: 100%;
 }
 
+.panel {
+    border-radius: 0 0 4px 4px;
+}
+
 .panel .img-caption {
     max-width: 20%;
 }
@@ -48,6 +52,24 @@ footer .social-wrap {
     font-size: xx-large;
 }
 
+.tab-content {
+    margin-top: -1px;
+}
+
+.container .nav-tabs.nav-justified {
+    width: 100%;
+    border-bottom: 0;
+}
+
+.container .nav-tabs.nav-justified>li {
+    display: table-cell;
+    width: 1%;
+}
+.container .nav-tabs.nav-justified>li>a {
+    margin-bottom: 0;
+    border-radius: 4px 4px 0 0;
+}
+
 .nav-tabs>li.active>a.puzzle-tab, .nav-tabs>li.active>a.puzzle-tab:focus, .nav-tabs>li.active>a.puzzle-tab:hover,
 .nav-tabs>li>a.puzzle-tab:hover {
     background-color: rgba(132, 132, 56, 0.2);
@@ -59,5 +81,5 @@ footer .social-wrap {
 }
 
 .nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:focus, .nav-tabs.nav-justified>.active>a:hover {
-    border-bottom-color: #ddd;
+    border-bottom-width: 0;
 }

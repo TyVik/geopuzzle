@@ -1,4 +1,4 @@
-.puzzle-box {
+.quiz-box {
     width: 100%;
     position: fixed;
     top: 52px;
@@ -15,7 +15,7 @@
 }
 
 @media (max-width: 768px) {
-    .puzzle-box {
+    .quiz-box {
         top: 0;
     }
 }

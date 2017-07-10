@@ -1,14 +1,10 @@
 .infobox {
-    position: fixed;
-    right: 0;
-    top: 0;
     z-index: 3;
     background: white;
-    padding: 10px;
-    margin-top: 52px;
+    padding: 7px;
     border-radius: 5px;
     border: 1px solid black;
-    max-width: 220px;
+    width: 214px;
 }
 
 .infobox tr {
@@ -20,15 +16,34 @@
     width: 200px;
 }
 
-.infobox .close {
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .collapse-icon {
     cursor: pointer;
-    position: fixed;
 }
 
 .infobox .row_name {
-    text-align: center;
     font-weight: bold;
-    padding: 5px 10px;
     line-height: 1.2em;
     font-size: 1.25em;
+    padding: 0 3px;
+    text-align: center;
+}
+
+.infobox .panel {
+    margin-bottom: 0;
+    border: none;
+}
+
+.infobox .panel .collapse.in {
+    margin-top: 5px;
+}
+
+.infobox .panel-body {
+    padding: 0;
 }
