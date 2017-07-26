@@ -1,7 +1,8 @@
 '''Provides utility functions for encoding and decoding linestrings using the
 Google encoded polyline algorithm.
 '''
-from django.contrib.gis.geos import MultiPolygon
+import math
+from django.contrib.gis.geos import MultiPolygon, Polygon
 
 
 def encode_coords(coords):
@@ -139,3 +140,35 @@ def encode_geometry(polygon, min_points=None):
     else:
         result += encode_part(polygon)
     return result if len(result) > 0 else encode_geometry(polygon)
+
+
+def normalize_polygon(polygon, precision):
+    def normalize_subpolygon(subpolygon):
+        def process(coords):
+            result = [coords[0]]
+            for coord in coords:
+                prev = result[-1]
+                delta = (math.trunc(coord[0] - prev[0]), math.trunc(coord[1] - prev[1]))
+                steps = max(abs(delta[0]), abs(delta[1]))
+                if steps > 1:
+                    delta = (delta[0] * 0.4 / steps, delta[1] * 0.4 / steps)
+                    for i in range(steps):
+                        prev = result[-1]
+                        result.append((prev[0] + delta[0], prev[1] + delta[1]))
+                result.append(coord)
+            return tuple(result)
+
+        result = [process(subpolygon.coords[0])]
+        if len(subpolygon.coords) > 1:
+            result.append(process(subpolygon.coords[1]))
+        return tuple(result)
+
+    result = polygon.simplify(precision, preserve_topology=True)
+    if isinstance(result, MultiPolygon):
+        subpolygons = []
+        for part in result:
+            subpolygons.append(Polygon(*normalize_subpolygon(part)))
+        result = MultiPolygon(*subpolygons)
+    else:
+        result = Polygon(*normalize_subpolygon(result))
+    return result
