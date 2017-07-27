@@ -31,6 +31,7 @@ def puzzle(request: WSGIRequest, name: str) -> HttpResponse:
         'google_key': settings.GOOGLE_KEY,
         'language': request.LANGUAGE_CODE,
         'game': puzzle,
+        'name': trans.name,
         'text': _('{} was assembled! You time is ').format(trans.name if puzzle.id != 1 else _('World map'))
     }
     return render(request, 'puzzle/map.html', context=context)
