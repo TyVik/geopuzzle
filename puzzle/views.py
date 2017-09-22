@@ -4,12 +4,15 @@ from django.utils.translation import ugettext as _
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.cache import never_cache
 
 from maps.forms import RegionForm
 from puzzle.models import Puzzle
 
 
+@never_cache  # for HTTP headers
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
+    request._cache_update_cache = False  # disable internal cache
     puzzle = get_object_or_404(Puzzle, slug=name)
     form = RegionForm(data=request.GET, game=puzzle)
     if not form.is_valid():

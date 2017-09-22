@@ -5,12 +5,15 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.cache import never_cache
 
 from quiz.forms import QuizInfoboxForm
 from quiz.models import Quiz
 
 
+@never_cache
 def questions(request: WSGIRequest, name: str) -> JsonResponse:
+    request._cache_update_cache = False  # disable internal cache
     quiz = get_object_or_404(Quiz, slug=name)
     form = QuizInfoboxForm(data=request.GET, game=quiz)
     if not form.is_valid():
