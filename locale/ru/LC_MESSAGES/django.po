@@ -133,7 +133,7 @@ msgid "regions"
 msgstr "регионы"
 
 #: templates/base.html:5
-msgid "Mercator puzzle of"
+msgid "Mercator puzzle of "
 msgstr "Паззл Меркатора - "
 
 #: templates/base.html:5 templates/index.html:44
