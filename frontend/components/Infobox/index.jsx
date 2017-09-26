@@ -10,7 +10,7 @@ import "./index.css";
 class Infobox extends React.Component {
     componentWillMount() {
         this.setState({...this.state,
-            collapse: localStorage.getItem('infobox_collapse') || false
+            collapse: JSON.parse(localStorage.getItem('infobox_collapse')) || false
         });
     }
 

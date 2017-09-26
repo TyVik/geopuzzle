@@ -29,7 +29,7 @@ class Toolbox extends React.Component {
     componentWillMount() {
         this.setState({...this.state,
             listNameMaxHeight: window.innerHeight - 220 + "px",
-            collapse: localStorage.getItem('toolbox_collapse') || false
+            collapse: JSON.parse(localStorage.getItem('toolbox_collapse')) || false
         });
     }
 
