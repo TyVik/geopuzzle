@@ -7,3 +7,4 @@ node_modules/
 *.mo
 reload
 geopuzzle.sql.zip
+cache.zip
