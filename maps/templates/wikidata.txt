@@ -8,7 +8,7 @@ SELECT DISTINCT
     wd:{{ item_id }} rdfs:label ?name.
     BIND(LANG(?name) AS ?lang)
     FILTER((?lang = "ru") || (?lang = "en"))
-    wd:{{ item_id }} wdt:P1566 ?geonamesID.
+    OPTIONAL { wd:{{ item_id }} wdt:P1566 ?geonamesID. }
     OPTIONAL {
         wd:{{ item_id }} wdt:P36 ?capital_id.
         ?capital_id p:P625 ?coordinates.
