@@ -22,3 +22,4 @@ boto3==1.4.4
 # https://wambachers-osm.website/boundaries/
 # http://global.mapit.mysociety.org/areas/O03 - http://mapit.poplus.org/docs/self-hosted/how-data-is-stored/
 # http://geo.koltyrin.ru/
+# http://www.marineregions.org/gazetteer.php?p=browser&id=1900&expand=true#ct
