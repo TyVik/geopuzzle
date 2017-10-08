@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'channels',
     'admirarchy',
 
+    'users',
     'maps',
     'puzzle',
     'quiz',
@@ -72,6 +73,7 @@ if DEBUG:
     MIDDLEWARE.append('common.middleware.CORSMiddleware')
 
 ROOT_URLCONF = 'mercator.urls'
+AUTH_USER_MODEL = 'users.User'
 
 TEMPLATES = [
     {
