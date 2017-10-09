@@ -37,7 +37,7 @@
                             {% if request.user.is_authenticated %}
                                 <a class="navbar-right navbar-link" href="/">@{{ request.user.username }}</a>
                             {% else %}
-                                <a class="navbar-right navbar-link" href="/">Sign in/Sign up</a>
+                                <a class="navbar-right navbar-link" href="{% url "login" %}">Sign in / Sign up</a>
                             {% endif %}
                             </li>
                         </ul>
