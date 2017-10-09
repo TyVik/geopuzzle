@@ -7,3 +7,8 @@ nav.navbar {
         display: none !important;
     }
 }
+
+#donate {
+    display: inline-block;
+    vertical-align: middle;
+}
