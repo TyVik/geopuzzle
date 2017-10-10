@@ -74,6 +74,7 @@ if DEBUG:
 
 ROOT_URLCONF = 'mercator.urls'
 AUTH_USER_MODEL = 'users.User'
+LOGOUT_REDIRECT_URL = 'index'
 
 TEMPLATES = [
     {

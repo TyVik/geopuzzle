@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/social.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="main">
+                <h3>Please Sign Up, or <a href="{% url "login" %}">Log In</a></h3>
+                <form role="form" method="post" action="{% url 'registration' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                        {{ form.username.errors.as_ul }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                        {{ form.email.errors.as_ul }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password.label_tag }}
+                        {{ form.password }}
+                        {{ form.password.errors.as_ul }}
+                    </div>
+                    <ul class="list-errors">
+                        {% for error in form.non_field_errors.as_ul %}
+                            <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </ul>
+                    <button type="submit" class="btn btn btn-primary" id="login">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
