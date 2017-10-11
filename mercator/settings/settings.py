@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'channels',
     'admirarchy',
+    'social_django',
 
     'users',
     'maps',
@@ -212,3 +213,15 @@ CHANNEL_LAYERS = {
         'ROUTING': 'mercator.routing.channels',
     }
 }
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+SOCIAL_AUTH_USER_MODEL = 'users.User'
+SOCIAL_AUTH_SANITIZE_REDIRECTS = True
+SOCIAL_AUTH_FACEBOOK_KEY = '1273749826026102'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'efefa2af573184781afa661cd77123e5'
+SOCIAL_AUTH_VK_KEY = '5849697'
+SOCIAL_AUTH_VK_SECRET = 'dSSizPmPFgsrw4XO6BVu'

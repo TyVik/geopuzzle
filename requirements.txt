@@ -17,6 +17,7 @@ django-admirarchy==0.2.2
 django-redux==0.0.13
 django-storages==1.5.1
 boto3==1.4.4
+social-auth-app-django==1.2.0
 
 
 # https://wambachers-osm.website/boundaries/
