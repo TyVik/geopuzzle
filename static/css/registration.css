@@ -47,7 +47,11 @@ h3 {
     list-style: none;
 }
 
-#login {
+.login-container button {
     display: block;
     width: 100%;
+}
+
+.login-container h3 {
+    font-size: 22px;
 }

@@ -6,12 +6,14 @@ from users.models import User
 
 
 class AuthenticationForm(DefaultAuthenticationForm):
-    username = UsernameField(max_length=150, widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control'}))
+    username = UsernameField(label=_("Username"), max_length=150,
+                             widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control'}))
     password = forms.CharField(label=_("Password"), strip=False, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
 
 class RegistrationForm(forms.Form):
-    username = UsernameField(max_length=150, widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control'}))
+    username = UsernameField(label=_("Username"), max_length=150,
+                             widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control'}))
     email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(label=_("Password"), strip=False, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 

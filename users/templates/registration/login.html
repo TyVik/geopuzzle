@@ -9,10 +9,10 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container login-container">
         <div class="row">
             <div class="main">
-                <h3>Please Log In, or <a href="{% url "registration" %}">Sign Up</a></h3>
+                <h3>{% trans "Log In" %} / <a href="{% url "registration" %}">{% trans "Sign Up" %}</a></h3>
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <a href="#" class="btn btn-lg btn-primary btn-block">Facebook</a>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="login-or">
                     <hr class="hr-or">
-                    <span class="span-or">or</span>
+                    <span class="span-or">{% trans "or" %}</span>
                 </div>
                 <form role="form" method="post" action="{% url 'login' %}">
                     {% csrf_token %}
@@ -42,8 +42,8 @@
                             <span class="help-block">{{ error }}</span>
                         {% endfor %}
                     </ul>
-                    <button type="submit" class="btn btn btn-primary" id="login">Log In</button>
-                    <a class="pull-right" href="{% url "password_reset" %}">Forgot password?</a>
+                    <button type="submit" class="btn btn btn-primary">{% trans "Log In" %}</button>
+                    <a class="pull-right" href="{% url "password_reset" %}">{% trans "Forgot password?" %}</a>
                 </form>
             </div>
         </div>
