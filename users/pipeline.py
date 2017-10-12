@@ -2,8 +2,8 @@ from social_core.backends.facebook import FacebookOAuth2
 from social_core.backends.vk import VKOAuth2
 
 
-def user_details(strategy, response, backend, user=None, *args, **kwargs):
-    if user:
+def user_details(strategy, response, backend, is_new, user=None, *args, **kwargs):
+    if user is not None and is_new:
         user.first_name = response.get('first_name')
         user.last_name = response.get('last_name')
         if isinstance(backend, FacebookOAuth2):
