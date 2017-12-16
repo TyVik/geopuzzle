@@ -1,3 +1,5 @@
+import raven
+
 from mercator.settings.settings import *
 
 DEBUG = False
@@ -6,7 +8,8 @@ ALLOWED_HOSTS = ('www.geopuzzle.org', 'geopuzzle.org', '52.213.89.12', '127.0.0.
 MEDIA_ROOT = '../upload'
 MEDIA_URL = '/media/'
 
-MIDDLEWARE = ['django.middleware.cache.UpdateCacheMiddleware'] + MIDDLEWARE + ['django.middleware.cache.FetchFromCacheMiddleware']
+MIDDLEWARE = ('django.middleware.cache.UpdateCacheMiddleware', *MIDDLEWARE,
+              'django.middleware.cache.FetchFromCacheMiddleware')
 
 REDIS_HOST = 'geopuzzle.hxeqqh.0001.euw1.cache.amazonaws.com'
 DATABASES['default']['HOST'] = 'geopuzzle.cdihw1nj9qxz.eu-west-1.rds.amazonaws.com'
@@ -22,8 +25,31 @@ LOGGING["loggers"] = {
         "handlers": ["file"],
         "level": "ERROR",
         "propagate": True
+    },
+    'raven': {
+        'level': 'DEBUG',
+        'handlers': ['console'],
+        'propagate': False,
+    },
+    'sentry.errors': {
+        'level': 'DEBUG',
+        'handlers': ['console'],
+        'propagate': False,
     }
 }
+LOGGING['handlers'].update({
+    'sentry': {
+            'level': 'INFO',
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+            'tags': {'custom-tag': 'x'},
+        },
+})
+LOGGING.update({
+    'root': {
+        'level': 'WARNING',
+        'handlers': ['sentry'],
+    },
+})
 
 #SECURE_SSL_REDIRECT = True
 #SESSION_COOKIE_SECURE = True
@@ -51,3 +77,8 @@ AWS_STORAGE_BUCKET_NAME = 'geo-puzzle'
 STATIC_URL = 'https://{}/static/'.format(CLOUDFRONT_DOMAIN)
 
 THUMBNAIL_DUMMY_SOURCE = '{}images/world/default_%(width)s.png'.format(STATIC_URL)
+
+RAVEN_CONFIG = {
+    'dsn': 'https://966ccb1d8dfe4667b16bb1a6a222f429:fd2862938e974eda8d14176ae21186ff@sentry.io/260019',
+    'release': raven.fetch_git_sha(os.path.join(BASE_DIR, '..')),
+}

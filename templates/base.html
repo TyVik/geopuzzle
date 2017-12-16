@@ -1,4 +1,4 @@
-{% load static i18n share_image %}
+{% load static i18n share_image raven %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,6 +50,8 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
+<script src="https://cdn.ravenjs.com/3.21.0/raven.min.js" crossorigin="anonymous"></script>
+<script>Raven.config('{% sentry_public_dsn 'https' %}').install()</script>
 
 {% if not debug %}
     <!-- Yandex.Metrika counter -->

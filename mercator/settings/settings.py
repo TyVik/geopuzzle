@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'channels',
     'admirarchy',
+    'raven.contrib.django.raven_compat',
 
     'maps',
     'puzzle',
