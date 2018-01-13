@@ -12,9 +12,9 @@
 
 {% block content %}
     {% if debug %}
-    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry&language=en"></script>
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language=en"></script>
     {% else %}
-    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry&language=en&key={{ google_key }}"></script>
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language=en&key={{ google_key }}"></script>
     {% endif %}
     <script type='text/javascript'>
         window.__LANGUAGE__ = '{{ language }}';
