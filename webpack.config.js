@@ -58,12 +58,6 @@ module.exports = (env) => {
                     return _isVendor(module) && !_isCSS(module);
                 }
             }),
-            new SentryCliPlugin({
-                include: './static/js',
-                // ignoreFile: '.sentrycliignore',
-                configFile: 'sentry.properties',
-                ignore: ['node_modules', 'webpack.config.js'],
-            })
         ],
         module: {
             rules: [
@@ -95,6 +89,13 @@ module.exports = (env) => {
     };
 
     if (NODE_ENV == 'production') {
+        config.plugins.push(
+            new SentryCliPlugin({
+                include: './static/js',
+                configFile: 'sentry.properties',
+                ignore: ['node_modules', 'webpack.config.js'],
+            })
+        );
         config.plugins.push(
             new BundleAnalyzerPlugin({
                 analyzerMode: 'static'
