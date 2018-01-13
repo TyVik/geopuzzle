@@ -146,11 +146,19 @@ LOGGING = {
         'console': {
             'class': 'logging.StreamHandler',
         },
+        "null": {
+            "class": "logging.NullHandler",
+            "level": "DEBUG"
+        },
     },
     'loggers': {
         'django.db.backends': {
             'level': 'DEBUG',
             'handlers': [],
+        },
+        "django.security.DisallowedHost": {
+            "handlers": ["null"],
+            "propagate": False
         },
     }
 }
