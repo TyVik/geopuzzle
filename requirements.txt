@@ -18,6 +18,7 @@ django-redux==0.0.13
 django-storages==1.5.1
 boto3==1.4.4
 raven==6.4.0
+django-settings-export==1.2.1
 
 # https://wambachers-osm.website/boundaries/
 # http://global.mapit.mysociety.org/areas/O03 - http://mapit.poplus.org/docs/self-hosted/how-data-is-stored/

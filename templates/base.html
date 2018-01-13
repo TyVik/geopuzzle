@@ -51,7 +51,9 @@
     }(document, 'script', 'facebook-jssdk'));
 </script>
 <script src="https://cdn.ravenjs.com/3.21.0/raven.min.js" crossorigin="anonymous"></script>
-<script>Raven.config('{% sentry_public_dsn 'https' %}').install()</script>
+<script>Raven.config('{% sentry_public_dsn 'https' %}', {
+    release: '{{ settings.RAVEN_CONFIG.release }}'
+}).install()</script>
 
 {% if not debug %}
     <!-- Yandex.Metrika counter -->

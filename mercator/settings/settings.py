@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 
 # Build paths inside the maps like this: os.path.join(BASE_DIR, ...)
+import raven
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG_DIR = os.path.join(BASE_DIR, '../logs')
 GEOJSON_DIR = os.path.join(BASE_DIR, '../geojson')
@@ -85,10 +87,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_settings_export.settings_export',
             ],
             'debug': DEBUG
         },
     },
+]
+
+SETTINGS_EXPORT = [
+    'RAVEN_CONFIG'
 ]
 
 WSGI_APPLICATION = 'mercator.wsgi.application'
@@ -217,4 +224,9 @@ CHANNEL_LAYERS = {
         },
         'ROUTING': 'mercator.routing.channels',
     }
+}
+
+RAVEN_CONFIG = {
+    'dsn': 'https://966ccb1d8dfe4667b16bb1a6a222f429:fd2862938e974eda8d14176ae21186ff@sentry.io/260019',
+    'release': raven.fetch_git_sha(os.path.join(BASE_DIR, '..')),
 }
