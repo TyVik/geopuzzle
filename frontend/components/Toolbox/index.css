@@ -22,6 +22,11 @@
     padding: 0;
 }
 
+.toolbox #network_connection_label {
+    color: red;
+    font-size: 10px;
+}
+
 .map_switcher_wrapper {
     display: flex;
     justify-content: center;

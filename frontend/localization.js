@@ -21,6 +21,7 @@ let localization = new LocalizedStrings({
         start: 'Start',
         quizInitCaption: "I'll search the regions by",
         quizInitCheck: "Choose at least one option",
+        network_error: "Connecting to server...",
     },
     ru: {
         capital: 'Столица',
@@ -40,6 +41,7 @@ let localization = new LocalizedStrings({
         start: 'Начали!',
         quizInitCaption: "Я буду искать регионы по",
         quizInitCheck: "Выберите хотя бы один вариант",
+        network_error: "Соединение с сервером...",
     }
 });
 
