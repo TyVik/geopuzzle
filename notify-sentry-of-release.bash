@@ -16,4 +16,4 @@ curl https://sentry.io/api/0/organizations/${SENTRY_ORGANIZATION}/releases/ \
     -H "Authorization: Bearer ${SENTRY_TOKEN}" \
     -X POST \
     -H "Content-Type:application/json" \
-    -d "{\"version\":\"${BITBUCKET_COMMIT}\",\"ref\":\"${BITBUCKET_BRANCH}\",\"projects\": [\"${SENTRY_PROJECT}\"]}"
+    -d "{\"version\":\"${BITBUCKET_COMMIT}\",\"refs\":[{\"repository\":\"TyVik8/geopuzzle\",\"commit\": \"${BITBUCKET_COMMIT}\"}],\"projects\": [\"${SENTRY_PROJECT}\"]}"
