@@ -19,23 +19,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG_DIR = os.path.join(BASE_DIR, '../logs')
 GEOJSON_DIR = os.path.join(BASE_DIR, '../geojson')
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 OSM_KEY = os.environ.get('OSM_KEY')
-OSM_URL = os.environ.get('OSM_URL')
+OSM_URL = 'https://wambachers-osm.website/boundaries/exportBoundaries?apiversion=1.0&apikey={key}&exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ('www.geopuzzle.org', 'geopuzzle.org', '52.213.89.12', '127.0.0.1')
 INTERNAL_IPS = ('0.0.0.0', '127.0.0.1')
 
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -98,10 +90,6 @@ SETTINGS_EXPORT = [
 ]
 
 WSGI_APPLICATION = 'mercator.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -171,14 +159,7 @@ LOGGING = {
     }
 }
 
-# Password validation
-# https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = []
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -193,10 +174,6 @@ LANGUAGES = (
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, '../locale'),
 )
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ['static']
