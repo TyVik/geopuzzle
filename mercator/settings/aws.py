@@ -1,24 +1,16 @@
-import raven
-
 from mercator.settings.settings import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ('www.geopuzzle.org', 'geopuzzle.org', '52.213.89.12', '127.0.0.1')
 MEDIA_ROOT = '../upload'
 MEDIA_URL = '/media/'
 
 MIDDLEWARE = ('django.middleware.cache.UpdateCacheMiddleware', *MIDDLEWARE,
               'django.middleware.cache.FetchFromCacheMiddleware')
 
-REDIS_HOST = 'geopuzzle.hxeqqh.0001.euw1.cache.amazonaws.com'
-DATABASES['default']['HOST'] = 'geopuzzle.cdihw1nj9qxz.eu-west-1.rds.amazonaws.com'
-CACHES['default']['LOCATION'] = 'redis://{host}:6379/1'.format(host=REDIS_HOST)
 SESSION_REDIS_HOST = REDIS_HOST
 THUMBNAIL_REDIS_HOST = REDIS_HOST
 THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
-CHANNEL_LAYERS['default']['CONFIG']['hosts'] = [(REDIS_HOST, 6379)]
-SETTINGS_MODULE = 'mercator.settings.aws'
 
 LOGGING["loggers"] = {
     "django": {
@@ -61,8 +53,8 @@ CSRF_COOKIE_HTTPONLY = True
 SECURE_HSTS_SECONDS = 1
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-AWS_ACCESS_KEY_ID = 'AKIAIY6XKWEZVZ5A67DQ'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 CLOUDFRONT_DOMAIN = 'd3mrnwpzw0hkkh.cloudfront.net'
 DEFAULT_FILE_STORAGE = 'mercator.storages.CloudFrontStorage'
@@ -77,8 +69,3 @@ AWS_STORAGE_BUCKET_NAME = 'geo-puzzle'
 STATIC_URL = 'https://{}/static/'.format(CLOUDFRONT_DOMAIN)
 
 THUMBNAIL_DUMMY_SOURCE = '{}images/world/default_%(width)s.png'.format(STATIC_URL)
-
-RAVEN_CONFIG = {
-    'dsn': 'https://966ccb1d8dfe4667b16bb1a6a222f429:fd2862938e974eda8d14176ae21186ff@sentry.io/260019',
-    'release': raven.fetch_git_sha(os.path.join(BASE_DIR, '..')),
-}

@@ -6,6 +6,7 @@ logs/
 node_modules/
 *.mo
 reload
+.env
 geopuzzle.sql.zip
 cache.zip
 sentry.properties
