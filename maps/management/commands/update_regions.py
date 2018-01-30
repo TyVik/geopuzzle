@@ -12,10 +12,6 @@ from django.db import transaction
 
 from maps.models import Region
 
-__authors__ = "Viktor Tyshchenko"
-__copyright__ = "Copyright (C) 3D4Medical.com, LLC - All Rights Reserved"
-__license__ = "Unauthorized copying of this file, via any medium is strictly prohibited. Proprietary and confidential"
-
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
