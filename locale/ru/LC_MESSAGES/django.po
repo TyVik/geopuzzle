@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-20 14:08+0000\n"
+"POT-Creation-Date: 2018-02-01 20:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: maps/admin.py:26
+#: maps/admin.py:27
 msgid "Infoboxes were updated."
 msgstr "Инфобоксы обновлены"
 
-#: maps/admin.py:27
+#: maps/admin.py:28
 msgid "Update infoboxes"
 msgstr "Обновить инфобоксы"
 
-#: maps/admin.py:33
+#: maps/admin.py:34
 msgid "Polygons were updated."
 msgstr "Полигоны обновлены"
 
-#: maps/admin.py:34
+#: maps/admin.py:35
 msgid "Update polygons"
 msgstr "Обновить полигоны"
 
-#: maps/admin.py:81
+#: maps/admin.py:82
 msgid "Infobox"
 msgstr "Инфобокс"
 
-#: maps/admin.py:87
+#: maps/admin.py:88
 msgid "Infobox was updated successfully."
 msgstr "Инфобокс обновлён успешно"
 
-#: maps/admin.py:94
+#: maps/admin.py:95
 msgid "Polygon was imported successfully."
 msgstr "Полигон загружен успешно"
 
@@ -50,6 +50,7 @@ msgstr "Полигон загружен успешно"
 msgid "maps"
 msgstr "карты"
 
+#: maps/templates/admin/maps/country/change_form.html:10
 #: maps/templates/admin/maps/region/change_form.html:10
 msgid "History"
 msgstr "История"
@@ -58,21 +59,24 @@ msgstr "История"
 msgid "Import KML"
 msgstr "Импорт KML"
 
+#: maps/templates/admin/maps/country/change_form.html:15
 #: maps/templates/admin/maps/region/change_form.html:16
 msgid "View on site"
 msgstr "Посмотреть на сайте"
 
+#: maps/templates/admin/maps/country/map_kml_import.html:14
 #: maps/templates/admin/maps/region/map_kml_import.html:14
 msgid "Please correct the error below."
 msgstr "Пожалуйста, исправьте ошибки."
 
+#: maps/templates/admin/maps/country/map_kml_import.html:15
 #: maps/templates/admin/maps/region/map_kml_import.html:15
 msgid "Please correct the errors below."
 msgstr "Пожалуйста, исправьте ошибки."
 
 #: maps/templates/admin/maps/region/change_form.html:13
 msgid "Update Infobox"
-msgstr ""
+msgstr "Обновить инфобокс"
 
 #: maps/templates/admin/maps/region/change_form.html:14
 #, fuzzy
@@ -80,11 +84,11 @@ msgstr ""
 msgid "Import from OSM"
 msgstr "Импорт KML"
 
-#: mercator/views.py:23
+#: mercator/views.py:24
 msgid "puzzle"
 msgstr "Паззл"
 
-#: mercator/views.py:24
+#: mercator/views.py:25
 msgid ""
 "In the Puzzle you need to drag the shape of the territory to the right "
 "place. Just like in childhood we collected pictures piece by piece, so here "
@@ -94,11 +98,11 @@ msgstr ""
 "мы собирали картины кусочек за кусочком, а здесь можно собрать страну из "
 "регионов или целые континенты из стран!"
 
-#: mercator/views.py:32
+#: mercator/views.py:33
 msgid "quiz"
 msgstr "Викторина"
 
-#: mercator/views.py:33
+#: mercator/views.py:34
 msgid ""
 "In the Quiz you need find the country by flag, emblem or the capital. Did "
 "you know that Monaco and Indonesia have the same flags? And that the flags "
@@ -111,24 +115,24 @@ msgstr ""
 "Либерии отличаются только количеством звёзд? Так вот, эти и другие "
 "интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
 
-#: puzzle/views.py:40
+#: puzzle/views.py:38
 msgid "{} was assembled! You time is "
 msgstr "{} собрана! Ваше время "
 
-#: puzzle/views.py:40 quiz/views.py:29
+#: puzzle/views.py:38 quiz/views.py:33
 msgid "World map"
 msgstr "Карта мира"
 
-#: quiz/views.py:28
+#: quiz/views.py:32
 #, python-brace-format
 msgid "{name} has been studied! You guessed all {subjects}. You time is "
 msgstr "{name} была изучена! Вы нашли все {subjects}. Ваше время "
 
-#: quiz/views.py:30
+#: quiz/views.py:34
 msgid "countries"
 msgstr "страны"
 
-#: quiz/views.py:30
+#: quiz/views.py:34
 msgid "regions"
 msgstr "регионы"
 
@@ -200,6 +204,18 @@ msgstr ""
 "\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">почту</a>, в <a href="
 "\"https://vk.com/tyvik\" target=\"_blank\">Vk</a> или в <a href=\"https://"
 "www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
+
+#: templates/index.html:104
+msgid ""
+"You always can support the project with donations via <a href=\"https://www."
+"paypal.me/tyvik\">PayPal</a> or\n"
+"                    <a href=\"http://yasobe.ru/na/geopuzzle\">Yandex money</"
+"a>."
+msgstr ""
+"Вы всегда можете поддержать проект с помощью <a href=\"https://www."
+"paypal.me/tyvik\">PayPal</a> или\n"
+"                    <a href=\"http://yasobe.ru/na/geopuzzle\">Яндекс денег</"
+"a>."
 
 #: templates/share_image.html:8
 msgid "Games on political maps"
