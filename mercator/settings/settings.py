@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'admirarchy',
     'social_django',
     'raven.contrib.django.raven_compat',
+    'awesome_avatar',
 
     'users',
     'maps',
@@ -241,3 +242,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'users.pipeline.user_details'
 )
+
+AWESOME_AVATAR = {
+    'select_area_width': 250,
+}

@@ -3,16 +3,19 @@
 <html lang="en">
 <head>
     <title>GeoPuzzle - {% trans 'Mercator puzzle of ' %}{% block title %}{% trans 'World' %}{% endblock %}</title>
-    <meta name="Description" content="{% trans 'Arrange the pieces of the world!' %}"/>
-    <meta name="Keywords" content="geopuzzle, геопаззл, mercator puzzle, паззл меркатора"/>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    <meta charset="utf-8"/>
+    <meta name="description" content="{% trans 'Arrange the pieces of the world!' %}"/>
+    <meta name="keywords" content="geopuzzle, геопаззл, mercator puzzle, паззл меркатора"/>
+    <meta name="viewport" content="initial-scale=1, user-scalable=no, width=device-width"/>
+    <meta charset="utf-8">
+    <meta name="application-name" content="GeoPuzzle">
     <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}" />
 
     {% share_image request game %}
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    {% block head_js %}
+    {% endblock %}
     {% block extra_css %}
     {% endblock %}
 </head>
@@ -34,7 +37,7 @@
                     <div class="collapse navbar-collapse" id="main-navbar">
                         <ul class="nav navbar-nav navbar-right">
                             {% if request.user.is_authenticated %}
-                                <li><a class="navbar-right navbar-link" href="/">@{{ request.user.username }}</a></li>
+                                <li><a class="navbar-right navbar-link" href="{% url "profile" %}">@{{ request.user.username }}</a></li>
                                 <li><a href="{% url 'logout' %}">(logout)</a></li>
                             {% else %}
                                 <li><a class="navbar-right navbar-link" href="{% url "login" %}">Sign in / Sign up</a></li>
@@ -46,6 +49,9 @@
         </nav>
     </div>
 {% block content %}
+{% endblock %}
+
+{% block extra_js %}
 {% endblock %}
 
 <script>

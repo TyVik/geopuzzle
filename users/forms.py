@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm as DefaultAuthenticationForm, UsernameField
+from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
 
 from users.models import User
@@ -35,3 +36,29 @@ class RegistrationForm(forms.Form):
 
     def save(self):
         return User.objects.create_user(**self.cleaned_data)
+
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'image', 'language')
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        for _, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control'})
+
+    def as_row(self):
+        return self._html_output(
+            normal_row='<dl class="form-group"><dt>%(label)s</dt><dd>%(field)s</dd>%(help_text)s</dl>',
+            error_row='<li>%s</li>',
+            row_ender='</dl>',
+            help_text_html=' <span class="helptext">%s</span>',
+            errors_on_separate_row=False
+        )
+
+
+class AvatarChangeForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('image',)

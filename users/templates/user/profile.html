@@ -1,14 +1,37 @@
 {% extends 'base.html' %}
 {% load static i18n %}
 
+{% block head_js %}
+    {{ block.super }}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+{% endblock %}
+
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
-    <link rel="stylesheet" href="{% static 'css/social.css' %}">
+    {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
 {% endblock %}
 
 {% block content %}
     <div class="container">
+        <div class="row">
+            <div class="list-group col-md-2 profile-menu">
+                <a href="#" class="list-group-item active">{% trans 'Profile' %}</a>
+                <a href="#" class="list-group-item">empty</a>
+                <a href="#" class="list-group-item">empty</a>
+            </div>
+            <div class="jumbotron col-md-10">
+                <h2>{% trans 'Public profile' %}: {{ request.user.username }}</h2>
+                <form role="form" method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_row }}
+                    <button type="submit" class="btn btn btn-primary">Save</button>
+                </form>
+            </div><!--/span-->
+        </div>
     </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 {% endblock %}

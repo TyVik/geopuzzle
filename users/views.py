@@ -1,11 +1,12 @@
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.views import LoginView as DefaultLoginView
 from django.http import HttpResponseRedirect
-from django.views import View
 from django.views.generic import FormView
 from django.views.generic.base import TemplateResponseMixin
+from django.views.generic.edit import BaseUpdateView
 
-from users.forms import AuthenticationForm, RegistrationForm
+from users.forms import AuthenticationForm, RegistrationForm, ProfileForm
+from users.models import User
 
 
 class LoginView(DefaultLoginView):
@@ -19,12 +20,15 @@ class RegistrationView(FormView):
 
     def form_valid(self, form):
         user = form.save()
-        auth_login(self.request, user)
+        auth_login(self.request, user, 'django.contrib.auth.backends.ModelBackend')
         return HttpResponseRedirect(self.get_success_url())
 
 
-class ProfileView(TemplateResponseMixin, View):
+class ProfileView(TemplateResponseMixin, BaseUpdateView):
+    form_class = ProfileForm
     template_name = 'user/profile.html'
+    success_url = '/accounts/profile/'
+    model = User
 
-    def get(self, request, *args, **kwargs):
-        return self.render_to_response({})
+    def get_object(self, queryset=None) -> User:
+        return self.request.user

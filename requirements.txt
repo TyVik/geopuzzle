@@ -17,3 +17,4 @@ raven==6.4.0
 django-settings-export==1.2.1
 django-dotenv==1.4.2
 social-auth-app-django==1.2.0
+git+git://github.com/SReiver/django-awesome-avatar.git
