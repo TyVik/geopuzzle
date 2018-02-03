@@ -4,6 +4,7 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const webpack = require('webpack');
 const path = require('path');
+const SentryCliPlugin = require('@sentry/webpack-plugin');
 
 function _isVendor(module) {
     return module.context && module.context.indexOf('node_modules') !== -1;
@@ -26,6 +27,7 @@ module.exports = (env) => {
         output: {
             path: path.resolve(__dirname, 'static'),
             filename: "js/[name].js",
+            sourceMapFilename: "js/[name].map",
         },
         resolve: {
             extensions: ['.js', '.jsx'],
@@ -34,7 +36,8 @@ module.exports = (env) => {
         watchOptions: {
             aggregateTimeout: 100
         },
-        devtool: 'cheap-inline-module-source-map',
+        devtool: 'source-map',
+        // devtool: 'cheap-inline-module-source-map',
         plugins: [
             new webpack.DefinePlugin({
                 process: {
@@ -54,7 +57,7 @@ module.exports = (env) => {
                 minChunks: function (module) {
                     return _isVendor(module) && !_isCSS(module);
                 }
-            })
+            }),
         ],
         module: {
             rules: [
@@ -86,6 +89,13 @@ module.exports = (env) => {
     };
 
     if (NODE_ENV == 'production') {
+        config.plugins.push(
+            new SentryCliPlugin({
+                include: './static/js',
+                configFile: 'sentry.properties',
+                ignore: ['node_modules', 'webpack.config.js'],
+            })
+        );
         config.plugins.push(
             new BundleAnalyzerPlugin({
                 analyzerMode: 'static'

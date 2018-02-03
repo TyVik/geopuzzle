@@ -41,6 +41,7 @@ class Toolbox extends React.Component {
 
     toggleCollapse() {
         let value = !this.state.collapse;
+        console.log(value);
         localStorage.setItem('toolbox_collapse', value);
         this.setState({collapse: value});
     }
@@ -50,35 +51,40 @@ class Toolbox extends React.Component {
             <div className="toolbox_wrapper">
                 <div className="toolbox">
                     <div className="listname-wrapper">
+                        <div id="network_connection_label">{localization.network_error}</div>
                         {localization.found}: <span>{this.props.solved}</span>/<span>{this.props.total}</span>
                         <span
                             className={"glyphicon glyphicon-chevron-" + (this.state.collapse ? 'up' : 'down')}
                             onClick={() => this.toggleCollapse()}>
                         </span>
-                        <Panel collapsible expanded={!this.state.collapse}>
-                            <div className="map_switcher_wrapper">
-                                <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/terrain.png"
-                                     onClick={() => this.props.dispatch({
-                                         type: SET_MAP_TYPE,
-                                         value: google.maps.MapTypeId.TERRAIN
-                                     })}/>
-                                <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/hybrid.png"
-                                     onClick={() => this.props.dispatch({
-                                         type: SET_MAP_TYPE,
-                                         value: google.maps.MapTypeId.HYBRID
-                                     })}/>
-                                <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/satellite.png"
-                                     onClick={() => this.props.dispatch({
-                                         type: SET_MAP_TYPE,
-                                         value: google.maps.MapTypeId.SATELLITE
-                                     })}/>
-                            </div>
-                            <ul className="list-group" style={{maxHeight: this.state.listNameMaxHeight}}>
-                                {this.props.countries.map(polygon => (
-                                    <NameListItem key={polygon.id} polygon={polygon}
-                                                  click={() => this.props.dispatch(showInfobox(polygon))}/>
-                                ))}
-                            </ul>
+                        <Panel expanded={!this.state.collapse} onToggle={() => this.toggleCollapse()}>
+                            <Panel.Collapse>
+                                <Panel.Body>
+                                    <div className="map_switcher_wrapper">
+                                        <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/terrain.png"
+                                             onClick={() => this.props.dispatch({
+                                                 type: SET_MAP_TYPE,
+                                                 value: google.maps.MapTypeId.TERRAIN
+                                             })}/>
+                                        <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/hybrid.png"
+                                             onClick={() => this.props.dispatch({
+                                                 type: SET_MAP_TYPE,
+                                                 value: google.maps.MapTypeId.HYBRID
+                                             })}/>
+                                        <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/satellite.png"
+                                             onClick={() => this.props.dispatch({
+                                                 type: SET_MAP_TYPE,
+                                                 value: google.maps.MapTypeId.SATELLITE
+                                             })}/>
+                                    </div>
+                                    <ul className="list-group" style={{maxHeight: this.state.listNameMaxHeight}}>
+                                        {this.props.countries.map(polygon => (
+                                            <NameListItem key={polygon.id} polygon={polygon}
+                                                          click={() => this.props.dispatch(showInfobox(polygon))}/>
+                                        ))}
+                                    </ul>
+                                </Panel.Body>
+                            </Panel.Collapse>
                         </Panel>
                     </div>
                 </div>

@@ -13,28 +13,21 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 
 # Build paths inside the maps like this: os.path.join(BASE_DIR, ...)
+import raven
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG_DIR = os.path.join(BASE_DIR, '../logs')
 GEOJSON_DIR = os.path.join(BASE_DIR, '../geojson')
 
+SECRET_KEY = os.environ.get('SECRET_KEY')
+OSM_KEY = os.environ.get('OSM_KEY')
+OSM_URL = 'https://wambachers-osm.website/boundaries/exportBoundaries?apiversion=1.0&apikey={key}&exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}'
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ape=+ghu&-o&$12=^=huhywfeg+dx5-n5(31odnicpy7am!rq7'
-OSM_KEY = 'bba75f5a-0e9d-43ab-bcf4-02da18c8212b'
-OSM_URL = "https://wambachers-osm.website/boundaries/exportBoundaries?apiversion=1.0&apikey={key}&" \
-          "exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}"
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ('www.geopuzzle.org', 'geopuzzle.org', '188.166.83.63', '127.0.0.1')
+ALLOWED_HOSTS = ('www.geopuzzle.org', 'geopuzzle.org', '52.213.89.12', '127.0.0.1')
 INTERNAL_IPS = ('0.0.0.0', '127.0.0.1')
 
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -53,6 +46,7 @@ INSTALLED_APPS = [
     'channels',
     'admirarchy',
     'social_django',
+    'raven.contrib.django.raven_compat',
 
     'users',
     'maps',
@@ -88,34 +82,37 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_settings_export.settings_export',
             ],
             'debug': DEBUG
         },
     },
 ]
 
+SETTINGS_EXPORT = [
+    'RAVEN_CONFIG'
+]
+
 WSGI_APPLICATION = 'mercator.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'geopuzzle',
-        'USER': 'geopuzzle',
-        'PASSWORD': 'geopuzzle',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_USER_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
         'ATOMIC_REQUESTS': True,
     }
 }
 
+REDIS_HOST = os.environ.get('REDIS_HOST')
+
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": 'redis://{}:6379/1'.format(REDIS_HOST),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "COMPRESSOR": "django_redis.compressors.lzma.LzmaCompressor",
@@ -149,23 +146,24 @@ LOGGING = {
         'console': {
             'class': 'logging.StreamHandler',
         },
+        "null": {
+            "class": "logging.NullHandler",
+            "level": "DEBUG"
+        },
     },
     'loggers': {
         'django.db.backends': {
             'level': 'DEBUG',
             'handlers': [],
         },
+        "django.security.DisallowedHost": {
+            "handlers": ["null"],
+            "propagate": False
+        },
     }
 }
 
-# Password validation
-# https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = []
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -181,10 +179,6 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, '../locale'),
 )
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ['static']
 STATIC_ROOT = 'mercator/static'
@@ -199,7 +193,7 @@ THUMBNAIL_DUMMY_RATIO = 1
 JSON_EDITOR_JS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.js'
 JSON_EDITOR_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.css'
 
-GOOGLE_KEY = 'AIzaSyDOo6Kqpq0_luQUBgq83WZJ9yL6Icg5BWc'
+GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
 
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_DB = 2
@@ -208,10 +202,15 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('localhost', 6379)],
+            'hosts': [(REDIS_HOST, 6379)],
         },
         'ROUTING': 'mercator.routing.channels',
     }
+}
+
+RAVEN_CONFIG = {
+    'dsn': os.environ.get('RAVEN_DSN'),
+    'release': raven.fetch_git_sha(os.path.join(BASE_DIR, '..')),
 }
 
 AUTHENTICATION_BACKENDS = (
