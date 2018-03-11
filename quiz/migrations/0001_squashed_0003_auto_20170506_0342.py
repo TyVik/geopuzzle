@@ -14,12 +14,6 @@ class Migration(migrations.Migration):
     replaces = [('quiz', '0001_initial'), ('quiz', '0002_auto_20170506_0312'), ('quiz', '0003_auto_20170506_0342')]
 
     initial = True
-
-    dependencies = [
-        ('maps', '0025_auto_20170504_2046'),
-        ('maps', '0019_auto_20170329_1848'),
-    ]
-
     operations = [
         migrations.CreateModel(
             name='Quiz',
@@ -32,7 +26,6 @@ class Migration(migrations.Migration):
                 ('is_published', models.BooleanField(default=False)),
                 ('is_global', models.BooleanField(default=False)),
                 ('options', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(choices=[('name', 'name'), ('capital', 'capital'), ('flag', 'flag'), ('coat_of_arms', 'coat_of_arms')], max_length=12), default=['name', 'capital', 'flag', 'coat_of_arms'], size=None)),
-                ('regions', models.ManyToManyField(to='maps.Region')),
             ],
             options={
                 'verbose_name': 'Quiz',
@@ -42,6 +35,19 @@ class Migration(migrations.Migration):
                 ('objects', django.db.models.manager.Manager()),
                 ('_plain_manager', django.db.models.manager.Manager()),
             ],
+        ),
+        migrations.CreateModel(
+            name='QuizRegion',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('quiz', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='quiz.Quiz')),
+                ('region', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='maps.Region')),
+            ],
+        ),
+        migrations.AddField(
+            model_name='quiz',
+            name='regions',
+            field=models.ManyToManyField(through='quiz.QuizRegion', to='maps.Region'),
         ),
         migrations.CreateModel(
             name='QuizTranslation',
@@ -64,3 +70,9 @@ class Migration(migrations.Migration):
             unique_together=set([('language_code', 'master')]),
         ),
     ]
+
+    dependencies = [
+        ('maps', '0025_auto_20170504_2046'),
+        ('maps', '0019_auto_20170329_1848'),
+    ]
+
