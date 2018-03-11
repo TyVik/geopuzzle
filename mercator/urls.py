@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^puzzle/', include('puzzle.urls')),
     url(r'^quiz/', include('quiz.urls')),
     url(r'^maps/(?P<name>[a-zA-Z0-9]+)/', views.deprecated_redirect),
+    url(r'^aaa/(?P<id>\d+)', views.region_tree),
     url(r'^puzzle/area/(?P<pk>\d+)/infobox/', views.infobox_by_id, name='infobox_by_id'),
 
     url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt'), name='robots'),

@@ -22,6 +22,7 @@ module.exports = (env) => {
             quiz: './quiz',
             puzzle: './puzzle',
             localization: './localization',
+            tree: './tree',
             react: ['react', 'react-dom', 'redux', 'react-redux'],
         },
         output: {

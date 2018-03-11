@@ -185,7 +185,10 @@ class Region(CacheablePropertyMixin, models.Model):
     @property
     # @cacheable
     def tree(self) -> Dict:
-        return {'name': self.title, 'key': self.id, 'isLeaf': not self.region_set.exists()}
+        result = {'name': self.title, 'id': self.id}
+        if self.region_set.all():
+            result['items'] = [region.tree for region in self.region_set.all()]
+        return result
 
 
 class RegionTranslation(models.Model):

@@ -9,6 +9,7 @@ from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import BaseUpdateView
 
 from maps.forms import RegionForm
+from maps.models import Region
 from puzzle.models import Puzzle
 
 
@@ -54,5 +55,5 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
 
     def get_context_data(self, **kwargs):
         result = super(PuzzleEditView, self).get_context_data(**kwargs)
-        result['countries'] = [{'id': '1', 'name': 'Uganda', 'items': [{'id': '2', 'name': 'Uganda 1'}, {'id': '3', 'name': 'Uganda 2'}]}]
+        result['countries'] = [region.tree for region in Region.objects.filter(parent_id=6750).all()]
         return result
