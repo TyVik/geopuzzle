@@ -1,11 +1,7 @@
-html {
+html, body, .gmap-game > div {
     height: 100%;
 }
 
-body {
-    height: 100%;
-}
-
-.gmap-game, .gmap-game > div {
-    height: 100%;
+.gmap-game {
+    height: calc(100% - 52px);
 }
