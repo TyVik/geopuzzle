@@ -1,5 +1,6 @@
 from admirarchy.utils import HierarchicalModelAdmin, AdjacencyList, HierarchicalChangeList, Hierarchy
 from django.contrib.gis.admin import OSMGeoAdmin
+from django.template.defaultfilters import safe
 from django.utils.translation import ugettext as _
 from typing import List
 
@@ -55,6 +56,7 @@ class RegionTranslationAdmin(admin.TabularInline):
 @admin.register(Region)
 class RegionAdmin(HierarchicalModelAdmin):
     list_display = ('__str__', 'wikidata_id', 'osm_id', 'infobox_status')
+    search_fields = ('id', 'title')
     actions = (update_infoboxes, update_polygons)
     formfield_overrides = {
         MultiPolygonField: {'widget': MultiPolygonWidget},
@@ -78,7 +80,7 @@ class RegionAdmin(HierarchicalModelAdmin):
             for key, value in obj.infobox_status(get_language()).items():
                 name = 'icon-{}.svg'.format('yes' if value else 'no')
                 result += '<img src="{}" title="{}"/>'.format(static('admin/img/' + name), key)
-        return result
+        return safe(result)
     infobox_status.short_description = _('Infobox')
     infobox_status.allow_tags = True
 
@@ -106,7 +108,7 @@ class RegionAdmin(HierarchicalModelAdmin):
 class GameAdmin(ImageMixin, OSMGeoAdmin):
     list_display = ('id', 'image_tag', 'slug', 'is_published', 'is_global')
     list_display_links = ('image_tag', 'id')
-    filter_horizontal = ('regions',)
+    autocomplete_fields = ('regions',)
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
     }

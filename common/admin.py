@@ -1,5 +1,6 @@
 from django.conf import settings
 import floppyforms as forms
+from django.template.defaultfilters import safe
 from sorl.thumbnail import get_thumbnail
 from sorl.thumbnail.admin.current import AdminImageWidget as SorlImageWidget
 
@@ -31,7 +32,7 @@ class ImageMixin(object):
             url = thumb.url
         except Exception as e:
             print(e)
-        return '<img src="{}"/>'.format(url)
+        return safe('<img src="{}"/>'.format(url))
 
 
 class MultiPolygonWidget(forms.gis.MultiPolygonWidget, forms.gis.BaseGMapWidget):

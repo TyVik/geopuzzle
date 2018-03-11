@@ -184,7 +184,7 @@ class Region(CacheablePropertyMixin, models.Model):
 class RegionTranslation(models.Model):
     name = models.CharField(max_length=120)
     infobox = JSONField(default={})
-    language_code = models.CharField(max_length=15, db_index=True)
+    language_code = models.CharField(max_length=15, choices=settings.LANGUAGES, db_index=True)
     master = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='translations', editable=False)
 
     class Meta:
@@ -233,7 +233,7 @@ class Game(models.Model):
 
 class GameTranslation(models.Model):
     name = models.CharField(max_length=15)
-    language_code = models.CharField(max_length=15, db_index=True)
+    language_code = models.CharField(max_length=15, choices=settings.LANGUAGES, db_index=True)
     master = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='translations', editable=False)
 
     class Meta:

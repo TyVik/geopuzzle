@@ -5,7 +5,7 @@ sorl-thumbnail==12.4a1
 sparqlwrapper==1.8.1
 django-redis==4.9.0
 requests==2.18.4
-git+git://github.com/kaloyanm/django-floppyforms.git@0838e91017ab8e2cdcd4f5ab6acebe723eb1726b
+git+git://github.com/jonasmcarson/django-floppyforms.git@b87484026ab1c7ec930448ba4f0e5983fbeef44a
 channels==1.1.3
 asgi-redis==1.3.0
 django-redis-sessions==0.6.1
