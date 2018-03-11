@@ -20,7 +20,7 @@ class Puzzle extends React.Component {
             dispatch({type: INIT_LOAD, game: 'puzzle'});
             return fetch(location.pathname.replace('/puzzle/', '/puzzle/questions/') + location.search)
                 .then(response => response.json())
-                .then(countries => dispatch({type: PUZZLE_INIT_DONE, countries}))
+                .then(countries => dispatch({type: PUZZLE_INIT_DONE, ...countries}))
                 .catch(response => dispatch({type: INIT_LOAD_FAIL}));
         }
     }

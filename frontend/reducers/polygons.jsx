@@ -42,8 +42,8 @@ function decodePolygon(polygon) {
     return polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)));
 }
 
-function extractForPuzzle(countries) {
-    return countries.map(country => {
+function extractForPuzzle(polygons, solved) {
+    return polygons.map(country => {
         let paths = decodePolygon(country.polygon);
         return {
             id: country.id,
@@ -55,12 +55,20 @@ function extractForPuzzle(countries) {
                 new google.maps.LatLng(country.center[1], country.center[0]),
                 new google.maps.LatLng(country.default_position[1], country.default_position[0]))
         }
-    }).sort((one, another) => {
+    }).concat(solved.map(region => {
+        return {
+            id: region.id,
+            draggable: false,
+            isSolved: true,
+            infobox: region.infobox,
+            paths: decodePolygon(region.polygon)
+        }
+    })).sort((one, another) => {
         return one.infobox.name > another.infobox.name ? 1 : -1
     });
 }
 
-function extractForQuiz(polygons, founded) {
+function extractForQuiz(polygons, solved) {
     return polygons.map(polygon => {
         return {
             id: polygon.id,
@@ -69,7 +77,7 @@ function extractForQuiz(polygons, founded) {
             infobox: {name: polygon.name, loaded: false},
             paths: []
         }
-    }).concat(founded.map(region => {
+    }).concat(solved.map(region => {
         return {
             id: region.id,
             draggable: false,
@@ -108,9 +116,9 @@ const polygons = (state = [], action) => {
                 return polygon
             });
         case PUZZLE_INIT_DONE:
-            return extractForPuzzle(action.countries);
+            return extractForPuzzle(action.questions, action.solved);
         case QUIZ_INIT_DONE:
-            return extractForQuiz(action.questions, action.founded);
+            return extractForQuiz(action.questions, action.solved);
         case PUZZLE_GIVEUP_DONE:
             return state.map((polygon) => {
                 if (!polygon.isSolved) {
