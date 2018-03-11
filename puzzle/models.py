@@ -33,7 +33,7 @@ class Puzzle(Game):
 
 
 class PuzzleTranslation(GameTranslation):
-    master = models.ForeignKey(Puzzle, related_name='translations', editable=False)
+    master = models.ForeignKey(Puzzle, on_delete=models.CASCADE, related_name='translations', editable=False)
 
     class Meta:
         unique_together = ('language_code', 'master')

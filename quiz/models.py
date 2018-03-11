@@ -29,7 +29,7 @@ class Quiz(Game):
 
 
 class QuizTranslation(GameTranslation):
-    master = models.ForeignKey(Quiz, related_name='translations', editable=False)
+    master = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='translations', editable=False)
 
     class Meta:
         unique_together = ('language_code', 'master')
