@@ -5,6 +5,8 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import never_cache
+from django.views.generic.base import TemplateResponseMixin
+from django.views.generic.edit import BaseUpdateView
 
 from maps.forms import RegionForm
 from puzzle.models import Puzzle
@@ -38,3 +40,19 @@ def puzzle(request: WSGIRequest, name: str) -> HttpResponse:
         'text': _('{} was assembled! You time is ').format(trans.name if puzzle.id != 1 else _('World map'))
     }
     return render(request, 'puzzle/map.html', context=context)
+
+
+class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
+    model = Puzzle
+    fields = ['slug']
+    queryset = None
+    slug_field = 'slug'
+    context_object_name = None
+    slug_url_kwarg = 'name'
+    query_pk_and_slug = False
+    template_name = 'puzzle/edit.html'
+
+    def get_context_data(self, **kwargs):
+        result = super(PuzzleEditView, self).get_context_data(**kwargs)
+        result['countries'] = [{'id': '1', 'name': 'Uganda', 'items': [{'id': '2', 'name': 'Uganda 1'}, {'id': '3', 'name': 'Uganda 2'}]}]
+        return result

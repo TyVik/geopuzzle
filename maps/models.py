@@ -21,6 +21,7 @@ from common.cachable import CacheablePropertyMixin, cacheable
 from maps.converter import encode_geometry
 from maps.fields import ExternalIdField
 from maps.infobox import query_by_wikidata_id
+from users.models import User
 
 ZOOMS = (
     (3, 'world'),
@@ -55,6 +56,7 @@ class Region(CacheablePropertyMixin, models.Model):
         'polygon_bounds': 'region{id}bounds',
         'polygon_strip': 'region{id}strip',
         'polygon_infobox': 'region{id}infobox',
+        'tree': 'region{id}tree',
     }
 
     class Meta:
@@ -180,6 +182,11 @@ class Region(CacheablePropertyMixin, models.Model):
             trans.name = infobox.get('name', '')
             trans.save()
 
+    @property
+    # @cacheable
+    def tree(self) -> Dict:
+        return {'name': self.title, 'key': self.id, 'isLeaf': not self.region_set.exists()}
+
 
 class RegionTranslation(models.Model):
     name = models.CharField(max_length=120)
@@ -199,6 +206,7 @@ def clear_region_cache(sender, instance: Region, **kwargs):
 
 
 class Game(models.Model):
+    user = models.ForeignKey(User, null=True)
     image = models.ImageField(upload_to='upload/puzzles', blank=True, null=True)
     slug = models.CharField(max_length=15, db_index=True)
     center = PointField(geography=True)

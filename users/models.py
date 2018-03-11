@@ -6,5 +6,5 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class User(AbstractUser):
-    image = AvatarField(upload_to='avatars', width=100, height=100)
+    image = AvatarField(upload_to='avatars', width=100, height=100, null=True)
     language = models.CharField(_('Language'), max_length=2, choices=settings.LANGUAGES, null=True)

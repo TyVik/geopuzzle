@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static i18n jsonify %}
+
+{% block head_js %}
+    {{ block.super }}
+{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div id="tree"></div>
+    </div>
+    <script>
+      __COUNTRIES__ = JSON.parse('{{ countries|jsonify }}');
+    </script>
+    <script type="text/javascript" src={% static "js/tree.js" %}></script>
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+{% endblock %}
