@@ -10,11 +10,19 @@
 {% endblock %}
 
 {% block content %}
+    {% if debug %}
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language=en"></script>
+    {% else %}
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language=en&key={{ google_key }}"></script>
+    {% endif %}
+
     <div class="container">
         <div id="tree"></div>
     </div>
     <script>
-      __COUNTRIES__ = JSON.parse('{{ countries|jsonify }}');
+      __LANGUAGE__ = '{{ language }}';
+      __REGIONS__ = JSON.parse('{{ regions|jsonify }}');
+      __CHECKED__ = JSON.parse('{{ checked|jsonify }}');
     </script>
     <script type="text/javascript" src={% static "js/tree.js" %}></script>
 {% endblock %}

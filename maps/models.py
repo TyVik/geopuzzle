@@ -185,7 +185,7 @@ class Region(CacheablePropertyMixin, models.Model):
     @property
     # @cacheable
     def tree(self) -> Dict:
-        result = {'name': self.title, 'id': self.id}
+        result = {'name': self.title, 'id': str(self.id)}
         if self.region_set.all():
             result['items'] = [region.tree for region in self.region_set.all()]
         return result
