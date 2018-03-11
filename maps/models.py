@@ -62,7 +62,7 @@ class Region(CacheablePropertyMixin, models.Model):
         verbose_name_plural = 'Regions'
 
     def __str__(self):
-        return '{} ({})'.format(self.title, self.id)
+        return f'{self.title} ({self.id})'
 
     def __init__(self, *args, **kwargs):
         super(Region, self).__init__(*args, **kwargs)
@@ -140,7 +140,7 @@ class Region(CacheablePropertyMixin, models.Model):
 
     def update_polygon(self) -> None:
         def content():
-            cache = os.path.join(settings.GEOJSON_DIR, '{}.geojson'.format(self.osm_id))
+            cache = os.path.join(settings.GEOJSON_DIR, f'{self.osm_id}.geojson')
             if not os.path.exists(cache):
                 url = settings.OSM_URL.format(id=self.osm_id, key=settings.OSM_KEY, level=2 if self.country.is_global else 4)
                 response = requests.get(url)

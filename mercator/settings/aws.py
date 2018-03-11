@@ -66,6 +66,6 @@ AWS_S3_USE_SSL = True
 
 AWS_REGION = 'eu-west-1'
 AWS_STORAGE_BUCKET_NAME = 'geo-puzzle'
-STATIC_URL = 'https://{}/static/'.format(CLOUDFRONT_DOMAIN)
+STATIC_URL = f'https://{CLOUDFRONT_DOMAIN}/static/'
 
-THUMBNAIL_DUMMY_SOURCE = '{}images/world/default_%(width)s.png'.format(STATIC_URL)
+THUMBNAIL_DUMMY_SOURCE = f'{STATIC_URL}images/world/default_%(width)s.png'

@@ -11,12 +11,12 @@ from django.template.loader import render_to_string
 
 def get_links(instance: str) -> Dict:
     result = {'en': {}, 'ru': {}}
-    url = 'http://www.wikidata.org/entity/{}'.format(instance)
+    url = f'http://www.wikidata.org/entity/{instance}'
     response = urlopen(url).read().decode('utf8')
     response = json.loads(response)
     for lang in result:
         try:
-            links = response['entities'][instance]['sitelinks']['{}wiki'.format(lang)]
+            links = response['entities'][instance]['sitelinks'][f'{lang}wiki']
             result[lang]['wiki'] = unquote(links['url'], 'utf-8')
             result[lang]['name'] = links['title']
         except:

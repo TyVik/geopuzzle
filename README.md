@@ -15,10 +15,10 @@ This is just web application, so you need:
 1. nginx 
 2. uwsgi
 3. supervisor
-4. python >= 3.5
+4. python >= 3.6
 5. redis
 6. postgres >= 9.5
-7. nodejs 6.x
+7. nodejs >= 8.9
 
 ## System applications
 
