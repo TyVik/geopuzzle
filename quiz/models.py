@@ -29,7 +29,7 @@ class Quiz(Game):
 
 
 class QuizRegion(models.Model):
-    puzzle = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     region = models.ForeignKey(Region, on_delete=models.CASCADE)
     is_solved = models.BooleanField(default=False)
 
