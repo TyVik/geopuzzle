@@ -16,7 +16,7 @@ class Command(BaseCommand):
             rows = query_by_wikidata_id(country_id=wikidata_id, item_id=region.wikidata_id)
             for lang, infobox in rows.items():
                 trans = region.load_translation(lang)
-                print(f'{region.id} {lang} =========================================================')
+                print('{} {} ========================================================='.format(region.id, lang))
                 diff = ('\n' + '\n'.join(difflib.ndiff(
                     pprint.pformat(trans.infobox).splitlines(),
                     pprint.pformat(infobox).splitlines())))

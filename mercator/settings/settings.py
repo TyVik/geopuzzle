@@ -108,7 +108,7 @@ REDIS_HOST = os.environ.get('REDIS_HOST')
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": f'redis://{REDIS_HOST}:6379/1',
+        "LOCATION": 'redis://{}:6379/1'.format(REDIS_HOST),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "COMPRESSOR": "django_redis.compressors.lzma.LzmaCompressor",

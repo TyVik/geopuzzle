@@ -32,7 +32,7 @@ class ImageMixin(object):
             url = thumb.url
         except Exception as e:
             print(e)
-        return safe(f'<img src="{url}"/>')
+        return safe('<img src="{}"/>'.format(url))
 
 
 class MultiPolygonWidget(forms.gis.MultiPolygonWidget, forms.gis.BaseGMapWidget):

@@ -45,7 +45,7 @@ class Command(BaseCommand):
                     trans.name = region.title
                     trans.save()
 
-            zip_file = os.path.join(settings.GEOJSON_DIR, f'{id}.zip')
+            zip_file = os.path.join(settings.GEOJSON_DIR, '{}.zip'.format(id))
             if not os.path.exists(zip_file):
                 url = settings.OSM_URL.format(id=id, key=settings.OSM_KEY)
                 print(url)

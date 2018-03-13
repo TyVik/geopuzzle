@@ -88,14 +88,14 @@ class RegionAdmin(HierarchicalModelAdmin):
         region = get_object_or_404(Region, pk=pk)
         region.update_infobox()
         success(request, _('Infobox was updated successfully.'))
-        url = reverse(f'admin:{self.model._meta.app_label}_region_change', args=(pk,))
+        url = reverse('admin:{app}_{model}_change'.format(app=self.model._meta.app_label, model='region'), args=(pk,))
         return HttpResponseRedirect(url)
 
     def osm_import(self, request: WSGIRequest, pk: str) -> HttpResponse:
         region = get_object_or_404(Region, pk=pk)
         region.update_polygon()
         success(request, _('Polygon was imported successfully.'))
-        url = reverse(f'admin:{self.model._meta.app_label}_region_change', args=(pk,))
+        url = reverse('admin:{app}_{model}_change'.format(app=self.model._meta.app_label, model='region'), args=(pk,))
         return HttpResponseRedirect(url)
 
     def get_urls(self) -> List:

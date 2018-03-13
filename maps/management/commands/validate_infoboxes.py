@@ -6,15 +6,15 @@ from maps.models import Region
 
 
 def log(area, lang, text):
-    print(f'Region {area.id} with language {lang}: {text}')
+    print('Region {} with language {}: {}'.format(area.id, lang, text))
 
 
 def check_link(area, lang, infobox, name, is_image):
     response = requests.get(infobox[name])
     if response.status_code != 200:
-        log(area, lang, f'- {name} link')
+        log(area, lang, '- {} link'.format(name))
     if is_image and response.headers['content-type'] != 'image/svg+xml':
-        log(area, lang, f'- {name} svg')
+        log(area, lang, '- {} svg'.format(name))
 
 
 class Command(BaseCommand):

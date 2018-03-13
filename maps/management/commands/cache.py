@@ -22,13 +22,13 @@ class Command(BaseCommand):
             print(getattr(region, label))
 
     def _export(self, query, label, **kwargs):
-        with open(f'geocache_{label}.json', 'w') as f:
+        with open('geocache_{}.json'.format(label), 'w') as f:
             for region in query.iterator():
                 result = {region.id: getattr(region, label)}
                 f.write(json.dumps(result) + "\n")
 
     def _import(self, label, **kwargs):
-        with open(f'geocache_{label}.json', 'r') as f:
+        with open('geocache_{}.json'.format(label), 'r') as f:
             while True:
                 region = json.loads(f.readline())
                 for rec in region.keys():
@@ -36,7 +36,7 @@ class Command(BaseCommand):
                     cache.set(cache_key, region[rec], timeout=None)
 
     def handle(self, **options):
-        handler = getattr(self, f"_{options['action']}", None)
+        handler = getattr(self, '_{}'.format(options['action']), None)
         if handler is None:
             raise CommandError('Cannot find action')
 
