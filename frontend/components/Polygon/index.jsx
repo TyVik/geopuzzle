@@ -4,16 +4,12 @@ import React from "react";
 import {connect} from "react-redux";
 import {Polygon as GooglePolygon} from "react-google-maps";
 import * as _constants from "react-google-maps/lib/constants";
-import {showInfobox, DRAG_END_POLYGON, PUZZLE_CHECK} from "../../actions";
+import {showInfobox, PUZZLE_CHECK} from "../../actions";
 
 
 class Polygon extends GooglePolygon {
     getBounds() {
         return this.state[_constants.POLYGON].getBounds();
-    }
-
-    getPaths() {
-        return this.state[_constants.POLYGON].getPaths();
     }
 
     getCenter() {
@@ -23,7 +19,6 @@ class Polygon extends GooglePolygon {
     componentDidMount() {
         google.maps.event.addListener(this.state[_constants.POLYGON], 'dragend', () => {
             let coords = JSON.parse(JSON.stringify(this.getBounds()));
-            this.props.dispatch({type: DRAG_END_POLYGON, id: this.props.id, paths: this.getPaths()});
             this.props.dispatch({type: PUZZLE_CHECK, coords: coords, id: this.props.id, ws: true, zoom: window.__MAP__.zoom});
         });
         google.maps.event.addListener(this.state[_constants.POLYGON], 'click', () => {

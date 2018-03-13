@@ -5,7 +5,6 @@ import localization from "../localization";
 export const INIT_LOAD = 'INIT_LOAD';
 export const INIT_LOAD_FAIL = 'INIT_LOAD_FAIL';
 
-export const DRAG_END_POLYGON = 'DRAG_END_POLYGON';
 export const SET_MAP_TYPE = 'SET_MAP_TYPE';
 export const SHOW_CONGRATULATION = 'SHOW_CONGRATULATION';
 
