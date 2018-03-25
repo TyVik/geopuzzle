@@ -20,4 +20,4 @@ const infobox = (state = init_infobox, action) => {
 };
 
 
-export default infobox
+export default infobox;

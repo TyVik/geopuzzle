@@ -14,4 +14,4 @@ const puzzle = combineReducers({
     quiz,
 });
 
-export default puzzle
+export default puzzle;

@@ -12,11 +12,9 @@ import {PUZZLE_GIVEUP} from "../../actions";
 
 
 class PuzzleBox extends React.Component {
-    giveUp = this.giveUp.bind(this);
-
-    giveUp() {
+    giveUp = () => {
         return {ids: this.props.ids, type: PUZZLE_GIVEUP, ws: true};
-    }
+    };
 
     render() {
         return (

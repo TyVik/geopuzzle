@@ -18,4 +18,4 @@ const infobox = (state = window.__CONGRATULATION__, action) => {
 };
 
 
-export default infobox
+export default infobox;

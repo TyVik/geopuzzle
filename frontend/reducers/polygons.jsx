@@ -151,4 +151,4 @@ const polygons = (state = [], action) => {
 };
 
 
-export default polygons
+export default polygons;

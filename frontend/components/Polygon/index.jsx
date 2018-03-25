@@ -12,10 +12,6 @@ class Polygon extends GooglePolygon {
         return this.state[_constants.POLYGON].getBounds();
     }
 
-    getCenter() {
-        return this.state[_constants.POLYGON].getBounds().getCenter();
-    }
-
     componentDidMount() {
         google.maps.event.addListener(this.state[_constants.POLYGON], 'dragend', () => {
             let coords = JSON.parse(JSON.stringify(this.getBounds()));

@@ -37,4 +37,4 @@ const quiz = (state = init_quiz, action) => {
 };
 
 
-export default quiz
+export default quiz;

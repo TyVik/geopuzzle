@@ -10,17 +10,13 @@ import "./index.css";
 
 const NameListItem = (props) => {
     if (!props.polygon.draggable) {
-        return (
-            <li key={props.polygon.id}
-                className={"clickable list-group-item list-group-item-" + (props.polygon.isSolved ? 'success' : 'danger')}
-                onClick={props.click}>
-                {props.polygon.infobox.name}
-            </li>
-        );
+        return <li key={props.polygon.id}
+            className={"clickable list-group-item list-group-item-" + (props.polygon.isSolved ? 'success' : 'danger')}
+            onClick={props.click}>
+            {props.polygon.infobox.name}
+        </li>;
     } else {
-        return (
-            <li key={props.polygon.id} className="list-group-item list-group-item-danger">&nbsp;</li>
-        );
+        return <li key={props.polygon.id} className="list-group-item list-group-item-danger">&nbsp;</li>;
     }
 };
 
@@ -41,7 +37,6 @@ class Toolbox extends React.Component {
 
     toggleCollapse() {
         let value = !this.state.collapse;
-        console.log(value);
         localStorage.setItem('toolbox_collapse', value);
         this.setState({collapse: value});
     }
@@ -92,7 +87,6 @@ class Toolbox extends React.Component {
         )
     }
 }
-;
 
 
 export default connect(state => {

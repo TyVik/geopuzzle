@@ -4,18 +4,16 @@ import { connect } from 'react-redux'
 import {Button} from "react-bootstrap";
 
 import localization from '../../localization';
-import {QUIZ_GIVEUP, QUIZ_NEXT, QUIZ_PREVIOUS, INIT_LOAD_FAIL} from "../../actions";
+import {QUIZ_GIVEUP, QUIZ_NEXT, QUIZ_PREVIOUS} from "../../actions";
 
 import './index.css'
 
 
 class QuizQuestion extends React.Component {
-    giveUp = this.giveUp.bind(this);
-
-    giveUp() {
+    giveUp = () => {
         let question = this.props.questions[this.props.question_index];
         this.props.dispatch({type: QUIZ_GIVEUP, id: question.id, ws: true});
-    }
+    };
 
     render() {
         if (this.props.questions && (this.props.questions.length > 0)) {
@@ -57,6 +55,6 @@ class QuizQuestion extends React.Component {
             return null;
         }
     }
-};
+}
 
 export default connect(state => (state.quiz))(QuizQuestion);

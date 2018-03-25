@@ -5,19 +5,16 @@ import GoogleMap from './GoogleMap';
 
 
 class MapContainer extends React.Component {
-    handleMapLoad = this.handleMapLoad.bind(this);
-    handleMapClick = this.handleMapClick.bind(this);
-
-    handleMapLoad(map) {
+    handleMapLoad = (map) => {
         this._mapComponent = map;
         if (map) {
             this.props.dispatch(this.props.initCallback());
         }
-    }
+    };
 
-    handleMapClick(e) {
+    handleMapClick = (e) => {
         this.props.mapClick(e);
-    }
+    };
 
     preparePolygons(polygons) {
         return polygons.map(polygon => {

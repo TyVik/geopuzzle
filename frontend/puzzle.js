@@ -5,33 +5,30 @@ import {render} from "react-dom";
 import {Provider} from "react-redux";
 import configureStore from './store';
 import Map from './components/Map';
-import Loading from './components/Loading';
 import PuzzleBox from './components/PuzzleBox';
-import {INIT_LOAD, INIT_LOAD_FAIL, PUZZLE_INIT_DONE} from './actions';
+import {INIT_LOAD, PUZZLE_INIT_DONE} from './actions';
 import Congratulation from './components/Congratulation';
+import Game from "./components/Game";
 
 
-class Puzzle extends React.Component {
-    mapInit = this.mapInit.bind(this);
-    mapClick = this.mapClick.bind(this);
-
-    mapInit() {
+class Puzzle extends Game {
+    mapInit = () => {
         return (dispatch) => {
             dispatch({type: INIT_LOAD, game: 'puzzle'});
             return fetch(location.pathname.replace('/puzzle/', '/puzzle/questions/') + location.search)
                 .then(response => response.json())
-                .then(countries => dispatch({type: PUZZLE_INIT_DONE, ...countries}))
-                .catch(response => dispatch({type: INIT_LOAD_FAIL}));
+                .then(countries => {
+                    this.setState({...this.state, isLoaded: true});
+                    dispatch({type: PUZZLE_INIT_DONE, ...countries});
+                })
+                .catch(response => {this.setState({...this.state, isLoaded: false})});
         }
-    }
-
-    mapClick(e) {
-    }
+    };
 
     render() {
         return (
             <div>
-                <Loading/>
+                {this.render_loaded()}
                 <Map initCallback={this.mapInit} mapClick={this.mapClick}/>
                 <PuzzleBox/>
                 <Congratulation/>

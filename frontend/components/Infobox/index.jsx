@@ -83,6 +83,6 @@ class Infobox extends React.Component {
         }
     }
 }
-;
+
 
 export default connect(state => (state.infobox))(Infobox);

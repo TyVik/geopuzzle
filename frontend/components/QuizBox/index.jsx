@@ -19,6 +19,6 @@ class QuizBox extends React.Component {
             </div>
         )
     }
-};
+}
 
 export default QuizBox;
