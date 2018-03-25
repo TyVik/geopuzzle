@@ -5,7 +5,6 @@ import localization from "../localization";
 export const INIT_LOAD = 'INIT_LOAD';
 
 export const SET_MAP_TYPE = 'SET_MAP_TYPE';
-export const SHOW_CONGRATULATION = 'SHOW_CONGRATULATION';
 
 export const GET_INFOBOX_DONE = 'GET_INFOBOX_DONE';
 export const GET_INFOBOX_FAIL = 'GET_INFOBOX_FAIL';

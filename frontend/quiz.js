@@ -6,7 +6,6 @@ import configureStore from './store';
 import Map from './components/Map';
 import QuizBox from './components/QuizBox';
 import QuizInit from './components/QuizInit';
-import Congratulation from './components/Congratulation';
 import {checkQuiz, INIT_LOAD, QUIZ_CHECK, QUIZ_INIT_DONE} from './actions';
 import Game from "./components/Game";
 
@@ -14,7 +13,7 @@ import Game from "./components/Game";
 class QuizClass extends Game {
     constructor(props) {
         super(props);
-        this.state = {isLoaded: null, showInit: true}
+        this.state = {isLoaded: null, showInit: true, congratulation: {show: false, startTime: null}};
     }
 
     mapInit = () => {
@@ -35,8 +34,8 @@ class QuizClass extends Game {
             return fetch(location.pathname.replace('/quiz/', '/quiz/questions/') + get_params)
                 .then(response => response.json())
                 .then(questions => {
-                    this.setState({...this.state, isLoaded: true});
                     dispatch({type: QUIZ_INIT_DONE, ...questions});
+                    this.startGame();
                 })
                 .catch(response => {this.setState({...this.state, isLoaded: false})});
         };
@@ -49,8 +48,8 @@ class QuizClass extends Game {
                 <Map initCallback={this.mapInit} mapClick={this.mapClick}/>
                 {this.state.showInit &&
                     <QuizInit load={this.loadQuiz} />}
-                <QuizBox/>
-                <Congratulation/>
+                <QuizBox showCongrats={this.showCongratulation}/>
+                {this.render_congratulation()}
             </div>
         )
     };

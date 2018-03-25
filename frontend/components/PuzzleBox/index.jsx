@@ -19,7 +19,7 @@ class PuzzleBox extends React.Component {
     render() {
         return (
             <div className="puzzle-box">
-                <Toolbox/>
+                <Toolbox showCongrats={this.props.showCongrats}/>
                 <Button bsStyle="success" onClick={() => this.props.dispatch(this.giveUp())}>
                     {localization.give_up}
                 </Button>
@@ -29,7 +29,7 @@ class PuzzleBox extends React.Component {
             </div>
         )
     }
-};
+}
 
 export default connect(state => {
     return {

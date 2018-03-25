@@ -7,7 +7,6 @@ import configureStore from './store';
 import Map from './components/Map';
 import PuzzleBox from './components/PuzzleBox';
 import {INIT_LOAD, PUZZLE_INIT_DONE} from './actions';
-import Congratulation from './components/Congratulation';
 import Game from "./components/Game";
 
 
@@ -18,8 +17,8 @@ class Puzzle extends Game {
             return fetch(location.pathname.replace('/puzzle/', '/puzzle/questions/') + location.search)
                 .then(response => response.json())
                 .then(countries => {
-                    this.setState({...this.state, isLoaded: true});
                     dispatch({type: PUZZLE_INIT_DONE, ...countries});
+                    this.startGame();
                 })
                 .catch(response => {this.setState({...this.state, isLoaded: false})});
         }
@@ -30,8 +29,8 @@ class Puzzle extends Game {
             <div>
                 {this.render_loaded()}
                 <Map initCallback={this.mapInit} mapClick={this.mapClick}/>
-                <PuzzleBox/>
-                <Congratulation/>
+                <PuzzleBox showCongrats={this.showCongratulation}/>
+                {this.render_congratulation()}
             </div>
         )
     };

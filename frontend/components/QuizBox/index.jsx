@@ -11,7 +11,7 @@ class QuizBox extends React.Component {
     render() {
         return (
             <div className="quiz-box">
-                <Toolbox/>
+                <Toolbox showCongrats={this.props.showCongrats}/>
                 <QuizQuestion/>
                 <div className="infobox-wrapper">
                     <Infobox/>

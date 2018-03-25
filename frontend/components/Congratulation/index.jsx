@@ -8,12 +8,8 @@ import localization from '../../localization';
 class Congratulation extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {show: true};
+        this.state = window.__CONGRATULATION__;
     }
-
-    closeSelf = () => {
-        this.setState({show: false});
-    };
 
     share_fb = () => {
         FB.ui({
@@ -30,9 +26,9 @@ class Congratulation extends React.Component {
     };
 
     render() {
-        let text = this.props.text + this.props.time_result + '.';
+        let text = this.state.text + this.props.result + '.';
         return (
-            <Modal show={this.state.show && this.props.show} onHide={this.closeSelf}
+            <Modal show={this.props.show} onHide={this.props.onClose}
                    bsSize="large" aria-labelledby="contained-modal-title-lg">
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-lg">{localization.congratulations}</Modal.Title>

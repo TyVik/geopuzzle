@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-01 20:17+0000\n"
+"POT-Creation-Date: 2018-03-25 20:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: maps/admin.py:27
+#: maps/admin.py:28
 msgid "Infoboxes were updated."
 msgstr "Инфобоксы обновлены"
 
-#: maps/admin.py:28
+#: maps/admin.py:29
 msgid "Update infoboxes"
 msgstr "Обновить инфобоксы"
 
-#: maps/admin.py:34
+#: maps/admin.py:35
 msgid "Polygons were updated."
 msgstr "Полигоны обновлены"
 
-#: maps/admin.py:35
+#: maps/admin.py:36
 msgid "Update polygons"
 msgstr "Обновить полигоны"
 
-#: maps/admin.py:82
+#: maps/admin.py:84
 msgid "Infobox"
 msgstr "Инфобокс"
 
-#: maps/admin.py:88
+#: maps/admin.py:90
 msgid "Infobox was updated successfully."
 msgstr "Инфобокс обновлён успешно"
 
-#: maps/admin.py:95
+#: maps/admin.py:97
 msgid "Polygon was imported successfully."
 msgstr "Полигон загружен успешно"
 
@@ -115,18 +115,18 @@ msgstr ""
 "Либерии отличаются только количеством звёзд? Так вот, эти и другие "
 "интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
 
-#: puzzle/views.py:38
+#: puzzle/views.py:31
 msgid "{} was assembled! You time is "
 msgstr "{} собрана! Ваше время "
 
-#: puzzle/views.py:38 quiz/views.py:33
+#: puzzle/views.py:31 quiz/views.py:33
 msgid "World map"
 msgstr "Карта мира"
 
 #: quiz/views.py:32
 #, python-brace-format
-msgid "{name} has been studied! You guessed all {subjects}. You time is "
-msgstr "{name} была изучена! Вы нашли все {subjects}. Ваше время "
+msgid "{name} has been solved! You guessed all {subjects}. You time is "
+msgstr "{name} собрана! Вы нашли все {subjects}. Ваше время "
 
 #: quiz/views.py:34
 msgid "countries"
@@ -212,8 +212,8 @@ msgid ""
 "                    <a href=\"http://yasobe.ru/na/geopuzzle\">Yandex money</"
 "a>."
 msgstr ""
-"Вы всегда можете поддержать проект с помощью <a href=\"https://www."
-"paypal.me/tyvik\">PayPal</a> или\n"
+"Вы всегда можете поддержать проект с помощью <a href=\"https://www.paypal.me/"
+"tyvik\">PayPal</a> или\n"
 "                    <a href=\"http://yasobe.ru/na/geopuzzle\">Яндекс денег</"
 "a>."
 

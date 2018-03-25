@@ -3,7 +3,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Panel} from "react-bootstrap";
-import {SHOW_CONGRATULATION, SET_MAP_TYPE, showInfobox} from "../../actions";
+import {SET_MAP_TYPE, showInfobox} from "../../actions";
 import localization from "../../localization";
 import "./index.css";
 
@@ -31,7 +31,7 @@ class Toolbox extends React.Component {
 
     componentWillReceiveProps(props) {
         if (props.total === props.solved) {
-            this.props.dispatch({type: SHOW_CONGRATULATION});
+            this.props.showCongrats();
         }
     }
 
