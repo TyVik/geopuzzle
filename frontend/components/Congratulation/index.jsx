@@ -54,4 +54,4 @@ class Congratulation extends React.Component {
 }
 
 
-export default connect(state => (state.congratulation))(Congratulation);
+export default Congratulation;
