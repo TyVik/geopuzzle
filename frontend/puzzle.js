@@ -1,6 +1,6 @@
 'use strict';
 import React from "react";
 import {render} from "react-dom";
-import Puzzle from "./components/Puzzle";
+import Puzzle from "./games/Puzzle";
 
 render(<Puzzle />, document.getElementById('puzzle'));
