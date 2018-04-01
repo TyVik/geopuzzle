@@ -10,27 +10,18 @@ import Congratulation from "../Congratulation";
 class Game extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isLoaded: null, congratulation: {show: false, startTime: null}, regions: [],
+        this.state = {isLoaded: null, startTime: null, regions: [],
             map: {typeId: google.maps.MapTypeId.TERRAIN}, wsState: null};
         this.ws = null;
     }
 
     startGame = (params) => {
-        let congrats = {...this.state.congratulation, startTime: Date.now()};
-        this.setState({...this.state, ...params, isLoaded: true, congratulation: congrats});
+        this.setState({...this.state, ...params, isLoaded: true, startTime: Date.now()});
     };
 
     mapInit = () => {};
 
     mapClick = (e) => {};
-
-    closeCongratulation = () => {
-        this.setState({...this.state, congratulation: {...this.state.congratulation, show: false}});
-    };
-
-    showCongratulation = () => {
-        this.setState({...this.state, congratulation: {...this.state.congratulation, show: true}});
-    };
 
     render_loaded() {
         if (this.state.isLoaded === true) {
@@ -41,10 +32,10 @@ class Game extends React.Component {
     }
 
     render_congratulation() {
-        if (this.state.congratulation.show) {
-            let time = new Date(Date.now() - this.state.congratulation.startTime);
+        if (this.state.isLoaded && this.state.regions.filter(el => el.isSolved === false).length === 0) {
+            let time = new Date(Date.now() - this.state.startTime);
             let result = (time > 24 * 60 * 60 * 1000) ? 'more then day' : time.toLocaleTimeString('ru-RU', {timeZone: 'UTC'});
-            return <Congratulation onClose={this.closeCongratulation} url={location.href} result={result} show={true}/>;
+            return <Congratulation url={location.href} result={result} />;
         } else {
             return null;
         }
