@@ -1,23 +1,15 @@
 'use strict';
 import React from "react";
-import { connect } from 'react-redux'
 import {Button} from "react-bootstrap";
-
 import localization from '../../localization';
-import {QUIZ_GIVEUP, QUIZ_NEXT, QUIZ_PREVIOUS} from "../../actions";
 
 import './index.css'
 
 
 class QuizQuestion extends React.Component {
-    giveUp = () => {
-        let question = this.props.questions[this.props.question_index];
-        this.props.dispatch({type: QUIZ_GIVEUP, id: question.id, ws: true});
-    };
-
     render() {
-        if (this.props.questions && (this.props.questions.length > 0)) {
-            let question = this.props.questions[this.props.question_index];
+        if ((this.props.question !== null) && (this.props.questions.length > 0)) {
+            let question = this.props.questions[this.props.question];
             return (
                 <div className="quiz-question">
                     <table>
@@ -39,14 +31,14 @@ class QuizQuestion extends React.Component {
                     <div className="quiz-bottom">
                         <span
                             className="glyphicon glyphicon-chevron-left"
-                            onClick={() => this.props.dispatch({type: QUIZ_PREVIOUS})}>
+                            onClick={this.props.onPrevious}>
                         </span>
-                        <Button bsStyle="success" onClick={this.giveUp}>
+                        <Button bsStyle="success" onClick={this.props.giveUp}>
                             {localization.give_up}
                         </Button>
                         <span
                             className="glyphicon glyphicon-chevron-right"
-                            onClick={() => this.props.dispatch({type: QUIZ_NEXT})}>
+                            onClick={this.props.onNext}>
                         </span>
                     </div>
                 </div>
@@ -57,4 +49,4 @@ class QuizQuestion extends React.Component {
     }
 }
 
-export default connect(state => (state.quiz))(QuizQuestion);
+export default QuizQuestion;

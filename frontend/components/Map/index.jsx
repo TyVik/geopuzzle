@@ -1,14 +1,13 @@
 'use strict';
 import React from 'react';
-import { connect } from 'react-redux'
 import GoogleMap from './GoogleMap';
 
 
 class MapContainer extends React.Component {
     handleMapLoad = (map) => {
         this._mapComponent = map;
-        if (map) {
-            this.props.dispatch(this.props.initCallback());
+        if (map && this.props.initCallback) {
+            this.props.initCallback();
         }
     };
 
@@ -31,13 +30,15 @@ class MapContainer extends React.Component {
                     zIndex: polygon.draggable ? 2 : 1,
                     paths: polygon.paths,
                     id: polygon.id,
-                }
+                },
+                onClick: this.props.onPolygonClick,
+                onDragEnd: this.props.onDragEnd
             };
         });
     }
 
     showMarker(infobox) {
-        if (infobox.capital) {
+        if (infobox && infobox.capital) {
             return {
                 key: infobox.capital.name,
                 defaultAnimation: 2,
@@ -50,18 +51,17 @@ class MapContainer extends React.Component {
     }
 
     render() {
-        return <GoogleMap {...this.props}
+        let props = {...this.props, ...window.__MAP__, mapTypeId: this.props.mapTypeId};
+        return <GoogleMap {...props}
             containerElement={<div style={{height: '100%'}}/>}
             mapElement={<div style={{height: '100%', margin: 0, padding: 0}} id="map"/>}
             onMapLoad={this.handleMapLoad}
             onMapClick={this.handleMapClick}
-            polygons={this.preparePolygons(this.props.polygons)}
+            polygons={this.preparePolygons(this.props.regions)}
             marker={this.showMarker(this.props.infobox)}
         />
     }
 }
 
 
-export default connect(state => {
-    return {...state.map, polygons: state.polygons, infobox: state.infobox};
-})(MapContainer);
+export default MapContainer;

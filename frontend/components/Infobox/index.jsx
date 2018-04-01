@@ -1,6 +1,5 @@
 'use strict';
 import React from "react";
-import {connect} from "react-redux";
 import {Panel} from "react-bootstrap";
 import localization from "../../localization";
 import {CLOSE_INFOBOX} from '../../actions';
@@ -16,12 +15,10 @@ class Infobox extends React.Component {
 
     renderAttribute(name) {
         if (this.props[name]) {
-            return (
-                <tr>
-                    <td>{localization[name]}</td>
-                    <td>{this.props[name]}</td>
-                </tr>
-            );
+            return <tr>
+                <td>{localization[name]}</td>
+                <td>{this.props[name]}</td>
+            </tr>;
         } else {
             return null;
         }
@@ -85,4 +82,4 @@ class Infobox extends React.Component {
 }
 
 
-export default connect(state => (state.infobox))(Infobox);
+export default Infobox;

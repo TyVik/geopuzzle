@@ -10,12 +10,14 @@ import Congratulation from "../Congratulation";
 class Game extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isLoaded: null, congratulation: {show: false, startTime: null}};
+        this.state = {isLoaded: null, congratulation: {show: false, startTime: null}, regions: [],
+            map: {typeId: google.maps.MapTypeId.TERRAIN}, wsState: null};
+        this.ws = null;
     }
 
-    startGame = () => {
+    startGame = (params) => {
         let congrats = {...this.state.congratulation, startTime: Date.now()};
-        this.setState({...this.state, isLoaded: true, congratulation: congrats});
+        this.setState({...this.state, ...params, isLoaded: true, congratulation: congrats});
     };
 
     mapInit = () => {};

@@ -1,6 +1,5 @@
 'use strict';
 import React from "react";
-import {connect} from "react-redux";
 import localization from '../../localization';
 import {Button, Modal, FormGroup, Checkbox} from "react-bootstrap";
 import "./index.css";
@@ -50,7 +49,7 @@ class QuizInit extends React.Component {
                         </div>
                     }
                     {this.allow() &&
-                        <Button onClick={() => this.props.dispatch(this.props.load(this.state))}>{localization.start}</Button>
+                        <Button onClick={() => this.props.load(this.state)}>{localization.start}</Button>
                     }
                 </Modal.Footer>
             </Modal>
@@ -59,4 +58,4 @@ class QuizInit extends React.Component {
 }
 
 
-export default connect()(QuizInit);
+export default QuizInit;

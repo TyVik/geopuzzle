@@ -1,9 +1,8 @@
 'use strict';
 /* global google */
 import React from "react";
-import {connect} from "react-redux";
 import {Panel} from "react-bootstrap";
-import {SET_MAP_TYPE, showInfobox} from "../../actions";
+import {showInfobox} from "../../actions";
 import localization from "../../localization";
 import "./index.css";
 
@@ -29,70 +28,50 @@ class Toolbox extends React.Component {
         });
     }
 
-    componentWillReceiveProps(props) {
-        if (props.total === props.solved) {
-            this.props.showCongrats();
-        }
-    }
-
-    toggleCollapse() {
+    toggleCollapse = () => {
         let value = !this.state.collapse;
         localStorage.setItem('toolbox_collapse', value);
         this.setState({collapse: value});
-    }
+    };
 
     render() {
-        return (
-            <div className="toolbox_wrapper">
-                <div className="toolbox">
-                    <div className="listname-wrapper">
-                        <div id="network_connection_label">{localization.network_error}</div>
-                        {localization.found}: <span>{this.props.solved}</span>/<span>{this.props.total}</span>
-                        <span
-                            className={"glyphicon glyphicon-chevron-" + (this.state.collapse ? 'up' : 'down')}
-                            onClick={() => this.toggleCollapse()}>
-                        </span>
-                        <Panel expanded={!this.state.collapse} onToggle={() => this.toggleCollapse()}>
-                            <Panel.Collapse>
-                                <Panel.Body>
-                                    <div className="map_switcher_wrapper">
-                                        <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/terrain.png"
-                                             onClick={() => this.props.dispatch({
-                                                 type: SET_MAP_TYPE,
-                                                 value: google.maps.MapTypeId.TERRAIN
-                                             })}/>
-                                        <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/hybrid.png"
-                                             onClick={() => this.props.dispatch({
-                                                 type: SET_MAP_TYPE,
-                                                 value: google.maps.MapTypeId.HYBRID
-                                             })}/>
-                                        <img className="map_switcher" src="https://geo-puzzle.s3.amazonaws.com/static/images/map/satellite.png"
-                                             onClick={() => this.props.dispatch({
-                                                 type: SET_MAP_TYPE,
-                                                 value: google.maps.MapTypeId.SATELLITE
-                                             })}/>
-                                    </div>
-                                    <ul className="list-group" style={{maxHeight: this.state.listNameMaxHeight}}>
-                                        {this.props.countries.map(polygon => (
-                                            <NameListItem key={polygon.id} polygon={polygon}
-                                                          click={() => this.props.dispatch(showInfobox(polygon))}/>
-                                        ))}
-                                    </ul>
-                                </Panel.Body>
-                            </Panel.Collapse>
-                        </Panel>
-                    </div>
+        let _static = 'https://geo-puzzle.s3.amazonaws.com/static';
+        let solved = this.props.regions.filter(obj => (obj.isSolved)).length;
+        return <div className="toolbox_wrapper">
+            <div className="toolbox">
+                <div className="listname-wrapper">
+                    {this.props.wsState !== true &&
+                        <div id="network_connection_label">{localization.network_error}</div>}
+                    {localization.found}: <span>{solved}</span>/<span>{this.props.regions.length}</span>
+                    <span
+                        className={"glyphicon glyphicon-chevron-" + (this.state.collapse ? 'up' : 'down')}
+                        onClick={this.toggleCollapse}>
+                    </span>
+                    <Panel expanded={!this.state.collapse} onToggle={this.toggleCollapse}>
+                        <Panel.Collapse>
+                            <Panel.Body>
+                                <div className="map_switcher_wrapper">
+                                    <img className="map_switcher" src={_static + "/images/map/terrain.png"}
+                                         onClick={() => {this.props.setMapType(google.maps.MapTypeId.TERRAIN)}}/>
+                                    <img className="map_switcher" src={_static + "/images/map/hybrid.png"}
+                                         onClick={() => {this.props.setMapType(google.maps.MapTypeId.HYBRID)}}/>
+                                    <img className="map_switcher" src={_static + "/images/map/satellite.png"}
+                                         onClick={() => {this.props.setMapType(google.maps.MapTypeId.SATELLITE)}}/>
+                                </div>
+                                <ul className="list-group" style={{maxHeight: this.state.listNameMaxHeight}}>
+                                    {this.props.regions.map(polygon => (
+                                        <NameListItem key={polygon.id} polygon={polygon}
+                                                      click={() => this.props.showInfobox(polygon)}/>
+                                    ))}
+                                </ul>
+                            </Panel.Body>
+                        </Panel.Collapse>
+                    </Panel>
                 </div>
             </div>
-        )
+        </div>;
     }
 }
 
 
-export default connect(state => {
-    return {
-        total: state.polygons.length,
-        solved: state.polygons.filter(obj => (obj.isSolved)).length,
-        countries: state.polygons
-    };
-})(Toolbox);
+export default Toolbox;
