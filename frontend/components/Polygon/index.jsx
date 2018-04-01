@@ -12,9 +12,7 @@ class Polygon extends GooglePolygon {
 
     componentDidMount() {
         google.maps.event.addListener(this.state[_constants.POLYGON], 'dragend', () => {
-            let coords = JSON.parse(JSON.stringify(this.getBounds()));
             this.props.onDragEnd(this.getBounds(), this.props.options.id);
-            // this.props.dispatch({type: PUZZLE_CHECK, coords: coords, id: this.props.id, ws: true, zoom: window.__MAP__.zoom});
         });
         google.maps.event.addListener(this.state[_constants.POLYGON], 'click', () => {
             this.props.onClick(this.props.options);

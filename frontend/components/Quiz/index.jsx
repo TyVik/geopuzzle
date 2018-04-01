@@ -109,7 +109,7 @@ class Quiz extends Game {
     };
 
     onPrevious = () => {
-        let index = this.state.question_index - 1;
+        let index = this.state.question - 1;
         this.setState({...this.state, question: index < 0 ? this.state.questions.length - 1 : index});
     };
 
@@ -119,8 +119,7 @@ class Quiz extends Game {
                 {this.render_loaded()}
                 <Map mapClick={this.mapClick} mapTypeId={this.state.map.typeId}
                      regions={this.state.regions} onPolygonClick={this.onPolygonClick}/>
-                {this.state.showInit &&
-                    <QuizInit load={this.loadQuiz} />}
+                <QuizInit load={this.loadQuiz} show={this.state.showInit}/>
                 <div className="quiz-box">
                     <Toolbox setMapType={this.setMapType} regions={this.state.regions} wsState={this.state.wsState}
                              showInfobox={this.showInfobox}/>

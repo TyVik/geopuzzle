@@ -36,7 +36,7 @@ class Game extends React.Component {
         if (this.state.isLoaded === true) {
             return null;
         } else {
-            return <Loading text={this.state.isLoaded === null ? localization.loading : 'Something wrong'}/>;
+            return <Loading text={this.state.isLoaded === null ? localization.loading : localization.loadingError}/>;
         }
     }
 
