@@ -165,7 +165,7 @@ class Puzzle extends Game {
                         {localization.give_up}
                     </Button>
                     <div className="infobox-wrapper">
-                        <Infobox {...this.state.infobox} show={true}/>
+                        <Infobox {...this.state.infobox} />
                     </div>
                 </div>
                 {this.render_congratulation()}

@@ -10,7 +10,7 @@ import Congratulation from "../Congratulation";
 class Game extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isLoaded: null, startTime: null, regions: [],
+        this.state = {isLoaded: null, startTime: null, regions: [], showInfobox: true, infobox: {},
             map: {typeId: google.maps.MapTypeId.TERRAIN}, wsState: null};
         this.ws = null;
     }
@@ -22,6 +22,14 @@ class Game extends React.Component {
     mapInit = () => {};
 
     mapClick = (e) => {};
+
+    closeInfobox = () => {
+        this.setState({...this.state, showInfobox: false});
+    };
+
+    openInfobox = (region) => {
+        this.setState({...this.state, showInfobox: true, infobox: region.infobox});
+    };
 
     render_loaded() {
         if (this.state.isLoaded === true) {

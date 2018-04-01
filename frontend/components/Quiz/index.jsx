@@ -113,6 +113,33 @@ class Quiz extends Game {
         this.setState({...this.state, question: index < 0 ? this.state.questions.length - 1 : index});
     };
 
+    onPolygonClick = (polygon) => {
+        if (polygon && !polygon.draggable) {
+            let region = this.state.regions.find(x => x.id === polygon.id);
+            if (region.infobox.loaded) {
+                this.setState({...this.state, infobox: region.infobox});
+            } else {
+                let id = region.id;
+                fetch(window.location.origin + `/puzzle/area/` + region.id + '/infobox/')
+                    .then(response => response.json())
+                    .then(json => {
+                        let regions = this.state.regions.map((region) => {
+                            if (region.id === id) {
+                                return {
+                                    ...region,
+                                    infobox: prepareInfobox(json),
+                                };
+                            } else {
+                                return region;
+                            }
+                        });
+                        this.setState({...this.state, regions: regions, infobox: prepareInfobox(json)});
+                    })
+                    .catch(response => console.log(response));
+            }
+        }
+    };
+
     render() {
         return (
             <div>
@@ -122,11 +149,11 @@ class Quiz extends Game {
                 <QuizInit load={this.loadQuiz} show={this.state.showInit}/>
                 <div className="quiz-box">
                     <Toolbox setMapType={this.setMapType} regions={this.state.regions} wsState={this.state.wsState}
-                             showInfobox={this.showInfobox}/>
+                             openInfobox={this.openInfobox}/>
                     {<QuizQuestion giveUp={this.giveUp} question={this.state.question}
                                    questions={this.state.questions} onNext={this.onNext} onPrevious={this.onPrevious}/>}
                     <div className="infobox-wrapper">
-                        <Infobox {...this.state.infobox} show={true}/>
+                        <Infobox {...this.state.infobox} show={this.state.showInfobox} onClose={this.closeInfobox}/>
                     </div>
                 </div>
                 {this.render_congratulation()}

@@ -2,20 +2,19 @@
 /* global google */
 import React from "react";
 import {Panel} from "react-bootstrap";
-import {showInfobox} from "../../actions";
 import localization from "../../localization";
 import "./index.css";
 
 
 const NameListItem = (props) => {
     if (!props.polygon.draggable) {
-        return <li key={props.polygon.id}
+        return <li
             className={"clickable list-group-item list-group-item-" + (props.polygon.isSolved ? 'success' : 'danger')}
             onClick={props.click}>
             {props.polygon.infobox.name}
         </li>;
     } else {
-        return <li key={props.polygon.id} className="list-group-item list-group-item-danger">&nbsp;</li>;
+        return <li className="list-group-item list-group-item-danger">&nbsp;</li>;
     }
 };
 
@@ -61,7 +60,7 @@ class Toolbox extends React.Component {
                                 <ul className="list-group" style={{maxHeight: this.state.listNameMaxHeight}}>
                                     {this.props.regions.map(polygon => (
                                         <NameListItem key={polygon.id} polygon={polygon}
-                                                      click={() => this.props.showInfobox(polygon)}/>
+                                                      click={() => this.props.openInfobox(polygon)}/>
                                     ))}
                                 </ul>
                             </Panel.Body>
