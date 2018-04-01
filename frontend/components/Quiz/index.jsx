@@ -5,7 +5,6 @@ import Sockette from 'sockette';
 import Map from '../Map';
 import QuizInit from '../QuizInit';
 import QuizQuestion from '../QuizQuestion';
-import {QUIZ_CHECK, QUIZ_CHECK_SUCCESS, QUIZ_GIVEUP, QUIZ_GIVEUP_DONE} from '../../actions';
 import Game from "../Game";
 import {decodePolygon, prepareInfobox, shuffle} from "../../utils";
 import Toolbox from "../Toolbox";
@@ -48,8 +47,8 @@ class Quiz extends Game {
     dispatchMessage = (event) => {
         let data = JSON.parse(event.data);
         switch(data.type) {
-            case QUIZ_CHECK_SUCCESS:
-            case QUIZ_GIVEUP_DONE:
+            case 'QUIZ_CHECK_SUCCESS':
+            case 'QUIZ_GIVEUP_DONE':
                 let regions2 = this.state.regions.map((polygon) => {
                     if (polygon.id === data.id) {
                         return {
@@ -71,7 +70,7 @@ class Quiz extends Game {
 
     mapClick = (e) => {
         let question = this.state.questions[this.state.question];
-        this.ws.json({type: QUIZ_CHECK, coords: {lat: e.latLng.lat(), lng: e.latLng.lng()}, id: question.id});
+        this.ws.json({type: 'QUIZ_CHECK', coords: {lat: e.latLng.lat(), lng: e.latLng.lng()}, id: question.id});
     };
 
     loadQuiz = (options) => {
@@ -101,7 +100,7 @@ class Quiz extends Game {
     };
 
     giveUp = () => {
-        this.ws.json({type: QUIZ_GIVEUP, id: this.state.questions[this.state.question].id});
+        this.ws.json({type: 'QUIZ_GIVEUP', id: this.state.questions[this.state.question].id});
     };
 
     onNext = () => {

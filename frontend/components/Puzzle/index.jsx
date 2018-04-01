@@ -3,7 +3,6 @@ import React from "react";
 import {render} from "react-dom";
 import Sockette from 'sockette';
 import Map from '../Map';
-import {PUZZLE_CHECK, PUZZLE_CHECK_SUCCESS, PUZZLE_GIVEUP, PUZZLE_GIVEUP_DONE} from '../../actions';
 import Game from "../Game";
 import {decodePolygon, moveTo, prepareInfobox} from "../../utils";
 import localization from "../../localization";
@@ -47,7 +46,7 @@ class Puzzle extends Game {
     dispatchMessage = (event) => {
         let data = JSON.parse(event.data);
         switch(data.type) {
-            case PUZZLE_CHECK_SUCCESS:
+            case 'PUZZLE_CHECK_SUCCESS':
                 let regions = this.state.regions.map((region) => {
                     if (region.id === data.id) {
                         return {
@@ -63,7 +62,7 @@ class Puzzle extends Game {
                 });
                 this.setState({...this.state, regions: regions, infobox: data.infobox});
                 break;
-            case PUZZLE_GIVEUP_DONE:
+            case 'PUZZLE_GIVEUP_DONE':
                 let regions1 = this.state.regions.map((polygon) => {
                     if (!polygon.isSolved) {
                         let solve = data.solves[polygon.id];
@@ -109,7 +108,7 @@ class Puzzle extends Game {
 
     giveUp = () => {
         let ids = this.state.regions.filter(obj => (!obj.isSolved)).map(polygon => (polygon.id));
-        return this.ws.json({ids: ids, type: PUZZLE_GIVEUP});
+        return this.ws.json({ids: ids, type: 'PUZZLE_GIVEUP'});
     };
 
     setMapType = (typeId) => {
@@ -145,7 +144,7 @@ class Puzzle extends Game {
     };
 
     onDragEnd = (coords, id) => {
-        this.ws.json({type: PUZZLE_CHECK, coords: coords, id: id, zoom: window.__MAP__.zoom});
+        this.ws.json({type: 'PUZZLE_CHECK', coords: coords, id: id, zoom: window.__MAP__.zoom});
     };
 
     render() {

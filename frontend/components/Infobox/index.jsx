@@ -2,7 +2,6 @@
 import React from "react";
 import {Panel} from "react-bootstrap";
 import localization from "../../localization";
-import {CLOSE_INFOBOX} from '../../actions';
 import "./index.css";
 
 
