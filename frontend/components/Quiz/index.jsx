@@ -144,7 +144,7 @@ class Quiz extends Game {
         return (
             <div>
                 {this.render_loaded()}
-                <Map mapClick={this.mapClick} mapTypeId={this.state.map.typeId}
+                <Map mapClick={this.mapClick} mapTypeId={this.state.map.typeId} infobox={this.state.infobox}
                      regions={this.state.regions} onPolygonClick={this.onPolygonClick}/>
                 <QuizInit load={this.loadQuiz} show={this.state.showInit}/>
                 <div className="quiz-box">
@@ -153,7 +153,8 @@ class Quiz extends Game {
                     {<QuizQuestion giveUp={this.giveUp} question={this.state.question}
                                    questions={this.state.questions} onNext={this.onNext} onPrevious={this.onPrevious}/>}
                     <div className="infobox-wrapper">
-                        <Infobox {...this.state.infobox} show={this.state.showInfobox} onClose={this.closeInfobox}/>
+                        <Infobox {...this.state.infobox} show={this.state.showInfobox && (this.state.infobox !== null)}
+                                 onClose={this.closeInfobox}/>
                     </div>
                 </div>
                 {this.render_congratulation()}

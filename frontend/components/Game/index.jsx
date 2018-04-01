@@ -10,7 +10,7 @@ import Congratulation from "../Congratulation";
 class Game extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isLoaded: null, startTime: null, regions: [], showInfobox: true, infobox: {},
+        this.state = {isLoaded: null, startTime: null, regions: [], showInfobox: true, infobox: null,
             map: {typeId: google.maps.MapTypeId.TERRAIN}, wsState: null};
         this.ws = null;
     }
