@@ -40,7 +40,7 @@ class Game extends React.Component {
     }
 
     render_congratulation() {
-        if (this.state.isLoaded && this.state.regions.filter(el => el.isSolved === false).length === 0) {
+        if (this.state.regions.length > 0 && this.state.regions.filter(el => el.isSolved === false).length === 0) {
             let time = new Date(Date.now() - this.state.startTime);
             let result = (time > 24 * 60 * 60 * 1000) ? 'more then day' : time.toLocaleTimeString('ru-RU', {timeZone: 'UTC'});
             return <Congratulation url={location.href} result={result} />;

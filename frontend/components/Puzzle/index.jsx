@@ -99,7 +99,7 @@ class Puzzle extends Game {
                     onclose: e => this.setState({...this.state, wsState: null}),
                     onerror: e => this.setState({...this.state, wsState: false})
                 });
-                this.startGame(regions);
+                this.startGame({regions: regions});
             })
             .catch(response => {
                 console.log(response);
@@ -118,10 +118,10 @@ class Puzzle extends Game {
     };
 
     onPolygonClick = (polygon) => {
-        if (polygon && !polygon.draggable) {
+        if (polygon && (polygon.draggable !== undefined) && !polygon.draggable) {
             let region = this.state.regions.find(x => x.id === polygon.id);
             if (region.infobox.loaded) {
-                this.setState({...this.state, infobox: region.infobox});
+                this.setState({...this.state, infobox: region.infobox, showInfobox: true});
             } else {
                 let id = region.id;
                 fetch(window.location.origin + `/puzzle/area/` + region.id + '/infobox/')
@@ -137,7 +137,7 @@ class Puzzle extends Game {
                                 return region;
                             }
                         });
-                        this.setState({...this.state, regions: regions, infobox: prepareInfobox(json)});
+                        this.setState({...this.state, regions: regions, infobox: json, showInfobox: true});
                     })
                     .catch(response => console.log(response));
             }
@@ -148,24 +148,22 @@ class Puzzle extends Game {
         this.ws.json({type: PUZZLE_CHECK, coords: coords, id: id, zoom: window.__MAP__.zoom});
     };
 
-    showInfobox = (region) => {
-
-    };
-
     render() {
         return (
             <div>
                 {this.render_loaded()}
                 <Map initCallback={this.mapInit} mapClick={this.mapClick} mapTypeId={this.state.map.typeId}
-                     regions={this.state.regions} onPolygonClick={this.onPolygonClick} onDragEnd={this.onDragEnd}/>
+                     infobox={this.state.infobox} regions={this.state.regions}
+                     onPolygonClick={this.onPolygonClick} onDragEnd={this.onDragEnd}/>
                 <div className="puzzle-box">
                     <Toolbox setMapType={this.setMapType} regions={this.state.regions} wsState={this.state.wsState}
-                             showInfobox={this.showInfobox}/>
+                             openInfobox={this.openInfobox} />
                     <Button bsStyle="success" onClick={this.giveUp}>
                         {localization.give_up}
                     </Button>
                     <div className="infobox-wrapper">
-                        <Infobox {...this.state.infobox} />
+                        <Infobox {...this.state.infobox} show={this.state.showInfobox && (this.state.infobox !== null)}
+                                 onClose={this.closeInfobox}/>
                     </div>
                 </div>
                 {this.render_congratulation()}

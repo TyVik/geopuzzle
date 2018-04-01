@@ -114,7 +114,7 @@ class Quiz extends Game {
     };
 
     onPolygonClick = (polygon) => {
-        if (polygon && !polygon.draggable) {
+        if (polygon && (polygon.draggable !== undefined) && !polygon.draggable) {
             let region = this.state.regions.find(x => x.id === polygon.id);
             if (region.infobox.loaded) {
                 this.setState({...this.state, infobox: region.infobox});
