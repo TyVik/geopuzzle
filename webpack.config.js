@@ -1,28 +1,28 @@
 'use strict';
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const NODE_ENV = process.env.NODE_ENV || 'development';
-
 const webpack = require('webpack');
 const path = require('path');
 const SentryCliPlugin = require('@sentry/webpack-plugin');
 
 
-module.exports = (env) => {
+module.exports = (env, argv) => {
+    const NODE_ENV = process.env.NODE_ENV || 'development';
+
     const config = {
         context: __dirname + '/frontend',
         entry: {
             quiz: './quiz',
             puzzle: './puzzle',
+            localization: './localization',
         },
         output: {
-            path: path.resolve(__dirname, 'static'),
-            filename: "js/[name].js",
-            sourceMapFilename: "js/[name].map",
+            path: path.resolve(__dirname, 'static', 'js'),
+            filename: "[name].js",
+            sourceMapFilename: "[name].map",
         },
         resolve: {
             extensions: ['.js', '.jsx'],
         },
-        watch: NODE_ENV === 'development',
+        watch: argv.mode === 'development',
         watchOptions: {
             aggregateTimeout: 100
         },
@@ -53,15 +53,18 @@ module.exports = (env) => {
             }]
         },
         optimization: {
-            runtimeChunk: {name: 'common'},
             splitChunks: {
                 cacheGroups: {
-                    default: false,
                     commons: {
-                        test: /\.jsx?$/,
+                        test: /node_modules/,
                         chunks: 'initial',
-                        minChunks: 2,
                         name: 'common',
+                        enforce: true,
+                    },
+                    components: {
+                        test: /components/,
+                        chunks: 'initial',
+                        name: 'components',
                         enforce: true,
                     },
                 },
@@ -69,6 +72,7 @@ module.exports = (env) => {
         },
     };
 
+/*
     if (NODE_ENV === 'production') {
         config.plugins.push(
             new SentryCliPlugin({
@@ -83,6 +87,6 @@ module.exports = (env) => {
             })
         );
     }
+*/
     return config;
-}
-    ;
+};

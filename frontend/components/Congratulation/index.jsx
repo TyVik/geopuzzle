@@ -1,6 +1,5 @@
 'use strict';
 import React from "react";
-import {connect} from "react-redux";
 import {Modal} from 'react-bootstrap';
 import localization from '../../localization';
 
@@ -8,7 +7,7 @@ import localization from '../../localization';
 class Congratulation extends React.Component {
     constructor(props) {
         super(props);
-        this.state = window.__CONGRATULATION__;
+        this.state = {...window.__CONGRATULATION__, show: true};
     }
 
     share_fb = () => {
@@ -25,10 +24,14 @@ class Congratulation extends React.Component {
         window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
     };
 
+    onClose = () => {
+        this.setState({...this.state, show: false});
+    };
+
     render() {
         let text = this.state.text + this.props.result + '.';
         return (
-            <Modal show={this.props.show} onHide={this.props.onClose}
+            <Modal show={this.state.show} onHide={this.onClose}
                    bsSize="large" aria-labelledby="contained-modal-title-lg">
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-lg">{localization.congratulations}</Modal.Title>

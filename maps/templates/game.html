@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static i18n %}
+{% load static i18n jsonify %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
@@ -18,9 +18,10 @@
     {% endif %}
     <script type='text/javascript'>
         window.__LANGUAGE__ = '{{ language }}';
-        window.__MAP__ = {{ game.get_init_params|safe }};
+        window.__MAP__ = {{ game.get_init_params|jsonify }};
         window.__CONGRATULATION__ = {text: '{{ text }}'};
     </script>
     <script src="{% static 'maps/js/google.maps.Polygon.getBounds.js' %}"></script>
     <script type="text/javascript" src={% static "js/common.js" %}></script>
+    <script type="text/javascript" src={% static "js/components.js" %}></script>
 {% endblock %}

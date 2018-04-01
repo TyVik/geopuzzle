@@ -227,7 +227,11 @@ class Game(models.Model):
     def get_init_params(self) -> Dict:
         return {
             'zoom': self.zoom,
-            'center': {'lng': self.center.coords[0], 'lat': self.center.coords[1]}
+            'center': {'lng': self.center.coords[0], 'lat': self.center.coords[1]},
+            'options': {
+                'streetViewControl': False,
+                'mapTypeControl': False
+            }
         }
 
 
