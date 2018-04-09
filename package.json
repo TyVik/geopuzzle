@@ -8,7 +8,7 @@
     "analyze": "./node_modules/.bin/webpack --profile --json --mode production > stats.json && ./node_modules/.bin/webpack-bundle-analyzer stats.json",
     "dev": "./node_modules/.bin/webpack --watch --mode development",
     "build": "./node_modules/.bin/webpack --progress --mode production",
-    "sentry-cli": "./node_modules/.bin/sentry-cli"
+    "release": "./node_modules/.bin/webpack --progress --mode production --env.release"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/TyVik8/geopuzzle#readme",
   "devDependencies": {
-    "@sentry/webpack-plugin": "^1.2.0",
+    "@sentry/webpack-plugin": "^1.5.0",
     "@types/react": "^15.0.0",
     "@types/googlemaps": "^3.0.0",
     "@types/markerclustererplus": "^2.1.29",
@@ -33,6 +33,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-app": "^2.1.1",
     "babel-preset-stage-0": "^6.22.0",
+    "git-revision-webpack-plugin": "^2.5.1",
     "css-loader": "^0.26.2",
     "node-sass": "^4.5.0",
     "postcss-loader": "^1.3.2",
@@ -45,6 +46,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "dependencies": {
+    "@sentry/cli": "^1.30.3",
     "react": "^15.6.2",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^15.6.2",

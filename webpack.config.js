@@ -2,6 +2,8 @@
 const webpack = require('webpack');
 const path = require('path');
 const SentryCliPlugin = require('@sentry/webpack-plugin');
+const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const gitRevisionPlugin = new GitRevisionPlugin();
 
 
 module.exports = (env, argv) => {
@@ -72,21 +74,15 @@ module.exports = (env, argv) => {
         },
     };
 
-/*
-    if (NODE_ENV === 'production') {
+    if (env && env.release) {
         config.plugins.push(
             new SentryCliPlugin({
-                include: './static/js',
-                configFile: 'sentry.properties',
-                ignore: ['node_modules', 'webpack.config.js'],
-            })
-        );
-        config.plugins.push(
-            new BundleAnalyzerPlugin({
-                analyzerMode: 'static'
+                release: gitRevisionPlugin.version(),
+                include: './static/js/',
+                ignore: ['node_modules', 'webpack.config.js']
             })
         );
     }
-*/
+
     return config;
 };
