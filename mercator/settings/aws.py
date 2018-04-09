@@ -27,7 +27,11 @@ LOGGING["loggers"] = {
         'level': 'DEBUG',
         'handlers': ['console'],
         'propagate': False,
-    }
+    },
+    "django.security.DisallowedHost": {
+        "handlers": ["null"],
+        "propagate": False
+    },
 }
 LOGGING['handlers'].update({
     'sentry': {
