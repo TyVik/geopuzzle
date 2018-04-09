@@ -10,9 +10,13 @@ class Polygon extends GooglePolygon {
         return this.state[_constants.POLYGON].getBounds();
     }
 
+    getPaths() {
+        return this.state[_constants.POLYGON].getPaths();
+    }
+
     componentDidMount() {
         google.maps.event.addListener(this.state[_constants.POLYGON], 'dragend', () => {
-            this.props.onDragEnd(this.getBounds(), this.props.options.id);
+            this.props.onDragPolygon(this.props.options.id, this.getBounds(), this.getPaths());
         });
         google.maps.event.addListener(this.state[_constants.POLYGON], 'click', () => {
             this.props.onClick(this.props.options);

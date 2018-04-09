@@ -62,7 +62,7 @@ class Quiz extends Game {
 
     mapClick = (e) => {
         let question = this.state.questions[this.state.question];
-        this.ws.json({type: 'QUIZ_CHECK', coords: {lat: e.latLng.lat(), lng: e.latLng.lng()}, id: question.id});
+        this.wsSend({type: 'QUIZ_CHECK', coords: {lat: e.latLng.lat(), lng: e.latLng.lng()}, id: question.id});
     };
 
     loadQuiz = (options) => {
@@ -80,7 +80,7 @@ class Quiz extends Game {
     };
 
     giveUp = () => {
-        this.ws.json({type: 'QUIZ_GIVEUP', id: this.state.questions[this.state.question].id});
+        this.wsSend({type: 'QUIZ_GIVEUP', id: this.state.questions[this.state.question].id});
     };
 
     onNext = () => {

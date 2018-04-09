@@ -32,7 +32,7 @@ class MapContainer extends React.Component {
                     id: polygon.id,
                 },
                 onClick: this.props.onPolygonClick,
-                onDragEnd: this.props.onDragEnd
+                onDragPolygon: this.props.onDragPolygon
             };
         });
     }

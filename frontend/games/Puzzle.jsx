@@ -91,11 +91,13 @@ class Puzzle extends Game {
 
     giveUp = () => {
         let ids = this.state.regions.filter(obj => (!obj.isSolved)).map(polygon => (polygon.id));
-        return this.ws.json({ids: ids, type: 'PUZZLE_GIVEUP'});
+        return this.wsSend({ids: ids, type: 'PUZZLE_GIVEUP'});
     };
 
-    onDragEnd = (coords, id) => {
-        this.ws.json({type: 'PUZZLE_CHECK', coords: coords, id: id, zoom: window.__MAP__.zoom});
+    onDragPolygon = (id, coords, path) => {
+        this.wsSend({type: 'PUZZLE_CHECK', coords: coords, id: id, zoom: window.__MAP__.zoom});
+        let regions = this.state.regions.map((polygon) => {return (polygon.id === id) ? {...polygon, paths: path} : polygon});
+        this.setState({...this.state, regions: regions});
     };
 
     render_question() {

@@ -4,7 +4,7 @@ import React from "react";
 import {render} from "react-dom";
 import Loading from "../components/Loading/index";
 import localization from "../localization";
-import Sockette from 'sockette';
+import Sockette from '../ws';
 import Congratulation from "../components/Congratulation/index";
 import {prepareInfobox} from "../utils";
 import Toolbox from "../components/Toolbox/index";
@@ -23,12 +23,19 @@ class Game extends React.Component {
         this.ws = null;
     }
 
+    wsSend = (payload) => {
+        if(this.ws && this.ws.isReady() === 1) {
+            this.ws.json(payload);
+        } else {
+            setTimeout(() => {this.wsSend(payload);}, 100);
+        }
+    };
+
     startGame = (params) => {
         let ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
         let addr = ws_scheme + '://' + window.location.host + '/ws/' + this.GAME_NAME + '/';
         this.ws = new Sockette(addr, {
             timeout: 5e3,
-            maxAttempts: 10,
             onopen: e => this.setState({...this.state, wsState: true}),
             onmessage: e => this.dispatchMessage(e),
             onreconnect: e => this.setState({...this.state, wsState: null}),
@@ -114,7 +121,7 @@ class Game extends React.Component {
             {this.render_loaded()}
             <Map initCallback={this.mapInit} mapClick={this.mapClick} mapTypeId={this.state.map.typeId}
                  infobox={this.state.infobox} regions={this.state.regions}
-                 onPolygonClick={this.onPolygonClick} onDragEnd={this.onDragEnd}/>
+                 onPolygonClick={this.onPolygonClick} onDragPolygon={this.onDragPolygon}/>
             {this.render_popup()}
             <div className="game-box">
                 <Toolbox setMapType={this.setMapType} regions={this.state.regions} wsState={this.state.wsState}
