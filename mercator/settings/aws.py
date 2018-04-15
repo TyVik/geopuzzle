@@ -15,16 +15,16 @@ THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 LOGGING["loggers"] = {
     "django": {
         "handlers": ["file"],
-        "level": "ERROR",
+        "level": "INFO",
         "propagate": True
     },
     'raven': {
-        'level': 'DEBUG',
+        'level': 'WARNING',
         'handlers': ['console'],
         'propagate': False,
     },
     'sentry.errors': {
-        'level': 'DEBUG',
+        'level': 'WARNING',
         'handlers': ['console'],
         'propagate': False,
     },
@@ -35,7 +35,7 @@ LOGGING["loggers"] = {
 }
 LOGGING['handlers'].update({
     'sentry': {
-            'level': 'INFO',
+            'level': 'WARNING',
             'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
             'tags': {'custom-tag': 'x'},
         },
