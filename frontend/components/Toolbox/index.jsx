@@ -2,6 +2,7 @@
 /* global google */
 import React from "react";
 import {Panel} from "react-bootstrap";
+import { Scrollbars } from 'react-custom-scrollbars';
 import localization from "../../localization";
 import "./index.css";
 
@@ -57,12 +58,14 @@ class Toolbox extends React.Component {
                                     <img className="map_switcher" src={_static + "/images/map/satellite.png"}
                                          onClick={() => {this.props.setMapType(google.maps.MapTypeId.SATELLITE)}}/>
                                 </div>
-                                <ul className="list-group" style={{maxHeight: this.state.listNameMaxHeight}}>
-                                    {this.props.regions.map(polygon => (
-                                        <NameListItem key={polygon.id} polygon={polygon}
-                                                      click={() => this.props.openInfobox(polygon)}/>
-                                    ))}
-                                </ul>
+                                <Scrollbars autoHide={true} autoHeight={true} autoHeightMax={this.state.listNameMaxHeight}>
+                                    <ul className="list-group">
+                                        {this.props.regions.map(polygon => (
+                                            <NameListItem key={polygon.id} polygon={polygon}
+                                                          click={() => this.props.openInfobox(polygon)}/>
+                                        ))}
+                                    </ul>
+                                </Scrollbars>
                             </Panel.Body>
                         </Panel.Collapse>
                     </Panel>

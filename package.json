@@ -49,6 +49,7 @@
     "@sentry/cli": "^1.30.3",
     "react": "^15.6.2",
     "react-bootstrap": "^0.32.1",
+    "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^15.6.2",
     "react-google-maps": "^7.3.0",
     "react-localization": "^0.1.3"
