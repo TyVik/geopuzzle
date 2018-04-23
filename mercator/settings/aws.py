@@ -2,7 +2,7 @@ from mercator.settings.settings import *
 
 DEBUG = False
 
-MEDIA_ROOT = '../upload'
+MEDIA_ROOT = 'upload'
 MEDIA_URL = '/media/'
 
 MIDDLEWARE = ('django.middleware.cache.UpdateCacheMiddleware', *MIDDLEWARE,
@@ -70,6 +70,6 @@ AWS_S3_USE_SSL = True
 
 AWS_REGION = 'eu-west-1'
 AWS_STORAGE_BUCKET_NAME = 'geo-puzzle'
-STATIC_URL = 'https://{}/static/'.format(CLOUDFRONT_DOMAIN)
+STATIC_URL = 'https://{}/static-{}/'.format(CLOUDFRONT_DOMAIN, GIT_REVISION)
 
 THUMBNAIL_DUMMY_SOURCE = '{}images/world/default_%(width)s.png'.format(STATIC_URL)
