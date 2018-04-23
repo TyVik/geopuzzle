@@ -60,7 +60,7 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
-CLOUDFRONT_DOMAIN = 'd3mrnwpzw0hkkh.cloudfront.net'
+CLOUDFRONT_DOMAIN = 'd2nepmml5nn7q0.cloudfront.net'
 DEFAULT_FILE_STORAGE = 'mercator.storages.CloudFrontStorage'
 THUMBNAIL_STORAGE = DEFAULT_FILE_STORAGE
 
