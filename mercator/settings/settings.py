@@ -177,8 +177,8 @@ LOCALE_PATHS = (
 )
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = ['static']
-STATIC_ROOT = 'static'
+STATICFILES_DIRS = ['static']
+# STATIC_ROOT = 'static'
 
 MEDIA_URL = '/upload/'
 MEDIA_ROOT = 'upload'
