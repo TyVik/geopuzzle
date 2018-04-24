@@ -29,7 +29,6 @@ class Migration(migrations.Migration):
                 ('zoom', models.PositiveSmallIntegerField(choices=[(3, 'world'), (4, 'large country'), (5, 'big country'), (6, 'country'), (7, 'small country'), (8, 'little country'), (9, 'region')])),
                 ('is_published', models.BooleanField(default=False)),
                 ('is_global', models.BooleanField(default=False)),
-                ('regions', models.ManyToManyField(to='maps.Region')),
             ],
             options={
                 'verbose_name_plural': 'Puzzles',
@@ -39,6 +38,19 @@ class Migration(migrations.Migration):
                 ('objects', django.db.models.manager.Manager()),
                 ('_plain_manager', django.db.models.manager.Manager()),
             ],
+        ),
+        migrations.CreateModel(
+            name='PuzzleRegion',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('puzzle', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='puzzle.Puzzle')),
+                ('region', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='maps.Region')),
+            ],
+        ),
+        migrations.AddField(
+            model_name='puzzle',
+            name='regions',
+            field=models.ManyToManyField(through='puzzle.PuzzleRegion', to='maps.Region'),
         ),
         migrations.CreateModel(
             name='PuzzleTranslation',

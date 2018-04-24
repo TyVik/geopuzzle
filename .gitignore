@@ -9,4 +9,4 @@ reload
 .env
 geopuzzle.sql.zip
 cache.zip
-sentry.properties
+.sentryclirc

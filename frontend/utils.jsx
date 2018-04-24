@@ -1,0 +1,67 @@
+import localization from "./localization";
+
+function moveTo(paths, from, to) {
+    let newPoints =[];
+    let newPaths = [];
+
+    for (let p = 0; p < paths.length; p++) {
+        let path = paths[p];
+        newPoints.push([]);
+
+        for (let i = 0; i < path.length; i++) {
+            newPoints[newPoints.length-1].push({
+                heading: google.maps.geometry.spherical.computeHeading(from, path[i]),
+                distance: google.maps.geometry.spherical.computeDistanceBetween(from, path[i])
+            });
+        }
+    }
+
+    for (let j = 0, jl = newPoints.length; j < jl; j++) {
+        let shapeCoords = [],
+            relativePoint = newPoints[j];
+        for (let k = 0, kl = relativePoint.length; k < kl; k++) {
+            shapeCoords.push(google.maps.geometry.spherical.computeOffset(
+                to,
+                relativePoint[k].distance,
+                relativePoint[k].heading
+            ));
+        }
+        newPaths.push(shapeCoords);
+    }
+    return newPaths;
+}
+
+
+function decodePolygon(polygon) {
+    return polygon.map(polygon => (google.maps.geometry.encoding.decodePath(polygon)));
+}
+
+const prepareInfobox = (json) => {
+    if (json.area) {
+        json.area = Number(json.area).toLocaleString() + ' ' + localization.km2;
+    }
+    if (json.population) {
+        json.population = Number(json.population).toLocaleString()
+    }
+    if (json.capital) {
+        json.capital.marker = {
+            key: json.capital.name,
+            defaultAnimation: 2,
+            position: {
+                lat: json.capital.lat,
+                lng: json.capital.lon,
+            }
+        }
+    }
+    return json;
+};
+
+function shuffle(a) {
+    for (let i = a.length; i; i--) {
+        let j = Math.floor(Math.random() * i);
+        [a[i - 1], a[j]] = [a[j], a[i - 1]];
+    }
+    return a;
+}
+
+export {moveTo, decodePolygon, prepareInfobox, shuffle};

@@ -29,7 +29,7 @@ def quiz(request: WSGIRequest, name: str) -> HttpResponse:
         'language': request.LANGUAGE_CODE,
         'game': quiz,
         'name': trans.name,
-        'text': _('{name} has been studied! You guessed all {subjects}. You time is ').format(
+        'text': _('{name} has been solved! You guessed all {subjects}. You time is ').format(
             name=trans.name if quiz.id != 1 else _('World map'),
             subjects=_('countries') if quiz.is_global else _('regions'))
     }

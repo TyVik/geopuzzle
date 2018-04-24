@@ -42,7 +42,7 @@ class RegionManager(models.Manager):
 class Region(CacheablePropertyMixin, models.Model):
     title = models.CharField(max_length=128)
     polygon = MultiPolygonField(geography=True)
-    parent = models.ForeignKey('Region', null=True, blank=True)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
     modified = models.DateTimeField(auto_now=True)
     wikidata_id = ExternalIdField(max_length=20, link='https://www.wikidata.org/wiki/{id}', null=True)
     osm_id = models.PositiveIntegerField(unique=True)
@@ -194,8 +194,8 @@ class Region(CacheablePropertyMixin, models.Model):
 class RegionTranslation(models.Model):
     name = models.CharField(max_length=120)
     infobox = JSONField(default={})
-    language_code = models.CharField(max_length=15, db_index=True)
-    master = models.ForeignKey(Region, related_name='translations', editable=False)
+    language_code = models.CharField(max_length=15, choices=settings.LANGUAGES, db_index=True)
+    master = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='translations', editable=False)
 
     class Meta:
         unique_together = ('language_code', 'master')
@@ -238,14 +238,18 @@ class Game(models.Model):
     def get_init_params(self) -> Dict:
         return {
             'zoom': self.zoom,
-            'center': {'lng': self.center.coords[0], 'lat': self.center.coords[1]}
+            'center': {'lng': self.center.coords[0], 'lat': self.center.coords[1]},
+            'options': {
+                'streetViewControl': False,
+                'mapTypeControl': False
+            }
         }
 
 
 class GameTranslation(models.Model):
     name = models.CharField(max_length=15)
-    language_code = models.CharField(max_length=15, db_index=True)
-    master = models.ForeignKey(Game, related_name='translations', editable=False)
+    language_code = models.CharField(max_length=15, choices=settings.LANGUAGES, db_index=True)
+    master = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='translations', editable=False)
 
     class Meta:
         unique_together = ('language_code', 'master')

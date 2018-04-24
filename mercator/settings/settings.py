@@ -15,15 +15,16 @@ import os
 # Build paths inside the maps like this: os.path.join(BASE_DIR, ...)
 import raven
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LOG_DIR = os.path.join(BASE_DIR, '../logs')
-GEOJSON_DIR = os.path.join(BASE_DIR, '../geojson')
+BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '..')
+LOG_DIR = os.path.join(BASE_DIR, 'logs')
+GEOJSON_DIR = os.path.join(BASE_DIR, 'geojson')
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 OSM_KEY = os.environ.get('OSM_KEY')
 OSM_URL = 'https://wambachers-osm.website/boundaries/exportBoundaries?apiversion=1.0&apikey={key}&exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}'
 
 DEBUG = True
+GIT_REVISION = raven.fetch_git_sha(BASE_DIR)[:8]
 
 ALLOWED_HOSTS = ('www.geopuzzle.org', 'geopuzzle.org', '52.213.89.12', '127.0.0.1')
 INTERNAL_IPS = ('0.0.0.0', '127.0.0.1')
@@ -75,7 +76,7 @@ LOGOUT_REDIRECT_URL = 'index'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -177,12 +178,12 @@ LANGUAGES = (
     ('ru', 'Russian'),
 )
 LOCALE_PATHS = (
-    os.path.join(BASE_DIR, '../locale'),
+    os.path.join(BASE_DIR, 'locale'),
 )
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ['static']
-STATIC_ROOT = 'mercator/static'
+# STATIC_ROOT = 'static'
 
 MEDIA_URL = '/upload/'
 MEDIA_ROOT = 'upload'
@@ -190,6 +191,8 @@ MEDIA_ROOT = 'upload'
 THUMBNAIL_DUMMY = True
 THUMBNAIL_DUMMY_SOURCE = '/static/images/world/default_%(width)s.png'
 THUMBNAIL_DUMMY_RATIO = 1
+THUMBNAIL_REDIS_HOST = REDIS_HOST
+THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 
 JSON_EDITOR_JS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.js'
 JSON_EDITOR_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.css'
@@ -198,6 +201,7 @@ GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
 
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_DB = 2
+SESSION_REDIS_HOST = REDIS_HOST
 
 CHANNEL_LAYERS = {
     'default': {
@@ -211,7 +215,7 @@ CHANNEL_LAYERS = {
 
 RAVEN_CONFIG = {
     'dsn': os.environ.get('RAVEN_DSN'),
-    'release': raven.fetch_git_sha(os.path.join(BASE_DIR, '..')),
+    'release': GIT_REVISION,
 }
 
 AUTHENTICATION_BACKENDS = (

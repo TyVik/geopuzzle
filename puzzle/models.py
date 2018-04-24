@@ -8,11 +8,12 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
 
-from maps.models import Game, GameTranslation
+from maps.models import Game, GameTranslation, Region
 
 
 class Puzzle(Game):
     default_positions = MultiPointField(geography=True)
+    regions = models.ManyToManyField(Region, through='PuzzleRegion')
 
     class Meta:
         verbose_name = 'Puzzle'
@@ -32,8 +33,14 @@ class Puzzle(Game):
         return self.__default_positions.pop().coords
 
 
+class PuzzleRegion(models.Model):
+    puzzle = models.ForeignKey(Puzzle, on_delete=models.CASCADE)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE)
+    is_solved = models.BooleanField(default=False)
+
+
 class PuzzleTranslation(GameTranslation):
-    master = models.ForeignKey(Puzzle, related_name='translations', editable=False)
+    master = models.ForeignKey(Puzzle, on_delete=models.CASCADE, related_name='translations', editable=False)
 
     class Meta:
         unique_together = ('language_code', 'master')

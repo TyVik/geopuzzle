@@ -2,36 +2,36 @@ from mercator.settings.settings import *
 
 DEBUG = False
 
-MEDIA_ROOT = '../upload'
+MEDIA_ROOT = 'upload'
 MEDIA_URL = '/media/'
 
 MIDDLEWARE = ('django.middleware.cache.UpdateCacheMiddleware', *MIDDLEWARE,
               'django.middleware.cache.FetchFromCacheMiddleware')
 
-SESSION_REDIS_HOST = REDIS_HOST
-THUMBNAIL_REDIS_HOST = REDIS_HOST
-THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
-
 LOGGING["loggers"] = {
     "django": {
         "handlers": ["file"],
-        "level": "ERROR",
+        "level": "INFO",
         "propagate": True
     },
     'raven': {
-        'level': 'DEBUG',
+        'level': 'WARNING',
         'handlers': ['console'],
         'propagate': False,
     },
     'sentry.errors': {
-        'level': 'DEBUG',
+        'level': 'WARNING',
         'handlers': ['console'],
         'propagate': False,
-    }
+    },
+    "django.security.DisallowedHost": {
+        "handlers": ["null"],
+        "propagate": False
+    },
 }
 LOGGING['handlers'].update({
     'sentry': {
-            'level': 'INFO',
+            'level': 'WARNING',
             'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
             'tags': {'custom-tag': 'x'},
         },
@@ -56,7 +56,7 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
-CLOUDFRONT_DOMAIN = 'd3mrnwpzw0hkkh.cloudfront.net'
+CLOUDFRONT_DOMAIN = 'd2nepmml5nn7q0.cloudfront.net'
 DEFAULT_FILE_STORAGE = 'mercator.storages.CloudFrontStorage'
 THUMBNAIL_STORAGE = DEFAULT_FILE_STORAGE
 
@@ -66,6 +66,6 @@ AWS_S3_USE_SSL = True
 
 AWS_REGION = 'eu-west-1'
 AWS_STORAGE_BUCKET_NAME = 'geo-puzzle'
-STATIC_URL = 'https://{}/static/'.format(CLOUDFRONT_DOMAIN)
+STATIC_URL = 'https://{}/static-{}/'.format(CLOUDFRONT_DOMAIN, GIT_REVISION)
 
 THUMBNAIL_DUMMY_SOURCE = '{}images/world/default_%(width)s.png'.format(STATIC_URL)

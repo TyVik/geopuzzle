@@ -1,4 +1,9 @@
+from typing import Dict
+
 from django import forms
+from django.utils.translation import get_language
+
+from maps.forms import RegionForm
 
 
 class RegionContainsForm(forms.Form):
@@ -22,3 +27,20 @@ class RegionContainsForm(forms.Form):
         if not (data['north'] < points[3] and data['south'] > points[1] and
                         data['east'] < points[2] and data['west'] > points[0]):
             raise forms.ValidationError('Point not in polygons')
+
+
+class PuzzleForm(RegionForm):
+    def json(self) -> Dict:
+        qs = self.regions.filter(id__in=self.game.puzzleregion_set.filter(is_solved=False).
+                                 values_list('region_id', flat=True))
+        questions = [{
+            'id': region.id,
+            'name': region.translation.name,
+            'polygon': region.polygon_strip,
+            'center': region.polygon_center,
+            'default_position': self.game.pop_position()}
+            for region in qs]
+        qs = self.regions.filter(id__in=self.game.puzzleregion_set.filter(is_solved=True).
+                                 values_list('region_id', flat=True))
+        solved = [region.full_info(get_language()) for region in qs]
+        return {'questions': questions, 'solved': solved}
