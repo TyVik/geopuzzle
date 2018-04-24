@@ -8,10 +8,6 @@ MEDIA_URL = '/media/'
 MIDDLEWARE = ('django.middleware.cache.UpdateCacheMiddleware', *MIDDLEWARE,
               'django.middleware.cache.FetchFromCacheMiddleware')
 
-SESSION_REDIS_HOST = REDIS_HOST
-THUMBNAIL_REDIS_HOST = REDIS_HOST
-THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
-
 LOGGING["loggers"] = {
     "django": {
         "handlers": ["file"],

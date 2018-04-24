@@ -186,6 +186,8 @@ MEDIA_ROOT = 'upload'
 THUMBNAIL_DUMMY = True
 THUMBNAIL_DUMMY_SOURCE = '/static/images/world/default_%(width)s.png'
 THUMBNAIL_DUMMY_RATIO = 1
+THUMBNAIL_REDIS_HOST = REDIS_HOST
+THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 
 JSON_EDITOR_JS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.js'
 JSON_EDITOR_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.css'
@@ -194,6 +196,7 @@ GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
 
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_DB = 2
+SESSION_REDIS_HOST = REDIS_HOST
 
 CHANNEL_LAYERS = {
     'default': {
