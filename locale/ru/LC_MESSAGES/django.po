@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-25 20:27+0000\n"
+"POT-Creation-Date: 2018-04-26 18:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -115,11 +115,11 @@ msgstr ""
 "Либерии отличаются только количеством звёзд? Так вот, эти и другие "
 "интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
 
-#: puzzle/views.py:31
+#: puzzle/views.py:34
 msgid "{} was assembled! You time is "
 msgstr "{} собрана! Ваше время "
 
-#: puzzle/views.py:31 quiz/views.py:33
+#: puzzle/views.py:34 quiz/views.py:33
 msgid "World map"
 msgstr "Карта мира"
 
@@ -140,15 +140,15 @@ msgstr "регионы"
 msgid "Mercator puzzle of "
 msgstr "Паззл Меркатора - "
 
-#: templates/base.html:5 templates/index.html:44
+#: templates/base.html:5 templates/index.html:37
 msgid "World"
 msgstr "Мир"
 
-#: templates/base.html:6 templates/index.html:13 templates/share_image.html:7
+#: templates/base.html:6 templates/index.html:6 templates/share_image.html:7
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
 
-#: templates/index.html:15
+#: templates/index.html:8
 msgid ""
 "\"It turns out that the tallest people live in Rwanda,\" one day they told "
 "you. And then you shyly thought about what Rwanda is and with what it's "
@@ -158,7 +158,7 @@ msgstr ""
 "сказали вам. И тут вы стыдливо подумали о том, что такое Руанда и с чем её "
 "едят, но ничего так и не пришло в голову… Тогда вы зашли на нужную страницу!"
 
-#: templates/index.html:18
+#: templates/index.html:11
 msgid ""
 "In the game form, you can remember not only the location and name of the "
 "country, but also its flag, coat of arms and the capital. Under your hand "
@@ -172,19 +172,19 @@ msgstr ""
 "сработает быстрее и вспомнит, например, и о том, что Руанда — одна из самых "
 "маленьких стран Африки. :)"
 
-#: templates/index.html:51
+#: templates/index.html:44
 msgid "easy countries"
 msgstr "лёгкие страны"
 
-#: templates/index.html:58
+#: templates/index.html:51
 msgid "all countries"
 msgstr "все страны"
 
-#: templates/index.html:74
+#: templates/index.html:67
 msgid "Country regions"
 msgstr "Регионы стран"
 
-#: templates/index.html:98
+#: templates/index.html:91
 msgid ""
 "This is my pet project, but I was so impressed with this idea that I decided "
 "to make a\n"
@@ -205,7 +205,7 @@ msgstr ""
 "\"https://vk.com/tyvik\" target=\"_blank\">Vk</a> или в <a href=\"https://"
 "www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
 
-#: templates/index.html:104
+#: templates/index.html:97
 msgid ""
 "You always can support the project with donations via <a href=\"https://www."
 "paypal.me/tyvik\">PayPal</a> or\n"
@@ -221,13 +221,17 @@ msgstr ""
 msgid "Games on political maps"
 msgstr "Игры на политической карте"
 
-#: users/forms.py:9 users/forms.py:15
+#: users/forms.py:10 users/forms.py:16
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: users/forms.py:11 users/forms.py:18
+#: users/forms.py:12 users/forms.py:19
 msgid "Password"
 msgstr "Пароль"
+
+#: users/models.py:10
+msgid "Language"
+msgstr "Язык интерфейса"
 
 #: users/templates/registration/login.html:15
 #: users/templates/registration/login.html:45
@@ -248,3 +252,15 @@ msgstr "или"
 #: users/templates/registration/login.html:46
 msgid "Forgot password?"
 msgstr "Забыли пароль?"
+
+#: users/templates/user/profile.html:19
+msgid "Profile"
+msgstr "Профиль"
+
+#: users/templates/user/profile.html:20
+msgid "My puzzles"
+msgstr "Мои Паззлы"
+
+#: users/templates/user/profile.html:24
+msgid "Public profile"
+msgstr "Публичный профиль"
