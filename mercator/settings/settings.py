@@ -91,9 +91,7 @@ TEMPLATES = [
     },
 ]
 
-SETTINGS_EXPORT = [
-    'RAVEN_CONFIG'
-]
+SETTINGS_EXPORT = ['RAVEN_CONFIG', 'STATIC_URL']
 
 WSGI_APPLICATION = 'mercator.wsgi.application'
 

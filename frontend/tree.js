@@ -2,9 +2,6 @@ import React from "react";
 import {render} from "react-dom";
 import Map from './components/Map';
 import Tree from "./components/Tree";
-import configureStore from "./store";
-import {Provider} from "react-redux";
-import {PUZZLE_GIVEUP} from "./actions";
 
 
 class RegionTree extends React.Component {
@@ -38,11 +35,4 @@ class RegionTree extends React.Component {
 }
 
 
-let store = configureStore();
-
-render(
-    <Provider store={store}>
-        <RegionTree />
-    </Provider>,
-    document.getElementById('tree')
-);
+render(<RegionTree />, document.getElementById('tree'));

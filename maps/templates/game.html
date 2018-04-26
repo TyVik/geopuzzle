@@ -17,6 +17,7 @@
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language=en&key={{ google_key }}"></script>
     {% endif %}
     <script type='text/javascript'>
+        window.__STATIC_URL__ = '{{ settings.STATIC_URL }}';
         window.__LANGUAGE__ = '{{ language }}';
         window.__MAP__ = {{ game.get_init_params|jsonify }};
         window.__CONGRATULATION__ = {text: '{{ text }}'};
