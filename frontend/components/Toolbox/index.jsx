@@ -35,7 +35,7 @@ class Toolbox extends React.Component {
     };
 
     render() {
-        let _static = 'https://geo-puzzle.s3.amazonaws.com/static';
+        let img = window.__STATIC_URL__;
         let solved = this.props.regions.filter(obj => (obj.isSolved)).length;
         return <div className="toolbox_wrapper">
             <div className="toolbox">
@@ -51,11 +51,11 @@ class Toolbox extends React.Component {
                         <Panel.Collapse>
                             <Panel.Body>
                                 <div className="map_switcher_wrapper">
-                                    <img className="map_switcher" src={_static + "/images/map/terrain.png"}
+                                    <img className="map_switcher" src={img + "images/map/terrain.png"}
                                          onClick={() => {this.props.setMapType(google.maps.MapTypeId.TERRAIN)}}/>
-                                    <img className="map_switcher" src={_static + "/images/map/hybrid.png"}
+                                    <img className="map_switcher" src={img + "images/map/hybrid.png"}
                                          onClick={() => {this.props.setMapType(google.maps.MapTypeId.HYBRID)}}/>
-                                    <img className="map_switcher" src={_static + "/images/map/satellite.png"}
+                                    <img className="map_switcher" src={img + "images/map/satellite.png"}
                                          onClick={() => {this.props.setMapType(google.maps.MapTypeId.SATELLITE)}}/>
                                 </div>
                                 <Scrollbars autoHide={true} autoHeight={true} autoHeightMax={this.state.listNameMaxHeight}>
