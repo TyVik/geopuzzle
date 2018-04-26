@@ -1,3 +1,4 @@
+from awesome_avatar.forms import AvatarField
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm as DefaultAuthenticationForm, UsernameField
 from django.forms import ModelForm
@@ -38,7 +39,14 @@ class RegistrationForm(forms.Form):
         return User.objects.create_user(**self.cleaned_data)
 
 
+class CustomAvatarField(AvatarField):
+    def run_validators(self, value):
+        pass
+
+
 class ProfileForm(ModelForm):
+    image = CustomAvatarField()
+
     class Meta:
         model = User
         fields = ('email', 'image', 'language')
