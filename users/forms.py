@@ -1,5 +1,6 @@
 from awesome_avatar.forms import AvatarField
 from django import forms
+from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm as DefaultAuthenticationForm, UsernameField
 from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
@@ -35,7 +36,9 @@ class RegistrationForm(forms.Form):
             raise forms.ValidationError("This email is already has been used")
         return email
 
-    def save(self):
+    def save(self, language):
+        if language in [x[0] for x in settings.LANGUAGES]:
+            self.cleaned_data['language'] = language
         return User.objects.create_user(**self.cleaned_data)
 
 

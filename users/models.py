@@ -7,5 +7,5 @@ from users.fields import CustomAvatarField as AvatarField
 
 
 class User(AbstractUser):
-    image = AvatarField(upload_to='avatars', width=100, height=100, null=True)
-    language = models.CharField(_('Language'), max_length=2, choices=settings.LANGUAGES, null=True)
+    image = AvatarField(_('Avatar'), upload_to='avatars', width=100, height=100, null=True)
+    language = models.CharField(_('Language'), max_length=2, choices=settings.LANGUAGES, default='en')

@@ -19,7 +19,7 @@ class RegistrationView(FormView):
     success_url = '/accounts/profile/'
 
     def form_valid(self, form):
-        user = form.save()
+        user = form.save(language=self.request.LANGUAGE_CODE)
         auth_login(self.request, user, 'django.contrib.auth.backends.ModelBackend')
         return HttpResponseRedirect(self.get_success_url())
 
