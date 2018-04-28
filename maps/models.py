@@ -12,6 +12,7 @@ from django.contrib.gis.db.models import PointField
 from django.contrib.postgres.fields import JSONField
 from django.core.cache import cache
 from django.db import models
+from django.db.models import Exists, Count, OuterRef
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import get_language
@@ -139,6 +140,11 @@ class Region(CacheablePropertyMixin, models.Model):
 
     def full_info(self, lang: str) -> Dict:
         return {'infobox': self.polygon_infobox[lang], 'polygon': self.polygon_gmap, 'id': self.id}
+
+    def items(self, lang: str) -> List[Dict]:
+        child_query = Region.objects.filter(parent_id=OuterRef('pk'))
+        return [{'id': str(x.id), 'name': x.title, 'items_exists': x.items_exists} for x in
+                self.region_set.annotate(items_exists=Exists(child_query)).all()]
 
     def update_polygon(self) -> None:
         def content():

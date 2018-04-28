@@ -6,7 +6,7 @@ import Node from "./Node";
 class Tree extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {checked: props.checked, onChange: props.onChange};
+        this.state = {checked: props.checked, onChange: props.onChange, loadItems: props.loadItems};
     }
 
     render() {

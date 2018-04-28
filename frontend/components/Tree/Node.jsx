@@ -10,9 +10,9 @@ class Node extends React.Component {
         this.state = {...props}
     }
 
-    toggleCollapse(){
+    toggleCollapse = () => {
         this.setState({...this.state, toggled: !this.state.toggled});
-    }
+    };
 
     componentWillReceiveProps(nextProps) {
         let toggled = nextProps.toggled;
@@ -22,17 +22,26 @@ class Node extends React.Component {
         this.setState({...this.state, toggled: toggled});
     }
 
+    renderToggle() {
+        if (this.props.items === undefined) {
+            return <span className={"glyphicon glyphicon-" + (this.state.toggled ? 'minus' : 'plus')}
+                         onClick={() => this.props.loadItems(this.props.id)} />;
+        } else {
+            return <span className={"glyphicon glyphicon-" + (this.state.toggled ? 'minus' : 'plus')}
+                         onClick={this.toggleCollapse} />;
+        }
+    }
+
     render() {
         return <li>
             <CheckBox {...this.state} onChange={this.props.onChange} value={this.props.id}
                       checked={this.props.checked.has(this.state.id)} />
-            {this.props.items &&
-                <span className={"glyphicon glyphicon-" + (this.state.toggled ? 'minus' : 'plus')}
-                      onClick={() => this.toggleCollapse()}>
-                </span>}
+            {this.props.items_exists &&
+                this.renderToggle()}
             <span>{this.props.name}</span>
             {this.props.items && this.state.toggled &&
-                <Tree items={this.props.items} checked={this.props.checked} onChange={this.props.onChange}/>}
+                <Tree items={this.props.items} checked={this.props.checked}
+                      onChange={this.props.onChange} loadItems={this.props.loadItems}/>}
         </li>;
     }
 }

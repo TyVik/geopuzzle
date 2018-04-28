@@ -7,6 +7,7 @@
 
 {% block extra_css %}
     {{ block.super }}
+    <link rel="stylesheet" href="{% static 'maps/css/edit.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -17,13 +18,16 @@
     {% endif %}
 
     <div class="container">
-        <div id="tree"></div>
+        <div id="tree" class="gmap-game-edit"></div>
     </div>
     <script>
+      __MAP__ = {{ object.get_init_params|jsonify }};
       __LANGUAGE__ = '{{ language }}';
       __REGIONS__ = JSON.parse('{{ regions|jsonify }}');
       __CHECKED__ = JSON.parse('{{ checked|jsonify }}');
     </script>
+    <script type="text/javascript" src={% static "js/common.js" %}></script>
+    <script type="text/javascript" src={% static "js/components.js" %}></script>
     <script type="text/javascript" src={% static "js/tree.js" %}></script>
 {% endblock %}
 

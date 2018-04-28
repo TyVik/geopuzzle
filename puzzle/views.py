@@ -48,6 +48,6 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
 
     def get_context_data(self, **kwargs):
         result = super(PuzzleEditView, self).get_context_data(**kwargs)
-        result['checked'] = list(map(str, self.object.regions.values_list('id', flat=True)))
-        result['regions'] = [region.tree for region in Region.objects.filter(parent_id=6993).all()]
+        result['checked'] = [{'id': region.id, 'paths': region.polygon_gmap} for region in self.object.regions.all()]
+        result['regions'] = Region.objects.get(pk=6993).items('en')
         return result
