@@ -48,7 +48,7 @@ class CustomAvatarField(AvatarField):
 
 
 class ProfileForm(ModelForm):
-    image = CustomAvatarField()
+    image = CustomAvatarField(label=_('Avatar'))
 
     class Meta:
         model = User

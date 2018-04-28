@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-26 18:32+0000\n"
+"POT-Creation-Date: 2018-04-27 15:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -221,15 +221,19 @@ msgstr ""
 msgid "Games on political maps"
 msgstr "Игры на политической карте"
 
-#: users/forms.py:10 users/forms.py:16
+#: users/forms.py:11 users/forms.py:17
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: users/forms.py:12 users/forms.py:19
+#: users/forms.py:13 users/forms.py:20
 msgid "Password"
 msgstr "Пароль"
 
-#: users/models.py:10
+#: users/forms.py:48 users/models.py:10
+msgid "Avatar"
+msgstr "Аватарка"
+
+#: users/models.py:11
 msgid "Language"
 msgstr "Язык интерфейса"
 
@@ -249,10 +253,6 @@ msgstr "Зарегистрироваться"
 msgid "or"
 msgstr "или"
 
-#: users/templates/registration/login.html:46
-msgid "Forgot password?"
-msgstr "Забыли пароль?"
-
 #: users/templates/user/profile.html:19
 msgid "Profile"
 msgstr "Профиль"
@@ -264,3 +264,14 @@ msgstr "Мои Паззлы"
 #: users/templates/user/profile.html:24
 msgid "Public profile"
 msgstr "Публичный профиль"
+
+#: users/templates/user/profile.html:45
+msgid "Save"
+msgstr "Сохранить"
+
+#: users/templates/user/profile.html:49
+msgid "Coming soon..."
+msgstr "Скоро всё будет..."
+
+#~ msgid "Forgot password?"
+#~ msgstr "Забыли пароль?"
