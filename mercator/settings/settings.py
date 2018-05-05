@@ -3,21 +3,25 @@ import raven
 
 from django.utils.translation import ugettext_lazy as _
 
+DEBUG = True
+
 BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '..')
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
 GEOJSON_DIR = os.path.join(BASE_DIR, 'geojson')
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
+GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
 OSM_KEY = os.environ.get('OSM_KEY')
 OSM_URL = 'https://wambachers-osm.website/boundaries/exportBoundaries?apiversion=1.0&apikey={key}&exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}'
 
-DEBUG = True
-GIT_REVISION = raven.fetch_git_sha(BASE_DIR)[:8]
+ALLOWED_HOSTS = ('127.0.0.1',)
+INTERNAL_IPS = ALLOWED_HOSTS
 
-ALLOWED_HOSTS = ('www.geopuzzle.org', 'geopuzzle.org', '52.213.89.12', '127.0.0.1')
-INTERNAL_IPS = ('0.0.0.0', '127.0.0.1')
+WSGI_APPLICATION = 'mercator.wsgi.application'
+ROOT_URLCONF = 'mercator.urls'
+SETTINGS_EXPORT = ['RAVEN_CONFIG', 'STATIC_URL']
 
-
+# region BASE
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,6 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -54,34 +59,24 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-if DEBUG:
-    MIDDLEWARE.append('common.middleware.CORSMiddleware')
+# if DEBUG:
+#     MIDDLEWARE.append('common.middleware.CORSMiddleware')
 
-ROOT_URLCONF = 'mercator.urls'
-AUTH_USER_MODEL = 'users.User'
-LOGOUT_REDIRECT_URL = 'index'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'django_settings_export.settings_export',
-            ],
-            'debug': DEBUG
-        },
+TEMPLATES = [{
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': [os.path.join(BASE_DIR, 'templates')],
+    'APP_DIRS': True,
+    'OPTIONS': {
+        'context_processors': [
+            'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.contrib.messages.context_processors.messages',
+            'django_settings_export.settings_export',
+        ],
+        'debug': DEBUG
     },
-]
-
-SETTINGS_EXPORT = ['RAVEN_CONFIG', 'STATIC_URL']
-
-WSGI_APPLICATION = 'mercator.wsgi.application'
+}]
 
 DATABASES = {
     'default': {
@@ -94,7 +89,9 @@ DATABASES = {
         'ATOMIC_REQUESTS': True,
     }
 }
+# endregion
 
+# region CACHES & SESSIONS & WEB-SOCKETS
 REDIS_HOST = os.environ.get('REDIS_HOST')
 
 CACHES = {
@@ -112,79 +109,6 @@ CACHES = {
 CACHE_MIDDLEWARE_SECONDS = 36000
 CACHE_MIDDLEWARE_KEY_PREFIX = 'site'
 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": True,
-    "formatters": {
-        "simple": {
-            "format": "%(levelname)s %(message)s"
-        },
-        "verbose": {
-            "format": "%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s"
-        }
-    },
-    "handlers": {
-        "file": {
-            "class": "logging.handlers.RotatingFileHandler",
-            'filename': os.path.join(LOG_DIR, 'django.errors'),
-            "formatter": "verbose",
-            "level": "DEBUG",
-            "maxBytes": 10485760
-        },
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-        "null": {
-            "class": "logging.NullHandler",
-            "level": "DEBUG"
-        },
-    },
-    'loggers': {
-        'django.db.backends': {
-            'level': 'DEBUG',
-            'handlers': [],
-        },
-        "django.security.DisallowedHost": {
-            "handlers": ["null"],
-            "propagate": False
-        },
-    }
-}
-
-AUTH_PASSWORD_VALIDATORS = []
-
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
-
-LANGUAGES = (
-    ('en', _('English')),
-    ('ru', _('Russian')),
-)
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'),
-)
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = ['static']
-# STATIC_ROOT = 'static'
-
-MEDIA_URL = '/upload/'
-MEDIA_ROOT = 'upload'
-
-THUMBNAIL_DUMMY = True
-THUMBNAIL_DUMMY_SOURCE = '/static/images/world/default_%(width)s.png'
-THUMBNAIL_DUMMY_RATIO = 1
-THUMBNAIL_REDIS_HOST = REDIS_HOST
-THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
-
-JSON_EDITOR_JS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.js'
-JSON_EDITOR_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.css'
-
-GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
-
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_DB = 2
 SESSION_REDIS_HOST = REDIS_HOST
@@ -198,12 +122,98 @@ CHANNEL_LAYERS = {
         'ROUTING': 'mercator.routing.channels',
     }
 }
+# endregion
 
+# region LOGGING
+GIT_REVISION = raven.fetch_git_sha(BASE_DIR)[:8]
 RAVEN_CONFIG = {
     'dsn': os.environ.get('RAVEN_DSN'),
     'release': GIT_REVISION,
 }
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": "%(levelname)s %(message)s"
+        },
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s"
+        }
+    },
+    "handlers": {
+        "file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            'filename': os.path.join(LOG_DIR, 'django.errors'),
+            "formatter": "verbose",
+            "level": "INFO",
+            "maxBytes": 10485760,
+            'backupCount': 10,
+        },
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        "null": {
+            "class": "logging.NullHandler",
+        },
+        'sentry': {
+            'level': 'WARNING',
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+            'tags': {'custom-tag': 'x'},
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': [],
+        },
+        'django.request': {
+            'level': 'ERROR'  # only because noisy 404
+        },
+        "django.security.DisallowedHost": {
+            "handlers": [],
+            "propagate": False
+        },
+    }
+}
+# endregion
 
+# region LOCALIZATION
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('ru', _('Russian')),
+)
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+# endregion
+
+# region STATIC & MEDIA
+STATIC_URL = '/static/'
+STATICFILES_DIRS = ['static']
+
+MEDIA_URL = '/upload/'
+MEDIA_ROOT = 'upload'
+
+THUMBNAIL_DUMMY = True
+THUMBNAIL_DUMMY_SOURCE = '/static/images/world/default_%(width)s.png'
+THUMBNAIL_DUMMY_RATIO = 1
+THUMBNAIL_REDIS_HOST = REDIS_HOST
+THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
+
+JSON_EDITOR_JS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.js'
+JSON_EDITOR_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.css'
+# endregion
+
+# region USER & SOCIAL AUTH
+AUTH_USER_MODEL = 'users.User'
+LOGOUT_REDIRECT_URL = 'index'
+AUTH_PASSWORD_VALIDATORS = []
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
     'social_core.backends.vk.VKOAuth2',
@@ -232,7 +242,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'users.pipeline.user_details'
 )
-
 AWESOME_AVATAR = {
     'select_area_width': 250,
 }
+# endregion
