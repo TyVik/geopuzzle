@@ -1,3 +1,5 @@
+from typing import List, Dict, Optional
+
 from django.conf import settings
 from django.utils.translation import ugettext as _
 
@@ -47,7 +49,48 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
     template_name = 'puzzle/edit.html'
 
     def get_context_data(self, **kwargs):
+        def build_tree(tree, regions) -> List[Dict]:
+            id_in_tree = set()
+
+            def attach_node(tree: List[Dict], region: Region) -> List[Dict]:
+                def find(tree: List[Dict], id: str) -> Optional[Dict]:
+                    for el in tree:
+                        if el['id'] == id:
+                            return el
+                        elif 'items' in el:
+                            children = find(el['items'], id)
+                            if children is not None:
+                                return children
+                    return None
+
+                def insert(items, d):
+                    index = next((i for i, item in enumerate(items) if item['id'] == d['id']), -1)
+                    items[index] = d
+                    return items
+
+                id = region.id if region.parent is None else region.parent_id
+                root = find(tree, str(id))
+                id_in_tree.add(region.id)
+                d = region.json
+                d['toggled'] = region not in regions
+                if region.parent is None:
+                    tree = insert(tree, d)
+                else:
+                    root['items'] = insert(root['items'], d)
+                return tree
+
+            def handle_node(tree: List[Dict], region: Region) -> List[Dict]:
+                if region.id not in id_in_tree:
+                    if (region.parent_id not in id_in_tree) and (region.parent_id is not None):
+                        tree = handle_node(tree, region.parent)
+                    tree = attach_node(tree, region)
+                return tree
+
+            for region in regions:
+                tree = handle_node(tree, region)
+            return tree
+
         result = super(PuzzleEditView, self).get_context_data(**kwargs)
         result['checked'] = [{'id': region.id, 'paths': region.polygon_gmap} for region in self.object.regions.all()]
-        result['regions'] = Region.objects.get(pk=6993).items('en')
+        result['regions'] = build_tree(Region.all_countries(), self.object.regions.all())
         return result

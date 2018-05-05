@@ -141,6 +141,18 @@ class Region(CacheablePropertyMixin, models.Model):
     def full_info(self, lang: str) -> Dict:
         return {'infobox': self.polygon_infobox[lang], 'polygon': self.polygon_gmap, 'id': self.id}
 
+    @property
+    def json(self):
+        result = {'id': str(self.id), 'name': self.title, 'items': self.items('en')}
+        result['items_exists'] = len(result['items']) > 0
+        return result
+
+    @classmethod
+    def all_countries(cls):
+        child_query = Region.objects.filter(parent_id=OuterRef('pk'))
+        return [{'id': str(x.id), 'name': x.title, 'items_exists': x.items_exists} for x in
+                cls.objects.filter(parent__isnull=True).order_by('title').annotate(items_exists=Exists(child_query)).all()]
+
     def items(self, lang: str) -> List[Dict]:
         child_query = Region.objects.filter(parent_id=OuterRef('pk'))
         return [{'id': str(x.id), 'name': x.title, 'items_exists': x.items_exists} for x in
