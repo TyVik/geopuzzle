@@ -217,19 +217,23 @@ AUTH_PASSWORD_VALIDATORS = []
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
     'social_core.backends.vk.VKOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 SOCIAL_AUTH_USER_MODEL = 'users.User'
 SOCIAL_AUTH_SANITIZE_REDIRECTS = True
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '800277227889-g5173earcca4k7spc50k9n0t31o3fhek.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SOCIAL_GOOGLE_SECRET')
 SOCIAL_AUTH_FACEBOOK_KEY = '1273749826026102'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'efefa2af573184781afa661cd77123e5'
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('SOCIAL_FACEBOOK_SECRET')
 SOCIAL_AUTH_VK_OAUTH2_KEY = '5849697'
-SOCIAL_AUTH_VK_OAUTH2_SECRET = 'dSSizPmPFgsrw4XO6BVu'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = os.environ.get('SOCIAL_VK_SECRET')
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-  'fields': 'id, name, email, first_name, last_name, gender, locale, picture'
+  'fields': 'id, name, email, first_name, last_name, locale, picture'
 }
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'public_profile']
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+SOCIAL_AUTH_VK_OAUTH2_EXTRA_DATA = []  # https://vk.com/dev/users.get
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
     'social_core.pipeline.social_auth.social_uid',

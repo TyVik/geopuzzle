@@ -7,6 +7,6 @@ urlpatterns = [
     url(r'^profile/puzzle/$', ProfileView.as_view(), name='puzzle_edit'),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^registration/$', RegistrationView.as_view(), name='registration'),
-    url(r'social', include('social_django.urls', namespace='social')),
+    url(r'^social/', include('social_django.urls', namespace='social')),
     url(r'', include('django.contrib.auth.urls')),
 ]
