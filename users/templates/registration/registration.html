@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_site.html' %}
 {% load static i18n %}
 
 {% block extra_css %}
@@ -13,6 +13,21 @@
         <div class="row">
             <div class="main">
                 <h3><a href="{% url "login" %}">{% trans "Log In" %}</a> / {% trans "Sign Up" %}</h3>
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <a href="{% url "social:begin" "facebook" %}" class="btn btn-lg btn-facebook btn-block">FB</a>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <a href="{% url "social:begin" "vk-oauth2" %}" class="btn btn-lg btn-vk btn-block">VK</a>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <a href="{% url "social:begin" "google-oauth2" %}" class="btn btn-lg btn-google btn-block">Google</a>
+                    </div>
+                </div>
+                <div class="login-or">
+                    <hr class="hr-or">
+                    <span class="span-or">{% trans "or" %}</span>
+                </div>
                 <form role="form" method="post" action="{% url 'registration' %}">
                     {% csrf_token %}
                     <div class="form-group">
