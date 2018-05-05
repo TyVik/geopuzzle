@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.db import connection
 from django.http import HttpResponsePermanentRedirect, JsonResponse
 from django.urls import reverse
 from django.utils.translation import ugettext as _
@@ -5,6 +7,7 @@ from django.utils.translation import ugettext as _
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
+from redis import StrictRedis
 
 from maps.models import Region
 from puzzle.models import Puzzle
@@ -50,3 +53,20 @@ def region_tree(request, id):
     # data = [region.tree for region in Region.objects.filter(parent_id=id).all()]
     data = [{'id': '1', 'name': 'Uganda', 'items': [{'id': '2', 'name': 'Uganda 1'}, {'id': '3', 'name': 'Uganda 2'}]}]
     return JsonResponse(data, safe=False)
+
+
+def status(request):
+    def check_redis():
+        StrictRedis.from_url(settings.REDIS_HOST).ping()
+
+    def check_database():
+        connection.cursor()
+
+    result = {}
+    for service in ('redis', 'database'):
+        try:
+            locals()[f'check_{service}']()
+            result[service] = 'success'
+        except Exception as e:
+            return JsonResponse({service: 'fail', 'message': e}, status=503)
+    return JsonResponse(result)
