@@ -1,3 +1,21 @@
-.gmap-game-edit > div {
+#tree .glyphicon {
+    font-size: 10px;
+    vertical-align: baseline;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.tree-visualization {
+    flex-basis: 300px;
+}
+
+.map-visualization {
+    flex-grow: 3;
     height: 500px;
+}
+
+.map-visualization p {
+    text-align: center;
 }
