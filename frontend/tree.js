@@ -15,7 +15,7 @@ class RegionTree extends React.Component {
             polygon.draggable = false;
             return polygon;
         });
-        this.state = {regions: polygons, items: window.__REGIONS__,
+        this.state = {regions: polygons, items: window.__REGIONS__, fields: window.__FIELDS__,
             checked: new Set(window.__CHECKED__.reduce(
                 (acc, item) => {
                     acc.push(item.id);
@@ -76,11 +76,28 @@ class RegionTree extends React.Component {
 
 
     render() {
-        return <div>
-            <Tree {...this.state} onChange={this.onChange} loadItems={this.loadItems}/>
-            <Map regions={this.state.regions} mapTypeId="terrain"/>
-            <p>Position and zoom will be saved as default for that game.</p>
-        </div>;
+        return <form method="post" onSubmit={this.handleSubmit}>
+            <div className="flex-container">
+                <Tree {...this.state} onChange={this.onChange} loadItems={this.loadItems}
+                      className="tree-visualization" checkboxName="regions"/>
+                <div className="map-visualization">
+                    <div className="form-group">
+                        <label htmlFor="id_publish">Publish:</label>
+                        <input type="checkbox" name="is_published" className="form-control" id="id_publish"
+                               defaultChecked={this.state.fields.is_published} />
+                    </div>
+                    <Map regions={this.state.regions} mapTypeId="terrain" initCallback={this.saveMapRef} />
+                    <p>Position and zoom will be saved as default for that game.</p>
+                    {this.state.fields.translations.map((item) =>
+                        <div className="form-group" key={item.code}>
+                            <label htmlFor={`id_${item.code}_name`}>{item.language} Name:</label>
+                            <input type="text" name={`${item.code}_name`} className="form-control" maxLength="15"
+                                   id={`id_${item.code}_name`} defaultValue={item.title}/>
+                        </div>)}
+                    <button className="btn btn-primary" type="submit">Save</button>
+                </div>
+            </div>
+        </form>;
     }
 }
 

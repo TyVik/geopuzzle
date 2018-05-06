@@ -25,6 +25,7 @@
       __LANGUAGE__ = '{{ language }}';
       __REGIONS__ = JSON.parse('{{ regions|jsonify }}');
       __CHECKED__ = JSON.parse('{{ checked|jsonify }}');
+      __FIELDS__ = JSON.parse('{{ fields|jsonify }}');
     </script>
     <script type="text/javascript" src={% static "js/common.js" %}></script>
     <script type="text/javascript" src={% static "js/components.js" %}></script>

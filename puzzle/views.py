@@ -88,4 +88,10 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
         result['checked'] = [{'id': region.id, 'paths': region.polygon_gmap} for region in self.object.regions.all()]
         tree = [x.json for x in Region.objects.filter(parent__isnull=True).all()]
         result['regions'] = build_tree(tree, set([int(x['id']) for x in tree]), self.object.regions.all())
+        result['fields'] = {
+            'is_published': self.object.is_published,
+            'translations': [{'code': translation.language_code, 'title': translation.name,
+                              'language': next(pair for pair in settings.LANGUAGES if pair[0] == translation.language_code)[1]}
+                             for translation in self.object.translations.all()],
+        }
         return result
