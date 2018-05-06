@@ -6,11 +6,12 @@ import Node from "./Node";
 class Tree extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {checked: props.checked, onChange: props.onChange, loadItems: props.loadItems};
+        this.state = {checked: props.checked, onChange: props.onChange, loadItems: props.loadItems,
+            checkboxName: props.checkboxName};
     }
 
     render() {
-        return <ul style={{'listStyle': 'none'}}>
+        return <ul style={{'listStyle': 'none'}} className={this.props.className}>
             {Object.keys(this.props.items).map((x) =>
                 <Node key={this.props.items[x].id} {...this.state} {...this.props.items[x]} />)}
         </ul>;

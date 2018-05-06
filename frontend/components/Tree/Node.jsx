@@ -34,13 +34,13 @@ class Node extends React.Component {
 
     render() {
         return <li>
-            <CheckBox {...this.state} onChange={this.props.onChange} value={this.props.id}
-                      checked={this.props.checked.has(this.state.id)} />
+            <CheckBox {...this.state} onChange={this.props.onChange} checked={this.props.checked.has(this.state.id)}
+                      value={this.props.id} name={this.props.checkboxName} />
             {this.props.items_exists &&
                 this.renderToggle()}
             <span>{this.props.name}</span>
             {this.props.items && this.state.toggled &&
-                <Tree items={this.props.items} checked={this.props.checked}
+                <Tree items={this.props.items} checked={this.props.checked} checkboxName={this.props.checkboxName}
                       onChange={this.props.onChange} loadItems={this.props.loadItems}/>}
         </li>;
     }
