@@ -1,6 +1,9 @@
+import base64
 from typing import List, Dict, Optional
 
 from django.conf import settings
+from django.core.files.base import ContentFile
+from django.forms import ModelForm
 from django.utils.translation import ugettext as _
 
 from django.core.handlers.wsgi import WSGIRequest
@@ -12,7 +15,7 @@ from django.views.generic.edit import BaseUpdateView
 
 from puzzle.forms import PuzzleForm
 from maps.models import Region
-from puzzle.models import Puzzle
+from puzzle.models import Puzzle, PuzzleRegion, PuzzleTranslation
 
 
 @never_cache  # for HTTP headers
@@ -38,15 +41,37 @@ def puzzle(request: WSGIRequest, name: str) -> HttpResponse:
     return render(request, 'puzzle/map.html', context=context)
 
 
+class PuzzleEditForm(ModelForm):
+    class Meta:
+        model = Puzzle
+        fields = ('regions', 'image', 'center', 'zoom', 'is_published')
+
+    def clean_image(self):
+        format, imgstr = self.data.get('image').split(';base64,')
+        ext = format.split('/')[-1]
+        return ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
+
+    def _save_m2m(self):
+        PuzzleRegion.objects.filter(puzzle=self.instance).delete()
+        PuzzleRegion.objects.bulk_create([
+            PuzzleRegion(puzzle=self.instance, region=region)
+            for region in self.cleaned_data['regions']])
+
+        for lang in settings.ALLOWED_LANGUAGES:
+            PuzzleTranslation.objects.update_or_create(
+                master=self.instance, language_code=lang,
+                defaults={'name': self.data.get(f'{lang}_name', '')})
+
+
 class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
     model = Puzzle
-    fields = ['slug']
     queryset = None
     slug_field = 'slug'
     context_object_name = None
     slug_url_kwarg = 'name'
     query_pk_and_slug = False
     template_name = 'puzzle/edit.html'
+    form_class = PuzzleEditForm
 
     def get_context_data(self, **kwargs):
         def build_tree(tree, id_in_tree, regions) -> List[Dict]:

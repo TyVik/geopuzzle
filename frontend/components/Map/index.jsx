@@ -7,7 +7,7 @@ class MapContainer extends React.Component {
     handleMapLoad = (map) => {
         this._mapComponent = map;
         if (map && this.props.initCallback) {
-            this.props.initCallback();
+            this.props.initCallback(map);
         }
     };
 

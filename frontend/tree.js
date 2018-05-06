@@ -1,8 +1,10 @@
 import React from "react";
 import {render} from "react-dom";
+import Cookies from 'js-cookie';
 import Map from './components/Map';
 import Tree from "./components/Tree";
 import {decodePolygon} from "./utils";
+import html2canvas from 'html2canvas';
 
 
 class RegionTree extends React.Component {
@@ -74,6 +76,27 @@ class RegionTree extends React.Component {
         });
     };
 
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(this.map);
+        let data = new FormData(event.target);
+        let center = this.map.getCenter();
+        data.set('center', `SRID=4326;POINT(${center.lng()} ${center.lat()})`);
+        data.set('zoom', this.map.getZoom());
+        let headers = new Headers();
+        headers.append('X-CSRFTOKEN', Cookies.get('csrftoken'));
+        html2canvas(document.querySelector("#map > div > div > div"), {logging: false, useCORS: true})
+            .then(canvas => {
+                data.set('image', canvas.toDataURL());
+            })
+            .then(() => {
+                fetch(window.location.href, {method: 'POST', body: data, headers: headers, credentials: 'same-origin'});
+            });
+    };
+
+    saveMapRef = (map) => {
+        this.map = map;
+    };
 
     render() {
         return <form method="post" onSubmit={this.handleSubmit}>
