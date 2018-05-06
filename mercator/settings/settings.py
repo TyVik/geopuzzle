@@ -188,6 +188,7 @@ LANGUAGES = (
     ('en', _('English')),
     ('ru', _('Russian')),
 )
+ALLOWED_LANGUAGES = tuple([x for x, _ in LANGUAGES])
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )

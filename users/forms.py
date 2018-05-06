@@ -37,7 +37,7 @@ class RegistrationForm(forms.Form):
         return email
 
     def save(self, language):
-        if language in [x[0] for x in settings.LANGUAGES]:
+        if language in settings.ALLOWED_LANGUAGES:
             self.cleaned_data['language'] = language
         return User.objects.create_user(**self.cleaned_data)
 
