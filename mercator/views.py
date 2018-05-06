@@ -48,13 +48,6 @@ def deprecated_redirect(request: WSGIRequest, name: str) -> HttpResponsePermanen
     return HttpResponsePermanentRedirect(reverse('puzzle_map', kwargs={'name': name}))
 
 
-def region_tree(request, id):
-    # data = [{'text': self.title, 'checkable': False, 'state': {'checked': True, 'expanded': True}, 'dataAttr': {'id': 5}, 'nodes': []}]
-    # data = [region.tree for region in Region.objects.filter(parent_id=id).all()]
-    data = [{'id': '1', 'name': 'Uganda', 'items': [{'id': '2', 'name': 'Uganda 1'}, {'id': '3', 'name': 'Uganda 2'}]}]
-    return JsonResponse(data, safe=False)
-
-
 def status(request):
     def check_redis():
         StrictRedis.from_url(settings.REDIS_HOST).ping()
