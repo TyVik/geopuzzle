@@ -2,6 +2,7 @@ import base64
 from typing import List, Dict, Optional
 
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from django.core.files.base import ContentFile
 from django.forms import ModelForm
 from django.utils.translation import ugettext as _
@@ -72,6 +73,12 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
     query_pk_and_slug = False
     template_name = 'puzzle/edit.html'
     form_class = PuzzleEditForm
+
+    def get_object(self, queryset=None):
+        obj = super(PuzzleEditView, self).get_object(queryset)
+        if obj.user != self.request.user:
+            raise PermissionDenied
+        return obj
 
     def get_context_data(self, **kwargs):
         def build_tree(tree, id_in_tree, regions) -> List[Dict]:
