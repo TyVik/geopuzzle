@@ -49,8 +49,7 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
     template_name = 'puzzle/edit.html'
 
     def get_context_data(self, **kwargs):
-        def build_tree(tree, regions) -> List[Dict]:
-            id_in_tree = set()
+        def build_tree(tree, id_in_tree, regions) -> List[Dict]:
 
             def attach_node(tree: List[Dict], region: Region) -> List[Dict]:
                 def find(tree: List[Dict], id: str) -> Optional[Dict]:
@@ -68,15 +67,10 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
                     items[index] = d
                     return items
 
-                id = region.id if region.parent is None else region.parent_id
-                root = find(tree, str(id))
+                root = find(tree, str(region.parent_id))
                 id_in_tree.add(region.id)
-                d = region.json
-                d['toggled'] = region not in regions
-                if region.parent is None:
-                    tree = insert(tree, d)
-                else:
-                    root['items'] = insert(root['items'], d)
+                root['toggled'] = True
+                root['items'] = insert(root['items'], region.json)
                 return tree
 
             def handle_node(tree: List[Dict], region: Region) -> List[Dict]:
@@ -92,5 +86,6 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
 
         result = super(PuzzleEditView, self).get_context_data(**kwargs)
         result['checked'] = [{'id': region.id, 'paths': region.polygon_gmap} for region in self.object.regions.all()]
-        result['regions'] = build_tree(Region.all_countries(), self.object.regions.all())
+        tree = [x.json for x in Region.objects.filter(parent__isnull=True).all()]
+        result['regions'] = build_tree(tree, set([int(x['id']) for x in tree]), self.object.regions.all())
         return result
