@@ -1,24 +1,17 @@
 import React from "react";
 import {render} from "react-dom";
-import Cookies from 'js-cookie';
 import Map from './components/Map';
 import Tree from "./components/Tree";
-import {decodePolygon} from "./utils";
+import {decodePolygon, CSRFfetch} from "./utils";
 import html2canvas from 'html2canvas';
 
 
-class RegionTree extends React.Component {
+class Editor extends React.Component {
     constructor(props) {
         super(props);
-        let polygons = window.__CHECKED__.map((polygon) => {
-            polygon.id = polygon.id.toString();
-            polygon.paths = decodePolygon(polygon.paths);
-            polygon.isSolved = true;
-            polygon.draggable = false;
-            return polygon;
-        });
+        let polygons = window.__CHECKED__.map((polygon) => Editor.convertRegion(polygon));
         this.state = {regions: polygons, items: window.__REGIONS__, fields: window.__FIELDS__,
-            checked: new Set(window.__CHECKED__.reduce(
+            checked: new Set(polygons.reduce(
                 (acc, item) => {
                     acc.push(item.id);
                     return acc;
@@ -46,7 +39,7 @@ class RegionTree extends React.Component {
                 response.json().then(obj => {
                     checked.add(value);
                     let regions = this.state.regions;
-                    regions.push(RegionTree.convertRegion(obj));
+                    regions.push(Editor.convertRegion(obj));
                     this.setState({...this.state, checked: checked, regions: regions});
                 });
             });
@@ -60,7 +53,7 @@ class RegionTree extends React.Component {
                 region.toggled = true;
             }
             if (region.items && region.items.length > 0) {
-                region.items = RegionTree.attachItems(region.items, id, items);
+                region.items = Editor.attachItems(region.items, id, items);
             }
             return region;
         });
@@ -70,7 +63,7 @@ class RegionTree extends React.Component {
     loadItems = (id) => {
         fetch(`/regions/${id}/items/`).then(response => {
             response.json().then(items => {
-                let regions = RegionTree.attachItems(this.state.items, id, items);
+                let regions = Editor.attachItems(this.state.items, id, items);
                 this.setState({...this.state, items: regions});
             });
         });
@@ -78,20 +71,13 @@ class RegionTree extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.map);
-        let data = new FormData(event.target);
         let center = this.map.getCenter();
+        let data = new FormData(event.target);
         data.set('center', `SRID=4326;POINT(${center.lng()} ${center.lat()})`);
         data.set('zoom', this.map.getZoom());
-        let headers = new Headers();
-        headers.append('X-CSRFTOKEN', Cookies.get('csrftoken'));
         html2canvas(document.querySelector("#map > div > div > div"), {logging: false, useCORS: true})
-            .then(canvas => {
-                data.set('image', canvas.toDataURL());
-            })
-            .then(() => {
-                fetch(window.location.href, {method: 'POST', body: data, headers: headers, credentials: 'same-origin'});
-            });
+            .then(canvas => {data.set('image', canvas.toDataURL())})
+            .then(() => {CSRFfetch(window.location.href, {method: 'POST', body: data})});
     };
 
     saveMapRef = (map) => {
@@ -125,4 +111,4 @@ class RegionTree extends React.Component {
 }
 
 
-render(<RegionTree />, document.getElementById('tree'));
+render(<Editor />, document.getElementById('editor'));

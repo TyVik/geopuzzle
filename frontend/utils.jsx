@@ -1,3 +1,7 @@
+'use strict';
+import 'whatwg-fetch';
+import Cookies from 'js-cookie';
+
 import localization from "./localization";
 
 function moveTo(paths, from, to) {
@@ -64,4 +68,12 @@ function shuffle(a) {
     return a;
 }
 
-export {moveTo, decodePolygon, prepareInfobox, shuffle};
+
+const CSRFfetch = (url, options) => {
+    let headers = options.headers || new Headers();
+    headers.append('X-CSRFTOKEN', Cookies.get('csrftoken'));
+    return fetch(url, {...options, headers: headers, credentials: 'same-origin'});
+};
+
+
+export {moveTo, decodePolygon, prepareInfobox, shuffle, CSRFfetch};

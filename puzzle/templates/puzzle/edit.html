@@ -18,7 +18,7 @@
     {% endif %}
 
     <div class="container">
-        <div id="tree" class="gmap-game-edit"></div>
+        <div id="editor" class="gmap-game-edit"></div>
     </div>
     <script>
       __MAP__ = {{ object.get_init_params|jsonify }};
@@ -29,7 +29,7 @@
     </script>
     <script type="text/javascript" src={% static "js/common.js" %}></script>
     <script type="text/javascript" src={% static "js/components.js" %}></script>
-    <script type="text/javascript" src={% static "js/tree.js" %}></script>
+    <script type="text/javascript" src={% static "js/editor.js" %}></script>
 {% endblock %}
 
 {% block extra_js %}

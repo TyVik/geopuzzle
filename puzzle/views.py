@@ -117,7 +117,7 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
             return tree
 
         result = super(PuzzleEditView, self).get_context_data(**kwargs)
-        result['checked'] = [{'id': region.id, 'paths': region.polygon_gmap} for region in self.object.regions.all()]
+        result['checked'] = [region.full_info(self.request.user.language) for region in self.object.regions.all()]
         tree = [x.json for x in Region.objects.filter(parent__isnull=True).all()]
         result['regions'] = build_tree(tree, set([int(x['id']) for x in tree]), self.object.regions.all())
         result['fields'] = {
