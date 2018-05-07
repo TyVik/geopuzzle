@@ -1,0 +1,170 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: geopuzzle\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-25 20:27+0000\n"
+"PO-Revision-Date: 2018-05-07 06:51-0400\n"
+"Last-Translator: tyvik <tyvik8@gmail.com>\n"
+"Language-Team: Turkish\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: geopuzzle\n"
+"X-Crowdin-Language: tr\n"
+"X-Crowdin-File: /develop/locale/ru/LC_MESSAGES/django.po\n"
+
+#: maps/admin.py:28
+msgid "Infoboxes were updated."
+msgstr ""
+
+#: maps/admin.py:29
+msgid "Update infoboxes"
+msgstr ""
+
+#: maps/admin.py:35
+msgid "Polygons were updated."
+msgstr ""
+
+#: maps/admin.py:36
+msgid "Update polygons"
+msgstr ""
+
+#: maps/admin.py:84
+msgid "Infobox"
+msgstr ""
+
+#: maps/admin.py:90
+msgid "Infobox was updated successfully."
+msgstr ""
+
+#: maps/admin.py:97
+msgid "Polygon was imported successfully."
+msgstr ""
+
+#: maps/apps.py:6
+msgid "maps"
+msgstr ""
+
+#: maps/templates/admin/maps/country/change_form.html:10
+#: maps/templates/admin/maps/region/change_form.html:10
+msgid "History"
+msgstr ""
+
+#: maps/templates/admin/maps/country/change_form.html:13
+msgid "Import KML"
+msgstr ""
+
+#: maps/templates/admin/maps/country/change_form.html:15
+#: maps/templates/admin/maps/region/change_form.html:16
+msgid "View on site"
+msgstr ""
+
+#: maps/templates/admin/maps/country/map_kml_import.html:14
+#: maps/templates/admin/maps/region/map_kml_import.html:14
+msgid "Please correct the error below."
+msgstr ""
+
+#: maps/templates/admin/maps/country/map_kml_import.html:15
+#: maps/templates/admin/maps/region/map_kml_import.html:15
+msgid "Please correct the errors below."
+msgstr ""
+
+#: maps/templates/admin/maps/region/change_form.html:13
+msgid "Update Infobox"
+msgstr ""
+
+#: maps/templates/admin/maps/region/change_form.html:14
+#| msgid "Import KML"
+msgid "Import from OSM"
+msgstr ""
+
+#: mercator/views.py:24
+msgid "puzzle"
+msgstr ""
+
+#: mercator/views.py:25
+msgid "In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!"
+msgstr ""
+
+#: mercator/views.py:33
+msgid "quiz"
+msgstr ""
+
+#: mercator/views.py:34
+msgid "In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!"
+msgstr ""
+
+#: puzzle/views.py:31
+msgid "{} was assembled! You time is "
+msgstr ""
+
+#: puzzle/views.py:31 quiz/views.py:33
+msgid "World map"
+msgstr ""
+
+#: quiz/views.py:32
+#, python-brace-format
+msgid "{name} has been solved! You guessed all {subjects}. You time is "
+msgstr ""
+
+#: quiz/views.py:34
+msgid "countries"
+msgstr ""
+
+#: quiz/views.py:34
+msgid "regions"
+msgstr ""
+
+#: templates/base.html:5
+msgid "Mercator puzzle of "
+msgstr ""
+
+#: templates/base.html:5 templates/index.html:44
+msgid "World"
+msgstr ""
+
+#: templates/base.html:6 templates/index.html:13 templates/share_image.html:7
+msgid "Arrange the pieces of the world!"
+msgstr ""
+
+#: templates/index.html:15
+msgid "\"It turns out that the tallest people live in Rwanda,\" one day they told you. And then you shyly thought about what Rwanda is and with what it's eaten, but nothing came to your mind ... Then you went to the right page!"
+msgstr ""
+
+#: templates/index.html:18
+msgid "In the game form, you can remember not only the location and name of the country, but also its flag, coat of arms and the capital. Under your hand all the states of the world - study them, move them and compare them. And then your brain will work another time faster and remember, for example, that Rwanda is one of the smallest countries in Africa. ;)"
+msgstr ""
+
+#: templates/index.html:51
+msgid "easy countries"
+msgstr ""
+
+#: templates/index.html:58
+msgid "all countries"
+msgstr ""
+
+#: templates/index.html:74
+msgid "Country regions"
+msgstr ""
+
+#: templates/index.html:98
+msgid "This is my pet project, but I was so impressed with this idea that I decided to make a\n"
+"                    website. It is not over yet -\n"
+"                    will update both the data and functionality. All suggestions for improvement can be sent to me via\n"
+"                    <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">email</a>,\n"
+"                    <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
+"                    or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
+msgstr ""
+
+#: templates/index.html:104
+msgid "You always can support the project with donations via <a href=\"https://www.paypal.me/tyvik\">PayPal</a> or\n"
+"                    <a href=\"http://yasobe.ru/na/geopuzzle\">Yandex money</a>."
+msgstr ""
+
+#: templates/share_image.html:8
+msgid "Games on political maps"
+msgstr ""
+
