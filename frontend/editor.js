@@ -72,9 +72,12 @@ class Editor extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         let center = this.map.getCenter();
+        let bounds = this.map.getBounds();
         let data = new FormData(event.target);
         data.set('center', `SRID=4326;POINT(${center.lng()} ${center.lat()})`);
         data.set('zoom', this.map.getZoom());
+        data.set('bounds', [bounds.getNorthEast().lat(), bounds.getNorthEast().lng(),
+                            bounds.getSouthWest().lat(), bounds.getSouthWest().lng()].join(','));
         html2canvas(document.querySelector("#map > div > div > div"), {logging: false, useCORS: true})
             .then(canvas => {data.set('image', canvas.toDataURL())})
             .then(() => {CSRFfetch(window.location.href, {method: 'POST', body: data})});
