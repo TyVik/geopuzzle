@@ -24,21 +24,20 @@ class RegistrationForm(forms.Form):
         model = User
         fields = ('username', 'email', 'password')
 
-    def clean_username(self):
+    def clean_username(self) -> str:
         username = self.cleaned_data['username'].lower()
         if User.objects.filter(username=username).exists():
             raise forms.ValidationError("This username is already has been used")
         return username
 
-    def clean_email(self):
+    def clean_email(self) -> str:
         email = self.cleaned_data['email'].lower()
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("This email is already has been used")
         return email
 
-    def save(self, language):
-        if language in settings.ALLOWED_LANGUAGES:
-            self.cleaned_data['language'] = language
+    def save(self, language: str) -> User:
+        self.cleaned_data['language'] = language if language in settings.ALLOWED_LANGUAGES else 'en'
         return User.objects.create_user(**self.cleaned_data)
 
 

@@ -1,6 +1,6 @@
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.views import LoginView as DefaultLoginView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import FormView
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import BaseUpdateView
@@ -18,7 +18,7 @@ class RegistrationView(FormView):
     template_name = 'registration/registration.html'
     success_url = '/accounts/profile/'
 
-    def form_valid(self, form):
+    def form_valid(self, form: RegistrationForm) -> HttpResponse:
         user = form.save(language=self.request.LANGUAGE_CODE)
         auth_login(self.request, user, 'django.contrib.auth.backends.ModelBackend')
         return HttpResponseRedirect(self.get_success_url())
