@@ -95,7 +95,9 @@ class Editor extends React.Component {
                         <input type="checkbox" name="is_published" className="form-control" id="id_publish"
                                defaultChecked={this.state.fields.is_published} />
                     </div>
-                    <Map regions={this.state.regions} mapTypeId="terrain" initCallback={this.saveMapRef} />
+                    <div className="square-container">
+                        <Map regions={this.state.regions} mapTypeId="terrain" initCallback={this.saveMapRef}/>
+                    </div>
                     <p>Position and zoom will be saved as default for that game.</p>
                     {this.state.fields.translations.map((item) =>
                         <div className="form-group" key={item.code}>

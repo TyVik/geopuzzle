@@ -19,3 +19,22 @@
 .map-visualization p {
     text-align: center;
 }
+
+.square-container {
+	position: relative;
+	width: 100%;
+}
+
+.square-container:before{
+	content: "";
+	display: block;
+	padding-top: 100%;
+}
+
+#map {
+	position:  absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
