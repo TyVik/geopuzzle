@@ -8,6 +8,7 @@ from django.contrib.gis.geos import Point, MultiPoint
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.core.files.base import ContentFile
 from django.forms import ModelForm, Field
+from django.urls import reverse
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext as _
 
@@ -115,6 +116,10 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
             if obj.user != self.request.user:
                 raise PermissionDenied
         return obj
+
+    def form_valid(self, form):
+        self.object = form.save()
+        return JsonResponse({'url': f"{reverse('profile')}#puzzle"})
 
     def get_context_data(self, **kwargs):
         def build_tree(tree, id_in_tree, regions) -> List[Dict]:
