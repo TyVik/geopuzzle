@@ -54,6 +54,7 @@
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^15.5.4",
     "react-google-maps": "^7.3.0",
-    "react-localization": "^0.1.3"
+    "react-localization": "^0.1.3",
+    "react-toggle": "^4.0.2"
   }
 }

@@ -1,14 +1,21 @@
-#tree .glyphicon {
+.tree-visualization .glyphicon {
     font-size: 10px;
     vertical-align: baseline;
+	padding: 0 2px;
+	top: -2px;
 }
 
 .flex-container {
     display: flex;
 }
 
+.panel-default {
+	margin: 0 5px 20px;
+}
+
 .tree-visualization {
     flex-basis: 300px;
+	padding-left: 0;
 }
 
 .map-visualization {
@@ -18,6 +25,10 @@
 
 .map-visualization p {
     text-align: center;
+	font-size: 18px;
+    margin: 5px;
+    color: #d9534f;
+	font-style: italic;
 }
 
 .square-container {
@@ -37,4 +48,13 @@
 	left: 0;
 	bottom: 0;
 	right: 0;
+}
+
+button.btn {
+	float: right;
+}
+
+.progress {
+    display: inline-block;
+    width: 80%;
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import {render} from "react-dom";
+import Toggle from 'react-toggle';
 import Map from './components/Map';
 import Tree from "./components/Tree";
 import {decodePolygon, CSRFfetch} from "./utils";
@@ -10,12 +11,13 @@ class Editor extends React.Component {
     constructor(props) {
         super(props);
         let polygons = window.__CHECKED__.map((polygon) => Editor.convertRegion(polygon));
-        this.state = {regions: polygons, items: window.__REGIONS__, fields: window.__FIELDS__,
-            checked: new Set(polygons.reduce(
-                (acc, item) => {
-                    acc.push(item.id);
-                    return acc;
-                }, []))}
+        this.state = {
+            regions: polygons,
+            items: window.__REGIONS__,
+            fields: window.__FIELDS__,
+            checked: new Set(polygons.reduce((acc, item) => {acc.push(item.id); return acc;}, [])),
+            progress: null,
+        }
     }
 
     static convertRegion(obj) {
@@ -74,40 +76,94 @@ class Editor extends React.Component {
         let center = this.map.getCenter();
         let bounds = this.map.getBounds();
         let data = new FormData(event.target);
+        this.setState({...this.state, progress: 20});
         data.set('center', `SRID=4326;POINT(${center.lng()} ${center.lat()})`);
         data.set('zoom', this.map.getZoom());
         data.set('bounds', [bounds.getNorthEast().lat(), bounds.getNorthEast().lng(),
                             bounds.getSouthWest().lat(), bounds.getSouthWest().lng()].join(','));
+        this.setState({...this.state, progress: 30});
         html2canvas(document.querySelector("#map > div > div > div"), {logging: false, useCORS: true})
-            .then(canvas => {data.set('image', canvas.toDataURL())})
-            .then(() => {CSRFfetch(window.location.href, {method: 'POST', body: data})});
+            .then(canvas => {
+                this.setState({...this.state, progress: 60});
+                data.set('image', canvas.toDataURL())
+            })
+            .then(() => {
+                this.setState({...this.state, progress: 80});
+                CSRFfetch(window.location.href, {method: 'POST', body: data})
+                    .then(response => {
+                        this.setState({...this.state, progress: 100});
+                        response.json().then(json => {
+                            window.location.href = json.url;
+                        });
+                    });
+            });
     };
 
     saveMapRef = (map) => {
         this.map = map;
     };
 
+    togglePublish = () => {
+        let fields = this.state.fields;
+        fields.is_published = !fields.is_published;
+        this.setState({...this.state, fields: fields});
+    };
+
+    renderLocales() {
+        return <div className="panel panel-default">
+            <div className="panel-heading">Localization:</div>
+            <div className="panel-body form-horizontal">
+                {this.state.fields.translations.map((item) =>
+                    <div className="form-group" key={item.code}>
+                        <label htmlFor={`id_${item.code}_name`} className="control-label col-sm-3">{item.language} Name:</label>
+                        <div className="col-sm-9">
+                            <input type="text" name={`${item.code}_name`} className="form-control" maxLength="15"
+                                   id={`id_${item.code}_name`} defaultValue={item.title}/>
+                        </div>
+                    </div>)}
+            </div>
+        </div>;
+    }
+
+    renderPublish() {
+        let title = this.state.fields.is_published ? 'Allow to any users' : 'Allow only you';
+        return <div className="panel panel-default">
+            <div className="panel-heading">Publish:</div>
+            <div className="panel-body">
+                <Toggle defaultChecked={this.state.fields.is_published} onChange={this.togglePublish} id="is_published"/>
+                <label htmlFor='is_published'>{title}</label>
+                <input type="hidden" value={this.state.fields.is_published}/>
+            </div>
+        </div>;
+    }
+
     render() {
         return <form method="post" onSubmit={this.handleSubmit}>
             <div className="flex-container">
-                <Tree {...this.state} onChange={this.onChange} loadItems={this.loadItems}
-                      className="tree-visualization" checkboxName="regions"/>
+                <div className="panel panel-default">
+                    <div className="panel-heading">Available regions:</div>
+                    <div className="panel-body">
+                        <Tree {...this.state} onChange={this.onChange} loadItems={this.loadItems}
+                              className="tree-visualization" checkboxName="regions"/>
+                    </div>
+                </div>
                 <div className="map-visualization">
-                    <div className="form-group">
-                        <label htmlFor="id_publish">Publish:</label>
-                        <input type="checkbox" name="is_published" className="form-control" id="id_publish"
-                               defaultChecked={this.state.fields.is_published} />
+                    {this.renderPublish()}
+                    {this.renderLocales()}
+                    <div className="panel panel-default">
+                        <div className="panel-heading">Preview:</div>
+                        <div className="panel-body square-container">
+                            <Map regions={this.state.regions} mapTypeId="terrain" initCallback={this.saveMapRef}/>
+                        </div>
+                        <p>position and zoom will be saved as default for that game</p>
                     </div>
-                    <div className="square-container">
-                        <Map regions={this.state.regions} mapTypeId="terrain" initCallback={this.saveMapRef}/>
-                    </div>
-                    <p>Position and zoom will be saved as default for that game.</p>
-                    {this.state.fields.translations.map((item) =>
-                        <div className="form-group" key={item.code}>
-                            <label htmlFor={`id_${item.code}_name`}>{item.language} Name:</label>
-                            <input type="text" name={`${item.code}_name`} className="form-control" maxLength="15"
-                                   id={`id_${item.code}_name`} defaultValue={item.title}/>
-                        </div>)}
+                    {this.state.progress &&
+                        <div className="progress">
+                            <div className="progress-bar progress-bar-striped active" role="progressbar"
+                                 aria-valuenow={this.state.progress} aria-valuemin="0" aria-valuemax="100"
+                                 style={{width: this.state.progress + '%'}}>
+                            </div>
+                        </div>}
                     <button className="btn btn-primary" type="submit">Save</button>
                 </div>
             </div>

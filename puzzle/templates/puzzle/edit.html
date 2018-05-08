@@ -8,6 +8,7 @@
 {% block extra_css %}
     {{ block.super }}
     <link rel="stylesheet" href="{% static 'maps/css/edit.css' %}">
+    <link rel="stylesheet" href="{% static 'css/react-toggle.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -33,5 +34,7 @@
 {% endblock %}
 
 {% block extra_js %}
-  {{ block.super }}
+    {{ block.super }}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 {% endblock %}
