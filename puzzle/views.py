@@ -20,6 +20,7 @@ from django.views.generic import ListView
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import BaseUpdateView
 
+from common.utils import random_string
 from puzzle.forms import PuzzleForm
 from maps.models import Region
 from puzzle.models import Puzzle, PuzzleRegion, PuzzleTranslation
@@ -70,12 +71,11 @@ class PuzzleEditForm(ModelForm):
     def clean_image(self):
         format, imgstr = self.data.get('image').split(';base64,')
         ext = format.split('/')[-1]
-        return ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
+        return ContentFile(base64.b64decode(imgstr), name=random_string()+ext)
 
     def save(self, *args, **kwargs):
         def get_slug(slug: str) -> str:
-            return get_random_string(15, string.ascii_lowercase + string.digits) \
-                if slug == '' else slug
+            return random_string() if slug == '' else slug
 
         def get_positions(bounds: List[float], count: int) -> List:
             return [Point(uniform(bounds[0], bounds[2]), uniform(bounds[1], bounds[3]))
