@@ -25,7 +25,6 @@ def quiz(request: WSGIRequest, name: str) -> HttpResponse:
     quiz = get_object_or_404(Quiz, slug=name)
     trans = quiz.load_translation(request.LANGUAGE_CODE)
     context = {
-        'google_key': settings.GOOGLE_KEY,
         'language': request.LANGUAGE_CODE,
         'game': quiz,
         'name': trans.name,

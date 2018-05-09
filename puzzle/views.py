@@ -39,7 +39,6 @@ def puzzle(request: WSGIRequest, name: str) -> HttpResponse:
     puzzle = get_object_or_404(Puzzle, slug=name)
     trans = puzzle.load_translation(request.LANGUAGE_CODE)
     context = {
-        'google_key': settings.GOOGLE_KEY,
         'language': request.LANGUAGE_CODE,
         'game': puzzle,
         'name': trans.name,

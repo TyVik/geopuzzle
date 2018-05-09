@@ -15,7 +15,7 @@
     {% if debug %}
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language=en"></script>
     {% else %}
-    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language=en&key={{ google_key }}"></script>
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language=en&key={{ settings.GOOGLE_KEY }}"></script>
     {% endif %}
 
     <div class="container">
