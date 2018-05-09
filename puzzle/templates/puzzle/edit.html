@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_site.html' %}
 {% load static i18n jsonify %}
 
 {% block head_js %}
@@ -11,16 +11,15 @@
     <link rel="stylesheet" href="{% static 'css/react-toggle.css' %}">
 {% endblock %}
 
-{% block content %}
+{% block container %}
     {% if debug %}
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language=en"></script>
     {% else %}
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language=en&key={{ settings.GOOGLE_KEY }}"></script>
     {% endif %}
 
-    <div class="container">
-        <div id="editor" class="gmap-game-edit"></div>
-    </div>
+    <div id="editor" class="gmap-game-edit"></div>
+
     <script>
       __MAP__ = {{ object.get_init_params|jsonify }};
       __LANGUAGE__ = '{{ language }}';
