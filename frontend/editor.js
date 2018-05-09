@@ -77,6 +77,7 @@ class Editor extends React.Component {
         let bounds = this.map.getBounds();
         let data = new FormData(event.target);
         this.setState({...this.state, progress: 20});
+        data.set('is_published', this.state.fields.is_published);
         data.set('center', `SRID=4326;POINT(${center.lng()} ${center.lat()})`);
         data.set('zoom', this.map.getZoom());
         data.set('bounds', [bounds.getNorthEast().lat(), bounds.getNorthEast().lng(),
@@ -117,7 +118,7 @@ class Editor extends React.Component {
                     <div className="form-group" key={item.code}>
                         <label htmlFor={`id_${item.code}_name`} className="control-label col-sm-3">{item.language} Name:</label>
                         <div className="col-sm-9">
-                            <input type="text" name={`${item.code}_name`} className="form-control" maxLength="15"
+                            <input type="text" name={`${item.code}_name`} className="form-control" maxLength="50"
                                    id={`id_${item.code}_name`} defaultValue={item.title}/>
                         </div>
                     </div>)}
@@ -130,9 +131,8 @@ class Editor extends React.Component {
         return <div className="panel panel-default">
             <div className="panel-heading">Publish:</div>
             <div className="panel-body">
-                <Toggle defaultChecked={this.state.fields.is_published} onChange={this.togglePublish} id="is_published"/>
+                <Toggle checked={this.state.fields.is_published} onChange={this.togglePublish} id="is_published"/>
                 <label htmlFor='is_published'>{title}</label>
-                <input type="hidden" value={this.state.fields.is_published}/>
             </div>
         </div>;
     }
