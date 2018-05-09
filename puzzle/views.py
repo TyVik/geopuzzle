@@ -78,7 +78,7 @@ class PuzzleEditForm(ModelForm):
             return random_string() if slug == '' else slug
 
         def get_positions(bounds: List[float], count: int) -> List:
-            return [Point(uniform(bounds[0], bounds[2]), uniform(bounds[1], bounds[3]))
+            return [Point(uniform(bounds[1], bounds[3]), uniform(bounds[0], bounds[2]))
                     for _ in range(round(count * 2 / 3) + 1)]
 
         self.instance.slug = get_slug(self.instance.slug)
