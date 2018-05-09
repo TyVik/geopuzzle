@@ -12,7 +12,7 @@ from django.contrib.gis.db.models import PointField
 from django.contrib.postgres.fields import JSONField
 from django.core.cache import cache
 from django.db import models
-from django.db.models import Exists, OuterRef
+from django.db.models import Exists, OuterRef, F
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import get_language
@@ -140,16 +140,20 @@ class Region(CacheablePropertyMixin, models.Model):
     def full_info(self, lang: str) -> Dict:
         return {'infobox': self.polygon_infobox[lang], 'polygon': self.polygon_gmap, 'id': self.id}
 
-    @property
-    def json(self):
-        result = {'id': str(self.id), 'name': self.title, 'items': self.items('en')}
+    def json(self, lang: str) -> Dict:
+        translation = self.load_translation(lang)
+        result = {'id': str(self.id), 'name': translation.name, 'items': self.items(lang)}
         result['items_exists'] = len(result['items']) > 0
         return result
 
     def items(self, lang: str) -> List[Dict]:
         child_query = Region.objects.filter(parent_id=OuterRef('pk'))
-        return [{'id': str(x.id), 'name': x.title, 'items_exists': x.items_exists} for x in
-                self.region_set.annotate(items_exists=Exists(child_query)).all()]
+        return [{'id': str(x.id), 'name': x.lang, 'items_exists': x.items_exists} for x in
+                self.region_set
+                    .filter(translations__language_code=lang)
+                    .annotate(items_exists=Exists(child_query), lang=F('translations__name'))
+                    .order_by('lang')
+                    .distinct()]
 
     def update_polygon(self) -> None:
         def content():
