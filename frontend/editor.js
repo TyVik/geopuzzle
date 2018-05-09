@@ -16,7 +16,7 @@ class Editor extends React.Component {
             items: window.__REGIONS__,
             fields: window.__FIELDS__,
             checked: new Set(polygons.reduce((acc, item) => {acc.push(item.id); return acc;}, [])),
-            progress: null,
+            progress: null, exception: false
         }
     }
 
@@ -96,6 +96,9 @@ class Editor extends React.Component {
                         response.json().then(json => {
                             window.location.href = json.url;
                         });
+                    })
+                    .catch(() => {
+                        this.setState({...this.state, progress: null, exception: true});
                     });
             });
     };
@@ -163,6 +166,10 @@ class Editor extends React.Component {
                                  aria-valuenow={this.state.progress} aria-valuemin="0" aria-valuemax="100"
                                  style={{width: this.state.progress + '%'}}>
                             </div>
+                        </div>}
+                    {this.state.exception && this.state.progress === null &&
+                        <div className="save-exception">
+                            Something went wrong. Please <a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle%20Exception">email me</a>.
                         </div>}
                     <button className="btn btn-primary" type="submit">Save</button>
                 </div>

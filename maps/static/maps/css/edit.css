@@ -58,3 +58,12 @@ button.btn {
     display: inline-block;
     width: 80%;
 }
+
+.save-exception {
+	display: inline-block;
+    width: 80%;
+    color: red;
+    font-size: 21px;
+    font-weight: bold;
+    margin-left: 20px;
+}
