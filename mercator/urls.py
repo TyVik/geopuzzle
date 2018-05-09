@@ -44,6 +44,7 @@ urlpatterns = [
     url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt'), name='robots'),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 
+    url(r'^error/$', views.error, name='error'),
     url(r'^status/$', views.status, name='status'),
     url(r'^$', views.index, name='index'),
 ]
