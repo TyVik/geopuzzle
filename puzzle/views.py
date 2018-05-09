@@ -16,6 +16,7 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import never_cache
+from django.views.generic import ListView
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import BaseUpdateView
 
@@ -178,3 +179,12 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
                                  for translation in self.object.translations.all()],
             }
         return result
+
+
+class WorkshopView(ListView):
+    model = Puzzle
+    template_name = 'puzzle/list.html'
+    ordering = '-created'
+
+    def get_queryset(self):
+        return super(WorkshopView, self).get_queryset().filter(user__isnull=False, is_published=True)

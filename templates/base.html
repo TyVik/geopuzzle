@@ -35,6 +35,11 @@
                         <a class="navbar-brand" href="/">GeoPuzzle</a>
                     </div>
                     <div class="collapse navbar-collapse" id="main-navbar">
+                        {% if request.user.is_authenticated %}
+                            <ul class="nav navbar-nav">
+                                <li><a href="{% url 'workshop' %}">{% trans 'Workshop' %}</a></li>
+                            </ul>
+                        {% endif %}
                         <ul class="nav navbar-nav navbar-right">
                             {% if request.user.is_authenticated %}
                                 <li><a class="navbar-right navbar-link" href="{% url "profile" %}">@{{ request.user.username }}</a></li>

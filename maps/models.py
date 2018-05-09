@@ -219,6 +219,7 @@ class Game(models.Model):
     zoom = models.PositiveSmallIntegerField(choices=ZOOMS)
     is_published = models.BooleanField(default=False)
     is_global = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
     regions = models.ManyToManyField(Region)
 
     class Meta:

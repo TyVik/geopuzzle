@@ -3,7 +3,7 @@ import raven
 
 from django.utils.translation import ugettext_lazy as _
 
-DEBUG = True
+DEBUG = TEMPLATE_DEBUG = True
 
 BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '..')
 LOG_DIR = os.path.join(BASE_DIR, 'logs')

@@ -1,10 +1,11 @@
 from django.conf.urls import url
 
-from puzzle import views
+from puzzle.views import WorkshopView, questions, puzzle, PuzzleEditView
 
 
 urlpatterns = [
-    url(r'^questions/(?P<name>[a-zA-Z0-9_]+)/$', views.questions, name='puzzle_questions'),
-    url(r'^(?P<name>[a-zA-Z0-9_]+)/$', views.puzzle, name='puzzle_map'),
-    url(r'^(?P<name>[a-zA-Z0-9_]+)/edit/$', views.PuzzleEditView.as_view(), name='puzzle_edit'),
+    url(r'^questions/(?P<name>[a-zA-Z0-9_]+)/$', questions, name='puzzle_questions'),
+    url(r'^workshop/$', WorkshopView.as_view(), name='workshop'),
+    url(r'^(?P<name>[a-zA-Z0-9_]+)/$', puzzle, name='puzzle_map'),
+    url(r'^(?P<name>[a-zA-Z0-9_]+)/edit/$', PuzzleEditView.as_view(), name='puzzle_edit'),
 ]
