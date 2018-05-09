@@ -251,8 +251,8 @@ class Game(models.Model):
 
 
 class GameTranslation(models.Model):
-    name = models.CharField(max_length=15)
-    language_code = models.CharField(max_length=15, choices=settings.LANGUAGES, db_index=True)
+    name = models.CharField(max_length=50)
+    language_code = models.CharField(max_length=2, choices=settings.LANGUAGES, db_index=True)
     master = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='translations', editable=False)
 
     class Meta:
