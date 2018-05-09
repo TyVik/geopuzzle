@@ -15,8 +15,8 @@ from quiz.models import Quiz
 
 
 def index(request: WSGIRequest) -> HttpResponse:
-    puzzles = Puzzle.objects.filter(translations__language_code=request.LANGUAGE_CODE, is_published=True).order_by('translations__name').all()
-    quizzes = Quiz.objects.filter(translations__language_code=request.LANGUAGE_CODE, is_published=True).order_by('translations__name').all()
+    puzzles = Puzzle.objects.filter(translations__language_code=request.LANGUAGE_CODE, is_published=True, user__isnull=True).order_by('translations__name').all()
+    quizzes = Quiz.objects.filter(translations__language_code=request.LANGUAGE_CODE, is_published=True, user__isnull=True).order_by('translations__name').all()
     games = [{
         'items': {
             'parts': [item.index for item in puzzles.filter(is_global=True).all()],
