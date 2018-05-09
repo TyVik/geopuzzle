@@ -213,7 +213,7 @@ def clear_region_cache(sender, instance: Region, **kwargs):
 
 class Game(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    image = models.ImageField(upload_to='upload/puzzles', blank=True, null=True)
+    image = models.ImageField(upload_to='games', blank=True, null=True)
     slug = models.CharField(max_length=15, db_index=True)
     center = PointField(geography=True)
     zoom = models.PositiveSmallIntegerField(choices=ZOOMS)
