@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 from zipfile import ZipFile
 
@@ -33,6 +34,7 @@ ZOOMS = (
     (8, 'little country'),
     (9, 'region'),
 )
+fetch_logger = logging.getLogger('fetch_region')
 
 
 class RegionManager(models.Manager):
@@ -155,11 +157,12 @@ class Region(CacheablePropertyMixin, models.Model):
                     .order_by('lang')
                     .distinct()]
 
-    def update_polygon(self) -> None:
+    def fetch_polygon(self) -> None:
         def content():
             cache = os.path.join(settings.GEOJSON_DIR, '{}.geojson'.format(self.osm_id))
             if not os.path.exists(cache):
-                url = settings.OSM_URL.format(id=self.osm_id, key=settings.OSM_KEY, level=2 if self.country.is_global else 4)
+                url = settings.OSM_URL.format(id=self.osm_id, key=settings.OSM_KEY, level=self.osm_data['level'])
+                fetch_logger.info(f'Download from {url}')
                 response = requests.get(url)
                 if response.status_code != 200:
                     raise Exception('Bad request')
@@ -173,9 +176,64 @@ class Region(CacheablePropertyMixin, models.Model):
             with open(cache, 'r') as c:
                 return json.loads(c.read())
 
-        geojson = content()
-        self.polygon = GEOSGeometry(json.dumps(geojson['features'][0]['geometry']))
+        def update_self(properties, geometry, type):
+            def extract_data(properties):
+                result = {'level': properties['admin_level']}
+                fields = ['boundary', 'ISO3166-1:alpha3', 'timezone']
+                for field in fields:
+                    result[field] = properties['alltags'].get(field, None)
+                return result
+
+            self.title = properties['name']
+            self.polygon = GEOSGeometry(json.dumps(geometry))
+            self.wikidata_id = properties.get('wikidata')
+            self.osm_id = properties['id']
+            self.osm_data = extract_data(properties)
+
+        fetch_logger.info(f'Update polygon: {self.id}')
+        feature = content()['features'][0]
+        update_self(**feature)
         self.save()
+
+        for lang in ('en', 'ru'):
+            trans = self.load_translation(lang)
+            trans.master = self
+            trans.name = self.title
+            trans.save()
+
+    def fetch_items(self) -> None:
+        params = {'caller': 'boundaries-4.3.14', 'database': 'planet3', 'parent': self.osm_id}
+        headers = {
+            'Referer': 'https://wambachers-osm.website/boundaries/',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36',
+            'X-Requested-With': 'XMLHttpRequest',
+            'Cookie': 'JSESSIONID=node01ln7zb8ljtnbacctakke8yb6s49.node0; osm_boundaries_map=1%7C40.65536999999962%7C45.25161549584642%7C10%7C0BT%7Copen; osm_boundaries_base=4%7Cfalse%7Cjson%7Czip%7Cnull%7Cfalse%7Clevels%7Cwater%7C4.3%7Ctrue%7C3',
+        }
+        fetch_logger.info(f'Get items: {self.id}')
+        response = requests.post('https://wambachers-osm.website/boundaries/getJsTree6', params=params, headers=headers)
+        fetch_logger.info(f'Count items for {self.id}: {len(response.json())}')
+        for item in response.json():
+            try:
+                region = Region.objects.get(osm_id=item['id'])
+            except Region.DoesNotExist:
+                region = Region(parent=self, osm_id=item['id'],
+                                osm_data={'level': item['data']['admin_level']})
+            region.fetch_polygon()
+            region.fetch_infobox()
+
+    def fetch_infobox(self) -> None:
+        wikidata_id = None if self.parent is None else self.parent.wikidata_id
+        fetch_logger.info(f'Get infobox: {self.wikidata_id}')
+        rows = query_by_wikidata_id(country_id=wikidata_id, item_id=self.wikidata_id)
+        for lang, infobox in rows.items():
+            fetch_logger.info(f'Update infobox: {lang}')
+            if 'name' not in infobox:
+                infobox['name'] = self.title
+            trans = self.load_translation(lang)
+            trans.master = self
+            trans.infobox = infobox
+            trans.name = infobox['name']
+            trans.save()
 
     @property
     def translation(self):
@@ -186,16 +244,6 @@ class Region(CacheablePropertyMixin, models.Model):
         if result is None:
             result = RegionTranslation.objects.create(language_code=lang, master=self, name='(empty)')
         return result
-
-    def update_infobox(self) -> None:
-        wikidata_id = None if self.parent is None else self.parent.wikidata_id
-        rows = query_by_wikidata_id(country_id=wikidata_id, item_id=self.wikidata_id)
-        for lang, infobox in rows.items():
-            trans = self.load_translation(lang)
-            trans.master = self
-            trans.infobox = infobox
-            trans.name = infobox.get('name', '')
-            trans.save()
 
 
 class RegionTranslation(models.Model):

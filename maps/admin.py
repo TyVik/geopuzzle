@@ -31,7 +31,7 @@ update_infoboxes.short_description = _("Update infoboxes")
 
 def update_polygons(modeladmin, request, queryset) -> None:
     for area in queryset:
-        area.update_polygon()
+        area.fetch_polygon()
     success(request, _('Polygons were updated.'))
 update_polygons.short_description = _("Update polygons")
 
@@ -93,7 +93,7 @@ class RegionAdmin(HierarchicalModelAdmin):
 
     def osm_import(self, request: WSGIRequest, pk: str) -> HttpResponse:
         region = get_object_or_404(Region, pk=pk)
-        region.update_polygon()
+        region.fetch_polygon()
         success(request, _('Polygon was imported successfully.'))
         url = reverse('admin:{app}_{model}_change'.format(app=self.model._meta.app_label, model='region'), args=(pk,))
         return HttpResponseRedirect(url)

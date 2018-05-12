@@ -12,7 +12,7 @@ GEOJSON_DIR = os.path.join(BASE_DIR, 'geojson')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
 OSM_KEY = os.environ.get('OSM_KEY')
-OSM_URL = 'https://wambachers-osm.website/boundaries/exportBoundaries?apiversion=1.0&apikey={key}&exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}'
+OSM_URL = 'https://wambachers-osm.website/boundaries/exportBoundaries?cliVersion=1.0&cliKey={key}&exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}'
 
 ALLOWED_HOSTS = ('127.0.0.1',)
 INTERNAL_IPS = ALLOWED_HOSTS

@@ -1,4 +1,5 @@
 import json
+import logging
 from typing import Dict
 
 from urllib.request import urlopen, unquote
@@ -6,7 +7,11 @@ from urllib.request import urlopen, unquote
 import requests
 from SPARQLWrapper import JSON
 from SPARQLWrapper import SPARQLWrapper
+from django.contrib.gis.geos import Point, GEOSGeometry
 from django.template.loader import render_to_string
+
+
+fetch_logger = logging.getLogger('fetch_region')
 
 
 def get_links(instance: str) -> Dict:
@@ -42,8 +47,10 @@ def query(statement: str) -> Dict:
                     result['capital'][key] = value.split('/')[-1]
                     links = get_links(result['capital'][key])
                     result['capital']['wiki'] = links[lang].get('wiki', '')
-                elif key in ('lat', 'lon'):
-                    result['capital'][key] = float(value)
+                elif key == 'coord':
+                    point = GEOSGeometry(value)
+                    result['capital']['lon'] = point.x
+                    result['capital']['lat'] = point.y
                 else:
                     result['capital'][key] = value
                 """
@@ -58,7 +65,7 @@ def query(statement: str) -> Dict:
         return result
 
     sparql = SPARQLWrapper("https://query.wikidata.org/bigdata/namespace/wdq/sparql")
-    sparql.setQuery(statement)
+    sparql.setQuery(statement + '')  # convert SafeText -> str
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     results = results['results']['bindings']

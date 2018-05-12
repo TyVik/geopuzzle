@@ -2,7 +2,7 @@ SELECT DISTINCT
   ?lang ?name ?geonamesID
   ?flag ?coat_of_arms
   ?population ?area
-  ?capital_name ?capital_id ?capital_lon ?capital_lat
+  ?capital_name ?capital_id ?capital_coord
   {% if country_id is None %} ?currency {% endif %}
   WHERE {
     wd:{{ item_id }} rdfs:label ?name.
@@ -12,9 +12,7 @@ SELECT DISTINCT
     OPTIONAL {
         wd:{{ item_id }} wdt:P36 ?capital_id.
         ?capital_id p:P625 ?coordinates.
-        ?coordinates psv:P625 ?coordinate_node.
-        ?coordinate_node wikibase:geoLatitude ?capital_lat.
-        ?coordinate_node wikibase:geoLongitude ?capital_lon.
+        ?coordinates ps:P625 ?capital_coord.
         wd:{{ item_id }} wdt:P36/rdfs:label ?capital_name.
         FILTER(lang(?capital_name) = ?lang)
     }
