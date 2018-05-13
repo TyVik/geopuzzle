@@ -222,9 +222,12 @@ class Region(CacheablePropertyMixin, models.Model):
             region.fetch_infobox()
 
     def fetch_infobox(self) -> None:
-        wikidata_id = None if self.parent is None else self.parent.wikidata_id
         fetch_logger.info(f'Get infobox: {self.wikidata_id}')
-        rows = query_by_wikidata_id(country_id=wikidata_id, item_id=self.wikidata_id)
+        if self.wikidata_id is None:
+            rows = {lang: {} for lang in settings.ALLOWED_LANGUAGES}
+        else:
+            wikidata_id = None if self.parent is None else self.parent.wikidata_id
+            rows = query_by_wikidata_id(country_id=wikidata_id, item_id=self.wikidata_id)
         for lang, infobox in rows.items():
             fetch_logger.info(f'Update infobox: {lang}')
             if 'name' not in infobox:
