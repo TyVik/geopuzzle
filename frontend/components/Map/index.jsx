@@ -19,6 +19,7 @@ class MapContainer extends React.Component {
         return polygons.map(polygon => {
             return {
                 map: this._mapComponent,
+                key: `${polygon.draggable}${polygon.id}`,
                 options: {
                     strokeColor: polygon.isSolved ? '#419641' : '#d9534f',
                     strokeOpacity: 0.8,
