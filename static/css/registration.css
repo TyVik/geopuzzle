@@ -54,3 +54,8 @@ h3 {
 .profile-menu {
     margin-top: 20px;
 }
+
+.awesome-avatar-preview {
+    width: 100px;
+    height: 100px;
+}

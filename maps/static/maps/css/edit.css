@@ -20,7 +20,7 @@
 
 .map-visualization {
     flex-grow: 3;
-    height: 500px;
+    min-height: 500px;
 }
 
 .map-visualization p {
