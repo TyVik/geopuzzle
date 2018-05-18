@@ -10,7 +10,9 @@ class Region extends React.Component {
     };
 
     onClick = () => {
-        this.props.onClick(this.props.options);
+        if (this.props.onClick !== undefined) {
+            this.props.onClick(this.props.options);
+        }
     };
 
     setRef = (node) => {

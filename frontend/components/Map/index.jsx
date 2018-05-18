@@ -12,7 +12,9 @@ class MapContainer extends React.Component {
     };
 
     handleMapClick = (e) => {
-        this.props.mapClick(e);
+        if (this.props.mapClick !== undefined) {
+            this.props.mapClick(e);
+        }
     };
 
     preparePolygons(polygons) {
