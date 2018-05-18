@@ -34,8 +34,9 @@ class Node extends React.Component {
 
     render() {
         return <li>
-            <CheckBox {...this.state} onChange={this.props.onChange} checked={this.props.checked.has(this.state.id)}
-                      value={this.props.id} name={this.props.checkboxName} />
+            {this.state.showCheckbox &&
+                <CheckBox {...this.state} onChange={this.props.onChange} checked={this.props.checked.has(this.state.id)}
+                          value={this.props.id} name={this.props.checkboxName} />}
             {this.props.items_exists &&
                 this.renderToggle()}
             <span>{this.props.name}</span>

@@ -147,7 +147,7 @@ class Editor extends React.Component {
                     <div className="panel-heading">Available regions:</div>
                     <div className="panel-body">
                         <Tree {...this.state} onChange={this.onChange} loadItems={this.loadItems}
-                              className="tree-visualization" checkboxName="regions"/>
+                              className="tree-visualization" checkboxName="regions" showCheckbox={false}/>
                     </div>
                 </div>
                 <div className="map-visualization">
