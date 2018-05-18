@@ -71,7 +71,7 @@ class PuzzleEditForm(ModelForm):
     def clean_image(self):
         format, imgstr = self.data.get('image').split(';base64,')
         ext = format.split('/')[-1]
-        return ContentFile(base64.b64decode(imgstr), name=random_string()+ext)
+        return ContentFile(base64.b64decode(imgstr), name=f'{random_string()}.${ext}')
 
     def save(self, *args, **kwargs):
         def get_slug(slug: str) -> str:
