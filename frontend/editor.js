@@ -4,6 +4,7 @@ import Toggle from 'react-toggle';
 import Map from './components/Map';
 import Tree from "./components/Tree";
 import {decodePolygon, CSRFfetch} from "./utils";
+import localization from "./localization";
 import html2canvas from 'html2canvas';
 
 
@@ -115,11 +116,11 @@ class Editor extends React.Component {
 
     renderLocales() {
         return <div className="panel panel-default">
-            <div className="panel-heading">Localization:</div>
+            <div className="panel-heading">{localization.localization}:</div>
             <div className="panel-body form-horizontal">
                 {this.state.fields.translations.map((item) =>
                     <div className="form-group" key={item.code}>
-                        <label htmlFor={`id_${item.code}_name`} className="control-label col-sm-3">{item.language} Name:</label>
+                        <label htmlFor={`id_${item.code}_name`} className="control-label col-sm-3">{localization[`${item.code}Title`]}:</label>
                         <div className="col-sm-9">
                             <input type="text" name={`${item.code}_name`} className="form-control" maxLength="50"
                                    id={`id_${item.code}_name`} defaultValue={item.title}/>
@@ -130,9 +131,9 @@ class Editor extends React.Component {
     }
 
     renderPublish() {
-        let title = this.state.fields.is_published ? 'Allow to any users' : 'Allow only you';
+        let title = this.state.fields.is_published ? localization.publishedToAll : localization.publishedToMe;
         return <div className="panel panel-default">
-            <div className="panel-heading">Publish:</div>
+            <div className="panel-heading">{localization.publish}:</div>
             <div className="panel-body">
                 <Toggle checked={this.state.fields.is_published} onChange={this.togglePublish} id="is_published"/>
                 <label htmlFor='is_published'>{title}</label>
@@ -144,7 +145,7 @@ class Editor extends React.Component {
         return <form method="post" onSubmit={this.handleSubmit}>
             <div className="flex-container">
                 <div className="panel panel-default">
-                    <div className="panel-heading">Available regions:</div>
+                    <div className="panel-heading">{localization.availableRegions}:</div>
                     <div className="panel-body">
                         <Tree {...this.state} onChange={this.onChange} loadItems={this.loadItems}
                               className="tree-visualization" checkboxName="regions" showCheckbox={false}/>
@@ -154,11 +155,11 @@ class Editor extends React.Component {
                     {this.renderPublish()}
                     {this.renderLocales()}
                     <div className="panel panel-default">
-                        <div className="panel-heading">Preview:</div>
+                        <div className="panel-heading">{localization.preview}:</div>
                         <div className="panel-body square-container">
                             <Map regions={this.state.regions} mapTypeId="terrain" initCallback={this.saveMapRef}/>
                         </div>
-                        <p>position and zoom will be saved as default for that game</p>
+                        <p>{localization.previewWarning}</p>
                     </div>
                     {this.state.progress &&
                         <div className="progress">
@@ -169,9 +170,9 @@ class Editor extends React.Component {
                         </div>}
                     {this.state.exception && this.state.progress === null &&
                         <div className="save-exception">
-                            Something went wrong. Please <a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle%20Exception">email me</a>.
+                            {localization.formatString(localization.bugReport, <a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle%20Exception">email me</a>)}
                         </div>}
-                    <button className="btn btn-primary" type="submit">Save</button>
+                    <button className="btn btn-primary" type="submit">{localization.save}</button>
                 </div>
             </div>
         </form>;

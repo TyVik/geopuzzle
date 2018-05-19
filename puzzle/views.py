@@ -43,7 +43,7 @@ def puzzle(request: WSGIRequest, name: str) -> HttpResponse:
         'language': request.LANGUAGE_CODE,
         'game': puzzle,
         'name': trans.name,
-        'text': _('{} was assembled! You time is ').format(trans.name if puzzle.id != 1 else _('World map'))
+        'text': _('Puzzle \"{}\" has been assembled! Your time is ').format(trans.name if puzzle.id != 1 else _('World map'))
     }
     return render(request, 'puzzle/map.html', context=context)
 
@@ -178,6 +178,7 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
                                   'language': next(pair for pair in settings.LANGUAGES if pair[0] == translation.language_code)[1]}
                                  for translation in self.object.translations.all()],
             }
+        result['language'] = self.request.user.language
         return result
 
 

@@ -41,7 +41,7 @@ class Toolbox extends React.Component {
             <div className="toolbox">
                 <div className="listname-wrapper">
                     {this.props.wsState !== true &&
-                        <div id="network_connection_label">{localization.network_error}</div>}
+                        <div id="network_connection_label">{localization.networkError}</div>}
                     {localization.found}: <span>{solved}</span>/<span>{this.props.regions.length}</span>
                     <span
                         className={"glyphicon glyphicon-chevron-" + (this.state.collapse ? 'up' : 'down')}

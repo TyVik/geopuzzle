@@ -45,7 +45,7 @@ const prepareInfobox = (json) => {
         json.area = Number(json.area).toLocaleString() + ' ' + localization.km2;
     }
     if (json.population) {
-        json.population = Number(json.population).toLocaleString()
+        json.population = Number(json.population).toLocaleString();
     }
     if (json.capital) {
         json.capital.marker = {

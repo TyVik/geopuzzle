@@ -20,7 +20,7 @@
         window.__STATIC_URL__ = '{{ settings.STATIC_URL }}';
         window.__LANGUAGE__ = '{{ language }}';
         window.__MAP__ = {{ game.get_init_params|jsonify }};
-        window.__CONGRATULATION__ = {text: '{{ text }}'};
+        window.__CONGRATULATION__ = {text: '{{ text|safe }}'};
     </script>
     <script src="{% static 'maps/js/google.maps.Polygon.getBounds.js' %}"></script>
     <script type="text/javascript" src={% static "js/common.js" %}></script>

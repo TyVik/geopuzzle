@@ -43,7 +43,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             {% if request.user.is_authenticated %}
                                 <li><a class="navbar-right navbar-link" href="{% url "profile" %}">@{{ request.user.username }}</a></li>
-                                <li><a href="{% url 'logout' %}">(logout)</a></li>
+                                <li><a href="{% url 'logout' %}">({% trans 'logout' %})</a></li>
                             {% else %}
 {#                                <li><a class="navbar-right navbar-link" href="{% url "login" %}">Sign in</a></li>#}
 {#                                <li><a class="navbar-right navbar-link" href="{% url "registration" %}">Sign up</a></li>#}
@@ -84,7 +84,6 @@
 <script src="https://cdn.ravenjs.com/3.21.0/raven.min.js" crossorigin="anonymous"></script>
 <script>Raven.config('{% sentry_public_dsn 'https' %}', {
     release: '{{ settings.RAVEN_CONFIG.release }}',
-    ignoreUrls: [/maps\.googleapis\.com/]
 }).install()</script>
 
 {% if not debug %}

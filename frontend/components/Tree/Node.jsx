@@ -23,13 +23,8 @@ class Node extends React.Component {
     }
 
     renderToggle() {
-        if (this.props.items === undefined) {
-            return <span className={"glyphicon glyphicon-" + (this.state.toggled ? 'minus' : 'plus')}
-                         onClick={() => this.props.loadItems(this.props.id)} />;
-        } else {
-            return <span className={"glyphicon glyphicon-" + (this.state.toggled ? 'minus' : 'plus')}
-                         onClick={this.toggleCollapse} />;
-        }
+        let handleClick = this.props.items === undefined ? () => this.props.loadItems(this.props.id) : this.toggleCollapse;
+        return <span className={"glyphicon glyphicon-" + (this.state.toggled ? 'minus' : 'plus')} onClick={handleClick} />;
     }
 
     render() {

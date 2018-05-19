@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-27 15:19+0000\n"
+"POT-Creation-Date: 2018-05-19 14:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,11 +84,19 @@ msgstr "Обновить инфобокс"
 msgid "Import from OSM"
 msgstr "Импорт KML"
 
-#: mercator/views.py:24
+#: mercator/settings/settings.py:188
+msgid "English"
+msgstr ""
+
+#: mercator/settings/settings.py:189
+msgid "Russian"
+msgstr ""
+
+#: mercator/views.py:27
 msgid "puzzle"
 msgstr "Паззл"
 
-#: mercator/views.py:25
+#: mercator/views.py:28
 msgid ""
 "In the Puzzle you need to drag the shape of the territory to the right "
 "place. Just like in childhood we collected pictures piece by piece, so here "
@@ -98,11 +106,11 @@ msgstr ""
 "мы собирали картины кусочек за кусочком, а здесь можно собрать страну из "
 "регионов или целые континенты из стран!"
 
-#: mercator/views.py:33
+#: mercator/views.py:36
 msgid "quiz"
 msgstr "Викторина"
 
-#: mercator/views.py:34
+#: mercator/views.py:37
 msgid ""
 "In the Quiz you need find the country by flag, emblem or the capital. Did "
 "you know that Monaco and Indonesia have the same flags? And that the flags "
@@ -115,24 +123,25 @@ msgstr ""
 "Либерии отличаются только количеством звёзд? Так вот, эти и другие "
 "интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
 
-#: puzzle/views.py:34
-msgid "{} was assembled! You time is "
-msgstr "{} собрана! Ваше время "
+#: puzzle/views.py:46
+msgid "Puzzle \"{}\" has been assembled! Your time is "
+msgstr "Пазл \"{}\" собран! Ваше время "
 
-#: puzzle/views.py:34 quiz/views.py:33
+#: puzzle/views.py:46 quiz/views.py:32
 msgid "World map"
 msgstr "Карта мира"
 
-#: quiz/views.py:32
+#: quiz/views.py:31
 #, python-brace-format
-msgid "{name} has been solved! You guessed all {subjects}. You time is "
-msgstr "{name} собрана! Вы нашли все {subjects}. Ваше время "
+msgid ""
+"Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is "
+msgstr "Викторина \"{name}\" решена! Вы нашли все {subjects}. Ваше время "
 
-#: quiz/views.py:34
+#: quiz/views.py:33
 msgid "countries"
 msgstr "страны"
 
-#: quiz/views.py:34
+#: quiz/views.py:33
 msgid "regions"
 msgstr "регионы"
 
@@ -147,6 +156,14 @@ msgstr "Мир"
 #: templates/base.html:6 templates/index.html:6 templates/share_image.html:7
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
+
+#: templates/base.html:40
+msgid "Workshop"
+msgstr "Мастерская"
+
+#: templates/base.html:46
+msgid "logout"
+msgstr "выйти"
 
 #: templates/index.html:8
 msgid ""
@@ -221,57 +238,57 @@ msgstr ""
 msgid "Games on political maps"
 msgstr "Игры на политической карте"
 
-#: users/forms.py:11 users/forms.py:17
+#: users/forms.py:12 users/forms.py:18
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: users/forms.py:13 users/forms.py:20
+#: users/forms.py:14 users/forms.py:21
 msgid "Password"
 msgstr "Пароль"
 
-#: users/forms.py:48 users/models.py:10
+#: users/forms.py:50 users/models.py:11
 msgid "Avatar"
-msgstr "Аватарка"
+msgstr "Аватар"
 
-#: users/models.py:11
+#: users/models.py:12
 msgid "Language"
 msgstr "Язык интерфейса"
 
-#: users/templates/registration/login.html:15
-#: users/templates/registration/login.html:45
-#: users/templates/registration/registration.html:15
-msgid "Log In"
-msgstr "Войти"
-
-#: users/templates/registration/login.html:15
-#: users/templates/registration/registration.html:15
-#: users/templates/registration/registration.html:38
-msgid "Sign Up"
-msgstr "Зарегистрироваться"
-
-#: users/templates/registration/login.html:26
+#: users/templates/registration/base.html:29
 msgid "or"
 msgstr "или"
 
-#: users/templates/user/profile.html:19
+#: users/templates/registration/login.html:5
+#: users/templates/registration/login.html:26
+#: users/templates/registration/registration.html:5
+msgid "Log In"
+msgstr "Войти"
+
+#: users/templates/registration/login.html:5
+#: users/templates/registration/registration.html:5
+#: users/templates/registration/registration.html:31
+msgid "Sign Up"
+msgstr "Зарегистрироваться"
+
+#: users/templates/user/profile.html:17
 msgid "Profile"
 msgstr "Профиль"
 
-#: users/templates/user/profile.html:20
+#: users/templates/user/profile.html:18
 msgid "My puzzles"
 msgstr "Мои Паззлы"
 
-#: users/templates/user/profile.html:24
+#: users/templates/user/profile.html:22
 msgid "Public profile"
 msgstr "Публичный профиль"
 
-#: users/templates/user/profile.html:45
+#: users/templates/user/profile.html:43
 msgid "Save"
 msgstr "Сохранить"
 
-#: users/templates/user/profile.html:49
-msgid "Coming soon..."
-msgstr "Скоро всё будет..."
+#: users/templates/user/profile.html:68
+msgid "New one"
+msgstr "Добавить ещё"
 
 #~ msgid "Forgot password?"
 #~ msgstr "Забыли пароль?"

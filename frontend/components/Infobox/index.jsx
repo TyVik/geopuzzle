@@ -62,7 +62,7 @@ class Infobox extends React.Component {
                                 }
                                 {this.props.capital &&
                                 <tr>
-                                    <td>{localization['capital']}</td>
+                                    <td>{localization.capital}</td>
                                     <td><a href={this.props.capital.wiki} target="_blank">{this.props.capital.name}</a></td>
                                 </tr>
                                 }
