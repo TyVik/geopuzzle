@@ -130,12 +130,21 @@ class Region(CacheablePropertyMixin, models.Model):
     @property
     @cacheable
     def polygon_infobox(self) -> Dict:
+        def get_marker(infobox):
+            by_capital = infobox.get('capital', {})
+            if 'lat' in by_capital and 'lon' in by_capital:
+                return {'lat': by_capital['lat'], 'lon': by_capital['lon']}
+            else:
+                center = self.polygon_center
+                return {'lat': center[1], 'lon': center[0]}
+
         result = {}
         for trans in self.translations.all():
             infobox = trans.infobox
             infobox.pop('geonamesID', None)
-            if 'capital' in infobox and isinstance(infobox['capital'], dict):
+            if isinstance(infobox.get('capital'), dict):
                 del (infobox['capital']['id'])
+            infobox['marker'] = get_marker(infobox)
             result[trans.language_code] = infobox
         return result
 

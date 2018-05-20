@@ -47,16 +47,6 @@ const prepareInfobox = (json) => {
     if (json.population) {
         json.population = Number(json.population).toLocaleString();
     }
-    if (json.capital) {
-        json.capital.marker = {
-            key: json.capital.name,
-            defaultAnimation: 2,
-            position: {
-                lat: json.capital.lat,
-                lng: json.capital.lon,
-            }
-        }
-    }
     return json;
 };
 

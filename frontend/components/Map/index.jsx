@@ -41,13 +41,13 @@ class MapContainer extends React.Component {
     }
 
     showMarker(infobox) {
-        if (infobox && infobox.capital) {
+        if (infobox) {
             return {
-                key: infobox.capital.name,
+                key: 'center',
                 defaultAnimation: 2,
                 position: {
-                    lat: infobox.capital.lat,
-                    lng: infobox.capital.lon
+                    lat: infobox.marker.lat,
+                    lng: infobox.marker.lon
                 }
             }
         }
