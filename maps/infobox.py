@@ -7,6 +7,7 @@ from urllib.request import urlopen, unquote
 import requests
 from SPARQLWrapper import JSON
 from SPARQLWrapper import SPARQLWrapper
+from django.conf import settings
 from django.contrib.gis.geos import Point, GEOSGeometry
 from django.template.loader import render_to_string
 
@@ -15,7 +16,7 @@ fetch_logger = logging.getLogger('fetch_region')
 
 
 def get_links(instance: str) -> Dict:
-    result = {'en': {}, 'ru': {}}
+    result = {x: {} for x in settings.ALLOWED_LANGUAGES}
     url = 'http://www.wikidata.org/entity/{}'.format(instance)
     response = urlopen(url).read().decode('utf8')
     response = json.loads(response)

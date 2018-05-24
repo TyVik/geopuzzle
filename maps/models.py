@@ -204,7 +204,7 @@ class Region(CacheablePropertyMixin, models.Model):
         update_self(**feature)
         self.save()
 
-        for lang in ('en', 'ru'):
+        for lang in settings.ALLOWED_LANGUAGES:
             trans = self.load_translation(lang)
             trans.master = self
             trans.name = self.title
