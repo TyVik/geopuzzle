@@ -187,7 +187,7 @@ class Region(CacheablePropertyMixin, models.Model):
 
         def update_self(properties, geometry, type):
             def extract_data(properties):
-                result = {'level': properties['admin_level']}
+                result = {'level': int(properties['admin_level'])}
                 fields = ['boundary', 'ISO3166-1:alpha3', 'timezone']
                 for field in fields:
                     result[field] = properties['alltags'].get(field, None)
@@ -210,29 +210,31 @@ class Region(CacheablePropertyMixin, models.Model):
             trans.name = self.title
             trans.save()
 
-    def fetch_items(self) -> None:
+    def fetch_items_list(self) -> Dict:
         params = {'caller': 'boundaries-4.3.14', 'database': 'planet3', 'parent': self.osm_id}
         headers = {
             'Referer': 'https://wambachers-osm.website/boundaries/',
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36',
             'X-Requested-With': 'XMLHttpRequest',
-            'Cookie': 'JSESSIONID=node01ln7zb8ljtnbacctakke8yb6s49.node0; osm_boundaries_map=1%7C40.65536999999962%7C45.25161549584642%7C10%7C0BT%7Copen; osm_boundaries_base=4%7Cfalse%7Cjson%7Czip%7Cnull%7Cfalse%7Clevels%7Cwater%7C4.3%7Ctrue%7C3',
+            'Cookie': 'JSESSIONID=node01ln7zb8ljtnbacctakke8yb6s49.node0; osm_boundaries_map=1%7C40.65536999999962%7C45.25161549584642%7C10%7C0BT%7Copen; osm_boundaries_base=4%7Cfalse%7Cjson%7Czip%7Cnull%7Cfalse%7Clevels%7Cland%7C4.3%7Ctrue%7C3',
         }
         fetch_logger.info(f'Get items: {self.id}')
         response = requests.post('https://wambachers-osm.website/boundaries/getJsTree6', params=params, headers=headers)
-        fetch_logger.info(f'Count items for {self.id}: {len(response.json())}')
-        for item in response.json():
-            try:
-                region = Region.objects.get(osm_id=item['id'])
-            except Region.DoesNotExist:
-                region = Region(parent=self, osm_id=item['id'],
-                                osm_data={'level': item['data']['admin_level']})
+        items = response.json()
+        fetch_logger.info(f'Count items for {self.id}: {len(items)}')
+        return items
+
+    def fetch_items(self) -> None:
+        for item in self.fetch_items_list():
+            if item['data']['admin_level'] >= 8:
+                continue
+            region, _ = Region.objects.get_or_create(osm_id=item['id'], defaults={'parent': self, 'osm_data': {'level': item['data']['admin_level']}})
             region.fetch_polygon()
             region.fetch_infobox()
 
     def fetch_infobox(self) -> None:
         fetch_logger.info(f'Get infobox: {self.wikidata_id}')
-        if self.wikidata_id is None:
+        if self.wikidata_id is None or self.wikidata_id == '':
             rows = {lang: {} for lang in settings.ALLOWED_LANGUAGES}
         else:
             wikidata_id = None if self.parent is None else self.parent.wikidata_id
