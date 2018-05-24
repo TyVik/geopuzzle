@@ -161,7 +161,7 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
         if self.object.id is None:
             result.update({
                 'checked': [],
-                'regions': [x.json(self.request.user.language) for x in Region.objects.filter(parent__isnull=True).all()],
+                'regions': [x.json(self.request.user.language) for x in Region.objects.filter(parent__isnull=True, is_enabled=True).all()],
                 'fields': {
                     'is_published': False,
                     'translations': [{'code': code, 'language': lang, 'title': ''} for code, lang in settings.LANGUAGES]
@@ -169,7 +169,7 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
             })
         else:
             result['checked'] = [region.full_info(self.request.user.language) for region in self.object.regions.all()]
-            tree = [x.json(self.request.user.language) for x in Region.objects.filter(parent__isnull=True).all()]
+            tree = [x.json(self.request.user.language) for x in Region.objects.filter(parent__isnull=True, is_enabled=True).all()]
             tree = sorted(tree, key=lambda x: x['name'])  # IMHO it's cheaper than SQL
             result['regions'] = build_tree(tree, set([int(x['id']) for x in tree]), self.object.regions.all())
             result['fields'] = {
