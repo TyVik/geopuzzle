@@ -24,6 +24,8 @@ class Command(BaseCommand):
             except InconsistItems:
                 region.region_set.update(is_enabled=False, parent=None)
                 for item in osm_items:
+                    if item['data']['admin_level'] >= 8:
+                        continue
                     defaults = {
                         'parent': region,
                         'osm_data': {'level': item['data']['admin_level']},
