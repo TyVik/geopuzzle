@@ -1,7 +1,5 @@
 'use strict';
-
 import React from "react";
-import {render} from "react-dom";
 import Loading from "../components/Loading/index";
 import localization from "../localization";
 import Sockette from '../ws';
@@ -70,19 +68,12 @@ class Game extends React.Component {
                 this.setState({...this.state, infobox: region.infobox, showInfobox: true});
             } else {
                 let id = region.id;
-                fetch(window.location.origin + `/puzzle/area/` + region.id + '/infobox/')
+                fetch(window.location.origin + `/puzzle/area/${region.id}/infobox/`)
                     .then(response => response.json())
                     .then(json => {
-                        let regions = this.state.regions.map((region) => {
-                            if (region.id === id) {
-                                return {
-                                    ...region,
-                                    infobox: prepareInfobox(json),
-                                };
-                            } else {
-                                return region;
-                            }
-                        });
+                        let regions = this.state.regions.map((region) =>
+                            region.id === id ? {...region, infobox: prepareInfobox(json)} : region
+                        );
                         this.setState({...this.state, regions: regions, infobox: json, showInfobox: true});
                     })
                     .catch(response => console.log(response));
@@ -91,17 +82,14 @@ class Game extends React.Component {
     };
 
     render_loaded() {
-        if (this.state.isLoaded === true) {
-            return null;
-        } else {
-            return <Loading text={this.state.isLoaded === null ? localization.loading : localization.loadingError}/>;
-        }
+        return this.state.isLoaded === true ? null :
+            <Loading text={this.state.isLoaded === null ? localization.loading : localization.loadingError}/>;
     }
 
     render_congratulation() {
         if (this.state.regions.length > 0 && this.state.regions.filter(el => el.isSolved === false).length === 0) {
             let time = new Date(Date.now() - this.state.startTime);
-            let result = (time > 24 * 60 * 60 * 1000) ? 'more then day' : time.toLocaleTimeString('ru-RU', {timeZone: 'UTC'});
+            let result = (time > 24 * 60 * 60 * 1000) ? localization.timeOverhead : time.toLocaleTimeString('ru-RU', {timeZone: 'UTC'});
             return <Congratulation url={location.href} result={result} />;
         } else {
             return null;

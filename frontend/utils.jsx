@@ -1,3 +1,7 @@
+'use strict';
+import 'whatwg-fetch';
+import Cookies from 'js-cookie';
+
 import localization from "./localization";
 
 function moveTo(paths, from, to) {
@@ -41,17 +45,7 @@ const prepareInfobox = (json) => {
         json.area = Number(json.area).toLocaleString() + ' ' + localization.km2;
     }
     if (json.population) {
-        json.population = Number(json.population).toLocaleString()
-    }
-    if (json.capital) {
-        json.capital.marker = {
-            key: json.capital.name,
-            defaultAnimation: 2,
-            position: {
-                lat: json.capital.lat,
-                lng: json.capital.lon,
-            }
-        }
+        json.population = Number(json.population).toLocaleString();
     }
     return json;
 };
@@ -64,4 +58,12 @@ function shuffle(a) {
     return a;
 }
 
-export {moveTo, decodePolygon, prepareInfobox, shuffle};
+
+const CSRFfetch = (url, options) => {
+    let headers = options.headers || new Headers();
+    headers.append('X-CSRFTOKEN', Cookies.get('csrftoken'));
+    return fetch(url, {...options, headers: headers, credentials: 'same-origin'});
+};
+
+
+export {moveTo, decodePolygon, prepareInfobox, shuffle, CSRFfetch};

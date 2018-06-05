@@ -17,9 +17,7 @@ class Command(BaseCommand):
     def _update(self, query, label, **kwargs):
         for region in query.iterator():
             cache.delete(region.caches[label].format(id=region.id))
-            print('===========================')
-            print(region.title)
-            print(getattr(region, label))
+            getattr(region, label)
 
     def _export(self, query, label, **kwargs):
         with open('geocache_{}.json'.format(label), 'w') as f:

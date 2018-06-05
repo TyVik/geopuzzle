@@ -25,11 +25,10 @@ def quiz(request: WSGIRequest, name: str) -> HttpResponse:
     quiz = get_object_or_404(Quiz, slug=name)
     trans = quiz.load_translation(request.LANGUAGE_CODE)
     context = {
-        'google_key': settings.GOOGLE_KEY,
         'language': request.LANGUAGE_CODE,
         'game': quiz,
         'name': trans.name,
-        'text': _('{name} has been solved! You guessed all {subjects}. You time is ').format(
+        'text': _('Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is ').format(
             name=trans.name if quiz.id != 1 else _('World map'),
             subjects=_('countries') if quiz.is_global else _('regions'))
     }

@@ -3,30 +3,61 @@
 <html lang="en">
 <head>
     <title>GeoPuzzle - {% trans 'Mercator puzzle of ' %}{% block title %}{% trans 'World' %}{% endblock %}</title>
-    <meta name="Description" content="{% trans 'Arrange the pieces of the world!' %}"/>
-    <meta name="Keywords" content="geopuzzle, геопаззл, mercator puzzle, паззл меркатора"/>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    <meta charset="utf-8"/>
+    <meta name="description" content="{% trans 'Arrange the pieces of the world!' %}"/>
+    <meta name="keywords" content="geopuzzle, геопаззл, mercator puzzle, паззл меркатора"/>
+    <meta name="viewport" content="initial-scale=1, user-scalable=no, width=device-width"/>
+    <meta charset="utf-8">
+    <meta name="application-name" content="GeoPuzzle">
     <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}" />
 
     {% share_image request game %}
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    {% block head_js %}
+    {% endblock %}
     {% block extra_css %}
     {% endblock %}
 </head>
 
 <body>
-<nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">GeoPuzzle</a>
-        </div>
+    <div class="navbar-container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">GeoPuzzle</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="main-navbar">
+                        {% if request.user.is_authenticated %}
+                            <ul class="nav navbar-nav">
+                                <li><a href="{% url 'workshop' %}">{% trans 'Workshop' %}</a></li>
+                            </ul>
+                        {% endif %}
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if request.user.is_authenticated %}
+                                <li><a class="navbar-right navbar-link" href="{% url "profile" %}">@{{ request.user.username }}</a></li>
+                                <li><a href="{% url 'logout' %}">({% trans 'logout' %})</a></li>
+                            {% else %}
+{#                                <li><a class="navbar-right navbar-link" href="{% url "login" %}">Sign in</a></li>#}
+{#                                <li><a class="navbar-right navbar-link" href="{% url "registration" %}">Sign up</a></li>#}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </div>
-</nav>
-
 {% block content %}
+{% endblock %}
+
+{% block extra_js %}
 {% endblock %}
 
 <script>
@@ -34,7 +65,7 @@
         FB.init({
             appId: '1273749826026102',
             xfbml: true,
-            version: 'v2.8'
+            version: 'v2.9'
         });
         FB.AppEvents.logPageView();
     };
@@ -53,7 +84,6 @@
 <script src="https://cdn.ravenjs.com/3.21.0/raven.min.js" crossorigin="anonymous"></script>
 <script>Raven.config('{% sentry_public_dsn 'https' %}', {
     release: '{{ settings.RAVEN_CONFIG.release }}',
-    ignoreUrls: [/maps\.googleapis\.com/]
 }).install()</script>
 
 {% if not debug %}

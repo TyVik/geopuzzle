@@ -34,14 +34,18 @@ sitemaps = {
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^accounts/', include('users.urls')),
     url(r'^puzzle/', include('puzzle.urls')),
     url(r'^quiz/', include('quiz.urls')),
+    url(r'^regions/', include('maps.urls')),
     url(r'^maps/(?P<name>[a-zA-Z0-9]+)/', views.deprecated_redirect),
     url(r'^puzzle/area/(?P<pk>\d+)/infobox/', views.infobox_by_id, name='infobox_by_id'),
 
     url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt'), name='robots'),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 
+    url(r'^error/$', views.error, name='error'),
+    url(r'^status/$', views.status, name='status'),
     url(r'^$', views.index, name='index'),
 ]
 

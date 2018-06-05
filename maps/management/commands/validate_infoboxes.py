@@ -20,41 +20,41 @@ def check_link(area, lang, infobox, name, is_image):
 class Command(BaseCommand):
     def handle(self, *args, **options):
         for area in Region.objects.order_by('id').all():
-            for lang in settings.LANGUAGES:
-                trans = area.load_translation(lang[0])
+            for lang in settings.ALLOWED_LANGUAGES:
+                trans = area.load_translation(lang)
                 infobox = trans.infobox
                 if 'area' not in infobox:
-                    log(area, lang[0], '- area')
+                    log(area, lang, '- area')
                 if 'population' not in infobox:
-                    log(area, lang[0], '- population')
+                    log(area, lang, '- population')
                 if 'name' not in infobox:
-                    log(area, lang[0], '- name')
+                    log(area, lang, '- name')
                 if 'geonamesID' not in infobox:
-                    log(area, lang[0], '- geonamesID')
+                    log(area, lang, '- geonamesID')
                 if 'currency' not in infobox and area.country.is_global:
-                    log(area, lang[0], '- currency')
+                    log(area, lang, '- currency')
 
                 if 'capital' not in infobox or not isinstance(infobox['capital'], dict):
-                    log(area, lang[0], '- capital')
+                    log(area, lang, '- capital')
                 else:
                     if not isinstance(infobox['capital']['lat'], float):
-                        log(area, lang[0], '- capital/lat')
+                        log(area, lang, '- capital/lat')
                     if not isinstance(infobox['capital']['lon'], float):
-                        log(area, lang[0], '- capital/lon')
+                        log(area, lang, '- capital/lon')
                     if 'wiki' not in infobox['capital']:
-                        log(area, lang[0], '- capital/wiki')
+                        log(area, lang, '- capital/wiki')
                     else:
-                        check_link(area, lang[0], infobox['capital'], 'wiki', False)
+                        check_link(area, lang, infobox['capital'], 'wiki', False)
 
                 if 'wiki' not in infobox:
-                    log(area, lang[0], '- wiki')
+                    log(area, lang, '- wiki')
                 else:
-                    check_link(area, lang[0], infobox, 'wiki', False)
+                    check_link(area, lang, infobox, 'wiki', False)
                 if 'flag' not in infobox:
-                    log(area, lang[0], '- flag')
+                    log(area, lang, '- flag')
                 else:
-                    check_link(area, lang[0], infobox, 'flag', True)
+                    check_link(area, lang, infobox, 'flag', True)
                 if 'coat_of_arms' not in infobox:
-                    log(area, lang[0], '- coat_of_arms')
+                    log(area, lang, '- coat_of_arms')
                 else:
-                    check_link(area, lang[0], infobox, 'coat_of_arms', True)
+                    check_link(area, lang, infobox, 'coat_of_arms', True)

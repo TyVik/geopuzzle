@@ -34,7 +34,9 @@ I hope python 3 with pip already installed :)
 ## Create virtual environment
 
 ```
-$ virtualenv --python=`which python3` geopuzzle
+$ virtualenv --python=`which python3` venv
+$ source venv/bin/activate
+(venv)$ pip install -r requirements.txt
 ```
 
 ## Create database
@@ -47,7 +49,7 @@ $ virtualenv --python=`which python3` geopuzzle
 2. Install postgis extension:
     ```
     $ sudo su postgres -c psql
-    postgres=# create user geopuzzle with password "geopuzzle";
+    postgres=# create user geopuzzle with password 'geopuzzle';
     postgres=# create database geopuzzle owner geopuzzle;
     ``` 
 3. Create user and database:
@@ -63,7 +65,7 @@ $ virtualenv --python=`which python3` geopuzzle
     ```
 4. Create tables:
     ```
-    (geopuzzle)$ ./manage.py migrate
+    (venv)$ ./manage.py migrate
     ```
 
 ## Set up env variables
@@ -97,7 +99,7 @@ Just select the country (or many or with regions) and click 'Export'. URL must b
 https://wambachers-osm.website/boundaries/exportBoundaries?apiversion=1.0&apikey=434e16bd-cdd3-489f-ab39-d0ee2e6f894f&exportFormat=json&exportLayout=levels&exportAreas=land&from_al=2&to_al=4&union=false&selected=16239
 ```
 And download content by that link. You've got zip archive with GeoJson files, unpack them into `geojson` folder.
-After that you can run management command `(geopuzzle)$ ./manage.py update_regions` for load polygons into database.
+After that you can run management command `(venv)$ ./manage.py update_regions` for load polygons into database.
 Take into account - data from OSM is not perfect and some regions can have bad or recursive links to each other.
 In most cases, restarting can help :) 
 

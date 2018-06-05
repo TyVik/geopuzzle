@@ -7,18 +7,21 @@ class MapContainer extends React.Component {
     handleMapLoad = (map) => {
         this._mapComponent = map;
         if (map && this.props.initCallback) {
-            this.props.initCallback();
+            this.props.initCallback(map);
         }
     };
 
     handleMapClick = (e) => {
-        this.props.mapClick(e);
+        if (this.props.mapClick !== undefined) {
+            this.props.mapClick(e);
+        }
     };
 
     preparePolygons(polygons) {
         return polygons.map(polygon => {
             return {
                 map: this._mapComponent,
+                key: `${polygon.draggable}${polygon.id}`,
                 options: {
                     strokeColor: polygon.isSolved ? '#419641' : '#d9534f',
                     strokeOpacity: 0.8,
@@ -38,13 +41,13 @@ class MapContainer extends React.Component {
     }
 
     showMarker(infobox) {
-        if (infobox && infobox.capital) {
+        if (infobox) {
             return {
-                key: infobox.capital.name,
+                key: 'center',
                 defaultAnimation: 2,
                 position: {
-                    lat: infobox.capital.lat,
-                    lng: infobox.capital.lon
+                    lat: infobox.marker.lat,
+                    lng: infobox.marker.lon
                 }
             }
         }
