@@ -62,7 +62,9 @@ class Quiz extends Game {
 
     mapClick = (e) => {
         let question = this.state.questions[this.state.question];
-        this.wsSend({type: 'QUIZ_CHECK', coords: {lat: e.latLng.lat(), lng: e.latLng.lng()}, id: question.id});
+        if (question) {
+            this.wsSend({type: 'QUIZ_CHECK', coords: {lat: e.latLng.lat(), lng: e.latLng.lng()}, id: question.id});
+        }
     };
 
     loadQuiz = (options) => {

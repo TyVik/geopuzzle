@@ -1,0 +1,29 @@
+{% extends 'registration/base.html' %}
+{% load i18n %}
+
+{% block top %}
+    {% trans "Log In" %} / <a href="{% url "registration" %}">{% trans "Sign Up" %}</a>
+{% endblock %}
+
+{% block form %}
+    <form role="form" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+        <ul class="list-errors">
+            {% for error in form.non_field_errors %}
+                <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </ul>
+        <button type="submit" class="btn btn-primary">{% trans "Log In" %}</button>
+{#                    <a class="pull-right" href="{% url "password_reset" %}">{% trans "Forgot password?" %}</a>#}
+    </form>
+{% endblock %}

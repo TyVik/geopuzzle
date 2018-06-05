@@ -28,7 +28,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         s3 = boto3.resource('s3')
         bucket = s3.Bucket('geo-puzzle')
-        static_path = os.path.join(settings.BASE_DIR, 'static')
+        static_path = os.path.join(settings.BASE_DIR, settings.STATIC_ROOT)
         for root, dirs, files in os.walk(static_path):
             for file in files:
                 path = os.path.join(root, file)

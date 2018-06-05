@@ -15,6 +15,7 @@ module.exports = (env, argv) => {
             quiz: './quiz',
             puzzle: './puzzle',
             localization: './localization',
+            editor: './editor',
         },
         output: {
             path: path.resolve(__dirname, 'static', 'js'),

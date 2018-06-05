@@ -51,5 +51,5 @@ class PuzzleTranslation(GameTranslation):
 def attach_translations(sender, instance, created, **kwargs):
     if created:
         common = {'master': instance, 'name': instance.slug}
-        for lang, _ in settings.LANGUAGES:
+        for lang in settings.ALLOWED_LANGUAGES:
             PuzzleTranslation.objects.create(language_code=lang, **common)

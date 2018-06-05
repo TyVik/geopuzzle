@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.db import connection
 from django.http import HttpResponsePermanentRedirect, JsonResponse
 from django.urls import reverse
 from django.utils.translation import ugettext as _
@@ -5,6 +7,7 @@ from django.utils.translation import ugettext as _
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
+from redis import StrictRedis
 
 from maps.models import Region
 from puzzle.models import Puzzle
@@ -12,8 +15,8 @@ from quiz.models import Quiz
 
 
 def index(request: WSGIRequest) -> HttpResponse:
-    puzzles = Puzzle.objects.filter(translations__language_code=request.LANGUAGE_CODE, is_published=True).order_by('translations__name').all()
-    quizzes = Quiz.objects.filter(translations__language_code=request.LANGUAGE_CODE, is_published=True).order_by('translations__name').all()
+    puzzles = Puzzle.objects.filter(translations__language_code=request.LANGUAGE_CODE, is_published=True, user__isnull=True).order_by('translations__name').all()
+    quizzes = Quiz.objects.filter(translations__language_code=request.LANGUAGE_CODE, is_published=True, user__isnull=True).order_by('translations__name').all()
     games = [{
         'items': {
             'parts': [item.index for item in puzzles.filter(is_global=True).all()],
@@ -43,3 +46,24 @@ def infobox_by_id(request: WSGIRequest, pk: str) -> JsonResponse:
 
 def deprecated_redirect(request: WSGIRequest, name: str) -> HttpResponsePermanentRedirect:
     return HttpResponsePermanentRedirect(reverse('puzzle_map', kwargs={'name': name}))
+
+
+def error(request):
+    return HttpResponse('Something went wrong :(')
+
+
+def status(request):
+    def check_redis():
+        StrictRedis.from_url(settings.REDIS_HOST).ping()
+
+    def check_database():
+        connection.cursor()
+
+    result = {}
+    for service in ('redis', 'database'):
+        try:
+            locals()[f'check_{service}']()
+            result[service] = 'success'
+        except Exception as e:
+            return JsonResponse({service: 'fail', 'message': e}, status=503)
+    return JsonResponse(result)
