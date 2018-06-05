@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-25 20:27+0000\n"
-"PO-Revision-Date: 2018-05-07 06:51-0400\n"
+"POT-Creation-Date: 2018-05-19 14:23+0000\n"
+"PO-Revision-Date: 2018-06-05 15:31-0400\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: Norwegian\n"
 "Language: no_NO\n"
@@ -81,40 +81,48 @@ msgstr ""
 msgid "Import from OSM"
 msgstr ""
 
-#: mercator/views.py:24
+#: mercator/settings/settings.py:188
+msgid "English"
+msgstr ""
+
+#: mercator/settings/settings.py:189
+msgid "Russian"
+msgstr ""
+
+#: mercator/views.py:27
 msgid "puzzle"
 msgstr ""
 
-#: mercator/views.py:25
+#: mercator/views.py:28
 msgid "In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!"
 msgstr ""
 
-#: mercator/views.py:33
+#: mercator/views.py:36
 msgid "quiz"
 msgstr ""
 
-#: mercator/views.py:34
+#: mercator/views.py:37
 msgid "In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!"
 msgstr ""
 
-#: puzzle/views.py:31
-msgid "{} was assembled! You time is "
+#: puzzle/views.py:46
+msgid "Puzzle \"{}\" has been assembled! Your time is "
 msgstr ""
 
-#: puzzle/views.py:31 quiz/views.py:33
+#: puzzle/views.py:46 quiz/views.py:32
 msgid "World map"
 msgstr ""
 
-#: quiz/views.py:32
+#: quiz/views.py:31
 #, python-brace-format
-msgid "{name} has been solved! You guessed all {subjects}. You time is "
+msgid "Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is "
 msgstr ""
 
-#: quiz/views.py:34
+#: quiz/views.py:33
 msgid "countries"
 msgstr ""
 
-#: quiz/views.py:34
+#: quiz/views.py:33
 msgid "regions"
 msgstr ""
 
@@ -122,35 +130,43 @@ msgstr ""
 msgid "Mercator puzzle of "
 msgstr ""
 
-#: templates/base.html:5 templates/index.html:44
+#: templates/base.html:5 templates/index.html:37
 msgid "World"
 msgstr ""
 
-#: templates/base.html:6 templates/index.html:13 templates/share_image.html:7
+#: templates/base.html:6 templates/index.html:6 templates/share_image.html:7
 msgid "Arrange the pieces of the world!"
 msgstr ""
 
-#: templates/index.html:15
+#: templates/base.html:40
+msgid "Workshop"
+msgstr ""
+
+#: templates/base.html:46
+msgid "logout"
+msgstr ""
+
+#: templates/index.html:8
 msgid "\"It turns out that the tallest people live in Rwanda,\" one day they told you. And then you shyly thought about what Rwanda is and with what it's eaten, but nothing came to your mind ... Then you went to the right page!"
 msgstr ""
 
-#: templates/index.html:18
+#: templates/index.html:11
 msgid "In the game form, you can remember not only the location and name of the country, but also its flag, coat of arms and the capital. Under your hand all the states of the world - study them, move them and compare them. And then your brain will work another time faster and remember, for example, that Rwanda is one of the smallest countries in Africa. ;)"
 msgstr ""
 
-#: templates/index.html:51
+#: templates/index.html:44
 msgid "easy countries"
 msgstr ""
 
-#: templates/index.html:58
+#: templates/index.html:51
 msgid "all countries"
 msgstr ""
 
-#: templates/index.html:74
+#: templates/index.html:67
 msgid "Country regions"
 msgstr ""
 
-#: templates/index.html:98
+#: templates/index.html:91
 msgid "This is my pet project, but I was so impressed with this idea that I decided to make a\n"
 "                    website. It is not over yet -\n"
 "                    will update both the data and functionality. All suggestions for improvement can be sent to me via\n"
@@ -159,7 +175,7 @@ msgid "This is my pet project, but I was so impressed with this idea that I deci
 "                    or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
 msgstr ""
 
-#: templates/index.html:104
+#: templates/index.html:97
 msgid "You always can support the project with donations via <a href=\"https://www.paypal.me/tyvik\">PayPal</a> or\n"
 "                    <a href=\"http://yasobe.ru/na/geopuzzle\">Yandex money</a>."
 msgstr ""
@@ -167,4 +183,59 @@ msgstr ""
 #: templates/share_image.html:8
 msgid "Games on political maps"
 msgstr ""
+
+#: users/forms.py:12 users/forms.py:18
+msgid "Username"
+msgstr ""
+
+#: users/forms.py:14 users/forms.py:21
+msgid "Password"
+msgstr ""
+
+#: users/forms.py:50 users/models.py:11
+msgid "Avatar"
+msgstr ""
+
+#: users/models.py:12
+msgid "Language"
+msgstr ""
+
+#: users/templates/registration/base.html:29
+msgid "or"
+msgstr ""
+
+#: users/templates/registration/login.html:5
+#: users/templates/registration/login.html:26
+#: users/templates/registration/registration.html:5
+msgid "Log In"
+msgstr ""
+
+#: users/templates/registration/login.html:5
+#: users/templates/registration/registration.html:5
+#: users/templates/registration/registration.html:31
+msgid "Sign Up"
+msgstr ""
+
+#: users/templates/user/profile.html:17
+msgid "Profile"
+msgstr ""
+
+#: users/templates/user/profile.html:18
+msgid "My puzzles"
+msgstr ""
+
+#: users/templates/user/profile.html:22
+msgid "Public profile"
+msgstr ""
+
+#: users/templates/user/profile.html:43
+msgid "Save"
+msgstr ""
+
+#: users/templates/user/profile.html:68
+msgid "New one"
+msgstr ""
+
+#~ msgid "Forgot password?"
+#~ msgstr "Забыли пароль?"
 
