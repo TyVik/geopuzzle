@@ -24,7 +24,7 @@ This is just web application, so you need:
 
 Install nginx, uwsgi, supervisor and other packages:
 ```
-$ sudo apt install nginx uwsgi uwsgi-plugin-python3 supervisor redis
+$ sudo apt install nginx uwsgi uwsgi-plugin-python3 supervisor redis-server
 $ sudo apt install gdal-bin gettext build-essential python3-dev libpq-dev
 ```
 
