@@ -45,8 +45,8 @@
                                 <li><a class="navbar-right navbar-link" href="{% url "profile" %}">@{{ request.user.username }}</a></li>
                                 <li><a href="{% url 'logout' %}">({% trans 'logout' %})</a></li>
                             {% else %}
-{#                                <li><a class="navbar-right navbar-link" href="{% url "login" %}">Sign in</a></li>#}
-{#                                <li><a class="navbar-right navbar-link" href="{% url "registration" %}">Sign up</a></li>#}
+                                <li><a class="navbar-right navbar-link" href="{% url "login" %}">Sign in</a></li>
+                                <li><a class="navbar-right navbar-link" href="{% url "registration" %}">Sign up</a></li>
                             {% endif %}
                         </ul>
                     </div>

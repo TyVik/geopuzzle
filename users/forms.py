@@ -51,21 +51,12 @@ class ProfileForm(ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'image', 'language')
+        fields = ('email', 'image', 'language', 'is_subscribed')
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
         for _, field in self.fields.items():
             field.widget.attrs.update({'class': 'form-control'})
-
-    def as_row(self):
-        return self._html_output(
-            normal_row='<dl class="form-group"><dt>%(label)s</dt><dd>%(field)s</dd>%(help_text)s</dl>',
-            error_row='<li>%s</li>',
-            row_ender='</dl>',
-            help_text_html=' <span class="helptext">%s</span>',
-            errors_on_separate_row=False
-        )
 
 
 class AvatarChangeForm(ModelForm):
