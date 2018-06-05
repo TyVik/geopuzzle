@@ -35,5 +35,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RunPython(fix_level),
         migrations.RunPython(fix_infobox),
-        migrations.RunSQL("delete from maps_region where (osm_data->>'level')::int in (8, 9, 10, 11, 12)")
+        migrations.RunSQL("delete from maps_region_translation where master_id in (select id from maps_region where (osm_data->>'level')::int > 7)"),
+        migrations.RunSQL("delete from maps_region where (osm_data->>'level')::int > 7")
     ]
