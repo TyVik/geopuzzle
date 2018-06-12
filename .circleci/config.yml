@@ -53,9 +53,10 @@ jobs:
           command: coverage run --source='.' manage.py test
       - run:
           name: Collect coverage
-          command: coverage html -d reports
-      - store_test_results:
-          path: ~/repo/reports
+          command: coverage report
+      - run:
+          name: Coveralls
+          command: coveralls
 
   deploy:
     docker:

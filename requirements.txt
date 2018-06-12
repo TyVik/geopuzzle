@@ -19,4 +19,4 @@ django-settings-export==1.2.1
 django-dotenv==1.4.2
 social-auth-app-django==2.1.0
 git+git://github.com/OndraRehounek/django-awesome-avatar.git
-coverage==4.4.2
+python-coveralls==2.9.1
