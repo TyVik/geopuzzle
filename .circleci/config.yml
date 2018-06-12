@@ -1,0 +1,86 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: circleci/node:8.11
+      environment:
+        NODE_ENV: "production"
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - bundles-{{ checksum "package.json" }}
+      - run: npm install
+      - run: npm run build
+      - save_cache:
+          key: bundles-{{ checksum "package.json" }}
+          paths:
+            - ~/repo/node_modules
+      - store_artifacts:
+          path: static/js
+          destination: bundles
+
+  test:
+    docker:
+      - image: tyvik/geopuzzle:app
+        environment:
+          DJANGO_SETTINGS_MODULE: "mercator.settings.circleci"
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_NAME: geopuzzle
+          DB_USER: geopuzzle
+          DB_USER_PASSWORD: geopuzzle
+          REDIS_HOST: localhost
+      - image: circleci/postgres:9.6-postgis-ram
+        environment:
+          POSTGRES_USER: geopuzzle
+          POSTGRES_DB: geopuzzle
+          POSTGRES_PASSWORD: geopuzzle
+      - image: circleci/redis:4.0.9
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 30s
+      - run:
+          name: Run tests
+          command: coverage run --source='.' manage.py test
+      - run:
+          name: Collect coverage
+          command: coverage html -d reports
+      - store_test_results:
+          path: ~/repo/reports
+
+  deploy:
+    docker:
+      - image: tyvik/geopuzzle:app
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: Deploy release to Sentry
+          command: echo "Sentry"
+      - add_ssh_keys:
+          fngerprints:
+           - "c7:1f:fb:eb:c0:79:6b:c9:f7:71:62:d6:f5:c0:d5:e7"
+      - run:
+          name: Upload static
+          command: |
+            python manage.py collectstatic --noinput
+            python manage.py deploystatic
+      - run:
+          name: Update server
+          command: ssh $SSH_USER@$SSH_HOST "./circleci/update.sh"
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: production
