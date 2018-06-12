@@ -11,7 +11,11 @@ jobs:
       - restore_cache:
           keys:
             - bundles-{{ checksum "package.json" }}
-      - run: npm install
+      - run:
+          name: Install frontend requirements
+          command: |
+            npm install --only=dev
+            npm install --only=prod
       - run: npm run build
       - save_cache:
           key: bundles-{{ checksum "package.json" }}
@@ -78,9 +82,11 @@ workflows:
   build-deploy:
     jobs:
       - build
+      - test
       - deploy:
           requires:
             - build
+            - test
           filters:
             branches:
               only: production
