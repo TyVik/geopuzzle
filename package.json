@@ -1,14 +1,14 @@
 {
   "name": "mercator",
   "version": "1.0.0",
-  "description": "",
+  "description": "![geopuzzle](https://raw.githubusercontent.com/TyVik/geopuzzle/master/static/images/puzzle.png)  Arrange the pieces of the world! You need to drag the shape of the territory to the right place.  Just like in childhood we collected pictures piece by piece, so here you can collect a country  from regions or whole continents from countries!",
   "main": "puzzle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "analyze": "./node_modules/.bin/webpack --profile --json --mode production > stats.json && ./node_modules/.bin/webpack-bundle-analyzer stats.json",
-    "dev": "./node_modules/.bin/webpack --watch --mode development",
-    "build": "./node_modules/.bin/webpack --progress --mode production",
-    "release": "./node_modules/.bin/webpack --progress --mode production --env.release"
+    "analyze": "webpack --profile --json --mode production > stats.json && ./node_modules/.bin/webpack-bundle-analyzer stats.json",
+    "dev": "webpack --watch --mode development",
+    "build": "webpack --progress --mode production",
+    "release": "webpack --progress --mode production --env.release"
   },
   "repository": {
     "type": "git",
