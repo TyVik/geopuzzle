@@ -63,7 +63,9 @@ $ source venv/bin/activate
     geopuzzle=# create extension address_standardizer;
     geopuzzle=# create extension postgis_tiger_geocoder;
     ```
-4. Create tables:
+4. Create `.env` file (based on `.env_template`) in project root with environment settings. 
+Required parameters were already initialed default values in template file;
+5. Create tables:
     ```
     (venv)$ ./manage.py migrate
     ```
