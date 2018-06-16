@@ -1,3 +1,6 @@
+[![CircleCI](https://circleci.com/gh/TyVik/geopuzzle.svg?style=svg)](https://circleci.com/gh/TyVik/geopuzzle)
+[![Coverage Status](https://coveralls.io/repos/github/TyVik/geopuzzle/badge.svg?branch=master)](https://coveralls.io/github/TyVik/geopuzzle?branch=master)
+
 # Intro
 
 ![geopuzzle](https://raw.githubusercontent.com/TyVik/geopuzzle/master/static/images/puzzle.png) 
