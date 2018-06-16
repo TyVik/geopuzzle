@@ -17,7 +17,6 @@ class Migration(migrations.Migration):
             name='language_code',
             field=models.CharField(choices=[('en', 'English'), ('ru', 'Russian')], db_index=True, max_length=15),
         ),
-        migrations.RunSQL('ALTER TABLE puzzle_puzzle_regions RENAME TO puzzle_puzzleregion'),
         migrations.AddField(
             model_name='puzzleregion',
             name='is_solved',
