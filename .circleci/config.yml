@@ -80,20 +80,29 @@ jobs:
 workflows:
   version: 2
   release:
-    filters:
-      branches:
-        only: master
     jobs:
-      - build
-      - test
+      - build:
+        filters:
+          branches:
+            only: master
+      - test:
+        filters:
+          branches:
+            only: master
       - deploy:
           requires:
             - test
+        filters:
+          branches:
+            only: master
 
   development:
-    filters:
-      branches:
-        exclude: master
     jobs:
-      - build
-      - test
+      - build:
+        filters:
+          branches:
+            ignore: master
+      - test:
+        filters:
+          branches:
+            ignore: master
