@@ -8,7 +8,6 @@
     "analyze": "./node_modules/.bin/webpack --profile --json --mode production > stats.json && ./node_modules/.bin/webpack-bundle-analyzer stats.json",
     "dev": "./node_modules/.bin/webpack --watch --mode development",
     "build": "./node_modules/.bin/webpack --progress --mode production",
-    "release": "./node_modules/.bin/webpack --progress --mode production --env.release"
   },
   "repository": {
     "type": "git",

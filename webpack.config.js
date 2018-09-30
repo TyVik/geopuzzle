@@ -9,7 +9,7 @@ const gitRevisionPlugin = new GitRevisionPlugin();
 module.exports = (env, argv) => {
     const NODE_ENV = process.env.NODE_ENV || 'development';
 
-    const config = {
+    return {
         context: __dirname + '/frontend',
         entry: {
             quiz: './quiz',
@@ -37,6 +37,11 @@ module.exports = (env, argv) => {
                         NODE_ENV: JSON.stringify(NODE_ENV)
                     }
                 }
+            }),
+            new SentryCliPlugin({
+                release: gitRevisionPlugin.version(),
+                include: './static/js/',
+                ignore: ['node_modules', 'webpack.config.js']
             })
         ],
         module: {
@@ -69,16 +74,4 @@ module.exports = (env, argv) => {
             },
         },
     };
-
-    if (env && env.release) {
-        config.plugins.push(
-            new SentryCliPlugin({
-                release: gitRevisionPlugin.version(),
-                include: './static/js/',
-                ignore: ['node_modules', 'webpack.config.js']
-            })
-        );
-    }
-
-    return config;
 };
