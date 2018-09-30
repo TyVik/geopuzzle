@@ -79,14 +79,21 @@ jobs:
 
 workflows:
   version: 2
-  build-deploy:
+  release:
+    filters:
+      branches:
+        only: master
     jobs:
       - build
       - test
       - deploy:
           requires:
-            - build
             - test
-          filters:
-            branches:
-              only: production
+
+  development:
+    filters:
+      branches:
+        exclude: master
+    jobs:
+      - build
+      - test
