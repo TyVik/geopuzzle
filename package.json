@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "analyze": "./node_modules/.bin/webpack --profile --json --mode production > stats.json && ./node_modules/.bin/webpack-bundle-analyzer stats.json",
     "dev": "./node_modules/.bin/webpack --watch --mode development",
-    "build": "./node_modules/.bin/webpack --progress --mode production",
+    "build": "./node_modules/.bin/webpack --progress --mode production"
   },
   "repository": {
     "type": "git",
