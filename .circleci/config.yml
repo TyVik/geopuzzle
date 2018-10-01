@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-    - image: circleci/node:8.11
+    - image: tyvik/geopuzzle:jsbuild
       environment:
         NODE_ENV: "production"
         SENTRY_ORG: "geopuzzle"
