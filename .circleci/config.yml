@@ -40,7 +40,7 @@ jobs:
           command: |
             npm install --only=dev
             npm install --only=prod
-      - run: jest
+      - run: npm run test
 
   django:
     docker:
