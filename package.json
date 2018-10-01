@@ -33,6 +33,7 @@
     "jspolyfill-array.prototype.findIndex": "^0.1.0",
     "@sentry/webpack-plugin": "^1.5.0",
     "@types/react": "^15.0.0",
+    "@types/jest": "^23.3.2",
     "@types/googlemaps": "^3.0.0",
     "@types/markerclustererplus": "^2.1.29",
     "babel-cli": "^6.26.0",

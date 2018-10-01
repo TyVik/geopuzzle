@@ -4,6 +4,5 @@ import Loading from '../components/Loading';
 
 
 it('shallow <Loading /> components', () => {
-    const wrapper = shallow(<Loading text='test'/>);
-    expect(wrapper).toMatchSnapshot();
+  expect(shallow(<Loading text='test'/>)).toMatchSnapshot();
 });
