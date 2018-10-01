@@ -1,0 +1,5756 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shallow <Infobox /> components check props: infobox 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Infobox
+    area="area"
+    capital={
+      Object {
+        "name": "capital.name",
+        "wiki": "capital.wiki",
+      }
+    }
+    coat_of_arms="coat_of_arms"
+    currency="currency"
+    flag="flag"
+    name="test"
+    onClose={[MockFunction]}
+    population="population"
+    show={true}
+    wiki="wiki"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="header"
+        >
+          <button
+            className="close"
+            onClick={[MockFunction]}
+            type="button"
+          >
+            <span>
+              ×
+            </span>
+          </button>
+          <div
+            className="row_name"
+          >
+            test
+             
+            <sup>
+              <a
+                href="wiki"
+                target="_blank"
+              >
+                wiki
+              </a>
+            </sup>
+          </div>
+          <span
+            className="glyphicon collapse-icon glyphicon-chevron-down"
+            onClick={[Function]}
+          />
+        </div>,
+        <Uncontrolled(Panel)
+          expanded={true}
+          onToggle={[Function]}
+        >
+          <PanelCollapse
+            bsClass="panel"
+          >
+            <PanelBody
+              bsClass="panel"
+              collapsible={false}
+            >
+              <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </PanelBody>
+          </PanelCollapse>
+        </Uncontrolled(Panel)>,
+      ],
+      "className": "infobox",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <button
+              className="close"
+              onClick={[MockFunction]}
+              type="button"
+            >
+              <span>
+                ×
+              </span>
+            </button>,
+            <div
+              className="row_name"
+            >
+              test
+               
+              <sup>
+                <a
+                  href="wiki"
+                  target="_blank"
+                >
+                  wiki
+                </a>
+              </sup>
+            </div>,
+            <span
+              className="glyphicon collapse-icon glyphicon-chevron-down"
+              onClick={[Function]}
+            />,
+          ],
+          "className": "header",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <span>
+                ×
+              </span>,
+              "className": "close",
+              "onClick": [MockFunction],
+              "type": "button",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "×",
+              },
+              "ref": null,
+              "rendered": "×",
+              "type": "span",
+            },
+            "type": "button",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                "test",
+                " ",
+                <sup>
+                  <a
+                    href="wiki"
+                    target="_blank"
+                  >
+                    wiki
+                  </a>
+                </sup>,
+              ],
+              "className": "row_name",
+            },
+            "ref": null,
+            "rendered": Array [
+              "test",
+              " ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <a
+                    href="wiki"
+                    target="_blank"
+                  >
+                    wiki
+                  </a>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "wiki",
+                    "href": "wiki",
+                    "target": "_blank",
+                  },
+                  "ref": null,
+                  "rendered": "wiki",
+                  "type": "a",
+                },
+                "type": "sup",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "glyphicon collapse-icon glyphicon-chevron-down",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "span",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <PanelCollapse
+            bsClass="panel"
+          >
+            <PanelBody
+              bsClass="panel"
+              collapsible={false}
+            >
+              <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </PanelBody>
+          </PanelCollapse>,
+          "expanded": true,
+          "onToggle": [Function],
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "bsClass": "panel",
+            "children": <PanelBody
+              bsClass="panel"
+              collapsible={false}
+            >
+              <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </PanelBody>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "bsClass": "panel",
+              "children": <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>
+              </table>,
+              "collapsible": false,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>,
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>,
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>,
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>,
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <img
+                          src="flag"
+                        />,
+                        "colSpan": "2",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "src": "flag",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "img",
+                      },
+                      "type": "td",
+                    },
+                    "type": "tr",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <td>
+                          Capital
+                        </td>,
+                        <td>
+                          <a
+                            href="capital.wiki"
+                            target="_blank"
+                          >
+                            capital.name
+                          </a>
+                        </td>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Capital",
+                        },
+                        "ref": null,
+                        "rendered": "Capital",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <a
+                            href="capital.wiki"
+                            target="_blank"
+                          >
+                            capital.name
+                          </a>,
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "capital.name",
+                            "href": "capital.wiki",
+                            "target": "_blank",
+                          },
+                          "ref": null,
+                          "rendered": "capital.name",
+                          "type": "a",
+                        },
+                        "type": "td",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <td>
+                          Area
+                        </td>,
+                        <td>
+                          area
+                        </td>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Area",
+                        },
+                        "ref": null,
+                        "rendered": "Area",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "area",
+                        },
+                        "ref": null,
+                        "rendered": "area",
+                        "type": "td",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <td>
+                          Population
+                        </td>,
+                        <td>
+                          population
+                        </td>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Population",
+                        },
+                        "ref": null,
+                        "rendered": "Population",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "population",
+                        },
+                        "ref": null,
+                        "rendered": "population",
+                        "type": "td",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <td>
+                          Currency
+                        </td>,
+                        <td>
+                          currency
+                        </td>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Currency",
+                        },
+                        "ref": null,
+                        "rendered": "Currency",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "currency",
+                        },
+                        "ref": null,
+                        "rendered": "currency",
+                        "type": "td",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                ],
+                "type": "tbody",
+              },
+              "type": "table",
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="header"
+          >
+            <button
+              className="close"
+              onClick={[MockFunction]}
+              type="button"
+            >
+              <span>
+                ×
+              </span>
+            </button>
+            <div
+              className="row_name"
+            >
+              test
+               
+              <sup>
+                <a
+                  href="wiki"
+                  target="_blank"
+                >
+                  wiki
+                </a>
+              </sup>
+            </div>
+            <span
+              className="glyphicon collapse-icon glyphicon-chevron-down"
+              onClick={[Function]}
+            />
+          </div>,
+          <Uncontrolled(Panel)
+            expanded={true}
+            onToggle={[Function]}
+          >
+            <PanelCollapse
+              bsClass="panel"
+            >
+              <PanelBody
+                bsClass="panel"
+                collapsible={false}
+              >
+                <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </PanelBody>
+            </PanelCollapse>
+          </Uncontrolled(Panel)>,
+        ],
+        "className": "infobox",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <button
+                className="close"
+                onClick={[MockFunction]}
+                type="button"
+              >
+                <span>
+                  ×
+                </span>
+              </button>,
+              <div
+                className="row_name"
+              >
+                test
+                 
+                <sup>
+                  <a
+                    href="wiki"
+                    target="_blank"
+                  >
+                    wiki
+                  </a>
+                </sup>
+              </div>,
+              <span
+                className="glyphicon collapse-icon glyphicon-chevron-down"
+                onClick={[Function]}
+              />,
+            ],
+            "className": "header",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <span>
+                  ×
+                </span>,
+                "className": "close",
+                "onClick": [MockFunction],
+                "type": "button",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "×",
+                },
+                "ref": null,
+                "rendered": "×",
+                "type": "span",
+              },
+              "type": "button",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  "test",
+                  " ",
+                  <sup>
+                    <a
+                      href="wiki"
+                      target="_blank"
+                    >
+                      wiki
+                    </a>
+                  </sup>,
+                ],
+                "className": "row_name",
+              },
+              "ref": null,
+              "rendered": Array [
+                "test",
+                " ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <a
+                      href="wiki"
+                      target="_blank"
+                    >
+                      wiki
+                    </a>,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "wiki",
+                      "href": "wiki",
+                      "target": "_blank",
+                    },
+                    "ref": null,
+                    "rendered": "wiki",
+                    "type": "a",
+                  },
+                  "type": "sup",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "glyphicon collapse-icon glyphicon-chevron-down",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "span",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <PanelCollapse
+              bsClass="panel"
+            >
+              <PanelBody
+                bsClass="panel"
+                collapsible={false}
+              >
+                <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </PanelBody>
+            </PanelCollapse>,
+            "expanded": true,
+            "onToggle": [Function],
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "bsClass": "panel",
+              "children": <PanelBody
+                bsClass="panel"
+                collapsible={false}
+              >
+                <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </PanelBody>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "bsClass": "panel",
+                "children": <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>,
+                "collapsible": false,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <tr>
+                        <td
+                          colSpan="2"
+                        >
+                          <img
+                            src="flag"
+                          />
+                        </td>
+                      </tr>,
+                      <tr>
+                        <td>
+                          Capital
+                        </td>
+                        <td>
+                          <a
+                            href="capital.wiki"
+                            target="_blank"
+                          >
+                            capital.name
+                          </a>
+                        </td>
+                      </tr>,
+                      <tr>
+                        <td>
+                          Area
+                        </td>
+                        <td>
+                          area
+                        </td>
+                      </tr>,
+                      <tr>
+                        <td>
+                          Population
+                        </td>
+                        <td>
+                          population
+                        </td>
+                      </tr>,
+                      <tr>
+                        <td>
+                          Currency
+                        </td>
+                        <td>
+                          currency
+                        </td>
+                      </tr>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <td
+                          colSpan="2"
+                        >
+                          <img
+                            src="flag"
+                          />
+                        </td>,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <img
+                            src="flag"
+                          />,
+                          "colSpan": "2",
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "src": "flag",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "img",
+                        },
+                        "type": "td",
+                      },
+                      "type": "tr",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <td>
+                            Capital
+                          </td>,
+                          <td>
+                            <a
+                              href="capital.wiki"
+                              target="_blank"
+                            >
+                              capital.name
+                            </a>
+                          </td>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Capital",
+                          },
+                          "ref": null,
+                          "rendered": "Capital",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <a
+                              href="capital.wiki"
+                              target="_blank"
+                            >
+                              capital.name
+                            </a>,
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "capital.name",
+                              "href": "capital.wiki",
+                              "target": "_blank",
+                            },
+                            "ref": null,
+                            "rendered": "capital.name",
+                            "type": "a",
+                          },
+                          "type": "td",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <td>
+                            Area
+                          </td>,
+                          <td>
+                            area
+                          </td>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Area",
+                          },
+                          "ref": null,
+                          "rendered": "Area",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "area",
+                          },
+                          "ref": null,
+                          "rendered": "area",
+                          "type": "td",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <td>
+                            Population
+                          </td>,
+                          <td>
+                            population
+                          </td>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Population",
+                          },
+                          "ref": null,
+                          "rendered": "Population",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "population",
+                          },
+                          "ref": null,
+                          "rendered": "population",
+                          "type": "td",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <td>
+                            Currency
+                          </td>,
+                          <td>
+                            currency
+                          </td>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Currency",
+                          },
+                          "ref": null,
+                          "rendered": "Currency",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "currency",
+                          },
+                          "ref": null,
+                          "rendered": "currency",
+                          "type": "td",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                  ],
+                  "type": "tbody",
+                },
+                "type": "table",
+              },
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactFifteenAdapter {
+      "options": Object {
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "prevContext": true,
+          },
+        },
+        "supportPrevContextArgumentOfComponentDidUpdate": true,
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`shallow <Infobox /> components check props: infobox-empty 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Infobox
+    coat_of_arms="coat_of_arms"
+    show={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="header"
+        >
+          <button
+            className="close"
+            type="button"
+          >
+            <span>
+              ×
+            </span>
+          </button>
+          <div
+            className="row_name"
+          >
+             
+            <sup>
+              <a
+                target="_blank"
+              >
+                wiki
+              </a>
+            </sup>
+          </div>
+          <span
+            className="glyphicon collapse-icon glyphicon-chevron-down"
+            onClick={[Function]}
+          />
+        </div>,
+        <Uncontrolled(Panel)
+          expanded={true}
+          onToggle={[Function]}
+        >
+          <PanelCollapse
+            bsClass="panel"
+          >
+            <PanelBody
+              bsClass="panel"
+              collapsible={false}
+            >
+              <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="coat_of_arms"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </PanelBody>
+          </PanelCollapse>
+        </Uncontrolled(Panel)>,
+      ],
+      "className": "infobox",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <button
+              className="close"
+              type="button"
+            >
+              <span>
+                ×
+              </span>
+            </button>,
+            <div
+              className="row_name"
+            >
+               
+              <sup>
+                <a
+                  target="_blank"
+                >
+                  wiki
+                </a>
+              </sup>
+            </div>,
+            <span
+              className="glyphicon collapse-icon glyphicon-chevron-down"
+              onClick={[Function]}
+            />,
+          ],
+          "className": "header",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <span>
+                ×
+              </span>,
+              "className": "close",
+              "onClick": undefined,
+              "type": "button",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "×",
+              },
+              "ref": null,
+              "rendered": "×",
+              "type": "span",
+            },
+            "type": "button",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                undefined,
+                " ",
+                <sup>
+                  <a
+                    target="_blank"
+                  >
+                    wiki
+                  </a>
+                </sup>,
+              ],
+              "className": "row_name",
+            },
+            "ref": null,
+            "rendered": Array [
+              undefined,
+              " ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <a
+                    target="_blank"
+                  >
+                    wiki
+                  </a>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "wiki",
+                    "href": undefined,
+                    "target": "_blank",
+                  },
+                  "ref": null,
+                  "rendered": "wiki",
+                  "type": "a",
+                },
+                "type": "sup",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "glyphicon collapse-icon glyphicon-chevron-down",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "span",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <PanelCollapse
+            bsClass="panel"
+          >
+            <PanelBody
+              bsClass="panel"
+              collapsible={false}
+            >
+              <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="coat_of_arms"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </PanelBody>
+          </PanelCollapse>,
+          "expanded": true,
+          "onToggle": [Function],
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "bsClass": "panel",
+            "children": <PanelBody
+              bsClass="panel"
+              collapsible={false}
+            >
+              <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="coat_of_arms"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </PanelBody>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "bsClass": "panel",
+              "children": <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="coat_of_arms"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>,
+              "collapsible": false,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="coat_of_arms"
+                      />
+                    </td>
+                  </tr>
+                </tbody>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="coat_of_arms"
+                        />
+                      </td>
+                    </tr>,
+                    undefined,
+                    null,
+                    null,
+                    null,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="coat_of_arms"
+                        />
+                      </td>,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <img
+                          src="coat_of_arms"
+                        />,
+                        "colSpan": "2",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "src": "coat_of_arms",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "img",
+                      },
+                      "type": "td",
+                    },
+                    "type": "tr",
+                  },
+                  undefined,
+                  null,
+                  null,
+                  null,
+                ],
+                "type": "tbody",
+              },
+              "type": "table",
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="header"
+          >
+            <button
+              className="close"
+              type="button"
+            >
+              <span>
+                ×
+              </span>
+            </button>
+            <div
+              className="row_name"
+            >
+               
+              <sup>
+                <a
+                  target="_blank"
+                >
+                  wiki
+                </a>
+              </sup>
+            </div>
+            <span
+              className="glyphicon collapse-icon glyphicon-chevron-down"
+              onClick={[Function]}
+            />
+          </div>,
+          <Uncontrolled(Panel)
+            expanded={true}
+            onToggle={[Function]}
+          >
+            <PanelCollapse
+              bsClass="panel"
+            >
+              <PanelBody
+                bsClass="panel"
+                collapsible={false}
+              >
+                <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="coat_of_arms"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </PanelBody>
+            </PanelCollapse>
+          </Uncontrolled(Panel)>,
+        ],
+        "className": "infobox",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <button
+                className="close"
+                type="button"
+              >
+                <span>
+                  ×
+                </span>
+              </button>,
+              <div
+                className="row_name"
+              >
+                 
+                <sup>
+                  <a
+                    target="_blank"
+                  >
+                    wiki
+                  </a>
+                </sup>
+              </div>,
+              <span
+                className="glyphicon collapse-icon glyphicon-chevron-down"
+                onClick={[Function]}
+              />,
+            ],
+            "className": "header",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <span>
+                  ×
+                </span>,
+                "className": "close",
+                "onClick": undefined,
+                "type": "button",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "×",
+                },
+                "ref": null,
+                "rendered": "×",
+                "type": "span",
+              },
+              "type": "button",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  undefined,
+                  " ",
+                  <sup>
+                    <a
+                      target="_blank"
+                    >
+                      wiki
+                    </a>
+                  </sup>,
+                ],
+                "className": "row_name",
+              },
+              "ref": null,
+              "rendered": Array [
+                undefined,
+                " ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <a
+                      target="_blank"
+                    >
+                      wiki
+                    </a>,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "wiki",
+                      "href": undefined,
+                      "target": "_blank",
+                    },
+                    "ref": null,
+                    "rendered": "wiki",
+                    "type": "a",
+                  },
+                  "type": "sup",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "glyphicon collapse-icon glyphicon-chevron-down",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "span",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <PanelCollapse
+              bsClass="panel"
+            >
+              <PanelBody
+                bsClass="panel"
+                collapsible={false}
+              >
+                <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="coat_of_arms"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </PanelBody>
+            </PanelCollapse>,
+            "expanded": true,
+            "onToggle": [Function],
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "bsClass": "panel",
+              "children": <PanelBody
+                bsClass="panel"
+                collapsible={false}
+              >
+                <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="coat_of_arms"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </PanelBody>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "bsClass": "panel",
+                "children": <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="coat_of_arms"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>,
+                "collapsible": false,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="coat_of_arms"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <tr>
+                        <td
+                          colSpan="2"
+                        >
+                          <img
+                            src="coat_of_arms"
+                          />
+                        </td>
+                      </tr>,
+                      undefined,
+                      null,
+                      null,
+                      null,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <td
+                          colSpan="2"
+                        >
+                          <img
+                            src="coat_of_arms"
+                          />
+                        </td>,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <img
+                            src="coat_of_arms"
+                          />,
+                          "colSpan": "2",
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "src": "coat_of_arms",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "img",
+                        },
+                        "type": "td",
+                      },
+                      "type": "tr",
+                    },
+                    undefined,
+                    null,
+                    null,
+                    null,
+                  ],
+                  "type": "tbody",
+                },
+                "type": "table",
+              },
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactFifteenAdapter {
+      "options": Object {
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "prevContext": true,
+          },
+        },
+        "supportPrevContextArgumentOfComponentDidUpdate": true,
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`shallow <Infobox /> components click collapse: infobox 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Infobox
+    area="area"
+    capital={
+      Object {
+        "name": "capital.name",
+        "wiki": "capital.wiki",
+      }
+    }
+    coat_of_arms="coat_of_arms"
+    currency="currency"
+    flag="flag"
+    name="test"
+    onClose={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    population="population"
+    show={true}
+    wiki="wiki"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="header"
+        >
+          <button
+            className="close"
+            onClick={
+              [MockFunction] {
+                "calls": Array [
+                  Array [],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              }
+            }
+            type="button"
+          >
+            <span>
+              ×
+            </span>
+          </button>
+          <div
+            className="row_name"
+          >
+            test
+             
+            <sup>
+              <a
+                href="wiki"
+                target="_blank"
+              >
+                wiki
+              </a>
+            </sup>
+          </div>
+          <span
+            className="glyphicon collapse-icon glyphicon-chevron-down"
+            onClick={[Function]}
+          />
+        </div>,
+        <Uncontrolled(Panel)
+          expanded={true}
+          onToggle={[Function]}
+        >
+          <PanelCollapse
+            bsClass="panel"
+          >
+            <PanelBody
+              bsClass="panel"
+              collapsible={false}
+            >
+              <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </PanelBody>
+          </PanelCollapse>
+        </Uncontrolled(Panel)>,
+      ],
+      "className": "infobox",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <button
+              className="close"
+              onClick={
+                [MockFunction] {
+                  "calls": Array [
+                    Array [],
+                  ],
+                  "results": Array [
+                    Object {
+                      "isThrow": false,
+                      "value": undefined,
+                    },
+                  ],
+                }
+              }
+              type="button"
+            >
+              <span>
+                ×
+              </span>
+            </button>,
+            <div
+              className="row_name"
+            >
+              test
+               
+              <sup>
+                <a
+                  href="wiki"
+                  target="_blank"
+                >
+                  wiki
+                </a>
+              </sup>
+            </div>,
+            <span
+              className="glyphicon collapse-icon glyphicon-chevron-down"
+              onClick={[Function]}
+            />,
+          ],
+          "className": "header",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <span>
+                ×
+              </span>,
+              "className": "close",
+              "onClick": [MockFunction] {
+                "calls": Array [
+                  Array [],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              },
+              "type": "button",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "×",
+              },
+              "ref": null,
+              "rendered": "×",
+              "type": "span",
+            },
+            "type": "button",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                "test",
+                " ",
+                <sup>
+                  <a
+                    href="wiki"
+                    target="_blank"
+                  >
+                    wiki
+                  </a>
+                </sup>,
+              ],
+              "className": "row_name",
+            },
+            "ref": null,
+            "rendered": Array [
+              "test",
+              " ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <a
+                    href="wiki"
+                    target="_blank"
+                  >
+                    wiki
+                  </a>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "wiki",
+                    "href": "wiki",
+                    "target": "_blank",
+                  },
+                  "ref": null,
+                  "rendered": "wiki",
+                  "type": "a",
+                },
+                "type": "sup",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "glyphicon collapse-icon glyphicon-chevron-down",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "span",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <PanelCollapse
+            bsClass="panel"
+          >
+            <PanelBody
+              bsClass="panel"
+              collapsible={false}
+            >
+              <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </PanelBody>
+          </PanelCollapse>,
+          "expanded": true,
+          "onToggle": [Function],
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "bsClass": "panel",
+            "children": <PanelBody
+              bsClass="panel"
+              collapsible={false}
+            >
+              <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </PanelBody>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "bsClass": "panel",
+              "children": <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>
+              </table>,
+              "collapsible": false,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>,
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>,
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>,
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>,
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <img
+                          src="flag"
+                        />,
+                        "colSpan": "2",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "src": "flag",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "img",
+                      },
+                      "type": "td",
+                    },
+                    "type": "tr",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <td>
+                          Capital
+                        </td>,
+                        <td>
+                          <a
+                            href="capital.wiki"
+                            target="_blank"
+                          >
+                            capital.name
+                          </a>
+                        </td>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Capital",
+                        },
+                        "ref": null,
+                        "rendered": "Capital",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <a
+                            href="capital.wiki"
+                            target="_blank"
+                          >
+                            capital.name
+                          </a>,
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "capital.name",
+                            "href": "capital.wiki",
+                            "target": "_blank",
+                          },
+                          "ref": null,
+                          "rendered": "capital.name",
+                          "type": "a",
+                        },
+                        "type": "td",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <td>
+                          Area
+                        </td>,
+                        <td>
+                          area
+                        </td>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Area",
+                        },
+                        "ref": null,
+                        "rendered": "Area",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "area",
+                        },
+                        "ref": null,
+                        "rendered": "area",
+                        "type": "td",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <td>
+                          Population
+                        </td>,
+                        <td>
+                          population
+                        </td>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Population",
+                        },
+                        "ref": null,
+                        "rendered": "Population",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "population",
+                        },
+                        "ref": null,
+                        "rendered": "population",
+                        "type": "td",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <td>
+                          Currency
+                        </td>,
+                        <td>
+                          currency
+                        </td>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Currency",
+                        },
+                        "ref": null,
+                        "rendered": "Currency",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "currency",
+                        },
+                        "ref": null,
+                        "rendered": "currency",
+                        "type": "td",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                ],
+                "type": "tbody",
+              },
+              "type": "table",
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="header"
+          >
+            <button
+              className="close"
+              onClick={
+                [MockFunction] {
+                  "calls": Array [
+                    Array [],
+                  ],
+                  "results": Array [
+                    Object {
+                      "isThrow": false,
+                      "value": undefined,
+                    },
+                  ],
+                }
+              }
+              type="button"
+            >
+              <span>
+                ×
+              </span>
+            </button>
+            <div
+              className="row_name"
+            >
+              test
+               
+              <sup>
+                <a
+                  href="wiki"
+                  target="_blank"
+                >
+                  wiki
+                </a>
+              </sup>
+            </div>
+            <span
+              className="glyphicon collapse-icon glyphicon-chevron-down"
+              onClick={[Function]}
+            />
+          </div>,
+          <Uncontrolled(Panel)
+            expanded={true}
+            onToggle={[Function]}
+          >
+            <PanelCollapse
+              bsClass="panel"
+            >
+              <PanelBody
+                bsClass="panel"
+                collapsible={false}
+              >
+                <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </PanelBody>
+            </PanelCollapse>
+          </Uncontrolled(Panel)>,
+        ],
+        "className": "infobox",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <button
+                className="close"
+                onClick={
+                  [MockFunction] {
+                    "calls": Array [
+                      Array [],
+                    ],
+                    "results": Array [
+                      Object {
+                        "isThrow": false,
+                        "value": undefined,
+                      },
+                    ],
+                  }
+                }
+                type="button"
+              >
+                <span>
+                  ×
+                </span>
+              </button>,
+              <div
+                className="row_name"
+              >
+                test
+                 
+                <sup>
+                  <a
+                    href="wiki"
+                    target="_blank"
+                  >
+                    wiki
+                  </a>
+                </sup>
+              </div>,
+              <span
+                className="glyphicon collapse-icon glyphicon-chevron-down"
+                onClick={[Function]}
+              />,
+            ],
+            "className": "header",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <span>
+                  ×
+                </span>,
+                "className": "close",
+                "onClick": [MockFunction] {
+                  "calls": Array [
+                    Array [],
+                  ],
+                  "results": Array [
+                    Object {
+                      "isThrow": false,
+                      "value": undefined,
+                    },
+                  ],
+                },
+                "type": "button",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "×",
+                },
+                "ref": null,
+                "rendered": "×",
+                "type": "span",
+              },
+              "type": "button",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  "test",
+                  " ",
+                  <sup>
+                    <a
+                      href="wiki"
+                      target="_blank"
+                    >
+                      wiki
+                    </a>
+                  </sup>,
+                ],
+                "className": "row_name",
+              },
+              "ref": null,
+              "rendered": Array [
+                "test",
+                " ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <a
+                      href="wiki"
+                      target="_blank"
+                    >
+                      wiki
+                    </a>,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "wiki",
+                      "href": "wiki",
+                      "target": "_blank",
+                    },
+                    "ref": null,
+                    "rendered": "wiki",
+                    "type": "a",
+                  },
+                  "type": "sup",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "glyphicon collapse-icon glyphicon-chevron-down",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "span",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <PanelCollapse
+              bsClass="panel"
+            >
+              <PanelBody
+                bsClass="panel"
+                collapsible={false}
+              >
+                <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </PanelBody>
+            </PanelCollapse>,
+            "expanded": true,
+            "onToggle": [Function],
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "bsClass": "panel",
+              "children": <PanelBody
+                bsClass="panel"
+                collapsible={false}
+              >
+                <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </PanelBody>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "bsClass": "panel",
+                "children": <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>,
+                "collapsible": false,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <tr>
+                        <td
+                          colSpan="2"
+                        >
+                          <img
+                            src="flag"
+                          />
+                        </td>
+                      </tr>,
+                      <tr>
+                        <td>
+                          Capital
+                        </td>
+                        <td>
+                          <a
+                            href="capital.wiki"
+                            target="_blank"
+                          >
+                            capital.name
+                          </a>
+                        </td>
+                      </tr>,
+                      <tr>
+                        <td>
+                          Area
+                        </td>
+                        <td>
+                          area
+                        </td>
+                      </tr>,
+                      <tr>
+                        <td>
+                          Population
+                        </td>
+                        <td>
+                          population
+                        </td>
+                      </tr>,
+                      <tr>
+                        <td>
+                          Currency
+                        </td>
+                        <td>
+                          currency
+                        </td>
+                      </tr>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <td
+                          colSpan="2"
+                        >
+                          <img
+                            src="flag"
+                          />
+                        </td>,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <img
+                            src="flag"
+                          />,
+                          "colSpan": "2",
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "src": "flag",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "img",
+                        },
+                        "type": "td",
+                      },
+                      "type": "tr",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <td>
+                            Capital
+                          </td>,
+                          <td>
+                            <a
+                              href="capital.wiki"
+                              target="_blank"
+                            >
+                              capital.name
+                            </a>
+                          </td>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Capital",
+                          },
+                          "ref": null,
+                          "rendered": "Capital",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <a
+                              href="capital.wiki"
+                              target="_blank"
+                            >
+                              capital.name
+                            </a>,
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "capital.name",
+                              "href": "capital.wiki",
+                              "target": "_blank",
+                            },
+                            "ref": null,
+                            "rendered": "capital.name",
+                            "type": "a",
+                          },
+                          "type": "td",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <td>
+                            Area
+                          </td>,
+                          <td>
+                            area
+                          </td>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Area",
+                          },
+                          "ref": null,
+                          "rendered": "Area",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "area",
+                          },
+                          "ref": null,
+                          "rendered": "area",
+                          "type": "td",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <td>
+                            Population
+                          </td>,
+                          <td>
+                            population
+                          </td>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Population",
+                          },
+                          "ref": null,
+                          "rendered": "Population",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "population",
+                          },
+                          "ref": null,
+                          "rendered": "population",
+                          "type": "td",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <td>
+                            Currency
+                          </td>,
+                          <td>
+                            currency
+                          </td>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Currency",
+                          },
+                          "ref": null,
+                          "rendered": "Currency",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "currency",
+                          },
+                          "ref": null,
+                          "rendered": "currency",
+                          "type": "td",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                  ],
+                  "type": "tbody",
+                },
+                "type": "table",
+              },
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactFifteenAdapter {
+      "options": Object {
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "prevContext": true,
+          },
+        },
+        "supportPrevContextArgumentOfComponentDidUpdate": true,
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`shallow <Infobox /> components click collapse: infobox-collapse 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Infobox
+    area="area"
+    capital={
+      Object {
+        "name": "capital.name",
+        "wiki": "capital.wiki",
+      }
+    }
+    coat_of_arms="coat_of_arms"
+    currency="currency"
+    flag="flag"
+    name="test"
+    onClose={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    population="population"
+    show={true}
+    wiki="wiki"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="header"
+        >
+          <button
+            className="close"
+            onClick={
+              [MockFunction] {
+                "calls": Array [
+                  Array [],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              }
+            }
+            type="button"
+          >
+            <span>
+              ×
+            </span>
+          </button>
+          <div
+            className="row_name"
+          >
+            test
+             
+            <sup>
+              <a
+                href="wiki"
+                target="_blank"
+              >
+                wiki
+              </a>
+            </sup>
+          </div>
+          <span
+            className="glyphicon collapse-icon glyphicon-chevron-up"
+            onClick={[Function]}
+          />
+        </div>,
+        <Uncontrolled(Panel)
+          expanded={false}
+          onToggle={[Function]}
+        >
+          <PanelCollapse
+            bsClass="panel"
+          >
+            <PanelBody
+              bsClass="panel"
+              collapsible={false}
+            >
+              <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </PanelBody>
+          </PanelCollapse>
+        </Uncontrolled(Panel)>,
+      ],
+      "className": "infobox",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <button
+              className="close"
+              onClick={
+                [MockFunction] {
+                  "calls": Array [
+                    Array [],
+                  ],
+                  "results": Array [
+                    Object {
+                      "isThrow": false,
+                      "value": undefined,
+                    },
+                  ],
+                }
+              }
+              type="button"
+            >
+              <span>
+                ×
+              </span>
+            </button>,
+            <div
+              className="row_name"
+            >
+              test
+               
+              <sup>
+                <a
+                  href="wiki"
+                  target="_blank"
+                >
+                  wiki
+                </a>
+              </sup>
+            </div>,
+            <span
+              className="glyphicon collapse-icon glyphicon-chevron-up"
+              onClick={[Function]}
+            />,
+          ],
+          "className": "header",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <span>
+                ×
+              </span>,
+              "className": "close",
+              "onClick": [MockFunction] {
+                "calls": Array [
+                  Array [],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              },
+              "type": "button",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "×",
+              },
+              "ref": null,
+              "rendered": "×",
+              "type": "span",
+            },
+            "type": "button",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                "test",
+                " ",
+                <sup>
+                  <a
+                    href="wiki"
+                    target="_blank"
+                  >
+                    wiki
+                  </a>
+                </sup>,
+              ],
+              "className": "row_name",
+            },
+            "ref": null,
+            "rendered": Array [
+              "test",
+              " ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <a
+                    href="wiki"
+                    target="_blank"
+                  >
+                    wiki
+                  </a>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "wiki",
+                    "href": "wiki",
+                    "target": "_blank",
+                  },
+                  "ref": null,
+                  "rendered": "wiki",
+                  "type": "a",
+                },
+                "type": "sup",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "glyphicon collapse-icon glyphicon-chevron-up",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "span",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <PanelCollapse
+            bsClass="panel"
+          >
+            <PanelBody
+              bsClass="panel"
+              collapsible={false}
+            >
+              <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </PanelBody>
+          </PanelCollapse>,
+          "expanded": false,
+          "onToggle": [Function],
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "bsClass": "panel",
+            "children": <PanelBody
+              bsClass="panel"
+              collapsible={false}
+            >
+              <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </PanelBody>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "bsClass": "panel",
+              "children": <table>
+                <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>
+              </table>,
+              "collapsible": false,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <tbody>
+                  <tr>
+                    <td
+                      colSpan="2"
+                    >
+                      <img
+                        src="flag"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Capital
+                    </td>
+                    <td>
+                      <a
+                        href="capital.wiki"
+                        target="_blank"
+                      >
+                        capital.name
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Area
+                    </td>
+                    <td>
+                      area
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Population
+                    </td>
+                    <td>
+                      population
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Currency
+                    </td>
+                    <td>
+                      currency
+                    </td>
+                  </tr>
+                </tbody>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>,
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>,
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>,
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>,
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <img
+                          src="flag"
+                        />,
+                        "colSpan": "2",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "src": "flag",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "img",
+                      },
+                      "type": "td",
+                    },
+                    "type": "tr",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <td>
+                          Capital
+                        </td>,
+                        <td>
+                          <a
+                            href="capital.wiki"
+                            target="_blank"
+                          >
+                            capital.name
+                          </a>
+                        </td>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Capital",
+                        },
+                        "ref": null,
+                        "rendered": "Capital",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <a
+                            href="capital.wiki"
+                            target="_blank"
+                          >
+                            capital.name
+                          </a>,
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "capital.name",
+                            "href": "capital.wiki",
+                            "target": "_blank",
+                          },
+                          "ref": null,
+                          "rendered": "capital.name",
+                          "type": "a",
+                        },
+                        "type": "td",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <td>
+                          Area
+                        </td>,
+                        <td>
+                          area
+                        </td>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Area",
+                        },
+                        "ref": null,
+                        "rendered": "Area",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "area",
+                        },
+                        "ref": null,
+                        "rendered": "area",
+                        "type": "td",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <td>
+                          Population
+                        </td>,
+                        <td>
+                          population
+                        </td>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Population",
+                        },
+                        "ref": null,
+                        "rendered": "Population",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "population",
+                        },
+                        "ref": null,
+                        "rendered": "population",
+                        "type": "td",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <td>
+                          Currency
+                        </td>,
+                        <td>
+                          currency
+                        </td>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Currency",
+                        },
+                        "ref": null,
+                        "rendered": "Currency",
+                        "type": "td",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "currency",
+                        },
+                        "ref": null,
+                        "rendered": "currency",
+                        "type": "td",
+                      },
+                    ],
+                    "type": "tr",
+                  },
+                ],
+                "type": "tbody",
+              },
+              "type": "table",
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="header"
+          >
+            <button
+              className="close"
+              onClick={
+                [MockFunction] {
+                  "calls": Array [
+                    Array [],
+                  ],
+                  "results": Array [
+                    Object {
+                      "isThrow": false,
+                      "value": undefined,
+                    },
+                  ],
+                }
+              }
+              type="button"
+            >
+              <span>
+                ×
+              </span>
+            </button>
+            <div
+              className="row_name"
+            >
+              test
+               
+              <sup>
+                <a
+                  href="wiki"
+                  target="_blank"
+                >
+                  wiki
+                </a>
+              </sup>
+            </div>
+            <span
+              className="glyphicon collapse-icon glyphicon-chevron-up"
+              onClick={[Function]}
+            />
+          </div>,
+          <Uncontrolled(Panel)
+            expanded={false}
+            onToggle={[Function]}
+          >
+            <PanelCollapse
+              bsClass="panel"
+            >
+              <PanelBody
+                bsClass="panel"
+                collapsible={false}
+              >
+                <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </PanelBody>
+            </PanelCollapse>
+          </Uncontrolled(Panel)>,
+        ],
+        "className": "infobox",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <button
+                className="close"
+                onClick={
+                  [MockFunction] {
+                    "calls": Array [
+                      Array [],
+                    ],
+                    "results": Array [
+                      Object {
+                        "isThrow": false,
+                        "value": undefined,
+                      },
+                    ],
+                  }
+                }
+                type="button"
+              >
+                <span>
+                  ×
+                </span>
+              </button>,
+              <div
+                className="row_name"
+              >
+                test
+                 
+                <sup>
+                  <a
+                    href="wiki"
+                    target="_blank"
+                  >
+                    wiki
+                  </a>
+                </sup>
+              </div>,
+              <span
+                className="glyphicon collapse-icon glyphicon-chevron-up"
+                onClick={[Function]}
+              />,
+            ],
+            "className": "header",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <span>
+                  ×
+                </span>,
+                "className": "close",
+                "onClick": [MockFunction] {
+                  "calls": Array [
+                    Array [],
+                  ],
+                  "results": Array [
+                    Object {
+                      "isThrow": false,
+                      "value": undefined,
+                    },
+                  ],
+                },
+                "type": "button",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "×",
+                },
+                "ref": null,
+                "rendered": "×",
+                "type": "span",
+              },
+              "type": "button",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  "test",
+                  " ",
+                  <sup>
+                    <a
+                      href="wiki"
+                      target="_blank"
+                    >
+                      wiki
+                    </a>
+                  </sup>,
+                ],
+                "className": "row_name",
+              },
+              "ref": null,
+              "rendered": Array [
+                "test",
+                " ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <a
+                      href="wiki"
+                      target="_blank"
+                    >
+                      wiki
+                    </a>,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "wiki",
+                      "href": "wiki",
+                      "target": "_blank",
+                    },
+                    "ref": null,
+                    "rendered": "wiki",
+                    "type": "a",
+                  },
+                  "type": "sup",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "glyphicon collapse-icon glyphicon-chevron-up",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "span",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <PanelCollapse
+              bsClass="panel"
+            >
+              <PanelBody
+                bsClass="panel"
+                collapsible={false}
+              >
+                <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </PanelBody>
+            </PanelCollapse>,
+            "expanded": false,
+            "onToggle": [Function],
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "bsClass": "panel",
+              "children": <PanelBody
+                bsClass="panel"
+                collapsible={false}
+              >
+                <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </PanelBody>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "bsClass": "panel",
+                "children": <table>
+                  <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>,
+                "collapsible": false,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <tbody>
+                    <tr>
+                      <td
+                        colSpan="2"
+                      >
+                        <img
+                          src="flag"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Capital
+                      </td>
+                      <td>
+                        <a
+                          href="capital.wiki"
+                          target="_blank"
+                        >
+                          capital.name
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Area
+                      </td>
+                      <td>
+                        area
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Population
+                      </td>
+                      <td>
+                        population
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Currency
+                      </td>
+                      <td>
+                        currency
+                      </td>
+                    </tr>
+                  </tbody>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <tr>
+                        <td
+                          colSpan="2"
+                        >
+                          <img
+                            src="flag"
+                          />
+                        </td>
+                      </tr>,
+                      <tr>
+                        <td>
+                          Capital
+                        </td>
+                        <td>
+                          <a
+                            href="capital.wiki"
+                            target="_blank"
+                          >
+                            capital.name
+                          </a>
+                        </td>
+                      </tr>,
+                      <tr>
+                        <td>
+                          Area
+                        </td>
+                        <td>
+                          area
+                        </td>
+                      </tr>,
+                      <tr>
+                        <td>
+                          Population
+                        </td>
+                        <td>
+                          population
+                        </td>
+                      </tr>,
+                      <tr>
+                        <td>
+                          Currency
+                        </td>
+                        <td>
+                          currency
+                        </td>
+                      </tr>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <td
+                          colSpan="2"
+                        >
+                          <img
+                            src="flag"
+                          />
+                        </td>,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <img
+                            src="flag"
+                          />,
+                          "colSpan": "2",
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "src": "flag",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "img",
+                        },
+                        "type": "td",
+                      },
+                      "type": "tr",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <td>
+                            Capital
+                          </td>,
+                          <td>
+                            <a
+                              href="capital.wiki"
+                              target="_blank"
+                            >
+                              capital.name
+                            </a>
+                          </td>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Capital",
+                          },
+                          "ref": null,
+                          "rendered": "Capital",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <a
+                              href="capital.wiki"
+                              target="_blank"
+                            >
+                              capital.name
+                            </a>,
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "capital.name",
+                              "href": "capital.wiki",
+                              "target": "_blank",
+                            },
+                            "ref": null,
+                            "rendered": "capital.name",
+                            "type": "a",
+                          },
+                          "type": "td",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <td>
+                            Area
+                          </td>,
+                          <td>
+                            area
+                          </td>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Area",
+                          },
+                          "ref": null,
+                          "rendered": "Area",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "area",
+                          },
+                          "ref": null,
+                          "rendered": "area",
+                          "type": "td",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <td>
+                            Population
+                          </td>,
+                          <td>
+                            population
+                          </td>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Population",
+                          },
+                          "ref": null,
+                          "rendered": "Population",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "population",
+                          },
+                          "ref": null,
+                          "rendered": "population",
+                          "type": "td",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <td>
+                            Currency
+                          </td>,
+                          <td>
+                            currency
+                          </td>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Currency",
+                          },
+                          "ref": null,
+                          "rendered": "Currency",
+                          "type": "td",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "currency",
+                          },
+                          "ref": null,
+                          "rendered": "currency",
+                          "type": "td",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                  ],
+                  "type": "tbody",
+                },
+                "type": "table",
+              },
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactFifteenAdapter {
+      "options": Object {
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "prevContext": true,
+          },
+        },
+        "supportPrevContextArgumentOfComponentDidUpdate": true,
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

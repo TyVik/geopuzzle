@@ -2,6 +2,7 @@
 import {configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15';
 import fetch from 'jest-fetch-mock';
+import 'jest-localstorage-mock';
 
 configure({adapter: new Adapter()});
 
@@ -23,6 +24,7 @@ function copyProps(src, target) {
 }
 
 window.__STATIC_URL__ = '/static/';
+window.__LANGUAGE__ = 'en';
 global.window = window;
 global.document = window.document;
 global.navigator = {
