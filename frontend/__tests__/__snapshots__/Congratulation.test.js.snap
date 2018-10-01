@@ -1,0 +1,746 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shallow <Congratulation /> components render 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Congratulation
+    result="result"
+    url="url"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "animation": true,
+      "aria-labelledby": "contained-modal-title-lg",
+      "autoFocus": true,
+      "backdrop": true,
+      "bsClass": "modal",
+      "bsSize": "large",
+      "children": Array [
+        <ModalHeader
+          bsClass="modal-header"
+          closeButton={true}
+          closeLabel="Close"
+        >
+          <ModalTitle
+            bsClass="modal-title"
+            componentClass="h4"
+            id="contained-modal-title-lg"
+          >
+            Congratulations!
+          </ModalTitle>
+        </ModalHeader>,
+        <ModalBody
+          bsClass="modal-body"
+          componentClass="div"
+        >
+          textresult.
+        </ModalBody>,
+        <ModalFooter
+          bsClass="modal-footer"
+          componentClass="div"
+        >
+          <div
+            className="pull-right"
+          >
+            <a
+              className="btn btn-social-icon btn-vk"
+              href="https://vk.com/share.php?url=url&title=textresult."
+              target="_blank"
+            >
+              <span
+                className="fa fa-vk"
+              />
+            </a>
+            <a
+              className="btn btn-social-icon btn-facebook"
+              href="#"
+              onClick={[Function]}
+              target="_blank"
+            >
+              <span
+                className="fa fa-facebook"
+              />
+            </a>
+            <a
+              className="btn btn-social-icon btn-twitter"
+              href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
+              target="_blank"
+            >
+              <span
+                className="fa fa-twitter"
+              />
+            </a>
+            <a
+              href="https://plus.google.com/share?url=url"
+              onClick={[Function]}
+            >
+              <img
+                alt="Share on Google+"
+                src="https://www.gstatic.com/images/icons/gplus-32.png"
+              />
+            </a>
+          </div>
+        </ModalFooter>,
+      ],
+      "dialogComponentClass": [Function],
+      "enforceFocus": true,
+      "keyboard": true,
+      "manager": ModalManager {
+        "add": [Function],
+        "containers": Array [],
+        "data": Array [],
+        "handleContainerOverflow": true,
+        "hideSiblingNodes": true,
+        "isTopModal": [Function],
+        "modals": Array [],
+        "remove": [Function],
+      },
+      "onHide": [Function],
+      "renderBackdrop": [Function],
+      "restoreFocus": true,
+      "show": true,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "bsClass": "modal-header",
+          "children": <ModalTitle
+            bsClass="modal-title"
+            componentClass="h4"
+            id="contained-modal-title-lg"
+          >
+            Congratulations!
+          </ModalTitle>,
+          "closeButton": true,
+          "closeLabel": "Close",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "bsClass": "modal-title",
+            "children": "Congratulations!",
+            "componentClass": "h4",
+            "id": "contained-modal-title-lg",
+          },
+          "ref": null,
+          "rendered": "Congratulations!",
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "bsClass": "modal-body",
+          "children": "textresult.",
+          "componentClass": "div",
+        },
+        "ref": null,
+        "rendered": "textresult.",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "bsClass": "modal-footer",
+          "children": <div
+            className="pull-right"
+          >
+            <a
+              className="btn btn-social-icon btn-vk"
+              href="https://vk.com/share.php?url=url&title=textresult."
+              target="_blank"
+            >
+              <span
+                className="fa fa-vk"
+              />
+            </a>
+            <a
+              className="btn btn-social-icon btn-facebook"
+              href="#"
+              onClick={[Function]}
+              target="_blank"
+            >
+              <span
+                className="fa fa-facebook"
+              />
+            </a>
+            <a
+              className="btn btn-social-icon btn-twitter"
+              href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
+              target="_blank"
+            >
+              <span
+                className="fa fa-twitter"
+              />
+            </a>
+            <a
+              href="https://plus.google.com/share?url=url"
+              onClick={[Function]}
+            >
+              <img
+                alt="Share on Google+"
+                src="https://www.gstatic.com/images/icons/gplus-32.png"
+              />
+            </a>
+          </div>,
+          "componentClass": "div",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <a
+                className="btn btn-social-icon btn-vk"
+                href="https://vk.com/share.php?url=url&title=textresult."
+                target="_blank"
+              >
+                <span
+                  className="fa fa-vk"
+                />
+              </a>,
+              <a
+                className="btn btn-social-icon btn-facebook"
+                href="#"
+                onClick={[Function]}
+                target="_blank"
+              >
+                <span
+                  className="fa fa-facebook"
+                />
+              </a>,
+              <a
+                className="btn btn-social-icon btn-twitter"
+                href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
+                target="_blank"
+              >
+                <span
+                  className="fa fa-twitter"
+                />
+              </a>,
+              <a
+                href="https://plus.google.com/share?url=url"
+                onClick={[Function]}
+              >
+                <img
+                  alt="Share on Google+"
+                  src="https://www.gstatic.com/images/icons/gplus-32.png"
+                />
+              </a>,
+            ],
+            "className": "pull-right",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <span
+                  className="fa fa-vk"
+                />,
+                "className": "btn btn-social-icon btn-vk",
+                "href": "https://vk.com/share.php?url=url&title=textresult.",
+                "target": "_blank",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "fa fa-vk",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "span",
+              },
+              "type": "a",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <span
+                  className="fa fa-facebook"
+                />,
+                "className": "btn btn-social-icon btn-facebook",
+                "href": "#",
+                "onClick": [Function],
+                "target": "_blank",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "fa fa-facebook",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "span",
+              },
+              "type": "a",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <span
+                  className="fa fa-twitter"
+                />,
+                "className": "btn btn-social-icon btn-twitter",
+                "href": "https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle",
+                "target": "_blank",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "fa fa-twitter",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "span",
+              },
+              "type": "a",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <img
+                  alt="Share on Google+"
+                  src="https://www.gstatic.com/images/icons/gplus-32.png"
+                />,
+                "href": "https://plus.google.com/share?url=url",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "alt": "Share on Google+",
+                  "src": "https://www.gstatic.com/images/icons/gplus-32.png",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "img",
+              },
+              "type": "a",
+            },
+          ],
+          "type": "div",
+        },
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "animation": true,
+        "aria-labelledby": "contained-modal-title-lg",
+        "autoFocus": true,
+        "backdrop": true,
+        "bsClass": "modal",
+        "bsSize": "large",
+        "children": Array [
+          <ModalHeader
+            bsClass="modal-header"
+            closeButton={true}
+            closeLabel="Close"
+          >
+            <ModalTitle
+              bsClass="modal-title"
+              componentClass="h4"
+              id="contained-modal-title-lg"
+            >
+              Congratulations!
+            </ModalTitle>
+          </ModalHeader>,
+          <ModalBody
+            bsClass="modal-body"
+            componentClass="div"
+          >
+            textresult.
+          </ModalBody>,
+          <ModalFooter
+            bsClass="modal-footer"
+            componentClass="div"
+          >
+            <div
+              className="pull-right"
+            >
+              <a
+                className="btn btn-social-icon btn-vk"
+                href="https://vk.com/share.php?url=url&title=textresult."
+                target="_blank"
+              >
+                <span
+                  className="fa fa-vk"
+                />
+              </a>
+              <a
+                className="btn btn-social-icon btn-facebook"
+                href="#"
+                onClick={[Function]}
+                target="_blank"
+              >
+                <span
+                  className="fa fa-facebook"
+                />
+              </a>
+              <a
+                className="btn btn-social-icon btn-twitter"
+                href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
+                target="_blank"
+              >
+                <span
+                  className="fa fa-twitter"
+                />
+              </a>
+              <a
+                href="https://plus.google.com/share?url=url"
+                onClick={[Function]}
+              >
+                <img
+                  alt="Share on Google+"
+                  src="https://www.gstatic.com/images/icons/gplus-32.png"
+                />
+              </a>
+            </div>
+          </ModalFooter>,
+        ],
+        "dialogComponentClass": [Function],
+        "enforceFocus": true,
+        "keyboard": true,
+        "manager": ModalManager {
+          "add": [Function],
+          "containers": Array [],
+          "data": Array [],
+          "handleContainerOverflow": true,
+          "hideSiblingNodes": true,
+          "isTopModal": [Function],
+          "modals": Array [],
+          "remove": [Function],
+        },
+        "onHide": [Function],
+        "renderBackdrop": [Function],
+        "restoreFocus": true,
+        "show": true,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "bsClass": "modal-header",
+            "children": <ModalTitle
+              bsClass="modal-title"
+              componentClass="h4"
+              id="contained-modal-title-lg"
+            >
+              Congratulations!
+            </ModalTitle>,
+            "closeButton": true,
+            "closeLabel": "Close",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "bsClass": "modal-title",
+              "children": "Congratulations!",
+              "componentClass": "h4",
+              "id": "contained-modal-title-lg",
+            },
+            "ref": null,
+            "rendered": "Congratulations!",
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "bsClass": "modal-body",
+            "children": "textresult.",
+            "componentClass": "div",
+          },
+          "ref": null,
+          "rendered": "textresult.",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "bsClass": "modal-footer",
+            "children": <div
+              className="pull-right"
+            >
+              <a
+                className="btn btn-social-icon btn-vk"
+                href="https://vk.com/share.php?url=url&title=textresult."
+                target="_blank"
+              >
+                <span
+                  className="fa fa-vk"
+                />
+              </a>
+              <a
+                className="btn btn-social-icon btn-facebook"
+                href="#"
+                onClick={[Function]}
+                target="_blank"
+              >
+                <span
+                  className="fa fa-facebook"
+                />
+              </a>
+              <a
+                className="btn btn-social-icon btn-twitter"
+                href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
+                target="_blank"
+              >
+                <span
+                  className="fa fa-twitter"
+                />
+              </a>
+              <a
+                href="https://plus.google.com/share?url=url"
+                onClick={[Function]}
+              >
+                <img
+                  alt="Share on Google+"
+                  src="https://www.gstatic.com/images/icons/gplus-32.png"
+                />
+              </a>
+            </div>,
+            "componentClass": "div",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <a
+                  className="btn btn-social-icon btn-vk"
+                  href="https://vk.com/share.php?url=url&title=textresult."
+                  target="_blank"
+                >
+                  <span
+                    className="fa fa-vk"
+                  />
+                </a>,
+                <a
+                  className="btn btn-social-icon btn-facebook"
+                  href="#"
+                  onClick={[Function]}
+                  target="_blank"
+                >
+                  <span
+                    className="fa fa-facebook"
+                  />
+                </a>,
+                <a
+                  className="btn btn-social-icon btn-twitter"
+                  href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
+                  target="_blank"
+                >
+                  <span
+                    className="fa fa-twitter"
+                  />
+                </a>,
+                <a
+                  href="https://plus.google.com/share?url=url"
+                  onClick={[Function]}
+                >
+                  <img
+                    alt="Share on Google+"
+                    src="https://www.gstatic.com/images/icons/gplus-32.png"
+                  />
+                </a>,
+              ],
+              "className": "pull-right",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <span
+                    className="fa fa-vk"
+                  />,
+                  "className": "btn btn-social-icon btn-vk",
+                  "href": "https://vk.com/share.php?url=url&title=textresult.",
+                  "target": "_blank",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "className": "fa fa-vk",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "span",
+                },
+                "type": "a",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <span
+                    className="fa fa-facebook"
+                  />,
+                  "className": "btn btn-social-icon btn-facebook",
+                  "href": "#",
+                  "onClick": [Function],
+                  "target": "_blank",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "className": "fa fa-facebook",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "span",
+                },
+                "type": "a",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <span
+                    className="fa fa-twitter"
+                  />,
+                  "className": "btn btn-social-icon btn-twitter",
+                  "href": "https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle",
+                  "target": "_blank",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "className": "fa fa-twitter",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "span",
+                },
+                "type": "a",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <img
+                    alt="Share on Google+"
+                    src="https://www.gstatic.com/images/icons/gplus-32.png"
+                  />,
+                  "href": "https://plus.google.com/share?url=url",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "alt": "Share on Google+",
+                    "src": "https://www.gstatic.com/images/icons/gplus-32.png",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "img",
+                },
+                "type": "a",
+              },
+            ],
+            "type": "div",
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactFifteenAdapter {
+      "options": Object {
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "prevContext": true,
+          },
+        },
+        "supportPrevContextArgumentOfComponentDidUpdate": true,
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
