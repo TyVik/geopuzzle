@@ -27,7 +27,22 @@ jobs:
           path: static/js
           destination: bundles
 
-  test:
+  jest:
+    docker:
+    - image: tyvik/geopuzzle:jsbuild
+      environment:
+        NODE_ENV: "production"
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install frontend requirements
+          command: |
+            npm install --only=dev
+            npm install --only=prod
+      - run: jest
+
+  django:
     docker:
       - image: tyvik/geopuzzle:app
         environment:
@@ -85,13 +100,18 @@ workflows:
           filters:
             branches:
               only: master
-      - test:
+      - django:
+          filters:
+            branches:
+              only: master
+      - jest:
           filters:
             branches:
               only: master
       - deploy:
           requires:
-            - test
+            - django
+            - jest
           filters:
             branches:
               only: master
@@ -102,7 +122,11 @@ workflows:
           filters:
             branches:
               ignore: master
-      - test:
+      - django:
+          filters:
+            branches:
+              ignore: master
+      - jest:
           filters:
             branches:
               ignore: master
