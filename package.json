@@ -4,7 +4,7 @@
   "description": "",
   "main": "puzzle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/jest",
     "analyze": "./node_modules/.bin/webpack --profile --json --mode production > stats.json && ./node_modules/.bin/webpack-bundle-analyzer stats.json",
     "dev": "./node_modules/.bin/webpack --watch --mode development",
     "build": "./node_modules/.bin/webpack --mode production"
@@ -13,10 +13,24 @@
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/TyVik8/geopuzzle.git"
   },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://127.0.0.1/"
+  },
   "author": "TyVik",
   "license": "ISC",
   "homepage": "https://bitbucket.org/TyVik8/geopuzzle#readme",
   "devDependencies": {
+    "babel-jest": "^23.0.1",
+    "enzyme": "^3.3.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.1.0",
+    "jest-enzyme": "^6.0.1",
+    "react-test-renderer": "^15.5.0",
+    "enzyme-adapter-react-15": "^1.1.0",
+    "jest-fetch-mock": "^1.6.3",
+    "jspolyfill-array.prototype.find": "^0.1.3",
+    "jspolyfill-array.prototype.findIndex": "^0.1.0",
     "@sentry/webpack-plugin": "^1.5.0",
     "@types/react": "^15.0.0",
     "@types/googlemaps": "^3.0.0",
