@@ -70,10 +70,9 @@ jobs:
           command: coverage run --source='.' manage.py test
       - run:
           name: Collect coverage
-          command: coverage report
-      - run:
-          name: Coveralls
-          command: coveralls
+          command: |
+            coverage report
+            coveralls
 
   deploy:
     docker:

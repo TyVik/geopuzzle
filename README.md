@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/TyVik/geopuzzle.svg?style=svg)](https://circleci.com/gh/TyVik/geopuzzle)
-[![Coverage Status](https://coveralls.io/repos/github/TyVik/geopuzzle/badge.svg?branch=master)](https://coveralls.io/github/TyVik/geopuzzle?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/TyVik/geopuzzle/badge.svg?branch=develop)](https://coveralls.io/github/TyVik/geopuzzle?branch=develop)
 
 # Intro
 
