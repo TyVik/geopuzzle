@@ -8,6 +8,7 @@ const gitRevisionPlugin = new GitRevisionPlugin();
 
 module.exports = (env, argv) => {
     const NODE_ENV = process.env.NODE_ENV || 'development';
+    console.log(NODE_ENV);
 
     return {
         context: __dirname + '/frontend',
