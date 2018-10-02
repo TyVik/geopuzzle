@@ -3,7 +3,7 @@ FROM python:3.6-alpine3.7
 COPY requirements.txt /tmp/
 
 RUN apk update --no-cache \
-  && apk add --no-cache git \
+  && apk add --no-cache git openssh-client \
   && apk add --no-cache --virtual .postgres-deps py3-psycopg2 postgresql-libs postgresql-dev \
   && apk add --no-cache --virtual .build-deps libffi-dev build-base zlib-dev jpeg-dev \
   && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main libressl2.7-libcrypto \
