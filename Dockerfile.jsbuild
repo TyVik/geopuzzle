@@ -2,8 +2,6 @@ FROM node:carbon-slim
 
 RUN apt-get update && apt-get install -y git && apt-get clean
 ENV NODE_ENV=production
-RUN mkdir repo
-RUN cd repo
 COPY package.json .
 RUN npm install --only=dev && npm install --only=prod && npm cache clean --force
 

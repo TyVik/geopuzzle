@@ -10,6 +10,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - run: mv /node_modules /root/repo
       - run: npm run build
       - store_artifacts:
           path: static/js
@@ -23,6 +24,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - run: mv /node_modules /root/repo
       - run: npm run test
 
   django:
