@@ -1,6 +1,7 @@
 from .settings import *
 
 
+STATIC_ROOT = 'collected_static'
 RAVEN_CONFIG['release'] = None
 
 GDAL_LIBRARY_PATH = '/usr/lib/libgdal.so.20'
