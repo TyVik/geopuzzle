@@ -1,16 +1,18 @@
 from mercator.settings.settings import *
 
 DEBUG = False
-ALLOWED_HOSTS = ('geopuzzle.org', '188.166.72.166')
+ALLOWED_HOSTS = ('geopuzzle.org', '206.81.16.242')
 
 MEDIA_ROOT = '../upload'
 MEDIA_URL = '/media/'
 
+"""
 MIDDLEWARE = (
     'django.middleware.cache.UpdateCacheMiddleware',
     *MIDDLEWARE,
     'django.middleware.cache.FetchFromCacheMiddleware'
 )
+"""
 
 LOGGING.update({
     'root': {
@@ -18,6 +20,10 @@ LOGGING.update({
         'handlers': ['sentry'],
     },
 })
+LOGGING['loggers']['fetch_region'] = {
+    'handlers': ['console'],
+    'level': 'DEBUG'
+}
 
 #SECURE_SSL_REDIRECT = True
 #SESSION_COOKIE_SECURE = True
