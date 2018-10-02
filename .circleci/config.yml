@@ -85,13 +85,13 @@ workflows:
               only: master
       - django:
           requires:
-            -build
+            - build
           filters:
             branches:
               only: master
       - jest:
           requires:
-            -build
+            - build
           filters:
             branches:
               only: master
@@ -111,13 +111,13 @@ workflows:
               ignore: master
       - django:
           requires:
-            -build
+            - build
           filters:
             branches:
               ignore: master
       - jest:
           requires:
-            -build
+            - build
           filters:
             branches:
               ignore: master
