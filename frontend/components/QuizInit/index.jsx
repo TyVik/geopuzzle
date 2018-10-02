@@ -31,28 +31,26 @@ class QuizInit extends React.Component {
     }
 
     render() {
-        return (
-            <Modal show={this.props.show} dialogClassName="custom-modal">
-                <Modal.Header>
-                    <Modal.Title id="contained-modal-title-lg">{localization.quizInitCaption}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <FormGroup className="checkbox-group">
-                        <Checkbox inline onClick={() => this.toggle('title')}>{localization.title}</Checkbox>
-                        {QuizInit.show_checkbox('flag') &&
-                            <Checkbox inline onClick={() => this.toggle('flag')}>{localization.flag}</Checkbox>
-                        }
-                        {QuizInit.show_checkbox('coat_of_arms') &&
-                            <Checkbox inline onClick={() => this.toggle('coat_of_arms')}>{localization.coat_of_arms}</Checkbox>
-                        }
-                        <Checkbox inline onClick={() => this.toggle('capital')}>{localization.capital}</Checkbox>
-                    </FormGroup>
-                </Modal.Body>
-                <Modal.Footer>
-                    {this.render_footer()}
-                </Modal.Footer>
-            </Modal>
-        );
+        return <Modal show={this.props.show} dialogClassName="custom-modal">
+            <Modal.Header>
+                <Modal.Title id="contained-modal-title-lg">{localization.quizInitCaption}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <FormGroup className="checkbox-group">
+                    <Checkbox inline onClick={() => this.toggle('title')}>{localization.title}</Checkbox>
+                    {QuizInit.show_checkbox('flag') &&
+                        <Checkbox inline onClick={() => this.toggle('flag')}>{localization.flag}</Checkbox>
+                    }
+                    {QuizInit.show_checkbox('coat_of_arms') &&
+                        <Checkbox inline onClick={() => this.toggle('coat_of_arms')}>{localization.coat_of_arms}</Checkbox>
+                    }
+                    <Checkbox inline onClick={() => this.toggle('capital')}>{localization.capital}</Checkbox>
+                </FormGroup>
+            </Modal.Body>
+            <Modal.Footer>
+                {this.render_footer()}
+            </Modal.Footer>
+        </Modal>;
     }
 }
 

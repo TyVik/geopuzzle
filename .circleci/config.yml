@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-    - image: circleci/node:8.11
+    - image: tyvik/geopuzzle:jsbuild
       environment:
         NODE_ENV: "production"
         SENTRY_ORG: "geopuzzle"
@@ -27,7 +27,22 @@ jobs:
           path: static/js
           destination: bundles
 
-  test:
+  jest:
+    docker:
+    - image: tyvik/geopuzzle:jsbuild
+      environment:
+        NODE_ENV: "production"
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install frontend requirements
+          command: |
+            npm install --only=dev
+            npm install --only=prod
+      - run: npm run test
+
+  django:
     docker:
       - image: tyvik/geopuzzle:app
         environment:
@@ -55,10 +70,9 @@ jobs:
           command: coverage run --source='.' manage.py test
       - run:
           name: Collect coverage
-          command: coverage report
-      - run:
-          name: Coveralls
-          command: coveralls
+          command: |
+            coverage report
+            coveralls
 
   deploy:
     docker:
@@ -79,14 +93,39 @@ jobs:
 
 workflows:
   version: 2
-  build-deploy:
+  release:
     jobs:
-      - build
-      - test
-      - deploy:
-          requires:
-            - build
-            - test
+      - build:
           filters:
             branches:
-              only: production
+              only: master
+      - django:
+          filters:
+            branches:
+              only: master
+      - jest:
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - django
+            - jest
+          filters:
+            branches:
+              only: master
+
+  development:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: master
+      - django:
+          filters:
+            branches:
+              ignore: master
+      - jest:
+          filters:
+            branches:
+              ignore: master
