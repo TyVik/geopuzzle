@@ -1,5 +1,5 @@
 from django.contrib.gis.geos import MultiPolygon
-from django.core.management import BaseCommand
+from django.core.management import BaseCommand, CommandError
 
 from maps.models import Region
 
@@ -9,6 +9,9 @@ class InconsistItems(Exception):
 
 
 class Command(BaseCommand):
+    def add_arguments(self, parser):
+        parser.add_argument('pk', metavar='pk')
+
     def handle(self, *args, **options):
         def check_region(region: Region):
             osm_items = region.fetch_items_list()
@@ -43,5 +46,12 @@ class Command(BaseCommand):
             for item in region.region_set.all():
                 check_region(item)
 
-        for country in Region.objects.filter(id=1206).order_by('id').iterator():
+        pk = options.get('pk')
+        if pk is None:
+            raise CommandError('pk region is required')
+
+        continents = [x.id for x in Region.objects.filter(parent_id__isnull=True).all()]
+        for country in Region.objects.filter(parent_id__in=continents, id__gt=101963).order_by('id').iterator():
+            print(country)
             check_region(country)
+
