@@ -75,7 +75,7 @@ jobs:
             python manage.py deploystatic
       - run:
           name: Update server
-          command: ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST "/home/tyvik/geopuzzle/.circleci/update.sh"
+          command: ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST "cd /home/tyvik/geopuzzle/ && .circleci/update.sh"
 
 workflows:
   version: 2
