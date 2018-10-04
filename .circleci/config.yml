@@ -27,7 +27,7 @@ jobs:
       - run: mv /node_modules /root/repo
       - run: npm run test
       - save_cache:
-          key: coverage-{{ .Revision }}
+          key: coverage-frontend-{{ .Revision }}
           paths:
             - frontend/coverage
 
@@ -64,7 +64,7 @@ jobs:
             coverage xml
             coveralls
       - save_cache:
-          key: coverage-{{ .Revision }}
+          key: coverage-backend-{{ .Revision }}
           paths:
             - coverage.xml
 
@@ -76,10 +76,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - coverage-{{ .Revision }}
-      - run: export PR=$(echo -n $CIRCLE_PULL_REQUEST | tail -c 2)
-      - run: echo $PR
-      - run: run-sonar-scanner -Dsonar.pullrequest.branch=$CIRCLE_BRANCH -Dsonar.pullrequest.key=$PR
+            - coverage-frontend-{{ .Revision }}
+            - coverage-backend-{{ .Revision }}
+      - run: .circleci/sonarqube.sh
 
   deploy:
     docker:
