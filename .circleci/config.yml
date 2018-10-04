@@ -77,6 +77,8 @@ jobs:
       - restore_cache:
           keys:
             - coverage-frontend-{{ .Revision }}
+      - restore_cache:
+          keys:
             - coverage-backend-{{ .Revision }}
       - run: .circleci/sonarqube.sh
 
