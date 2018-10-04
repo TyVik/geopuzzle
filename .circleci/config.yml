@@ -57,7 +57,16 @@ jobs:
           name: Collect coverage
           command: |
             coverage report
+            coverage xml
             coveralls
+
+  sonarqube:
+    docker:
+    - image: dmoscrop/circleci-sonar-scanner-docker
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: run-sonar-scanner
 
   deploy:
     docker:
@@ -97,6 +106,13 @@ workflows:
           filters:
             branches:
               only: master
+      - sonarcloud:
+          requires:
+            - django
+            - jest
+          filters:
+            branches:
+              only: master
       - deploy:
           requires:
             - django
@@ -120,6 +136,13 @@ workflows:
       - jest:
           requires:
             - build
+          filters:
+            branches:
+              ignore: master
+      - sonarcloud:
+          requires:
+            - django
+            - jest
           filters:
             branches:
               ignore: master
