@@ -106,7 +106,7 @@ workflows:
           filters:
             branches:
               only: master
-      - sonarcloud:
+      - sonarqube:
           requires:
             - django
             - jest
@@ -139,7 +139,7 @@ workflows:
           filters:
             branches:
               ignore: master
-      - sonarcloud:
+      - sonarqube:
           requires:
             - django
             - jest
