@@ -48,11 +48,11 @@ def deprecated_redirect(request: WSGIRequest, name: str) -> HttpResponsePermanen
     return HttpResponsePermanentRedirect(reverse('puzzle_map', kwargs={'name': name}))
 
 
-def error(request):
+def error(request) -> HttpResponse:
     return HttpResponse('Something went wrong :(')
 
 
-def status(request):
+def status(request) -> JsonResponse:
     def check_redis():
         StrictRedis.from_url(settings.REDIS_HOST).ping()
 

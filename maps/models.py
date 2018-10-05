@@ -23,7 +23,6 @@ from common.cachable import CacheablePropertyMixin, cacheable
 from maps.converter import encode_geometry
 from maps.fields import ExternalIdField
 from maps.infobox import query_by_wikidata_id
-from users.models import User
 
 ZOOMS = (
     (3, 'world'),
@@ -278,7 +277,7 @@ def clear_region_cache(sender, instance: Region, **kwargs):
 
 
 class Game(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     image = models.ImageField(upload_to='games', blank=True, null=True)
     slug = models.CharField(max_length=15, db_index=True)
     center = PointField(geography=True)
