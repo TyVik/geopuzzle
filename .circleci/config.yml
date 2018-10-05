@@ -12,6 +12,10 @@ jobs:
       - checkout
       - run: mv /node_modules /root/repo
       - run: npm run build
+      - save_cache:
+          key: bundles-{{ .Revision }}
+          paths:
+            - static/js
       - store_artifacts:
           path: static/js
           destination: bundles
@@ -88,6 +92,9 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - bundles-{{ .Revision }}
       - add_ssh_keys:
           fngerprints:
            - "c7:1f:fb:eb:c0:79:6b:c9:f7:71:62:d6:f5:c0:d5:e7"
@@ -117,13 +124,6 @@ workflows:
       - jest:
           requires:
             - build
-          filters:
-            branches:
-              only: master
-      - sonarqube:
-          requires:
-            - django
-            - jest
           filters:
             branches:
               only: master
