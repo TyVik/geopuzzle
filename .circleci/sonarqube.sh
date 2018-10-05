@@ -9,7 +9,7 @@ if [ -n "${CIRCLE_SHA1:-}" ]; then
 fi
 
 if [ "$CIRCLE_BRANCH" = "develop" ]; then
-  SONAR_OPTS="${SONAR_OPTS} -Dsonar.analysis.mode=publish"
+  SONAR_OPTS="${SONAR_OPTS} -Dsonar.analysis.mode=publish -Dsonar.pullrequest.provider="
 else
   PR=$(echo -n $CIRCLE_PULL_REQUEST | tail -c 2)
   SONAR_OPTS="${SONAR_OPTS} -Dsonar.pullrequest.key=${PR} -Dsonar.pullrequest.branch=${CIRCLE_BRANCH}"
