@@ -120,13 +120,6 @@ workflows:
           filters:
             branches:
               only: master
-      - sonarqube:
-          requires:
-            - django
-            - jest
-          filters:
-            branches:
-              only: master
       - deploy:
           requires:
             - django
