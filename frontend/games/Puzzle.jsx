@@ -78,7 +78,7 @@ class Puzzle extends Game {
     };
 
     mapInit = () => {
-        fetch(location.pathname.replace('/puzzle/', '/puzzle/questions/') + location.search)
+        fetch(`${location.pathname}questions/` + location.search)
             .then(response => response.json())
             .then(data => {
                 this.startGame({regions: Puzzle.extractData(data.questions, data.solved)});

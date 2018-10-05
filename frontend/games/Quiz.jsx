@@ -71,7 +71,7 @@ class Quiz extends Game {
         let quizBy = ['title', 'flag', 'coat_of_arms', 'capital'].filter((param) => options[param]);
         let get_params = location.search ? location.search + '&' : '?';
         get_params += 'params=' + quizBy.join();
-        fetch(location.pathname.replace('/quiz/', '/quiz/questions/') + get_params)
+        fetch(`${location.pathname}questions/` + get_params)
             .then(response => response.json())
             .then(data => {
                 let regions = Quiz.extractData(data.questions, data.solved);
