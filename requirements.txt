@@ -13,7 +13,7 @@ django-redis-sessions==0.6.1
 django-admirarchy==0.2.2
 django-redux==0.0.13
 django-storages==1.6.5
-boto3==1.6.6
+boto3==1.9.17
 raven==6.6.0
 django-settings-export==1.2.1
 django-dotenv==1.4.2
