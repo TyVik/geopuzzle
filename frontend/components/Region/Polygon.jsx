@@ -9,10 +9,6 @@ class Polygon extends GooglePolygon {
     getBounds() {
         return this.state[_constants.POLYGON].getBounds();
     }
-
-    getPaths() {
-        return this.state[_constants.POLYGON].getPaths();
-    }
 }
 
 export default Polygon;
