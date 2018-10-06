@@ -90,3 +90,7 @@ footer .social-wrap {
 .nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:focus, .nav-tabs.nav-justified>.active>a:hover {
     border-bottom-width: 0;
 }
+
+.panel-body h1 {
+    text-align: center;
+}
