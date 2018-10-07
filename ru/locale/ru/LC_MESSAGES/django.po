@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-06 20:30+0000\n"
-"PO-Revision-Date: 2018-10-07 10:57\n"
+"PO-Revision-Date: 2018-10-07 11:10\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -18,59 +18,59 @@ msgstr ""
 
 #: maps/admin.py:28
 msgid "Infoboxes were updated."
-msgstr ""
+msgstr "Инфобоксы обновлены."
 
 #: maps/admin.py:29
 msgid "Update infoboxes"
-msgstr ""
+msgstr "Обновить инфобоксы"
 
 #: maps/admin.py:35
 msgid "Polygons were updated."
-msgstr ""
+msgstr "Полигоны обновлены."
 
 #: maps/admin.py:36
 msgid "Update polygons"
-msgstr ""
+msgstr "Обновить полигоны"
 
 #: maps/admin.py:84
 msgid "Infobox"
-msgstr ""
+msgstr "Инфобокс"
 
 #: maps/admin.py:90
 msgid "Infobox was updated successfully."
-msgstr ""
+msgstr "Инфобокс обновлён успешно."
 
 #: maps/admin.py:97
 msgid "Polygon was imported successfully."
-msgstr ""
+msgstr "Полигон загружен успешно."
 
 #: maps/apps.py:6
 msgid "maps"
-msgstr ""
+msgstr "карты"
 
 #: maps/templates/admin/maps/country/change_form.html:10
 #: maps/templates/admin/maps/region/change_form.html:10
 msgid "History"
-msgstr ""
+msgstr "История"
 
 #: maps/templates/admin/maps/country/change_form.html:13
 msgid "Import KML"
-msgstr ""
+msgstr "Импорт KML"
 
 #: maps/templates/admin/maps/country/change_form.html:15
 #: maps/templates/admin/maps/region/change_form.html:16
 msgid "View on site"
-msgstr ""
+msgstr "Посмотреть на сайте"
 
 #: maps/templates/admin/maps/country/map_kml_import.html:14
 #: maps/templates/admin/maps/region/map_kml_import.html:14
 msgid "Please correct the error below."
-msgstr ""
+msgstr "Пожалуйста, исправьте ошибки."
 
 #: maps/templates/admin/maps/country/map_kml_import.html:15
 #: maps/templates/admin/maps/region/map_kml_import.html:15
 msgid "Please correct the errors below."
-msgstr ""
+msgstr "Пожалуйста, исправьте ошибки."
 
 #: maps/templates/admin/maps/region/change_form.html:13
 msgid "Update Infobox"
@@ -90,19 +90,19 @@ msgstr ""
 
 #: mercator/views.py:27
 msgid "puzzle"
-msgstr ""
+msgstr "Паззл"
 
 #: mercator/views.py:28
 msgid "In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!"
-msgstr ""
+msgstr "В игре \"Паззл\" нужно перетащить контур территории на её место. В детстве мы собирали картины кусочек за кусочком, а здесь можно собрать страну из регионов или целые континенты из стран!"
 
 #: mercator/views.py:36
 msgid "quiz"
-msgstr ""
+msgstr "Викторина"
 
 #: mercator/views.py:37
 msgid "In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!"
-msgstr ""
+msgstr "В игре «Викторина» искать страну нужно будет по флагу, гербу или столице. Знали ли вы, что у Монако и Индонезии одинаковые флаги? А что флаги США и Либерии отличаются только количеством звёзд? Так вот, эти и другие интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
 
 #: puzzle/views.py:46
 msgid "Puzzle \"{}\" has been assembled! Your time is "
@@ -110,7 +110,7 @@ msgstr ""
 
 #: puzzle/views.py:46 quiz/views.py:32
 msgid "World map"
-msgstr ""
+msgstr "Карта мира"
 
 #: quiz/views.py:31
 #, python-brace-format
@@ -119,23 +119,23 @@ msgstr ""
 
 #: quiz/views.py:33
 msgid "countries"
-msgstr ""
+msgstr "страны"
 
 #: quiz/views.py:33
 msgid "regions"
-msgstr ""
+msgstr "регионы"
 
 #: templates/base.html:5
 msgid "Mercator puzzle of "
-msgstr ""
+msgstr "Паззл Меркатора - "
 
 #: templates/base.html:5 templates/index.html:33
 msgid "World"
-msgstr ""
+msgstr "Мир"
 
 #: templates/base.html:6 templates/index.html:6 templates/share_image.html:7
 msgid "Arrange the pieces of the world!"
-msgstr ""
+msgstr "Собери мир по кусочкам!"
 
 #: templates/base.html:39
 msgid "Workshop"
@@ -167,15 +167,15 @@ msgstr ""
 
 #: templates/index.html:40
 msgid "easy countries"
-msgstr ""
+msgstr "лёгкие страны"
 
 #: templates/index.html:47
 msgid "all countries"
-msgstr ""
+msgstr "все страны"
 
 #: templates/index.html:63
 msgid "Country regions"
-msgstr ""
+msgstr "Регионы стран"
 
 #: templates/index.html:87
 msgid "This is my pet project, but I was so impressed with this idea that I decided to make a\n"
@@ -184,7 +184,7 @@ msgid "This is my pet project, but I was so impressed with this idea that I deci
 "                    <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">email</a>,\n"
 "                    <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
 "                    or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
-msgstr ""
+msgstr "Это мой домашний проект, но я был настолько вдохновлён идеей, что решил сделать полноценный сайт. Он ещё не закончен - будут обновления как самих данных, так и функционала. Все пожелания можно направить мне на <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">почту</a>, в <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a> или в <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
 
 #: templates/index.html:93
 msgid "You always can support the project with donations via <a href=\"https://www.paypal.me/tyvik\">PayPal</a> or\n"
@@ -193,7 +193,7 @@ msgstr ""
 
 #: templates/share_image.html:8
 msgid "Games on political maps"
-msgstr ""
+msgstr "Игры на политической карте"
 
 #: users/forms.py:12 users/forms.py:18
 msgid "Username"
