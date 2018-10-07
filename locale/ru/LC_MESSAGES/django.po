@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-19 14:23+0000\n"
+"POT-Creation-Date: 2018-10-06 20:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,8 +79,6 @@ msgid "Update Infobox"
 msgstr "Обновить инфобокс"
 
 #: maps/templates/admin/maps/region/change_form.html:14
-#, fuzzy
-#| msgid "Import KML"
 msgid "Import from OSM"
 msgstr "Импорт KML"
 
@@ -149,7 +147,7 @@ msgstr "регионы"
 msgid "Mercator puzzle of "
 msgstr "Паззл Меркатора - "
 
-#: templates/base.html:5 templates/index.html:37
+#: templates/base.html:5 templates/index.html:33
 msgid "World"
 msgstr "Мир"
 
@@ -157,51 +155,60 @@ msgstr "Мир"
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
 
-#: templates/base.html:40
+#: templates/base.html:39
 msgid "Workshop"
 msgstr "Мастерская"
 
-#: templates/base.html:46
+#: templates/base.html:44
 msgid "logout"
 msgstr "выйти"
 
+#: templates/base.html:46 users/templates/registration/login.html:5
+#: users/templates/registration/login.html:26
+#: users/templates/registration/registration.html:5
+msgid "Sign In"
+msgstr "Войти"
+
+#: templates/base.html:47 users/templates/registration/login.html:5
+#: users/templates/registration/registration.html:5
+#: users/templates/registration/registration.html:31
+msgid "Sign Up"
+msgstr "Зарегистрироваться"
+
+#: templates/index.html:7
+msgid ""
+"Here, in the form of a game, you can learn the names and locations of each "
+"country or state and have fun doing it. In your hands are all of the regions "
+"of the world! Select a region in its proper place or from a list and look at "
+"it flag, coat of arms and perhaps even more information to help you learn "
+"geography."
+msgstr ""
+"В игровой форме здесь можно выучить не только расположение и название страны "
+"или региона, но и их флаг, герб и столицу. Под вашей рукой все государства "
+"мира — изучайте их, перемещайте и сравнивайте!. Выберите регион из списка, "
+"чтобы получить более детальную информацию по нему."
+
 #: templates/index.html:8
 msgid ""
-"\"It turns out that the tallest people live in Rwanda,\" one day they told "
-"you. And then you shyly thought about what Rwanda is and with what it's "
-"eaten, but nothing came to your mind ... Then you went to the right page!"
+"Moreover, you can create your own puzzles from more than 100,000 regions "
+"after registration!"
 msgstr ""
-"\"Оказывается, самая высокорослая народность живёт в Руанде\", — однажды "
-"сказали вам. И тут вы стыдливо подумали о том, что такое Руанда и с чем её "
-"едят, но ничего так и не пришло в голову… Тогда вы зашли на нужную страницу!"
+"Более того, после регистрации вы можете создавать свои собственные игры из "
+"более чем 100 000 кусочков."
 
-#: templates/index.html:11
-msgid ""
-"In the game form, you can remember not only the location and name of the "
-"country, but also its flag, coat of arms and the capital. Under your hand "
-"all the states of the world - study them, move them and compare them. And "
-"then your brain will work another time faster and remember, for example, "
-"that Rwanda is one of the smallest countries in Africa. ;)"
-msgstr ""
-"В игровой форме здесь можно запомнить не только расположение и название "
-"страны, но и её флаг, герб и столицу. Под вашей рукой все государства мира — "
-"изучайте их, перемещайте и сравнивайте. И тогда ваш мозг в другой раз "
-"сработает быстрее и вспомнит, например, и о том, что Руанда — одна из самых "
-"маленьких стран Африки. :)"
-
-#: templates/index.html:44
+#: templates/index.html:40
 msgid "easy countries"
 msgstr "лёгкие страны"
 
-#: templates/index.html:51
+#: templates/index.html:47
 msgid "all countries"
 msgstr "все страны"
 
-#: templates/index.html:67
+#: templates/index.html:63
 msgid "Country regions"
 msgstr "Регионы стран"
 
-#: templates/index.html:91
+#: templates/index.html:87
 msgid ""
 "This is my pet project, but I was so impressed with this idea that I decided "
 "to make a\n"
@@ -222,7 +229,7 @@ msgstr ""
 "\"https://vk.com/tyvik\" target=\"_blank\">Vk</a> или в <a href=\"https://"
 "www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
 
-#: templates/index.html:97
+#: templates/index.html:93
 msgid ""
 "You always can support the project with donations via <a href=\"https://www."
 "paypal.me/tyvik\">PayPal</a> or\n"
@@ -254,21 +261,13 @@ msgstr "Аватар"
 msgid "Language"
 msgstr "Язык интерфейса"
 
+#: users/models.py:13
+msgid "Subscribed on news"
+msgstr "Подписан на новости"
+
 #: users/templates/registration/base.html:29
 msgid "or"
 msgstr "или"
-
-#: users/templates/registration/login.html:5
-#: users/templates/registration/login.html:26
-#: users/templates/registration/registration.html:5
-msgid "Log In"
-msgstr "Войти"
-
-#: users/templates/registration/login.html:5
-#: users/templates/registration/registration.html:5
-#: users/templates/registration/registration.html:31
-msgid "Sign Up"
-msgstr "Зарегистрироваться"
 
 #: users/templates/user/profile.html:17
 msgid "Profile"
@@ -282,11 +281,11 @@ msgstr "Мои Паззлы"
 msgid "Public profile"
 msgstr "Публичный профиль"
 
-#: users/templates/user/profile.html:43
+#: users/templates/user/profile.html:47
 msgid "Save"
 msgstr "Сохранить"
 
-#: users/templates/user/profile.html:68
+#: users/templates/user/profile.html:72
 msgid "New one"
 msgstr "Добавить ещё"
 
