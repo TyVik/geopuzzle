@@ -12,6 +12,10 @@ jobs:
       - checkout
       - run: mv /node_modules /root/repo
       - run: npm run build
+      - save_cache:
+          key: bundles-{{ .Revision }}
+          paths:
+            - static/js
       - store_artifacts:
           path: static/js
           destination: bundles
@@ -26,6 +30,10 @@ jobs:
       - checkout
       - run: mv /node_modules /root/repo
       - run: npm run test
+      - save_cache:
+          key: coverage-frontend-{{ .Revision }}
+          paths:
+            - frontend/coverage/lcov.info
 
   django:
     docker:
@@ -57,7 +65,26 @@ jobs:
           name: Collect coverage
           command: |
             coverage report
+            coverage xml
             coveralls
+      - save_cache:
+          key: coverage-backend-{{ .Revision }}
+          paths:
+            - coverage.xml
+
+  sonarqube:
+    docker:
+    - image: dmoscrop/circleci-sonar-scanner-docker
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - coverage-frontend-{{ .Revision }}
+      - restore_cache:
+          keys:
+            - coverage-backend-{{ .Revision }}
+      - run: .circleci/sonarqube.sh
 
   deploy:
     docker:
@@ -65,6 +92,9 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - bundles-{{ .Revision }}
       - add_ssh_keys:
           fngerprints:
            - "c7:1f:fb:eb:c0:79:6b:c9:f7:71:62:d6:f5:c0:d5:e7"
@@ -120,6 +150,13 @@ workflows:
       - jest:
           requires:
             - build
+          filters:
+            branches:
+              ignore: master
+      - sonarqube:
+          requires:
+            - django
+            - jest
           filters:
             branches:
               ignore: master
