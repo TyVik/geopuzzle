@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block top %}
-    {% trans "Log In" %} / <a href="{% url "registration" %}">{% trans "Sign Up" %}</a>
+    {% trans "Sign In" %} / <a href="{% url "registration" %}">{% trans "Sign Up" %}</a>
 {% endblock %}
 
 {% block form %}
@@ -23,7 +23,7 @@
                 <span class="help-block">{{ error }}</span>
             {% endfor %}
         </ul>
-        <button type="submit" class="btn btn-primary">{% trans "Log In" %}</button>
+        <button type="submit" class="btn btn-primary">{% trans "Sign In" %}</button>
 {#                    <a class="pull-right" href="{% url "password_reset" %}">{% trans "Forgot password?" %}</a>#}
     </form>
 {% endblock %}
