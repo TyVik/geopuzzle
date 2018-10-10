@@ -2,7 +2,7 @@ Django==2.1.2
 psycopg2-binary==2.7.4
 pillow==5.0.0
 sorl-thumbnail==12.4a1
-sparqlwrapper==1.8.1
+sparqlwrapper==1.8.2
 django-redis==4.9.0
 requests==2.18.4
 git+git://github.com/copperleaftech/django-floppyforms.git@django-1.11-compat
