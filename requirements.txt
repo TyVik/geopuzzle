@@ -10,7 +10,7 @@ daphne==1.3.0
 channels==1.1.3
 asgi-redis==1.3.0
 django-redis-sessions==0.6.1
-django-admirarchy==0.2.2
+django-admirarchy==0.2.4
 django-redux==0.0.13
 django-storages==1.7.1
 boto3==1.9.18
