@@ -48,7 +48,7 @@ class Region(CacheablePropertyMixin, models.Model):
     modified = models.DateTimeField(auto_now=True)
     wikidata_id = ExternalIdField(max_length=20, link='https://www.wikidata.org/wiki/{id}', null=True)
     osm_id = models.PositiveIntegerField(unique=True)
-    osm_data = JSONField(default={})
+    osm_data = JSONField(default=dict)
     is_enabled = models.BooleanField(default=True)
 
     objects = RegionManager()
@@ -261,7 +261,7 @@ class Region(CacheablePropertyMixin, models.Model):
 
 class RegionTranslation(models.Model):
     name = models.CharField(max_length=120)
-    infobox = JSONField(default={})
+    infobox = JSONField(default=dict)
     language_code = models.CharField(max_length=15, choices=settings.LANGUAGES, db_index=True)
     master = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='translations', editable=False)
 

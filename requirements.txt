@@ -1,4 +1,4 @@
-Django==2.0.3
+Django==2.1.2
 psycopg2-binary==2.7.4
 pillow==5.0.0
 sorl-thumbnail==12.4a1
