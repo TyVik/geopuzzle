@@ -1,5 +1,5 @@
 import os
-import raven
+import subprocess
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -125,7 +125,8 @@ CHANNEL_LAYERS = {
 # endregion
 
 # region LOGGING
-GIT_REVISION = raven.fetch_git_sha(BASE_DIR)[:8]
+output = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], stdout=subprocess.PIPE)
+GIT_REVISION = output.stdout.decode().strip()
 RAVEN_CONFIG = {
     'dsn': os.environ.get('RAVEN_DSN'),
     'release': GIT_REVISION,
