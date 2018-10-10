@@ -113,13 +113,13 @@ SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_DB = 2
 SESSION_REDIS_HOST = REDIS_HOST
 
+ASGI_APPLICATION = "mercator.routing.application"
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
             'hosts': [(REDIS_HOST, 6379)],
         },
-        'ROUTING': 'mercator.routing.channels',
     }
 }
 # endregion

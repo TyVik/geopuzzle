@@ -1,5 +1,11 @@
-from puzzle.consumer import routes as puzzle_routes
-from quiz.consumer import routes as quiz_routes
+from channels.auth import AuthMiddlewareStack
+from channels.routing import ProtocolTypeRouter, URLRouter
 
+from puzzle.consumer import urls as puzzle_routing
+from quiz.consumer import urls as quiz_routing
 
-channels = puzzle_routes + quiz_routes
+application = ProtocolTypeRouter({
+    'websocket': AuthMiddlewareStack(
+        URLRouter(puzzle_routing + quiz_routing),
+    ),
+})
