@@ -1,5 +1,15 @@
-from puzzle.consumer import routes as puzzle_routes
-from quiz.consumer import routes as quiz_routes
+from channels.auth import AuthMiddlewareStack
+from channels.routing import ProtocolTypeRouter, URLRouter
+from django.conf.urls import url
 
+from puzzle.consumer import PuzzleConsumer
+from quiz.consumer import QuizConsumer
 
-channels = puzzle_routes + quiz_routes
+application = ProtocolTypeRouter({
+    'websocket': AuthMiddlewareStack(
+        URLRouter([
+            url(r'^ws/puzzle/', PuzzleConsumer),
+            url(r'^ws/quiz/', QuizConsumer),
+        ]),
+    ),
+})

@@ -1,5 +1,5 @@
 import os
-import raven
+import subprocess
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -113,19 +113,20 @@ SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_DB = 2
 SESSION_REDIS_HOST = REDIS_HOST
 
+ASGI_APPLICATION = "mercator.routing.application"
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
             'hosts': [(REDIS_HOST, 6379)],
         },
-        'ROUTING': 'mercator.routing.channels',
     }
 }
 # endregion
 
 # region LOGGING
-GIT_REVISION = raven.fetch_git_sha(BASE_DIR)[:8]
+output = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], stdout=subprocess.PIPE)
+GIT_REVISION = output.stdout.decode().strip()
 RAVEN_CONFIG = {
     'dsn': os.environ.get('RAVEN_DSN'),
     'release': GIT_REVISION,
