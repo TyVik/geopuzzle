@@ -1,7 +1,7 @@
 'use strict';
 import React from "react";
 import {Panel} from "react-bootstrap";
-import localization from "../../localization";
+import localization from "../../../localization";
 import "./index.css";
 
 
