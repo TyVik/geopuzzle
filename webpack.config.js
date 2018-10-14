@@ -12,8 +12,7 @@ module.exports = (env, argv) => {
     return {
         context: __dirname + '/frontend',
         entry: {
-            quiz: './quiz',
-            puzzle: './puzzle',
+            games: './games',
             localization: './localization',
             editor: './editor',
             workshop: './workshop',
