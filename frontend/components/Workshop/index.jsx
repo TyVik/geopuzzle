@@ -1,6 +1,8 @@
 'use strict';
 import React from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import Loading from "../Loading/index";
+import localization from "../../localization";
 
 
 class Workshop extends React.Component {
@@ -28,12 +30,12 @@ class Workshop extends React.Component {
 
     render() {
         if (this.state.page === 0) {
-            return <h4>Loading...</h4>;
+            return <Loading text={localization.loading}/>;
         }
         let puzzles = this.state.puzzles;
         return <InfiniteScroll dataLength={puzzles.length} next={this.fetchNextPage}
                                hasMore={puzzles.length < this.props.count}
-                               loader={<h4>Loading...</h4>} children={puzzles}>
+                               loader={<Loading text={localization.loading}/>} children={puzzles}>
             {puzzles.map(puzzle =>
                 <div className="col-md-3 col-sm-4 col-xs-6 item-container" key={puzzle.url}>
                     <a href={puzzle.url}>

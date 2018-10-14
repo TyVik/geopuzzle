@@ -15,6 +15,9 @@
 {% endblock %}
 
 {% block extra_js %}
+    <script type='text/javascript'>
+        window.__LANGUAGE__ = '{{ language }}';
+    </script>
     <script type="text/javascript" src={% static "js/common.js" %}></script>
     <script type="text/javascript" src={% static "js/components.js" %}></script>
     <script type="text/javascript" src={% static "js/workshop.js" %}></script>

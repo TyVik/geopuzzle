@@ -189,16 +189,19 @@ class WorkshopView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(WorkshopView, self).get_context_data(**kwargs)
-        context['count'] = Puzzle.objects.get_queryset().filter(user__isnull=False, is_published=True).count()
+        context.update({
+            'count': Puzzle.objects.get_queryset().filter(user__isnull=False, is_published=True).count(),
+            'language': get_language(),
+        })
         return context
 
 
 def workshop_items(request):
-    def json(puzzle) -> Dict:
-        trans = puzzle.load_translation(get_language())
+    def json(item: Puzzle) -> Dict:
+        trans = item.load_translation(get_language())
         return {
-            'image': get_thumbnail(puzzle.image.path, geometry_string='196x196', format='PNG', quality='80').url,
-            'url': puzzle.get_absolute_url(),
+            'image': get_thumbnail(item.image.path, geometry_string='196x196', format='PNG', quality='80').url,
+            'url': item.get_absolute_url(),
             'name': trans.name
         }
 
