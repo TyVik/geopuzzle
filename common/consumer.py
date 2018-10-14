@@ -1,9 +1,55 @@
+import inspect
+
+from channels.generic.websocket import AsyncJsonWebsocketConsumer
 from django.utils.translation.trans_real import get_supported_language_variant, parse_accept_lang_header
-from django_redux import ReduxConsumer
+
+
+def action(action_type):
+    def wrap(func):
+        func.action_type = action_type
+        return func
+    return wrap
+
+
+class ReduxConsumer(AsyncJsonWebsocketConsumer):
+    http_user = True
+
+    async def _list_actions(self):
+        methods = inspect.getmembers(self, predicate=inspect.ismethod)
+        return [m[1] for m in methods if hasattr(m[1], 'action_type')]
+
+    async def _get_actions(self, action_type):
+        methods = inspect.getmembers(self, predicate=inspect.ismethod)
+        return [m[1] for m in methods if hasattr(m[1], 'action_type') and m[1].action_type == action_type]
+
+    async def get_control_channel(self, user=None):
+        if 'user' not in self.message.channel_session:
+            return None
+        if user is None:
+            user = self.message.channel_session['user']
+        return 'user.{0}'.format(user)
+
+    async def connection_groups(self, **kwargs):
+        """
+        Called to return the list of groups to automatically add/remove
+        this connection to/from.
+        """
+        groups = ['broadcast']
+        control = await self.get_control_channel()
+        if control is not None:
+            groups.append(control)
+        return groups
+
+    async def receive_json(self, action, multiplexer=None, **kwargs):
+        action_type = action['type'].upper()
+        methods = await self._get_actions(action_type)
+        if not methods:
+            raise NotImplementedError('{} not implemented'.format(action_type))
+        [await method(action, multiplexer=multiplexer) for method in methods]
 
 
 class LanguageConsumer(ReduxConsumer):
-    def connect(self, message, **kwargs):
+    async def connect(self):
         def extract_lang(headers):
             for header in headers:
                 if header[0] == b'accept-language':
@@ -18,5 +64,6 @@ class LanguageConsumer(ReduxConsumer):
                     continue
             return 'en'
 
-        super(LanguageConsumer, self).connect(message, **kwargs)
-        self.message.channel_session['lang'] = get_best(parse_accept_lang_header(extract_lang(self.message.content['headers'])))
+        await super(LanguageConsumer, self).connect()
+        self.scope['lang'] = self.scope['user'].language if self.scope['user'].is_authenticated else \
+            get_best(parse_accept_lang_header(extract_lang(self.scope['headers'])))

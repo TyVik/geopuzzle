@@ -3,8 +3,8 @@ from django.db import models
 
 
 class ExternalIdWidget(forms.TextInput):
-    def render(self, name, value, attrs=None):
-        result = super(ExternalIdWidget, self).render(name, value, attrs)
+    def render(self, name, value, attrs=None, renderer=None):
+        result = super(ExternalIdWidget, self).render(name, value, attrs, renderer)
         if value is not None:
             result += ' <a href="{link}" target="_blank">link</a>'.format(link=self.attrs['link']).format(id=value)
         return result

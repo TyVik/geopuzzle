@@ -7,18 +7,20 @@ from django.conf import settings
 from django.contrib.gis.geos import Point, MultiPoint
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.core.files.base import ContentFile
+from django.core.paginator import Paginator
 from django.forms import ModelForm, Field
 from django.urls import reverse
 from django.utils.crypto import get_random_string
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, get_language
 
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import never_cache
 from django.views.generic import ListView
-from django.views.generic.base import TemplateResponseMixin
+from django.views.generic.base import TemplateResponseMixin, TemplateView
 from django.views.generic.edit import BaseUpdateView
+from sorl.thumbnail import get_thumbnail
 
 from common.utils import random_string
 from puzzle.forms import PuzzleForm
@@ -40,7 +42,6 @@ def puzzle(request: WSGIRequest, name: str) -> HttpResponse:
     puzzle = get_object_or_404(Puzzle, slug=name)
     trans = puzzle.load_translation(request.LANGUAGE_CODE)
     context = {
-        'language': request.LANGUAGE_CODE,
         'game': puzzle,
         'name': trans.name,
         'text': _('Puzzle \"{}\" has been assembled! Your time is ').format(trans.name if puzzle.id != 1 else _('World map'))
@@ -143,7 +144,7 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
                 root = find(tree, str(region.parent_id))
                 id_in_tree.add(region.id)
                 root['toggled'] = True
-                root['items'] = insert(root['items'], region.json(self.request.user.language))
+                root['items'] = insert(root['items'], region.json(self.request.LANGUAGE_CODE))
                 return tree
 
             def handle_node(tree: List[Dict], region: Region) -> List[Dict]:
@@ -161,15 +162,15 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
         if self.object.id is None:
             result.update({
                 'checked': [],
-                'regions': [x.json(self.request.user.language) for x in Region.objects.filter(parent__isnull=True, is_enabled=True).all()],
+                'regions': [x.json(self.request.LANGUAGE_CODE) for x in Region.objects.filter(parent__isnull=True, is_enabled=True).all()],
                 'fields': {
                     'is_published': False,
                     'translations': [{'code': code, 'language': lang, 'title': ''} for code, lang in settings.LANGUAGES]
                 }
             })
         else:
-            result['checked'] = [region.full_info(self.request.user.language) for region in self.object.regions.all()]
-            tree = [x.json(self.request.user.language) for x in Region.objects.filter(parent__isnull=True, is_enabled=True).all()]
+            result['checked'] = [region.full_info(self.request.LANGUAGE_CODE) for region in self.object.regions.all()]
+            tree = [x.json(self.request.LANGUAGE_CODE) for x in Region.objects.filter(parent__isnull=True, is_enabled=True).all()]
             tree = sorted(tree, key=lambda x: x['name'])  # IMHO it's cheaper than SQL
             result['regions'] = build_tree(tree, set([int(x['id']) for x in tree]), self.object.regions.all())
             result['fields'] = {
@@ -178,14 +179,32 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
                                   'language': next(pair for pair in settings.LANGUAGES if pair[0] == translation.language_code)[1]}
                                  for translation in self.object.translations.all()],
             }
-        result['language'] = self.request.user.language
         return result
 
 
-class WorkshopView(ListView):
-    model = Puzzle
+class WorkshopView(TemplateView):
     template_name = 'puzzle/list.html'
-    ordering = '-created'
 
-    def get_queryset(self):
-        return super(WorkshopView, self).get_queryset().filter(user__isnull=False, is_published=True)
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopView, self).get_context_data(**kwargs)
+        context.update({
+            'count': Puzzle.objects.get_queryset().filter(user__isnull=False, is_published=True).count(),
+            'language': get_language(),
+        })
+        return context
+
+
+def workshop_items(request):
+    def json(item: Puzzle) -> Dict:
+        trans = item.load_translation(get_language())
+        return {
+            'image': get_thumbnail(item.image.path, geometry_string='196x196', format='PNG', quality='80').url,
+            'url': item.get_absolute_url(),
+            'name': trans.name
+        }
+
+    puzzles = Puzzle.objects.get_queryset().filter(user__isnull=False, is_published=True).prefetch_related('translations').order_by('-id')
+    paginator = Paginator(puzzles, 24)
+    page = request.GET.get('page')
+    result = paginator.get_page(page)
+    return JsonResponse([json(x) for x in result], safe=False)

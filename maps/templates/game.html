@@ -12,13 +12,16 @@
 
 {% block content %}
     {% if debug %}
-    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language=en"></script>
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language={{ request.LANGUAGE_CODE }}"></script>
     {% else %}
-    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language=en&key={{ settings.GOOGLE_KEY }}"></script>
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language={{ request.LANGUAGE_CODE }}&key={{ settings.GOOGLE_KEY }}"></script>
     {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
     <script type='text/javascript'>
         window.__STATIC_URL__ = '{{ settings.STATIC_URL }}';
-        window.__LANGUAGE__ = '{{ language }}';
         window.__MAP__ = {{ game.get_init_params|jsonify }};
         window.__CONGRATULATION__ = {text: '{{ text|safe }}'};
     </script>

@@ -1,6 +1,6 @@
 'use strict';
 import React from "react";
-import localization from '../../localization';
+import localization from '../../../localization';
 import {Button, Modal, FormGroup, Checkbox} from "react-bootstrap";
 import "./index.css";
 

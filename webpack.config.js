@@ -12,10 +12,10 @@ module.exports = (env, argv) => {
     return {
         context: __dirname + '/frontend',
         entry: {
-            quiz: './quiz',
-            puzzle: './puzzle',
+            games: './games',
             localization: './localization',
             editor: './editor',
+            workshop: './workshop',
         },
         output: {
             path: path.resolve(__dirname, 'static', 'js'),
@@ -59,7 +59,7 @@ module.exports = (env, argv) => {
             splitChunks: {
                 cacheGroups: {
                     commons: {
-                        test: /node_modules/,
+                        test: /node_modules\/(?!html2canvas)/,
                         chunks: 'initial',
                         name: 'common',
                         enforce: true,

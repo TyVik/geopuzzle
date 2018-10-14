@@ -2,11 +2,11 @@
 import React from "react";
 import Loading from "../components/Loading/index";
 import localization from "../localization";
-import Sockette from '../ws';
-import Congratulation from "../components/Congratulation/index";
+import Sockette from './ws';
+import Congratulation from "./components/Congratulation/index";
 import {prepareInfobox} from "../utils";
-import Toolbox from "../components/Toolbox/index";
-import Infobox from "../components/Infobox/index";
+import Toolbox from "./components/Toolbox/index";
+import Infobox from "./components/Infobox/index";
 import Map from '../components/Map/index';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import Infobox from '../components/Infobox';
+import Infobox from '../games/components/Infobox';
 
 
 describe('shallow <Infobox /> components', () => {

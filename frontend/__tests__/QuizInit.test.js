@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import QuizInit from '../components/QuizInit';
+import QuizInit from '../games/components/QuizInit';
 
 
 describe('shallow <QuizInit /> components', () => {

@@ -1,6 +1,6 @@
 'use strict';
 import React from "react";
-import Game from "./base";
+import Game from "./Game";
 import {decodePolygon, moveTo, prepareInfobox} from "../utils";
 import localization from "../localization";
 
