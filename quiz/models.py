@@ -15,10 +15,14 @@ QUIZ_OPTIONS = (
 )
 
 
+def default_quiz_options():
+    return ['name', 'capital', 'flag', 'coat_of_arms']
+
+
 class Quiz(Game):
     regions = models.ManyToManyField(Region, through='QuizRegion')
     options = ArrayField(models.CharField(max_length=12, choices=QUIZ_OPTIONS),
-                         default=['name', 'capital', 'flag', 'coat_of_arms'])
+                         default=default_quiz_options)
 
     class Meta:
         verbose_name = 'Quiz'

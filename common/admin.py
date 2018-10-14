@@ -1,15 +1,16 @@
 from django.conf import settings
-import floppyforms as forms
+from django.forms import Media
 from django.template.defaultfilters import safe
+from floppyforms.gis import MultiPolygonWidget as BaseMultiPolygonWidget, BaseGMapWidget, MultiPointWidget as BaseMultiPointWidget
 from sorl.thumbnail import get_thumbnail
 from sorl.thumbnail.admin.current import AdminImageWidget as SorlImageWidget
 
 
 class AdminImageWidget(SorlImageWidget):
-    def render(self, name, value, attrs=None) -> str:
+    def render(self, name, value, attrs=None, **kwargs) -> str:
         try:
-            result = super(AdminImageWidget, self).render(name, value, attrs)
-        except TypeError:  # base image does not exists
+            result = super(AdminImageWidget, self).render(name, value, attrs, **kwargs)
+        except TypeError:
             result = 'Original image does not exists'
         return result
 
@@ -35,13 +36,13 @@ class ImageMixin(object):
         return safe('<img src="{}"/>'.format(url))
 
 
-class MultiPolygonWidget(forms.gis.MultiPolygonWidget, forms.gis.BaseGMapWidget):
+class MultiPolygonWidget(BaseMultiPolygonWidget, BaseGMapWidget):
     google_maps_api_key = settings.GOOGLE_KEY
 
     @property
     def media(self):
-        return super(MultiPolygonWidget, self).media + forms.Media(js=('gis/MapBoxExtend.js', ))
+        return super(MultiPolygonWidget, self).media + Media(js=('gis/MapBoxExtend.js', ))
 
 
-class MultiPointWidget(forms.gis.MultiPointWidget, forms.gis.BaseGMapWidget):
+class MultiPointWidget(BaseMultiPointWidget, BaseGMapWidget):
     google_maps_api_key = settings.GOOGLE_KEY
