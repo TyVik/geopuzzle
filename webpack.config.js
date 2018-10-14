@@ -59,7 +59,7 @@ module.exports = (env, argv) => {
             splitChunks: {
                 cacheGroups: {
                     commons: {
-                        test: /node_modules/,
+                        test: /node_modules\/(?!html2canvas)/,
                         chunks: 'initial',
                         name: 'common',
                         enforce: true,
