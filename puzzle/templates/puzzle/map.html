@@ -4,5 +4,9 @@
 {% block content %}
     <div id="puzzle" class="gmap-game"></div>
     {{ block.super }}
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
     <script type="text/javascript" src={% static "js/puzzle.js" %}></script>
 {% endblock %}

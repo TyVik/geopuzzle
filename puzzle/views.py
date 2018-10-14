@@ -40,7 +40,6 @@ def puzzle(request: WSGIRequest, name: str) -> HttpResponse:
     puzzle = get_object_or_404(Puzzle, slug=name)
     trans = puzzle.load_translation(request.LANGUAGE_CODE)
     context = {
-        'language': request.LANGUAGE_CODE,
         'game': puzzle,
         'name': trans.name,
         'text': _('Puzzle \"{}\" has been assembled! Your time is ').format(trans.name if puzzle.id != 1 else _('World map'))
@@ -143,7 +142,7 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
                 root = find(tree, str(region.parent_id))
                 id_in_tree.add(region.id)
                 root['toggled'] = True
-                root['items'] = insert(root['items'], region.json(self.request.user.language))
+                root['items'] = insert(root['items'], region.json(self.request.LANGUAGE_CODE))
                 return tree
 
             def handle_node(tree: List[Dict], region: Region) -> List[Dict]:
@@ -161,15 +160,15 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
         if self.object.id is None:
             result.update({
                 'checked': [],
-                'regions': [x.json(self.request.user.language) for x in Region.objects.filter(parent__isnull=True, is_enabled=True).all()],
+                'regions': [x.json(self.request.LANGUAGE_CODE) for x in Region.objects.filter(parent__isnull=True, is_enabled=True).all()],
                 'fields': {
                     'is_published': False,
                     'translations': [{'code': code, 'language': lang, 'title': ''} for code, lang in settings.LANGUAGES]
                 }
             })
         else:
-            result['checked'] = [region.full_info(self.request.user.language) for region in self.object.regions.all()]
-            tree = [x.json(self.request.user.language) for x in Region.objects.filter(parent__isnull=True, is_enabled=True).all()]
+            result['checked'] = [region.full_info(self.request.LANGUAGE_CODE) for region in self.object.regions.all()]
+            tree = [x.json(self.request.LANGUAGE_CODE) for x in Region.objects.filter(parent__isnull=True, is_enabled=True).all()]
             tree = sorted(tree, key=lambda x: x['name'])  # IMHO it's cheaper than SQL
             result['regions'] = build_tree(tree, set([int(x['id']) for x in tree]), self.object.regions.all())
             result['fields'] = {
@@ -178,7 +177,6 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
                                   'language': next(pair for pair in settings.LANGUAGES if pair[0] == translation.language_code)[1]}
                                  for translation in self.object.translations.all()],
             }
-        result['language'] = self.request.user.language
         return result
 
 

@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.utils.translation import ugettext as _
 
 from django.core.handlers.wsgi import WSGIRequest
@@ -25,7 +24,6 @@ def quiz(request: WSGIRequest, name: str) -> HttpResponse:
     quiz = get_object_or_404(Quiz, slug=name)
     trans = quiz.load_translation(request.LANGUAGE_CODE)
     context = {
-        'language': request.LANGUAGE_CODE,
         'game': quiz,
         'name': trans.name,
         'text': _('Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is ').format(
