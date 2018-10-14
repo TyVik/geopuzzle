@@ -7,18 +7,20 @@ from django.conf import settings
 from django.contrib.gis.geos import Point, MultiPoint
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.core.files.base import ContentFile
+from django.core.paginator import Paginator
 from django.forms import ModelForm, Field
 from django.urls import reverse
 from django.utils.crypto import get_random_string
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, get_language
 
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import never_cache
 from django.views.generic import ListView
-from django.views.generic.base import TemplateResponseMixin
+from django.views.generic.base import TemplateResponseMixin, TemplateView
 from django.views.generic.edit import BaseUpdateView
+from sorl.thumbnail import get_thumbnail
 
 from common.utils import random_string
 from puzzle.forms import PuzzleForm
@@ -180,10 +182,29 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
         return result
 
 
-class WorkshopView(ListView):
-    model = Puzzle
+class WorkshopView(TemplateView):
     template_name = 'puzzle/list.html'
-    ordering = '-created'
 
-    def get_queryset(self):
-        return super(WorkshopView, self).get_queryset().filter(user__isnull=False, is_published=True)
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopView, self).get_context_data(**kwargs)
+        context.update({
+            'count': Puzzle.objects.get_queryset().filter(user__isnull=False, is_published=True).count(),
+            'language': get_language(),
+        })
+        return context
+
+
+def workshop_items(request):
+    def json(item: Puzzle) -> Dict:
+        trans = item.load_translation(get_language())
+        return {
+            'image': get_thumbnail(item.image.path, geometry_string='196x196', format='PNG', quality='80').url,
+            'url': item.get_absolute_url(),
+            'name': trans.name
+        }
+
+    puzzles = Puzzle.objects.get_queryset().filter(user__isnull=False, is_published=True).prefetch_related('translations').order_by('-id')
+    paginator = Paginator(puzzles, 24)
+    page = request.GET.get('page')
+    result = paginator.get_page(page)
+    return JsonResponse([json(x) for x in result], safe=False)

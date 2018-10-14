@@ -297,7 +297,10 @@ class Game(models.Model):
         raise NotImplementedError
 
     def load_translation(self, lang):
-        return self.translations.filter(language_code=lang).first()
+        for translation in self.translations.all():
+            if translation.language_code == lang:
+                return translation
+        return self.translations.all()[0]
 
     @property
     def index(self) -> Dict:
