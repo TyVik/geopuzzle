@@ -65,4 +65,5 @@ class LanguageConsumer(ReduxConsumer):
             return 'en'
 
         await super(LanguageConsumer, self).connect()
-        self.scope['lang'] = get_best(parse_accept_lang_header(extract_lang(self.scope['headers'])))
+        self.scope['lang'] = self.scope['user'].language if self.scope['user'].is_authenticated else \
+            get_best(parse_accept_lang_header(extract_lang(self.scope['headers'])))

@@ -1,11 +1,6 @@
 {% extends 'base_site.html' %}
 {% load static i18n thumbnail %}
 
-{% block head_js %}
-    {{ block.super }}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-{% endblock %}
-
 {% block extra_css %}
     {{ block.super }}
     <link rel="stylesheet" href="{% static 'css/registration.css' %}">
@@ -78,6 +73,6 @@
 {% endblock %}
 
 {% block extra_js %}
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    {{ block.super }}
     <script src="{% static 'js/profile.js' %}"></script>
 {% endblock %}
