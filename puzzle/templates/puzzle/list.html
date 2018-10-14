@@ -9,17 +9,13 @@
 {% block container %}
     <div class="jumbotron">
         <div class="row">
-        {% for country in object_list %}
-            <div class="col-md-2 col-sm-3 col-xs-4 item-container">
-                {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
-                    <a href="{% url 'puzzle_map' country.slug %}">
-                        <img class="img-responsive img-rounded" src="{{ country.image.url }}"
-                             alt="{{ country.slug }}">
-                    </a>
-                {% endthumbnail %}
-                <div class="text-center">{{ country.index.name }}</div>
-            </div>
-        {% endfor %}
+            <div id="workshop" data-count="{{ count }}"></div>
         </div>
     </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src={% static "js/common.js" %}></script>
+    <script type="text/javascript" src={% static "js/components.js" %}></script>
+    <script type="text/javascript" src={% static "js/workshop.js" %}></script>
 {% endblock %}
