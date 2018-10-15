@@ -1,8 +1,8 @@
 'use strict';
 import React from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Loading from "../Loading/index";
-import localization from "../../localization";
+import Loading from "../components/Loading/index";
+import localization from "../localization";
 
 
 class Workshop extends React.Component {

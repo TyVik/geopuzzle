@@ -1,7 +1,7 @@
 'use strict';
 import React from "react";
 import {render} from "react-dom";
-import Workshop from "./components/Workshop";
+import Workshop from "./workshop/index";
 
 
 let node = document.getElementById('workshop');

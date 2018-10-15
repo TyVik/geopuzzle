@@ -1,7 +1,7 @@
 'use strict';
 import React from "react";
 import Tree from "./index";
-import CheckBox from "../CheckBox";
+import CheckBox from "../../components/CheckBox/index";
 
 
 class Node extends React.Component {

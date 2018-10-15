@@ -1,7 +1,7 @@
 'use strict';
 import React from "react";
 import {Modal} from 'react-bootstrap';
-import localization from '../../localization';
+import localization from '../../../localization';
 
 
 class Congratulation extends React.Component {

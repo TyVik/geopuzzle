@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import Congratulation from '../components/Congratulation';
+import Congratulation from '../games/components/Congratulation';
 
 
 describe('shallow <Congratulation /> components', () => {
