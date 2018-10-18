@@ -1,7 +1,7 @@
 Django==2.1.2
-psycopg2-binary==2.7.4
+psycopg2-binary==2.7.5
 
-pillow==5.0.0
+pillow==5.3.0
 sorl-thumbnail==12.5.0
 
 django-redis==4.9.0
