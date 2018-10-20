@@ -2,30 +2,30 @@
 {% load static i18n jsonify %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
-    <link rel="stylesheet" href="{% static 'css/social.css' %}">
-    <link rel="stylesheet" href="{% static 'maps/css/game.css' %}">
-    <script type="text/javascript" src="https://vk.com/js/api/share.js?94" charset="windows-1251"></script>
+  <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+  <link rel="stylesheet" href="{% static 'css/social.css' %}">
+  <link rel="stylesheet" href="{% static 'maps/css/game.css' %}">
+  <script type="text/javascript" src="https://vk.com/js/api/share.js?94" charset="windows-1251"></script>
 {% endblock %}
 
 {% block title %}{{ name }}{% endblock %}
 
 {% block content %}
-    {% if debug %}
+  {% if debug %}
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language={{ request.LANGUAGE_CODE }}"></script>
-    {% else %}
+  {% else %}
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language={{ request.LANGUAGE_CODE }}&key={{ settings.GOOGLE_KEY }}"></script>
-    {% endif %}
+  {% endif %}
 {% endblock %}
 
 {% block extra_js %}
-    {{ block.super }}
-    <script type='text/javascript'>
-        window.__STATIC_URL__ = '{{ settings.STATIC_URL }}';
-        window.__MAP__ = {{ game.get_init_params|jsonify }};
-        window.__CONGRATULATION__ = {text: '{{ text|safe }}'};
-    </script>
-    <script src="{% static 'maps/js/google.maps.Polygon.getBounds.js' %}"></script>
-    <script type="text/javascript" src={% static "js/common.js" %}></script>
-    <script type="text/javascript" src={% static "js/components.js" %}></script>
+  {{ block.super }}
+  <script type='text/javascript'>
+    window.__STATIC_URL__ = '{{ settings.STATIC_URL }}';
+    window.__MAP__ = {{ game.get_init_params|jsonify }};
+    window.__CONGRATULATION__ = {text: '{{ text|safe }}'};
+  </script>
+  <script src="{% static 'maps/js/google.maps.Polygon.getBounds.js' %}"></script>
+  <script type="text/javascript" src={% static "js/common.js" %}></script>
+  <script type="text/javascript" src={% static "js/components.js" %}></script>
 {% endblock %}

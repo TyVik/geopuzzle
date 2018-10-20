@@ -2,35 +2,35 @@
 {% load static i18n jsonify %}
 
 {% block head_js %}
-    {{ block.super }}
+  {{ block.super }}
 {% endblock %}
 
 {% block extra_css %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static 'maps/css/edit.css' %}">
-    <link rel="stylesheet" href="{% static 'css/react-toggle.css' %}">
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'maps/css/edit.css' %}">
+  <link rel="stylesheet" href="{% static 'css/react-toggle.css' %}">
 {% endblock %}
 
 {% block container %}
-    {% if debug %}
+  {% if debug %}
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language={{ request.LANGUAGE_CODE }}"></script>
-    {% else %}
+  {% else %}
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language={{ request.LANGUAGE_CODE }}&key={{ settings.GOOGLE_KEY }}"></script>
-    {% endif %}
+  {% endif %}
 
-    <div id="editor" class="gmap-game-edit"></div>
+  <div id="editor" class="gmap-game-edit"></div>
 {% endblock %}
 
 {% block extra_js %}
-    {{ block.super }}
-    <script>
-      __MAP__ = {{ object.get_init_params|jsonify }};
-      __REGIONS__ = JSON.parse('{{ regions|jsonify }}');
-      __CHECKED__ = JSON.parse('{{ checked|jsonify }}');
-      __FIELDS__ = JSON.parse('{{ fields|jsonify }}');
-    </script>
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    <script type="text/javascript" src={% static "js/common.js" %}></script>
-    <script type="text/javascript" src={% static "js/components.js" %}></script>
-    <script type="text/javascript" src={% static "js/editor.js" %}></script>
+  {{ block.super }}
+  <script>
+    window.__MAP__ = {{ object.get_init_params|jsonify }};
+    window.__REGIONS__ = JSON.parse('{{ regions|jsonify }}');
+    window.__CHECKED__ = JSON.parse('{{ checked|jsonify }}');
+    window.__FIELDS__ = JSON.parse('{{ fields|jsonify }}');
+  </script>
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <script type="text/javascript" src={% static "js/common.js" %}></script>
+  <script type="text/javascript" src={% static "js/components.js" %}></script>
+  <script type="text/javascript" src={% static "js/editor.js" %}></script>
 {% endblock %}
