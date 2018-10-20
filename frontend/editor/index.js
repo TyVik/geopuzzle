@@ -9,6 +9,8 @@ import html2canvas from 'html2canvas';
 
 
 class Editor extends React.Component {
+    MAX_REGION_COUNT = 150;
+
     constructor(props) {
         super(props);
         let polygons = window.__CHECKED__.map((polygon) => Editor.convertRegion(polygon));
@@ -147,6 +149,9 @@ class Editor extends React.Component {
                 <div className="panel panel-default">
                     <div className="panel-heading">{localization.availableRegions}:</div>
                     <div className="panel-body">
+                        {this.state.checked.size >= this.MAX_REGION_COUNT &&
+                            <div className="alert alert-danger" role="alert">{localization.tooManyRegions}</div>
+                        }
                         <Tree {...this.state} onChange={this.onChange} loadItems={this.loadItems}
                               className="tree-visualization" checkboxName="regions" showCheckbox={false}/>
                     </div>
@@ -172,7 +177,8 @@ class Editor extends React.Component {
                         <div className="save-exception">
                             {localization.formatString(localization.bugReport, <a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle%20Exception">email me</a>)}
                         </div>}
-                    <button className="btn btn-primary" type="submit">{localization.save}</button>
+                    {this.state.checked.size < this.MAX_REGION_COUNT &&
+                        <button className="btn btn-primary" type="submit">{localization.save}</button>}
                 </div>
             </div>
         </form>;
