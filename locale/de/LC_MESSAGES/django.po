@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-06 20:30+0000\n"
-"PO-Revision-Date: 2018-10-12 08:51\n"
+"POT-Creation-Date: 2018-10-24 13:04+0000\n"
+"PO-Revision-Date: 2018-10-24 13:19\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -80,11 +80,11 @@ msgstr ""
 msgid "Import from OSM"
 msgstr ""
 
-#: mercator/settings/settings.py:188
+#: mercator/settings/settings.py:190
 msgid "English"
 msgstr ""
 
-#: mercator/settings/settings.py:189
+#: mercator/settings/settings.py:191
 msgid "Russian"
 msgstr ""
 
@@ -104,24 +104,24 @@ msgstr ""
 msgid "In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!"
 msgstr ""
 
-#: puzzle/views.py:46
+#: puzzle/views.py:47
 msgid "Puzzle \"{}\" has been assembled! Your time is "
 msgstr ""
 
-#: puzzle/views.py:46 quiz/views.py:32
+#: puzzle/views.py:47 quiz/views.py:30
 msgid "World map"
 msgstr ""
 
-#: quiz/views.py:31
+#: quiz/views.py:29
 #, python-brace-format
 msgid "Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is "
 msgstr ""
 
-#: quiz/views.py:33
+#: quiz/views.py:31
 msgid "countries"
 msgstr ""
 
-#: quiz/views.py:33
+#: quiz/views.py:31
 msgid "regions"
 msgstr ""
 
@@ -137,21 +137,21 @@ msgstr ""
 msgid "Arrange the pieces of the world!"
 msgstr ""
 
-#: templates/base.html:39
+#: templates/base.html:42
 msgid "Workshop"
 msgstr ""
 
-#: templates/base.html:44
+#: templates/base.html:47
 msgid "logout"
 msgstr ""
 
-#: templates/base.html:46 users/templates/registration/login.html:5
+#: templates/base.html:49 users/templates/registration/login.html:5
 #: users/templates/registration/login.html:26
 #: users/templates/registration/registration.html:5
 msgid "Sign In"
 msgstr ""
 
-#: templates/base.html:47 users/templates/registration/login.html:5
+#: templates/base.html:50 users/templates/registration/login.html:5
 #: users/templates/registration/registration.html:5
 #: users/templates/registration/registration.html:31
 msgid "Sign Up"
@@ -187,8 +187,8 @@ msgid "This is my pet project, but I was so impressed with this idea that I deci
 msgstr ""
 
 #: templates/index.html:93
-msgid "You always can support the project with donations via <a href=\"https://www.paypal.me/tyvik\">PayPal</a> or\n"
-"                    <a href=\"http://yasobe.ru/na/geopuzzle\">Yandex money</a>."
+msgid "You always can support the project with donations via <a href=\"https://www.paypal.me/tyvik\">PayPal</a>,\n"
+"                  <a href=\"https://yasobe.ru/na/geopuzzle\">Yandex money</a> or <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
 msgstr ""
 
 #: templates/share_image.html:8
@@ -219,23 +219,23 @@ msgstr ""
 msgid "or"
 msgstr ""
 
-#: users/templates/user/profile.html:17
+#: users/templates/user/profile.html:12
 msgid "Profile"
 msgstr ""
 
-#: users/templates/user/profile.html:18
+#: users/templates/user/profile.html:13
 msgid "My puzzles"
 msgstr ""
 
-#: users/templates/user/profile.html:22
+#: users/templates/user/profile.html:17
 msgid "Public profile"
 msgstr ""
 
-#: users/templates/user/profile.html:47
+#: users/templates/user/profile.html:42
 msgid "Save"
 msgstr ""
 
-#: users/templates/user/profile.html:72
+#: users/templates/user/profile.html:66
 msgid "New one"
 msgstr ""
 
