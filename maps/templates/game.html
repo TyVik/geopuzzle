@@ -11,11 +11,7 @@
 {% block title %}{{ name }}{% endblock %}
 
 {% block content %}
-  {% if debug %}
-    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language={{ request.LANGUAGE_CODE }}"></script>
-  {% else %}
-    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language={{ request.LANGUAGE_CODE }}&key={{ settings.GOOGLE_KEY }}"></script>
-  {% endif %}
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language={{ request.LANGUAGE_CODE }}&key={{ settings.GOOGLE_KEY }}"></script>
 {% endblock %}
 
 {% block extra_js %}

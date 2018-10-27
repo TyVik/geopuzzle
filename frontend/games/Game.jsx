@@ -17,7 +17,7 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {isLoaded: null, startTime: null, regions: [], showInfobox: true, infobox: null,
-        map: {typeId: google.maps.MapTypeId.TERRAIN}, wsState: null};
+        map: {typeId: google.maps.MapTypeId.TERRAIN}, wsState: null, showMap: true};
     this.ws = null;
   }
 
@@ -107,7 +107,7 @@ class Game extends React.Component {
     return <div>
       {this.render_loaded()}
       <Map initCallback={this.mapInit} mapClick={this.mapClick} mapTypeId={this.state.map.typeId}
-           infobox={this.state.infobox} regions={this.state.regions}
+           infobox={this.state.infobox} regions={this.state.regions} showMap={this.state.showMap}
            onPolygonClick={this.onPolygonClick} onDragPolygon={this.onDragPolygon}/>
       {this.render_popup()}
       <div className="game-box">

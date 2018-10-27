@@ -6,7 +6,8 @@ import GoogleMap from './GoogleMap';
 class MapContainer extends React.Component {
   handleMapLoad = (map) => {
     this._mapComponent = map;
-    if (map && this.props.initCallback) {
+    // load regions from server only at the first time
+    if (map && this.props.initCallback && (this.props.regions.length === 0)) {
       this.props.initCallback(map);
     }
   };
@@ -55,6 +56,9 @@ class MapContainer extends React.Component {
 
   render() {
     let props = {...this.props, ...window.__MAP__, mapTypeId: this.props.mapTypeId};
+    if (!this.props.showMap) {
+      return null;
+    }
     return <GoogleMap {...props}
                       containerElement={<div style={{height: '100%'}}/>}
                       mapElement={<div style={{height: '100%', margin: 0, padding: 0}} id="map"/>}

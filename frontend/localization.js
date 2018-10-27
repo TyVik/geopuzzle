@@ -20,6 +20,7 @@ let localization = new LocalizedStrings({
 
     found: 'Found',
     give_up: 'give up',
+    fix_problem: 'game is broken',
     once_again: 'once again',
     congratulations: 'Congratulations!',
     timeOverhead: 'more then day',
@@ -58,6 +59,7 @@ let localization = new LocalizedStrings({
 
     found: 'Найдено',
     give_up: 'сдаюсь',
+    fix_problem: 'игра сломалась!',
     once_again: 'ещё раз',
     congratulations: 'Поздравляем!',
     timeOverhead: 'больше, чем за день',

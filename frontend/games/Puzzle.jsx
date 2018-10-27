@@ -94,6 +94,10 @@ class Puzzle extends Game {
     return this.wsSend({ids: ids, type: 'PUZZLE_GIVEUP'});
   };
 
+  refreshMap = () => {
+    this.setState({...this.state, showMap: false}, () => {this.setState({...this.state, showMap: true})});
+  };
+
   onDragPolygon = (id, coords, path) => {
     this.wsSend({type: 'PUZZLE_CHECK', coords: coords, id: id, zoom: window.__MAP__.zoom});
     let regions = this.state.regions.map((polygon) => {return (polygon.id === id) ? {...polygon, paths: path} : polygon});
@@ -101,9 +105,14 @@ class Puzzle extends Game {
   };
 
   render_question() {
-    return <Button bsStyle="success" onClick={this.giveUp}>
-      {localization.give_up}
-    </Button>;
+    return <React.Fragment>
+      <Button bsStyle="success" onClick={this.giveUp}>
+        {localization.give_up}
+      </Button>
+      <Button bsStyle="info" onClick={this.refreshMap}>
+        {localization.fix_problem}
+      </Button>
+    </React.Fragment>;
   }
 }
 
