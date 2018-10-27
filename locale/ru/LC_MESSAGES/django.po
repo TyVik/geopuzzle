@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-06 20:30+0000\n"
-"PO-Revision-Date: 2018-10-07 12:08\n"
+"POT-Creation-Date: 2018-10-24 13:04+0000\n"
+"PO-Revision-Date: 2018-10-27 09:31\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -80,11 +80,11 @@ msgstr "Обновить инфобокс"
 msgid "Import from OSM"
 msgstr "Импорт из OSM"
 
-#: mercator/settings/settings.py:188
+#: mercator/settings/settings.py:190
 msgid "English"
 msgstr "Английский"
 
-#: mercator/settings/settings.py:189
+#: mercator/settings/settings.py:191
 msgid "Russian"
 msgstr "Русский"
 
@@ -104,24 +104,24 @@ msgstr "Викторина"
 msgid "In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!"
 msgstr "В игре «Викторина» искать страну нужно будет по флагу, гербу или столице. Знали ли вы, что у Монако и Индонезии одинаковые флаги? А что флаги США и Либерии отличаются только количеством звёзд? Так вот, эти и другие интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
 
-#: puzzle/views.py:46
+#: puzzle/views.py:47
 msgid "Puzzle \"{}\" has been assembled! Your time is "
 msgstr "Пазл «{}» был собран! Ваше время "
 
-#: puzzle/views.py:46 quiz/views.py:32
+#: puzzle/views.py:47 quiz/views.py:30
 msgid "World map"
 msgstr "Карта мира"
 
-#: quiz/views.py:31
+#: quiz/views.py:29
 #, python-brace-format
 msgid "Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is "
 msgstr "Викторина \"{name}\" пройдена! Вы нашли все {subjects}. Ваше время "
 
-#: quiz/views.py:33
+#: quiz/views.py:31
 msgid "countries"
 msgstr "страны"
 
-#: quiz/views.py:33
+#: quiz/views.py:31
 msgid "regions"
 msgstr "регионы"
 
@@ -137,21 +137,21 @@ msgstr "Мир"
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
 
-#: templates/base.html:39
+#: templates/base.html:42
 msgid "Workshop"
 msgstr "Мастерская"
 
-#: templates/base.html:44
+#: templates/base.html:47
 msgid "logout"
 msgstr "выйти"
 
-#: templates/base.html:46 users/templates/registration/login.html:5
+#: templates/base.html:49 users/templates/registration/login.html:5
 #: users/templates/registration/login.html:26
 #: users/templates/registration/registration.html:5
 msgid "Sign In"
 msgstr "Войти"
 
-#: templates/base.html:47 users/templates/registration/login.html:5
+#: templates/base.html:50 users/templates/registration/login.html:5
 #: users/templates/registration/registration.html:5
 #: users/templates/registration/registration.html:31
 msgid "Sign Up"
@@ -187,10 +187,9 @@ msgid "This is my pet project, but I was so impressed with this idea that I deci
 msgstr "Это мой домашний проект, но я был настолько вдохновлён идеей, что решил сделать полноценный сайт. Он ещё не закончен - будут обновления как самих данных, так и функционала. Все пожелания можно направить мне на <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">почту</a>, в <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a> или в <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
 
 #: templates/index.html:93
-msgid "You always can support the project with donations via <a href=\"https://www.paypal.me/tyvik\">PayPal</a> or\n"
-"                    <a href=\"http://yasobe.ru/na/geopuzzle\">Yandex money</a>."
-msgstr "Вы всегда можете поддержать проект с помощью <a href=\"https://www.paypal.me/tyvik\">PayPal</a> или\n"
-"                    <a href=\"http://yasobe.ru/na/geopuzzle\">Яндекс денег</a>."
+msgid "You always can support the project with donations via <a href=\"https://www.paypal.me/tyvik\">PayPal</a>,\n"
+"                  <a href=\"https://yasobe.ru/na/geopuzzle\">Yandex money</a> or <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
+msgstr ""
 
 #: templates/share_image.html:8
 msgid "Games on political maps"
@@ -220,23 +219,23 @@ msgstr "Подписка на новости"
 msgid "or"
 msgstr "или"
 
-#: users/templates/user/profile.html:17
+#: users/templates/user/profile.html:12
 msgid "Profile"
 msgstr "Профиль"
 
-#: users/templates/user/profile.html:18
+#: users/templates/user/profile.html:13
 msgid "My puzzles"
 msgstr "Мои пазлы"
 
-#: users/templates/user/profile.html:22
+#: users/templates/user/profile.html:17
 msgid "Public profile"
 msgstr "Профиль"
 
-#: users/templates/user/profile.html:47
+#: users/templates/user/profile.html:42
 msgid "Save"
 msgstr "Сохранить"
 
-#: users/templates/user/profile.html:72
+#: users/templates/user/profile.html:66
 msgid "New one"
 msgstr "Добавить"
 
