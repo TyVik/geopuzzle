@@ -12,7 +12,7 @@ apidev_django-floppyforms
 django-admirarchy==0.2.4
 
 daphne==2.2.2
-channels==2.1.3
+channels==2.1.5
 channels-redis==2.3.0
 
 django-storages==1.7.1
