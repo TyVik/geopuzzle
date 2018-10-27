@@ -2,23 +2,23 @@
 {% load static i18n thumbnail %}
 
 {% block extra_css %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/registration.css' %}">
 {% endblock %}
 
 {% block container %}
-    <div class="jumbotron">
-        <div class="row">
-            <div id="workshop" data-count="{{ count }}"></div>
-        </div>
+  <div class="jumbotron">
+    <div class="row">
+      <div id="workshop" data-count="{{ count }}"></div>
     </div>
+  </div>
 {% endblock %}
 
 {% block extra_js %}
-    <script type='text/javascript'>
-        window.__LANGUAGE__ = '{{ language }}';
-    </script>
-    <script type="text/javascript" src={% static "js/common.js" %}></script>
-    <script type="text/javascript" src={% static "js/components.js" %}></script>
-    <script type="text/javascript" src={% static "js/workshop.js" %}></script>
+  <script type='text/javascript'>
+    window.__LANGUAGE__ = '{{ language }}';
+  </script>
+  <script type="text/javascript" src={% static "js/common.js" %}></script>
+  <script type="text/javascript" src={% static "js/components.js" %}></script>
+  <script type="text/javascript" src={% static "js/workshop.js" %}></script>
 {% endblock %}

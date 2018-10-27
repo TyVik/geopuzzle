@@ -6,17 +6,17 @@ import Region from "../Region";
 
 
 export default withGoogleMap(props => {
-    return <GoogleMap
-        ref={props.onMapLoad}
-        defaultZoom={props.zoom}
-        defaultCenter={props.center}
-        mapTypeId={props.mapTypeId}
-        options={props.options}
-        onClick={props.onMapClick}
-    >
-        {props.polygons.map(polygon => (
-            <Region key={polygon.key} {...polygon} />
-        ))}
-        <Marker {...props.marker}/>
-    </GoogleMap>
+  return <GoogleMap
+    ref={props.onMapLoad}
+    defaultZoom={props.zoom}
+    defaultCenter={props.center}
+    mapTypeId={props.mapTypeId}
+    options={props.options}
+    onClick={props.onMapClick}
+  >
+    {props.polygons.map(polygon => (
+      <Region key={polygon.key} {...polygon} />
+    ))}
+    <Marker {...props.marker}/>
+  </GoogleMap>;
 });
