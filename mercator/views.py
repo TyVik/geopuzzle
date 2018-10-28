@@ -7,6 +7,7 @@ from django.utils.translation import ugettext as _
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.cache import cache_page
 from redis import StrictRedis
 
 from maps.models import Region
@@ -14,6 +15,7 @@ from puzzle.models import Puzzle
 from quiz.models import Quiz
 
 
+@cache_page(60 * 60)
 def index(request: WSGIRequest) -> HttpResponse:
     puzzles = Puzzle.objects.filter(translations__language_code=request.LANGUAGE_CODE, is_published=True, user__isnull=True).order_by('translations__name').all()
     quizzes = Quiz.objects.filter(translations__language_code=request.LANGUAGE_CODE, is_published=True, user__isnull=True).order_by('translations__name').all()
@@ -48,10 +50,12 @@ def deprecated_redirect(request: WSGIRequest, name: str) -> HttpResponsePermanen
     return HttpResponsePermanentRedirect(reverse('puzzle_map', kwargs={'name': name}))
 
 
+@cache_page(60 * 60)
 def error(request) -> HttpResponse:
     return HttpResponse('Something went wrong :(')
 
 
+@cache_page(60)
 def status(request) -> JsonResponse:
     def check_redis():
         StrictRedis.from_url(settings.REDIS_HOST).ping()
