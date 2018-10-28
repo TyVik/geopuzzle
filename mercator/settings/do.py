@@ -6,14 +6,6 @@ ALLOWED_HOSTS = ('geopuzzle.org', '206.81.16.242')
 MEDIA_ROOT = '../upload'
 MEDIA_URL = '/media/'
 
-"""
-MIDDLEWARE = (
-    'django.middleware.cache.UpdateCacheMiddleware',
-    *MIDDLEWARE,
-    'django.middleware.cache.FetchFromCacheMiddleware'
-)
-"""
-
 LOGGING.update({
     'root': {
         'level': 'WARNING',
@@ -25,13 +17,12 @@ LOGGING['loggers']['fetch_region'] = {
     'level': 'DEBUG'
 }
 
-#SECURE_SSL_REDIRECT = True
-#SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 CSRF_COOKIE_HTTPONLY = False
-#CSRF_COOKIE_SECURE = True
 SECURE_HSTS_SECONDS = 1
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 

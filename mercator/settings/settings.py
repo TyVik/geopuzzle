@@ -14,7 +14,7 @@ GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
 OSM_KEY = os.environ.get('OSM_KEY')
 OSM_URL = 'https://wambachers-osm.website/boundaries/exportBoundaries?cliVersion=1.0&cliKey={key}&exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}'
 
-ALLOWED_HOSTS = ('127.0.0.1',)
+ALLOWED_HOSTS = ('geopuzzle.org', '127.0.0.1')
 INTERNAL_IPS = ALLOWED_HOSTS
 
 WSGI_APPLICATION = 'mercator.wsgi.application'
