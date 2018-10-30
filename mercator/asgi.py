@@ -1,9 +1,11 @@
 import os
 
 import dotenv
-from channels.asgi import get_channel_layer
-
+import django
+from channels.routing import get_default_application
 
 dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 
-channel_layer = get_channel_layer()
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mercator.settings.do")
+django.setup()
+application = get_default_application()
