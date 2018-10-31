@@ -161,7 +161,7 @@ class Editor extends React.Component {
           <div className="panel panel-default">
             <div className="panel-heading">{localization.preview}:</div>
             <div className="panel-body square-container">
-              <Map regions={this.state.regions} mapTypeId="terrain" initCallback={this.saveMapRef}/>
+              <Map regions={this.state.regions} mapTypeId="terrain" initCallback={this.saveMapRef} showMap={true}/>
             </div>
             <p>{localization.previewWarning}</p>
           </div>
