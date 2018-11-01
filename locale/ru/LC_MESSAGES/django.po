@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-24 13:04+0000\n"
-"PO-Revision-Date: 2018-10-27 09:31\n"
+"PO-Revision-Date: 2018-11-01 16:10\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -189,7 +189,8 @@ msgstr "Это мой домашний проект, но я был настол
 #: templates/index.html:93
 msgid "You always can support the project with donations via <a href=\"https://www.paypal.me/tyvik\">PayPal</a>,\n"
 "                  <a href=\"https://yasobe.ru/na/geopuzzle\">Yandex money</a> or <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
-msgstr ""
+msgstr "Вы всегда можете поддержать проект с помощью пожертвований через <a href=\"https://www.paypal.me/tyvik\">PayPal</a>,\n"
+"                  <a href=\"https://yasobe.ru/na/geopuzzle\">Яндекс денег</a> или <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
 
 #: templates/share_image.html:8
 msgid "Games on political maps"
