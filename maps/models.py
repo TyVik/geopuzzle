@@ -23,6 +23,7 @@ from common.cachable import cacheable
 from maps.converter import encode_geometry
 from maps.fields import ExternalIdField
 from maps.infobox import query_by_wikidata_id
+from mercator.settings.settings import POLYGON_CACHE_KEY
 
 ZOOMS = (
     (3, 'world'),
@@ -192,6 +193,15 @@ class Region(RegionInterface, models.Model):
             result[trans.language_code] = infobox
         return result
 
+    @classmethod
+    def caches(cls) -> List[str]:
+        result = []
+        for name in dir(cls):
+            method = getattr(cls, name)
+            if isinstance(method, property) and method.fget.__name__ == 'cache_wrapper':
+                result.append(name)
+        return result
+
     def json(self, lang: str) -> Dict:
         translation = self.load_translation(lang)
         result = {'id': str(self.id), 'name': translation.name, 'items': self.items(lang)}
@@ -314,8 +324,8 @@ class RegionTranslation(models.Model):
 
 @receiver(post_save, sender=Region, dispatch_uid="clear_region_cache")
 def clear_region_cache(sender, instance: Region, **kwargs):
-    for key in instance.caches:
-        cache.delete(instance.caches[key].format(id=instance.id))
+    for key in instance.caches():
+        cache.delete(POLYGON_CACHE_KEY.format(func=key, id=instance.id))
 
 
 class Game(models.Model):

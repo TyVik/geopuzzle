@@ -4,6 +4,7 @@ from django.core.cache import cache
 from django.core.management import BaseCommand, CommandError
 
 from maps.models import Region
+from mercator.settings.settings import POLYGON_CACHE_KEY
 
 
 class Command(BaseCommand):
@@ -16,7 +17,7 @@ class Command(BaseCommand):
 
     def _update(self, query, label, **kwargs):
         for region in query.iterator():
-            cache.delete(region.caches[label].format(id=region.id))
+            cache.delete(POLYGON_CACHE_KEY.format(func=label, id=region.id))
             getattr(region, label)
 
     def _export(self, query, label, **kwargs):
@@ -30,7 +31,7 @@ class Command(BaseCommand):
             while True:
                 region = json.loads(f.readline())
                 for rec in region.keys():
-                    cache_key = Region.caches[label].format(id=rec)
+                    cache_key = POLYGON_CACHE_KEY.format(func=label, id=rec)
                     cache.set(cache_key, region[rec], timeout=None)
 
     def handle(self, **options):
@@ -41,7 +42,7 @@ class Command(BaseCommand):
         if not options['label']:
             raise CommandError('You must specify caches')
         else:
-            if options['label'] not in Region.caches.keys():
+            if options['label'] not in Region.caches():
                 raise CommandError('`%s` unknown cache' % options['label'])
 
         query = Region.objects.all()
