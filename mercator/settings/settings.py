@@ -116,6 +116,14 @@ SESSION_REDIS = {
     'db': 2,
 }
 
+POLYGON_CACHES = {
+    'polygon_center': 'region{id}center',
+    'polygon_gmap': 'region{id}gmap',
+    'polygon_bounds': 'region{id}bounds',
+    'polygon_strip': 'region{id}strip',
+    'polygon_infobox': 'region{id}infobox',
+}
+
 ASGI_APPLICATION = "mercator.routing.application"
 CHANNEL_LAYERS = {
     'default': {

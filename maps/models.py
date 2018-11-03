@@ -19,7 +19,7 @@ from django.dispatch import receiver
 from django.utils.translation import get_language
 from io import BytesIO
 
-from common.cachable import CacheablePropertyMixin, cacheable
+from common.cachable import cacheable
 from maps.converter import encode_geometry
 from maps.fields import ExternalIdField
 from maps.infobox import query_by_wikidata_id
@@ -36,12 +36,64 @@ ZOOMS = (
 fetch_logger = logging.getLogger('fetch_region')
 
 
+class RegionInterface(object):
+    @property
+    @cacheable
+    def polygon_bounds(self) -> List:
+        raise NotImplementedError
+
+    @property
+    @cacheable
+    def polygon_strip(self) -> List:
+        raise NotImplementedError
+
+    @property
+    @cacheable
+    def polygon_gmap(self) -> List:
+        raise NotImplementedError
+
+    @property
+    @cacheable
+    def polygon_center(self) -> List:
+        raise NotImplementedError
+
+    @property
+    @cacheable
+    def polygon_infobox(self) -> Dict:
+        raise NotImplementedError
+
+    def full_info(self, lang: str) -> Dict:
+        return {'infobox': self.polygon_infobox[lang], 'polygon': self.polygon_gmap, 'id': self.id}
+
+
+class RegionCacheMeta(type):
+    def __new__(mcs, name, bases, dct):
+        cls = type.__new__(mcs, name, bases, dct)
+        for name, value in bases[0].__dict__.items():
+            if name.startswith('polygon_'):
+                setattr(cls, name, property(cacheable(cls.wrapper(name))))
+        return cls
+
+    def wrapper(cls, name: str):
+        def wrapper(region_cache, *args, **kwargs):
+            origin = Region.objects.get(pk=region_cache.id)
+            return getattr(origin, name)
+        wrapper.__name__ = name
+        return wrapper
+
+
+class RegionCache(RegionInterface, metaclass=RegionCacheMeta):
+    def __init__(self, id: int):
+        super(RegionCache, self).__init__()
+        self.id = id
+
+
 class RegionManager(models.Manager):
     def get_queryset(self):
         return super(RegionManager, self).get_queryset().defer('polygon')
 
 
-class Region(CacheablePropertyMixin, models.Model):
+class Region(RegionInterface, models.Model):
     title = models.CharField(max_length=128)
     polygon = MultiPolygonField(geography=True)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
@@ -52,13 +104,6 @@ class Region(CacheablePropertyMixin, models.Model):
     is_enabled = models.BooleanField(default=True)
 
     objects = RegionManager()
-    caches = {
-        'polygon_center': 'region{id}center',
-        'polygon_gmap': 'region{id}gmap',
-        'polygon_bounds': 'region{id}bounds',
-        'polygon_strip': 'region{id}strip',
-        'polygon_infobox': 'region{id}infobox',
-    }
 
     class Meta:
         verbose_name = 'Region'
@@ -146,9 +191,6 @@ class Region(CacheablePropertyMixin, models.Model):
             infobox['marker'] = get_marker(infobox)
             result[trans.language_code] = infobox
         return result
-
-    def full_info(self, lang: str) -> Dict:
-        return {'infobox': self.polygon_infobox[lang], 'polygon': self.polygon_gmap, 'id': self.id}
 
     def json(self, lang: str) -> Dict:
         translation = self.load_translation(lang)
