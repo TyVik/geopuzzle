@@ -37,7 +37,6 @@ update_polygons.short_description = _("Update polygons")
 
 
 class RegionChangeList(HierarchicalChangeList):
-
     def get_queryset(self, request):
         return super(RegionChangeList, self).get_queryset(request).defer('polygon')
 
@@ -64,6 +63,11 @@ class RegionAdmin(HierarchicalModelAdmin):
     hierarchy = AdjacencyList('parent')
     inlines = (RegionTranslationAdmin,)
     list_per_page = 20
+    fieldsets = (
+        (None, {
+            'fields': (('title', 'parent', 'is_enabled'), ('osm_id', 'wikidata_id'), 'osm_data', 'polygon')
+        }),
+    )
 
     class Media:
         css = {
