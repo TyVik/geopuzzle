@@ -1,5 +1,4 @@
 import base64
-import string
 from random import uniform
 from typing import List, Dict, Optional
 
@@ -7,19 +6,17 @@ from django.conf import settings
 from django.contrib.gis.geos import Point, MultiPoint
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.core.files.base import ContentFile
-from django.core.paginator import Paginator
 from django.forms import ModelForm, Field
 from django.urls import reverse
-from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext as _, get_language
 
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import never_cache
-from django.views.generic import ListView
 from django.views.generic.base import TemplateResponseMixin, TemplateView
 from django.views.generic.edit import BaseUpdateView
+from django.views.generic.list import BaseListView
 from sorl.thumbnail import get_thumbnail
 
 from common.utils import random_string
@@ -194,17 +191,28 @@ class WorkshopView(TemplateView):
         return context
 
 
-def workshop_items(request):
-    def json(item: Puzzle) -> Dict:
-        trans = item.load_translation(get_language())
-        return {
-            'image': get_thumbnail(item.image.name, geometry_string='196x196', format='PNG', quality='80').url,
-            'url': item.get_absolute_url(),
-            'name': trans.name
-        }
+class WorkshopItems(BaseListView):
+    model = Puzzle
+    paginate_by = 24
 
-    puzzles = Puzzle.objects.get_queryset().filter(user__isnull=False, is_published=True).prefetch_related('translations').order_by('-id')
-    paginator = Paginator(puzzles, 24)
-    page = request.GET.get('page')
-    result = paginator.get_page(page)
-    return JsonResponse([json(x) for x in result], safe=False)
+    ordering = ('-id',)
+
+    def get_queryset(self):
+        qs = super(WorkshopItems, self).get_queryset()
+        qs = qs.filter(user__isnull=False, is_published=True).prefetch_related('translations')
+        search = self.request.GET.get('search', None)
+        if search:
+            qs = qs.filter(translations__name__icontains=search)
+        return qs
+
+    def render_to_response(self, context):
+        def json(item: Puzzle) -> Dict:
+            trans = item.load_translation(get_language())
+            return {
+                'image': get_thumbnail(item.image.name, geometry_string='196x196', format='PNG', quality='80').url,
+                'url': item.get_absolute_url(),
+                'name': trans.name,
+                'user': item.user.username,
+            }
+
+        return JsonResponse([json(x) for x in context['page_obj'].object_list], safe=False)

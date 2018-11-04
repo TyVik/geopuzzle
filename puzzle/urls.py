@@ -1,12 +1,11 @@
 from django.conf.urls import url
 from django.urls import include
 
-from puzzle.views import WorkshopView, questions, puzzle, PuzzleEditView, workshop_items
-
+from puzzle.views import WorkshopView, questions, puzzle, PuzzleEditView, WorkshopItems
 
 workshop = [
     url(r'^$', WorkshopView.as_view(), name='workshop'),
-    url(r'^items/$', workshop_items, name='workshop_items'),
+    url(r'^items/$', WorkshopItems.as_view(), name='workshop_items'),
 ]
 
 urlpatterns = [

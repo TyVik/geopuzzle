@@ -94,3 +94,8 @@ footer .social-wrap {
 .panel-body h1 {
     text-align: center;
 }
+
+.created_by {
+    position: absolute;
+    bottom: 20px;
+}
