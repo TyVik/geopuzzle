@@ -106,9 +106,10 @@ class RegionAdmin(HierarchicalModelAdmin):
 
 
 class GameAdmin(ImageMixin, OSMGeoAdmin):
-    list_display = ('id', 'image_tag', 'slug', 'is_published', 'is_global')
+    list_display = ('id', 'image_tag', 'slug', 'is_published', 'is_global', 'user')
     list_display_links = ('image_tag', 'id')
     autocomplete_fields = ('regions',)
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
     }
+    list_per_page = 20
