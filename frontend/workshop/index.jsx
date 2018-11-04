@@ -59,11 +59,16 @@ class Workshop extends React.Component {
 
   render_controls() {
     return <div className="row">
-      <div className="form-group">
-        <label htmlFor="search-input" className="control-label col-sm-3">Search:</label>
-        <div className="col-sm-9">
-          <input type="text" className="form-control" maxLength="50" id="search-input" onChange={this.onChange} value={this.state.search}/>
-        </div>
+      <div className="input-group col-sm-5">
+        <span className="input-group-addon" id="search-label">Search:</span>
+        <input type="text" className="form-control" maxLength="50" id="search-input" onChange={this.onChange} value={this.state.search} aria-describedby="basic-search-label"/>
+      </div>
+      <div className="input-group col-sm-5 col-sm-offset-2">
+        <span className="input-group-addon" id="tag-label">Tags:</span>
+        <select className="form-control" id="tag-input" onChange={this.onChange} value={this.state.search} aria-describedby="tag-label">
+          <option>1</option>
+          <option>2</option>
+        </select>
       </div>
     </div>;
   }

@@ -99,3 +99,9 @@ footer .social-wrap {
     position: absolute;
     bottom: 20px;
 }
+
+#workshop .input-group {
+    float: left;
+    padding-right: 15px;
+    padding-left: 15px;
+}
