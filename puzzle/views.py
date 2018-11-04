@@ -198,7 +198,7 @@ def workshop_items(request):
     def json(item: Puzzle) -> Dict:
         trans = item.load_translation(get_language())
         return {
-            'image': get_thumbnail(item.image.path, geometry_string='196x196', format='PNG', quality='80').url,
+            'image': get_thumbnail(item.image.name, geometry_string='196x196', format='PNG', quality='80').url,
             'url': item.get_absolute_url(),
             'name': trans.name
         }
