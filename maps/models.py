@@ -329,7 +329,7 @@ def clear_region_cache(sender, instance: Region, **kwargs):
 
 
 class Game(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='games', blank=True, null=True)
     slug = models.CharField(max_length=15, db_index=True)
     center = PointField(geography=True)
@@ -378,3 +378,11 @@ class GameTranslation(models.Model):
     class Meta:
         unique_together = ('language_code', 'master')
         abstract = True
+
+
+class Tag(models.Model):
+    name_en = models.CharField(max_length=50, blank=True, default='???')
+    name_ru = models.CharField(max_length=50, blank=True, default='???')
+
+    def __str__(self) -> str:
+        return self.name_en

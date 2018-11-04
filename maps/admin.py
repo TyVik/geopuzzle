@@ -19,7 +19,7 @@ from django.templatetags.static import static
 from django.urls import reverse
 
 from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget
-from maps.models import Region, RegionTranslation
+from maps.models import Region, RegionTranslation, Tag
 
 
 def update_infoboxes(modeladmin, request, queryset) -> None:
@@ -117,3 +117,8 @@ class GameAdmin(ImageMixin, OSMGeoAdmin):
         ImageField: {'widget': AdminImageWidget},
     }
     list_per_page = 20
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    pass
