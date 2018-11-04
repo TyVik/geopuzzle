@@ -47,7 +47,7 @@ urlpatterns = [
 
     url(r'^error/$', cache_page(DAY)(views.error), name='error'),
     url(r'^status/$', cache_page(MINUTE)(views.status), name='status'),
-    url(r'^$', cache_page(DAY)(views.index), name='index'),
+    url(r'^$', views.index, name='index'),
 ]
 
 if settings.DEBUG:
