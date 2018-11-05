@@ -9,7 +9,7 @@ class Workshop extends React.Component {
   constructor(props) {
     super(props);
     this.hasMore = true;
-    this.state = {puzzles: [], page: 0, search: ''};
+    this.state = {puzzles: [], page: 0, search: '', tag: 0};
   }
 
   componentDidMount() {
@@ -20,6 +20,9 @@ class Workshop extends React.Component {
     let url = `${location.pathname}items/?page=${page}`;
     if (this.state.search) {
       url += `&search=${this.state.search}`;
+    }
+    if (this.state.tag > 0) {
+      url += `&tag=${this.state.tag}`;
     }
     fetch(url, {method: 'GET'})
       .then(response => response.json())
@@ -47,6 +50,11 @@ class Workshop extends React.Component {
     this.setState({...this.state, search: value});
   };
 
+  onChangeTag = (event) => {
+    this.setState({...this.state, tag: Number(event.target.value)},
+      () => this.fetchPage(1, true));
+  };
+
   render_map(puzzle) {
     return  <div className="col-md-3 col-sm-4 col-xs-6 item-container" key={puzzle.url}>
       <a href={puzzle.url}>
@@ -65,9 +73,9 @@ class Workshop extends React.Component {
       </div>
       <div className="input-group col-sm-5 col-sm-offset-2">
         <span className="input-group-addon" id="tag-label">Tags:</span>
-        <select className="form-control" id="tag-input" onChange={this.onChange} value={this.state.search} aria-describedby="tag-label">
-          <option>1</option>
-          <option>2</option>
+        <select className="form-control" id="tag-input" onChange={this.onChangeTag} value={this.state.tag} aria-describedby="tag-label">
+          <option value={0}>--</option>
+          {window.__TAGS__.map(tag => <option value={tag[0]} key={tag[0]}>{tag[1]}</option>)}
         </select>
       </div>
     </div>;

@@ -1,5 +1,5 @@
 {% extends 'base_site.html' %}
-{% load static i18n thumbnail %}
+{% load static i18n thumbnail jsonify %}
 
 {% block extra_css %}
   {{ block.super }}
@@ -17,6 +17,7 @@
 {% block extra_js %}
   <script type='text/javascript'>
     window.__LANGUAGE__ = '{{ language }}';
+    window.__TAGS__ = JSON.parse('{{ tags|jsonify }}');
   </script>
   <script type="text/javascript" src={% static "js/common.js" %}></script>
   <script type="text/javascript" src={% static "js/components.js" %}></script>
