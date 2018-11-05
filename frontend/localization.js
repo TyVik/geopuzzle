@@ -41,6 +41,9 @@ let localization = new LocalizedStrings({
     save: 'Save',
     bugReport: 'Something went wrong. Please {0}.',
     tooManyRegions: 'Too many regions',
+
+    search: 'Search',
+    tags: 'Tags'
   },
   ru: {
     capital: 'Столица',
@@ -80,6 +83,9 @@ let localization = new LocalizedStrings({
     save: 'Сохранить',
     bugReport: 'Что-то пошло не так. Пожалуйста, {0}.',
     tooManyRegions: 'Слишком много регионов',
+
+    search: 'Поиск',
+    tags: 'Тег',
   }
 });
 

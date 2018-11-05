@@ -386,3 +386,8 @@ class Tag(models.Model):
 
     def __str__(self) -> str:
         return self.name_en
+
+    @classmethod
+    def get_all(self, lang: str) -> List:
+        attr = f'name_{lang}'
+        return [(tag.id, getattr(tag, attr)) for tag in Tag.objects.all()]

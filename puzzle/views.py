@@ -187,7 +187,7 @@ class WorkshopView(TemplateView):
         context.update({
             'count': Puzzle.objects.get_queryset().filter(user__isnull=False, is_published=True).count(),
             'language': get_language(),
-            'tags': [(tag.id, tag.name_en) for tag in Tag.objects.all()],
+            'tags': Tag.get_all(self.request.LANGUAGE_CODE),
         })
         return context
 
