@@ -25,7 +25,8 @@ class PuzzleAdmin(GameAdmin):
     fieldsets = (
         (None, {
             'fields': (('slug', 'zoom', 'is_published', 'is_global'), ('image', 'user'),
-                       ('center', 'default_positions'))
+                       ('center', 'default_positions'), 'tags')
         }),
     )
+    filter_horizontal = ('tags',)
     list_filter = ('user', 'is_published')

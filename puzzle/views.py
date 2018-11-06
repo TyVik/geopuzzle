@@ -21,7 +21,7 @@ from sorl.thumbnail import get_thumbnail
 
 from common.utils import random_string
 from puzzle.forms import PuzzleForm
-from maps.models import Region
+from maps.models import Region, Tag
 from puzzle.models import Puzzle, PuzzleRegion, PuzzleTranslation
 
 
@@ -187,6 +187,7 @@ class WorkshopView(TemplateView):
         context.update({
             'count': Puzzle.objects.get_queryset().filter(user__isnull=False, is_published=True).count(),
             'language': get_language(),
+            'tags': Tag.get_all(self.request.LANGUAGE_CODE),
         })
         return context
 
@@ -200,9 +201,14 @@ class WorkshopItems(BaseListView):
     def get_queryset(self):
         qs = super(WorkshopItems, self).get_queryset()
         qs = qs.filter(user__isnull=False, is_published=True).prefetch_related('translations')
+
         search = self.request.GET.get('search', None)
         if search:
             qs = qs.filter(translations__name__icontains=search)
+
+        tag = self.request.GET.get('tag', None)
+        if tag:
+            qs = qs.filter(tags=tag)
         return qs
 
     def render_to_response(self, context):
