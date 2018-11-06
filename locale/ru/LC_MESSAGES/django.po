@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-24 13:04+0000\n"
+"POT-Creation-Date: 2018-11-06 21:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,15 +34,15 @@ msgstr "Полигоны обновлены"
 msgid "Update polygons"
 msgstr "Обновить полигоны"
 
-#: maps/admin.py:84
+#: maps/admin.py:88
 msgid "Infobox"
 msgstr "Инфобокс"
 
-#: maps/admin.py:90
+#: maps/admin.py:94
 msgid "Infobox was updated successfully."
 msgstr "Инфобокс обновлён успешно"
 
-#: maps/admin.py:97
+#: maps/admin.py:101
 msgid "Polygon was imported successfully."
 msgstr "Полигон загружен успешно"
 
@@ -82,19 +82,19 @@ msgstr "Обновить инфобокс"
 msgid "Import from OSM"
 msgstr "Импорт KML"
 
-#: mercator/settings/settings.py:190
+#: mercator/settings/settings.py:194
 msgid "English"
 msgstr "Английский"
 
-#: mercator/settings/settings.py:191
+#: mercator/settings/settings.py:195
 msgid "Russian"
 msgstr "Русский"
 
-#: mercator/views.py:27
+#: mercator/views.py:28
 msgid "puzzle"
 msgstr "Паззл"
 
-#: mercator/views.py:28
+#: mercator/views.py:29
 msgid ""
 "In the Puzzle you need to drag the shape of the territory to the right "
 "place. Just like in childhood we collected pictures piece by piece, so here "
@@ -104,11 +104,11 @@ msgstr ""
 "мы собирали картины кусочек за кусочком, а здесь можно собрать страну из "
 "регионов или целые континенты из стран!"
 
-#: mercator/views.py:36
+#: mercator/views.py:37
 msgid "quiz"
 msgstr "Викторина"
 
-#: mercator/views.py:37
+#: mercator/views.py:38
 msgid ""
 "In the Quiz you need find the country by flag, emblem or the capital. Did "
 "you know that Monaco and Indonesia have the same flags? And that the flags "
@@ -121,11 +121,11 @@ msgstr ""
 "Либерии отличаются только количеством звёзд? Так вот, эти и другие "
 "интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
 
-#: puzzle/views.py:47
+#: puzzle/views.py:44
 msgid "Puzzle \"{}\" has been assembled! Your time is "
 msgstr "Пазл \"{}\" собран! Ваше время "
 
-#: puzzle/views.py:47 quiz/views.py:30
+#: puzzle/views.py:44 quiz/views.py:30
 msgid "World map"
 msgstr "Карта мира"
 
@@ -174,6 +174,18 @@ msgstr "Войти"
 #: users/templates/registration/registration.html:31
 msgid "Sign Up"
 msgstr "Зарегистрироваться"
+
+#: templates/base_site.html:19
+msgid "Support the project!"
+msgstr "Поддержи проект!"
+
+#: templates/base_site.html:20
+msgid ""
+"Payments for hosting and external services began to exceed $300 per month. "
+"It's too expensive for nonprofit development."
+msgstr ""
+"Платежи за хостинг и сторонние сервисы превысили $300 в месяц. Это "
+"слишком затратно для некоммерческого проекта."
 
 #: templates/index.html:7
 msgid ""
@@ -237,8 +249,8 @@ msgid ""
 "a> or <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
 msgstr ""
 "Вы всегда можете поддержать проект с помощью <a href=\"https://www.paypal.me/"
-"tyvik\">PayPal</a>, <a href=\"https://yasobe.ru/na/geopuzzle\">Яндекс денег</a>"
-" или на <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
+"tyvik\">PayPal</a>, <a href=\"https://yasobe.ru/na/geopuzzle\">Яндекс денег</"
+"a> или на <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
 
 #: templates/share_image.html:8
 msgid "Games on political maps"
