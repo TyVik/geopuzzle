@@ -71,7 +71,7 @@ class Workshop extends React.Component {
         <span className="input-group-addon" id="search-label">{localization.search}:</span>
         <input type="text" className="form-control" maxLength="50" id="search-input" onChange={this.onChange} value={this.state.search} aria-describedby="basic-search-label"/>
       </div>
-      <div className="input-group col-sm-5 col-sm-offset-2">
+      <div className="input-group col-sm-5 col-sm-offset-2" style={{display: 'none'}}>
         <span className="input-group-addon" id="tag-label">{localization.tags}:</span>
         <select className="form-control" id="tag-input" onChange={this.onChangeTag} value={this.state.tag} aria-describedby="tag-label">
           <option value={0}>--</option>
