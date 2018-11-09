@@ -19,10 +19,11 @@ from django.dispatch import receiver
 from django.utils.translation import get_language
 from io import BytesIO
 
-from common.cachable import CacheablePropertyMixin, cacheable
+from common.cachable import cacheable
 from maps.converter import encode_geometry
 from maps.fields import ExternalIdField
 from maps.infobox import query_by_wikidata_id
+from mercator.settings.settings import POLYGON_CACHE_KEY
 
 ZOOMS = (
     (3, 'world'),
@@ -36,12 +37,64 @@ ZOOMS = (
 fetch_logger = logging.getLogger('fetch_region')
 
 
+class RegionInterface(object):
+    @property
+    @cacheable
+    def polygon_bounds(self) -> List:
+        raise NotImplementedError
+
+    @property
+    @cacheable
+    def polygon_strip(self) -> List:
+        raise NotImplementedError
+
+    @property
+    @cacheable
+    def polygon_gmap(self) -> List:
+        raise NotImplementedError
+
+    @property
+    @cacheable
+    def polygon_center(self) -> List:
+        raise NotImplementedError
+
+    @property
+    @cacheable
+    def polygon_infobox(self) -> Dict:
+        raise NotImplementedError
+
+    def full_info(self, lang: str) -> Dict:
+        return {'infobox': self.polygon_infobox[lang], 'polygon': self.polygon_gmap, 'id': self.id}
+
+
+class RegionCacheMeta(type):
+    def __new__(mcs, name, bases, dct):
+        cls = type.__new__(mcs, name, bases, dct)
+        for name, value in bases[0].__dict__.items():
+            if name.startswith('polygon_'):
+                setattr(cls, name, property(cacheable(cls.wrapper(name))))
+        return cls
+
+    def wrapper(cls, name: str):
+        def wrapper(region_cache, *args, **kwargs):
+            origin = Region.objects.get(pk=region_cache.id)
+            return getattr(origin, name)
+        wrapper.__name__ = name
+        return wrapper
+
+
+class RegionCache(RegionInterface, metaclass=RegionCacheMeta):
+    def __init__(self, id: int):
+        super(RegionCache, self).__init__()
+        self.id = id
+
+
 class RegionManager(models.Manager):
     def get_queryset(self):
         return super(RegionManager, self).get_queryset().defer('polygon')
 
 
-class Region(CacheablePropertyMixin, models.Model):
+class Region(RegionInterface, models.Model):
     title = models.CharField(max_length=128)
     polygon = MultiPolygonField(geography=True)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
@@ -52,13 +105,6 @@ class Region(CacheablePropertyMixin, models.Model):
     is_enabled = models.BooleanField(default=True)
 
     objects = RegionManager()
-    caches = {
-        'polygon_center': 'region{id}center',
-        'polygon_gmap': 'region{id}gmap',
-        'polygon_bounds': 'region{id}bounds',
-        'polygon_strip': 'region{id}strip',
-        'polygon_infobox': 'region{id}infobox',
-    }
 
     class Meta:
         verbose_name = 'Region'
@@ -147,8 +193,14 @@ class Region(CacheablePropertyMixin, models.Model):
             result[trans.language_code] = infobox
         return result
 
-    def full_info(self, lang: str) -> Dict:
-        return {'infobox': self.polygon_infobox[lang], 'polygon': self.polygon_gmap, 'id': self.id}
+    @classmethod
+    def caches(cls) -> List[str]:
+        result = []
+        for name in dir(cls):
+            method = getattr(cls, name)
+            if isinstance(method, property) and method.fget.__name__ == 'cache_wrapper':
+                result.append(name)
+        return result
 
     def json(self, lang: str) -> Dict:
         translation = self.load_translation(lang)
@@ -272,12 +324,12 @@ class RegionTranslation(models.Model):
 
 @receiver(post_save, sender=Region, dispatch_uid="clear_region_cache")
 def clear_region_cache(sender, instance: Region, **kwargs):
-    for key in instance.caches:
-        cache.delete(instance.caches[key].format(id=instance.id))
+    for key in instance.caches():
+        cache.delete(POLYGON_CACHE_KEY.format(func=key, id=instance.id))
 
 
 class Game(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='games', blank=True, null=True)
     slug = models.CharField(max_length=15, db_index=True)
     center = PointField(geography=True)
@@ -297,7 +349,10 @@ class Game(models.Model):
         raise NotImplementedError
 
     def load_translation(self, lang):
-        return self.translations.filter(language_code=lang).first()
+        for translation in self.translations.all():
+            if translation.language_code == lang:
+                return translation
+        return self.translations.all()[0]
 
     @property
     def index(self) -> Dict:
@@ -323,3 +378,16 @@ class GameTranslation(models.Model):
     class Meta:
         unique_together = ('language_code', 'master')
         abstract = True
+
+
+class Tag(models.Model):
+    name_en = models.CharField(max_length=50, blank=True, default='???')
+    name_ru = models.CharField(max_length=50, blank=True, default='???')
+
+    def __str__(self) -> str:
+        return self.name_en
+
+    @classmethod
+    def get_all(self, lang: str) -> List:
+        attr = f'name_{lang}'
+        return [(tag.id, getattr(tag, attr)) for tag in Tag.objects.all()]

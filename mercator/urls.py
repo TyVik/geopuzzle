@@ -18,9 +18,10 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
+from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
-
+from common.constants import DAY, HOUR, MINUTE
 from mercator import views
 from .sitemaps import WorldSitemap, PuzzleSitemap, QuizSitemap
 
@@ -39,13 +40,13 @@ urlpatterns = [
     url(r'^quiz/', include('quiz.urls')),
     url(r'^regions/', include('maps.urls')),
     url(r'^maps/(?P<name>[a-zA-Z0-9]+)/', views.deprecated_redirect),
-    url(r'^puzzle/area/(?P<pk>\d+)/infobox/', views.infobox_by_id, name='infobox_by_id'),
+    url(r'^puzzle/area/(?P<pk>\d+)/infobox/', cache_page(DAY)(views.infobox_by_id), name='infobox_by_id'),
 
-    url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt'), name='robots'),
-    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+    url(r'^robots\.txt$', cache_page(DAY)(TemplateView.as_view(template_name='robots.txt')), name='robots'),
+    url(r'^sitemap\.xml$', cache_page(HOUR)(sitemap), {'sitemaps': sitemaps}, name='sitemap'),
 
-    url(r'^error/$', views.error, name='error'),
-    url(r'^status/$', views.status, name='status'),
+    url(r'^error/$', cache_page(DAY)(views.error), name='error'),
+    url(r'^status/$', cache_page(MINUTE)(views.status), name='status'),
     url(r'^$', views.index, name='index'),
 ]
 

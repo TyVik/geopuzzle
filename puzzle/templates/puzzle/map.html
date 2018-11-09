@@ -2,7 +2,11 @@
 {% load static %}
 
 {% block content %}
-    <div id="puzzle" class="gmap-game"></div>
-    {{ block.super }}
-    <script type="text/javascript" src={% static "js/puzzle.js" %}></script>
+  <div id="puzzle" class="gmap-game"></div>
+  {{ block.super }}
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+  <script type="text/javascript" src={% static "js/games.js" %}></script>
 {% endblock %}

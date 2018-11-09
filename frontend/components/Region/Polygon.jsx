@@ -6,9 +6,9 @@ import * as _constants from "react-google-maps/lib/constants";
 
 
 class Polygon extends GooglePolygon {
-    getBounds() {
-        return this.state[_constants.POLYGON].getBounds();
-    }
+  getBounds() {
+    return this.state[_constants.POLYGON].getBounds();
+  }
 }
 
 export default Polygon;

@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     {% block head_js %}
+        <script>
+          __LANGUAGE__ = '{{ request.LANGUAGE_CODE }}';
+        </script>
     {% endblock %}
     {% block extra_css %}
     {% endblock %}

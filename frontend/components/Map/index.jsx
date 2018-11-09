@@ -4,66 +4,70 @@ import GoogleMap from './GoogleMap';
 
 
 class MapContainer extends React.Component {
-    handleMapLoad = (map) => {
-        this._mapComponent = map;
-        if (map && this.props.initCallback) {
-            this.props.initCallback(map);
-        }
-    };
-
-    handleMapClick = (e) => {
-        if (this.props.mapClick !== undefined) {
-            this.props.mapClick(e);
-        }
-    };
-
-    preparePolygons(polygons) {
-        return polygons.map(polygon => {
-            return {
-                map: this._mapComponent,
-                key: `${polygon.draggable}${polygon.id}`,
-                options: {
-                    strokeColor: polygon.isSolved ? '#419641' : '#d9534f',
-                    strokeOpacity: 0.8,
-                    strokeWeight: 2,
-                    fillColor: polygon.isSolved ? '#419641' : '#d9534f',
-                    fillOpacity: 0.35,
-                    geodesic: true,
-                    draggable: polygon.draggable,
-                    zIndex: polygon.draggable ? 2 : 1,
-                    paths: polygon.paths,
-                    id: polygon.id,
-                },
-                onClick: this.props.onPolygonClick,
-                onDragPolygon: this.props.onDragPolygon
-            };
-        });
+  handleMapLoad = (map) => {
+    this._mapComponent = map;
+    // load regions from server only at the first time
+    if (map && this.props.initCallback && (this.props.regions.length === 0)) {
+      this.props.initCallback(map);
     }
+  };
 
-    showMarker(infobox) {
-        if (infobox) {
-            return {
-                key: 'center',
-                defaultAnimation: 2,
-                position: {
-                    lat: infobox.marker.lat,
-                    lng: infobox.marker.lon
-                }
-            }
+  handleMapClick = (e) => {
+    if (this.props.mapClick !== undefined) {
+      this.props.mapClick(e);
+    }
+  };
+
+  preparePolygons(polygons) {
+    return polygons.map(polygon => {
+      return {
+        map: this._mapComponent,
+        key: `${polygon.draggable}${polygon.id}`,
+        options: {
+          strokeColor: polygon.isSolved ? '#419641' : '#d9534f',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: polygon.isSolved ? '#419641' : '#d9534f',
+          fillOpacity: 0.35,
+          geodesic: true,
+          draggable: polygon.draggable,
+          zIndex: polygon.draggable ? 2 : 1,
+          paths: polygon.paths,
+          id: polygon.id,
+        },
+        onClick: this.props.onPolygonClick,
+        onDragPolygon: this.props.onDragPolygon
+      };
+    });
+  }
+
+  showMarker(infobox) {
+    if (infobox) {
+      return {
+        key: 'center',
+        defaultAnimation: 2,
+        position: {
+          lat: infobox.marker.lat,
+          lng: infobox.marker.lon
         }
+      }
     }
+  }
 
-    render() {
-        let props = {...this.props, ...window.__MAP__, mapTypeId: this.props.mapTypeId};
-        return <GoogleMap {...props}
-            containerElement={<div style={{height: '100%'}}/>}
-            mapElement={<div style={{height: '100%', margin: 0, padding: 0}} id="map"/>}
-            onMapLoad={this.handleMapLoad}
-            onMapClick={this.handleMapClick}
-            polygons={this.preparePolygons(this.props.regions)}
-            marker={this.showMarker(this.props.infobox)}
-        />
+  render() {
+    let props = {...this.props, ...window.__MAP__, mapTypeId: this.props.mapTypeId};
+    if (!this.props.showMap) {
+      return null;
     }
+    return <GoogleMap {...props}
+                      containerElement={<div style={{height: '100%'}}/>}
+                      mapElement={<div style={{height: '100%', margin: 0, padding: 0}} id="map"/>}
+                      onMapLoad={this.handleMapLoad}
+                      onMapClick={this.handleMapClick}
+                      polygons={this.preparePolygons(this.props.regions)}
+                      marker={this.showMarker(this.props.infobox)}
+    />;
+  }
 }
 
 

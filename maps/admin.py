@@ -19,7 +19,7 @@ from django.templatetags.static import static
 from django.urls import reverse
 
 from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget
-from maps.models import Region, RegionTranslation
+from maps.models import Region, RegionTranslation, Tag
 
 
 def update_infoboxes(modeladmin, request, queryset) -> None:
@@ -37,7 +37,6 @@ update_polygons.short_description = _("Update polygons")
 
 
 class RegionChangeList(HierarchicalChangeList):
-
     def get_queryset(self, request):
         return super(RegionChangeList, self).get_queryset(request).defer('polygon')
 
@@ -64,6 +63,11 @@ class RegionAdmin(HierarchicalModelAdmin):
     hierarchy = AdjacencyList('parent')
     inlines = (RegionTranslationAdmin,)
     list_per_page = 20
+    fieldsets = (
+        (None, {
+            'fields': (('title', 'parent', 'is_enabled'), ('osm_id', 'wikidata_id'), 'osm_data', 'polygon')
+        }),
+    )
 
     class Media:
         css = {
@@ -106,9 +110,15 @@ class RegionAdmin(HierarchicalModelAdmin):
 
 
 class GameAdmin(ImageMixin, OSMGeoAdmin):
-    list_display = ('id', 'image_tag', 'slug', 'is_published', 'is_global')
+    list_display = ('id', 'image_tag', 'slug', 'is_published', 'is_global', 'user')
     list_display_links = ('image_tag', 'id')
     autocomplete_fields = ('regions',)
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
     }
+    list_per_page = 20
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    pass

@@ -5,12 +5,10 @@ from maps.models import Region
 
 
 def region(request, id) -> JsonResponse:
-    language = request.user.language if request.user.is_authenticated else request.LANGUAGE_CODE
     obj = get_object_or_404(Region, pk=id)
-    return JsonResponse(obj.full_info(language))
+    return JsonResponse(obj.full_info(request.LANGUAGE_CODE))
 
 
 def items(request, id) -> JsonResponse:
-    language = request.user.language if request.user.is_authenticated else request.LANGUAGE_CODE
     obj = get_object_or_404(Region, pk=id)
-    return JsonResponse(obj.items(language), safe=False)
+    return JsonResponse(obj.items(request.LANGUAGE_CODE), safe=False)

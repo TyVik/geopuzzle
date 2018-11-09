@@ -2,35 +2,35 @@
 {% load static i18n %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
-    <link rel="stylesheet" href="{% static 'css/social.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}">
+  <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+  <link rel="stylesheet" href="{% static 'css/social.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="container login-container">
+  <div class="container login-container">
+    <div class="row">
+      <div class="main">
+        <h3>{% block top %}{% endblock %}</h3>
         <div class="row">
-            <div class="main">
-                <h3>{% block top %}{% endblock %}</h3>
-                <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <a href="{% url "social:begin" "facebook" %}" class="btn btn-lg btn-facebook btn-block">FB</a>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <a href="{% url "social:begin" "vk-oauth2" %}" class="btn btn-lg btn-vk btn-block">VK</a>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <a href="{% url "social:begin" "google-oauth2" %}" class="btn btn-lg btn-google btn-block">Google</a>
-                    </div>
-                </div>
-                <div class="login-or">
-                    <hr class="hr-or">
-                    <span class="span-or">{% trans "or" %}</span>
-                </div>
-                {% block form %}
-                {% endblock %}
-            </div>
+          <div class="col-xs-4 col-sm-4 col-md-4">
+            <a href="{% url "social:begin" "facebook" %}" class="btn btn-lg btn-facebook btn-block">FB</a>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-4">
+            <a href="{% url "social:begin" "vk-oauth2" %}" class="btn btn-lg btn-vk btn-block">VK</a>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-4">
+            <a href="{% url "social:begin" "google-oauth2" %}" class="btn btn-lg btn-google btn-block">Google</a>
+          </div>
         </div>
+        <div class="login-or">
+          <hr class="hr-or">
+          <span class="span-or">{% trans "or" %}</span>
+        </div>
+        {% block form %}
+        {% endblock %}
+      </div>
     </div>
+  </div>
 {% endblock %}

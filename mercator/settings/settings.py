@@ -14,7 +14,7 @@ GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
 OSM_KEY = os.environ.get('OSM_KEY')
 OSM_URL = 'https://wambachers-osm.website/boundaries/exportBoundaries?cliVersion=1.0&cliKey={key}&exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}'
 
-ALLOWED_HOSTS = ('127.0.0.1',)
+ALLOWED_HOSTS = ('geopuzzle.org', '127.0.0.1')
 INTERNAL_IPS = ALLOWED_HOSTS
 
 WSGI_APPLICATION = 'mercator.wsgi.application'
@@ -56,6 +56,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'common.middleware.UserLocaleMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -110,8 +111,12 @@ CACHE_MIDDLEWARE_SECONDS = 36000
 CACHE_MIDDLEWARE_KEY_PREFIX = 'site'
 
 SESSION_ENGINE = 'redis_sessions.session'
-SESSION_REDIS_DB = 2
-SESSION_REDIS_HOST = REDIS_HOST
+SESSION_REDIS = {
+    'host': REDIS_HOST,
+    'db': 2,
+}
+
+POLYGON_CACHE_KEY = '{func}_{id}'
 
 ASGI_APPLICATION = "mercator.routing.application"
 CHANNEL_LAYERS = {
@@ -207,6 +212,9 @@ THUMBNAIL_DUMMY_SOURCE = '/static/images/world/default_%(width)s.png'
 THUMBNAIL_DUMMY_RATIO = 1
 THUMBNAIL_REDIS_HOST = REDIS_HOST
 THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 500
 
 JSON_EDITOR_JS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.js'
 JSON_EDITOR_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsoneditor.css'

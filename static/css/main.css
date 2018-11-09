@@ -94,3 +94,25 @@ footer .social-wrap {
 .panel-body h1 {
     text-align: center;
 }
+
+.created_by {
+    color: darkblue;
+    font-weight: 600;
+    position: absolute;
+    bottom: 20px;
+}
+
+#workshop .input-group {
+    float: left;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.donate {
+    border-radius: 6px;
+    background-color: #9fdeaa;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-top: 20px;
+    color: black;
+}

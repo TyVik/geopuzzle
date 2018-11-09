@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static thumbnail i18n %}
 
+{% block head_js %}
+    {{ block.super }}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+{% endblock %}
+
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
     <link rel="stylesheet" href="{% static 'css/social.css' %}">
@@ -9,6 +15,18 @@
 
 {% block content %}
     <div class="container">
+        <div class="donate row">
+            <h3>{% trans 'Support the project!' %}</h3>
+            <p>{% blocktrans %}Payments for hosting and external services began to exceed $300 per month. It's too expensive for nonprofit development.{% endblocktrans %}</p>
+            <div style="max-width:175px;display:inline-block">
+              <a href="https://www.patreon.com/bePatron?u=11576139" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script defer src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+            </div>
+            <span>
+              <iframe src="https://money.yandex.ru/quickpay/button-widget?targets=GeoPuzzle&default-sum=100&button-text=12&yamoney-payment-type=on&button-size=m&button-color=orange&successURL=&quickpay=small&account=410012053429083&" width="184" height="36" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+              <a href="https://www.paypal.me/tyvik"><img style="vertical-align: baseline" height="36px" src="http://www.stickpng.com/assets/images/5895ceb8cba9841eabab6072.png" alt="donate"></a>
+            </span>
+        </div>
+
         {% block container %}
         {% endblock %}
     </div>
@@ -32,9 +50,4 @@
             </div>
         </div>
     </footer>
-{% endblock %}
-
-{% block extra_js %}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 {% endblock %}
