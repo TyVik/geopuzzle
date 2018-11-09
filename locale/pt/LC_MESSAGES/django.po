@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-06 21:11+0000\n"
-"PO-Revision-Date: 2018-11-09 21:01\n"
+"PO-Revision-Date: 2018-11-09 21:33\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -108,7 +108,7 @@ msgstr ""
 msgid "Puzzle \"{}\" has been assembled! Your time is "
 msgstr ""
 
-#: puzzle/views.py:44 quiz/views.py:30
+#: puzzle/views.py:47 quiz/views.py:30
 msgid "World map"
 msgstr ""
 
