@@ -60,7 +60,7 @@ class Workshop extends React.Component {
       <a href={puzzle.url}>
         <img className="img-responsive img-rounded" src={puzzle.image} alt={puzzle.name}/>
       </a>
-      <span className="created_by">by {puzzle.user}</span>
+      <i className="created_by">by {puzzle.user}</i>
       <div className="text-center">{puzzle.name}</div>
     </div>;
   }

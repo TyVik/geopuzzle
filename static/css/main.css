@@ -96,6 +96,8 @@ footer .social-wrap {
 }
 
 .created_by {
+    color: darkblue;
+    font-weight: 600;
     position: absolute;
     bottom: 20px;
 }
