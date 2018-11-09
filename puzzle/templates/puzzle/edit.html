@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block container %}
-  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.30&sensor=false&libraries=geometry&language={{ request.LANGUAGE_CODE }}&key={{ settings.GOOGLE_KEY }}"></script>
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=quarterly&libraries=geometry&language={{ request.LANGUAGE_CODE }}&key={{ settings.GOOGLE_KEY }}"></script>
   <div id="editor" class="gmap-game-edit"></div>
 {% endblock %}
 
