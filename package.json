@@ -62,7 +62,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "dependencies": {
-    "@sentry/cli": "^1.36.3",
+    "@sentry/cli": "^1.36.4",
     "html2canvas": "^1.0.0-alpha.12",
     "js-cookie": "^2.2.0",
     "react": "^16.5.2",
