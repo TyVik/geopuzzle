@@ -1,4 +1,5 @@
 from django.conf.urls import url
+from django.contrib.auth.decorators import login_required
 from django.urls import include
 
 from puzzle.views import WorkshopView, questions, puzzle, PuzzleEditView, WorkshopItems
@@ -12,5 +13,5 @@ urlpatterns = [
     url(r'^(?P<name>[a-zA-Z0-9_]+)/questions/$', questions, name='puzzle_questions'),
     url(r'^workshop/', include(workshop)),
     url(r'^(?P<name>[a-zA-Z0-9_]+)/$', puzzle, name='puzzle_map'),
-    url(r'^(?P<name>[a-zA-Z0-9_]+)/edit/$', PuzzleEditView.as_view(), name='puzzle_edit'),
+    url(r'^(?P<name>[a-zA-Z0-9_]+)/edit/$', login_required(PuzzleEditView.as_view()), name='puzzle_edit'),
 ]
