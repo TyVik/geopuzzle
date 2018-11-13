@@ -26,12 +26,12 @@ class PuzzleAdmin(GameAdmin):
     inlines = (PuzzleTranslationInline, PuzzleRegionInline)
     fieldsets = (
         (None, {
-            'fields': (('slug', 'zoom', 'is_published', 'is_global'), ('image', 'user'),
+            'fields': (('slug', 'zoom'), ('is_published', 'is_global', 'on_main_page'), ('image', 'user'),
                        ('center', 'default_positions'), 'tags')
         }),
     )
     filter_horizontal = ('tags',)
-    list_filter = ('tags', 'is_published', 'user')
+    list_filter = ('tags', 'is_published', 'on_main_page', 'user')
 
     def tag_list(self, obj: Puzzle) -> str:
         return safe(', '.join(x.name_en for x in obj.tags.all()))
