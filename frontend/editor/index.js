@@ -144,8 +144,8 @@ class Editor extends React.Component {
       <div className="panel-heading">{localization.publish}:</div>
       <div className="panel-body form-horizontal">
         <div className="form-group" key="is_published">
-          <Toggle checked={this.state.fields.is_published} onChange={this.togglePublish} id="is_published"/>
-          <label htmlFor='is_published'>{title}</label>
+          <label htmlFor='is_published' className="control-label col-sm-10">{title}</label>
+          <Toggle checked={this.state.fields.is_published} onChange={this.togglePublish} id="is_published" className="col-sm-2"/>
         </div>
         <div className="form-group" key="tags">
           <label htmlFor="id_tags" className="control-label col-sm-2">{localization['tags']}:</label>
