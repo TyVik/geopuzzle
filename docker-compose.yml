@@ -1,0 +1,33 @@
+version: '3'
+services:
+  redis:
+    image: redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  postgres:
+    build: ./docker/postgres
+    environment:
+      POSTGRES_USER: geopuzzle
+      POSTGRES_PASSWORD: geopuzzle
+      POSTGRES_DB: geopuzzle
+    healthcheck:
+      test: ["CMD", "pg_isready -U geopuzzle"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  app:
+    build: .
+    restart: on-failure
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+      - redis
+    links:
+      - postgres
+      - redis
