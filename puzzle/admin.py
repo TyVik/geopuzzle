@@ -22,7 +22,7 @@ class PuzzleRegionInline(TabularInline):
 
 @admin.register(Puzzle)
 class PuzzleAdmin(GameAdmin):
-    list_display = ('id', 'image_tag', 'slug', 'is_published', 'is_global', 'user', 'tag_list')
+    list_display = ('id', 'image_tag', 'names', 'slug', 'is_published', 'is_global', 'user', 'tag_list')
     inlines = (PuzzleTranslationInline, PuzzleRegionInline)
     fieldsets = (
         (None, {
@@ -31,7 +31,7 @@ class PuzzleAdmin(GameAdmin):
         }),
     )
     filter_horizontal = ('tags',)
-    list_filter = ('user', 'is_published')
+    list_filter = ('tags', 'is_published', 'user')
 
     def tag_list(self, obj: Puzzle) -> str:
         return safe(', '.join(x.name_en for x in obj.tags.all()))
