@@ -68,10 +68,11 @@
     "react": "^16.6.1",
     "react-bootstrap": "^0.32.4",
     "react-custom-scrollbars": "^4.2.1",
-    "react-infinite-scroll-component": "^4.2.0",
     "react-dom": "^16.6.1",
     "react-google-maps": "^9.0.0",
+    "react-infinite-scroll-component": "^4.2.0",
     "react-localization": "^1.0.13",
+    "react-select": "^2.1.1",
     "react-toggle": "^4.0.2"
   }
 }

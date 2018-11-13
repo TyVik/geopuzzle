@@ -4,10 +4,16 @@ import GoogleMap from './GoogleMap';
 
 
 class MapContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.mapLoaded = false;
+  }
+
   handleMapLoad = (map) => {
     this._mapComponent = map;
     // load regions from server only at the first time
-    if (map && this.props.initCallback && (this.props.regions.length === 0)) {
+    if (map && this.props.initCallback && !this.mapLoaded) {
+      this.mapLoaded = true;
       this.props.initCallback(map);
     }
   };
