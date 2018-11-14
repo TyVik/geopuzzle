@@ -8,7 +8,7 @@ import "./index.css";
 class QuizInit extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {title: false, flag: false, coat_of_arms: false, capital: false};
+    this.state = {title: true, flag: true, coat_of_arms: true, capital: true};
   }
 
   toggle(param) {
@@ -37,12 +37,12 @@ class QuizInit extends React.Component {
       </Modal.Header>
       <Modal.Body>
         <FormGroup className="checkbox-group">
-          <Checkbox inline onClick={() => this.toggle('title')}>{localization.title}</Checkbox>
+          <Checkbox inline onClick={() => this.toggle('title')} defaultChecked={this.state['title']}>{localization.title}</Checkbox>
           {QuizInit.show_checkbox('flag') &&
-            <Checkbox inline onClick={() => this.toggle('flag')}>{localization.flag}</Checkbox>}
+            <Checkbox inline onClick={() => this.toggle('flag')} defaultChecked={this.state['flag']}>{localization.flag}</Checkbox>}
           {QuizInit.show_checkbox('coat_of_arms') &&
-            <Checkbox inline onClick={() => this.toggle('coat_of_arms')}>{localization.coat_of_arms}</Checkbox>}
-            <Checkbox inline onClick={() => this.toggle('capital')}>{localization.capital}</Checkbox>
+            <Checkbox inline onClick={() => this.toggle('coat_of_arms')} defaultChecked={this.state['coat_of_arms']}>{localization.coat_of_arms}</Checkbox>}
+            <Checkbox inline onClick={() => this.toggle('capital')} defaultChecked={this.state['capital']}>{localization.capital}</Checkbox>
         </FormGroup>
       </Modal.Body>
       <Modal.Footer>
