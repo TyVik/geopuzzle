@@ -9,7 +9,6 @@ describe('shallow <Infobox /> components', () => {
   let wrapper;
 
   beforeEach(() => {
-    localStorage.__STORE__ = {};
     wrapper = shallow(<Infobox {...props}/>);
   });
 
