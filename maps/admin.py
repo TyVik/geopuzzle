@@ -19,7 +19,7 @@ from django.templatetags.static import static
 from django.urls import reverse
 
 from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget
-from maps.models import Region, RegionTranslation, Tag
+from maps.models import Region, RegionTranslation, Tag, Game
 
 
 def update_infoboxes(modeladmin, request, queryset) -> None:
@@ -110,13 +110,16 @@ class RegionAdmin(HierarchicalModelAdmin):
 
 
 class GameAdmin(ImageMixin, OSMGeoAdmin):
-    list_display = ('id', 'image_tag', 'slug', 'is_published', 'is_global', 'user')
+    list_display = ('id', 'image_tag', 'names', 'slug', 'is_published', 'is_global', 'user')
     list_display_links = ('image_tag', 'id')
     autocomplete_fields = ('regions',)
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
     }
     list_per_page = 20
+
+    def names(self, obj: Game) -> str:
+        return safe("<br/>".join(f'{t.language_code}: {t.name}' for t in obj.translations.order_by('language_code').all()))
 
 
 @admin.register(Tag)

@@ -6,6 +6,7 @@ import Tree from "./Tree";
 import {decodePolygon, CSRFfetch} from "../utils";
 import localization from "../localization";
 import html2canvas from 'html2canvas';
+import Select from "react-select";
 
 
 class Editor extends React.Component {
@@ -20,7 +21,8 @@ class Editor extends React.Component {
       fields: window.__FIELDS__,
       checked: new Set(polygons.reduce((acc, item) => {acc.push(item.id); return acc;}, [])),
       progress: null, exception: false
-    }
+    };
+    this.tags = window.__TAGS__.map(x => {return {label: x[1], value: x[0]}});
   }
 
   static convertRegion(obj) {
@@ -96,9 +98,13 @@ class Editor extends React.Component {
         CSRFfetch(window.location.href, {method: 'POST', body: data})
           .then(response => {
             this.setState({...this.state, progress: 100});
-            response.json().then(json => {
-              window.location.href = json.url;
-            });
+            if (response.status === 200) {
+              response.json().then(json => {
+                window.location.href = json.url;
+              });
+            } else {
+              this.setState({...this.state, progress: null, exception: true});
+            }
           })
           .catch(() => {
             this.setState({...this.state, progress: null, exception: true});
@@ -136,9 +142,17 @@ class Editor extends React.Component {
     let title = this.state.fields.is_published ? localization.publishedToAll : localization.publishedToMe;
     return <div className="panel panel-default">
       <div className="panel-heading">{localization.publish}:</div>
-      <div className="panel-body">
-        <Toggle checked={this.state.fields.is_published} onChange={this.togglePublish} id="is_published"/>
-        <label htmlFor='is_published'>{title}</label>
+      <div className="panel-body form-horizontal">
+        <div className="form-group" key="is_published">
+          <label htmlFor='is_published' className="control-label col-sm-10">{title}</label>
+          <Toggle checked={this.state.fields.is_published} onChange={this.togglePublish} id="is_published" className="col-sm-2"/>
+        </div>
+        <div className="form-group" key="tags">
+          <label htmlFor="id_tags" className="control-label col-sm-2">{localization['tags']}:</label>
+          <div className="col-sm-10">
+            <Select name="tags" options={this.tags} isMulti/>
+          </div>
+        </div>
       </div>
     </div>;
   }
