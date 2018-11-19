@@ -33,3 +33,9 @@ class ExternalIdField(models.CharField):
         return super(ExternalIdField, self).formfield(**defaults)
 
 
+class RegionsField(models.ManyToManyField):
+    def save_form_data(self, instance, data):
+        self.remote_field.through.objects.filter(puzzle=instance).delete()
+        self.remote_field.through.objects.bulk_create([
+            self.remote_field.through(puzzle=instance, region=region)
+            for region in data])
