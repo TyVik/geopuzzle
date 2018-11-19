@@ -48,6 +48,7 @@ ShallowWrapper {
           >
             <Checkbox
               bsClass="checkbox"
+              defaultChecked={true}
               disabled={false}
               inline={true}
               onClick={[Function]}
@@ -57,6 +58,7 @@ ShallowWrapper {
             </Checkbox>
             <Checkbox
               bsClass="checkbox"
+              defaultChecked={true}
               disabled={false}
               inline={true}
               onClick={[Function]}
@@ -66,6 +68,7 @@ ShallowWrapper {
             </Checkbox>
             <Checkbox
               bsClass="checkbox"
+              defaultChecked={true}
               disabled={false}
               inline={true}
               onClick={[Function]}
@@ -75,6 +78,7 @@ ShallowWrapper {
             </Checkbox>
             <Checkbox
               bsClass="checkbox"
+              defaultChecked={true}
               disabled={false}
               inline={true}
               onClick={[Function]}
@@ -88,19 +92,16 @@ ShallowWrapper {
           bsClass="modal-footer"
           componentClass="div"
         >
-          <div>
-            Choose at least one option
-             
-            <Button
-              active={false}
-              block={false}
-              bsClass="btn"
-              bsStyle="default"
-              disabled={true}
-            >
-              Start
-            </Button>
-          </div>
+          <Button
+            active={false}
+            block={false}
+            bsClass="btn"
+            bsStyle="default"
+            disabled={false}
+            onClick={[Function]}
+          >
+            Start
+          </Button>
         </ModalFooter>,
       ],
       "dialogClassName": "custom-modal",
@@ -169,6 +170,7 @@ ShallowWrapper {
           >
             <Checkbox
               bsClass="checkbox"
+              defaultChecked={true}
               disabled={false}
               inline={true}
               onClick={[Function]}
@@ -178,6 +180,7 @@ ShallowWrapper {
             </Checkbox>
             <Checkbox
               bsClass="checkbox"
+              defaultChecked={true}
               disabled={false}
               inline={true}
               onClick={[Function]}
@@ -187,6 +190,7 @@ ShallowWrapper {
             </Checkbox>
             <Checkbox
               bsClass="checkbox"
+              defaultChecked={true}
               disabled={false}
               inline={true}
               onClick={[Function]}
@@ -196,6 +200,7 @@ ShallowWrapper {
             </Checkbox>
             <Checkbox
               bsClass="checkbox"
+              defaultChecked={true}
               disabled={false}
               inline={true}
               onClick={[Function]}
@@ -216,6 +221,7 @@ ShallowWrapper {
             "children": Array [
               <Checkbox
                 bsClass="checkbox"
+                defaultChecked={true}
                 disabled={false}
                 inline={true}
                 onClick={[Function]}
@@ -225,6 +231,7 @@ ShallowWrapper {
               </Checkbox>,
               <Checkbox
                 bsClass="checkbox"
+                defaultChecked={true}
                 disabled={false}
                 inline={true}
                 onClick={[Function]}
@@ -234,6 +241,7 @@ ShallowWrapper {
               </Checkbox>,
               <Checkbox
                 bsClass="checkbox"
+                defaultChecked={true}
                 disabled={false}
                 inline={true}
                 onClick={[Function]}
@@ -243,6 +251,7 @@ ShallowWrapper {
               </Checkbox>,
               <Checkbox
                 bsClass="checkbox"
+                defaultChecked={true}
                 disabled={false}
                 inline={true}
                 onClick={[Function]}
@@ -262,6 +271,7 @@ ShallowWrapper {
               "props": Object {
                 "bsClass": "checkbox",
                 "children": "Title",
+                "defaultChecked": true,
                 "disabled": false,
                 "inline": true,
                 "onClick": [Function],
@@ -278,6 +288,7 @@ ShallowWrapper {
               "props": Object {
                 "bsClass": "checkbox",
                 "children": "Flag",
+                "defaultChecked": true,
                 "disabled": false,
                 "inline": true,
                 "onClick": [Function],
@@ -294,6 +305,7 @@ ShallowWrapper {
               "props": Object {
                 "bsClass": "checkbox",
                 "children": "Coat of arms",
+                "defaultChecked": true,
                 "disabled": false,
                 "inline": true,
                 "onClick": [Function],
@@ -310,6 +322,7 @@ ShallowWrapper {
               "props": Object {
                 "bsClass": "checkbox",
                 "children": "Capital",
+                "defaultChecked": true,
                 "disabled": false,
                 "inline": true,
                 "onClick": [Function],
@@ -330,63 +343,35 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "bsClass": "modal-footer",
-          "children": <div>
-            Choose at least one option
-             
-            <Button
-              active={false}
-              block={false}
-              bsClass="btn"
-              bsStyle="default"
-              disabled={true}
-            >
-              Start
-            </Button>
-          </div>,
+          "children": <Button
+            active={false}
+            block={false}
+            bsClass="btn"
+            bsStyle="default"
+            disabled={false}
+            onClick={[Function]}
+          >
+            Start
+          </Button>,
           "componentClass": "div",
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "class",
           "props": Object {
-            "children": Array [
-              "Choose at least one option",
-              " ",
-              <Button
-                active={false}
-                block={false}
-                bsClass="btn"
-                bsStyle="default"
-                disabled={true}
-              >
-                Start
-              </Button>,
-            ],
+            "active": false,
+            "block": false,
+            "bsClass": "btn",
+            "bsStyle": "default",
+            "children": "Start",
+            "disabled": false,
+            "onClick": [Function],
           },
           "ref": null,
-          "rendered": Array [
-            "Choose at least one option",
-            " ",
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "active": false,
-                "block": false,
-                "bsClass": "btn",
-                "bsStyle": "default",
-                "children": "Start",
-                "disabled": true,
-              },
-              "ref": null,
-              "rendered": "Start",
-              "type": [Function],
-            },
-          ],
-          "type": "div",
+          "rendered": "Start",
+          "type": [Function],
         },
         "type": [Function],
       },
@@ -427,6 +412,7 @@ ShallowWrapper {
             >
               <Checkbox
                 bsClass="checkbox"
+                defaultChecked={true}
                 disabled={false}
                 inline={true}
                 onClick={[Function]}
@@ -436,6 +422,7 @@ ShallowWrapper {
               </Checkbox>
               <Checkbox
                 bsClass="checkbox"
+                defaultChecked={true}
                 disabled={false}
                 inline={true}
                 onClick={[Function]}
@@ -445,6 +432,7 @@ ShallowWrapper {
               </Checkbox>
               <Checkbox
                 bsClass="checkbox"
+                defaultChecked={true}
                 disabled={false}
                 inline={true}
                 onClick={[Function]}
@@ -454,6 +442,7 @@ ShallowWrapper {
               </Checkbox>
               <Checkbox
                 bsClass="checkbox"
+                defaultChecked={true}
                 disabled={false}
                 inline={true}
                 onClick={[Function]}
@@ -467,19 +456,16 @@ ShallowWrapper {
             bsClass="modal-footer"
             componentClass="div"
           >
-            <div>
-              Choose at least one option
-               
-              <Button
-                active={false}
-                block={false}
-                bsClass="btn"
-                bsStyle="default"
-                disabled={true}
-              >
-                Start
-              </Button>
-            </div>
+            <Button
+              active={false}
+              block={false}
+              bsClass="btn"
+              bsStyle="default"
+              disabled={false}
+              onClick={[Function]}
+            >
+              Start
+            </Button>
           </ModalFooter>,
         ],
         "dialogClassName": "custom-modal",
@@ -548,6 +534,7 @@ ShallowWrapper {
             >
               <Checkbox
                 bsClass="checkbox"
+                defaultChecked={true}
                 disabled={false}
                 inline={true}
                 onClick={[Function]}
@@ -557,6 +544,7 @@ ShallowWrapper {
               </Checkbox>
               <Checkbox
                 bsClass="checkbox"
+                defaultChecked={true}
                 disabled={false}
                 inline={true}
                 onClick={[Function]}
@@ -566,6 +554,7 @@ ShallowWrapper {
               </Checkbox>
               <Checkbox
                 bsClass="checkbox"
+                defaultChecked={true}
                 disabled={false}
                 inline={true}
                 onClick={[Function]}
@@ -575,6 +564,7 @@ ShallowWrapper {
               </Checkbox>
               <Checkbox
                 bsClass="checkbox"
+                defaultChecked={true}
                 disabled={false}
                 inline={true}
                 onClick={[Function]}
@@ -595,6 +585,7 @@ ShallowWrapper {
               "children": Array [
                 <Checkbox
                   bsClass="checkbox"
+                  defaultChecked={true}
                   disabled={false}
                   inline={true}
                   onClick={[Function]}
@@ -604,6 +595,7 @@ ShallowWrapper {
                 </Checkbox>,
                 <Checkbox
                   bsClass="checkbox"
+                  defaultChecked={true}
                   disabled={false}
                   inline={true}
                   onClick={[Function]}
@@ -613,6 +605,7 @@ ShallowWrapper {
                 </Checkbox>,
                 <Checkbox
                   bsClass="checkbox"
+                  defaultChecked={true}
                   disabled={false}
                   inline={true}
                   onClick={[Function]}
@@ -622,6 +615,7 @@ ShallowWrapper {
                 </Checkbox>,
                 <Checkbox
                   bsClass="checkbox"
+                  defaultChecked={true}
                   disabled={false}
                   inline={true}
                   onClick={[Function]}
@@ -641,6 +635,7 @@ ShallowWrapper {
                 "props": Object {
                   "bsClass": "checkbox",
                   "children": "Title",
+                  "defaultChecked": true,
                   "disabled": false,
                   "inline": true,
                   "onClick": [Function],
@@ -657,6 +652,7 @@ ShallowWrapper {
                 "props": Object {
                   "bsClass": "checkbox",
                   "children": "Flag",
+                  "defaultChecked": true,
                   "disabled": false,
                   "inline": true,
                   "onClick": [Function],
@@ -673,6 +669,7 @@ ShallowWrapper {
                 "props": Object {
                   "bsClass": "checkbox",
                   "children": "Coat of arms",
+                  "defaultChecked": true,
                   "disabled": false,
                   "inline": true,
                   "onClick": [Function],
@@ -689,6 +686,7 @@ ShallowWrapper {
                 "props": Object {
                   "bsClass": "checkbox",
                   "children": "Capital",
+                  "defaultChecked": true,
                   "disabled": false,
                   "inline": true,
                   "onClick": [Function],
@@ -709,63 +707,35 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "bsClass": "modal-footer",
-            "children": <div>
-              Choose at least one option
-               
-              <Button
-                active={false}
-                block={false}
-                bsClass="btn"
-                bsStyle="default"
-                disabled={true}
-              >
-                Start
-              </Button>
-            </div>,
+            "children": <Button
+              active={false}
+              block={false}
+              bsClass="btn"
+              bsStyle="default"
+              disabled={false}
+              onClick={[Function]}
+            >
+              Start
+            </Button>,
             "componentClass": "div",
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "class",
             "props": Object {
-              "children": Array [
-                "Choose at least one option",
-                " ",
-                <Button
-                  active={false}
-                  block={false}
-                  bsClass="btn"
-                  bsStyle="default"
-                  disabled={true}
-                >
-                  Start
-                </Button>,
-              ],
+              "active": false,
+              "block": false,
+              "bsClass": "btn",
+              "bsStyle": "default",
+              "children": "Start",
+              "disabled": false,
+              "onClick": [Function],
             },
             "ref": null,
-            "rendered": Array [
-              "Choose at least one option",
-              " ",
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "active": false,
-                  "block": false,
-                  "bsClass": "btn",
-                  "bsStyle": "default",
-                  "children": "Start",
-                  "disabled": true,
-                },
-                "ref": null,
-                "rendered": "Start",
-                "type": [Function],
-              },
-            ],
-            "type": "div",
+            "rendered": "Start",
+            "type": [Function],
           },
           "type": [Function],
         },

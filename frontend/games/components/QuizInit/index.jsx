@@ -23,10 +23,11 @@ class QuizInit extends React.Component {
     if (this.state.title || this.state.flag || this.state.coat_of_arms || this.state.capital) {
       return <Button onClick={() => this.props.load(this.state)}>{localization.start}</Button>;
     } else {
-      return <div>
-        {localization.quizInitCheck}&nbsp;
+      return <React.Fragment>
+        <i>{localization.quizInitCheck}</i>
+        &nbsp;
         <Button disabled>{localization.start}</Button>
-      </div>;
+      </React.Fragment>;
     }
   }
 
