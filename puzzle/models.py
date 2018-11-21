@@ -15,7 +15,7 @@ from maps.models import Game, GameTranslation, Region, Tag
 class Puzzle(Game):
     default_positions = MultiPointField(geography=True)
     regions = RegionsField(Region, through='PuzzleRegion')
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     class Meta:
         verbose_name = 'Puzzle'
