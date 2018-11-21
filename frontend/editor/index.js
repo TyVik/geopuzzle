@@ -150,7 +150,7 @@ class Editor extends React.Component {
         <div className="form-group" key="tags">
           <label htmlFor="id_tags" className="control-label col-sm-2">{localization['tags']}:</label>
           <div className="col-sm-10">
-            <Select name="tags" options={this.tags} isMulti/>
+            <Select name="tags" options={this.tags} isMulti defaultValue={this.tags.filter(tag => this.state.fields.tags.indexOf(tag.value))}/>
           </div>
         </div>
       </div>
