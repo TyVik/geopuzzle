@@ -49,12 +49,10 @@ def deprecated_redirect(request: WSGIRequest, name: str) -> HttpResponsePermanen
     return HttpResponsePermanentRedirect(reverse('puzzle_map', kwargs={'name': name}))
 
 
-@cache_page(60 * 60)
 def error(request) -> HttpResponse:
     return HttpResponse('Something went wrong :(')
 
 
-@cache_page(60)
 def status(request) -> JsonResponse:
     def check_redis():
         StrictRedis.from_url(settings.REDIS_HOST).ping()
@@ -68,5 +66,5 @@ def status(request) -> JsonResponse:
             locals()[f'check_{service}']()
             result[service] = 'success'
         except Exception as e:
-            return JsonResponse({service: 'fail', 'message': e}, status=503)
+            return JsonResponse({service: 'fail', 'message': str(e)}, status=503)
     return JsonResponse(result)

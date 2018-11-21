@@ -50,7 +50,6 @@ class Quiz extends Game {
           })
           .filter(item => item !== null);
     }).reduce((l, acc) => {acc = acc.concat(l); return acc}, []));
-    console.log(result);
     return result;
   }
 
