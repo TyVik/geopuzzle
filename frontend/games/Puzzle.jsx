@@ -105,14 +105,14 @@ class Puzzle extends Game {
   };
 
   render_question() {
-    return <React.Fragment>
+    return <div className="text-center">
       <Button bsStyle="success" onClick={this.giveUp}>
         {localization.give_up}
       </Button>
       <Button bsStyle="info" onClick={this.refreshMap}>
         {localization.fix_problem}
       </Button>
-    </React.Fragment>;
+    </div>;
   }
 }
 

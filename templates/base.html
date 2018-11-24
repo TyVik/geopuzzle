@@ -82,10 +82,15 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-<script src="https://cdn.ravenjs.com/3.21.0/raven.min.js" crossorigin="anonymous"></script>
-<script>Raven.config('{% sentry_public_dsn 'https' %}', {
+<script src="https://browser.sentry-cdn.com/4.3.4/bundle.min.js" crossorigin="anonymous"></script>
+<script>
+  Sentry.init({
+    dsn: '{% sentry_public_dsn 'https' %}',
     release: '{{ settings.RAVEN_CONFIG.release }}',
-}).install()</script>
+    attachStacktrace: true,
+  });
+  Sentry.captureMessage('Something went wrong');
+</script>
 
 {% if not debug %}
     <!-- Yandex.Metrika counter -->
