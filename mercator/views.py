@@ -55,7 +55,7 @@ def error(request) -> HttpResponse:
 
 def status(request) -> JsonResponse:
     def check_redis():
-        StrictRedis.from_url(settings.REDIS_HOST).ping()
+        StrictRedis.from_url(f'redis://{REDIS_HOST}:6379/0').ping()
 
     def check_database():
         connection.cursor()
