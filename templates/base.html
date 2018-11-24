@@ -89,7 +89,6 @@
     release: '{{ settings.RAVEN_CONFIG.release }}',
     attachStacktrace: true,
   });
-  Sentry.captureMessage('Something went wrong');
 </script>
 
 {% if not debug %}
