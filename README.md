@@ -140,3 +140,7 @@ $ docker push tyvik/geopuzzle:jsbuild
 * http://global.mapit.mysociety.org/areas/O03 - http://mapit.poplus.org/docs/self-hosted/how-data-is-stored/
 * http://geo.koltyrin.ru/
 * http://www.marineregions.org/gazetteer.php?p=browser&id=1900&expand=true#ct
+
+# Useful services
+
+[<img src="https://cloud.githubusercontent.com/assets/7864462/12837037/452a17c6-cb73-11e5-9f39-fc96893bc9bf.png" alt="Browser Stack Logo" width="400">](https://www.browserstack.com/)
