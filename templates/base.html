@@ -84,10 +84,17 @@
 </script>
 <script src="https://browser.sentry-cdn.com/4.3.4/bundle.min.js" crossorigin="anonymous"></script>
 <script>
-  Sentry.init({
-    dsn: '{% sentry_public_dsn 'https' %}',
-    release: '{{ settings.RAVEN_CONFIG.release }}',
-    attachStacktrace: true,
+  window.addEventListener("DOMContentLoaded", function(){
+    Sentry.init({
+      dsn: '{% sentry_public_dsn 'https' %}',
+      release: '{{ settings.RAVEN_CONFIG.release }}',
+      attachStacktrace: true,
+      ignoreErrors: [
+        'Cannot read property \'zoom\' of null',
+        'null is not an object (evaluating \'e.zoom\')',
+        'null is not an object (evaluating \'g.lineJoin="round"\')',
+      ],
+    });
   });
 </script>
 
