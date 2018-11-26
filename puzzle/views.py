@@ -110,6 +110,7 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
                 'checked': [],
                 'regions': [x.json(self.request.LANGUAGE_CODE) for x in Region.objects.filter(parent__isnull=True, is_enabled=True).all()],
                 'fields': {
+                    'tags': [],
                     'is_published': False,
                     'translations': [{'code': code, 'language': lang, 'title': ''} for code, lang in settings.LANGUAGES]
                 }
