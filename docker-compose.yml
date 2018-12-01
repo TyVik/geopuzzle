@@ -1,7 +1,7 @@
 version: '3'
 services:
   redis:
-    image: redis
+    image: redis:alpine
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 30s
@@ -9,7 +9,7 @@ services:
       retries: 3
 
   postgres:
-    build: ./docker/postgres
+    image: mdillon/postgis:9.6-alpine
     environment:
       POSTGRES_USER: geopuzzle
       POSTGRES_PASSWORD: geopuzzle
@@ -23,6 +23,9 @@ services:
   app:
     build: .
     restart: on-failure
+    environment:
+      DB_HOST: postgres
+      REDIS_HOST: redis
     ports:
       - 8000:8000
     depends_on:

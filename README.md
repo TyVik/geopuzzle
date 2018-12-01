@@ -150,6 +150,16 @@ docker-compose down
 
 Go to [http://localhost:8000](http://localhost:8000)
 
+## Build required Docker images locally
+
+```bash
+docker build -f Dockerfile.app -t tyvik/geopuzzle:app .
+docker build -f Dockerfile.jsbuild -t tyvik/geopuzzle:jsbuild .
+```
+
+Also you can use already built images from Docker Hub: 
+[https://hub.docker.com/r/tyvik/geopuzzle](https://hub.docker.com/r/tyvik/geopuzzle)
+
 # Useful links
 
 * https://wambachers-osm.website/boundaries/
