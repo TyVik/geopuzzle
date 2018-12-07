@@ -7,7 +7,7 @@ sorl-thumbnail==12.5.0
 django-redis==4.10.0
 django-redis-sessions==0.6.1
 sparqlwrapper==1.8.2
-requests==2.20.0
+requests==2.20.1
 apidev_django-floppyforms
 django-admirarchy==0.2.4
 
