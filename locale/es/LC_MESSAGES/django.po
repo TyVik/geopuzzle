@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-06 21:11+0000\n"
-"PO-Revision-Date: 2018-11-21 08:01\n"
+"POT-Creation-Date: 2018-10-24 13:04+0000\n"
+"PO-Revision-Date: 2018-12-07 15:22\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: geopuzzle\n"
 "X-Crowdin-Language: es-ES\n"
-"X-Crowdin-File: /develop/locale/fr/LC_MESSAGES/django.po\n"
+"X-Crowdin-File: /develop/locale/es/LC_MESSAGES/django.po\n"
 
 #: maps/admin.py:28
 msgid "Infoboxes were updated."
@@ -32,15 +32,15 @@ msgstr ""
 msgid "Update polygons"
 msgstr ""
 
-#: maps/admin.py:88
+#: maps/admin.py:84
 msgid "Infobox"
 msgstr ""
 
-#: maps/admin.py:94
+#: maps/admin.py:90
 msgid "Infobox was updated successfully."
 msgstr ""
 
-#: maps/admin.py:101
+#: maps/admin.py:97
 msgid "Polygon was imported successfully."
 msgstr ""
 
@@ -80,35 +80,35 @@ msgstr ""
 msgid "Import from OSM"
 msgstr ""
 
-#: mercator/settings/settings.py:194
+#: mercator/settings/settings.py:190
 msgid "English"
 msgstr ""
 
-#: mercator/settings/settings.py:195
+#: mercator/settings/settings.py:191
 msgid "Russian"
 msgstr ""
 
-#: mercator/views.py:28
+#: mercator/views.py:27
 msgid "puzzle"
 msgstr ""
 
-#: mercator/views.py:29
+#: mercator/views.py:28
 msgid "In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!"
 msgstr ""
 
-#: mercator/views.py:37
+#: mercator/views.py:36
 msgid "quiz"
 msgstr ""
 
-#: mercator/views.py:38
+#: mercator/views.py:37
 msgid "In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!"
 msgstr ""
 
-#: puzzle/views.py:44
+#: puzzle/views.py:47
 msgid "Puzzle \"{}\" has been assembled! Your time is "
 msgstr ""
 
-#: puzzle/views.py:44 quiz/views.py:30
+#: puzzle/views.py:47 quiz/views.py:30
 msgid "World map"
 msgstr ""
 
@@ -155,14 +155,6 @@ msgstr ""
 #: users/templates/registration/registration.html:5
 #: users/templates/registration/registration.html:31
 msgid "Sign Up"
-msgstr ""
-
-#: templates/base_site.html:19
-msgid "Support the project!"
-msgstr ""
-
-#: templates/base_site.html:20
-msgid "Payments for hosting and external services began to exceed $300 per month. It's too expensive for nonprofit development."
 msgstr ""
 
 #: templates/index.html:7
