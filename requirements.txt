@@ -11,7 +11,7 @@ requests==2.20.1
 apidev_django-floppyforms
 django-admirarchy==0.2.4
 
-daphne==2.2.3
+daphne==2.2.4
 channels==2.1.5
 channels-redis==2.3.2
 
