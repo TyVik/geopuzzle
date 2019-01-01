@@ -24,6 +24,6 @@ django-dotenv==1.4.2
 social-auth-app-django==3.1.0
 git+git://github.com/TyVik/django-awesome-avatar.git
 
-raven==6.9.0
+raven==6.10.0
 python-coveralls==2.9.1
 factory_boy==2.11.1
