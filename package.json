@@ -25,17 +25,17 @@
   "homepage": "https://bitbucket.org/TyVik8/geopuzzle#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.2",
-    "@babel/core": "^7.1.2",
+    "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
-    "@sentry/webpack-plugin": "^1.6.1",
+    "@sentry/webpack-plugin": "^1.6.2",
     "@types/googlemaps": "^3.30.16",
-    "@types/jest": "^23.3.9",
+    "@types/jest": "^23.3.10",
     "@types/markerclustererplus": "^2.1.29",
-    "@types/react": "^16.4.18",
+    "@types/react": "^16.7.11",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
     "babel-loader": "^8.0.4",
@@ -56,13 +56,13 @@
     "react-test-renderer": "^16.6.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "webpack": "^4.23.1",
+    "webpack": "^4.26.1",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
     "whatwg-fetch": "^3.0.0"
   },
   "dependencies": {
-    "@sentry/cli": "^1.36.4",
+    "@sentry/cli": "^1.37.0",
     "html2canvas": "^1.0.0-alpha.12",
     "js-cookie": "^2.2.0",
     "react": "^16.6.1",
@@ -72,7 +72,7 @@
     "react-google-maps": "^9.0.0",
     "react-infinite-scroll-component": "^4.2.0",
     "react-localization": "^1.0.13",
-    "react-select": "^2.1.1",
+    "react-select": "^2.1.2",
     "react-toggle": "^4.0.2"
   }
 }
