@@ -16,7 +16,7 @@ channels==2.1.6
 channels-redis==2.3.2
 
 django-storages==1.7.1
-boto3==1.9.75
+boto3==1.9.86
 
 django-settings-export==1.2.1
 django-dotenv==1.4.2
