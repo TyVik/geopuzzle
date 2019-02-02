@@ -70,14 +70,14 @@ module.exports = (env, argv) => {
       },
     };
 
-    if (NODE_ENV === 'production') {
+/*    if (NODE_ENV === 'production') {
       result.plugins.push(
         new SentryCliPlugin({
           release: gitRevisionPlugin.version(),
           include: './static/js/',
           ignore: ['node_modules', 'webpack.config.js']
         }))
-    }
+    }*/
 
     return result;
 };
