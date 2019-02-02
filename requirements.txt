@@ -9,14 +9,14 @@ django-redis-sessions==0.6.1
 sparqlwrapper==1.8.2
 requests==2.21.0
 apidev_django-floppyforms
-django-admirarchy==0.2.4
+django-admirarchy==1.0.0
 
-daphne==2.2.4
-channels==2.1.6
-channels-redis==2.3.2
+daphne==2.2.5
+channels==2.1.7
+channels-redis==2.3.3
 
 django-storages==1.7.1
-boto3==1.9.75
+boto3==1.9.86
 
 django-settings-export==1.2.1
 django-dotenv==1.4.2
