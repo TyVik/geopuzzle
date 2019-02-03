@@ -7,7 +7,6 @@ from django.utils.translation import ugettext as _
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from django.views.decorators.cache import cache_page
 from redis import StrictRedis
 
 from maps.models import Region
@@ -55,7 +54,7 @@ def error(request) -> HttpResponse:
 
 def status(request) -> JsonResponse:
     def check_redis():
-        StrictRedis.from_url(f'redis://{REDIS_HOST}:6379/0').ping()
+        StrictRedis.from_url(f'redis://{settings.REDIS_HOST}:6379/0').ping()
 
     def check_database():
         connection.cursor()
