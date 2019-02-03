@@ -1,12 +1,8 @@
-import base64
-from random import uniform
 from typing import List, Dict, Optional
 
 from django.conf import settings
-from django.contrib.gis.geos import Point, MultiPoint
-from django.core.exceptions import PermissionDenied, ValidationError
-from django.core.files.base import ContentFile
-from django.forms import ModelForm, Field
+from django.contrib.gis.geos import Point
+from django.core.exceptions import PermissionDenied
 from django.urls import reverse
 from django.utils.translation import ugettext as _, get_language
 
@@ -19,10 +15,9 @@ from django.views.generic.edit import BaseUpdateView
 from django.views.generic.list import BaseListView
 from sorl.thumbnail import get_thumbnail
 
-from common.utils import random_string
-from puzzle.forms import PuzzleForm
+from puzzle.forms import PuzzleForm, PuzzleEditForm
 from maps.models import Region, Tag
-from puzzle.models import Puzzle, PuzzleRegion, PuzzleTranslation
+from puzzle.models import Puzzle
 
 
 @never_cache  # for HTTP headers
@@ -46,56 +41,6 @@ def puzzle(request: WSGIRequest, name: str) -> HttpResponse:
     return render(request, 'puzzle/map.html', context=context)
 
 
-class BoundsField(Field):
-    default_error_messages = {
-        'invalid': 'Enter comma separated numbers only.',
-    }
-
-    def to_python(self, value):
-        try:
-            value = [float(item.strip()) for item in value.split(',') if item.strip()]
-        except (ValueError, TypeError):
-            raise ValidationError(self.error_messages['invalid'])
-        return value
-
-
-class PuzzleEditForm(ModelForm):
-    bounds = BoundsField()
-
-    class Meta:
-        model = Puzzle
-        fields = ('regions', 'image', 'center', 'zoom', 'is_published')
-
-    def clean_image(self):
-        format, imgstr = self.data.get('image').split(';base64,')
-        ext = format.split('/')[-1]
-        return ContentFile(base64.b64decode(imgstr), name=f'{random_string()}.${ext}')
-
-    def save(self, *args, **kwargs):
-        def get_slug(slug: str) -> str:
-            return random_string() if slug == '' else slug
-
-        def get_positions(bounds: List[float], count: int) -> List:
-            return [Point(uniform(bounds[1], bounds[3]), uniform(bounds[0], bounds[2]))
-                    for _ in range(round(count * 2 / 3) + 1)]
-
-        self.instance.slug = get_slug(self.instance.slug)
-        self.instance.default_positions = MultiPoint(get_positions(
-            self.cleaned_data['bounds'], len(self.cleaned_data['regions'])))
-        return super(PuzzleEditForm, self).save(*args, **kwargs)
-
-    def _save_m2m(self):
-        PuzzleRegion.objects.filter(puzzle=self.instance).delete()
-        PuzzleRegion.objects.bulk_create([
-            PuzzleRegion(puzzle=self.instance, region=region)
-            for region in self.cleaned_data['regions']])
-
-        for lang in settings.ALLOWED_LANGUAGES:
-            PuzzleTranslation.objects.update_or_create(
-                master=self.instance, language_code=lang,
-                defaults={'name': self.data.get(f'{lang}_name', '')})
-
-
 class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
     model = Puzzle
     queryset = None
@@ -114,6 +59,9 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
             if obj.user != self.request.user:
                 raise PermissionDenied
         return obj
+
+    def form_invalid(self, form):
+        return JsonResponse(form.errors, status=400)
 
     def form_valid(self, form):
         self.object = form.save()
@@ -156,11 +104,13 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
             return tree
 
         result = super(PuzzleEditView, self).get_context_data(**kwargs)
+        result['tags'] = Tag.get_all(self.request.LANGUAGE_CODE)
         if self.object.id is None:
             result.update({
                 'checked': [],
                 'regions': [x.json(self.request.LANGUAGE_CODE) for x in Region.objects.filter(parent__isnull=True, is_enabled=True).all()],
                 'fields': {
+                    'tags': [],
                     'is_published': False,
                     'translations': [{'code': code, 'language': lang, 'title': ''} for code, lang in settings.LANGUAGES]
                 }
@@ -171,6 +121,7 @@ class PuzzleEditView(TemplateResponseMixin, BaseUpdateView):
             tree = sorted(tree, key=lambda x: x['name'])  # IMHO it's cheaper than SQL
             result['regions'] = build_tree(tree, set([int(x['id']) for x in tree]), self.object.regions.all())
             result['fields'] = {
+                'tags': [x.id for x in self.object.tags.all()],
                 'is_published': self.object.is_published,
                 'translations': [{'code': translation.language_code, 'title': translation.name,
                                   'language': next(pair for pair in settings.LANGUAGES if pair[0] == translation.language_code)[1]}

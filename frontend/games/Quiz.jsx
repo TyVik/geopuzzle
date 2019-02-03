@@ -36,6 +36,23 @@ class Quiz extends Game {
     });
   }
 
+  static prepareQuestions(questions) {
+    let result = shuffle(questions
+      .map(question => {
+        return ['title', 'flag', 'coat_of_arms', 'capital']
+          .map(key => {
+            if (question[key] === undefined) {
+              return null;
+            }
+            let result = {id: question.id};
+            result[key] = question[key];
+            return result;
+          })
+          .filter(item => item !== null);
+    }).reduce((l, acc) => {acc = acc.concat(l); return acc}, []));
+    return result;
+  }
+
   dispatchMessage = (event) => {
     let data = JSON.parse(event.data);
     switch(data.type) {
@@ -75,7 +92,7 @@ class Quiz extends Game {
       .then(response => response.json())
       .then(data => {
         let regions = Quiz.extractData(data.questions, data.solved);
-        this.startGame({regions: regions, questions: shuffle(data.questions), question: 0});
+        this.startGame({regions: regions, questions: Quiz.prepareQuestions(data.questions), question: 0});
       })
       .catch(response => {this.setState({...this.state, isLoaded: false})});
     this.setState({...this.state, showInit: false});
