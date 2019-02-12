@@ -8,8 +8,7 @@ import localization from "../localization";
 class Workshop extends React.Component {
   constructor(props) {
     super(props);
-    this.hasMore = true;
-    this.state = {puzzles: [], page: 0, search: '', tag: 0};
+    this.state = {puzzles: [], page: 0, search: '', tag: 0, hasMore: true};
   }
 
   componentDidMount() {
@@ -27,13 +26,16 @@ class Workshop extends React.Component {
     fetch(url, {method: 'GET'})
       .then(response => response.json())
       .then(data => {
-        this.hasMore = data.length === 24;
+        let hasMore = data.length === 24;
         if (replace) {
-          this.setState({...this.state, puzzles: data, page: page});
+          this.setState({...this.state, puzzles: data, page: page, hasMore: hasMore});
         } else {
           let items = this.state.puzzles.concat(data);
-          this.setState({...this.state, puzzles: items, page: page});
+          this.setState({...this.state, puzzles: items, page: page, hasMore: hasMore});
         }
+      })
+      .catch(() => {
+        this.setState({...this.state, page: page - 1, hasMore: false});
       });
   }
 
@@ -47,11 +49,11 @@ class Workshop extends React.Component {
       clearTimeout(this.timeout);
     }
     this.timeout = setTimeout(() => {this.fetchPage(1, true)}, 300);
-    this.setState({...this.state, search: value});
+    this.setState({...this.state, search: value, hasMore: true});
   };
 
   onChangeTag = (event) => {
-    this.setState({...this.state, tag: Number(event.target.value)},
+    this.setState({...this.state, tag: Number(event.target.value), hasMore: true},
       () => this.fetchPage(1, true));
   };
 
@@ -71,7 +73,7 @@ class Workshop extends React.Component {
         <span className="input-group-addon" id="search-label">{localization.search}:</span>
         <input type="text" className="form-control" maxLength="50" id="search-input" onChange={this.onChange} value={this.state.search} aria-describedby="basic-search-label"/>
       </div>
-      <div className="input-group col-sm-5 col-sm-offset-2" style={{display: 'none'}}>
+      <div className="input-group col-sm-5 col-sm-offset-2">
         <span className="input-group-addon" id="tag-label">{localization.tags}:</span>
         <select className="form-control" id="tag-input" onChange={this.onChangeTag} value={this.state.tag} aria-describedby="tag-label">
           <option value={0}>--</option>
@@ -89,7 +91,7 @@ class Workshop extends React.Component {
     return <React.Fragment>
       {this.render_controls()}
       <InfiniteScroll dataLength={puzzles.length} children={puzzles} next={this.fetchNextPage}
-                             hasMore={this.hasMore} loader={<Loading text={localization.loading}/>}>
+                             hasMore={this.state.hasMore} loader={<Loading text={localization.loading}/>}>
         {puzzles.map(this.render_map)}
       </InfiniteScroll>
     </React.Fragment>;

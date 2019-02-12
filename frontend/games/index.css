@@ -16,6 +16,6 @@
 
 @media (max-width: 768px) {
     .game-box {
-        top: 0;
+        top: 52px;
     }
 }

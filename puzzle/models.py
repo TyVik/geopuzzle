@@ -8,13 +8,14 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
 
+from maps.fields import RegionsField
 from maps.models import Game, GameTranslation, Region, Tag
 
 
 class Puzzle(Game):
     default_positions = MultiPointField(geography=True)
-    regions = models.ManyToManyField(Region, through='PuzzleRegion')
-    tags = models.ManyToManyField(Tag)
+    regions = RegionsField(Region, through='PuzzleRegion')
+    tags = models.ManyToManyField(Tag, blank=True)
 
     class Meta:
         verbose_name = 'Puzzle'

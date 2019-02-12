@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/TyVik/geopuzzle.svg?style=svg)](https://circleci.com/gh/TyVik/geopuzzle)
+[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=Fbm86tXoBBqACUnFaJqP)](https://www.browserstack.com/automate/public-build/Fbm86tXoBBqACUnFaJqP)
 [![Coverage Status](https://coveralls.io/repos/github/TyVik/geopuzzle/badge.svg?branch=develop)](https://coveralls.io/github/TyVik/geopuzzle?branch=develop)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/geopuzzle/localized.svg)](https://translate.geopuzzle.org/project/geopuzzle)
 
@@ -139,3 +140,7 @@ $ docker push tyvik/geopuzzle:jsbuild
 * http://global.mapit.mysociety.org/areas/O03 - http://mapit.poplus.org/docs/self-hosted/how-data-is-stored/
 * http://geo.koltyrin.ru/
 * http://www.marineregions.org/gazetteer.php?p=browser&id=1900&expand=true#ct
+
+# Useful services
+
+[<img src="https://cloud.githubusercontent.com/assets/7864462/12837037/452a17c6-cb73-11e5-9f39-fc96893bc9bf.png" alt="Browser Stack Logo" width="400">](https://www.browserstack.com/)
