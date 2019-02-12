@@ -1,12 +1,6 @@
 {% extends 'base.html' %}
 {% load static thumbnail i18n %}
 
-{% block head_js %}
-    {{ block.super }}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-{% endblock %}
-
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
     <link rel="stylesheet" href="{% static 'css/social.css' %}">
