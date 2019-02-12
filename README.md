@@ -146,20 +146,13 @@ docker-compose up -d
 Stop:
 
 ```bash
-docker-compose down
+docker-compose stop
 ```
+
+You can download [sample database](https://drive.google.com/file/d/1V9JY5vsSzYVTc-2TTjtOJx11Zgg4K58V/view?usp=sharing).
+Unpack archive into `pgdata` directory.
 
 Go to [http://localhost:8000](http://localhost:8000)
-
-## Build required Docker images locally
-
-```bash
-docker build -f Dockerfile.app -t tyvik/geopuzzle:app .
-docker build -f Dockerfile.jsbuild -t tyvik/geopuzzle:jsbuild .
-```
-
-Also you can use already built images from Docker Hub: 
-[https://hub.docker.com/r/tyvik/geopuzzle](https://hub.docker.com/r/tyvik/geopuzzle)
 
 # Useful links
 
