@@ -1,15 +1,13 @@
 'use strict';
 const webpack = require('webpack');
 const path = require('path');
-const SentryCliPlugin = require('@sentry/webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
-const gitRevisionPlugin = new GitRevisionPlugin();
 
 
 module.exports = (env, argv) => {
   const NODE_ENV = process.env.NODE_ENV || 'development';
 
-  let result = {
+  return {
     context: __dirname + '/frontend',
     entry: {
       games: './games',
@@ -69,15 +67,4 @@ module.exports = (env, argv) => {
         },
       },
     };
-
-/*    if (NODE_ENV === 'production') {
-      result.plugins.push(
-        new SentryCliPlugin({
-          release: gitRevisionPlugin.version(),
-          include: './static/js/',
-          ignore: ['node_modules', 'webpack.config.js']
-        }))
-    }*/
-
-    return result;
 };
