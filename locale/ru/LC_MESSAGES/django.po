@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-06 21:11+0000\n"
-"PO-Revision-Date: 2018-11-24 14:11\n"
+"POT-Creation-Date: 2019-02-12 14:41+0000\n"
+"PO-Revision-Date: 2019-02-13 08:11\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -14,238 +14,226 @@ msgstr ""
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: geopuzzle\n"
 "X-Crowdin-Language: ru\n"
-"X-Crowdin-File: /develop/locale/de/LC_MESSAGES/django.po\n"
+"X-Crowdin-File: /develop/locale/ru/LC_MESSAGES/django.po\n"
 
 #: maps/admin.py:28
 msgid "Infoboxes were updated."
-msgstr ""
+msgstr "Инфобоксы обновлены."
 
 #: maps/admin.py:29
 msgid "Update infoboxes"
-msgstr ""
+msgstr "Обновить инфобоксы"
 
 #: maps/admin.py:35
 msgid "Polygons were updated."
-msgstr ""
+msgstr "Полигоны обновлены."
 
 #: maps/admin.py:36
 msgid "Update polygons"
-msgstr ""
+msgstr "Обновить полигоны"
 
 #: maps/admin.py:88
 msgid "Infobox"
-msgstr ""
+msgstr "Инфобокс"
 
 #: maps/admin.py:94
 msgid "Infobox was updated successfully."
-msgstr ""
+msgstr "Инфобокс обновлён успешно."
 
 #: maps/admin.py:101
 msgid "Polygon was imported successfully."
-msgstr ""
+msgstr "Полигон загружен успешно."
 
 #: maps/apps.py:6
 msgid "maps"
-msgstr ""
+msgstr "карты"
 
 #: maps/templates/admin/maps/country/change_form.html:10
 #: maps/templates/admin/maps/region/change_form.html:10
 msgid "History"
-msgstr ""
+msgstr "История"
 
 #: maps/templates/admin/maps/country/change_form.html:13
 msgid "Import KML"
-msgstr ""
+msgstr "Импорт KML"
 
 #: maps/templates/admin/maps/country/change_form.html:15
 #: maps/templates/admin/maps/region/change_form.html:16
 msgid "View on site"
-msgstr ""
+msgstr "Посмотреть на сайте"
 
 #: maps/templates/admin/maps/country/map_kml_import.html:14
 #: maps/templates/admin/maps/region/map_kml_import.html:14
 msgid "Please correct the error below."
-msgstr ""
+msgstr "Пожалуйста, исправьте ошибки."
 
 #: maps/templates/admin/maps/country/map_kml_import.html:15
 #: maps/templates/admin/maps/region/map_kml_import.html:15
 msgid "Please correct the errors below."
-msgstr ""
+msgstr "Пожалуйста, исправьте ошибки."
 
 #: maps/templates/admin/maps/region/change_form.html:13
 msgid "Update Infobox"
-msgstr ""
+msgstr "Обновить инфобокс"
 
 #: maps/templates/admin/maps/region/change_form.html:14
 msgid "Import from OSM"
-msgstr ""
+msgstr "Импорт из OSM"
 
 #: mercator/settings/settings.py:194
 msgid "English"
-msgstr ""
+msgstr "Английский"
 
 #: mercator/settings/settings.py:195
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
+
+#: mercator/views.py:27
+msgid "puzzle"
+msgstr "Паззл"
 
 #: mercator/views.py:28
-msgid "puzzle"
-msgstr ""
-
-#: mercator/views.py:29
 msgid "In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!"
-msgstr ""
+msgstr "В игре \"Паззл\" нужно перетащить контур территории на её место. В детстве мы собирали картины кусочек за кусочком, а здесь можно собрать страну из регионов или целые континенты из стран!"
+
+#: mercator/views.py:36
+msgid "quiz"
+msgstr "Викторина"
 
 #: mercator/views.py:37
-msgid "quiz"
-msgstr ""
-
-#: mercator/views.py:38
 msgid "In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!"
-msgstr ""
+msgstr "В игре «Викторина» искать страну нужно будет по флагу, гербу или столице. Знали ли вы, что у Монако и Индонезии одинаковые флаги? А что флаги США и Либерии отличаются только количеством звёзд? Так вот, эти и другие интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
 
-#: puzzle/views.py:44
+#: puzzle/views.py:39
 msgid "Puzzle \"{}\" has been assembled! Your time is "
-msgstr ""
+msgstr "Пазл «{}» был собран! Ваше время "
 
-#: puzzle/views.py:44 quiz/views.py:30
+#: puzzle/views.py:39 quiz/views.py:30
 msgid "World map"
-msgstr ""
+msgstr "Карта мира"
 
 #: quiz/views.py:29
 #, python-brace-format
 msgid "Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is "
-msgstr ""
+msgstr "Викторина \"{name}\" пройдена! Вы нашли все {subjects}. Ваше время "
 
 #: quiz/views.py:31
 msgid "countries"
-msgstr ""
+msgstr "страны"
 
 #: quiz/views.py:31
 msgid "regions"
-msgstr ""
+msgstr "регионы"
 
 #: templates/base.html:5
 msgid "Mercator puzzle of "
-msgstr ""
+msgstr "Паззл Меркатора - "
 
 #: templates/base.html:5 templates/index.html:33
 msgid "World"
-msgstr ""
+msgstr "Мир"
 
 #: templates/base.html:6 templates/index.html:6 templates/share_image.html:7
 msgid "Arrange the pieces of the world!"
-msgstr ""
+msgstr "Собери мир по кусочкам!"
 
-#: templates/base.html:42
+#: templates/base.html:43
 msgid "Workshop"
-msgstr ""
+msgstr "Мастерская"
 
-#: templates/base.html:47
+#: templates/base.html:53
 msgid "logout"
-msgstr ""
+msgstr "выйти"
 
-#: templates/base.html:49 users/templates/registration/login.html:5
+#: templates/base.html:55 users/templates/registration/login.html:5
 #: users/templates/registration/login.html:26
 #: users/templates/registration/registration.html:5
 msgid "Sign In"
-msgstr ""
+msgstr "Войти"
 
-#: templates/base.html:50 users/templates/registration/login.html:5
+#: templates/base.html:56 users/templates/registration/login.html:5
 #: users/templates/registration/registration.html:5
 #: users/templates/registration/registration.html:31
 msgid "Sign Up"
-msgstr ""
-
-#: templates/base_site.html:19
-msgid "Support the project!"
-msgstr ""
-
-#: templates/base_site.html:20
-msgid "Payments for hosting and external services began to exceed $300 per month. It's too expensive for nonprofit development."
-msgstr ""
+msgstr "Регистрация"
 
 #: templates/index.html:7
 msgid "Here, in the form of a game, you can learn the names and locations of each country or state and have fun doing it. In your hands are all of the regions of the world! Select a region in its proper place or from a list and look at it flag, coat of arms and perhaps even more information to help you learn geography."
-msgstr ""
+msgstr "В игровой форме здесь можно выучить не только расположение и название страны или региона, но и их флаг, герб и столицу. Под вашей рукой все государства мира — изучайте их, перемещайте и сравнивайте!. Выберите регион из списка, чтобы получить более детальную информацию по нему."
 
 #: templates/index.html:8
 msgid "Moreover, you can create your own puzzles from more than 100,000 regions after registration!"
-msgstr ""
+msgstr "Более того, после регистрации вы можете создавать свои собственные игры из более чем 100 000 кусочков!"
 
 #: templates/index.html:40
 msgid "easy countries"
-msgstr ""
+msgstr "лёгкие страны"
 
 #: templates/index.html:47
 msgid "all countries"
-msgstr ""
+msgstr "все страны"
 
 #: templates/index.html:63
 msgid "Country regions"
+msgstr "Регионы стран"
+
+msgid "All suggestions for improvement can be sent to me via\n"
+"                  <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">email</a>,\n"
+"                  <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
+"                  or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
 msgstr ""
 
-#: templates/index.html:87
-msgid "This is my pet project, but I was so impressed with this idea that I decided to make a\n"
-"                    website. It is not over yet -\n"
-"                    will update both the data and functionality. All suggestions for improvement can be sent to me via\n"
-"                    <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">email</a>,\n"
-"                    <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
-"                    or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
-msgstr ""
-
-#: templates/index.html:93
 msgid "You always can support the project with donations via <a href=\"https://www.paypal.me/tyvik\">PayPal</a>,\n"
-"                  <a href=\"https://yasobe.ru/na/geopuzzle\">Yandex money</a> or <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
+"                <a href=\"https://yasobe.ru/na/geopuzzle\">Yandex money</a> or <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
 msgstr ""
 
 #: templates/share_image.html:8
 msgid "Games on political maps"
-msgstr ""
+msgstr "Игры на политической карте"
 
 #: users/forms.py:12 users/forms.py:18
 msgid "Username"
-msgstr ""
+msgstr "Имя пользователя"
 
 #: users/forms.py:14 users/forms.py:21
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
 #: users/forms.py:50 users/models.py:11
 msgid "Avatar"
-msgstr ""
+msgstr "Аватар"
 
 #: users/models.py:12
 msgid "Language"
-msgstr ""
+msgstr "Язык"
 
 #: users/models.py:13
 msgid "Subscribed on news"
-msgstr ""
+msgstr "Подписка на новости"
 
 #: users/templates/registration/base.html:29
 msgid "or"
-msgstr ""
+msgstr "или"
 
 #: users/templates/user/profile.html:12
 msgid "Profile"
-msgstr ""
+msgstr "Профиль"
 
 #: users/templates/user/profile.html:13
 msgid "My puzzles"
-msgstr ""
+msgstr "Мои пазлы"
 
 #: users/templates/user/profile.html:17
 msgid "Public profile"
-msgstr ""
+msgstr "Профиль"
 
 #: users/templates/user/profile.html:42
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: users/templates/user/profile.html:66
 msgid "New one"
-msgstr ""
+msgstr "Добавить"
 
 #~ msgid "Forgot password?"
 #~ msgstr "Забыли пароль?"
