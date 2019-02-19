@@ -81,6 +81,9 @@ class Editor extends React.Component {
     let center = this.map.getCenter();
     let bounds = this.map.getBounds();
     let data = new FormData(event.target);
+    if (data.get('tags') === "") {
+      data.delete('tags');
+    }
     this.setState({...this.state, progress: 20});
     data.set('is_published', this.state.fields.is_published);
     data.set('center', `SRID=4326;POINT(${center.lng()} ${center.lat()})`);
@@ -157,7 +160,12 @@ class Editor extends React.Component {
     </div>;
   }
 
+  isSaveDisabled() {
+    return this.state.checked.size > this.MAX_REGION_COUNT || this.state.checked.size === 0;
+  }
+
   render() {
+    let mailtoLink = <a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle%20Exception">{localization.emailMe}</a>;
     return <form method="post" onSubmit={this.handleSubmit}>
       <div className="flex-container">
         <div className="panel panel-default">
@@ -186,12 +194,13 @@ class Editor extends React.Component {
                    style={{width: this.state.progress + '%'}}>
               </div>
             </div>}
+          {this.state.checked.size === 0 &&
+            <p className="save-exception">{localization.selectAtLeastOneRegion}</p>}
           {this.state.exception && this.state.progress === null &&
             <div className="save-exception">
-              {localization.formatString(localization.bugReport, <a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle%20Exception">email me</a>)}
+              {localization.formatString(localization.bugReport, mailtoLink)}
             </div>}
-          {this.state.checked.size < this.MAX_REGION_COUNT &&
-            <button className="btn btn-primary" type="submit">{localization.save}</button>}
+          <button className="btn btn-primary" type="submit" disabled={this.isSaveDisabled()}>{localization.save}</button>
         </div>
       </div>
     </form>;

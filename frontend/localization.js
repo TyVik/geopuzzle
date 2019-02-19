@@ -38,8 +38,10 @@ let localization = new LocalizedStrings({
     publish: 'Publish',
     publishedToMe: 'Allow only you',
     publishedToAll: 'Allow to any users',
+    selectAtLeastOneRegion: 'Select at least one region',
     save: 'Save',
     bugReport: 'Something went wrong. Please {0}.',
+    emailMe: 'email me',
     tooManyRegions: 'Too many regions',
 
     search: 'Search',
@@ -80,8 +82,10 @@ let localization = new LocalizedStrings({
     publish: 'Опубликовать',
     publishedToMe: 'Доступно только мне',
     publishedToAll: 'Доступно всем пользователям',
+    selectAtLeastOneRegion: 'Выберите хотя бы один регион',
     save: 'Сохранить',
     bugReport: 'Что-то пошло не так. Пожалуйста, {0}.',
+    emailMe: 'напишите мне',
     tooManyRegions: 'Слишком много регионов',
 
     search: 'Поиск',
