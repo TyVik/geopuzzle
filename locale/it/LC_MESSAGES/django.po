@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-06 21:11+0000\n"
-"PO-Revision-Date: 2018-12-07 08:51\n"
+"POT-Creation-Date: 2019-02-12 14:41+0000\n"
+"PO-Revision-Date: 2019-02-19 17:12\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: geopuzzle\n"
 "X-Crowdin-Language: it\n"
-"X-Crowdin-File: /develop/locale/it/LC_MESSAGES/django.po\n"
+"X-Crowdin-File: /develop/locale/es/LC_MESSAGES/django.po\n"
 
 #: maps/admin.py:28
 msgid "Infoboxes were updated."
@@ -88,27 +88,27 @@ msgstr ""
 msgid "Russian"
 msgstr ""
 
-#: mercator/views.py:28
+#: mercator/views.py:27
 msgid "puzzle"
 msgstr ""
 
-#: mercator/views.py:29
+#: mercator/views.py:28
 msgid "In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!"
 msgstr ""
 
-#: mercator/views.py:37
+#: mercator/views.py:36
 msgid "quiz"
 msgstr ""
 
-#: mercator/views.py:38
+#: mercator/views.py:37
 msgid "In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!"
 msgstr ""
 
-#: puzzle/views.py:44
+#: puzzle/views.py:39
 msgid "Puzzle \"{}\" has been assembled! Your time is "
 msgstr ""
 
-#: puzzle/views.py:44 quiz/views.py:30
+#: puzzle/views.py:39 quiz/views.py:30
 msgid "World map"
 msgstr ""
 
@@ -137,32 +137,24 @@ msgstr ""
 msgid "Arrange the pieces of the world!"
 msgstr ""
 
-#: templates/base.html:42
+#: templates/base.html:43
 msgid "Workshop"
 msgstr ""
 
-#: templates/base.html:47
+#: templates/base.html:53
 msgid "logout"
 msgstr ""
 
-#: templates/base.html:49 users/templates/registration/login.html:5
+#: templates/base.html:55 users/templates/registration/login.html:5
 #: users/templates/registration/login.html:26
 #: users/templates/registration/registration.html:5
 msgid "Sign In"
 msgstr ""
 
-#: templates/base.html:50 users/templates/registration/login.html:5
+#: templates/base.html:56 users/templates/registration/login.html:5
 #: users/templates/registration/registration.html:5
 #: users/templates/registration/registration.html:31
 msgid "Sign Up"
-msgstr ""
-
-#: templates/base_site.html:19
-msgid "Support the project!"
-msgstr ""
-
-#: templates/base_site.html:20
-msgid "Payments for hosting and external services began to exceed $300 per month. It's too expensive for nonprofit development."
 msgstr ""
 
 #: templates/index.html:7
@@ -185,18 +177,16 @@ msgstr ""
 msgid "Country regions"
 msgstr ""
 
-#: templates/index.html:87
-msgid "This is my pet project, but I was so impressed with this idea that I decided to make a\n"
-"                    website. It is not over yet -\n"
-"                    will update both the data and functionality. All suggestions for improvement can be sent to me via\n"
-"                    <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">email</a>,\n"
-"                    <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
-"                    or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
+#: templates/index.html:86
+msgid "All suggestions for improvement can be sent to me via\n"
+"                  <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">email</a>,\n"
+"                  <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
+"                  or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
 msgstr ""
 
-#: templates/index.html:93
+#: templates/index.html:90
 msgid "You always can support the project with donations via <a href=\"https://www.paypal.me/tyvik\">PayPal</a>,\n"
-"                  <a href=\"https://yasobe.ru/na/geopuzzle\">Yandex money</a> or <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
+"                <a href=\"https://yasobe.ru/na/geopuzzle\">Yandex money</a> or <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
 msgstr ""
 
 #: templates/share_image.html:8
