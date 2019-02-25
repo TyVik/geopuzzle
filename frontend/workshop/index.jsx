@@ -68,19 +68,23 @@ class Workshop extends React.Component {
   }
 
   render_controls() {
-    return <div className="row">
+    return <form className="row justify-content-between">
       <div className="input-group col-sm-5">
-        <span className="input-group-addon" id="search-label">{localization.search}:</span>
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="search-label">{localization.search}:</span>
+        </div>
         <input type="text" className="form-control" maxLength="50" id="search-input" onChange={this.onChange} value={this.state.search} aria-describedby="basic-search-label"/>
       </div>
-      <div className="input-group col-sm-5 col-sm-offset-2">
-        <span className="input-group-addon" id="tag-label">{localization.tags}:</span>
+      <div className="input-group col-sm-5">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="tag-label">{localization.tags}:</span>
+        </div>
         <select className="form-control" id="tag-input" onChange={this.onChangeTag} value={this.state.tag} aria-describedby="tag-label">
           <option value={0}>--</option>
           {window.__TAGS__.map(tag => <option value={tag[0]} key={tag[0]}>{tag[1]}</option>)}
         </select>
       </div>
-    </div>;
+    </form>;
   }
 
   render() {
@@ -90,11 +94,9 @@ class Workshop extends React.Component {
     let puzzles = this.state.puzzles;
     return <React.Fragment>
       {this.render_controls()}
-      <InfiniteScroll dataLength={puzzles.length} children={puzzles} next={this.fetchNextPage}
+      <InfiniteScroll dataLength={puzzles.length} children={puzzles} next={this.fetchNextPage} className="row"
                              hasMore={this.state.hasMore} loader={<Loading text={localization.loading}/>}>
-        <div className="row mx-0">
-          {puzzles.map(this.render_map)}
-        </div>
+        {puzzles.map(this.render_map)}
       </InfiniteScroll>
     </React.Fragment>;
   }
