@@ -1,7 +1,7 @@
 'use strict';
 /* global google */
 import React from "react";
-import {Panel} from "react-bootstrap";
+import {Collapse} from "react-bootstrap";
 import { Scrollbars } from 'react-custom-scrollbars';
 import localization from "../../../localization";
 import "./index.css";
@@ -47,28 +47,26 @@ class Toolbox extends React.Component {
             className={"glyphicon glyphicon-chevron-" + (this.state.collapse ? 'up' : 'down')}
             onClick={this.toggleCollapse}>
           </span>
-          <Panel expanded={!this.state.collapse} onToggle={this.toggleCollapse}>
-            <Panel.Collapse>
-              <Panel.Body>
-                <div className="map_switcher_wrapper">
-                  <img className="map_switcher" src={img + "images/map/terrain.png"}
-                       onClick={() => {this.props.setMapType(google.maps.MapTypeId.TERRAIN)}}/>
-                  <img className="map_switcher" src={img + "images/map/hybrid.png"}
-                       onClick={() => {this.props.setMapType(google.maps.MapTypeId.HYBRID)}}/>
-                  <img className="map_switcher" src={img + "images/map/satellite.png"}
-                       onClick={() => {this.props.setMapType(google.maps.MapTypeId.SATELLITE)}}/>
-                </div>
-                  <Scrollbars autoHide={true} autoHeight={true} autoHeightMax={this.state.listNameMaxHeight}>
-                    <ul className="list-group">
-                      {this.props.regions.map(polygon => (
-                        <NameListItem key={polygon.id} polygon={polygon}
-                                      click={() => this.props.openInfobox(polygon)}/>
-                      ))}
-                    </ul>
-                  </Scrollbars>
-              </Panel.Body>
-            </Panel.Collapse>
-          </Panel>
+{/*
+          <Collapse in={!this.state.collapse} onToggle={this.toggleCollapse}>
+              <div className="map_switcher_wrapper">
+                <img className="map_switcher" src={img + "images/map/terrain.png"}
+                     onClick={() => {this.props.setMapType(google.maps.MapTypeId.TERRAIN)}}/>
+                <img className="map_switcher" src={img + "images/map/hybrid.png"}
+                     onClick={() => {this.props.setMapType(google.maps.MapTypeId.HYBRID)}}/>
+                <img className="map_switcher" src={img + "images/map/satellite.png"}
+                     onClick={() => {this.props.setMapType(google.maps.MapTypeId.SATELLITE)}}/>
+              </div>
+                <Scrollbars autoHide={true} autoHeight={true} autoHeightMax={this.state.listNameMaxHeight}>
+                  <ul className="list-group">
+                    {this.props.regions.map(polygon => (
+                      <NameListItem key={polygon.id} polygon={polygon}
+                                    click={() => this.props.openInfobox(polygon)}/>
+                    ))}
+                  </ul>
+                </Scrollbars>
+          </Collapse>
+*/}
         </div>
       </div>
     </div>;

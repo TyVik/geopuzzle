@@ -1,6 +1,6 @@
 'use strict';
 import React from "react";
-import {Panel} from "react-bootstrap";
+import {Collapse} from "react-bootstrap";
 import localization from "../../../localization";
 import "./index.css";
 
@@ -48,30 +48,26 @@ class Infobox extends React.Component {
           onClick={this.toggleCollapse}>
         </span>
       </div>
-      <Panel expanded={!this.state.collapse} onToggle={this.toggleCollapse}>
-        <Panel.Collapse>
-          <Panel.Body>
-            <table>
-              <tbody>
-                {image &&
-                  <tr>
-                    <td colSpan="2">
-                      <img src={image}/>
-                    </td>
-                  </tr>}
-                {this.props.capital &&
-                  <tr>
-                    <td>{localization.capital}</td>
-                    <td><a href={this.props.capital.wiki} target="_blank">{this.props.capital.name}</a></td>
-                  </tr>}
-                {this.renderAttribute('area')}
-                {this.renderAttribute('population')}
-                {this.renderAttribute('currency')}
-              </tbody>
-            </table>
-          </Panel.Body>
-        </Panel.Collapse>
-      </Panel>
+      <Collapse in={!this.state.collapse} onToggle={this.toggleCollapse}>
+          <table>
+            <tbody>
+              {image &&
+                <tr>
+                  <td colSpan="2">
+                    <img src={image}/>
+                  </td>
+                </tr>}
+              {this.props.capital &&
+                <tr>
+                  <td>{localization.capital}</td>
+                  <td><a href={this.props.capital.wiki} target="_blank">{this.props.capital.name}</a></td>
+                </tr>}
+              {this.renderAttribute('area')}
+              {this.renderAttribute('population')}
+              {this.renderAttribute('currency')}
+            </tbody>
+          </table>
+      </Collapse>
     </div>;
   }
 }
