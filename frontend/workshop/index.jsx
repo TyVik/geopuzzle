@@ -58,9 +58,9 @@ class Workshop extends React.Component {
   };
 
   render_map(puzzle) {
-    return  <div className="col-md-3 col-sm-4 col-xs-6 item-container" key={puzzle.url}>
+    return  <div className="col-md-3 col-sm-4 col-xs-6 my-2 item-container" key={puzzle.url}>
       <a href={puzzle.url}>
-        <img className="img-responsive img-rounded" src={puzzle.image} alt={puzzle.name}/>
+        <img className="img-fluid rounded" src={puzzle.image} alt={puzzle.name}/>
       </a>
       <i className="created_by">by {puzzle.user}</i>
       <div className="text-center">{puzzle.name}</div>
@@ -92,7 +92,9 @@ class Workshop extends React.Component {
       {this.render_controls()}
       <InfiniteScroll dataLength={puzzles.length} children={puzzles} next={this.fetchNextPage}
                              hasMore={this.state.hasMore} loader={<Loading text={localization.loading}/>}>
-        {puzzles.map(this.render_map)}
+        <div className="row mx-0">
+          {puzzles.map(this.render_map)}
+        </div>
       </InfiniteScroll>
     </React.Fragment>;
   }

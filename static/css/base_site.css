@@ -32,19 +32,7 @@ footer .social-wrap {
 }
 
 .item-container img {
-    width: 100%;
-}
-
-.panel {
-    border-radius: 0 0 4px 4px;
-}
-
-.item-container {
-    margin: 10px 0;
-}
-
-.game-rules {
-    font-size: 21px;
+    max-width: 100%;
 }
 
 .puzzle-tab {
@@ -97,14 +85,10 @@ footer .social-wrap {
     border-bottom-width: 0;
 }
 
-.panel-body h1 {
-    text-align: center;
-}
-
 .created_by {
     color: darkblue;
     font-weight: 600;
-    position: absolute;
+    position: relative;
     bottom: 20px;
 }
 
