@@ -8,7 +8,7 @@
 
 {% block container %}
   <div class="row">
-    <ul class="nav nav-pills flex-column col-md-2 profile-menu" role="tablist">
+    <ul class="nav nav-pills flex-column col-md-3 col-sm-3 col-lg-2 profile-menu" role="tablist">
       <li role="presentation" class="nav-item">
         <a href="#home" aria-controls="home" role="tab" data-toggle="tab" class="nav-link active">{% trans 'Profile' %}</a>
       </li>
@@ -16,7 +16,7 @@
         <a href="#puzzle" aria-controls="puzzle" role="tab" data-toggle="tab" class="nav-link">{% trans 'My puzzles' %}</a>
       </li>
     </ul>
-    <div class="jumbotron col-md-10 tab-content profile">
+    <div class="jumbotron col-md-9 col-sm-9 col-lg-10 tab-content profile">
       <div role="tabpanel" class="tab-pane active" id="home">
         <h2>{% trans 'Public profile' %}: @{{ request.user.username }}</h2>
         <form role="form" method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
@@ -49,7 +49,7 @@
         <div role="tabpanel" class="tab-pane" id="puzzle">
           <div class="row">
             {% for country in object.puzzle_set.all %}
-              <div class="col-md-2 col-sm-3 col-4 item-container">
+              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 item-container">
                 {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
                   <a href="{% url 'puzzle_map' country.slug %}">
                     <img class="img-responsive img-rounded" src="{{ country.image.url }}" alt="{{ country.slug }}">
@@ -63,7 +63,7 @@
                 </div>
               </div>
             {% endfor %}
-            <div class="col-md-2 col-sm-3 col-4 item-container">
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 item-container">
               <a href="/puzzle/new/edit/">
                 <img class="img-responsive img-rounded" src="{% static 'images/new_game_placeholder.png' %}" alt="new">
               </a>
