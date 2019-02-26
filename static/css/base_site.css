@@ -9,7 +9,8 @@ html {
     padding-bottom: 30px;
 }
 
-.container .jumbotron.contacts {
+.container .jumbotron.contacts,
+.container .jumbotron.workshop {
     margin-bottom: 5rem;
 }
 
@@ -86,9 +87,8 @@ footer .social-wrap {
 }
 
 .created_by {
-    color: darkblue;
-    font-weight: 600;
-    position: relative;
+    color: #6c757d;
+    position: absolute;
     bottom: 20px;
 }
 

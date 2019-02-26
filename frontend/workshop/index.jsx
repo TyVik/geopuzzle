@@ -26,7 +26,7 @@ class Workshop extends React.Component {
     fetch(url, {method: 'GET'})
       .then(response => response.json())
       .then(data => {
-        let hasMore = data.length === 24;
+        let hasMore = data.length === 30;
         if (replace) {
           this.setState({...this.state, puzzles: data, page: page, hasMore: hasMore});
         } else {
@@ -58,11 +58,11 @@ class Workshop extends React.Component {
   };
 
   render_map(puzzle) {
-    return  <div className="col-md-3 col-sm-4 col-xs-6 my-2 item-container" key={puzzle.url}>
+    return  <div className="col-md-3 col-sm-4 col-6 col-xl-2 my-2 item-container" key={puzzle.url}>
       <a href={puzzle.url}>
+        <i className="created_by">by {puzzle.user}</i>
         <img className="img-fluid rounded" src={puzzle.image} alt={puzzle.name}/>
       </a>
-      <i className="created_by">by {puzzle.user}</i>
       <div className="text-center">{puzzle.name}</div>
     </div>;
   }

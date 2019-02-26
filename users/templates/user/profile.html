@@ -45,7 +45,7 @@
         <div role="tabpanel" class="tab-pane" id="puzzle">
           <div class="row">
             {% for country in object.puzzle_set.all %}
-              <div class="col-md-2 col-sm-3 col-xs-4 item-container">
+              <div class="col-md-2 col-sm-3 col-4 item-container">
                 {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
                   <a href="{% url 'puzzle_map' country.slug %}">
                     <img class="img-responsive img-rounded" src="{{ country.image.url }}" alt="{{ country.slug }}">
@@ -59,7 +59,7 @@
                 </div>
               </div>
             {% endfor %}
-            <div class="col-md-2 col-sm-3 col-xs-4 item-container">
+            <div class="col-md-2 col-sm-3 col-4 item-container">
               <a href="/puzzle/new/edit/">
                 <img class="img-responsive img-rounded" src="{% static 'images/new_game_placeholder.png' %}" alt="new">
               </a>
