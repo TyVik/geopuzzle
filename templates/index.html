@@ -48,7 +48,7 @@
                             </div>
                             <div class="row">
                                 {% for part in game.items.parts %}
-                                    <div class="col-md-3 col-sm-3 col-12 my-4 item-container">
+                                    <div class="col-md-3 col-sm-3 col-6 my-4 item-container">
                                         {% thumbnail part.image "250x250" format="PNG" quality=80 as im %}
                                             <a href="{% url game.link part.slug %}">
                                                 <img class="rounded" src="{{ im.url }}"
@@ -62,7 +62,7 @@
                             <h1 class="text-center">{% trans 'Country regions' %}</h1>
                             <div class="row">
                                 {% for country in game.items.countries %}
-                                    <div class="col-md-2 col-sm-3 col-12 my-2 item-container">
+                                    <div class="col-md-2 col-sm-3 col-6 my-2 item-container">
                                         {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
                                             <a href="{% url game.link country.slug %}">
                                                 <img class="rounded" src="{{ im.url }}"

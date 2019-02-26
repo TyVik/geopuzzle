@@ -106,10 +106,10 @@ class Puzzle extends Game {
 
   render_question() {
     return <div className="text-center">
-      <Button bsStyle="success" onClick={this.giveUp}>
+      <Button variant="primary" onClick={this.giveUp} className="mx-2">
         {localization.give_up}
       </Button>
-      <Button bsStyle="info" onClick={this.refreshMap}>
+      <Button variant="warning" onClick={this.refreshMap} className="mx-2">
         {localization.fix_problem}
       </Button>
     </div>;
