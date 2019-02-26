@@ -23,11 +23,11 @@ class QuizQuestion extends React.Component {
         </tbody>
       </table>
       <div className="quiz-bottom">
-        <span className="glyphicon glyphicon-chevron-left" onClick={this.props.onPrevious} />
+        <i className="fas fa-angle-left" onClick={this.props.onPrevious} />
         <Button bsStyle="success" onClick={this.props.giveUp}>
           {localization.give_up}
         </Button>
-        <span className="glyphicon glyphicon-chevron-right" onClick={this.props.onNext} />
+        <i className="fas fa-angle-right" onClick={this.props.onNext} />
       </div>
     </div>;
   }
