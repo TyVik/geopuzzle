@@ -10,27 +10,25 @@
 
 {% block content %}
   <div class="container login-container">
-    <div class="row">
-      <div class="main">
-        <h3>{% block top %}{% endblock %}</h3>
-        <div class="row">
-          <div class="col-4 col-sm-4 col-md-4">
-            <a href="{% url "social:begin" "facebook" %}" class="btn btn-lg btn-facebook btn-block">FB</a>
-          </div>
-          <div class="col-4 col-sm-4 col-md-4">
-            <a href="{% url "social:begin" "vk-oauth2" %}" class="btn btn-lg btn-vk btn-block">VK</a>
-          </div>
-          <div class="col-4 col-sm-4 col-md-4">
-            <a href="{% url "social:begin" "google-oauth2" %}" class="btn btn-lg btn-google btn-block">Google</a>
-          </div>
+    <div class="main">
+      <h3>{% block top %}{% endblock %}</h3>
+      <div class="row">
+        <div class="col-12 col-sm-4 col-md-4 p-2">
+          <a href="{% url "social:begin" "facebook" %}" class="btn btn-lg btn-facebook btn-block">FB</a>
         </div>
-        <div class="login-or">
-          <hr class="hr-or">
-          <span class="span-or">{% trans "or" %}</span>
+        <div class="col-12 col-sm-4 col-md-4 p-2">
+          <a href="{% url "social:begin" "vk-oauth2" %}" class="btn btn-lg btn-vk btn-block">VK</a>
         </div>
-        {% block form %}
-        {% endblock %}
+        <div class="col-12 col-sm-4 col-md-4 p-2">
+          <a href="{% url "social:begin" "google-oauth2" %}" class="btn btn-lg btn-google btn-block">Google</a>
+        </div>
       </div>
+      <div class="login-or">
+        <hr class="hr-or">
+        <span class="span-or">{% trans "or" %}</span>
+      </div>
+      {% block form %}
+      {% endblock %}
     </div>
   </div>
 {% endblock %}
