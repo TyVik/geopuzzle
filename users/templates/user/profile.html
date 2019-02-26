@@ -52,7 +52,7 @@
               <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 item-container">
                 {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
                   <a href="{% url 'puzzle_map' country.slug %}">
-                    <img class="img-responsive img-rounded" src="{{ country.image.url }}" alt="{{ country.slug }}">
+                    <img class="img-fluid rounded" src="{{ country.image.url }}" alt="{{ country.slug }}">
                   </a>
                 {% endthumbnail %}
                 <div class="text-center">
@@ -65,7 +65,7 @@
             {% endfor %}
             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 item-container">
               <a href="/puzzle/new/edit/">
-                <img class="img-responsive img-rounded" src="{% static 'images/new_game_placeholder.png' %}" alt="new">
+                <img class="img-fluid rounded" src="{% static 'images/new_game_placeholder.png' %}" alt="new">
               </a>
               <div class="text-center">{% trans 'New one' %}</div>
             </div>
