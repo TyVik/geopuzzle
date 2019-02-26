@@ -8,11 +8,15 @@
 
 {% block container %}
   <div class="row">
-    <ul class="nav nav-pills nav-stacked col-md-2 profile-menu" role="tablist">
-      <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">{% trans 'Profile' %}</a></li>
-      <li role="presentation"><a href="#puzzle" aria-controls="puzzle" role="tab" data-toggle="tab">{% trans 'My puzzles' %}</a></li>
+    <ul class="nav nav-pills flex-column col-md-2 profile-menu" role="tablist">
+      <li role="presentation" class="nav-item">
+        <a href="#home" aria-controls="home" role="tab" data-toggle="tab" class="nav-link active">{% trans 'Profile' %}</a>
+      </li>
+      <li role="presentation" class="nav-item">
+        <a href="#puzzle" aria-controls="puzzle" role="tab" data-toggle="tab" class="nav-link">{% trans 'My puzzles' %}</a>
+      </li>
     </ul>
-    <div class="jumbotron col-md-10 tab-content">
+    <div class="jumbotron col-md-10 tab-content profile">
       <div role="tabpanel" class="tab-pane active" id="home">
         <h2>{% trans 'Public profile' %}: @{{ request.user.username }}</h2>
         <form role="form" method="post" action="{% url 'profile' %}" enctype="multipart/form-data">

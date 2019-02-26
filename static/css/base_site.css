@@ -10,7 +10,8 @@ html {
 }
 
 .container .jumbotron.contacts,
-.container .jumbotron.workshop {
+.container .jumbotron.workshop,
+.container .jumbotron.profile {
     margin-bottom: 5rem;
 }
 
