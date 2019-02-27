@@ -30,7 +30,7 @@ class Congratulation extends React.Component {
 
   render() {
     let text = this.state.text + this.props.result + '.';
-    return <Modal show={this.state.show} onHide={this.onClose} bsSize="large" aria-labelledby="contained-modal-title-lg">
+    return <Modal show={this.state.show} onHide={this.onClose} aria-labelledby="contained-modal-title-lg">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-lg">{localization.congratulations}</Modal.Title>
       </Modal.Header>

@@ -24,7 +24,7 @@ class QuizQuestion extends React.Component {
       </table>
       <div className="quiz-bottom">
         <i className="fas fa-angle-left" onClick={this.props.onPrevious} />
-        <Button bsStyle="success" onClick={this.props.giveUp}>
+        <Button variant="success" onClick={this.props.giveUp}>
           {localization.give_up}
         </Button>
         <i className="fas fa-angle-right" onClick={this.props.onNext} />

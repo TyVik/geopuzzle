@@ -26,7 +26,7 @@ class QuizInit extends React.Component {
       return <React.Fragment>
         <i>{localization.quizInitCheck}</i>
         &nbsp;
-        <Button disabled>{localization.start}</Button>
+        <Button disabled={true}>{localization.start}</Button>
       </React.Fragment>;
     }
   }
@@ -38,15 +38,12 @@ class QuizInit extends React.Component {
       </Modal.Header>
       <Modal.Body>
         <FormGroup className="checkbox-group" controlId="quiz">
-{/*
-          <Form.Check inline label={localization.title} type="checkbox" />
-          <Checkbox inline onClick={() => this.toggle('title')} defaultChecked={this.state['title']}></Checkbox>
+          <Form.Check inline label={localization.title} onClick={() => this.toggle('title')} type="checkbox" defaultChecked={this.state['title']}/>
           {QuizInit.show_checkbox('flag') &&
-            <Checkbox inline onClick={() => this.toggle('flag')} defaultChecked={this.state['flag']}>{localization.flag}</Checkbox>}
+            <Form.Check inline label={localization.flag} onClick={() => this.toggle('flag')} type="checkbox" defaultChecked={this.state['flag']} />}
           {QuizInit.show_checkbox('coat_of_arms') &&
-            <Checkbox inline onClick={() => this.toggle('coat_of_arms')} defaultChecked={this.state['coat_of_arms']}>{localization.coat_of_arms}</Checkbox>}
-            <Checkbox inline onClick={() => this.toggle('capital')} defaultChecked={this.state['capital']}>{localization.capital}</Checkbox>
-*/}
+            <Form.Check inline label={localization.coat_of_arms} onClick={() => this.toggle('coat_of_arms')} type="checkbox" defaultChecked={this.state['coat_of_arms']}/>}
+            <Form.Check inline label={localization.capital} onClick={() => this.toggle('capital')} type="checkbox" defaultChecked={this.state['capital']} />
         </FormGroup>
       </Modal.Body>
       <Modal.Footer>

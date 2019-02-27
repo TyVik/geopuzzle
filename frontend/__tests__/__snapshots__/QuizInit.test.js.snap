@@ -19,109 +19,60 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
-      "animation": true,
-      "autoFocus": true,
-      "backdrop": true,
-      "bsClass": "modal",
       "children": Array [
-        <ModalHeader
-          bsClass="modal-header"
-          closeButton={false}
-          closeLabel="Close"
-        >
-          <ModalTitle
-            bsClass="modal-title"
-            componentClass="h4"
+        <ForwardRef(Bootstrap(ModalHeader))>
+          <ForwardRef(Bootstrap(ModalTitle))
             id="contained-modal-title-lg"
           >
             I'll search the regions by
-          </ModalTitle>
-        </ModalHeader>,
-        <ModalBody
-          bsClass="modal-body"
-          componentClass="div"
-        >
-          <FormGroup
-            bsClass="form-group"
+          </ForwardRef(Bootstrap(ModalTitle))>
+        </ForwardRef(Bootstrap(ModalHeader))>,
+        <ForwardRef(Bootstrap(ModalBody))>
+          <ForwardRef(Bootstrap(FormGroup))
             className="checkbox-group"
+            controlId="quiz"
           >
-            <Checkbox
-              bsClass="checkbox"
+            <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
-              disabled={false}
               inline={true}
+              label="Title"
               onClick={[Function]}
-              title=""
-            >
-              Title
-            </Checkbox>
-            <Checkbox
-              bsClass="checkbox"
+              type="checkbox"
+            />
+            <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
-              disabled={false}
               inline={true}
+              label="Flag"
               onClick={[Function]}
-              title=""
-            >
-              Flag
-            </Checkbox>
-            <Checkbox
-              bsClass="checkbox"
+              type="checkbox"
+            />
+            <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
-              disabled={false}
               inline={true}
+              label="Coat of arms"
               onClick={[Function]}
-              title=""
-            >
-              Coat of arms
-            </Checkbox>
-            <Checkbox
-              bsClass="checkbox"
+              type="checkbox"
+            />
+            <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
-              disabled={false}
               inline={true}
+              label="Capital"
               onClick={[Function]}
-              title=""
-            >
-              Capital
-            </Checkbox>
-          </FormGroup>
-        </ModalBody>,
-        <ModalFooter
-          bsClass="modal-footer"
-          componentClass="div"
-        >
-          <Button
-            active={false}
-            block={false}
-            bsClass="btn"
-            bsStyle="default"
-            disabled={false}
+              type="checkbox"
+            />
+          </ForwardRef(Bootstrap(FormGroup))>
+        </ForwardRef(Bootstrap(ModalBody))>,
+        <ForwardRef(Bootstrap(ModalFooter))>
+          <ForwardRef(Bootstrap(Button))
             onClick={[Function]}
           >
             Start
-          </Button>
-        </ModalFooter>,
+          </ForwardRef(Bootstrap(Button))>
+        </ForwardRef(Bootstrap(ModalFooter))>,
       ],
       "dialogClassName": "custom-modal",
-      "dialogComponentClass": [Function],
-      "enforceFocus": true,
-      "keyboard": true,
-      "manager": ModalManager {
-        "add": [Function],
-        "containers": Array [],
-        "data": Array [],
-        "handleContainerOverflow": true,
-        "hideSiblingNodes": true,
-        "isTopModal": [Function],
-        "modals": Array [],
-        "remove": [Function],
-      },
-      "onHide": [Function],
-      "renderBackdrop": [Function],
-      "restoreFocus": true,
       "show": true,
     },
     "ref": null,
@@ -129,363 +80,396 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
-          "bsClass": "modal-header",
-          "children": <ModalTitle
-            bsClass="modal-title"
-            componentClass="h4"
+          "children": <ForwardRef(Bootstrap(ModalTitle))
             id="contained-modal-title-lg"
           >
             I'll search the regions by
-          </ModalTitle>,
-          "closeButton": false,
-          "closeLabel": "Close",
+          </ForwardRef(Bootstrap(ModalTitle))>,
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "bsClass": "modal-title",
             "children": "I'll search the regions by",
-            "componentClass": "h4",
             "id": "contained-modal-title-lg",
           },
           "ref": null,
           "rendered": "I'll search the regions by",
-          "type": [Function],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
         },
-        "type": [Function],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
       },
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
-          "bsClass": "modal-body",
-          "children": <FormGroup
-            bsClass="form-group"
+          "children": <ForwardRef(Bootstrap(FormGroup))
             className="checkbox-group"
+            controlId="quiz"
           >
-            <Checkbox
-              bsClass="checkbox"
+            <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
-              disabled={false}
               inline={true}
+              label="Title"
               onClick={[Function]}
-              title=""
-            >
-              Title
-            </Checkbox>
-            <Checkbox
-              bsClass="checkbox"
+              type="checkbox"
+            />
+            <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
-              disabled={false}
               inline={true}
+              label="Flag"
               onClick={[Function]}
-              title=""
-            >
-              Flag
-            </Checkbox>
-            <Checkbox
-              bsClass="checkbox"
+              type="checkbox"
+            />
+            <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
-              disabled={false}
               inline={true}
+              label="Coat of arms"
               onClick={[Function]}
-              title=""
-            >
-              Coat of arms
-            </Checkbox>
-            <Checkbox
-              bsClass="checkbox"
+              type="checkbox"
+            />
+            <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
-              disabled={false}
               inline={true}
+              label="Capital"
               onClick={[Function]}
-              title=""
-            >
-              Capital
-            </Checkbox>
-          </FormGroup>,
-          "componentClass": "div",
+              type="checkbox"
+            />
+          </ForwardRef(Bootstrap(FormGroup))>,
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "bsClass": "form-group",
             "children": Array [
-              <Checkbox
-                bsClass="checkbox"
+              <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
-                disabled={false}
                 inline={true}
+                label="Title"
                 onClick={[Function]}
-                title=""
-              >
-                Title
-              </Checkbox>,
-              <Checkbox
-                bsClass="checkbox"
+                type="checkbox"
+              />,
+              <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
-                disabled={false}
                 inline={true}
+                label="Flag"
                 onClick={[Function]}
-                title=""
-              >
-                Flag
-              </Checkbox>,
-              <Checkbox
-                bsClass="checkbox"
+                type="checkbox"
+              />,
+              <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
-                disabled={false}
                 inline={true}
+                label="Coat of arms"
                 onClick={[Function]}
-                title=""
-              >
-                Coat of arms
-              </Checkbox>,
-              <Checkbox
-                bsClass="checkbox"
+                type="checkbox"
+              />,
+              <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
-                disabled={false}
                 inline={true}
+                label="Capital"
                 onClick={[Function]}
-                title=""
-              >
-                Capital
-              </Checkbox>,
+                type="checkbox"
+              />,
             ],
             "className": "checkbox-group",
+            "controlId": "quiz",
           },
           "ref": null,
           "rendered": Array [
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "bsClass": "checkbox",
-                "children": "Title",
                 "defaultChecked": true,
-                "disabled": false,
                 "inline": true,
+                "label": "Title",
                 "onClick": [Function],
-                "title": "",
+                "type": "checkbox",
               },
               "ref": null,
-              "rendered": "Title",
-              "type": [Function],
+              "rendered": null,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Input": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
+                "Label": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
+                "defaultProps": undefined,
+                "propTypes": undefined,
+                "render": [Function],
+              },
             },
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "bsClass": "checkbox",
-                "children": "Flag",
                 "defaultChecked": true,
-                "disabled": false,
                 "inline": true,
+                "label": "Flag",
                 "onClick": [Function],
-                "title": "",
+                "type": "checkbox",
               },
               "ref": null,
-              "rendered": "Flag",
-              "type": [Function],
+              "rendered": null,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Input": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
+                "Label": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
+                "defaultProps": undefined,
+                "propTypes": undefined,
+                "render": [Function],
+              },
             },
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "bsClass": "checkbox",
-                "children": "Coat of arms",
                 "defaultChecked": true,
-                "disabled": false,
                 "inline": true,
+                "label": "Coat of arms",
                 "onClick": [Function],
-                "title": "",
+                "type": "checkbox",
               },
               "ref": null,
-              "rendered": "Coat of arms",
-              "type": [Function],
+              "rendered": null,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Input": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
+                "Label": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
+                "defaultProps": undefined,
+                "propTypes": undefined,
+                "render": [Function],
+              },
             },
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "bsClass": "checkbox",
-                "children": "Capital",
                 "defaultChecked": true,
-                "disabled": false,
                 "inline": true,
+                "label": "Capital",
                 "onClick": [Function],
-                "title": "",
+                "type": "checkbox",
               },
               "ref": null,
-              "rendered": "Capital",
-              "type": [Function],
+              "rendered": null,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Input": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
+                "Label": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
+                "defaultProps": undefined,
+                "propTypes": undefined,
+                "render": [Function],
+              },
             },
           ],
-          "type": [Function],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
         },
-        "type": [Function],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
       },
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
-          "bsClass": "modal-footer",
-          "children": <Button
-            active={false}
-            block={false}
-            bsClass="btn"
-            bsStyle="default"
-            disabled={false}
+          "children": <ForwardRef(Bootstrap(Button))
             onClick={[Function]}
           >
             Start
-          </Button>,
-          "componentClass": "div",
+          </ForwardRef(Bootstrap(Button))>,
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "active": false,
-            "block": false,
-            "bsClass": "btn",
-            "bsStyle": "default",
             "children": "Start",
-            "disabled": false,
             "onClick": [Function],
           },
           "ref": null,
           "rendered": "Start",
-          "type": [Function],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
         },
-        "type": [Function],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
       },
     ],
-    "type": [Function],
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "BACKDROP_TRANSITION_DURATION": 150,
+      "Body": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "Dialog": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "Footer": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "Header": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "TRANSITION_DURATION": 300,
+      "Title": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "defaultProps": undefined,
+      "propTypes": undefined,
+      "render": [Function],
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
-        "animation": true,
-        "autoFocus": true,
-        "backdrop": true,
-        "bsClass": "modal",
         "children": Array [
-          <ModalHeader
-            bsClass="modal-header"
-            closeButton={false}
-            closeLabel="Close"
-          >
-            <ModalTitle
-              bsClass="modal-title"
-              componentClass="h4"
+          <ForwardRef(Bootstrap(ModalHeader))>
+            <ForwardRef(Bootstrap(ModalTitle))
               id="contained-modal-title-lg"
             >
               I'll search the regions by
-            </ModalTitle>
-          </ModalHeader>,
-          <ModalBody
-            bsClass="modal-body"
-            componentClass="div"
-          >
-            <FormGroup
-              bsClass="form-group"
+            </ForwardRef(Bootstrap(ModalTitle))>
+          </ForwardRef(Bootstrap(ModalHeader))>,
+          <ForwardRef(Bootstrap(ModalBody))>
+            <ForwardRef(Bootstrap(FormGroup))
               className="checkbox-group"
+              controlId="quiz"
             >
-              <Checkbox
-                bsClass="checkbox"
+              <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
-                disabled={false}
                 inline={true}
+                label="Title"
                 onClick={[Function]}
-                title=""
-              >
-                Title
-              </Checkbox>
-              <Checkbox
-                bsClass="checkbox"
+                type="checkbox"
+              />
+              <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
-                disabled={false}
                 inline={true}
+                label="Flag"
                 onClick={[Function]}
-                title=""
-              >
-                Flag
-              </Checkbox>
-              <Checkbox
-                bsClass="checkbox"
+                type="checkbox"
+              />
+              <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
-                disabled={false}
                 inline={true}
+                label="Coat of arms"
                 onClick={[Function]}
-                title=""
-              >
-                Coat of arms
-              </Checkbox>
-              <Checkbox
-                bsClass="checkbox"
+                type="checkbox"
+              />
+              <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
-                disabled={false}
                 inline={true}
+                label="Capital"
                 onClick={[Function]}
-                title=""
-              >
-                Capital
-              </Checkbox>
-            </FormGroup>
-          </ModalBody>,
-          <ModalFooter
-            bsClass="modal-footer"
-            componentClass="div"
-          >
-            <Button
-              active={false}
-              block={false}
-              bsClass="btn"
-              bsStyle="default"
-              disabled={false}
+                type="checkbox"
+              />
+            </ForwardRef(Bootstrap(FormGroup))>
+          </ForwardRef(Bootstrap(ModalBody))>,
+          <ForwardRef(Bootstrap(ModalFooter))>
+            <ForwardRef(Bootstrap(Button))
               onClick={[Function]}
             >
               Start
-            </Button>
-          </ModalFooter>,
+            </ForwardRef(Bootstrap(Button))>
+          </ForwardRef(Bootstrap(ModalFooter))>,
         ],
         "dialogClassName": "custom-modal",
-        "dialogComponentClass": [Function],
-        "enforceFocus": true,
-        "keyboard": true,
-        "manager": ModalManager {
-          "add": [Function],
-          "containers": Array [],
-          "data": Array [],
-          "handleContainerOverflow": true,
-          "hideSiblingNodes": true,
-          "isTopModal": [Function],
-          "modals": Array [],
-          "remove": [Function],
-        },
-        "onHide": [Function],
-        "renderBackdrop": [Function],
-        "restoreFocus": true,
         "show": true,
       },
       "ref": null,
@@ -493,255 +477,337 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "bsClass": "modal-header",
-            "children": <ModalTitle
-              bsClass="modal-title"
-              componentClass="h4"
+            "children": <ForwardRef(Bootstrap(ModalTitle))
               id="contained-modal-title-lg"
             >
               I'll search the regions by
-            </ModalTitle>,
-            "closeButton": false,
-            "closeLabel": "Close",
+            </ForwardRef(Bootstrap(ModalTitle))>,
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "function",
             "props": Object {
-              "bsClass": "modal-title",
               "children": "I'll search the regions by",
-              "componentClass": "h4",
               "id": "contained-modal-title-lg",
             },
             "ref": null,
             "rendered": "I'll search the regions by",
-            "type": [Function],
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
           },
-          "type": [Function],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
         },
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "bsClass": "modal-body",
-            "children": <FormGroup
-              bsClass="form-group"
+            "children": <ForwardRef(Bootstrap(FormGroup))
               className="checkbox-group"
+              controlId="quiz"
             >
-              <Checkbox
-                bsClass="checkbox"
+              <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
-                disabled={false}
                 inline={true}
+                label="Title"
                 onClick={[Function]}
-                title=""
-              >
-                Title
-              </Checkbox>
-              <Checkbox
-                bsClass="checkbox"
+                type="checkbox"
+              />
+              <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
-                disabled={false}
                 inline={true}
+                label="Flag"
                 onClick={[Function]}
-                title=""
-              >
-                Flag
-              </Checkbox>
-              <Checkbox
-                bsClass="checkbox"
+                type="checkbox"
+              />
+              <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
-                disabled={false}
                 inline={true}
+                label="Coat of arms"
                 onClick={[Function]}
-                title=""
-              >
-                Coat of arms
-              </Checkbox>
-              <Checkbox
-                bsClass="checkbox"
+                type="checkbox"
+              />
+              <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
-                disabled={false}
                 inline={true}
+                label="Capital"
                 onClick={[Function]}
-                title=""
-              >
-                Capital
-              </Checkbox>
-            </FormGroup>,
-            "componentClass": "div",
+                type="checkbox"
+              />
+            </ForwardRef(Bootstrap(FormGroup))>,
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "function",
             "props": Object {
-              "bsClass": "form-group",
               "children": Array [
-                <Checkbox
-                  bsClass="checkbox"
+                <ForwardRef(Bootstrap(FormCheck))
                   defaultChecked={true}
-                  disabled={false}
                   inline={true}
+                  label="Title"
                   onClick={[Function]}
-                  title=""
-                >
-                  Title
-                </Checkbox>,
-                <Checkbox
-                  bsClass="checkbox"
+                  type="checkbox"
+                />,
+                <ForwardRef(Bootstrap(FormCheck))
                   defaultChecked={true}
-                  disabled={false}
                   inline={true}
+                  label="Flag"
                   onClick={[Function]}
-                  title=""
-                >
-                  Flag
-                </Checkbox>,
-                <Checkbox
-                  bsClass="checkbox"
+                  type="checkbox"
+                />,
+                <ForwardRef(Bootstrap(FormCheck))
                   defaultChecked={true}
-                  disabled={false}
                   inline={true}
+                  label="Coat of arms"
                   onClick={[Function]}
-                  title=""
-                >
-                  Coat of arms
-                </Checkbox>,
-                <Checkbox
-                  bsClass="checkbox"
+                  type="checkbox"
+                />,
+                <ForwardRef(Bootstrap(FormCheck))
                   defaultChecked={true}
-                  disabled={false}
                   inline={true}
+                  label="Capital"
                   onClick={[Function]}
-                  title=""
-                >
-                  Capital
-                </Checkbox>,
+                  type="checkbox"
+                />,
               ],
               "className": "checkbox-group",
+              "controlId": "quiz",
             },
             "ref": null,
             "rendered": Array [
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
-                  "bsClass": "checkbox",
-                  "children": "Title",
                   "defaultChecked": true,
-                  "disabled": false,
                   "inline": true,
+                  "label": "Title",
                   "onClick": [Function],
-                  "title": "",
+                  "type": "checkbox",
                 },
                 "ref": null,
-                "rendered": "Title",
-                "type": [Function],
+                "rendered": null,
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "Input": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": undefined,
+                    "propTypes": undefined,
+                    "render": [Function],
+                  },
+                  "Label": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": undefined,
+                    "propTypes": undefined,
+                    "render": [Function],
+                  },
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
               },
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
-                  "bsClass": "checkbox",
-                  "children": "Flag",
                   "defaultChecked": true,
-                  "disabled": false,
                   "inline": true,
+                  "label": "Flag",
                   "onClick": [Function],
-                  "title": "",
+                  "type": "checkbox",
                 },
                 "ref": null,
-                "rendered": "Flag",
-                "type": [Function],
+                "rendered": null,
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "Input": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": undefined,
+                    "propTypes": undefined,
+                    "render": [Function],
+                  },
+                  "Label": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": undefined,
+                    "propTypes": undefined,
+                    "render": [Function],
+                  },
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
               },
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
-                  "bsClass": "checkbox",
-                  "children": "Coat of arms",
                   "defaultChecked": true,
-                  "disabled": false,
                   "inline": true,
+                  "label": "Coat of arms",
                   "onClick": [Function],
-                  "title": "",
+                  "type": "checkbox",
                 },
                 "ref": null,
-                "rendered": "Coat of arms",
-                "type": [Function],
+                "rendered": null,
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "Input": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": undefined,
+                    "propTypes": undefined,
+                    "render": [Function],
+                  },
+                  "Label": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": undefined,
+                    "propTypes": undefined,
+                    "render": [Function],
+                  },
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
               },
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
-                  "bsClass": "checkbox",
-                  "children": "Capital",
                   "defaultChecked": true,
-                  "disabled": false,
                   "inline": true,
+                  "label": "Capital",
                   "onClick": [Function],
-                  "title": "",
+                  "type": "checkbox",
                 },
                 "ref": null,
-                "rendered": "Capital",
-                "type": [Function],
+                "rendered": null,
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "Input": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": undefined,
+                    "propTypes": undefined,
+                    "render": [Function],
+                  },
+                  "Label": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": undefined,
+                    "propTypes": undefined,
+                    "render": [Function],
+                  },
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
               },
             ],
-            "type": [Function],
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
           },
-          "type": [Function],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
         },
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "bsClass": "modal-footer",
-            "children": <Button
-              active={false}
-              block={false}
-              bsClass="btn"
-              bsStyle="default"
-              disabled={false}
+            "children": <ForwardRef(Bootstrap(Button))
               onClick={[Function]}
             >
               Start
-            </Button>,
-            "componentClass": "div",
+            </ForwardRef(Bootstrap(Button))>,
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "function",
             "props": Object {
-              "active": false,
-              "block": false,
-              "bsClass": "btn",
-              "bsStyle": "default",
               "children": "Start",
-              "disabled": false,
               "onClick": [Function],
             },
             "ref": null,
             "rendered": "Start",
-            "type": [Function],
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
           },
-          "type": [Function],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
         },
       ],
-      "type": [Function],
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "BACKDROP_TRANSITION_DURATION": 150,
+        "Body": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Dialog": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Footer": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Header": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "TRANSITION_DURATION": 300,
+        "Title": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {
