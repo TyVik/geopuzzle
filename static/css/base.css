@@ -6,3 +6,7 @@ nav.menu {
     max-width: 185px;
     height: 40px;
 }
+
+.donate-button iframe {
+    max-width: 185px;
+}

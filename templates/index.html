@@ -4,8 +4,8 @@
 {% block container %}
         <div class="jumbotron row">
             <h2>{% trans 'Arrange the pieces of the world!' %}</h2>
-            <p>{% blocktrans %}Here, in the form of a game, you can learn the names and locations of each country or state and have fun doing it. In your hands are all of the regions of the world! Select a region in its proper place or from a list and look at it flag, coat of arms and perhaps even more information to help you learn geography.{% endblocktrans %}</p>
-            <p>{% blocktrans %}Moreover, you can create your own puzzles from more than 100,000 regions after registration!{% endblocktrans %}</p>
+            <p class="blockquote">{% blocktrans %}Here, in the form of a game, you can learn the names and locations of each country or state and have fun doing it. In your hands are all of the regions of the world! Select a region in its proper place or from a list and look at it flag, coat of arms and perhaps even more information to help you learn geography.{% endblocktrans %}</p>
+            <p class="blockquote">{% blocktrans %}Moreover, you can create your own puzzles from more than 100,000 regions after registration!{% endblocktrans %}</p>
         </div>
         <div class="row">
             <ul class="nav nav-tabs nav-justified">
@@ -23,24 +23,24 @@
                             <div class="media row p-3">
                                 {% with "images/"|add:game.name|add:".gif" as image_link %}
                                     <img src="{% static image_link %}" alt="{{ game.name }}"
-                                         class="pull-left mr-3">
+                                         class="pull-left mr-3 img-fluid">
                                 {% endwith %}
-                                <div class="media-body">
-                                    <p class="h4">{{ game.rules }}</p>
+                                <div class="media-body blockquote">
+                                    <p>{{ game.rules }}</p>
                                 </div>
                             </div>
                             <h1 class="text-center">{% trans 'World' %}</h1>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-12 my-4 item-container">
                                     <a href="{% url game.link 'easy' %}">
-                                        <img class="rounded"
+                                        <img class="rounded img-fluid"
                                              src="{% static 'images/world/easy.png' %}" alt="easy">
                                     </a>
                                     <div class="text-center">{% trans 'easy countries' %}</div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-12 my-4 item-container">
                                     <a href="{% url game.link 'world' %}">
-                                        <img class="rounded"
+                                        <img class="rounded img-fluid"
                                              src="{% static 'images/world/all.png' %}" alt="normal">
                                     </a>
                                     <div class="text-center">{% trans 'all countries' %}</div>
@@ -78,7 +78,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="jumbotron row contacts">
+        <div class="jumbotron row contacts blockquote">
           <p>
               {% blocktrans %}All suggestions for improvement can be sent to me via
                   <a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle">email</a>,
