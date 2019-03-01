@@ -40,5 +40,22 @@
     "tooManyRegions": "Too many regions",
 
     "search": "Search",
-    "tags": "Tags"
+    "tags": "Tags",
+
+    "profile": "Profile",
+    "publicProfile": "Public profile",
+    "changePassword": "Change password",
+    "socialProfile": "Social accounts",
+    "password.changed": "Password has been changed",
+    "password.current": "Current password",
+    "password.new": "New password",
+    "password.change": "Change",
+    "unlink": "unlink",
+    "username": "Username",
+    "email": "Email",
+    "language": "Language",
+    "subscribe": "News subscription",
+    "submit": "Submit",
+    "english": "English",
+    "russian": "Russian"
 }

@@ -4,6 +4,7 @@ import {Alert, Button, Form} from "react-bootstrap";
 import {CSRFfetch, getFormData} from "../utils";
 import {PasswordInput} from '../components/Input';
 import {Field, Form as FormWrapper} from "react-final-form";
+import {FormattedMessage as Msg} from "react-intl";
 
 
 export default class ChangePasswordForm extends React.Component {
@@ -22,10 +23,10 @@ export default class ChangePasswordForm extends React.Component {
   _render = ({handleSubmit, form, submitting}) => {
     let state = form.getState();
     return <Form onSubmit={handleSubmit}>
-      {state.submitSucceeded && <Alert variant="success">Password has been changed successfully.</Alert>}
-      <Field name="old_password" component={PasswordInput} label="Current password"/>
-      <Field name="new_password1" component={PasswordInput} label="New password"/>
-      <Button variant="primary" type="submit" >Submit</Button>
+      {state.submitSucceeded && <Alert variant="success"><Msg id="password.changed"/></Alert>}
+      <Field name="old_password" component={PasswordInput} label={<Msg id="password.current"/>}/>
+      <Field name="new_password1" component={PasswordInput} label={<Msg id="password.new"/>}/>
+      <Button variant="primary" type="submit" ><Msg id="password.change"/></Button>
       {submitting && <div className="spinner-border" role="status" />}
     </Form>;
   };

@@ -1,6 +1,7 @@
 'use strict';
 import React from "react";
 import {Row, Col} from "react-bootstrap";
+import {FormattedMessage as Msg} from "react-intl";
 
 
 export default class SocialLinksForm extends React.Component {
@@ -19,7 +20,7 @@ export default class SocialLinksForm extends React.Component {
   render_unlink = (item) => {
     return <React.Fragment>
       <div className={`btn btn-lg btn-${item.class} btn-block`}>{item.label}</div>
-      <a href={`${this.UNLINK_URL}${item.slug}/`} className="text-center d-block">unlink</a>
+      <a href={`${this.UNLINK_URL}${item.slug}/`} className="text-center d-block"><Msg id="unlink"/></a>
     </React.Fragment>;
   };
 

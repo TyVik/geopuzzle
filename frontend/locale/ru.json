@@ -40,5 +40,22 @@
     "tooManyRegions": "Слишком много регионов",
 
     "search": "Поиск",
-    "tags": "Тег"
+    "tags": "Тег",
+
+    "profile": "Профиль",
+    "publicProfile": "Публичный профиль",
+    "changePassword": "Сменить пароль",
+    "socialProfile": "Социальные сети",
+    "password.changed": "Пароль был успешно изменён",
+    "password.current": "Текущий пароль",
+    "password.new": "Новый пароль",
+    "password.change": "Сменить",
+    "unlink": "отвязать",
+    "username": "Имя пользователя",
+    "email": "Email",
+    "language": "Язык интерфейса",
+    "subscribe": "Подписка на новости",
+    "submit": "Сохранить",
+    "english": "Английский",
+    "russian": "Русский"
 }
