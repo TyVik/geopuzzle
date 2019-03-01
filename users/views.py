@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView as DefaultLoginView
@@ -36,6 +37,8 @@ class ProfileView(TemplateResponseMixin, BaseUpdateView):
 
     def get_context_data(self, **kwargs):
         kwargs['form'] = ProfileForm(instance=self.object)
+        connected_providers = list(self.object.social_auth.values_list('provider', flat=True))
+        kwargs['providers'] = [{'slug': key, 'connected': key in connected_providers, **value} for key, value in settings.BACKEND_DESCRIBERS.items()]
         return super(ProfileView, self).get_context_data(**kwargs)
 
     def form_invalid(self, form):

@@ -4,6 +4,7 @@ import localization from "../localization";
 import {Card, Col, Nav, Row, Tab} from "react-bootstrap";
 import ProfileForm from "./ProfileForm";
 import ChangePasswordForm from "./ChangePasswordForm";
+import SocialLinksForm from "./SocialLinksForm";
 
 
 export default class Profile extends React.Component {
@@ -37,6 +38,7 @@ export default class Profile extends React.Component {
               <Card className="my-2">
                 <Card.Header>Social accounts</Card.Header>
                 <Card.Body>
+                  <SocialLinksForm/>
                 </Card.Body>
               </Card>
             </Tab.Pane>

@@ -6,10 +6,9 @@ from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm as DefaultAuthenticationForm, UsernameField
 from django.core.files.base import ContentFile
 from django.forms import ModelForm
-from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext_lazy as _
 
-
+from common.utils import random_string
 from users.models import User
 
 
@@ -64,5 +63,5 @@ class ProfileForm(UsernameEmailValidation, ModelForm):
             format, imgstr = value.split(';base64,')
             ext = format.split('/')[-1]
 
-            return ContentFile(base64.b64decode(imgstr), name=f'{get_random_string()}.{ext}')
+            return ContentFile(base64.b64decode(imgstr), name=f'{random_string()}.{ext}')
         return value.replace('/upload/', '')

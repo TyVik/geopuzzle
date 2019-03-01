@@ -230,6 +230,11 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
+BACKEND_DESCRIBERS = {
+    'google-oauth2': {'label': 'Google', 'class': 'google'},
+    'facebook': {'label': 'FB', 'class': 'facebook'},
+    'vk-oauth2': {'label': 'VK', 'class': 'vk'},
+}
 SOCIAL_AUTH_USER_MODEL = 'users.User'
 SOCIAL_AUTH_SANITIZE_REDIRECTS = True
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/error/'

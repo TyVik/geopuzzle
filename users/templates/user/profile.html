@@ -48,6 +48,7 @@
   {{ block.super }}
   <script type='text/javascript'>
     window.__USER__ = {{ form.initial|jsonify }};
+    window.__PROVIDERS__ = {{ providers|jsonify }};
   </script>
   <script type="text/javascript" src={% static "js/common.js" %}></script>
   <script type="text/javascript" src={% static "js/components.js" %}></script>
