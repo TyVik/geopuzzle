@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-12 14:41+0000\n"
+"POT-Creation-Date: 2019-03-01 21:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,7 +153,7 @@ msgstr "регионы"
 msgid "Mercator puzzle of "
 msgstr "Паззл Меркатора - "
 
-#: templates/base.html:5 templates/index.html:33
+#: templates/base.html:5 templates/index.html:32
 msgid "World"
 msgstr "Мир"
 
@@ -161,21 +161,25 @@ msgstr "Мир"
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
 
-#: templates/base.html:43
+#: templates/base.html:37
+msgid "Home"
+msgstr "Домой"
+
+#: templates/base.html:40
 msgid "Workshop"
 msgstr "Мастерская"
 
-#: templates/base.html:53
+#: templates/base.html:55
 msgid "logout"
 msgstr "выйти"
 
-#: templates/base.html:55 users/templates/registration/login.html:5
+#: templates/base.html:57 users/templates/registration/login.html:5
 #: users/templates/registration/login.html:26
 #: users/templates/registration/registration.html:5
 msgid "Sign In"
 msgstr "Войти"
 
-#: templates/base.html:56 users/templates/registration/login.html:5
+#: templates/base.html:58 users/templates/registration/login.html:5
 #: users/templates/registration/registration.html:5
 #: users/templates/registration/registration.html:31
 msgid "Sign Up"
@@ -202,18 +206,19 @@ msgstr ""
 "Более того, после регистрации вы можете создавать свои собственные игры из "
 "более чем 100 000 кусочков!"
 
-#: templates/index.html:40
+#: templates/index.html:39
 msgid "easy countries"
 msgstr "лёгкие страны"
 
-#: templates/index.html:47
+#: templates/index.html:46
 msgid "all countries"
 msgstr "все страны"
 
-#: templates/index.html:63
+#: templates/index.html:62
 msgid "Country regions"
 msgstr "Регионы стран"
 
+#: templates/index.html:83
 msgid ""
 "All suggestions for improvement can be sent to me via\n"
 "                  <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle"
@@ -222,11 +227,12 @@ msgid ""
 "                  or <a href=\"https://www.facebook.com/TyVikZero\" target="
 "\"_blank\">facebook</a>."
 msgstr ""
-"Все пожелания можно направить мне на <a href="
-"\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">почту</a>, в <a href="
-"\"https://vk.com/tyvik\" target=\"_blank\">Vk</a> или в <a href=\"https://"
-"www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
+"Все пожелания можно направить мне на <a href=\"mailto:tyvik8@gmail.com?"
+"&subject=GeoPuzzle\">почту</a>, в <a href=\"https://vk.com/tyvik\" target="
+"\"_blank\">Vk</a> или в <a href=\"https://www.facebook.com/TyVikZero\" "
+"target=\"_blank\">facebook</a>."
 
+#: templates/index.html:87
 msgid ""
 "You always can support the project with donations via <a href=\"https://www."
 "paypal.me/tyvik\">PayPal</a>,\n"
@@ -242,47 +248,35 @@ msgstr ""
 msgid "Games on political maps"
 msgstr "Игры на политической карте"
 
-#: users/forms.py:12 users/forms.py:18
+#: users/forms.py:16 users/forms.py:36
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: users/forms.py:14 users/forms.py:21
+#: users/forms.py:18 users/forms.py:39
 msgid "Password"
 msgstr "Пароль"
 
-#: users/forms.py:50 users/models.py:11
+#: users/models.py:9
 msgid "Avatar"
 msgstr "Аватар"
 
-#: users/models.py:12
+#: users/models.py:10
 msgid "Language"
 msgstr "Язык интерфейса"
 
-#: users/models.py:13
+#: users/models.py:11
 msgid "Subscribed on news"
 msgstr "Подписка на новости"
 
-#: users/templates/registration/base.html:29
+#: users/templates/registration/base.html:27
 msgid "or"
 msgstr "или"
 
-#: users/templates/user/profile.html:12
-msgid "Profile"
-msgstr "Профиль"
-
-#: users/templates/user/profile.html:13
+#: users/templates/user/profile.html:14
 msgid "My puzzles"
 msgstr "Мои пазлы"
 
-#: users/templates/user/profile.html:17
-msgid "Public profile"
-msgstr "Профиль"
-
-#: users/templates/user/profile.html:42
-msgid "Save"
-msgstr "Сохранить"
-
-#: users/templates/user/profile.html:66
+#: users/templates/user/profile.html:39
 msgid "New one"
 msgstr "Добавить ещё"
 
