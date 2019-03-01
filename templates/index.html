@@ -51,7 +51,7 @@
                                     <div class="col-md-3 col-sm-3 col-6 my-4 item-container">
                                         {% thumbnail part.image "250x250" format="PNG" quality=80 as im %}
                                             <a href="{% url game.link part.slug %}">
-                                                <img class="rounded" src="{{ im.url }}"
+                                                <img class="img-fluid rounded" src="{{ im.url }}"
                                                      alt="{{ part.name }}">
                                             </a>
                                         {% endthumbnail %}
@@ -65,7 +65,7 @@
                                     <div class="col-md-2 col-sm-3 col-6 my-2 item-container">
                                         {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
                                             <a href="{% url game.link country.slug %}">
-                                                <img class="rounded" src="{{ im.url }}"
+                                                <img class="img-fluid rounded" src="{{ im.url }}"
                                                      alt="{{ country.name }}">
                                             </a>
                                         {% endthumbnail %}
