@@ -65,7 +65,7 @@
     "@sentry/cli": "1.37.4",
     "html2canvas": "^1.0.0-alpha.12",
     "js-cookie": "^2.2.0",
-    "react": "^16.6.1",
+    "react": "^16.8.3",
     "react-bootstrap": "^0.32.4",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.6.1",
