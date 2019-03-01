@@ -1,7 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import QuizInit from '../games/components/QuizInit';
-import localization from "../localization";
 import {Button, Modal} from "react-bootstrap";
 
 
@@ -26,7 +25,7 @@ describe('shallow <QuizInit /> components', () => {
       wrapper.instance().toggle(key);
     });
     expect(wrapper.find(Button).prop('disabled')).toBe(true);
-    expect(wrapper.find(Modal.Footer).childAt(0).text()).toMatch(localization.quizInitCheck);
+    expect(wrapper.find(Modal.Footer).childAt(0).text()).toMatch("Choose at least one option");
     wrapper.instance().toggle('title');
     wrapper.find(Button).simulate('click');
     expect(onLoad).toHaveBeenCalledWith({title: true, flag: false, coat_of_arms: false, capital: false});

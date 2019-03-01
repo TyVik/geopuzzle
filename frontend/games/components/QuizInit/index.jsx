@@ -1,7 +1,8 @@
 'use strict';
 import React from "react";
-import localization from '../../../localization';
 import {Button, Modal, FormGroup, Form} from "react-bootstrap";
+import {FormattedMessage as Msg} from "react-intl";
+
 import "./index.css";
 
 
@@ -21,12 +22,12 @@ class QuizInit extends React.Component {
 
   render_footer() {
     if (this.state.title || this.state.flag || this.state.coat_of_arms || this.state.capital) {
-      return <Button onClick={() => this.props.load(this.state)}>{localization.start}</Button>;
+      return <Button onClick={() => this.props.load(this.state)}><Msg id="start"/></Button>;
     } else {
       return <React.Fragment>
-        <i>{localization.quizInitCheck}</i>
+        <i><Msg id="quizInitCheck"/></i>
         &nbsp;
-        <Button disabled={true}>{localization.start}</Button>
+        <Button disabled={true}><Msg id="start"/></Button>
       </React.Fragment>;
     }
   }
@@ -34,16 +35,16 @@ class QuizInit extends React.Component {
   render() {
     return <Modal show={this.props.show} dialogClassName="custom-modal">
       <Modal.Header>
-        <Modal.Title id="contained-modal-title-lg">{localization.quizInitCaption}</Modal.Title>
+        <Modal.Title id="contained-modal-title-lg"><Msg id="quizInitCaption"/></Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <FormGroup className="checkbox-group" controlId="quiz">
-          <Form.Check inline label={localization.title} onClick={() => this.toggle('title')} type="checkbox" defaultChecked={this.state['title']}/>
+          <Form.Check inline label={<Msg id="title"/>} onClick={() => this.toggle('title')} type="checkbox" defaultChecked={this.state['title']}/>
           {QuizInit.show_checkbox('flag') &&
-            <Form.Check inline label={localization.flag} onClick={() => this.toggle('flag')} type="checkbox" defaultChecked={this.state['flag']} />}
+            <Form.Check inline label={<Msg id="flag"/>} onClick={() => this.toggle('flag')} type="checkbox" defaultChecked={this.state['flag']} />}
           {QuizInit.show_checkbox('coat_of_arms') &&
-            <Form.Check inline label={localization.coat_of_arms} onClick={() => this.toggle('coat_of_arms')} type="checkbox" defaultChecked={this.state['coat_of_arms']}/>}
-            <Form.Check inline label={localization.capital} onClick={() => this.toggle('capital')} type="checkbox" defaultChecked={this.state['capital']} />
+            <Form.Check inline label={<Msg id="coat_of_arms"/>} onClick={() => this.toggle('coat_of_arms')} type="checkbox" defaultChecked={this.state['coat_of_arms']}/>}
+            <Form.Check inline label={<Msg id="capital"/>} onClick={() => this.toggle('capital')} type="checkbox" defaultChecked={this.state['capital']} />
         </FormGroup>
       </Modal.Body>
       <Modal.Footer>

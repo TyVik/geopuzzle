@@ -2,10 +2,8 @@
 import React from "react";
 import Game from "./Game";
 import {decodePolygon, moveTo, prepareInfobox} from "../utils";
-import localization from "../localization";
-
-
-import Button from "react-bootstrap/es/Button";
+import {FormattedMessage as Msg} from "react-intl";
+import {Button} from "react-bootstrap";
 
 
 class Puzzle extends Game {
@@ -107,10 +105,10 @@ class Puzzle extends Game {
   render_question() {
     return <div className="text-center">
       <Button variant="primary" onClick={this.giveUp} className="mx-2">
-        {localization.give_up}
+        <Msg id="give_up"/>
       </Button>
       <Button variant="warning" onClick={this.refreshMap} className="mx-2">
-        {localization.fix_problem}
+        <Msg id="fix_problem"/>
       </Button>
     </div>;
   }

@@ -1,7 +1,8 @@
 'use strict';
 import React from "react";
 import {Collapse} from "react-bootstrap";
-import localization from "../../../localization";
+import {FormattedMessage as Msg} from "react-intl";
+
 import "./index.css";
 
 
@@ -15,7 +16,7 @@ class Infobox extends React.Component {
   renderAttribute(name) {
     if (this.props[name]) {
       return <tr>
-        <td>{localization[name]}</td>
+        <td><Msg id={name}/></td>
         <td>{this.props[name]}</td>
       </tr>;
     } else {
@@ -59,7 +60,7 @@ class Infobox extends React.Component {
                 </tr>}
               {this.props.capital &&
                 <tr>
-                  <td>{localization.capital}</td>
+                  <td><Msg id="capital"/></td>
                   <td><a href={this.props.capital.wiki} target="_blank">{this.props.capital.name}</a></td>
                 </tr>}
               {this.renderAttribute('area')}

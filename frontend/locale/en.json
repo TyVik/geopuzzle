@@ -1,0 +1,44 @@
+{
+    "capital": "Capital",
+    "flag": "Flag",
+    "coat_of_arms": "Coat of arms",
+    "title": "Title",
+    "area": "Area",
+    "population": "Population",
+    "currency": "Currency",
+    "phone": "Phone",
+    "km2": "sq. km.",
+
+    "loading": "Loading...",
+    "loadingError": "Something wrong :(",
+    "networkError": "Connecting to server...",
+
+    "found": "Found",
+    "give_up": "give up",
+    "fix_problem": "game is broken",
+    "once_again": "once again",
+    "congratulations": "Congratulations!",
+    "timeOverhead": "more then day",
+    "start": "Start",
+
+    "quizInitCaption": "I\"ll search the regions by",
+    "quizInitCheck": "Choose at least one option",
+
+    "localization": "Localization",
+    "enTitle": "English title",
+    "ruTitle": "Russian title",
+    "availableRegions": "Available regions",
+    "preview": "Preview",
+    "previewWarning": "position and zoom will be saved as default for that game",
+    "publish": "Publish",
+    "publishedToMe": "Allow only you",
+    "publishedToAll": "Allow to any users",
+    "selectAtLeastOneRegion": "Select at least one region",
+    "save": "Save",
+    "bugReport": "Something went wrong. Please {0}.",
+    "emailMe": "email me",
+    "tooManyRegions": "Too many regions",
+
+    "search": "Search",
+    "tags": "Tags"
+}

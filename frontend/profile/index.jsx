@@ -1,6 +1,5 @@
 'use strict';
 import React from "react";
-import localization from "../localization";
 import {Card, Col, Nav, Row, Tab} from "react-bootstrap";
 import ProfileForm from "./ProfileForm";
 import ChangePasswordForm from "./ChangePasswordForm";

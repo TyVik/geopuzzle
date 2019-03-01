@@ -3,9 +3,10 @@
 import React from "react";
 import {Collapse} from "react-bootstrap";
 import { Scrollbars } from 'react-custom-scrollbars';
-import localization from "../../../localization";
-import "./index.css";
 import ListGroup from "react-bootstrap/ListGroup";
+import {FormattedMessage as Msg} from "react-intl";
+
+import "./index.css";
 
 
 const NameListItem = (props) => {
@@ -42,8 +43,8 @@ class Toolbox extends React.Component {
       <div className="toolbox">
         <div className="listname-wrapper" onClick={this.toggleCollapse} aria-controls={this.COLLAPSE_ID} aria-expanded={!this.state.collapse}>
           {this.props.wsState !== true &&
-            <div id="network_connection_label">{localization.networkError}</div>}
-          {localization.found}: <span>{solved}</span>/<span>{this.props.regions.length}</span>
+            <div id="network_connection_label"><Msg id="networkError"/></div>}
+          <Msg id="found"/>: <span>{solved}</span>/<span>{this.props.regions.length}</span>
           <i className={"fas fa-angle-" + (this.state.collapse ? 'up' : 'down')} />
         </div>
         <Collapse in={!this.state.collapse}>

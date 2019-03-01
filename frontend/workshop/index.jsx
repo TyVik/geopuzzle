@@ -2,7 +2,7 @@
 import React from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loading from "../components/Loading/index";
-import localization from "../localization";
+import {FormattedMessage as Msg} from 'react-intl';
 
 
 class Workshop extends React.Component {
@@ -71,13 +71,13 @@ class Workshop extends React.Component {
     return <form className="row justify-content-between">
       <div className="input-group col-sm-5">
         <div className="input-group-prepend">
-          <span className="input-group-text" id="search-label">{localization.search}:</span>
+          <span className="input-group-text" id="search-label"><Msg id="search"/>:</span>
         </div>
         <input type="text" className="form-control" maxLength="50" id="search-input" onChange={this.onChange} value={this.state.search} aria-describedby="basic-search-label"/>
       </div>
       <div className="input-group col-sm-5">
         <div className="input-group-prepend">
-          <span className="input-group-text" id="tag-label">{localization.tags}:</span>
+          <span className="input-group-text" id="tag-label"><Msg id="tags"/>:</span>
         </div>
         <select className="form-control" id="tag-input" onChange={this.onChangeTag} value={this.state.tag} aria-describedby="tag-label">
           <option value={0}>--</option>
@@ -89,13 +89,13 @@ class Workshop extends React.Component {
 
   render() {
     if (this.state.page === 0) {
-      return <Loading text={localization.loading}/>;
+      return <Loading/>;
     }
     let puzzles = this.state.puzzles;
     return <React.Fragment>
       {this.render_controls()}
       <InfiniteScroll dataLength={puzzles.length} children={puzzles} next={this.fetchNextPage} className="row"
-                             hasMore={this.state.hasMore} loader={<Loading text={localization.loading}/>}>
+                             hasMore={this.state.hasMore} loader={<Loading/>}>
         {puzzles.map(this.render_map)}
       </InfiniteScroll>
     </React.Fragment>;

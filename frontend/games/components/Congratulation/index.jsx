@@ -1,7 +1,7 @@
 'use strict';
 import React from "react";
 import {Modal} from 'react-bootstrap';
-import localization from '../../../localization';
+import {FormattedMessage as Msg} from "react-intl";
 
 
 class Congratulation extends React.Component {
@@ -32,7 +32,7 @@ class Congratulation extends React.Component {
     let text = this.state.text + this.props.result + '.';
     return <Modal show={this.state.show} onHide={this.onClose} aria-labelledby="contained-modal-title-lg">
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-lg">{localization.congratulations}</Modal.Title>
+        <Modal.Title id="contained-modal-title-lg"><Msg id="congratulations"/></Modal.Title>
       </Modal.Header>
       <Modal.Body>{text}</Modal.Body>
       <Modal.Footer>

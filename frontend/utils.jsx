@@ -2,7 +2,6 @@
 import 'whatwg-fetch';
 import Cookies from 'js-cookie';
 
-import localization from "./localization";
 
 function moveTo(paths, from, to) {
   let newPoints =[];
@@ -38,7 +37,7 @@ function decodePolygon(polygon) {
 
 const prepareInfobox = (json) => {
   if (json.area) {
-    json.area = Number(json.area).toLocaleString() + ' ' + localization.km2;
+    json.area = Number(json.area).toLocaleString();
   }
   if (json.population) {
     json.population = Number(json.population).toLocaleString();
