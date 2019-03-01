@@ -1,4 +1,5 @@
 from django.contrib.auth import login as auth_login
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView as DefaultLoginView
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.views.generic import FormView
@@ -26,7 +27,8 @@ class RegistrationView(FormView):
 
 class ProfileView(TemplateResponseMixin, BaseUpdateView):
     form_classes = {
-        'main': ProfileForm
+        'main': ProfileForm,
+        'password': PasswordChangeForm
     }
     template_name = 'user/profile.html'
     success_url = '/accounts/profile/'
@@ -41,10 +43,19 @@ class ProfileView(TemplateResponseMixin, BaseUpdateView):
 
     def form_valid(self, form):
         form.save()
+        if isinstance(form, PasswordChangeForm):
+            auth_login(self.request, self.object, 'django.contrib.auth.backends.ModelBackend')
         return JsonResponse({})
 
     def get_form_class(self):
         return self.form_classes.get(self.request.GET.get('section'))
+
+    def get_form_kwargs(self):
+        result = super(ProfileView, self).get_form_kwargs()
+        if self.request.GET.get('section') == 'password':
+            result['user'] = self.object
+            del result['instance']
+        return result
 
     def get_object(self, queryset=None) -> User:
         return self.request.user

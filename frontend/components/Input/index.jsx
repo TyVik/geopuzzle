@@ -3,6 +3,17 @@ import {Form, InputGroup} from "react-bootstrap";
 import React from "react";
 
 
+const PasswordInput = ({input, meta, ...params}) => {
+  let hasError = meta.error || meta.submitError;
+  return <Form.Group>
+    <Form.Label>{params.label}</Form.Label>
+    <Form.Control type="password" value={input.value} onChange={input.onChange} isInvalid={hasError}/>
+    {hasError &&
+      <Form.Control.Feedback type="invalid">{meta.error || meta.submitError}</Form.Control.Feedback>}
+  </Form.Group>;
+};
+
+
 const UsernameInput = ({input, meta, ...params}) => {
   let hasError = meta.error || meta.submitError;
   return <Form.Group>
@@ -62,4 +73,4 @@ const ImageInput = ({input, meta, ...params}) => {
   </Form.Group>;
 };
 
-export {UsernameInput, EmailInput, SelectInput, CheckboxInput, ImageInput};
+export {UsernameInput, EmailInput, SelectInput, CheckboxInput, ImageInput, PasswordInput};

@@ -3,6 +3,7 @@ import React from "react";
 import localization from "../localization";
 import {Card, Col, Nav, Row, Tab} from "react-bootstrap";
 import ProfileForm from "./ProfileForm";
+import ChangePasswordForm from "./ChangePasswordForm";
 
 
 export default class Profile extends React.Component {
@@ -21,10 +22,21 @@ export default class Profile extends React.Component {
         <Col md={9} sm={9} lg={10}>
           <Tab.Content>
             <Tab.Pane eventKey="main">
-              <Card>
+              <Card className="my-2">
                 <Card.Header>Public profile</Card.Header>
                 <Card.Body>
                   <ProfileForm fields={window.__USER__}/>
+                </Card.Body>
+              </Card>
+              <Card className="my-2">
+                <Card.Header>Change password</Card.Header>
+                <Card.Body>
+                  <ChangePasswordForm/>
+                </Card.Body>
+              </Card>
+              <Card className="my-2">
+                <Card.Header>Social accounts</Card.Header>
+                <Card.Body>
                 </Card.Body>
               </Card>
             </Tab.Pane>
