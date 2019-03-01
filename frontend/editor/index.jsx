@@ -9,7 +9,7 @@ import html2canvas from 'html2canvas';
 import Select from "react-select";
 
 
-class Editor extends React.Component {
+export default class Editor extends React.Component {
   MAX_REGION_COUNT = 150;
 
   constructor(props) {
@@ -206,6 +206,3 @@ class Editor extends React.Component {
     </form>;
   }
 }
-
-
-export default Editor;

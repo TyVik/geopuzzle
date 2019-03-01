@@ -55,6 +55,14 @@ function shuffle(a) {
 }
 
 
+const getFormData = (object) => {
+  return Object.keys(object).reduce((formData, key) => {
+    formData.append(key, object[key]);
+    return formData;
+  }, new FormData());
+};
+
+
 const CSRFfetch = (url, options) => {
   let headers = options.headers || new Headers();
   headers.append('X-CSRFTOKEN', Cookies.get('csrftoken'));
@@ -62,4 +70,4 @@ const CSRFfetch = (url, options) => {
 };
 
 
-export {moveTo, decodePolygon, prepareInfobox, shuffle, CSRFfetch};
+export {moveTo, decodePolygon, prepareInfobox, shuffle, CSRFfetch, getFormData};
