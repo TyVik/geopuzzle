@@ -89,7 +89,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Capital
+                  <FormattedMessage
+                    id="capital"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   <a
@@ -102,7 +105,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Area
+                  <FormattedMessage
+                    id="area"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   area
@@ -110,7 +116,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Population
+                  <FormattedMessage
+                    id="population"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   population
@@ -118,7 +127,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Currency
+                  <FormattedMessage
+                    id="currency"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   currency
@@ -284,7 +296,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Capital
+                  <FormattedMessage
+                    id="capital"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   <a
@@ -297,7 +312,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Area
+                  <FormattedMessage
+                    id="area"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   area
@@ -305,7 +323,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Population
+                  <FormattedMessage
+                    id="population"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   population
@@ -313,7 +334,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Currency
+                  <FormattedMessage
+                    id="currency"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   currency
@@ -347,7 +371,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Capital
+                  <FormattedMessage
+                    id="capital"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   <a
@@ -360,7 +387,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Area
+                  <FormattedMessage
+                    id="area"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   area
@@ -368,7 +398,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Population
+                  <FormattedMessage
+                    id="population"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   population
@@ -376,7 +409,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Currency
+                  <FormattedMessage
+                    id="currency"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   currency
@@ -402,7 +438,10 @@ ShallowWrapper {
                 </tr>,
                 <tr>
                   <td>
-                    Capital
+                    <FormattedMessage
+                      id="capital"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     <a
@@ -415,7 +454,10 @@ ShallowWrapper {
                 </tr>,
                 <tr>
                   <td>
-                    Area
+                    <FormattedMessage
+                      id="area"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     area
@@ -423,7 +465,10 @@ ShallowWrapper {
                 </tr>,
                 <tr>
                   <td>
-                    Population
+                    <FormattedMessage
+                      id="population"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     population
@@ -431,7 +476,10 @@ ShallowWrapper {
                 </tr>,
                 <tr>
                   <td>
-                    Currency
+                    <FormattedMessage
+                      id="currency"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     currency
@@ -488,7 +536,10 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <td>
-                      Capital
+                      <FormattedMessage
+                        id="capital"
+                        values={Object {}}
+                      />
                     </td>,
                     <td>
                       <a
@@ -507,10 +558,24 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Capital",
+                      "children": <FormattedMessage
+                        id="capital"
+                        values={Object {}}
+                      />,
                     },
                     "ref": null,
-                    "rendered": "Capital",
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "capital",
+                        "values": Object {},
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
                     "type": "td",
                   },
                   Object {
@@ -551,7 +616,10 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <td>
-                      Area
+                      <FormattedMessage
+                        id="area"
+                        values={Object {}}
+                      />
                     </td>,
                     <td>
                       area
@@ -565,10 +633,24 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Area",
+                      "children": <FormattedMessage
+                        id="area"
+                        values={Object {}}
+                      />,
                     },
                     "ref": null,
-                    "rendered": "Area",
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "area",
+                        "values": Object {},
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
                     "type": "td",
                   },
                   Object {
@@ -592,7 +674,10 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <td>
-                      Population
+                      <FormattedMessage
+                        id="population"
+                        values={Object {}}
+                      />
                     </td>,
                     <td>
                       population
@@ -606,10 +691,24 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Population",
+                      "children": <FormattedMessage
+                        id="population"
+                        values={Object {}}
+                      />,
                     },
                     "ref": null,
-                    "rendered": "Population",
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "population",
+                        "values": Object {},
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
                     "type": "td",
                   },
                   Object {
@@ -633,7 +732,10 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <td>
-                      Currency
+                      <FormattedMessage
+                        id="currency"
+                        values={Object {}}
+                      />
                     </td>,
                     <td>
                       currency
@@ -647,10 +749,24 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Currency",
+                      "children": <FormattedMessage
+                        id="currency"
+                        values={Object {}}
+                      />,
                     },
                     "ref": null,
-                    "rendered": "Currency",
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "currency",
+                        "values": Object {},
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
                     "type": "td",
                   },
                   Object {
@@ -738,7 +854,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Capital
+                    <FormattedMessage
+                      id="capital"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     <a
@@ -751,7 +870,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Area
+                    <FormattedMessage
+                      id="area"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     area
@@ -759,7 +881,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Population
+                    <FormattedMessage
+                      id="population"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     population
@@ -767,7 +892,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Currency
+                    <FormattedMessage
+                      id="currency"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     currency
@@ -933,7 +1061,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Capital
+                    <FormattedMessage
+                      id="capital"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     <a
@@ -946,7 +1077,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Area
+                    <FormattedMessage
+                      id="area"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     area
@@ -954,7 +1088,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Population
+                    <FormattedMessage
+                      id="population"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     population
@@ -962,7 +1099,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Currency
+                    <FormattedMessage
+                      id="currency"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     currency
@@ -996,7 +1136,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Capital
+                    <FormattedMessage
+                      id="capital"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     <a
@@ -1009,7 +1152,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Area
+                    <FormattedMessage
+                      id="area"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     area
@@ -1017,7 +1163,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Population
+                    <FormattedMessage
+                      id="population"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     population
@@ -1025,7 +1174,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Currency
+                    <FormattedMessage
+                      id="currency"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     currency
@@ -1051,7 +1203,10 @@ ShallowWrapper {
                   </tr>,
                   <tr>
                     <td>
-                      Capital
+                      <FormattedMessage
+                        id="capital"
+                        values={Object {}}
+                      />
                     </td>
                     <td>
                       <a
@@ -1064,7 +1219,10 @@ ShallowWrapper {
                   </tr>,
                   <tr>
                     <td>
-                      Area
+                      <FormattedMessage
+                        id="area"
+                        values={Object {}}
+                      />
                     </td>
                     <td>
                       area
@@ -1072,7 +1230,10 @@ ShallowWrapper {
                   </tr>,
                   <tr>
                     <td>
-                      Population
+                      <FormattedMessage
+                        id="population"
+                        values={Object {}}
+                      />
                     </td>
                     <td>
                       population
@@ -1080,7 +1241,10 @@ ShallowWrapper {
                   </tr>,
                   <tr>
                     <td>
-                      Currency
+                      <FormattedMessage
+                        id="currency"
+                        values={Object {}}
+                      />
                     </td>
                     <td>
                       currency
@@ -1137,7 +1301,10 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <td>
-                        Capital
+                        <FormattedMessage
+                          id="capital"
+                          values={Object {}}
+                        />
                       </td>,
                       <td>
                         <a
@@ -1156,10 +1323,24 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Capital",
+                        "children": <FormattedMessage
+                          id="capital"
+                          values={Object {}}
+                        />,
                       },
                       "ref": null,
-                      "rendered": "Capital",
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "id": "capital",
+                          "values": Object {},
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
                       "type": "td",
                     },
                     Object {
@@ -1200,7 +1381,10 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <td>
-                        Area
+                        <FormattedMessage
+                          id="area"
+                          values={Object {}}
+                        />
                       </td>,
                       <td>
                         area
@@ -1214,10 +1398,24 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Area",
+                        "children": <FormattedMessage
+                          id="area"
+                          values={Object {}}
+                        />,
                       },
                       "ref": null,
-                      "rendered": "Area",
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "id": "area",
+                          "values": Object {},
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
                       "type": "td",
                     },
                     Object {
@@ -1241,7 +1439,10 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <td>
-                        Population
+                        <FormattedMessage
+                          id="population"
+                          values={Object {}}
+                        />
                       </td>,
                       <td>
                         population
@@ -1255,10 +1456,24 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Population",
+                        "children": <FormattedMessage
+                          id="population"
+                          values={Object {}}
+                        />,
                       },
                       "ref": null,
-                      "rendered": "Population",
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "id": "population",
+                          "values": Object {},
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
                       "type": "td",
                     },
                     Object {
@@ -1282,7 +1497,10 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <td>
-                        Currency
+                        <FormattedMessage
+                          id="currency"
+                          values={Object {}}
+                        />
                       </td>,
                       <td>
                         currency
@@ -1296,10 +1514,24 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Currency",
+                        "children": <FormattedMessage
+                          id="currency"
+                          values={Object {}}
+                        />,
                       },
                       "ref": null,
-                      "rendered": "Currency",
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "id": "currency",
+                          "values": Object {},
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
                       "type": "td",
                     },
                     Object {
@@ -1348,6 +1580,7 @@ ShallowWrapper {
       },
     },
   },
+  Symbol(enzyme.__childContext__): null,
 }
 `;
 
@@ -2018,6 +2251,7 @@ ShallowWrapper {
       },
     },
   },
+  Symbol(enzyme.__childContext__): null,
 }
 `;
 
@@ -2134,7 +2368,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Capital
+                  <FormattedMessage
+                    id="capital"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   <a
@@ -2147,7 +2384,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Area
+                  <FormattedMessage
+                    id="area"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   area
@@ -2155,7 +2395,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Population
+                  <FormattedMessage
+                    id="population"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   population
@@ -2163,7 +2406,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Currency
+                  <FormattedMessage
+                    id="currency"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   currency
@@ -2351,7 +2597,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Capital
+                  <FormattedMessage
+                    id="capital"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   <a
@@ -2364,7 +2613,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Area
+                  <FormattedMessage
+                    id="area"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   area
@@ -2372,7 +2624,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Population
+                  <FormattedMessage
+                    id="population"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   population
@@ -2380,7 +2635,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Currency
+                  <FormattedMessage
+                    id="currency"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   currency
@@ -2414,7 +2672,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Capital
+                  <FormattedMessage
+                    id="capital"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   <a
@@ -2427,7 +2688,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Area
+                  <FormattedMessage
+                    id="area"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   area
@@ -2435,7 +2699,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Population
+                  <FormattedMessage
+                    id="population"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   population
@@ -2443,7 +2710,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Currency
+                  <FormattedMessage
+                    id="currency"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   currency
@@ -2469,7 +2739,10 @@ ShallowWrapper {
                 </tr>,
                 <tr>
                   <td>
-                    Capital
+                    <FormattedMessage
+                      id="capital"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     <a
@@ -2482,7 +2755,10 @@ ShallowWrapper {
                 </tr>,
                 <tr>
                   <td>
-                    Area
+                    <FormattedMessage
+                      id="area"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     area
@@ -2490,7 +2766,10 @@ ShallowWrapper {
                 </tr>,
                 <tr>
                   <td>
-                    Population
+                    <FormattedMessage
+                      id="population"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     population
@@ -2498,7 +2777,10 @@ ShallowWrapper {
                 </tr>,
                 <tr>
                   <td>
-                    Currency
+                    <FormattedMessage
+                      id="currency"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     currency
@@ -2555,7 +2837,10 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <td>
-                      Capital
+                      <FormattedMessage
+                        id="capital"
+                        values={Object {}}
+                      />
                     </td>,
                     <td>
                       <a
@@ -2574,10 +2859,24 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Capital",
+                      "children": <FormattedMessage
+                        id="capital"
+                        values={Object {}}
+                      />,
                     },
                     "ref": null,
-                    "rendered": "Capital",
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "capital",
+                        "values": Object {},
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
                     "type": "td",
                   },
                   Object {
@@ -2618,7 +2917,10 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <td>
-                      Area
+                      <FormattedMessage
+                        id="area"
+                        values={Object {}}
+                      />
                     </td>,
                     <td>
                       area
@@ -2632,10 +2934,24 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Area",
+                      "children": <FormattedMessage
+                        id="area"
+                        values={Object {}}
+                      />,
                     },
                     "ref": null,
-                    "rendered": "Area",
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "area",
+                        "values": Object {},
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
                     "type": "td",
                   },
                   Object {
@@ -2659,7 +2975,10 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <td>
-                      Population
+                      <FormattedMessage
+                        id="population"
+                        values={Object {}}
+                      />
                     </td>,
                     <td>
                       population
@@ -2673,10 +2992,24 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Population",
+                      "children": <FormattedMessage
+                        id="population"
+                        values={Object {}}
+                      />,
                     },
                     "ref": null,
-                    "rendered": "Population",
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "population",
+                        "values": Object {},
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
                     "type": "td",
                   },
                   Object {
@@ -2700,7 +3033,10 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <td>
-                      Currency
+                      <FormattedMessage
+                        id="currency"
+                        values={Object {}}
+                      />
                     </td>,
                     <td>
                       currency
@@ -2714,10 +3050,24 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Currency",
+                      "children": <FormattedMessage
+                        id="currency"
+                        values={Object {}}
+                      />,
                     },
                     "ref": null,
-                    "rendered": "Currency",
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "currency",
+                        "values": Object {},
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
                     "type": "td",
                   },
                   Object {
@@ -2817,7 +3167,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Capital
+                    <FormattedMessage
+                      id="capital"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     <a
@@ -2830,7 +3183,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Area
+                    <FormattedMessage
+                      id="area"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     area
@@ -2838,7 +3194,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Population
+                    <FormattedMessage
+                      id="population"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     population
@@ -2846,7 +3205,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Currency
+                    <FormattedMessage
+                      id="currency"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     currency
@@ -3034,7 +3396,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Capital
+                    <FormattedMessage
+                      id="capital"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     <a
@@ -3047,7 +3412,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Area
+                    <FormattedMessage
+                      id="area"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     area
@@ -3055,7 +3423,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Population
+                    <FormattedMessage
+                      id="population"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     population
@@ -3063,7 +3434,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Currency
+                    <FormattedMessage
+                      id="currency"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     currency
@@ -3097,7 +3471,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Capital
+                    <FormattedMessage
+                      id="capital"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     <a
@@ -3110,7 +3487,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Area
+                    <FormattedMessage
+                      id="area"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     area
@@ -3118,7 +3498,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Population
+                    <FormattedMessage
+                      id="population"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     population
@@ -3126,7 +3509,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Currency
+                    <FormattedMessage
+                      id="currency"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     currency
@@ -3152,7 +3538,10 @@ ShallowWrapper {
                   </tr>,
                   <tr>
                     <td>
-                      Capital
+                      <FormattedMessage
+                        id="capital"
+                        values={Object {}}
+                      />
                     </td>
                     <td>
                       <a
@@ -3165,7 +3554,10 @@ ShallowWrapper {
                   </tr>,
                   <tr>
                     <td>
-                      Area
+                      <FormattedMessage
+                        id="area"
+                        values={Object {}}
+                      />
                     </td>
                     <td>
                       area
@@ -3173,7 +3565,10 @@ ShallowWrapper {
                   </tr>,
                   <tr>
                     <td>
-                      Population
+                      <FormattedMessage
+                        id="population"
+                        values={Object {}}
+                      />
                     </td>
                     <td>
                       population
@@ -3181,7 +3576,10 @@ ShallowWrapper {
                   </tr>,
                   <tr>
                     <td>
-                      Currency
+                      <FormattedMessage
+                        id="currency"
+                        values={Object {}}
+                      />
                     </td>
                     <td>
                       currency
@@ -3238,7 +3636,10 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <td>
-                        Capital
+                        <FormattedMessage
+                          id="capital"
+                          values={Object {}}
+                        />
                       </td>,
                       <td>
                         <a
@@ -3257,10 +3658,24 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Capital",
+                        "children": <FormattedMessage
+                          id="capital"
+                          values={Object {}}
+                        />,
                       },
                       "ref": null,
-                      "rendered": "Capital",
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "id": "capital",
+                          "values": Object {},
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
                       "type": "td",
                     },
                     Object {
@@ -3301,7 +3716,10 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <td>
-                        Area
+                        <FormattedMessage
+                          id="area"
+                          values={Object {}}
+                        />
                       </td>,
                       <td>
                         area
@@ -3315,10 +3733,24 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Area",
+                        "children": <FormattedMessage
+                          id="area"
+                          values={Object {}}
+                        />,
                       },
                       "ref": null,
-                      "rendered": "Area",
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "id": "area",
+                          "values": Object {},
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
                       "type": "td",
                     },
                     Object {
@@ -3342,7 +3774,10 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <td>
-                        Population
+                        <FormattedMessage
+                          id="population"
+                          values={Object {}}
+                        />
                       </td>,
                       <td>
                         population
@@ -3356,10 +3791,24 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Population",
+                        "children": <FormattedMessage
+                          id="population"
+                          values={Object {}}
+                        />,
                       },
                       "ref": null,
-                      "rendered": "Population",
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "id": "population",
+                          "values": Object {},
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
                       "type": "td",
                     },
                     Object {
@@ -3383,7 +3832,10 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <td>
-                        Currency
+                        <FormattedMessage
+                          id="currency"
+                          values={Object {}}
+                        />
                       </td>,
                       <td>
                         currency
@@ -3397,10 +3849,24 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Currency",
+                        "children": <FormattedMessage
+                          id="currency"
+                          values={Object {}}
+                        />,
                       },
                       "ref": null,
-                      "rendered": "Currency",
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "id": "currency",
+                          "values": Object {},
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
                       "type": "td",
                     },
                     Object {
@@ -3449,6 +3915,7 @@ ShallowWrapper {
       },
     },
   },
+  Symbol(enzyme.__childContext__): null,
 }
 `;
 
@@ -3565,7 +4032,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Capital
+                  <FormattedMessage
+                    id="capital"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   <a
@@ -3578,7 +4048,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Area
+                  <FormattedMessage
+                    id="area"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   area
@@ -3586,7 +4059,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Population
+                  <FormattedMessage
+                    id="population"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   population
@@ -3594,7 +4070,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Currency
+                  <FormattedMessage
+                    id="currency"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   currency
@@ -3782,7 +4261,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Capital
+                  <FormattedMessage
+                    id="capital"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   <a
@@ -3795,7 +4277,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Area
+                  <FormattedMessage
+                    id="area"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   area
@@ -3803,7 +4288,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Population
+                  <FormattedMessage
+                    id="population"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   population
@@ -3811,7 +4299,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Currency
+                  <FormattedMessage
+                    id="currency"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   currency
@@ -3845,7 +4336,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Capital
+                  <FormattedMessage
+                    id="capital"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   <a
@@ -3858,7 +4352,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Area
+                  <FormattedMessage
+                    id="area"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   area
@@ -3866,7 +4363,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Population
+                  <FormattedMessage
+                    id="population"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   population
@@ -3874,7 +4374,10 @@ ShallowWrapper {
               </tr>
               <tr>
                 <td>
-                  Currency
+                  <FormattedMessage
+                    id="currency"
+                    values={Object {}}
+                  />
                 </td>
                 <td>
                   currency
@@ -3900,7 +4403,10 @@ ShallowWrapper {
                 </tr>,
                 <tr>
                   <td>
-                    Capital
+                    <FormattedMessage
+                      id="capital"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     <a
@@ -3913,7 +4419,10 @@ ShallowWrapper {
                 </tr>,
                 <tr>
                   <td>
-                    Area
+                    <FormattedMessage
+                      id="area"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     area
@@ -3921,7 +4430,10 @@ ShallowWrapper {
                 </tr>,
                 <tr>
                   <td>
-                    Population
+                    <FormattedMessage
+                      id="population"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     population
@@ -3929,7 +4441,10 @@ ShallowWrapper {
                 </tr>,
                 <tr>
                   <td>
-                    Currency
+                    <FormattedMessage
+                      id="currency"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     currency
@@ -3986,7 +4501,10 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <td>
-                      Capital
+                      <FormattedMessage
+                        id="capital"
+                        values={Object {}}
+                      />
                     </td>,
                     <td>
                       <a
@@ -4005,10 +4523,24 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Capital",
+                      "children": <FormattedMessage
+                        id="capital"
+                        values={Object {}}
+                      />,
                     },
                     "ref": null,
-                    "rendered": "Capital",
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "capital",
+                        "values": Object {},
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
                     "type": "td",
                   },
                   Object {
@@ -4049,7 +4581,10 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <td>
-                      Area
+                      <FormattedMessage
+                        id="area"
+                        values={Object {}}
+                      />
                     </td>,
                     <td>
                       area
@@ -4063,10 +4598,24 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Area",
+                      "children": <FormattedMessage
+                        id="area"
+                        values={Object {}}
+                      />,
                     },
                     "ref": null,
-                    "rendered": "Area",
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "area",
+                        "values": Object {},
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
                     "type": "td",
                   },
                   Object {
@@ -4090,7 +4639,10 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <td>
-                      Population
+                      <FormattedMessage
+                        id="population"
+                        values={Object {}}
+                      />
                     </td>,
                     <td>
                       population
@@ -4104,10 +4656,24 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Population",
+                      "children": <FormattedMessage
+                        id="population"
+                        values={Object {}}
+                      />,
                     },
                     "ref": null,
-                    "rendered": "Population",
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "population",
+                        "values": Object {},
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
                     "type": "td",
                   },
                   Object {
@@ -4131,7 +4697,10 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <td>
-                      Currency
+                      <FormattedMessage
+                        id="currency"
+                        values={Object {}}
+                      />
                     </td>,
                     <td>
                       currency
@@ -4145,10 +4714,24 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": "Currency",
+                      "children": <FormattedMessage
+                        id="currency"
+                        values={Object {}}
+                      />,
                     },
                     "ref": null,
-                    "rendered": "Currency",
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "id": "currency",
+                        "values": Object {},
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
                     "type": "td",
                   },
                   Object {
@@ -4248,7 +4831,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Capital
+                    <FormattedMessage
+                      id="capital"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     <a
@@ -4261,7 +4847,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Area
+                    <FormattedMessage
+                      id="area"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     area
@@ -4269,7 +4858,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Population
+                    <FormattedMessage
+                      id="population"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     population
@@ -4277,7 +4869,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Currency
+                    <FormattedMessage
+                      id="currency"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     currency
@@ -4465,7 +5060,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Capital
+                    <FormattedMessage
+                      id="capital"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     <a
@@ -4478,7 +5076,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Area
+                    <FormattedMessage
+                      id="area"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     area
@@ -4486,7 +5087,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Population
+                    <FormattedMessage
+                      id="population"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     population
@@ -4494,7 +5098,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Currency
+                    <FormattedMessage
+                      id="currency"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     currency
@@ -4528,7 +5135,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Capital
+                    <FormattedMessage
+                      id="capital"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     <a
@@ -4541,7 +5151,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Area
+                    <FormattedMessage
+                      id="area"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     area
@@ -4549,7 +5162,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Population
+                    <FormattedMessage
+                      id="population"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     population
@@ -4557,7 +5173,10 @@ ShallowWrapper {
                 </tr>
                 <tr>
                   <td>
-                    Currency
+                    <FormattedMessage
+                      id="currency"
+                      values={Object {}}
+                    />
                   </td>
                   <td>
                     currency
@@ -4583,7 +5202,10 @@ ShallowWrapper {
                   </tr>,
                   <tr>
                     <td>
-                      Capital
+                      <FormattedMessage
+                        id="capital"
+                        values={Object {}}
+                      />
                     </td>
                     <td>
                       <a
@@ -4596,7 +5218,10 @@ ShallowWrapper {
                   </tr>,
                   <tr>
                     <td>
-                      Area
+                      <FormattedMessage
+                        id="area"
+                        values={Object {}}
+                      />
                     </td>
                     <td>
                       area
@@ -4604,7 +5229,10 @@ ShallowWrapper {
                   </tr>,
                   <tr>
                     <td>
-                      Population
+                      <FormattedMessage
+                        id="population"
+                        values={Object {}}
+                      />
                     </td>
                     <td>
                       population
@@ -4612,7 +5240,10 @@ ShallowWrapper {
                   </tr>,
                   <tr>
                     <td>
-                      Currency
+                      <FormattedMessage
+                        id="currency"
+                        values={Object {}}
+                      />
                     </td>
                     <td>
                       currency
@@ -4669,7 +5300,10 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <td>
-                        Capital
+                        <FormattedMessage
+                          id="capital"
+                          values={Object {}}
+                        />
                       </td>,
                       <td>
                         <a
@@ -4688,10 +5322,24 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Capital",
+                        "children": <FormattedMessage
+                          id="capital"
+                          values={Object {}}
+                        />,
                       },
                       "ref": null,
-                      "rendered": "Capital",
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "id": "capital",
+                          "values": Object {},
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
                       "type": "td",
                     },
                     Object {
@@ -4732,7 +5380,10 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <td>
-                        Area
+                        <FormattedMessage
+                          id="area"
+                          values={Object {}}
+                        />
                       </td>,
                       <td>
                         area
@@ -4746,10 +5397,24 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Area",
+                        "children": <FormattedMessage
+                          id="area"
+                          values={Object {}}
+                        />,
                       },
                       "ref": null,
-                      "rendered": "Area",
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "id": "area",
+                          "values": Object {},
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
                       "type": "td",
                     },
                     Object {
@@ -4773,7 +5438,10 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <td>
-                        Population
+                        <FormattedMessage
+                          id="population"
+                          values={Object {}}
+                        />
                       </td>,
                       <td>
                         population
@@ -4787,10 +5455,24 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Population",
+                        "children": <FormattedMessage
+                          id="population"
+                          values={Object {}}
+                        />,
                       },
                       "ref": null,
-                      "rendered": "Population",
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "id": "population",
+                          "values": Object {},
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
                       "type": "td",
                     },
                     Object {
@@ -4814,7 +5496,10 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <td>
-                        Currency
+                        <FormattedMessage
+                          id="currency"
+                          values={Object {}}
+                        />
                       </td>,
                       <td>
                         currency
@@ -4828,10 +5513,24 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": "Currency",
+                        "children": <FormattedMessage
+                          id="currency"
+                          values={Object {}}
+                        />,
                       },
                       "ref": null,
-                      "rendered": "Currency",
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "id": "currency",
+                          "values": Object {},
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
                       "type": "td",
                     },
                     Object {
@@ -4880,5 +5579,6 @@ ShallowWrapper {
       },
     },
   },
+  Symbol(enzyme.__childContext__): null,
 }
 `;

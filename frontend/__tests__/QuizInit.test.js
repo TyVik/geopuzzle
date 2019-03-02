@@ -25,7 +25,7 @@ describe('shallow <QuizInit /> components', () => {
       wrapper.instance().toggle(key);
     });
     expect(wrapper.find(Button).prop('disabled')).toBe(true);
-    expect(wrapper.find(Modal.Footer).childAt(0).text()).toMatch("Choose at least one option");
+    expect(wrapper.find(Modal.Footer).childAt(0).childAt(0).prop('id')).toMatch("quizInitCheck");
     wrapper.instance().toggle('title');
     wrapper.find(Button).simulate('click');
     expect(onLoad).toHaveBeenCalledWith({title: true, flag: false, coat_of_arms: false, capital: false});

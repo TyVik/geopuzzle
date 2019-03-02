@@ -26,7 +26,10 @@ ShallowWrapper {
           <ForwardRef(Bootstrap(ModalTitle))
             id="contained-modal-title-lg"
           >
-            I'll search the regions by
+            <FormattedMessage
+              id="quizInitCaption"
+              values={Object {}}
+            />
           </ForwardRef(Bootstrap(ModalTitle))>
         </ForwardRef(Bootstrap(ModalHeader))>,
         <ForwardRef(Bootstrap(ModalBody))>
@@ -37,28 +40,48 @@ ShallowWrapper {
             <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
               inline={true}
-              label="Title"
+              label={
+                <FormattedMessage
+                  id="title"
+                  values={Object {}}
+                />
+              }
               onClick={[Function]}
               type="checkbox"
             />
             <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
               inline={true}
-              label="Flag"
+              label={
+                <FormattedMessage
+                  id="flag"
+                  values={Object {}}
+                />
+              }
               onClick={[Function]}
               type="checkbox"
             />
             <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
               inline={true}
-              label="Coat of arms"
+              label={
+                <FormattedMessage
+                  id="coat_of_arms"
+                  values={Object {}}
+                />
+              }
               onClick={[Function]}
               type="checkbox"
             />
             <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
               inline={true}
-              label="Capital"
+              label={
+                <FormattedMessage
+                  id="capital"
+                  values={Object {}}
+                />
+              }
               onClick={[Function]}
               type="checkbox"
             />
@@ -68,7 +91,10 @@ ShallowWrapper {
           <ForwardRef(Bootstrap(Button))
             onClick={[Function]}
           >
-            Start
+            <FormattedMessage
+              id="start"
+              values={Object {}}
+            />
           </ForwardRef(Bootstrap(Button))>
         </ForwardRef(Bootstrap(ModalFooter))>,
       ],
@@ -85,7 +111,10 @@ ShallowWrapper {
           "children": <ForwardRef(Bootstrap(ModalTitle))
             id="contained-modal-title-lg"
           >
-            I'll search the regions by
+            <FormattedMessage
+              id="quizInitCaption"
+              values={Object {}}
+            />
           </ForwardRef(Bootstrap(ModalTitle))>,
         },
         "ref": null,
@@ -94,11 +123,25 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "I'll search the regions by",
+            "children": <FormattedMessage
+              id="quizInitCaption"
+              values={Object {}}
+            />,
             "id": "contained-modal-title-lg",
           },
           "ref": null,
-          "rendered": "I'll search the regions by",
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "id": "quizInitCaption",
+              "values": Object {},
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": Object {
             "$$typeof": Symbol(react.forward_ref),
             "defaultProps": undefined,
@@ -125,28 +168,48 @@ ShallowWrapper {
             <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
               inline={true}
-              label="Title"
+              label={
+                <FormattedMessage
+                  id="title"
+                  values={Object {}}
+                />
+              }
               onClick={[Function]}
               type="checkbox"
             />
             <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
               inline={true}
-              label="Flag"
+              label={
+                <FormattedMessage
+                  id="flag"
+                  values={Object {}}
+                />
+              }
               onClick={[Function]}
               type="checkbox"
             />
             <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
               inline={true}
-              label="Coat of arms"
+              label={
+                <FormattedMessage
+                  id="coat_of_arms"
+                  values={Object {}}
+                />
+              }
               onClick={[Function]}
               type="checkbox"
             />
             <ForwardRef(Bootstrap(FormCheck))
               defaultChecked={true}
               inline={true}
-              label="Capital"
+              label={
+                <FormattedMessage
+                  id="capital"
+                  values={Object {}}
+                />
+              }
               onClick={[Function]}
               type="checkbox"
             />
@@ -162,28 +225,48 @@ ShallowWrapper {
               <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
                 inline={true}
-                label="Title"
+                label={
+                  <FormattedMessage
+                    id="title"
+                    values={Object {}}
+                  />
+                }
                 onClick={[Function]}
                 type="checkbox"
               />,
               <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
                 inline={true}
-                label="Flag"
+                label={
+                  <FormattedMessage
+                    id="flag"
+                    values={Object {}}
+                  />
+                }
                 onClick={[Function]}
                 type="checkbox"
               />,
               <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
                 inline={true}
-                label="Coat of arms"
+                label={
+                  <FormattedMessage
+                    id="coat_of_arms"
+                    values={Object {}}
+                  />
+                }
                 onClick={[Function]}
                 type="checkbox"
               />,
               <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
                 inline={true}
-                label="Capital"
+                label={
+                  <FormattedMessage
+                    id="capital"
+                    values={Object {}}
+                  />
+                }
                 onClick={[Function]}
                 type="checkbox"
               />,
@@ -200,7 +283,10 @@ ShallowWrapper {
               "props": Object {
                 "defaultChecked": true,
                 "inline": true,
-                "label": "Title",
+                "label": <FormattedMessage
+                  id="title"
+                  values={Object {}}
+                />,
                 "onClick": [Function],
                 "type": "checkbox",
               },
@@ -232,7 +318,10 @@ ShallowWrapper {
               "props": Object {
                 "defaultChecked": true,
                 "inline": true,
-                "label": "Flag",
+                "label": <FormattedMessage
+                  id="flag"
+                  values={Object {}}
+                />,
                 "onClick": [Function],
                 "type": "checkbox",
               },
@@ -264,7 +353,10 @@ ShallowWrapper {
               "props": Object {
                 "defaultChecked": true,
                 "inline": true,
-                "label": "Coat of arms",
+                "label": <FormattedMessage
+                  id="coat_of_arms"
+                  values={Object {}}
+                />,
                 "onClick": [Function],
                 "type": "checkbox",
               },
@@ -296,7 +388,10 @@ ShallowWrapper {
               "props": Object {
                 "defaultChecked": true,
                 "inline": true,
-                "label": "Capital",
+                "label": <FormattedMessage
+                  id="capital"
+                  values={Object {}}
+                />,
                 "onClick": [Function],
                 "type": "checkbox",
               },
@@ -344,7 +439,10 @@ ShallowWrapper {
           "children": <ForwardRef(Bootstrap(Button))
             onClick={[Function]}
           >
-            Start
+            <FormattedMessage
+              id="start"
+              values={Object {}}
+            />
           </ForwardRef(Bootstrap(Button))>,
         },
         "ref": null,
@@ -353,11 +451,25 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "Start",
+            "children": <FormattedMessage
+              id="start"
+              values={Object {}}
+            />,
             "onClick": [Function],
           },
           "ref": null,
-          "rendered": "Start",
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "id": "start",
+              "values": Object {},
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": Object {
             "$$typeof": Symbol(react.forward_ref),
             "defaultProps": undefined,
@@ -423,7 +535,10 @@ ShallowWrapper {
             <ForwardRef(Bootstrap(ModalTitle))
               id="contained-modal-title-lg"
             >
-              I'll search the regions by
+              <FormattedMessage
+                id="quizInitCaption"
+                values={Object {}}
+              />
             </ForwardRef(Bootstrap(ModalTitle))>
           </ForwardRef(Bootstrap(ModalHeader))>,
           <ForwardRef(Bootstrap(ModalBody))>
@@ -434,28 +549,48 @@ ShallowWrapper {
               <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
                 inline={true}
-                label="Title"
+                label={
+                  <FormattedMessage
+                    id="title"
+                    values={Object {}}
+                  />
+                }
                 onClick={[Function]}
                 type="checkbox"
               />
               <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
                 inline={true}
-                label="Flag"
+                label={
+                  <FormattedMessage
+                    id="flag"
+                    values={Object {}}
+                  />
+                }
                 onClick={[Function]}
                 type="checkbox"
               />
               <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
                 inline={true}
-                label="Coat of arms"
+                label={
+                  <FormattedMessage
+                    id="coat_of_arms"
+                    values={Object {}}
+                  />
+                }
                 onClick={[Function]}
                 type="checkbox"
               />
               <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
                 inline={true}
-                label="Capital"
+                label={
+                  <FormattedMessage
+                    id="capital"
+                    values={Object {}}
+                  />
+                }
                 onClick={[Function]}
                 type="checkbox"
               />
@@ -465,7 +600,10 @@ ShallowWrapper {
             <ForwardRef(Bootstrap(Button))
               onClick={[Function]}
             >
-              Start
+              <FormattedMessage
+                id="start"
+                values={Object {}}
+              />
             </ForwardRef(Bootstrap(Button))>
           </ForwardRef(Bootstrap(ModalFooter))>,
         ],
@@ -482,7 +620,10 @@ ShallowWrapper {
             "children": <ForwardRef(Bootstrap(ModalTitle))
               id="contained-modal-title-lg"
             >
-              I'll search the regions by
+              <FormattedMessage
+                id="quizInitCaption"
+                values={Object {}}
+              />
             </ForwardRef(Bootstrap(ModalTitle))>,
           },
           "ref": null,
@@ -491,11 +632,25 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": "I'll search the regions by",
+              "children": <FormattedMessage
+                id="quizInitCaption"
+                values={Object {}}
+              />,
               "id": "contained-modal-title-lg",
             },
             "ref": null,
-            "rendered": "I'll search the regions by",
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "id": "quizInitCaption",
+                "values": Object {},
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             "type": Object {
               "$$typeof": Symbol(react.forward_ref),
               "defaultProps": undefined,
@@ -522,28 +677,48 @@ ShallowWrapper {
               <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
                 inline={true}
-                label="Title"
+                label={
+                  <FormattedMessage
+                    id="title"
+                    values={Object {}}
+                  />
+                }
                 onClick={[Function]}
                 type="checkbox"
               />
               <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
                 inline={true}
-                label="Flag"
+                label={
+                  <FormattedMessage
+                    id="flag"
+                    values={Object {}}
+                  />
+                }
                 onClick={[Function]}
                 type="checkbox"
               />
               <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
                 inline={true}
-                label="Coat of arms"
+                label={
+                  <FormattedMessage
+                    id="coat_of_arms"
+                    values={Object {}}
+                  />
+                }
                 onClick={[Function]}
                 type="checkbox"
               />
               <ForwardRef(Bootstrap(FormCheck))
                 defaultChecked={true}
                 inline={true}
-                label="Capital"
+                label={
+                  <FormattedMessage
+                    id="capital"
+                    values={Object {}}
+                  />
+                }
                 onClick={[Function]}
                 type="checkbox"
               />
@@ -559,28 +734,48 @@ ShallowWrapper {
                 <ForwardRef(Bootstrap(FormCheck))
                   defaultChecked={true}
                   inline={true}
-                  label="Title"
+                  label={
+                    <FormattedMessage
+                      id="title"
+                      values={Object {}}
+                    />
+                  }
                   onClick={[Function]}
                   type="checkbox"
                 />,
                 <ForwardRef(Bootstrap(FormCheck))
                   defaultChecked={true}
                   inline={true}
-                  label="Flag"
+                  label={
+                    <FormattedMessage
+                      id="flag"
+                      values={Object {}}
+                    />
+                  }
                   onClick={[Function]}
                   type="checkbox"
                 />,
                 <ForwardRef(Bootstrap(FormCheck))
                   defaultChecked={true}
                   inline={true}
-                  label="Coat of arms"
+                  label={
+                    <FormattedMessage
+                      id="coat_of_arms"
+                      values={Object {}}
+                    />
+                  }
                   onClick={[Function]}
                   type="checkbox"
                 />,
                 <ForwardRef(Bootstrap(FormCheck))
                   defaultChecked={true}
                   inline={true}
-                  label="Capital"
+                  label={
+                    <FormattedMessage
+                      id="capital"
+                      values={Object {}}
+                    />
+                  }
                   onClick={[Function]}
                   type="checkbox"
                 />,
@@ -597,7 +792,10 @@ ShallowWrapper {
                 "props": Object {
                   "defaultChecked": true,
                   "inline": true,
-                  "label": "Title",
+                  "label": <FormattedMessage
+                    id="title"
+                    values={Object {}}
+                  />,
                   "onClick": [Function],
                   "type": "checkbox",
                 },
@@ -629,7 +827,10 @@ ShallowWrapper {
                 "props": Object {
                   "defaultChecked": true,
                   "inline": true,
-                  "label": "Flag",
+                  "label": <FormattedMessage
+                    id="flag"
+                    values={Object {}}
+                  />,
                   "onClick": [Function],
                   "type": "checkbox",
                 },
@@ -661,7 +862,10 @@ ShallowWrapper {
                 "props": Object {
                   "defaultChecked": true,
                   "inline": true,
-                  "label": "Coat of arms",
+                  "label": <FormattedMessage
+                    id="coat_of_arms"
+                    values={Object {}}
+                  />,
                   "onClick": [Function],
                   "type": "checkbox",
                 },
@@ -693,7 +897,10 @@ ShallowWrapper {
                 "props": Object {
                   "defaultChecked": true,
                   "inline": true,
-                  "label": "Capital",
+                  "label": <FormattedMessage
+                    id="capital"
+                    values={Object {}}
+                  />,
                   "onClick": [Function],
                   "type": "checkbox",
                 },
@@ -741,7 +948,10 @@ ShallowWrapper {
             "children": <ForwardRef(Bootstrap(Button))
               onClick={[Function]}
             >
-              Start
+              <FormattedMessage
+                id="start"
+                values={Object {}}
+              />
             </ForwardRef(Bootstrap(Button))>,
           },
           "ref": null,
@@ -750,11 +960,25 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": "Start",
+              "children": <FormattedMessage
+                id="start"
+                values={Object {}}
+              />,
               "onClick": [Function],
             },
             "ref": null,
-            "rendered": "Start",
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "id": "start",
+                "values": Object {},
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             "type": Object {
               "$$typeof": Symbol(react.forward_ref),
               "defaultProps": undefined,
@@ -831,5 +1055,6 @@ ShallowWrapper {
       },
     },
   },
+  Symbol(enzyme.__childContext__): null,
 }
 `;

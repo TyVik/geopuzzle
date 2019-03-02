@@ -29,7 +29,10 @@ ShallowWrapper {
           <ForwardRef(Bootstrap(ModalTitle))
             id="contained-modal-title-lg"
           >
-            Congratulations!
+            <FormattedMessage
+              id="congratulations"
+              values={Object {}}
+            />
           </ForwardRef(Bootstrap(ModalTitle))>
         </ForwardRef(Bootstrap(ModalHeader))>,
         <ForwardRef(Bootstrap(ModalBody))>
@@ -92,7 +95,10 @@ ShallowWrapper {
           "children": <ForwardRef(Bootstrap(ModalTitle))
             id="contained-modal-title-lg"
           >
-            Congratulations!
+            <FormattedMessage
+              id="congratulations"
+              values={Object {}}
+            />
           </ForwardRef(Bootstrap(ModalTitle))>,
           "closeButton": true,
         },
@@ -102,11 +108,25 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "Congratulations!",
+            "children": <FormattedMessage
+              id="congratulations"
+              values={Object {}}
+            />,
             "id": "contained-modal-title-lg",
           },
           "ref": null,
-          "rendered": "Congratulations!",
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "id": "congratulations",
+              "values": Object {},
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": Object {
             "$$typeof": Symbol(react.forward_ref),
             "defaultProps": undefined,
@@ -403,7 +423,10 @@ ShallowWrapper {
             <ForwardRef(Bootstrap(ModalTitle))
               id="contained-modal-title-lg"
             >
-              Congratulations!
+              <FormattedMessage
+                id="congratulations"
+                values={Object {}}
+              />
             </ForwardRef(Bootstrap(ModalTitle))>
           </ForwardRef(Bootstrap(ModalHeader))>,
           <ForwardRef(Bootstrap(ModalBody))>
@@ -466,7 +489,10 @@ ShallowWrapper {
             "children": <ForwardRef(Bootstrap(ModalTitle))
               id="contained-modal-title-lg"
             >
-              Congratulations!
+              <FormattedMessage
+                id="congratulations"
+                values={Object {}}
+              />
             </ForwardRef(Bootstrap(ModalTitle))>,
             "closeButton": true,
           },
@@ -476,11 +502,25 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": "Congratulations!",
+              "children": <FormattedMessage
+                id="congratulations"
+                values={Object {}}
+              />,
               "id": "contained-modal-title-lg",
             },
             "ref": null,
-            "rendered": "Congratulations!",
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "id": "congratulations",
+                "values": Object {},
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             "type": Object {
               "$$typeof": Symbol(react.forward_ref),
               "defaultProps": undefined,
@@ -785,5 +825,6 @@ ShallowWrapper {
       },
     },
   },
+  Symbol(enzyme.__childContext__): null,
 }
 `;
