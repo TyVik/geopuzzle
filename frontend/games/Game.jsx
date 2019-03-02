@@ -1,13 +1,13 @@
 'use strict';
 import React from "react";
 import Loading from "../components/Loading/index";
-import localization from "../localization";
 import Sockette from './ws';
 import Congratulation from "./components/Congratulation/index";
 import {prepareInfobox} from "../utils";
 import Toolbox from "./components/Toolbox/index";
 import Infobox from "./components/Infobox/index";
 import Map from '../components/Map/index';
+import {FormattedMessage as Msg} from "react-intl";
 
 
 import './index.css';
@@ -82,13 +82,13 @@ class Game extends React.Component {
 
   render_loaded() {
     return this.state.isLoaded === true ? null :
-      <Loading text={this.state.isLoaded === null ? localization.loading : localization.loadingError}/>;
+      <Loading hasError={this.state.isLoaded !== null}/>;
   }
 
   render_congratulation() {
     if (this.state.regions.length > 0 && this.state.regions.filter(el => el.isSolved === false).length === 0) {
       let time = new Date(Date.now() - this.state.startTime);
-      let result = (time > 24 * 60 * 60 * 1000) ? localization.timeOverhead : time.toLocaleTimeString('ru-RU', {timeZone: 'UTC'});
+      let result = (time > 24 * 60 * 60 * 1000) ? <Msg id="timeOverhead"/> : time.toLocaleTimeString('ru-RU', {timeZone: 'UTC'});
       return <Congratulation url={location.href} result={result} />;
     } else {
       return null;

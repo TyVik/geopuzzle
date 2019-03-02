@@ -14,6 +14,7 @@ module.exports = (env, argv) => {
       localization: './localization',
       editor: './editor',
       workshop: './workshop',
+      profile: './profile',
     },
     output: {
       path: path.resolve(__dirname, 'static', 'js'),

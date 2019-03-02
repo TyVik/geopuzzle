@@ -14,14 +14,6 @@
     flex-direction: column;
 }
 
-.toolbox .panel {
-    margin-bottom: 0;
-}
-
-.toolbox .panel-body {
-    padding: 0;
-}
-
 .toolbox #network_connection_label {
     color: red;
     font-size: 10px;
@@ -41,25 +33,15 @@
 
 .listname-wrapper {
     padding-top: 5px;
+    cursor: pointer;
 }
 
-.listname-wrapper .glyphicon {
+.listname-wrapper i {
     float: right;
-    cursor: pointer;
-    padding-right: 5px;
+    padding-right: 10px;
+    line-height: unset;
 }
 
-.listname-wrapper .list-group {
-    overflow-y: auto;
-    overflow-x: hidden;
-    margin-bottom: 0px;
-}
-
-.listname-wrapper .list-group-item {
-    padding: 2px 4px;
-    text-align: left;
-}
-
-.listname-wrapper .list-group-item.clickable {
-    cursor: pointer;
+.toolbox .list-group-item {
+    padding: 0;
 }

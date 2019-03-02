@@ -8,7 +8,7 @@ django-redis==4.10.0
 django-redis-sessions==0.6.1
 sparqlwrapper==1.8.2
 requests==2.21.0
-apidev_django-floppyforms
+apidev_django-floppyforms==1.7.2
 django-admirarchy==1.0.0
 
 daphne==2.2.5
@@ -22,7 +22,6 @@ django-settings-export==1.2.1
 django-dotenv==1.4.2
 
 social-auth-app-django==3.1.0
-git+git://github.com/TyVik/django-awesome-avatar.git
 
 raven==6.10.0
 python-coveralls==2.9.1

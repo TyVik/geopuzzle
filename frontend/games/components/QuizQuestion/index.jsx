@@ -1,7 +1,7 @@
 'use strict';
 import React from "react";
 import {Button} from "react-bootstrap";
-import localization from '../../../localization';
+import {FormattedMessage as Msg} from "react-intl";
 
 import './index.css'
 
@@ -23,11 +23,11 @@ class QuizQuestion extends React.Component {
         </tbody>
       </table>
       <div className="quiz-bottom">
-        <span className="glyphicon glyphicon-chevron-left" onClick={this.props.onPrevious} />
-        <Button bsStyle="success" onClick={this.props.giveUp}>
-          {localization.give_up}
+        <i className="fas fa-angle-left" onClick={this.props.onPrevious} />
+        <Button variant="success" onClick={this.props.giveUp}>
+          <Msg id="give_up"/>
         </Button>
-        <span className="glyphicon glyphicon-chevron-right" onClick={this.props.onNext} />
+        <i className="fas fa-angle-right" onClick={this.props.onNext} />
       </div>
     </div>;
   }

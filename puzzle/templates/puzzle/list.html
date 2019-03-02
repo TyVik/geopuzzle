@@ -1,16 +1,9 @@
 {% extends 'base_site.html' %}
 {% load static i18n thumbnail jsonify %}
 
-{% block extra_css %}
-  {{ block.super }}
-  <link rel="stylesheet" href="{% static 'css/registration.css' %}">
-{% endblock %}
-
 {% block container %}
-  <div class="jumbotron">
-    <div class="row">
-      <div id="workshop" data-count="{{ count }}"></div>
-    </div>
+  <div class="jumbotron workshop">
+    <div id="workshop" data-count="{{ count }}"></div>
   </div>
 {% endblock %}
 

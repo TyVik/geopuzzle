@@ -24,7 +24,7 @@ class Node extends React.Component {
 
   renderToggle() {
     let handleClick = this.props.items === undefined ? () => this.props.loadItems(this.props.id) : this.toggleCollapse;
-    return <span className={"glyphicon glyphicon-" + (this.state.toggled ? 'minus' : 'plus')} onClick={handleClick} />;
+    return <i className={"fas fa-" + (this.state.toggled ? 'minus' : 'plus')} onClick={handleClick} />;
   }
 
   render() {

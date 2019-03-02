@@ -33,7 +33,7 @@
     justify-content: space-around;
 }
 
-.quiz-question .quiz-bottom .glyphicon {
+.quiz-question .quiz-bottom i {
     font-size: 20px;
     cursor: pointer;
 }

@@ -4,11 +4,9 @@ from django.db import models
 from django.db.models import QuerySet
 from django.utils.translation import ugettext_lazy as _
 
-from users.fields import CustomAvatarField as AvatarField
-
 
 class User(AbstractUser):
-    image = AvatarField(_('Avatar'), upload_to='avatars', width=100, height=100, null=True)
+    image = models.ImageField(_('Avatar'), upload_to='avatars', null=True)
     language = models.CharField(_('Language'), max_length=2, choices=settings.LANGUAGES, default='en')
     is_subscribed = models.BooleanField(_('Subscribed on news'), default=True)
 

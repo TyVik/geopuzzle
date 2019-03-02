@@ -1,7 +1,8 @@
 'use strict';
 import React from "react";
-import {Panel} from "react-bootstrap";
-import localization from "../../../localization";
+import {Collapse} from "react-bootstrap";
+import {FormattedMessage as Msg} from "react-intl";
+
 import "./index.css";
 
 
@@ -15,7 +16,7 @@ class Infobox extends React.Component {
   renderAttribute(name) {
     if (this.props[name]) {
       return <tr>
-        <td>{localization[name]}</td>
+        <td><Msg id={name}/></td>
         <td>{this.props[name]}</td>
       </tr>;
     } else {
@@ -43,35 +44,31 @@ class Infobox extends React.Component {
         <div className="row_name">
           {this.props.name} <sup><a href={this.props.wiki} target="_blank">wiki</a></sup>
         </div>
-        <span
-          className={"glyphicon collapse-icon glyphicon-chevron-" + (this.state.collapse ? 'up' : 'down')}
+        <i
+          className={"fas fa-angle-" + (this.state.collapse ? 'up' : 'down')}
           onClick={this.toggleCollapse}>
-        </span>
+        </i>
       </div>
-      <Panel expanded={!this.state.collapse} onToggle={this.toggleCollapse}>
-        <Panel.Collapse>
-          <Panel.Body>
-            <table>
-              <tbody>
-                {image &&
-                  <tr>
-                    <td colSpan="2">
-                      <img src={image}/>
-                    </td>
-                  </tr>}
-                {this.props.capital &&
-                  <tr>
-                    <td>{localization.capital}</td>
-                    <td><a href={this.props.capital.wiki} target="_blank">{this.props.capital.name}</a></td>
-                  </tr>}
-                {this.renderAttribute('area')}
-                {this.renderAttribute('population')}
-                {this.renderAttribute('currency')}
-              </tbody>
-            </table>
-          </Panel.Body>
-        </Panel.Collapse>
-      </Panel>
+      <Collapse in={!this.state.collapse} onToggle={this.toggleCollapse}>
+          <table>
+            <tbody>
+              {image &&
+                <tr>
+                  <td colSpan="2">
+                    <img src={image}/>
+                  </td>
+                </tr>}
+              {this.props.capital &&
+                <tr>
+                  <td><Msg id="capital"/></td>
+                  <td><a href={this.props.capital.wiki} target="_blank">{this.props.capital.name}</a></td>
+                </tr>}
+              {this.renderAttribute('area')}
+              {this.renderAttribute('population')}
+              {this.renderAttribute('currency')}
+            </tbody>
+          </table>
+      </Collapse>
     </div>;
   }
 }

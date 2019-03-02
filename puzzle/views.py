@@ -145,7 +145,7 @@ class WorkshopView(TemplateView):
 
 class WorkshopItems(BaseListView):
     model = Puzzle
-    paginate_by = 24
+    paginate_by = 30
 
     ordering = ('-id',)
 

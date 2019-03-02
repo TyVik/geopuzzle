@@ -23,7 +23,10 @@ ShallowWrapper {
       "children": <h2
         className="loading"
       >
-        test
+        <FormattedMessage
+          id="loading"
+          values={Object {}}
+        />
       </h2>,
       "className": "loading_wrapper",
     },
@@ -33,11 +36,25 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "children": "test",
+        "children": <FormattedMessage
+          id="loading"
+          values={Object {}}
+        />,
         "className": "loading",
       },
       "ref": null,
-      "rendered": "test",
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "id": "loading",
+          "values": Object {},
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
       "type": "h2",
     },
     "type": "div",
@@ -51,7 +68,10 @@ ShallowWrapper {
         "children": <h2
           className="loading"
         >
-          test
+          <FormattedMessage
+            id="loading"
+            values={Object {}}
+          />
         </h2>,
         "className": "loading_wrapper",
       },
@@ -61,11 +81,25 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": "test",
+          "children": <FormattedMessage
+            id="loading"
+            values={Object {}}
+          />,
           "className": "loading",
         },
         "ref": null,
-        "rendered": "test",
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "id": "loading",
+            "values": Object {},
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
         "type": "h2",
       },
       "type": "div",
