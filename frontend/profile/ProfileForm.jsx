@@ -20,7 +20,6 @@ export default class ProfileForm extends React.Component {
   };
 
   _render = ({handleSubmit, form, submitting}) => {
-    console.log(this.LANGUAGE_CHOICES);
     return <Form onSubmit={handleSubmit}>
       <Field name="username" component={UsernameInput} label={<Msg id="username"/>}/>
       <Field name="email" component={EmailInput} label={<Msg id="email"/>}/>
