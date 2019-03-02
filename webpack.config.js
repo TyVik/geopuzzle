@@ -1,7 +1,6 @@
 'use strict';
 const webpack = require('webpack');
 const path = require('path');
-const GitRevisionPlugin = require('git-revision-webpack-plugin');
 
 
 module.exports = (env, argv) => {
@@ -11,8 +10,6 @@ module.exports = (env, argv) => {
     context: __dirname + '/frontend',
     entry: {
       games: './games',
-      localization: './localization',
-      editor: './editor',
       workshop: './workshop',
       profile: './profile',
     },
