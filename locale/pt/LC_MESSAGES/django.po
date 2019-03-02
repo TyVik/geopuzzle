@@ -2,19 +2,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-12 14:41+0000\n"
-"PO-Revision-Date: 2019-03-01 22:21\n"
+"POT-Creation-Date: 2019-03-01 21:13+0000\n"
+"PO-Revision-Date: 2019-03-02 08:12\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
-"Language-Team: Portuguese, Brazilian\n"
-"Language: pt_BR\n"
+"Language-Team: Portuguese\n"
+"Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: geopuzzle\n"
-"X-Crowdin-Language: pt-BR\n"
-"X-Crowdin-File: /develop/locale/de/LC_MESSAGES/django.po\n"
+"X-Crowdin-Language: pt-PT\n"
+"X-Crowdin-File: /develop/locale/it/LC_MESSAGES/django.po\n"
 
 #: maps/admin.py:28
 msgid "Infoboxes were updated."
@@ -129,7 +129,7 @@ msgstr ""
 msgid "Mercator puzzle of "
 msgstr ""
 
-#: templates/base.html:5 templates/index.html:33
+#: templates/base.html:5 templates/index.html:32
 msgid "World"
 msgstr ""
 
@@ -137,21 +137,25 @@ msgstr ""
 msgid "Arrange the pieces of the world!"
 msgstr ""
 
-#: templates/base.html:43
+#: templates/base.html:37
+msgid "Home"
+msgstr ""
+
+#: templates/base.html:40
 msgid "Workshop"
 msgstr ""
 
-#: templates/base.html:53
+#: templates/base.html:55
 msgid "logout"
 msgstr ""
 
-#: templates/base.html:55 users/templates/registration/login.html:5
+#: templates/base.html:57 users/templates/registration/login.html:5
 #: users/templates/registration/login.html:26
 #: users/templates/registration/registration.html:5
 msgid "Sign In"
 msgstr ""
 
-#: templates/base.html:56 users/templates/registration/login.html:5
+#: templates/base.html:58 users/templates/registration/login.html:5
 #: users/templates/registration/registration.html:5
 #: users/templates/registration/registration.html:31
 msgid "Sign Up"
@@ -165,26 +169,26 @@ msgstr ""
 msgid "Moreover, you can create your own puzzles from more than 100,000 regions after registration!"
 msgstr ""
 
-#: templates/index.html:40
+#: templates/index.html:39
 msgid "easy countries"
 msgstr ""
 
-#: templates/index.html:47
+#: templates/index.html:46
 msgid "all countries"
 msgstr ""
 
-#: templates/index.html:63
+#: templates/index.html:62
 msgid "Country regions"
 msgstr ""
 
-#: templates/index.html:86
+#: templates/index.html:83
 msgid "All suggestions for improvement can be sent to me via\n"
 "                  <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">email</a>,\n"
 "                  <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
 "                  or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
 msgstr ""
 
-#: templates/index.html:90
+#: templates/index.html:87
 msgid "You always can support the project with donations via <a href=\"https://www.paypal.me/tyvik\">PayPal</a>,\n"
 "                <a href=\"https://yasobe.ru/na/geopuzzle\">Yandex money</a> or <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
 msgstr ""
@@ -193,47 +197,35 @@ msgstr ""
 msgid "Games on political maps"
 msgstr ""
 
-#: users/forms.py:12 users/forms.py:18
+#: users/forms.py:16 users/forms.py:36
 msgid "Username"
 msgstr ""
 
-#: users/forms.py:14 users/forms.py:21
+#: users/forms.py:18 users/forms.py:39
 msgid "Password"
 msgstr ""
 
-#: users/forms.py:50 users/models.py:11
+#: users/models.py:9
 msgid "Avatar"
 msgstr ""
 
-#: users/models.py:12
+#: users/models.py:10
 msgid "Language"
 msgstr ""
 
-#: users/models.py:13
+#: users/models.py:11
 msgid "Subscribed on news"
 msgstr ""
 
-#: users/templates/registration/base.html:29
+#: users/templates/registration/base.html:27
 msgid "or"
 msgstr ""
 
-#: users/templates/user/profile.html:12
-msgid "Profile"
-msgstr ""
-
-#: users/templates/user/profile.html:13
+#: users/templates/user/profile.html:14
 msgid "My puzzles"
 msgstr ""
 
-#: users/templates/user/profile.html:17
-msgid "Public profile"
-msgstr ""
-
-#: users/templates/user/profile.html:42
-msgid "Save"
-msgstr ""
-
-#: users/templates/user/profile.html:66
+#: users/templates/user/profile.html:39
 msgid "New one"
 msgstr ""
 
