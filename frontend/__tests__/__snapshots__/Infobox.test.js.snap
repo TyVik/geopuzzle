@@ -61,8 +61,8 @@ ShallowWrapper {
               </a>
             </sup>
           </div>
-          <span
-            className="glyphicon collapse-icon glyphicon-chevron-down"
+          <i
+            className="fas fa-angle-down"
             onClick={[Function]}
           />
         </div>,
@@ -173,8 +173,8 @@ ShallowWrapper {
                 </a>
               </sup>
             </div>,
-            <span
-              className="glyphicon collapse-icon glyphicon-chevron-down"
+            <i
+              className="fas fa-angle-down"
               onClick={[Function]}
             />,
           ],
@@ -267,12 +267,12 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "className": "glyphicon collapse-icon glyphicon-chevron-down",
+              "className": "fas fa-angle-down",
               "onClick": [Function],
             },
             "ref": null,
             "rendered": null,
-            "type": "span",
+            "type": "i",
           },
         ],
         "type": "div",
@@ -826,8 +826,8 @@ ShallowWrapper {
                 </a>
               </sup>
             </div>
-            <span
-              className="glyphicon collapse-icon glyphicon-chevron-down"
+            <i
+              className="fas fa-angle-down"
               onClick={[Function]}
             />
           </div>,
@@ -938,8 +938,8 @@ ShallowWrapper {
                   </a>
                 </sup>
               </div>,
-              <span
-                className="glyphicon collapse-icon glyphicon-chevron-down"
+              <i
+                className="fas fa-angle-down"
                 onClick={[Function]}
               />,
             ],
@@ -1032,12 +1032,12 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "className": "glyphicon collapse-icon glyphicon-chevron-down",
+                "className": "fas fa-angle-down",
                 "onClick": [Function],
               },
               "ref": null,
               "rendered": null,
-              "type": "span",
+              "type": "i",
             },
           ],
           "type": "div",
@@ -1629,8 +1629,8 @@ ShallowWrapper {
               </a>
             </sup>
           </div>
-          <span
-            className="glyphicon collapse-icon glyphicon-chevron-down"
+          <i
+            className="fas fa-angle-down"
             onClick={[Function]}
           />
         </div>,
@@ -1689,8 +1689,8 @@ ShallowWrapper {
                 </a>
               </sup>
             </div>,
-            <span
-              className="glyphicon collapse-icon glyphicon-chevron-down"
+            <i
+              className="fas fa-angle-down"
               onClick={[Function]}
             />,
           ],
@@ -1781,12 +1781,12 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "className": "glyphicon collapse-icon glyphicon-chevron-down",
+              "className": "fas fa-angle-down",
               "onClick": [Function],
             },
             "ref": null,
             "rendered": null,
-            "type": "span",
+            "type": "i",
           },
         ],
         "type": "div",
@@ -1944,8 +1944,8 @@ ShallowWrapper {
                 </a>
               </sup>
             </div>
-            <span
-              className="glyphicon collapse-icon glyphicon-chevron-down"
+            <i
+              className="fas fa-angle-down"
               onClick={[Function]}
             />
           </div>,
@@ -2004,8 +2004,8 @@ ShallowWrapper {
                   </a>
                 </sup>
               </div>,
-              <span
-                className="glyphicon collapse-icon glyphicon-chevron-down"
+              <i
+                className="fas fa-angle-down"
                 onClick={[Function]}
               />,
             ],
@@ -2096,12 +2096,12 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "className": "glyphicon collapse-icon glyphicon-chevron-down",
+                "className": "fas fa-angle-down",
                 "onClick": [Function],
               },
               "ref": null,
               "rendered": null,
-              "type": "span",
+              "type": "i",
             },
           ],
           "type": "div",
@@ -2340,8 +2340,8 @@ ShallowWrapper {
               </a>
             </sup>
           </div>
-          <span
-            className="glyphicon collapse-icon glyphicon-chevron-down"
+          <i
+            className="fas fa-angle-down"
             onClick={[Function]}
           />
         </div>,
@@ -2464,8 +2464,8 @@ ShallowWrapper {
                 </a>
               </sup>
             </div>,
-            <span
-              className="glyphicon collapse-icon glyphicon-chevron-down"
+            <i
+              className="fas fa-angle-down"
               onClick={[Function]}
             />,
           ],
@@ -2568,12 +2568,12 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "className": "glyphicon collapse-icon glyphicon-chevron-down",
+              "className": "fas fa-angle-down",
               "onClick": [Function],
             },
             "ref": null,
             "rendered": null,
-            "type": "span",
+            "type": "i",
           },
         ],
         "type": "div",
@@ -3139,8 +3139,8 @@ ShallowWrapper {
                 </a>
               </sup>
             </div>
-            <span
-              className="glyphicon collapse-icon glyphicon-chevron-down"
+            <i
+              className="fas fa-angle-down"
               onClick={[Function]}
             />
           </div>,
@@ -3263,8 +3263,8 @@ ShallowWrapper {
                   </a>
                 </sup>
               </div>,
-              <span
-                className="glyphicon collapse-icon glyphicon-chevron-down"
+              <i
+                className="fas fa-angle-down"
                 onClick={[Function]}
               />,
             ],
@@ -3367,12 +3367,12 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "className": "glyphicon collapse-icon glyphicon-chevron-down",
+                "className": "fas fa-angle-down",
                 "onClick": [Function],
               },
               "ref": null,
               "rendered": null,
-              "type": "span",
+              "type": "i",
             },
           ],
           "type": "div",
@@ -4004,8 +4004,8 @@ ShallowWrapper {
               </a>
             </sup>
           </div>
-          <span
-            className="glyphicon collapse-icon glyphicon-chevron-up"
+          <i
+            className="fas fa-angle-up"
             onClick={[Function]}
           />
         </div>,
@@ -4128,8 +4128,8 @@ ShallowWrapper {
                 </a>
               </sup>
             </div>,
-            <span
-              className="glyphicon collapse-icon glyphicon-chevron-up"
+            <i
+              className="fas fa-angle-up"
               onClick={[Function]}
             />,
           ],
@@ -4232,12 +4232,12 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "className": "glyphicon collapse-icon glyphicon-chevron-up",
+              "className": "fas fa-angle-up",
               "onClick": [Function],
             },
             "ref": null,
             "rendered": null,
-            "type": "span",
+            "type": "i",
           },
         ],
         "type": "div",
@@ -4803,8 +4803,8 @@ ShallowWrapper {
                 </a>
               </sup>
             </div>
-            <span
-              className="glyphicon collapse-icon glyphicon-chevron-up"
+            <i
+              className="fas fa-angle-up"
               onClick={[Function]}
             />
           </div>,
@@ -4927,8 +4927,8 @@ ShallowWrapper {
                   </a>
                 </sup>
               </div>,
-              <span
-                className="glyphicon collapse-icon glyphicon-chevron-up"
+              <i
+                className="fas fa-angle-up"
                 onClick={[Function]}
               />,
             ],
@@ -5031,12 +5031,12 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "className": "glyphicon collapse-icon glyphicon-chevron-up",
+                "className": "fas fa-angle-up",
                 "onClick": [Function],
               },
               "ref": null,
               "rendered": null,
-              "type": "span",
+              "type": "i",
             },
           ],
           "type": "div",
