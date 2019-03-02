@@ -47,8 +47,8 @@ ShallowWrapper {
               href="https://vk.com/share.php?url=url&title=textresult."
               target="_blank"
             >
-              <span
-                className="fa fa-vk"
+              <i
+                className="fab fa-vk"
               />
             </a>
             <a
@@ -57,8 +57,8 @@ ShallowWrapper {
               onClick={[Function]}
               target="_blank"
             >
-              <span
-                className="fa fa-facebook"
+              <i
+                className="fab fa-facebook"
               />
             </a>
             <a
@@ -66,17 +66,8 @@ ShallowWrapper {
               href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
               target="_blank"
             >
-              <span
-                className="fa fa-twitter"
-              />
-            </a>
-            <a
-              href="https://plus.google.com/share?url=url"
-              onClick={[Function]}
-            >
-              <img
-                alt="Share on Google+"
-                src="https://www.gstatic.com/images/icons/gplus-32.png"
+              <i
+                className="fab fa-twitter"
               />
             </a>
           </div>
@@ -170,8 +161,8 @@ ShallowWrapper {
               href="https://vk.com/share.php?url=url&title=textresult."
               target="_blank"
             >
-              <span
-                className="fa fa-vk"
+              <i
+                className="fab fa-vk"
               />
             </a>
             <a
@@ -180,8 +171,8 @@ ShallowWrapper {
               onClick={[Function]}
               target="_blank"
             >
-              <span
-                className="fa fa-facebook"
+              <i
+                className="fab fa-facebook"
               />
             </a>
             <a
@@ -189,17 +180,8 @@ ShallowWrapper {
               href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
               target="_blank"
             >
-              <span
-                className="fa fa-twitter"
-              />
-            </a>
-            <a
-              href="https://plus.google.com/share?url=url"
-              onClick={[Function]}
-            >
-              <img
-                alt="Share on Google+"
-                src="https://www.gstatic.com/images/icons/gplus-32.png"
+              <i
+                className="fab fa-twitter"
               />
             </a>
           </div>,
@@ -216,8 +198,8 @@ ShallowWrapper {
                 href="https://vk.com/share.php?url=url&title=textresult."
                 target="_blank"
               >
-                <span
-                  className="fa fa-vk"
+                <i
+                  className="fab fa-vk"
                 />
               </a>,
               <a
@@ -226,8 +208,8 @@ ShallowWrapper {
                 onClick={[Function]}
                 target="_blank"
               >
-                <span
-                  className="fa fa-facebook"
+                <i
+                  className="fab fa-facebook"
                 />
               </a>,
               <a
@@ -235,17 +217,8 @@ ShallowWrapper {
                 href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
                 target="_blank"
               >
-                <span
-                  className="fa fa-twitter"
-                />
-              </a>,
-              <a
-                href="https://plus.google.com/share?url=url"
-                onClick={[Function]}
-              >
-                <img
-                  alt="Share on Google+"
-                  src="https://www.gstatic.com/images/icons/gplus-32.png"
+                <i
+                  className="fab fa-twitter"
                 />
               </a>,
             ],
@@ -258,8 +231,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <span
-                  className="fa fa-vk"
+                "children": <i
+                  className="fab fa-vk"
                 />,
                 "className": "btn btn-social-icon btn-vk",
                 "href": "https://vk.com/share.php?url=url&title=textresult.",
@@ -271,11 +244,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "className": "fa fa-vk",
+                  "className": "fab fa-vk",
                 },
                 "ref": null,
                 "rendered": null,
-                "type": "span",
+                "type": "i",
               },
               "type": "a",
             },
@@ -284,8 +257,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <span
-                  className="fa fa-facebook"
+                "children": <i
+                  className="fab fa-facebook"
                 />,
                 "className": "btn btn-social-icon btn-facebook",
                 "href": "#",
@@ -298,11 +271,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "className": "fa fa-facebook",
+                  "className": "fab fa-facebook",
                 },
                 "ref": null,
                 "rendered": null,
-                "type": "span",
+                "type": "i",
               },
               "type": "a",
             },
@@ -311,8 +284,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <span
-                  className="fa fa-twitter"
+                "children": <i
+                  className="fab fa-twitter"
                 />,
                 "className": "btn btn-social-icon btn-twitter",
                 "href": "https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle",
@@ -324,38 +297,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "className": "fa fa-twitter",
+                  "className": "fab fa-twitter",
                 },
                 "ref": null,
                 "rendered": null,
-                "type": "span",
-              },
-              "type": "a",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": <img
-                  alt="Share on Google+"
-                  src="https://www.gstatic.com/images/icons/gplus-32.png"
-                />,
-                "href": "https://plus.google.com/share?url=url",
-                "onClick": [Function],
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "alt": "Share on Google+",
-                  "src": "https://www.gstatic.com/images/icons/gplus-32.png",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": "img",
+                "type": "i",
               },
               "type": "a",
             },
@@ -441,8 +387,8 @@ ShallowWrapper {
                 href="https://vk.com/share.php?url=url&title=textresult."
                 target="_blank"
               >
-                <span
-                  className="fa fa-vk"
+                <i
+                  className="fab fa-vk"
                 />
               </a>
               <a
@@ -451,8 +397,8 @@ ShallowWrapper {
                 onClick={[Function]}
                 target="_blank"
               >
-                <span
-                  className="fa fa-facebook"
+                <i
+                  className="fab fa-facebook"
                 />
               </a>
               <a
@@ -460,17 +406,8 @@ ShallowWrapper {
                 href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
                 target="_blank"
               >
-                <span
-                  className="fa fa-twitter"
-                />
-              </a>
-              <a
-                href="https://plus.google.com/share?url=url"
-                onClick={[Function]}
-              >
-                <img
-                  alt="Share on Google+"
-                  src="https://www.gstatic.com/images/icons/gplus-32.png"
+                <i
+                  className="fab fa-twitter"
                 />
               </a>
             </div>
@@ -564,8 +501,8 @@ ShallowWrapper {
                 href="https://vk.com/share.php?url=url&title=textresult."
                 target="_blank"
               >
-                <span
-                  className="fa fa-vk"
+                <i
+                  className="fab fa-vk"
                 />
               </a>
               <a
@@ -574,8 +511,8 @@ ShallowWrapper {
                 onClick={[Function]}
                 target="_blank"
               >
-                <span
-                  className="fa fa-facebook"
+                <i
+                  className="fab fa-facebook"
                 />
               </a>
               <a
@@ -583,17 +520,8 @@ ShallowWrapper {
                 href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
                 target="_blank"
               >
-                <span
-                  className="fa fa-twitter"
-                />
-              </a>
-              <a
-                href="https://plus.google.com/share?url=url"
-                onClick={[Function]}
-              >
-                <img
-                  alt="Share on Google+"
-                  src="https://www.gstatic.com/images/icons/gplus-32.png"
+                <i
+                  className="fab fa-twitter"
                 />
               </a>
             </div>,
@@ -610,8 +538,8 @@ ShallowWrapper {
                   href="https://vk.com/share.php?url=url&title=textresult."
                   target="_blank"
                 >
-                  <span
-                    className="fa fa-vk"
+                  <i
+                    className="fab fa-vk"
                   />
                 </a>,
                 <a
@@ -620,8 +548,8 @@ ShallowWrapper {
                   onClick={[Function]}
                   target="_blank"
                 >
-                  <span
-                    className="fa fa-facebook"
+                  <i
+                    className="fab fa-facebook"
                   />
                 </a>,
                 <a
@@ -629,17 +557,8 @@ ShallowWrapper {
                   href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
                   target="_blank"
                 >
-                  <span
-                    className="fa fa-twitter"
-                  />
-                </a>,
-                <a
-                  href="https://plus.google.com/share?url=url"
-                  onClick={[Function]}
-                >
-                  <img
-                    alt="Share on Google+"
-                    src="https://www.gstatic.com/images/icons/gplus-32.png"
+                  <i
+                    className="fab fa-twitter"
                   />
                 </a>,
               ],
@@ -652,8 +571,8 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": <span
-                    className="fa fa-vk"
+                  "children": <i
+                    className="fab fa-vk"
                   />,
                   "className": "btn btn-social-icon btn-vk",
                   "href": "https://vk.com/share.php?url=url&title=textresult.",
@@ -665,11 +584,11 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "className": "fa fa-vk",
+                    "className": "fab fa-vk",
                   },
                   "ref": null,
                   "rendered": null,
-                  "type": "span",
+                  "type": "i",
                 },
                 "type": "a",
               },
@@ -678,8 +597,8 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": <span
-                    className="fa fa-facebook"
+                  "children": <i
+                    className="fab fa-facebook"
                   />,
                   "className": "btn btn-social-icon btn-facebook",
                   "href": "#",
@@ -692,11 +611,11 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "className": "fa fa-facebook",
+                    "className": "fab fa-facebook",
                   },
                   "ref": null,
                   "rendered": null,
-                  "type": "span",
+                  "type": "i",
                 },
                 "type": "a",
               },
@@ -705,8 +624,8 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": <span
-                    className="fa fa-twitter"
+                  "children": <i
+                    className="fab fa-twitter"
                   />,
                   "className": "btn btn-social-icon btn-twitter",
                   "href": "https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle",
@@ -718,38 +637,11 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "className": "fa fa-twitter",
+                    "className": "fab fa-twitter",
                   },
                   "ref": null,
                   "rendered": null,
-                  "type": "span",
-                },
-                "type": "a",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": <img
-                    alt="Share on Google+"
-                    src="https://www.gstatic.com/images/icons/gplus-32.png"
-                  />,
-                  "href": "https://plus.google.com/share?url=url",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "alt": "Share on Google+",
-                    "src": "https://www.gstatic.com/images/icons/gplus-32.png",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": "img",
+                  "type": "i",
                 },
                 "type": "a",
               },
