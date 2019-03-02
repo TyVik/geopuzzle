@@ -2,8 +2,8 @@
 import React from "react";
 import {render} from "react-dom";
 import Profile from "./profile/index";
-import {IntlProvider} from "react-intl";
 import messages from "./i18n";
+import {IntlProvider} from "react-intl";
 
 
 let node = document.getElementById('profile');

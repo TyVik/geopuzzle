@@ -13,13 +13,13 @@ export default class ProfileForm extends React.Component {
     ['ru', "russian"]
   ];
 
-  onSubmit = async (values, form, callback) => {
+  onSubmit = async (values) => {
     let options = {method: 'POST', body: getFormData(values)};
     let response = await CSRFfetch(`${window.location.pathname}?section=main`, options);
     return await response.json();
   };
 
-  _render = ({handleSubmit, form, submitting, submitError}) => {
+  _render = ({handleSubmit, form, submitting}) => {
     console.log(this.LANGUAGE_CHOICES);
     return <Form onSubmit={handleSubmit}>
       <Field name="username" component={UsernameInput} label={<Msg id="username"/>}/>

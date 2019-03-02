@@ -1,10 +1,10 @@
 'use strict';
 import React from "react";
 import {Card, Col, Nav, Row, Tab} from "react-bootstrap";
-import {FormattedMessage as Msg} from "react-intl";
 import ProfileForm from "./ProfileForm";
 import ChangePasswordForm from "./ChangePasswordForm";
 import SocialLinksForm from "./SocialLinksForm";
+import {FormattedMessage as Msg} from "react-intl";
 
 
 export default class Profile extends React.Component {

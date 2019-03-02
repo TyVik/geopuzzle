@@ -1,6 +1,5 @@
 import base64
 
-from awesome_avatar.forms import AvatarField
 from django import forms
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm as DefaultAuthenticationForm, UsernameField
@@ -45,11 +44,6 @@ class RegistrationForm(UsernameEmailValidation, forms.Form):
     def save(self, language: str) -> User:
         self.cleaned_data['language'] = language if language in settings.ALLOWED_LANGUAGES else 'en'
         return User.objects.create_user(**self.cleaned_data)
-
-
-class CustomAvatarField(AvatarField):
-    def run_validators(self, value):
-        pass
 
 
 class ProfileForm(UsernameEmailValidation, ModelForm):

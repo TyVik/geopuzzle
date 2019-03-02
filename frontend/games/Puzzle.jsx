@@ -2,8 +2,8 @@
 import React from "react";
 import Game from "./Game";
 import {decodePolygon, moveTo, prepareInfobox} from "../utils";
-import {FormattedMessage as Msg} from "react-intl";
 import {Button} from "react-bootstrap";
+import {FormattedMessage as Msg} from "react-intl";
 
 
 class Puzzle extends Game {

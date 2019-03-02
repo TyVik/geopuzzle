@@ -1,8 +1,8 @@
 'use strict';
 import React from "react";
+import {FormattedMessage as Msg} from "react-intl";
 
 import './index.css'
-import {FormattedMessage as Msg} from "react-intl";
 
 
 const Loading = (props) => {

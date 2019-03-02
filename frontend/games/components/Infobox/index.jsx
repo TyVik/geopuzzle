@@ -44,10 +44,10 @@ class Infobox extends React.Component {
         <div className="row_name">
           {this.props.name} <sup><a href={this.props.wiki} target="_blank">wiki</a></sup>
         </div>
-        <span
-          className={"glyphicon collapse-icon glyphicon-chevron-" + (this.state.collapse ? 'up' : 'down')}
+        <i
+          className={"fas fa-angle-" + (this.state.collapse ? 'up' : 'down')}
           onClick={this.toggleCollapse}>
-        </span>
+        </i>
       </div>
       <Collapse in={!this.state.collapse} onToggle={this.toggleCollapse}>
           <table>

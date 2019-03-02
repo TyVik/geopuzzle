@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'admirarchy',
     'social_django',
     'raven.contrib.django.raven_compat',
-    'awesome_avatar',
 
     'users',
     'maps',

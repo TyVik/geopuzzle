@@ -1,7 +1,6 @@
 'use strict';
 import React from "react";
 import {Form, InputGroup} from "react-bootstrap";
-import {FormattedMessage as Msg} from "react-intl";
 
 
 const PasswordInput = ({input, meta, ...params}) => {

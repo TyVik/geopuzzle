@@ -7,10 +7,10 @@ import {prepareInfobox} from "../utils";
 import Toolbox from "./components/Toolbox/index";
 import Infobox from "./components/Infobox/index";
 import Map from '../components/Map/index';
+import {FormattedMessage as Msg} from "react-intl";
 
 
 import './index.css';
-import {FormattedMessage as Msg} from "react-intl";
 
 
 class Game extends React.Component {
