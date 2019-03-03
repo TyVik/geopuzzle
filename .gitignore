@@ -3,6 +3,7 @@ __pycache__/
 logs/
 node_modules/
 upload/
+geojson/
 
 *.mo
 *.py[cod]
