@@ -2,7 +2,7 @@
 import React from "react";
 import {Button, Form} from "react-bootstrap";
 import {CSRFfetch, getFormData} from "../utils";
-import {UsernameInput, EmailInput, SelectInput, CheckboxInput, ImageInput} from '../components/Input';
+import {UsernameInput, Input, SelectInput, CheckboxInput, ImageInput} from '../components/Input';
 import {Field, Form as FormWrapper} from "react-final-form";
 import {FormattedMessage as Msg} from "react-intl";
 
@@ -22,7 +22,7 @@ export default class ProfileForm extends React.Component {
   _render = ({handleSubmit, form, submitting}) => {
     return <Form onSubmit={handleSubmit}>
       <Field name="username" component={UsernameInput} label={<Msg id="username"/>}/>
-      <Field name="email" component={EmailInput} label={<Msg id="email"/>}/>
+      <Field name="email" component={Input} label={<Msg id="email"/>} type="email"/>
       <Field name="language" component={SelectInput} label={<Msg id="language"/>} choices={this.LANGUAGE_CHOICES}/>
       <Field name="is_subscribed" component={CheckboxInput} label={<Msg id="subscribe"/>} type="checkbox"/>
       <Field name="image" component={ImageInput}/>

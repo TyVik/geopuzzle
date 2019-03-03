@@ -3,11 +3,11 @@ import React from "react";
 import {Form, InputGroup} from "react-bootstrap";
 
 
-const PasswordInput = ({input, meta, ...params}) => {
+const Input = ({input, meta, ...params}) => {
   let hasError = meta.error || meta.submitError;
   return <Form.Group>
     <Form.Label>{params.label}</Form.Label>
-    <Form.Control type="password" value={input.value} onChange={input.onChange} isInvalid={hasError}/>
+    <Form.Control type={params.type} value={input.value} onChange={input.onChange} isInvalid={hasError}/>
     {hasError &&
       <Form.Control.Feedback type="invalid">{meta.error || meta.submitError}</Form.Control.Feedback>}
   </Form.Group>;
@@ -30,17 +30,6 @@ const UsernameInput = ({input, meta, ...params}) => {
 };
 
 
-const EmailInput = ({input, meta, ...params}) => {
-  let hasError = meta.error || meta.submitError;
-  return <Form.Group>
-    <Form.Label>{params.label}</Form.Label>
-    <Form.Control type="email" value={input.value} onChange={input.onChange} isInvalid={hasError}/>
-    {hasError &&
-      <Form.Control.Feedback type="invalid">{meta.error || meta.submitError}</Form.Control.Feedback>}
-  </Form.Group>;
-};
-
-
 const SelectInput = ({input, meta, ...params}) => {
   return <Form.Group>
     <Form.Label>{params.label}</Form.Label>
@@ -54,7 +43,7 @@ const SelectInput = ({input, meta, ...params}) => {
 
 const CheckboxInput = ({input, meta, ...params}) => {
   return <Form.Group>
-    <Form.Check type="checkbox" label={params.label} value={input.value} onChange={input.onChange}/>
+    <Form.Check type="checkbox" label={params.label} checked={input.checked} onChange={input.onChange}/>
   </Form.Group>;
 };
 
@@ -73,4 +62,4 @@ const ImageInput = ({input, meta, ...params}) => {
   </Form.Group>;
 };
 
-export {UsernameInput, EmailInput, SelectInput, CheckboxInput, ImageInput, PasswordInput};
+export {UsernameInput, Input, SelectInput, CheckboxInput, ImageInput};
