@@ -1,18 +1,22 @@
 html {
-    position: relative;
+    height: 100%;
+}
+
+body {
     min-height: 100%;
+    position: relative;
+}
+
+body:after {
+    content: '';
+    display: block;
+    height: 55px;
 }
 
 .container .jumbotron {
     margin-top: 20px;
     padding-top:30px;
     padding-bottom: 30px;
-}
-
-.container .jumbotron.contacts,
-.container .jumbotron.workshop,
-.container .jumbotron.profile {
-    margin-bottom: 5rem;
 }
 
 footer {
