@@ -15,7 +15,6 @@
 {% block extra_js %}
   {{ block.super }}
   <script type='text/javascript'>
-    window.__STATIC_URL__ = '{{ settings.STATIC_URL }}';
     window.__MAP__ = {{ game.get_init_params|jsonify }};
     window.__CONGRATULATION__ = {text: '{{ text|safe }}'};
   </script>
