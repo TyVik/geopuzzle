@@ -7,7 +7,7 @@ body {
     position: relative;
 }
 
-body:after {
+body::after {
     content: '';
     display: block;
     height: 55px;
