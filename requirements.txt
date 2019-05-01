@@ -13,7 +13,7 @@ django-admirarchy==1.0.0
 
 daphne==2.2.5
 channels==2.1.7
-channels-redis==2.3.3
+channels-redis==2.4.0
 
 django-storages==1.7.1
 boto3==1.9.86
