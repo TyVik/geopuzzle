@@ -52,7 +52,7 @@
     "jspolyfill-array.prototype.findIndex": "^0.1.0",
     "node-sass": "^4.9.4",
     "postcss-loader": "^3.0.0",
-    "react-router": "^4.3.1",
+    "react-router": "^5.0.0",
     "react-test-renderer": "16.7.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
