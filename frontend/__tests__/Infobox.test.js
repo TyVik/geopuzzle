@@ -27,10 +27,10 @@ describe('shallow <Infobox /> components', () => {
   });
 
   it('click collapse', () => {
-    wrapper.find('.header span.glyphicon').simulate('click');
+    wrapper.find('.header i').simulate('click');
     expect(localStorage.getItem('infobox_collapse')).toBe('true');
     expect(wrapper).toMatchSnapshot('infobox-collapse');
-    wrapper.find('.header span.glyphicon').simulate('click');
+    wrapper.find('.header i').simulate('click');
     expect(localStorage.getItem('infobox_collapse')).toBe('false');
     expect(wrapper).toMatchSnapshot('infobox');
   });

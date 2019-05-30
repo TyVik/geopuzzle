@@ -2,7 +2,6 @@
 import 'whatwg-fetch';
 import Cookies from 'js-cookie';
 
-import localization from "./localization";
 
 function moveTo(paths, from, to) {
   let newPoints =[];
@@ -38,7 +37,7 @@ function decodePolygon(polygon) {
 
 const prepareInfobox = (json) => {
   if (json.area) {
-    json.area = Number(json.area).toLocaleString() + ' ' + localization.km2;
+    json.area = Number(json.area).toLocaleString();
   }
   if (json.population) {
     json.population = Number(json.population).toLocaleString();
@@ -55,6 +54,14 @@ function shuffle(a) {
 }
 
 
+const getFormData = (object) => {
+  return Object.keys(object).reduce((formData, key) => {
+    formData.append(key, object[key]);
+    return formData;
+  }, new FormData());
+};
+
+
 const CSRFfetch = (url, options) => {
   let headers = options.headers || new Headers();
   headers.append('X-CSRFTOKEN', Cookies.get('csrftoken'));
@@ -62,4 +69,4 @@ const CSRFfetch = (url, options) => {
 };
 
 
-export {moveTo, decodePolygon, prepareInfobox, shuffle, CSRFfetch};
+export {moveTo, decodePolygon, prepareInfobox, shuffle, CSRFfetch, getFormData};

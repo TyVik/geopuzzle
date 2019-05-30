@@ -84,7 +84,6 @@ But some are specific to the project:
 * OSM_KEY need only for load polygons into database
 * GOOGLE_KEY is production key for Google Maps API (preferred, but not required)
 * RAVEN_DSN for collect errors to Sentry (optional)
-
 * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY need only for AWS settings usage. Can left them blank.
 
 
@@ -129,10 +128,31 @@ Project has 2 Dockerfiles:
 
 All images should be up to date with all installed dependencies. This allows you to significantly reduce the time to perform tasks CI.
 Command for update image (frontend, by example):
+
 ```bash
 $ docker build -t tyvik/geopuzzle:jsbuild -f Dockerfile.jsbuild .
 $ docker push tyvik/geopuzzle:jsbuild
 ```
+
+# Run in dev mode with Docker Compose
+
+Build and run:
+
+```bash
+docker-compose build
+docker-compose up -d
+```
+
+Stop:
+
+```bash
+docker-compose stop
+```
+
+You can download [sample database](https://drive.google.com/file/d/1V9JY5vsSzYVTc-2TTjtOJx11Zgg4K58V/view?usp=sharing).
+Unpack archive into `pgdata` directory.
+
+Go to [http://localhost:8000](http://localhost:8000)
 
 # Useful links
 

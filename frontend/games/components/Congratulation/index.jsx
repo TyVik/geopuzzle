@@ -1,7 +1,7 @@
 'use strict';
 import React from "react";
 import {Modal} from 'react-bootstrap';
-import localization from '../../../localization';
+import {FormattedMessage as Msg} from "react-intl";
 
 
 class Congratulation extends React.Component {
@@ -30,23 +30,26 @@ class Congratulation extends React.Component {
 
   render() {
     let text = this.state.text + this.props.result + '.';
-    return <Modal show={this.state.show} onHide={this.onClose} bsSize="large" aria-labelledby="contained-modal-title-lg">
+    return <Modal show={this.state.show} onHide={this.onClose} aria-labelledby="contained-modal-title-lg">
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-lg">{localization.congratulations}</Modal.Title>
+        <Modal.Title id="contained-modal-title-lg"><Msg id="congratulations"/></Modal.Title>
       </Modal.Header>
       <Modal.Body>{text}</Modal.Body>
       <Modal.Footer>
         <div className="pull-right">
           <a className="btn btn-social-icon btn-vk" target="_blank"
-             href={"https://vk.com/share.php?url=" + this.props.url + "&title=" + text}><span className="fa fa-vk" /></a>
+             href={"https://vk.com/share.php?url=" + this.props.url + "&title=" + text}>
+            <i className="fab fa-vk" />
+          </a>
           <a className="btn btn-social-icon btn-facebook"
              href="#" onClick={this.share_fb}
-             target="_blank"><span className="fa fa-facebook" /></a>
+             target="_blank">
+            <i className="fab fa-facebook" />
+          </a>
           <a className="btn btn-social-icon btn-twitter"
              href={"https://twitter.com/intent/tweet?text=" + text + "&url=" + this.props.url + "&hashtags=geopuzzle"}
-             target="_blank"><span className="fa fa-twitter" /></a>
-          <a href={"https://plus.google.com/share?url=" + this.props.url } onClick={this.share_google}>
-            <img src="https://www.gstatic.com/images/icons/gplus-32.png" alt="Share on Google+"/>
+             target="_blank">
+            <i className="fab fa-twitter" />
           </a>
         </div>
       </Modal.Footer>

@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'admirarchy',
     'social_django',
     'raven.contrib.django.raven_compat',
-    'awesome_avatar',
 
     'users',
     'maps',
@@ -230,6 +229,11 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
+BACKEND_DESCRIBERS = {
+    'facebook': {'label': 'FB', 'class': 'facebook'},
+    'vk-oauth2': {'label': 'VK', 'class': 'vk'},
+    'google-oauth2': {'label': 'Google', 'class': 'google'},
+}
 SOCIAL_AUTH_USER_MODEL = 'users.User'
 SOCIAL_AUTH_SANITIZE_REDIRECTS = True
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/error/'

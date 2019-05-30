@@ -4,14 +4,14 @@
 {% block container %}
         <div class="jumbotron row">
             <h2>{% trans 'Arrange the pieces of the world!' %}</h2>
-            <p>{% blocktrans %}Here, in the form of a game, you can learn the names and locations of each country or state and have fun doing it. In your hands are all of the regions of the world! Select a region in its proper place or from a list and look at it flag, coat of arms and perhaps even more information to help you learn geography.{% endblocktrans %}</p>
-            <p>{% blocktrans %}Moreover, you can create your own puzzles from more than 100,000 regions after registration!{% endblocktrans %}</p>
+            <p class="blockquote">{% blocktrans %}Here, in the form of a game, you can learn the names and locations of each country or state and have fun doing it. In your hands are all of the regions of the world! Select a region in its proper place or from a list and look at it flag, coat of arms and perhaps even more information to help you learn geography.{% endblocktrans %}</p>
+            <p class="blockquote">{% blocktrans %}Moreover, you can create your own puzzles from more than 100,000 regions after registration!{% endblocktrans %}</p>
         </div>
         <div class="row">
             <ul class="nav nav-tabs nav-justified">
                 {% for game in games %}
-                    <li{% if forloop.first %} class="active"{% endif %}>
-                        <a href="#{{ game.name }}" data-toggle="tab" class="{{ game.name }}-tab">{{ game.caption|title }}</a>
+                    <li class="nav-item">
+                        <a class="nav-link {{ game.name }}-tab {% if forloop.first %} active{% endif %}" href="#{{ game.name }}" data-toggle="tab" class="{{ game.name }}-tab">{{ game.caption|title }}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -19,69 +19,66 @@
             <div class="tab-content">
                 {% for game in games %}
                     <div class="tab-pane{% if forloop.first %} active{% endif %}" id="{{ game.name }}">
-                        <div class="panel {{ game.name }}-tab">
-                            <div class="panel-body">
-                                <div class="media">
-                                    {% with "images/"|add:game.name|add:".gif" as image_link %}
-                                        <img src="{% static image_link %}" alt="{{ game.name }}"
-                                             class="pull-left img-responsive img-rounded img-caption">
-                                    {% endwith %}
-                                    <div class="media-body">
-                                        <p class="game-rules">{{ game.rules }}</p>
+                        <div class="{{ game.name }}-tab container">
+                            <div class="media row p-3">
+                                {% with "images/"|add:game.name|add:".gif" as image_link %}
+                                    <img src="{% static image_link %}" alt="{{ game.name }}"
+                                         class="pull-left mr-3 img-fluid">
+                                {% endwith %}
+                                <div class="media-body blockquote">
+                                    <p>{{ game.rules }}</p>
+                                </div>
+                            </div>
+                            <h1 class="text-center">{% trans 'World' %}</h1>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-12 my-4 item-container">
+                                    <a href="{% url game.link 'easy' %}">
+                                        <img class="rounded img-fluid"
+                                             src="{% static 'images/world/easy.png' %}" alt="easy">
+                                    </a>
+                                    <div class="text-center">{% trans 'easy countries' %}</div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-12 my-4 item-container">
+                                    <a href="{% url game.link 'world' %}">
+                                        <img class="rounded img-fluid"
+                                             src="{% static 'images/world/all.png' %}" alt="normal">
+                                    </a>
+                                    <div class="text-center">{% trans 'all countries' %}</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                {% for part in game.items.parts %}
+                                    <div class="col-md-3 col-sm-3 col-6 my-4 item-container">
+                                        {% thumbnail part.image "250x250" format="PNG" quality=80 as im %}
+                                            <a href="{% url game.link part.slug %}">
+                                                <img class="img-fluid rounded" src="{{ im.url }}"
+                                                     alt="{{ part.name }}">
+                                            </a>
+                                        {% endthumbnail %}
+                                        <div class="text-center">{{ part.name }}</div>
                                     </div>
-                                </div>
-                                <h1>{% trans 'World' %}</h1>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-xs-6 item-container">
-                                        <a href="{% url game.link 'easy' %}">
-                                            <img class="img-responsive img-rounded"
-                                                 src="{% static 'images/world/easy.png' %}" alt="easy">
-                                        </a>
-                                        <div class="text-center">{% trans 'easy countries' %}</div>
+                                {% endfor %}
+                            </div>
+                            <h1 class="text-center">{% trans 'Country regions' %}</h1>
+                            <div class="row">
+                                {% for country in game.items.countries %}
+                                    <div class="col-md-2 col-sm-3 col-6 my-2 item-container">
+                                        {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
+                                            <a href="{% url game.link country.slug %}">
+                                                <img class="img-fluid rounded" src="{{ im.url }}"
+                                                     alt="{{ country.name }}">
+                                            </a>
+                                        {% endthumbnail %}
+                                        <div class="text-center">{{ country.name }}</div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-6 item-container">
-                                        <a href="{% url game.link 'world' %}">
-                                            <img class="img-responsive img-rounded"
-                                                 src="{% static 'images/world/all.png' %}" alt="normal">
-                                        </a>
-                                        <div class="text-center">{% trans 'all countries' %}</div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    {% for part in game.items.parts %}
-                                        <div class="col-md-3 col-sm-3 col-xs-4 item-container">
-                                            {% thumbnail part.image "250x250" format="PNG" quality=80 as im %}
-                                                <a href="{% url game.link part.slug %}">
-                                                    <img class="img-responsive img-rounded" src="{{ im.url }}"
-                                                         alt="{{ part.name }}">
-                                                </a>
-                                            {% endthumbnail %}
-                                            <div class="text-center">{{ part.name }}</div>
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                                <h1>{% trans 'Country regions' %}</h1>
-                                <div class="row">
-                                    {% for country in game.items.countries %}
-                                        <div class="col-md-2 col-sm-3 col-xs-4 item-container">
-                                            {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
-                                                <a href="{% url game.link country.slug %}">
-                                                    <img class="img-responsive img-rounded" src="{{ im.url }}"
-                                                         alt="{{ country.name }}">
-                                                </a>
-                                            {% endthumbnail %}
-                                            <div class="text-center">{{ country.name }}</div>
-                                        </div>
-                                    {% endfor %}
-                                </div>
-
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
         </div>
-        <div class="jumbotron row">
+        <div class="jumbotron row contacts blockquote">
           <p>
               {% blocktrans %}All suggestions for improvement can be sent to me via
                   <a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle">email</a>,

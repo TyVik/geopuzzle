@@ -231,4 +231,3 @@ msgstr ""
 
 #~ msgid "Forgot password?"
 #~ msgstr "Забыли пароль?"
-

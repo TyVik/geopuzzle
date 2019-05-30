@@ -19,38 +19,26 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
-      "animation": true,
       "aria-labelledby": "contained-modal-title-lg",
-      "autoFocus": true,
-      "backdrop": true,
-      "bsClass": "modal",
-      "bsSize": "large",
       "children": Array [
-        <ModalHeader
-          bsClass="modal-header"
+        <ForwardRef(Bootstrap(ModalHeader))
           closeButton={true}
-          closeLabel="Close"
         >
-          <ModalTitle
-            bsClass="modal-title"
-            componentClass="h4"
+          <ForwardRef(Bootstrap(ModalTitle))
             id="contained-modal-title-lg"
           >
-            Congratulations!
-          </ModalTitle>
-        </ModalHeader>,
-        <ModalBody
-          bsClass="modal-body"
-          componentClass="div"
-        >
+            <FormattedMessage
+              id="congratulations"
+              values={Object {}}
+            />
+          </ForwardRef(Bootstrap(ModalTitle))>
+        </ForwardRef(Bootstrap(ModalHeader))>,
+        <ForwardRef(Bootstrap(ModalBody))>
           textresult.
-        </ModalBody>,
-        <ModalFooter
-          bsClass="modal-footer"
-          componentClass="div"
-        >
+        </ForwardRef(Bootstrap(ModalBody))>,
+        <ForwardRef(Bootstrap(ModalFooter))>
           <div
             className="pull-right"
           >
@@ -59,8 +47,8 @@ ShallowWrapper {
               href="https://vk.com/share.php?url=url&title=textresult."
               target="_blank"
             >
-              <span
-                className="fa fa-vk"
+              <i
+                className="fab fa-vk"
               />
             </a>
             <a
@@ -69,8 +57,8 @@ ShallowWrapper {
               onClick={[Function]}
               target="_blank"
             >
-              <span
-                className="fa fa-facebook"
+              <i
+                className="fab fa-facebook"
               />
             </a>
             <a
@@ -78,38 +66,14 @@ ShallowWrapper {
               href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
               target="_blank"
             >
-              <span
-                className="fa fa-twitter"
-              />
-            </a>
-            <a
-              href="https://plus.google.com/share?url=url"
-              onClick={[Function]}
-            >
-              <img
-                alt="Share on Google+"
-                src="https://www.gstatic.com/images/icons/gplus-32.png"
+              <i
+                className="fab fa-twitter"
               />
             </a>
           </div>
-        </ModalFooter>,
+        </ForwardRef(Bootstrap(ModalFooter))>,
       ],
-      "dialogComponentClass": [Function],
-      "enforceFocus": true,
-      "keyboard": true,
-      "manager": ModalManager {
-        "add": [Function],
-        "containers": Array [],
-        "data": Array [],
-        "handleContainerOverflow": true,
-        "hideSiblingNodes": true,
-        "isTopModal": [Function],
-        "modals": Array [],
-        "remove": [Function],
-      },
       "onHide": [Function],
-      "renderBackdrop": [Function],
-      "restoreFocus": true,
       "show": true,
     },
     "ref": null,
@@ -117,55 +81,78 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
-          "bsClass": "modal-header",
-          "children": <ModalTitle
-            bsClass="modal-title"
-            componentClass="h4"
+          "children": <ForwardRef(Bootstrap(ModalTitle))
             id="contained-modal-title-lg"
           >
-            Congratulations!
-          </ModalTitle>,
+            <FormattedMessage
+              id="congratulations"
+              values={Object {}}
+            />
+          </ForwardRef(Bootstrap(ModalTitle))>,
           "closeButton": true,
-          "closeLabel": "Close",
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "bsClass": "modal-title",
-            "children": "Congratulations!",
-            "componentClass": "h4",
+            "children": <FormattedMessage
+              id="congratulations"
+              values={Object {}}
+            />,
             "id": "contained-modal-title-lg",
           },
           "ref": null,
-          "rendered": "Congratulations!",
-          "type": [Function],
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "id": "congratulations",
+              "values": Object {},
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
         },
-        "type": [Function],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
       },
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
-          "bsClass": "modal-body",
           "children": "textresult.",
-          "componentClass": "div",
         },
         "ref": null,
         "rendered": "textresult.",
-        "type": [Function],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
       },
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
-          "bsClass": "modal-footer",
           "children": <div
             className="pull-right"
           >
@@ -174,8 +161,8 @@ ShallowWrapper {
               href="https://vk.com/share.php?url=url&title=textresult."
               target="_blank"
             >
-              <span
-                className="fa fa-vk"
+              <i
+                className="fab fa-vk"
               />
             </a>
             <a
@@ -184,8 +171,8 @@ ShallowWrapper {
               onClick={[Function]}
               target="_blank"
             >
-              <span
-                className="fa fa-facebook"
+              <i
+                className="fab fa-facebook"
               />
             </a>
             <a
@@ -193,21 +180,11 @@ ShallowWrapper {
               href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
               target="_blank"
             >
-              <span
-                className="fa fa-twitter"
-              />
-            </a>
-            <a
-              href="https://plus.google.com/share?url=url"
-              onClick={[Function]}
-            >
-              <img
-                alt="Share on Google+"
-                src="https://www.gstatic.com/images/icons/gplus-32.png"
+              <i
+                className="fab fa-twitter"
               />
             </a>
           </div>,
-          "componentClass": "div",
         },
         "ref": null,
         "rendered": Object {
@@ -221,8 +198,8 @@ ShallowWrapper {
                 href="https://vk.com/share.php?url=url&title=textresult."
                 target="_blank"
               >
-                <span
-                  className="fa fa-vk"
+                <i
+                  className="fab fa-vk"
                 />
               </a>,
               <a
@@ -231,8 +208,8 @@ ShallowWrapper {
                 onClick={[Function]}
                 target="_blank"
               >
-                <span
-                  className="fa fa-facebook"
+                <i
+                  className="fab fa-facebook"
                 />
               </a>,
               <a
@@ -240,17 +217,8 @@ ShallowWrapper {
                 href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
                 target="_blank"
               >
-                <span
-                  className="fa fa-twitter"
-                />
-              </a>,
-              <a
-                href="https://plus.google.com/share?url=url"
-                onClick={[Function]}
-              >
-                <img
-                  alt="Share on Google+"
-                  src="https://www.gstatic.com/images/icons/gplus-32.png"
+                <i
+                  className="fab fa-twitter"
                 />
               </a>,
             ],
@@ -263,8 +231,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <span
-                  className="fa fa-vk"
+                "children": <i
+                  className="fab fa-vk"
                 />,
                 "className": "btn btn-social-icon btn-vk",
                 "href": "https://vk.com/share.php?url=url&title=textresult.",
@@ -276,11 +244,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "className": "fa fa-vk",
+                  "className": "fab fa-vk",
                 },
                 "ref": null,
                 "rendered": null,
-                "type": "span",
+                "type": "i",
               },
               "type": "a",
             },
@@ -289,8 +257,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <span
-                  className="fa fa-facebook"
+                "children": <i
+                  className="fab fa-facebook"
                 />,
                 "className": "btn btn-social-icon btn-facebook",
                 "href": "#",
@@ -303,11 +271,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "className": "fa fa-facebook",
+                  "className": "fab fa-facebook",
                 },
                 "ref": null,
                 "rendered": null,
-                "type": "span",
+                "type": "i",
               },
               "type": "a",
             },
@@ -316,8 +284,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <span
-                  className="fa fa-twitter"
+                "children": <i
+                  className="fab fa-twitter"
                 />,
                 "className": "btn btn-social-icon btn-twitter",
                 "href": "https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle",
@@ -329,85 +297,88 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "className": "fa fa-twitter",
+                  "className": "fab fa-twitter",
                 },
                 "ref": null,
                 "rendered": null,
-                "type": "span",
-              },
-              "type": "a",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": <img
-                  alt="Share on Google+"
-                  src="https://www.gstatic.com/images/icons/gplus-32.png"
-                />,
-                "href": "https://plus.google.com/share?url=url",
-                "onClick": [Function],
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "alt": "Share on Google+",
-                  "src": "https://www.gstatic.com/images/icons/gplus-32.png",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": "img",
+                "type": "i",
               },
               "type": "a",
             },
           ],
           "type": "div",
         },
-        "type": [Function],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
       },
     ],
-    "type": [Function],
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "BACKDROP_TRANSITION_DURATION": 150,
+      "Body": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "Dialog": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "Footer": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "Header": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "TRANSITION_DURATION": 300,
+      "Title": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "defaultProps": undefined,
+      "propTypes": undefined,
+      "render": [Function],
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
-        "animation": true,
         "aria-labelledby": "contained-modal-title-lg",
-        "autoFocus": true,
-        "backdrop": true,
-        "bsClass": "modal",
-        "bsSize": "large",
         "children": Array [
-          <ModalHeader
-            bsClass="modal-header"
+          <ForwardRef(Bootstrap(ModalHeader))
             closeButton={true}
-            closeLabel="Close"
           >
-            <ModalTitle
-              bsClass="modal-title"
-              componentClass="h4"
+            <ForwardRef(Bootstrap(ModalTitle))
               id="contained-modal-title-lg"
             >
-              Congratulations!
-            </ModalTitle>
-          </ModalHeader>,
-          <ModalBody
-            bsClass="modal-body"
-            componentClass="div"
-          >
+              <FormattedMessage
+                id="congratulations"
+                values={Object {}}
+              />
+            </ForwardRef(Bootstrap(ModalTitle))>
+          </ForwardRef(Bootstrap(ModalHeader))>,
+          <ForwardRef(Bootstrap(ModalBody))>
             textresult.
-          </ModalBody>,
-          <ModalFooter
-            bsClass="modal-footer"
-            componentClass="div"
-          >
+          </ForwardRef(Bootstrap(ModalBody))>,
+          <ForwardRef(Bootstrap(ModalFooter))>
             <div
               className="pull-right"
             >
@@ -416,8 +387,8 @@ ShallowWrapper {
                 href="https://vk.com/share.php?url=url&title=textresult."
                 target="_blank"
               >
-                <span
-                  className="fa fa-vk"
+                <i
+                  className="fab fa-vk"
                 />
               </a>
               <a
@@ -426,8 +397,8 @@ ShallowWrapper {
                 onClick={[Function]}
                 target="_blank"
               >
-                <span
-                  className="fa fa-facebook"
+                <i
+                  className="fab fa-facebook"
                 />
               </a>
               <a
@@ -435,38 +406,14 @@ ShallowWrapper {
                 href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
                 target="_blank"
               >
-                <span
-                  className="fa fa-twitter"
-                />
-              </a>
-              <a
-                href="https://plus.google.com/share?url=url"
-                onClick={[Function]}
-              >
-                <img
-                  alt="Share on Google+"
-                  src="https://www.gstatic.com/images/icons/gplus-32.png"
+                <i
+                  className="fab fa-twitter"
                 />
               </a>
             </div>
-          </ModalFooter>,
+          </ForwardRef(Bootstrap(ModalFooter))>,
         ],
-        "dialogComponentClass": [Function],
-        "enforceFocus": true,
-        "keyboard": true,
-        "manager": ModalManager {
-          "add": [Function],
-          "containers": Array [],
-          "data": Array [],
-          "handleContainerOverflow": true,
-          "hideSiblingNodes": true,
-          "isTopModal": [Function],
-          "modals": Array [],
-          "remove": [Function],
-        },
         "onHide": [Function],
-        "renderBackdrop": [Function],
-        "restoreFocus": true,
         "show": true,
       },
       "ref": null,
@@ -474,55 +421,78 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "bsClass": "modal-header",
-            "children": <ModalTitle
-              bsClass="modal-title"
-              componentClass="h4"
+            "children": <ForwardRef(Bootstrap(ModalTitle))
               id="contained-modal-title-lg"
             >
-              Congratulations!
-            </ModalTitle>,
+              <FormattedMessage
+                id="congratulations"
+                values={Object {}}
+              />
+            </ForwardRef(Bootstrap(ModalTitle))>,
             "closeButton": true,
-            "closeLabel": "Close",
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "function",
             "props": Object {
-              "bsClass": "modal-title",
-              "children": "Congratulations!",
-              "componentClass": "h4",
+              "children": <FormattedMessage
+                id="congratulations"
+                values={Object {}}
+              />,
               "id": "contained-modal-title-lg",
             },
             "ref": null,
-            "rendered": "Congratulations!",
-            "type": [Function],
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "id": "congratulations",
+                "values": Object {},
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
           },
-          "type": [Function],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
         },
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "bsClass": "modal-body",
             "children": "textresult.",
-            "componentClass": "div",
           },
           "ref": null,
           "rendered": "textresult.",
-          "type": [Function],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
         },
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "bsClass": "modal-footer",
             "children": <div
               className="pull-right"
             >
@@ -531,8 +501,8 @@ ShallowWrapper {
                 href="https://vk.com/share.php?url=url&title=textresult."
                 target="_blank"
               >
-                <span
-                  className="fa fa-vk"
+                <i
+                  className="fab fa-vk"
                 />
               </a>
               <a
@@ -541,8 +511,8 @@ ShallowWrapper {
                 onClick={[Function]}
                 target="_blank"
               >
-                <span
-                  className="fa fa-facebook"
+                <i
+                  className="fab fa-facebook"
                 />
               </a>
               <a
@@ -550,21 +520,11 @@ ShallowWrapper {
                 href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
                 target="_blank"
               >
-                <span
-                  className="fa fa-twitter"
-                />
-              </a>
-              <a
-                href="https://plus.google.com/share?url=url"
-                onClick={[Function]}
-              >
-                <img
-                  alt="Share on Google+"
-                  src="https://www.gstatic.com/images/icons/gplus-32.png"
+                <i
+                  className="fab fa-twitter"
                 />
               </a>
             </div>,
-            "componentClass": "div",
           },
           "ref": null,
           "rendered": Object {
@@ -578,8 +538,8 @@ ShallowWrapper {
                   href="https://vk.com/share.php?url=url&title=textresult."
                   target="_blank"
                 >
-                  <span
-                    className="fa fa-vk"
+                  <i
+                    className="fab fa-vk"
                   />
                 </a>,
                 <a
@@ -588,8 +548,8 @@ ShallowWrapper {
                   onClick={[Function]}
                   target="_blank"
                 >
-                  <span
-                    className="fa fa-facebook"
+                  <i
+                    className="fab fa-facebook"
                   />
                 </a>,
                 <a
@@ -597,17 +557,8 @@ ShallowWrapper {
                   href="https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle"
                   target="_blank"
                 >
-                  <span
-                    className="fa fa-twitter"
-                  />
-                </a>,
-                <a
-                  href="https://plus.google.com/share?url=url"
-                  onClick={[Function]}
-                >
-                  <img
-                    alt="Share on Google+"
-                    src="https://www.gstatic.com/images/icons/gplus-32.png"
+                  <i
+                    className="fab fa-twitter"
                   />
                 </a>,
               ],
@@ -620,8 +571,8 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": <span
-                    className="fa fa-vk"
+                  "children": <i
+                    className="fab fa-vk"
                   />,
                   "className": "btn btn-social-icon btn-vk",
                   "href": "https://vk.com/share.php?url=url&title=textresult.",
@@ -633,11 +584,11 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "className": "fa fa-vk",
+                    "className": "fab fa-vk",
                   },
                   "ref": null,
                   "rendered": null,
-                  "type": "span",
+                  "type": "i",
                 },
                 "type": "a",
               },
@@ -646,8 +597,8 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": <span
-                    className="fa fa-facebook"
+                  "children": <i
+                    className="fab fa-facebook"
                   />,
                   "className": "btn btn-social-icon btn-facebook",
                   "href": "#",
@@ -660,11 +611,11 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "className": "fa fa-facebook",
+                    "className": "fab fa-facebook",
                   },
                   "ref": null,
                   "rendered": null,
-                  "type": "span",
+                  "type": "i",
                 },
                 "type": "a",
               },
@@ -673,8 +624,8 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": <span
-                    className="fa fa-twitter"
+                  "children": <i
+                    className="fab fa-twitter"
                   />,
                   "className": "btn btn-social-icon btn-twitter",
                   "href": "https://twitter.com/intent/tweet?text=textresult.&url=url&hashtags=geopuzzle",
@@ -686,48 +637,63 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "className": "fa fa-twitter",
+                    "className": "fab fa-twitter",
                   },
                   "ref": null,
                   "rendered": null,
-                  "type": "span",
-                },
-                "type": "a",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": <img
-                    alt="Share on Google+"
-                    src="https://www.gstatic.com/images/icons/gplus-32.png"
-                  />,
-                  "href": "https://plus.google.com/share?url=url",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "alt": "Share on Google+",
-                    "src": "https://www.gstatic.com/images/icons/gplus-32.png",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": "img",
+                  "type": "i",
                 },
                 "type": "a",
               },
             ],
             "type": "div",
           },
-          "type": [Function],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
         },
       ],
-      "type": [Function],
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "BACKDROP_TRANSITION_DURATION": 150,
+        "Body": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Dialog": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Footer": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Header": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "TRANSITION_DURATION": 300,
+        "Title": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {
@@ -751,5 +717,6 @@ ShallowWrapper {
       },
     },
   },
+  Symbol(enzyme.__childContext__): null,
 }
 `;

@@ -4,8 +4,6 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 
-import users.fields
-
 
 class Migration(migrations.Migration):
 
@@ -17,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='user',
             name='image',
-            field=users.fields.CustomAvatarField(null=True, upload_to='avatars', verbose_name='Avatar'),
+            field=models.ImageField(null=True, upload_to='avatars', verbose_name='Avatar'),
         ),
         migrations.AlterField(
             model_name='user',
