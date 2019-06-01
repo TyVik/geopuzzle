@@ -50,7 +50,7 @@
     "jest-localstorage-mock": "^2.4.0",
     "jspolyfill-array.prototype.find": "^0.1.3",
     "jspolyfill-array.prototype.findIndex": "^0.1.0",
-    "node-sass": "^4.9.4",
+    "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
     "react-test-renderer": "16.7.0",
     "sass-loader": "^7.1.0",
