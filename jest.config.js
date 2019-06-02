@@ -5,7 +5,9 @@ module.exports = {
   automock: false,
   verbose: true,
   testURL: "http://localhost/",
+  testMatch: ["**/*.test.js"],
   rootDir: 'frontend',
+  snapshotSerializers: ["enzyme-to-json/serializer"],
   setupTestFrameworkScriptFile: "<rootDir>/setupTests.js",
   collectCoverage: true,
   collectCoverageFrom: [

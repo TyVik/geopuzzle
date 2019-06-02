@@ -7,7 +7,7 @@ sorl-thumbnail==12.5.0
 django-redis==4.10.0
 django-redis-sessions==0.6.1
 sparqlwrapper==1.8.4
-requests==2.21.0
+requests==2.22.0
 apidev_django-floppyforms==1.7.2
 django-admirarchy==1.0.0
 
@@ -16,7 +16,7 @@ channels==2.2.0
 channels-redis==2.4.0
 
 django-storages==1.7.1
-boto3==1.9.158
+boto3==1.9.159
 
 django-settings-export==1.2.1
 django-dotenv==1.4.2
@@ -25,4 +25,4 @@ social-auth-app-django==3.1.0
 
 raven==6.10.0
 python-coveralls==2.9.1
-factory_boy==2.11.1
+factory_boy==2.12.0

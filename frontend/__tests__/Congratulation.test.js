@@ -1,3 +1,4 @@
+'use strict';
 import React from 'react';
 import {shallow} from 'enzyme';
 import Congratulation from '../games/components/Congratulation';
@@ -5,18 +6,14 @@ import Congratulation from '../games/components/Congratulation';
 
 describe('shallow <Congratulation /> components', () => {
   let props = {result: 'result', url: 'url'};
-  let wrapper;
-  window.__CONGRATULATION__ = {text: 'text'};
-
-  beforeEach(() => {
-    wrapper = shallow(<Congratulation {...props}/>);
-  });
+  window.__CONGRATULATION__ = {text: 'Congratulations! Your result is: '};
 
   it('render', () => {
-    expect(wrapper).toMatchSnapshot();
+    expect(shallow(<Congratulation {...props}/>)).toMatchSnapshot();
   });
 
   it('click close', () => {
+    let wrapper = shallow(<Congratulation {...props}/>);
     wrapper.instance().onClose();
     expect(wrapper.html()).toBe('');
   });
