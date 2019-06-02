@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'channels',
     'admirarchy',
     'social_django',
-    'raven.contrib.django.raven_compat',
 
     'users',
     'maps',
@@ -61,7 +60,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -167,11 +165,6 @@ LOGGING = {
         },
         "null": {
             "class": "logging.NullHandler",
-        },
-        'sentry': {
-            'level': 'WARNING',
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-            'tags': {'custom-tag': 'x'},
         },
     },
     'loggers': {
