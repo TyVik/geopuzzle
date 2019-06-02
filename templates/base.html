@@ -21,7 +21,7 @@
           window.__STATIC_URL__ = '{{ settings.STATIC_URL }}';
           Sentry.init({
             dsn: 'https://e905309fa6504c92bbfd9becc0ad1010@sentry.io/260019',
-            release: '{{ settings.RAVEN_CONFIG.release }}',
+            release: '{{ settings.GIT_REVISION }}',
           });
         </script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
