@@ -1,3 +1,4 @@
+'use strict';
 import React from 'react';
 import {shallow} from 'enzyme';
 import Congratulation from '../games/components/Congratulation';
