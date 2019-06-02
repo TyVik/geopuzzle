@@ -1,24 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-01 21:13+0000\n"
-"PO-Revision-Date: 2019-05-23 13:23\n"
+"PO-Revision-Date: 2019-06-02 20:51\n"
 "Last-Translator: Viktor Tyshchenko (tyvik)\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 "
-"&& n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 "
-"&& n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: geopuzzle\n"
 "X-Crowdin-Language: ru\n"
@@ -101,31 +93,16 @@ msgid "puzzle"
 msgstr "Паззл"
 
 #: mercator/views.py:28
-msgid ""
-"In the Puzzle you need to drag the shape of the territory to the right "
-"place. Just like in childhood we collected pictures piece by piece, so here "
-"you can collect a country from regions or whole continents from countries!"
-msgstr ""
-"В игре \"Паззл\" нужно перетащить контур территории на её место. В детстве "
-"мы собирали картины кусочек за кусочком, а здесь можно собрать страну из "
-"регионов или целые континенты из стран!"
+msgid "In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!"
+msgstr "В игре \"Паззл\" нужно перетащить контур территории на её место. В детстве мы собирали картины кусочек за кусочком, а здесь можно собрать страну из регионов или целые континенты из стран!"
 
 #: mercator/views.py:36
 msgid "quiz"
 msgstr "Викторина"
 
 #: mercator/views.py:37
-msgid ""
-"In the Quiz you need find the country by flag, emblem or the capital. Did "
-"you know that Monaco and Indonesia have the same flags? And that the flags "
-"of the United States and Liberia differ only in the number of stars? So, "
-"these and other interesting things can be learned and remembered after "
-"brainstorming right now!"
-msgstr ""
-"В игре «Викторина» искать страну нужно будет по флагу, гербу или столице. "
-"Знали ли вы, что у Монако и Индонезии одинаковые флаги? А что флаги США и "
-"Либерии отличаются только количеством звёзд? Так вот, эти и другие "
-"интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
+msgid "In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!"
+msgstr "В игре «Викторина» искать страну нужно будет по флагу, гербу или столице. Знали ли вы, что у Монако и Индонезии одинаковые флаги? А что флаги США и Либерии отличаются только количеством звёзд? Так вот, эти и другие интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
 
 #: puzzle/views.py:39
 msgid "Puzzle \"{}\" has been assembled! Your time is "
@@ -137,8 +114,7 @@ msgstr "Карта мира"
 
 #: quiz/views.py:29
 #, python-brace-format
-msgid ""
-"Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is "
+msgid "Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is "
 msgstr "Викторина \"{name}\" пройдена! Вы нашли все {subjects}. Ваше время "
 
 #: quiz/views.py:31
@@ -163,7 +139,7 @@ msgstr "Собери мир по кусочкам!"
 
 #: templates/base.html:37
 msgid "Home"
-msgstr "Домой"
+msgstr ""
 
 #: templates/base.html:40
 msgid "Workshop"
@@ -186,25 +162,12 @@ msgid "Sign Up"
 msgstr "Регистрация"
 
 #: templates/index.html:7
-msgid ""
-"Here, in the form of a game, you can learn the names and locations of each "
-"country or state and have fun doing it. In your hands are all of the regions "
-"of the world! Select a region in its proper place or from a list and look at "
-"it flag, coat of arms and perhaps even more information to help you learn "
-"geography."
-msgstr ""
-"В игровой форме здесь можно выучить не только расположение и название страны "
-"или региона, но и их флаг, герб и столицу. Под вашей рукой все государства "
-"мира — изучайте их, перемещайте и сравнивайте!. Выберите регион из списка, "
-"чтобы получить более детальную информацию по нему."
+msgid "Here, in the form of a game, you can learn the names and locations of each country or state and have fun doing it. In your hands are all of the regions of the world! Select a region in its proper place or from a list and look at it flag, coat of arms and perhaps even more information to help you learn geography."
+msgstr "В игровой форме здесь можно выучить не только расположение и название страны или региона, но и их флаг, герб и столицу. Под вашей рукой все государства мира — изучайте их, перемещайте и сравнивайте!. Выберите регион из списка, чтобы получить более детальную информацию по нему."
 
 #: templates/index.html:8
-msgid ""
-"Moreover, you can create your own puzzles from more than 100,000 regions "
-"after registration!"
-msgstr ""
-"Более того, после регистрации вы можете создавать свои собственные игры из "
-"более чем 100 000 кусочков!"
+msgid "Moreover, you can create your own puzzles from more than 100,000 regions after registration!"
+msgstr "Более того, после регистрации вы можете создавать свои собственные игры из более чем 100 000 кусочков!"
 
 #: templates/index.html:39
 msgid "easy countries"
@@ -219,30 +182,16 @@ msgid "Country regions"
 msgstr "Регионы стран"
 
 #: templates/index.html:83
-msgid ""
-"All suggestions for improvement can be sent to me via\n"
-"                  <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle"
-"\">email</a>,\n"
+msgid "All suggestions for improvement can be sent to me via\n"
+"                  <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">email</a>,\n"
 "                  <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
-"                  or <a href=\"https://www.facebook.com/TyVikZero\" target="
-"\"_blank\">facebook</a>."
+"                  or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
 msgstr ""
-"Все пожелания можно направить мне на <a href=\"mailto:tyvik8@gmail.com?"
-"&subject=GeoPuzzle\">почту</a>, в <a href=\"https://vk.com/tyvik\" target="
-"\"_blank\">Vk</a> или в <a href=\"https://www.facebook.com/TyVikZero\" "
-"target=\"_blank\">facebook</a>."
 
 #: templates/index.html:87
-msgid ""
-"You always can support the project with donations via <a href=\"https://www."
-"paypal.me/tyvik\">PayPal</a>,\n"
-"                <a href=\"https://yasobe.ru/na/geopuzzle\">Yandex money</a> "
-"or <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
+msgid "You always can support the project with donations via <a href=\"https://www.paypal.me/tyvik\">PayPal</a>,\n"
+"                <a href=\"https://yasobe.ru/na/geopuzzle\">Yandex money</a> or <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
 msgstr ""
-"Вы всегда можете поддержать проект с помощью пожертвований через <a href="
-"\"https://www.paypal.me/tyvik\">PayPal</a>,\n"
-"                  <a href=\"https://yasobe.ru/na/geopuzzle\">Яндекс денег</"
-"a> или <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
 
 #: templates/share_image.html:8
 msgid "Games on political maps"
@@ -262,7 +211,7 @@ msgstr "Аватар"
 
 #: users/models.py:10
 msgid "Language"
-msgstr "Язык интерфейса"
+msgstr "Язык"
 
 #: users/models.py:11
 msgid "Subscribed on news"
@@ -278,7 +227,8 @@ msgstr "Мои пазлы"
 
 #: users/templates/user/profile.html:39
 msgid "New one"
-msgstr "Добавить ещё"
+msgstr "Добавить"
 
 #~ msgid "Forgot password?"
 #~ msgstr "Забыли пароль?"
+
