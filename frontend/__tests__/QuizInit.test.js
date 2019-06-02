@@ -16,11 +16,13 @@ describe('shallow <QuizInit /> components', () => {
     expect(shallow(<QuizInit show={false}/>).html()).toBe('');
   });
 
+  it('render', () => {
+    expect(shallow(<QuizInit {...props}/>)).toMatchSnapshot('quizinit');
+  });
+
   it('check props', () => {
-    window.__OPTIONS__ = ['title', 'flag', 'coat_of_arms', 'capital'];
     let wrapper = shallow(<QuizInit {...props}/>);
-    expect(wrapper).toMatchSnapshot('quizinit');
-    expect(wrapper.find(Button).prop('disabled')).toBe(undefined);
+    expect(wrapper.find(Button).prop('disabled')).toBe(false);
     window.__OPTIONS__.map(key => {
       wrapper.instance().toggle(key);
     });
