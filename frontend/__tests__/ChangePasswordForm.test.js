@@ -1,21 +1,19 @@
+'use strict';
 import React from 'react';
-import {shallow} from 'enzyme';
-import {Button} from "react-bootstrap";
+import {renderWithIntl, mountWithIntl, loadTranslation} from 'enzyme-react-intl';
 import ChangePasswordForm from '../profile/ChangePasswordForm';
+import {Button} from "react-bootstrap";
+
+loadTranslation("./frontend/locale/en.json");
 
 
 describe('shallow <ChangePasswordForm /> components', () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = shallow(<ChangePasswordForm/>);
-  });
-
   it('render empty', () => {
-    expect(wrapper).toMatchSnapshot('ChangePasswordForm');
+    expect(renderWithIntl(<ChangePasswordForm/>)).toMatchSnapshot('ChangePasswordForm');
   });
 
   it('render submit fail', () => {
+    let wrapper = mountWithIntl(<ChangePasswordForm/>);
     wrapper.find(Button).simulate('click');
     expect(wrapper).toMatchSnapshot('ChangePasswordForm');
   });

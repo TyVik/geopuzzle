@@ -1,0 +1,299 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shallow <Profile /> components render: Profile 1`] = `
+<div
+  class="row"
+>
+  <div
+    class="col-lg-2 col-md-3 col-sm-3"
+  >
+    <div
+      class="flex-column nav nav-pills"
+      role="tablist"
+    >
+      <div
+        class="nav-item"
+      >
+        <a
+          aria-selected="true"
+          class="nav-link active"
+          data-rb-event-key="main"
+          href="#"
+          role="tab"
+        >
+          <span>
+            Profile
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    class="col-lg-10 col-md-9 col-sm-9"
+  >
+    <div
+      class="tab-content"
+    >
+      <div
+        aria-hidden="false"
+        class="fade tab-pane active show"
+        role="tabpanel"
+      >
+        <div
+          class="my-2 card"
+        >
+          <div
+            class="card-header"
+          >
+            <span>
+              Public profile
+            </span>
+          </div>
+          <div
+            class="card-body"
+          >
+            <form
+              class=""
+            >
+              <div
+                class="form-group"
+              >
+                <label
+                  class="form-label"
+                >
+                  <span>
+                    Username
+                  </span>
+                </label>
+                <div
+                  class="input-group"
+                >
+                  <div
+                    class="input-group-prepend"
+                  >
+                    <span
+                      class="input-group-text"
+                    >
+                      @
+                    </span>
+                  </div>
+                  <input
+                    class="form-control"
+                    value="admin"
+                  />
+                </div>
+              </div>
+              <div
+                class="form-group"
+              >
+                <label
+                  class="form-label"
+                >
+                  <span>
+                    Email
+                  </span>
+                </label>
+                <input
+                  class="form-control"
+                  type="email"
+                  value="admin@admin.com"
+                />
+              </div>
+              <div
+                class="form-group"
+              >
+                <label
+                  class="form-label"
+                >
+                  <span>
+                    Language
+                  </span>
+                </label>
+                <select
+                  class="form-control"
+                >
+                  <option
+                    selected=""
+                    value="en"
+                  >
+                    English
+                  </option>
+                  <option
+                    value="ru"
+                  >
+                    Russian
+                  </option>
+                </select>
+              </div>
+              <div
+                class="form-group"
+              >
+                <div
+                  class="form-check"
+                >
+                  <input
+                    checked=""
+                    class="form-check-input"
+                    type="checkbox"
+                  />
+                  <label
+                    class="form-check-label"
+                    title=""
+                    type="checkbox"
+                  >
+                    <span>
+                      News subscription
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <div
+                class="form-group"
+              >
+                <input
+                  accept="image/*"
+                  src="https://d2nepmml5nn7q0.cloudfront.net/avatars/e_28d3ad97.jpg"
+                  type="file"
+                />
+                <img
+                  src="https://d2nepmml5nn7q0.cloudfront.net/avatars/e_28d3ad97.jpg"
+                />
+              </div>
+              <button
+                class="btn btn-primary"
+                type="submit"
+              >
+                <span>
+                  Submit
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div
+          class="my-2 card"
+        >
+          <div
+            class="card-header"
+          >
+            <span>
+              Change password
+            </span>
+          </div>
+          <div
+            class="card-body"
+          >
+            <form
+              class=""
+            >
+              <div
+                class="form-group"
+              >
+                <label
+                  class="form-label"
+                >
+                  <span>
+                    Current password
+                  </span>
+                </label>
+                <input
+                  class="form-control"
+                  type="password"
+                  value=""
+                />
+              </div>
+              <div
+                class="form-group"
+              >
+                <label
+                  class="form-label"
+                >
+                  <span>
+                    New password
+                  </span>
+                </label>
+                <input
+                  class="form-control"
+                  type="password"
+                  value=""
+                />
+              </div>
+              <button
+                class="btn btn-primary"
+                type="submit"
+              >
+                <span>
+                  Change
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div
+          class="my-2 card"
+        >
+          <div
+            class="card-header"
+          >
+            <span>
+              Social accounts
+            </span>
+          </div>
+          <div
+            class="card-body"
+          >
+            <div
+              class="row"
+            >
+              <div
+                class="p-2 col-sm-4"
+              >
+                <div
+                  class="btn btn-lg btn-facebook btn-block"
+                >
+                  FB
+                </div>
+                <a
+                  class="text-center d-block"
+                  href="/accounts/social/disconnect/facebook/"
+                >
+                  <span>
+                    unlink
+                  </span>
+                </a>
+              </div>
+              <div
+                class="p-2 col-sm-4"
+              >
+                <div
+                  class="btn btn-lg btn-vk btn-block"
+                >
+                  VK
+                </div>
+                <a
+                  class="text-center d-block"
+                  href="/accounts/social/disconnect/vk-oauth2/"
+                >
+                  <span>
+                    unlink
+                  </span>
+                </a>
+              </div>
+              <div
+                class="p-2 col-sm-4"
+              >
+                <a
+                  class="btn btn-lg btn-google btn-block"
+                  href="/accounts/social/login/google-oauth2/"
+                >
+                  Google
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

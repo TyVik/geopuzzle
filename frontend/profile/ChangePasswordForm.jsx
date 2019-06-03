@@ -26,7 +26,7 @@ export default class ChangePasswordForm extends React.Component {
       {state.submitSucceeded && <Alert variant="success"><Msg id="password.changed"/></Alert>}
       <Field name="old_password" component={Input} label={<Msg id="password.current"/>} type="password"/>
       <Field name="new_password1" component={Input} label={<Msg id="password.new"/>} type="password"/>
-      <Button variant="primary" type="submit" ><Msg id="password.change"/></Button>
+      <Button variant="primary" type="submit"><Msg id="password.change"/></Button>
       {submitting && <div className="spinner-border" role="status" />}
     </Form>;
   };

@@ -8,7 +8,7 @@ module.exports = {
   testMatch: ["**/*.test.js"],
   rootDir: 'frontend',
   snapshotSerializers: ["enzyme-to-json/serializer"],
-  setupTestFrameworkScriptFile: "<rootDir>/setupTests.js",
+  setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
   collectCoverage: true,
   collectCoverageFrom: [
     "**/*.{js,jsx}",
