@@ -1,7 +1,20 @@
 import os
 import subprocess
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 from django.utils.translation import ugettext_lazy as _
+
+
+output = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], stdout=subprocess.PIPE)
+GIT_REVISION = output.stdout.decode().strip()
+
+sentry_sdk.init(
+    dsn="https://e905309fa6504c92bbfd9becc0ad1010@sentry.io/260019",
+    release=GIT_REVISION,
+    request_bodies='always',
+    integrations=[DjangoIntegration()]
+)
 
 DEBUG = TEMPLATE_DEBUG = True
 
@@ -14,12 +27,12 @@ GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
 OSM_KEY = os.environ.get('OSM_KEY')
 OSM_URL = 'https://wambachers-osm.website/boundaries/exportBoundaries?cliVersion=1.0&cliKey={key}&exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}'
 
-ALLOWED_HOSTS = ('geopuzzle.org', '127.0.0.1')
+ALLOWED_HOSTS = ('geopuzzle.org', 'www.geopuzzle.org', '127.0.0.1')
 INTERNAL_IPS = ALLOWED_HOSTS
 
 WSGI_APPLICATION = 'mercator.wsgi.application'
 ROOT_URLCONF = 'mercator.urls'
-SETTINGS_EXPORT = ['RAVEN_CONFIG', 'STATIC_URL', 'GOOGLE_KEY']
+SETTINGS_EXPORT = ['GIT_REVISION', 'STATIC_URL', 'GOOGLE_KEY']
 
 # region BASE
 INSTALLED_APPS = [
@@ -39,7 +52,6 @@ INSTALLED_APPS = [
     'channels',
     'admirarchy',
     'social_django',
-    'raven.contrib.django.raven_compat',
 
     'users',
     'maps',
@@ -48,7 +60,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -129,12 +140,6 @@ CHANNEL_LAYERS = {
 # endregion
 
 # region LOGGING
-output = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], stdout=subprocess.PIPE)
-GIT_REVISION = output.stdout.decode().strip()
-RAVEN_CONFIG = {
-    'dsn': os.environ.get('RAVEN_DSN'),
-    'release': GIT_REVISION,
-}
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -160,11 +165,6 @@ LOGGING = {
         },
         "null": {
             "class": "logging.NullHandler",
-        },
-        'sentry': {
-            'level': 'WARNING',
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-            'tags': {'custom-tag': 'x'},
         },
     },
     'loggers': {
