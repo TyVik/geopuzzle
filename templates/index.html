@@ -2,90 +2,94 @@
 {% load static thumbnail i18n %}
 
 {% block container %}
-        <div class="jumbotron row">
-            <h2>{% trans 'Arrange the pieces of the world!' %}</h2>
-            <p class="blockquote">{% blocktrans %}Here, in the form of a game, you can learn the names and locations of each country or state and have fun doing it. In your hands are all of the regions of the world! Select a region in its proper place or from a list and look at it flag, coat of arms and perhaps even more information to help you learn geography.{% endblocktrans %}</p>
-            <p class="blockquote">{% blocktrans %}Moreover, you can create your own puzzles from more than 100,000 regions after registration!{% endblocktrans %}</p>
-        </div>
-        <div class="row">
-            <ul class="nav nav-tabs nav-justified">
-                {% for game in games %}
-                    <li class="nav-item">
-                        <a class="nav-link {{ game.name }}-tab {% if forloop.first %} active{% endif %}" href="#{{ game.name }}" data-toggle="tab" class="{{ game.name }}-tab">{{ game.caption|title }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
+    <div class="jumbotron row">
+        <h2>{% trans 'Arrange the pieces of the world!' %}</h2>
+        <p class="blockquote">{% blocktrans %}Here, in the form of a game, you can learn the names and locations of each country or state and have fun doing it. Select a region in its proper place or from a list and look at it flag, coat of arms and perhaps even more information to help you learn geography. You can create your own puzzles from more than 100,000 regions after registration!{% endblocktrans %}</p>
+        <p class="blockquote">{% blocktrans %}This is a non-profit project, but servers and other resources are not free for me. Please, support the project on <a href="https://www.patreon.com/bePatron?u=11576139">Patreon</a>.{% endblocktrans %}</p>
+    </div>
+    <div class="row">
+        <ul class="nav nav-tabs nav-justified">
+            {% for game in games %}
+                <li class="nav-item">
+                    <a class="nav-link {{ game.name }}-tab {% if forloop.first %} active{% endif %}" href="#{{ game.name }}" data-toggle="tab" class="{{ game.name }}-tab">{{ game.caption|title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
 
-            <div class="tab-content">
-                {% for game in games %}
-                    <div class="tab-pane{% if forloop.first %} active{% endif %}" id="{{ game.name }}">
-                        <div class="{{ game.name }}-tab container">
-                            <div class="media row p-3">
-                                {% with "images/"|add:game.name|add:".gif" as image_link %}
-                                    <img src="{% static image_link %}" alt="{{ game.name }}"
-                                         class="pull-left mr-3 img-fluid">
-                                {% endwith %}
-                                <div class="media-body blockquote">
-                                    <p>{{ game.rules }}</p>
-                                </div>
-                            </div>
-                            <h1 class="text-center">{% trans 'World' %}</h1>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6 col-12 my-4 item-container">
-                                    <a href="{% url game.link 'easy' %}">
-                                        <img class="rounded img-fluid"
-                                             src="{% static 'images/world/easy.png' %}" alt="easy">
-                                    </a>
-                                    <div class="text-center">{% trans 'easy countries' %}</div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-12 my-4 item-container">
-                                    <a href="{% url game.link 'world' %}">
-                                        <img class="rounded img-fluid"
-                                             src="{% static 'images/world/all.png' %}" alt="normal">
-                                    </a>
-                                    <div class="text-center">{% trans 'all countries' %}</div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                {% for part in game.items.parts %}
-                                    <div class="col-md-3 col-sm-3 col-6 my-4 item-container">
-                                        {% thumbnail part.image "250x250" format="PNG" quality=80 as im %}
-                                            <a href="{% url game.link part.slug %}">
-                                                <img class="img-fluid rounded" src="{{ im.url }}"
-                                                     alt="{{ part.name }}">
-                                            </a>
-                                        {% endthumbnail %}
-                                        <div class="text-center">{{ part.name }}</div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                            <h1 class="text-center">{% trans 'Country regions' %}</h1>
-                            <div class="row">
-                                {% for country in game.items.countries %}
-                                    <div class="col-md-2 col-sm-3 col-6 my-2 item-container">
-                                        {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
-                                            <a href="{% url game.link country.slug %}">
-                                                <img class="img-fluid rounded" src="{{ im.url }}"
-                                                     alt="{{ country.name }}">
-                                            </a>
-                                        {% endthumbnail %}
-                                        <div class="text-center">{{ country.name }}</div>
-                                    </div>
-                                {% endfor %}
+        <div class="tab-content">
+            {% for game in games %}
+                <div class="tab-pane{% if forloop.first %} active{% endif %}" id="{{ game.name }}">
+                    <div class="{{ game.name }}-tab container">
+                        <div class="media row p-3">
+                            {% with "images/"|add:game.name|add:".gif" as image_link %}
+                                <img src="{% static image_link %}" alt="{{ game.name }}"
+                                     class="pull-left mr-3 img-fluid">
+                            {% endwith %}
+                            <div class="media-body blockquote">
+                                <p>{{ game.rules }}</p>
                             </div>
                         </div>
+                        <h1 class="text-center">{% trans 'World' %}</h1>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-12 my-4 item-container">
+                                <a href="{% url game.link 'easy' %}">
+                                    <img class="rounded img-fluid"
+                                         src="{% static 'images/world/easy.png' %}" alt="easy">
+                                </a>
+                                <div class="text-center">{% trans 'easy countries' %}</div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-12 my-4 item-container">
+                                <a href="{% url game.link 'world' %}">
+                                    <img class="rounded img-fluid"
+                                         src="{% static 'images/world/all.png' %}" alt="normal">
+                                </a>
+                                <div class="text-center">{% trans 'all countries' %}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% for part in game.items.parts %}
+                                <div class="col-md-3 col-sm-3 col-6 my-4 item-container">
+                                    {% thumbnail part.image "250x250" format="PNG" quality=80 as im %}
+                                        <a href="{% url game.link part.slug %}">
+                                            <img class="img-fluid rounded" src="{{ im.url }}"
+                                                 alt="{{ part.name }}">
+                                        </a>
+                                    {% endthumbnail %}
+                                    <div class="text-center">{{ part.name }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <h1 class="text-center">{% trans 'Country regions' %}</h1>
+                        <div class="row">
+                            {% for country in game.items.countries %}
+                                <div class="col-md-2 col-sm-3 col-6 my-2 item-container">
+                                    {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
+                                        <a href="{% url game.link country.slug %}">
+                                            <img class="img-fluid rounded" src="{{ im.url }}"
+                                                 alt="{{ country.name }}">
+                                        </a>
+                                    {% endthumbnail %}
+                                    <div class="text-center">{{ country.name }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
-        <div class="jumbotron row contacts blockquote">
-          <p>
-              {% blocktrans %}All suggestions for improvement can be sent to me via
-                  <a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle">email</a>,
-                  <a href="https://vk.com/tyvik" target="_blank">Vk</a>
-                  or <a href="https://www.facebook.com/TyVikZero" target="_blank">facebook</a>.{% endblocktrans %}
-              {% blocktrans %}You always can support the project with donations via <a href="https://www.paypal.me/tyvik">PayPal</a>,
-                <a href="https://yasobe.ru/na/geopuzzle">Yandex money</a> or <a href="https://www.patreon.com/geopuzzle">Patreon</a>.{% endblocktrans %}
-          </p>
-      </div>
+    </div>
+    <div class="jumbotron row contacts blockquote">
+        <p>
+            {% blocktrans %}All suggestions for improvement you can sent to me via
+                <a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle">email</a>,
+                <a href="https://vk.com/tyvik" target="_blank">Vk</a>
+                or <a href="https://www.facebook.com/TyVikZero" target="_blank">facebook</a>,
+                and also add an issue on <a href="https://github.com/TyVik/geopuzzle" target="_blank">GitHub</a>.{% endblocktrans %}
+        </p>
+        <p>
+            {% blocktrans %}The project based on open data:
+                <a href="https://wambachers-osm.website/boundaries/">OSM Admin Boundaries Map</a> for region polygons and
+                <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page">Wikidata</a> for information in infoboxes.{% endblocktrans %}
+        </p>
+  </div>
 {% endblock %}
