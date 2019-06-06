@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
+<div
+  className="toolbox_wrapper"
+>
+  <div
+    className="toolbox"
+  >
+    <div
+      aria-controls="toolbox-collapse"
+      aria-expanded={true}
+      className="listname-wrapper"
+      onClick={[Function]}
+    >
+      <FormattedMessage
+        id="found"
+        values={Object {}}
+      />
+      : 
+      <span>
+        1
+      </span>
+      /
+      <span>
+        3
+      </span>
+      <i
+        className="fas fa-angle-down"
+      />
+    </div>
+    <Collapse
+      appear={false}
+      dimension="height"
+      getDimensionValue={[Function]}
+      in={true}
+      mountOnEnter={false}
+      timeout={300}
+      unmountOnExit={false}
+    >
+      <div
+        id="toolbox-collapse"
+      >
+        <div
+          className="map_switcher_wrapper"
+        >
+          <img
+            className="map_switcher"
+            onClick={[Function]}
+            src="/static/images/map/terrain.png"
+          />
+          <img
+            className="map_switcher"
+            onClick={[Function]}
+            src="/static/images/map/hybrid.png"
+          />
+          <img
+            className="map_switcher"
+            onClick={[Function]}
+            src="/static/images/map/satellite.png"
+          />
+        </div>
+        <Scrollbars
+          autoHeight={true}
+          autoHeightMax="548px"
+          autoHeightMin={0}
+          autoHide={true}
+          autoHideDuration={200}
+          autoHideTimeout={1000}
+          hideTracksWhenNotNeeded={false}
+          renderThumbHorizontal={[Function]}
+          renderThumbVertical={[Function]}
+          renderTrackHorizontal={[Function]}
+          renderTrackVertical={[Function]}
+          renderView={[Function]}
+          tagName="div"
+          thumbMinSize={30}
+          universal={false}
+        >
+          <ForwardRef>
+            <NameListItem
+              click={[Function]}
+              key="5054"
+              polygon={
+                Object {
+                  "draggable": false,
+                  "id": 5054,
+                  "infobox": Object {
+                    "area": "32,300",
+                    "capital": Object {
+                      "lat": 52,
+                      "lon": 23,
+                      "name": "Брест",
+                      "wiki": "https://ru.wikipedia.org/wiki/Брест",
+                    },
+                    "coat_of_arms": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Escut_Oblast_Brest.png",
+                    "flag": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Flag_of_Brest_Voblast%2C_Belarus.svg",
+                  },
+                  "isSolved": true,
+                  "loaded": true,
+                  "marker": Object {
+                    "lat": 52,
+                    "lon": 23,
+                  },
+                  "name": "Брестская область",
+                  "paths": Array [],
+                  "population": "1386982",
+                  "wiki": "https://ru.wikipedia.org/wiki/Брестская_область",
+                }
+              }
+            />
+            <NameListItem
+              click={[Function]}
+              key="5060"
+              polygon={
+                Object {
+                  "draggable": true,
+                  "id": 5060,
+                  "infobox": Object {
+                    "loaded": false,
+                    "name": "Витебская область",
+                  },
+                  "isSolved": false,
+                  "paths": Array [],
+                }
+              }
+            />
+            <NameListItem
+              click={[Function]}
+              key="5055"
+              polygon={
+                Object {
+                  "draggable": true,
+                  "id": 5055,
+                  "infobox": Object {
+                    "loaded": false,
+                    "name": "Гомельская область",
+                  },
+                  "isSolved": false,
+                  "paths": Array [],
+                }
+              }
+            />
+          </ForwardRef>
+        </Scrollbars>
+      </div>
+    </Collapse>
+  </div>
+</div>
+`;

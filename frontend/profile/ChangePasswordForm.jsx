@@ -12,22 +12,39 @@ export default class ChangePasswordForm extends React.Component {
     let data = getFormData(values);
     data.append('new_password2', values['new_password1']);
     let options = {method: 'POST', body: data};
-    let response = await CSRFfetch(`${window.location.pathname}?section=password`, options);
-    let result = await response.json();
-    if (Object.keys(result).length === 0) {
-      form.reset();
+    try {
+      let response = await CSRFfetch(`${window.location.pathname}?section=password`, options);
+      let result = await response.json();
+      if (Object.keys(result).length === 0) {
+        form.reset();
+      }
+      return result;
+    } catch (Error) {
+      console.log(Error);
+      return {'general': 'unknownError'};
     }
-    return result;
   };
 
-  _render = ({handleSubmit, form, submitting}) => {
+  renderFooter(submitting, errors) {
+    let inner = null;
+    if (submitting) {
+      inner = <div className="spinner-border" role="status" />;
+    } else {
+      if (errors.general) {
+        inner = <div className="unknown-error"><Msg id={errors.general} /></div>;
+      }
+    }
+    return inner;
+  }
+
+  _render = ({handleSubmit, form, submitting, errors, submitErrors}) => {
     let state = form.getState();
     return <Form onSubmit={handleSubmit}>
       {state.submitSucceeded && <Alert variant="success"><Msg id="password.changed"/></Alert>}
       <Field name="old_password" component={Input} label={<Msg id="password.current"/>} type="password"/>
       <Field name="new_password1" component={Input} label={<Msg id="password.new"/>} type="password"/>
       <Button variant="primary" type="submit"><Msg id="password.change"/></Button>
-      {submitting && <div className="spinner-border" role="status" />}
+      {this.renderFooter(submitting, {...errors, ...submitErrors})}
     </Form>;
   };
 
