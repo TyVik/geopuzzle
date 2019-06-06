@@ -6,12 +6,6 @@ ALLOWED_HOSTS = ('geopuzzle.org', '206.81.16.242')
 MEDIA_ROOT = '../upload'
 MEDIA_URL = '/media/'
 
-LOGGING.update({
-    'root': {
-        'level': 'WARNING',
-        'handlers': ['sentry'],
-    },
-})
 LOGGING['loggers']['fetch_region'] = {
     'handlers': ['console'],
     'level': 'DEBUG'
