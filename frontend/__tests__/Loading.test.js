@@ -1,9 +1,11 @@
 'use strict';
 import React from 'react';
-import {shallow} from "enzyme";
+import {renderWithIntl, loadTranslation} from 'enzyme-react-intl';
 import Loading from '../components/Loading';
+
+loadTranslation("./frontend/locale/en.json");
 
 
 it('shallow <Loading /> components', () => {
-  expect(shallow(<Loading text='test'/>)).toMatchSnapshot();
+  expect(renderWithIntl(<Loading text='test'/>)).toMatchSnapshot();
 });

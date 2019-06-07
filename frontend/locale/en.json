@@ -36,6 +36,7 @@
     "selectAtLeastOneRegion": "Select at least one region",
     "save": "Save",
     "bugReport": "Something went wrong. Please {0}.",
+    "unknownError": "Something went wrong...",
     "emailMe": "email me",
     "tooManyRegions": "Too many regions",
 

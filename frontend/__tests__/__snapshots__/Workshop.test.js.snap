@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shallow <Workshop /> components render: Workshop 1`] = `
+Array [
+  <form
+    class="row justify-content-between"
+  >
+    <div
+      class="input-group col-sm-5"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+          id="search-label"
+        >
+          <span>
+            Search
+          </span>
+          :
+        </span>
+      </div>
+      <input
+        aria-describedby="basic-search-label"
+        class="form-control"
+        id="search-input"
+        maxlength="50"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="input-group col-sm-5"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+          id="tag-label"
+        >
+          <span>
+            Tags
+          </span>
+          :
+        </span>
+      </div>
+      <select
+        aria-describedby="tag-label"
+        class="form-control"
+        id="tag-input"
+      >
+        <option
+          selected=""
+          value="0"
+        >
+          --
+        </option>
+        <option
+          value="1"
+        >
+          Russian regions
+        </option>
+        <option
+          value="2"
+        >
+          US states
+        </option>
+        <option
+          value="3"
+        >
+          European countries
+        </option>
+        <option
+          value="4"
+        >
+          Asian countries
+        </option>
+        <option
+          value="5"
+        >
+          African countries
+        </option>
+        <option
+          value="6"
+        >
+          N. American countries
+        </option>
+        <option
+          value="7"
+        >
+          S. American countries
+        </option>
+        <option
+          value="8"
+        >
+          Prefectures of Japan
+        </option>
+      </select>
+    </div>
+  </form>,
+  <div>
+    <div
+      class="infinite-scroll-component row"
+      style="height:auto;overflow:auto;-webkit-overflow-scrolling:touch"
+    >
+      <div
+        class="loading_wrapper"
+      >
+        <h2
+          class="loading"
+        >
+          <span>
+            Loading...
+          </span>
+        </h2>
+      </div>
+    </div>
+  </div>,
+]
+`;

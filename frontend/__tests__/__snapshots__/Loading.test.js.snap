@@ -2,15 +2,14 @@
 
 exports[`shallow <Loading /> components 1`] = `
 <div
-  className="loading_wrapper"
+  class="loading_wrapper"
 >
   <h2
-    className="loading"
+    class="loading"
   >
-    <FormattedMessage
-      id="loading"
-      values={Object {}}
-    />
+    <span>
+      Loading...
+    </span>
   </h2>
 </div>
 `;

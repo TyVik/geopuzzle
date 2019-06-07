@@ -64,3 +64,9 @@
     width: 100px;
     height: 100px;
 }
+
+.unknown-error {
+    display: inline;
+    margin-left: 10px;
+    color: #dc3545;
+}
