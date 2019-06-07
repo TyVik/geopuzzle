@@ -17,7 +17,7 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
         <a
           aria-selected="true"
           class="nav-link active"
-          data-rb-event-key="main"
+          data-rb-event-key="#main"
           href="#"
           role="tab"
         >
@@ -246,7 +246,7 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
               class="row"
             >
               <div
-                class="p-2 col-sm-6"
+                class="p-2 col-sm-4"
               >
                 <div
                   class="btn btn-lg btn-facebook btn-block"
@@ -263,7 +263,7 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
                 </a>
               </div>
               <div
-                class="p-2 col-sm-6"
+                class="p-2 col-sm-4"
               >
                 <div
                   class="btn btn-lg btn-vk btn-block"
@@ -280,7 +280,7 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
                 </a>
               </div>
               <div
-                class="p-2 col-sm-6"
+                class="p-2 col-sm-4"
               >
                 <a
                   class="btn btn-lg btn-google btn-block"

@@ -38,7 +38,7 @@ describe('shallow <Toolbox /> components', () => {
 
   it('click collapse', () => {
     let wrapper = mountWithIntl(<Toolbox {...props} regions={global.REGIONS}/>);
-    let header = wrapper.find('.listname-wrapper');
+    let header = wrapper.find('.toolbox-header');
     expect(localStorage.getItem('toolbox_collapse')).toBe(null);
     expect(wrapper.find('#toolbox-collapse').hasClass('show')).toBeTruthy();
     expect(header.find('i').hasClass('fa-angle-down')).toBeTruthy();

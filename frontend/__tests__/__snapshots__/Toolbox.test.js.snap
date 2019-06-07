@@ -2,7 +2,7 @@
 
 exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
 <div
-  className="toolbox_wrapper"
+  className="toolbox-wrapper"
 >
   <div
     className="toolbox"
@@ -10,7 +10,7 @@ exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
     <div
       aria-controls="toolbox-collapse"
       aria-expanded={true}
-      className="listname-wrapper"
+      className="toolbox-header"
       onClick={[Function]}
     >
       <FormattedMessage
