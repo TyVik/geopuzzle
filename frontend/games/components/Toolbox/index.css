@@ -31,12 +31,12 @@
     padding: 3px;
 }
 
-.listname-wrapper {
+.toolbox-header {
     padding-top: 5px;
     cursor: pointer;
 }
 
-.listname-wrapper i {
+.toolbox-header i {
     float: right;
     padding-right: 10px;
     line-height: unset;

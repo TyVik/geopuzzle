@@ -33,9 +33,8 @@ export default class GameScrollList extends React.Component {
     try {
       let response = await fetch(url.toString(), {method: 'GET'});
       let data = await response.json();
-      let hasMore = data.length === 30;
       let items = replace ? data : this.state.items.concat(data);
-      this.setState({...this.state, items: items, page: page, hasMore: hasMore});
+      this.setState({...this.state, items: items, page: page, hasMore: data.length === 30});
     } catch {
       this.setState({...this.state, page: page - 1, hasMore: false});
     }
@@ -51,7 +50,9 @@ export default class GameScrollList extends React.Component {
         <i className="created_by">by {item.user}</i>
         <img className="img-fluid rounded" src={item.image} alt={item.name}/>
       </a>
-      <div className="text-center">{item.name}</div>
+      <div className="text-center">
+        {item.name}
+      </div>
     </Col>;
   };
 

@@ -7,6 +7,8 @@ import "./index.css";
 
 
 class Infobox extends React.Component {
+  COLLAPSE_ID = 'infobox-collapse';
+
   componentWillMount() {
     this.setState({...this.state,
       collapse: JSON.parse(localStorage.getItem('infobox_collapse')) || false
@@ -37,7 +39,7 @@ class Infobox extends React.Component {
 
     let image = this.props.flag ? this.props.flag : this.props.coat_of_arms;
     return <div className="infobox">
-      <div className="header">
+      <div className="infobox-header">
         <button type="button" className="close" onClick={this.props.onClose}>
           <span>&times;</span>
         </button>
@@ -46,10 +48,11 @@ class Infobox extends React.Component {
         </div>
         <i
           className={"fas fa-angle-" + (this.state.collapse ? 'up' : 'down')}
-          onClick={this.toggleCollapse}>
+          onClick={this.toggleCollapse} aria-controls={this.COLLAPSE_ID} aria-expanded={!this.state.collapse}>
         </i>
       </div>
-      <Collapse in={!this.state.collapse} onToggle={this.toggleCollapse}>
+      <Collapse in={!this.state.collapse}>
+        <div id={this.COLLAPSE_ID}>
           <table>
             <tbody>
               {image &&
@@ -68,6 +71,7 @@ class Infobox extends React.Component {
               {this.renderAttribute('currency')}
             </tbody>
           </table>
+        </div>
       </Collapse>
     </div>;
   }

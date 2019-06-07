@@ -16,14 +16,14 @@
     width: 200px;
 }
 
-.header {
+.infobox-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.header .collapse-icon {
+.infobox-header .collapse-icon {
     cursor: pointer;
 }
 

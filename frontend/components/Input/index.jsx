@@ -1,6 +1,7 @@
 'use strict';
 import React from "react";
 import {Form, InputGroup} from "react-bootstrap";
+import {FormattedMessage as Msg} from "react-intl";
 
 
 const Input = ({input, meta, ...params}) => {
@@ -12,7 +13,6 @@ const Input = ({input, meta, ...params}) => {
       <Form.Control.Feedback type="invalid">{meta.error || meta.submitError}</Form.Control.Feedback>}
   </Form.Group>;
 };
-
 
 const UsernameInput = ({input, meta, ...params}) => {
   let hasError = meta.error || meta.submitError;

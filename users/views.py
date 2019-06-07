@@ -42,7 +42,7 @@ class ProfileView(TemplateResponseMixin, BaseUpdateView):
         return super(ProfileView, self).get_context_data(**kwargs)
 
     def form_invalid(self, form):
-        return JsonResponse(form.errors)
+        return JsonResponse(form.errors, status=400)
 
     def form_valid(self, form):
         form.save()

@@ -5,7 +5,7 @@ exports[`shallow <Infobox /> components check props: infobox 1`] = `
   className="infobox"
 >
   <div
-    className="header"
+    className="infobox-header"
   >
     <button
       className="close"
@@ -31,6 +31,8 @@ exports[`shallow <Infobox /> components check props: infobox 1`] = `
       </sup>
     </div>
     <i
+      aria-controls="infobox-collapse"
+      aria-expanded={true}
       className="fas fa-angle-down"
       onClick={[Function]}
     />
@@ -41,72 +43,75 @@ exports[`shallow <Infobox /> components check props: infobox 1`] = `
     getDimensionValue={[Function]}
     in={true}
     mountOnEnter={false}
-    onToggle={[Function]}
     timeout={300}
     unmountOnExit={false}
   >
-    <table>
-      <tbody>
-        <tr>
-          <td
-            colSpan="2"
-          >
-            <img
-              src="flag"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <FormattedMessage
-              id="capital"
-              values={Object {}}
-            />
-          </td>
-          <td>
-            <a
-              href="capital.wiki"
-              target="_blank"
+    <div
+      id="infobox-collapse"
+    >
+      <table>
+        <tbody>
+          <tr>
+            <td
+              colSpan="2"
             >
-              capital.name
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <FormattedMessage
-              id="area"
-              values={Object {}}
-            />
-          </td>
-          <td>
-            area
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <FormattedMessage
-              id="population"
-              values={Object {}}
-            />
-          </td>
-          <td>
-            population
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <FormattedMessage
-              id="currency"
-              values={Object {}}
-            />
-          </td>
-          <td>
-            currency
-          </td>
-        </tr>
-      </tbody>
-    </table>
+              <img
+                src="flag"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <FormattedMessage
+                id="capital"
+                values={Object {}}
+              />
+            </td>
+            <td>
+              <a
+                href="capital.wiki"
+                target="_blank"
+              >
+                capital.name
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <FormattedMessage
+                id="area"
+                values={Object {}}
+              />
+            </td>
+            <td>
+              area
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <FormattedMessage
+                id="population"
+                values={Object {}}
+              />
+            </td>
+            <td>
+              population
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <FormattedMessage
+                id="currency"
+                values={Object {}}
+              />
+            </td>
+            <td>
+              currency
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </Collapse>
 </div>
 `;
@@ -116,7 +121,7 @@ exports[`shallow <Infobox /> components check props: infobox-empty 1`] = `
   className="infobox"
 >
   <div
-    className="header"
+    className="infobox-header"
   >
     <button
       className="close"
@@ -139,6 +144,8 @@ exports[`shallow <Infobox /> components check props: infobox-empty 1`] = `
       </sup>
     </div>
     <i
+      aria-controls="infobox-collapse"
+      aria-expanded={true}
       className="fas fa-angle-down"
       onClick={[Function]}
     />
@@ -149,23 +156,26 @@ exports[`shallow <Infobox /> components check props: infobox-empty 1`] = `
     getDimensionValue={[Function]}
     in={true}
     mountOnEnter={false}
-    onToggle={[Function]}
     timeout={300}
     unmountOnExit={false}
   >
-    <table>
-      <tbody>
-        <tr>
-          <td
-            colSpan="2"
-          >
-            <img
-              src="coat_of_arms"
-            />
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div
+      id="infobox-collapse"
+    >
+      <table>
+        <tbody>
+          <tr>
+            <td
+              colSpan="2"
+            >
+              <img
+                src="coat_of_arms"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </Collapse>
 </div>
 `;
@@ -175,7 +185,7 @@ exports[`shallow <Infobox /> components click collapse: infobox 1`] = `
   className="infobox"
 >
   <div
-    className="header"
+    className="infobox-header"
   >
     <button
       className="close"
@@ -213,6 +223,8 @@ exports[`shallow <Infobox /> components click collapse: infobox 1`] = `
       </sup>
     </div>
     <i
+      aria-controls="infobox-collapse"
+      aria-expanded={true}
       className="fas fa-angle-down"
       onClick={[Function]}
     />
@@ -223,72 +235,75 @@ exports[`shallow <Infobox /> components click collapse: infobox 1`] = `
     getDimensionValue={[Function]}
     in={true}
     mountOnEnter={false}
-    onToggle={[Function]}
     timeout={300}
     unmountOnExit={false}
   >
-    <table>
-      <tbody>
-        <tr>
-          <td
-            colSpan="2"
-          >
-            <img
-              src="flag"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <FormattedMessage
-              id="capital"
-              values={Object {}}
-            />
-          </td>
-          <td>
-            <a
-              href="capital.wiki"
-              target="_blank"
+    <div
+      id="infobox-collapse"
+    >
+      <table>
+        <tbody>
+          <tr>
+            <td
+              colSpan="2"
             >
-              capital.name
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <FormattedMessage
-              id="area"
-              values={Object {}}
-            />
-          </td>
-          <td>
-            area
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <FormattedMessage
-              id="population"
-              values={Object {}}
-            />
-          </td>
-          <td>
-            population
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <FormattedMessage
-              id="currency"
-              values={Object {}}
-            />
-          </td>
-          <td>
-            currency
-          </td>
-        </tr>
-      </tbody>
-    </table>
+              <img
+                src="flag"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <FormattedMessage
+                id="capital"
+                values={Object {}}
+              />
+            </td>
+            <td>
+              <a
+                href="capital.wiki"
+                target="_blank"
+              >
+                capital.name
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <FormattedMessage
+                id="area"
+                values={Object {}}
+              />
+            </td>
+            <td>
+              area
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <FormattedMessage
+                id="population"
+                values={Object {}}
+              />
+            </td>
+            <td>
+              population
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <FormattedMessage
+                id="currency"
+                values={Object {}}
+              />
+            </td>
+            <td>
+              currency
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </Collapse>
 </div>
 `;
@@ -298,7 +313,7 @@ exports[`shallow <Infobox /> components click collapse: infobox-collapse 1`] = `
   className="infobox"
 >
   <div
-    className="header"
+    className="infobox-header"
   >
     <button
       className="close"
@@ -336,6 +351,8 @@ exports[`shallow <Infobox /> components click collapse: infobox-collapse 1`] = `
       </sup>
     </div>
     <i
+      aria-controls="infobox-collapse"
+      aria-expanded={false}
       className="fas fa-angle-up"
       onClick={[Function]}
     />
@@ -346,72 +363,75 @@ exports[`shallow <Infobox /> components click collapse: infobox-collapse 1`] = `
     getDimensionValue={[Function]}
     in={false}
     mountOnEnter={false}
-    onToggle={[Function]}
     timeout={300}
     unmountOnExit={false}
   >
-    <table>
-      <tbody>
-        <tr>
-          <td
-            colSpan="2"
-          >
-            <img
-              src="flag"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <FormattedMessage
-              id="capital"
-              values={Object {}}
-            />
-          </td>
-          <td>
-            <a
-              href="capital.wiki"
-              target="_blank"
+    <div
+      id="infobox-collapse"
+    >
+      <table>
+        <tbody>
+          <tr>
+            <td
+              colSpan="2"
             >
-              capital.name
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <FormattedMessage
-              id="area"
-              values={Object {}}
-            />
-          </td>
-          <td>
-            area
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <FormattedMessage
-              id="population"
-              values={Object {}}
-            />
-          </td>
-          <td>
-            population
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <FormattedMessage
-              id="currency"
-              values={Object {}}
-            />
-          </td>
-          <td>
-            currency
-          </td>
-        </tr>
-      </tbody>
-    </table>
+              <img
+                src="flag"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <FormattedMessage
+                id="capital"
+                values={Object {}}
+              />
+            </td>
+            <td>
+              <a
+                href="capital.wiki"
+                target="_blank"
+              >
+                capital.name
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <FormattedMessage
+                id="area"
+                values={Object {}}
+              />
+            </td>
+            <td>
+              area
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <FormattedMessage
+                id="population"
+                values={Object {}}
+              />
+            </td>
+            <td>
+              population
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <FormattedMessage
+                id="currency"
+                values={Object {}}
+              />
+            </td>
+            <td>
+              currency
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </Collapse>
 </div>
 `;

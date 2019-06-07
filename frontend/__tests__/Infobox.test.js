@@ -25,10 +25,10 @@ describe('shallow <Infobox /> components', () => {
 
   it('click collapse', () => {
     let wrapper = shallow(<Infobox {...props}/>);
-    wrapper.find('.header i').simulate('click');
+    wrapper.find('.infobox-header i').simulate('click');
     expect(localStorage.getItem('infobox_collapse')).toBe('true');
     expect(wrapper).toMatchSnapshot('infobox-collapse');
-    wrapper.find('.header i').simulate('click');
+    wrapper.find('.infobox-header i').simulate('click');
     expect(localStorage.getItem('infobox_collapse')).toBe('false');
     expect(wrapper).toMatchSnapshot('infobox');
   });

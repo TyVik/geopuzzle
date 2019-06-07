@@ -39,9 +39,9 @@ class Toolbox extends React.Component {
   render() {
     let img = window.__STATIC_URL__;
     let solved = this.props.regions.filter(obj => (obj.isSolved)).length;
-    return <div className="toolbox_wrapper">
+    return <div className="toolbox-wrapper">
       <div className="toolbox">
-        <div className="listname-wrapper" onClick={this.toggleCollapse} aria-controls={this.COLLAPSE_ID} aria-expanded={!this.state.collapse}>
+        <div className="toolbox-header" onClick={this.toggleCollapse} aria-controls={this.COLLAPSE_ID} aria-expanded={!this.state.collapse}>
           {this.props.wsState !== true &&
             <div id="network_connection_label"><Msg id="networkError"/></div>}
           <Msg id="found"/>: <span>{solved}</span>/<span>{this.props.regions.length}</span>

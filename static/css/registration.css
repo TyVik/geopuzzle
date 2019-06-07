@@ -41,6 +41,10 @@
     line-height: 300%;
 }
 
+.login-container .row {
+    margin-top: 10px;
+}
+
 .errorlist {
     padding-left: 0;
     color: red;

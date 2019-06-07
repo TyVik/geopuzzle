@@ -35,7 +35,7 @@
     "publishedToAll": "Allow to any users",
     "selectAtLeastOneRegion": "Select at least one region",
     "save": "Save",
-    "bugReport": "Something went wrong. Please {0}.",
+    "bugReport": "Something went wrong. Please {mail}.",
     "unknownError": "Something went wrong...",
     "emailMe": "email me",
     "tooManyRegions": "Too many regions",
