@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-01 21:13+0000\n"
-"PO-Revision-Date: 2019-05-23 13:23\n"
+"POT-Creation-Date: 2019-06-05 13:30+0000\n"
+"PO-Revision-Date: 2019-06-08 18:00\n"
 "Last-Translator: Viktor Tyshchenko (tyvik)\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: geopuzzle\n"
 "X-Crowdin-Language: es-ES\n"
-"X-Crowdin-File: /develop/locale/es/LC_MESSAGES/django.po\n"
+"X-Crowdin-File: /develop/locale/it/LC_MESSAGES/django.po\n"
 
 #: maps/admin.py:28
 msgid "Infoboxes were updated."
@@ -80,11 +80,11 @@ msgstr ""
 msgid "Import from OSM"
 msgstr ""
 
-#: mercator/settings/settings.py:194
+#: mercator/settings/settings.py:193
 msgid "English"
 msgstr ""
 
-#: mercator/settings/settings.py:195
+#: mercator/settings/settings.py:194
 msgid "Russian"
 msgstr ""
 
@@ -137,36 +137,36 @@ msgstr ""
 msgid "Arrange the pieces of the world!"
 msgstr ""
 
-#: templates/base.html:37
+#: templates/base.html:43
 msgid "Home"
 msgstr ""
 
-#: templates/base.html:40
+#: templates/base.html:46
 msgid "Workshop"
 msgstr ""
 
-#: templates/base.html:55
+#: templates/base.html:61
 msgid "logout"
 msgstr ""
 
-#: templates/base.html:57 users/templates/registration/login.html:5
+#: templates/base.html:63 users/templates/registration/login.html:5
 #: users/templates/registration/login.html:26
 #: users/templates/registration/registration.html:5
 msgid "Sign In"
 msgstr ""
 
-#: templates/base.html:58 users/templates/registration/login.html:5
+#: templates/base.html:64 users/templates/registration/login.html:5
 #: users/templates/registration/registration.html:5
 #: users/templates/registration/registration.html:31
 msgid "Sign Up"
 msgstr ""
 
 #: templates/index.html:7
-msgid "Here, in the form of a game, you can learn the names and locations of each country or state and have fun doing it. In your hands are all of the regions of the world! Select a region in its proper place or from a list and look at it flag, coat of arms and perhaps even more information to help you learn geography."
+msgid "Here, in the form of a game, you can learn the names and locations of each country or state and have fun doing it. Select a region in its proper place or from a list and look at it flag, coat of arms and perhaps even more information to help you learn geography. You can create your own puzzles from more than 100,000 regions after registration!"
 msgstr ""
 
 #: templates/index.html:8
-msgid "Moreover, you can create your own puzzles from more than 100,000 regions after registration!"
+msgid "This is a non-profit project, but servers and other resources are not free for me. Please, support the project on <a href=\"https://www.patreon.com/bePatron?u=11576139\">Patreon</a>."
 msgstr ""
 
 #: templates/index.html:39
@@ -182,26 +182,28 @@ msgid "Country regions"
 msgstr ""
 
 #: templates/index.html:83
-msgid "All suggestions for improvement can be sent to me via\n"
-"                  <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">email</a>,\n"
-"                  <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
-"                  or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>."
+msgid "All suggestions for improvement you can sent to me via\n"
+"                <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\">email</a>,\n"
+"                <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
+"                or <a href=\"https://www.facebook.com/TyVikZero\" target=\"_blank\">facebook</a>,\n"
+"                and also add an issue on <a href=\"https://github.com/TyVik/geopuzzle\" target=\"_blank\">GitHub</a>."
 msgstr ""
 
-#: templates/index.html:87
-msgid "You always can support the project with donations via <a href=\"https://www.paypal.me/tyvik\">PayPal</a>,\n"
-"                <a href=\"https://yasobe.ru/na/geopuzzle\">Yandex money</a> or <a href=\"https://www.patreon.com/geopuzzle\">Patreon</a>."
+#: templates/index.html:90
+msgid "The project based on open data:\n"
+"                <a href=\"https://wambachers-osm.website/boundaries/\">OSM Admin Boundaries Map</a> for region polygons and\n"
+"                <a href=\"https://www.wikidata.org/wiki/Wikidata:Main_Page\">Wikidata</a> for information in infoboxes."
 msgstr ""
 
 #: templates/share_image.html:8
 msgid "Games on political maps"
 msgstr ""
 
-#: users/forms.py:16 users/forms.py:36
+#: users/forms.py:15 users/forms.py:35
 msgid "Username"
 msgstr ""
 
-#: users/forms.py:18 users/forms.py:39
+#: users/forms.py:17 users/forms.py:38
 msgid "Password"
 msgstr ""
 
@@ -217,17 +219,7 @@ msgstr ""
 msgid "Subscribed on news"
 msgstr ""
 
-#: users/templates/registration/base.html:27
+#: users/templates/registration/base.html:26
 msgid "or"
 msgstr ""
 
-#: users/templates/user/profile.html:14
-msgid "My puzzles"
-msgstr ""
-
-#: users/templates/user/profile.html:39
-msgid "New one"
-msgstr ""
-
-#~ msgid "Forgot password?"
-#~ msgstr "Забыли пароль?"
