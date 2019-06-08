@@ -41,7 +41,7 @@
     "babel-loader": "^8.0.4",
     "css-loader": "^2.1.1",
     "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.12.1",
+    "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-react-intl": "^2.0.4",
     "git-revision-webpack-plugin": "^3.0.3",
     "identity-obj-proxy": "^3.0.0",
