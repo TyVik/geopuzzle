@@ -28,20 +28,18 @@ This is just web application, so you need:
 ## System applications
 
 Install nginx, uwsgi, supervisor and other packages:
-```
+```bash
 $ sudo apt install nginx uwsgi uwsgi-plugin-python3 supervisor redis-server
 $ sudo apt install gdal-bin gettext build-essential python3-dev libpq-dev
 ```
 
 Template config files for nginx, uwsgi and supervisor are placed in `deploy` directory.
-I hope python 3 with pip already installed :)
+I hope python 3 with pipenv already installed :)
 
 ## Create virtual environment
 
-```
-$ virtualenv --python=`which python3` venv
-$ source venv/bin/activate
-(venv)$ pip install -r requirements.txt
+```bash
+$ pipenv install
 ```
 
 ## Create database
@@ -94,7 +92,7 @@ Install nodejs:
 $ sudo apt install nodejs npm
 $ npm init
 $ npm run build
-(geopuzzle)$ ./manage.py collectstatic
+(geopuzzle) $ ./manage.py collectstatic
 ```
 
 # Load data
@@ -139,14 +137,14 @@ $ docker push tyvik/geopuzzle:jsbuild
 Build and run:
 
 ```bash
-docker-compose build
-docker-compose up -d
+$ docker-compose build
+$ docker-compose up -d
 ```
 
 Stop:
 
 ```bash
-docker-compose stop
+$ docker-compose stop
 ```
 
 You can download [sample database](https://drive.google.com/file/d/1V9JY5vsSzYVTc-2TTjtOJx11Zgg4K58V/view?usp=sharing).

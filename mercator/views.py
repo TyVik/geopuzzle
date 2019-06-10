@@ -15,27 +15,27 @@ from quiz.models import Quiz
 
 
 def index(request: WSGIRequest) -> HttpResponse:
-    puzzles = Puzzle.objects.filter(translations__language_code=request.LANGUAGE_CODE, is_published=True, on_main_page=True).order_by('translations__name').all()
-    quizzes = Quiz.objects.filter(translations__language_code=request.LANGUAGE_CODE, is_published=True, on_main_page=True).order_by('translations__name').all()
-    games = [{
-        'items': {
-            'parts': [item.index for item in puzzles.filter(is_global=True).all()],
-            'countries': [item.index for item in puzzles.filter(is_global=False).all()]
-        },
-        'name': 'puzzle',
-        'link': 'puzzle_map',
-        'caption': _('puzzle'),
-        'rules': _('In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!')
-    }, {
-        'items': {
-            'parts': [item.index for item in quizzes.filter(is_global=True).all()],
-            'countries': [item.index for item in quizzes.filter(is_global=False).all()]
-        },
-        'name': 'quiz',
-        'link': 'quiz_map',
-        'caption': _('quiz'),
-        'rules': _('In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!')
-    }]
+    games = []
+    rules = (
+        _('In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!'),
+        _('In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!')
+    )
+    for index, game in enumerate((Puzzle, Quiz)):
+        name = game.__name__.lower()
+        qs = game.objects.\
+            filter(translations__language_code=request.LANGUAGE_CODE, is_published=True, on_main_page=True).\
+            prefetch_related('translations').\
+            order_by('translations__name')
+        games.append({
+            'items': {
+                'parts': [item.index for item in qs.all() if item.is_global],
+                'countries': [item.index for item in qs.all() if not item.is_global]
+            },
+            'name': name,
+            'link': f'{name}_map',
+            'caption': _(name),
+            'rules': rules[index]
+        })
     return render(request, 'index.html', {'games': games})
 
 

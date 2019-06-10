@@ -1,0 +1,34 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+python-coveralls = "*"
+factory-boy = "*"
+django-extensions = "*"
+gprof2dot = "*"
+boto3 = "*"
+
+[packages]
+django = "==2.1.7"
+psycopg2-binary = "*"
+pillow = "*"
+sorl-thumbnail = "*"
+django-redis = "*"
+django-redis-sessions = "*"
+sparqlwrapper = "*"
+requests = "*"
+apidev-django-floppyforms = "*"
+django-admirarchy = "*"
+daphne = "*"
+channels = "*"
+channels-redis = "*"
+django-storages = "*"
+django-settings-export = "*"
+django-dotenv = "*"
+social-auth-app-django = "*"
+sentry-sdk = "*"
+
+[requires]
+python_version = "3.6"

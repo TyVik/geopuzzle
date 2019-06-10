@@ -2,7 +2,7 @@
 
 source /home/tyvik/venv/bin/activate
 git pull
-pip install -r requirements.txt
+pipenv install
 python manage.py compilemessages
 python manage.py migrate
 touch reload
