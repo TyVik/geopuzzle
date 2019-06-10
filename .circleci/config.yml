@@ -60,7 +60,7 @@ jobs:
           command: dockerize -wait tcp://localhost:5432 -timeout 30s
       - run:
           name: Install dev requirements
-          command: pipenv install --dev
+          command: pipenv install --dev --system
       - run:
           name: Run tests
           command: coverage run --source='.' manage.py test
