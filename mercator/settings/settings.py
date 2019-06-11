@@ -23,16 +23,11 @@ LOG_DIR = os.path.join(BASE_DIR, 'logs')
 GEOJSON_DIR = os.path.join(BASE_DIR, 'geojson')
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
-GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
-OSM_KEY = os.environ.get('OSM_KEY')
-OSM_URL = 'https://wambachers-osm.website/boundaries/exportBoundaries?cliVersion=1.0&cliKey={key}&exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}'
-
 ALLOWED_HOSTS = ('geopuzzle.org', 'www.geopuzzle.org', '127.0.0.1')
 INTERNAL_IPS = ALLOWED_HOSTS
 
 WSGI_APPLICATION = 'mercator.wsgi.application'
 ROOT_URLCONF = 'mercator.urls'
-SETTINGS_EXPORT = ['GIT_REVISION', 'STATIC_URL', 'GOOGLE_KEY']
 
 # region BASE
 INSTALLED_APPS = [
@@ -265,3 +260,11 @@ AWESOME_AVATAR = {
     'select_area_width': 250,
 }
 # endregion
+
+# region External services
+GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
+OSM_KEY = os.environ.get('OSM_KEY')
+OSM_URL = 'https://wambachers-osm.website/boundaries/exportBoundaries?cliVersion=1.0&cliKey={key}&exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}'
+# endregion
+
+SETTINGS_EXPORT = ['GIT_REVISION', 'STATIC_URL', 'GOOGLE_KEY']
