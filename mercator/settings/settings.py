@@ -2,6 +2,7 @@ import os
 import subprocess
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import ignore_logger
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -10,11 +11,13 @@ output = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], stdout=subproce
 GIT_REVISION = output.stdout.decode().strip()
 
 sentry_sdk.init(
-    dsn="https://e905309fa6504c92bbfd9becc0ad1010@sentry.io/260019",
+    dsn=os.environ.get('RAVEN_DSN'),
     release=GIT_REVISION,
     request_bodies='always',
     integrations=[DjangoIntegration()]
 )
+ignore_logger("django.security.DisallowedHost")
+
 
 DEBUG = TEMPLATE_DEBUG = True
 
