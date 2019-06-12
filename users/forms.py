@@ -51,6 +51,10 @@ class ProfileForm(UsernameEmailValidation, ModelForm):
         model = User
         fields = ('username', 'email', 'language', 'is_subscribed', 'image')
 
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.fields['image'].required = False
+
     def clean_image(self):
         value = self.data['image']
         if ';base64,' in value:
