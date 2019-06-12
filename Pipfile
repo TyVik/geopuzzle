@@ -11,7 +11,7 @@ gprof2dot = "*"
 boto3 = "*"
 
 [packages]
-django = "==2.1.7"
+django = "*"
 psycopg2-binary = "*"
 pillow = "*"
 sorl-thumbnail = "*"
