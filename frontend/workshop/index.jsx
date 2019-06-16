@@ -27,8 +27,12 @@ class Workshop extends React.Component {
     return <form className="row justify-content-between">
       <div className="form-group col-md-6 col-sm-12">
         <label htmlFor="search-label"><Msg id="search"/>:</label>
-        <input type="text" className="form-control" maxLength="50" id="search-input" onChange={this.onChange} value={this.state.search} aria-describedby="basic-search-label"/>
-        <small id="basic-search-label" className="form-text text-muted">Search by title, tags or author.</small>
+        <Msg id="workshopSearch">
+          {placeholder =>
+            <input type="text" className="form-control" maxLength="50" id="search-input"
+                   onChange={this.onChange} value={this.state.search}
+                   placeholder={placeholder} />}
+         </Msg>
       </div>
       <div className="form-group col-md-4 col-sm-12">
         <label htmlFor="tag-label"><Msg id="tags"/>:</label>
