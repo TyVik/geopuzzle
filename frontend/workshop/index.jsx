@@ -25,16 +25,13 @@ class Workshop extends React.Component {
 
   render_controls() {
     return <form className="row justify-content-between">
-      <div className="input-group col-sm-5">
-        <div className="input-group-prepend">
-          <span className="input-group-text" id="search-label"><Msg id="search"/>:</span>
-        </div>
+      <div className="form-group col-md-6 col-sm-12">
+        <label htmlFor="search-label"><Msg id="search"/>:</label>
         <input type="text" className="form-control" maxLength="50" id="search-input" onChange={this.onChange} value={this.state.search} aria-describedby="basic-search-label"/>
+        <small id="basic-search-label" className="form-text text-muted">Search by title, tags or author.</small>
       </div>
-      <div className="input-group col-sm-5">
-        <div className="input-group-prepend">
-          <span className="input-group-text" id="tag-label"><Msg id="tags"/>:</span>
-        </div>
+      <div className="form-group col-md-4 col-sm-12">
+        <label htmlFor="tag-label"><Msg id="tags"/>:</label>
         <select className="form-control" id="tag-input" onChange={this.onChangeTag} value={this.state.tag} aria-describedby="tag-label">
           <option value={0}>--</option>
           {window.__TAGS__.map(tag => <option value={tag[0]} key={tag[0]}>{tag[1]}</option>)}
