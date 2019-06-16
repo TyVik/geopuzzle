@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-05 13:30+0000\n"
+"POT-Creation-Date: 2019-06-16 06:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,19 +87,15 @@ msgstr "Обновить инфобокс"
 msgid "Import from OSM"
 msgstr "Импорт из OSM"
 
-#: mercator/settings/settings.py:193
+#: mercator/settings/settings.py:191
 msgid "English"
 msgstr "Английский"
 
-#: mercator/settings/settings.py:194
+#: mercator/settings/settings.py:192
 msgid "Russian"
 msgstr "Русский"
 
-#: mercator/views.py:27
-msgid "puzzle"
-msgstr "Паззл"
-
-#: mercator/views.py:28
+#: mercator/views.py:20
 msgid ""
 "In the Puzzle you need to drag the shape of the territory to the right "
 "place. Just like in childhood we collected pictures piece by piece, so here "
@@ -110,11 +105,7 @@ msgstr ""
 "мы собирали картины кусочек за кусочком, а здесь можно собрать страну из "
 "регионов или целые континенты из стран!"
 
-#: mercator/views.py:36
-msgid "quiz"
-msgstr "Викторина"
-
-#: mercator/views.py:37
+#: mercator/views.py:21
 msgid ""
 "In the Quiz you need find the country by flag, emblem or the capital. Did "
 "you know that Monaco and Indonesia have the same flags? And that the flags "
@@ -127,11 +118,11 @@ msgstr ""
 "Либерии отличаются только количеством звёзд? Так вот, эти и другие "
 "интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
 
-#: puzzle/views.py:39
+#: puzzle/views.py:34
 msgid "Puzzle \"{}\" has been assembled! Your time is "
 msgstr "Пазл «{}» был собран! Ваше время "
 
-#: puzzle/views.py:39 quiz/views.py:30
+#: puzzle/views.py:34 quiz/views.py:30
 msgid "World map"
 msgstr "Карта мира"
 
@@ -150,8 +141,8 @@ msgid "regions"
 msgstr "регионы"
 
 #: templates/base.html:5
-msgid "Mercator puzzle of "
-msgstr "Паззл Меркатора - "
+msgid "Geographical game of "
+msgstr "Географическая игра - "
 
 #: templates/base.html:5 templates/index.html:32
 msgid "World"
@@ -169,17 +160,17 @@ msgstr "Домой"
 msgid "Workshop"
 msgstr "Мастерская"
 
-#: templates/base.html:61
+#: templates/base.html:55
 msgid "logout"
 msgstr "выйти"
 
-#: templates/base.html:63 users/templates/registration/login.html:5
+#: templates/base.html:57 users/templates/registration/login.html:5
 #: users/templates/registration/login.html:26
 #: users/templates/registration/registration.html:5
 msgid "Sign In"
 msgstr "Войти"
 
-#: templates/base.html:64 users/templates/registration/login.html:5
+#: templates/base.html:58 users/templates/registration/login.html:5
 #: users/templates/registration/registration.html:5
 #: users/templates/registration/registration.html:31
 msgid "Sign Up"
@@ -253,8 +244,8 @@ msgstr ""
 "\">Wikidata</a> для информации в инфобоксах."
 
 #: templates/share_image.html:8
-msgid "Games on political maps"
-msgstr "Игры на политической карте"
+msgid "Geographical game on the map"
+msgstr "Географическая игра на карте"
 
 #: users/forms.py:15 users/forms.py:35
 msgid "Username"
@@ -279,3 +270,9 @@ msgstr "Подписка на новости"
 #: users/templates/registration/base.html:26
 msgid "or"
 msgstr "или"
+
+msgid "puzzle"
+msgstr "Паззл"
+
+msgid "quiz"
+msgstr "Викторина"
