@@ -382,13 +382,7 @@ class GameTranslation(models.Model):
 
 
 class Tag(models.Model):
-    name_en = models.CharField(max_length=50, blank=True, default='???')
-    name_ru = models.CharField(max_length=50, blank=True, default='???')
+    name = models.CharField(max_length=50, unique=True)
 
     def __str__(self) -> str:
-        return self.name_en
-
-    @classmethod
-    def get_all(self, lang: str) -> List:
-        attr = f'name_{lang}'
-        return [(tag.id, getattr(tag, attr)) for tag in Tag.objects.all()]
+        return self.name

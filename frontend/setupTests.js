@@ -35,9 +35,9 @@ window.__PROVIDERS__ = [
   {"slug": "vk-oauth2", "connected": true, "label": "VK", "class": "vk"},
   {"slug": "google-oauth2", "connected": false, "label": "Google", "class": "google"}
 ];
-window.__TAGS__ = [
-  [1, "Russian regions"], [2, "US states"], [3, "European countries"], [4, "Asian countries"], [5, "African countries"],
-  [6, "N. American countries"], [7, "S. American countries"], [8, "Prefectures of Japan"]
+window.__ORDER__ = [
+  ["title_asc", "Title \u2193"], ["title_desc", "Title \u2191"],
+  ["created_asc", "Created \u2193"], ["created_desc", "Created \u2191"]
 ];
 
 global.REGIONS = [{

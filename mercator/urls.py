@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^puzzle/', include('puzzle.urls')),
     url(r'^quiz/', include('quiz.urls')),
     url(r'^regions/', include('maps.urls')),
+    url(r'^workshop/', include('workshop.urls')),
     url(r'^maps/(?P<name>[a-zA-Z0-9]+)/', views.deprecated_redirect),
     url(r'^puzzle/area/(?P<pk>\d+)/infobox/', cache_page(DAY)(views.infobox_by_id), name='infobox_by_id'),
 

@@ -10,7 +10,7 @@
 {% block extra_js %}
   <script type='text/javascript'>
     window.__LANGUAGE__ = '{{ language }}';
-    window.__TAGS__ = JSON.parse('{{ tags|jsonify }}');
+    window.__ORDER__ = JSON.parse('{{ order|jsonify }}');
   </script>
   <script type="text/javascript" src={% static "js/common.js" %}></script>
   <script type="text/javascript" src={% static "js/components.js" %}></script>

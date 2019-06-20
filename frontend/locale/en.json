@@ -40,8 +40,10 @@
     "emailMe": "email me",
     "tooManyRegions": "Too many regions",
 
-    "search": "Search",
-    "tags": "Tags",
+    "search": "Search by title",
+    "tag": "Filter by tag",
+    "author": "Filter by author",
+    "orderBy": "Order by",
 
     "profile": "Profile",
     "publicProfile": "Public profile",

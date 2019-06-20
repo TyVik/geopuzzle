@@ -1,59 +1,79 @@
 'use strict';
 import React from "react";
+import AsyncSelect from 'react-select/async';
+import Select from 'react-select';
 import {FormattedMessage as Msg} from 'react-intl';
 import GameScrollList from "../components/GamesScrollList";
+import {CSRFfetch} from "../utils";
 
 
 class Workshop extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {search: '', searchArg: '', tag: 0};
+    this.order_options = window.__ORDER__.map(item => {return {value: item[0], label: item[1]}});
+    this.state = {search: '', _search: '', order: null, tag: null, author: null};
   }
 
-  onChange = (event) => {
+  onChangeSearch = (event) => {
     let value = event && event.target.value || '';
     if (this.timeout !== null) {
       clearTimeout(this.timeout);
     }
-    this.timeout = setTimeout(() => {this.setState({...this.state, searchArg: value})}, 300);
-    this.setState({...this.state, search: value});
+    this.timeout = setTimeout(() => {this.setState({...this.state, search: value})}, 300);
+    this.setState({...this.state, _search: value});
   };
 
-  onChangeTag = (event) => {
-    this.setState({...this.state, tag: Number(event.target.value)});
+  loadOptions = (field, inputValue, callback) => {
+    if ((inputValue === '') && (field !== 'tag')) {
+      return callback([]);
+    }
+    setTimeout(async () => {
+      let response = await CSRFfetch(`${window.location.pathname}suggest/?${field}=${inputValue}`, {});
+      callback(await response.json());
+    }, 300);
+  };
+
+  onChange = (field, event) => {
+    let state = {...this.state};
+    state[field] = (event === null) ? null : event.value;
+    this.setState(state);
   };
 
   render_controls() {
     return <form className="row justify-content-between">
-      <div className="input-group col-sm-5">
-        <div className="input-group-prepend">
-          <span className="input-group-text" id="search-label"><Msg id="search"/>:</span>
-        </div>
-        <input type="text" className="form-control" maxLength="50" id="search-input" onChange={this.onChange} value={this.state.search} aria-describedby="basic-search-label"/>
+      <div className="form-group col-md-7 col-sm-12">
+        <label htmlFor="search-label"><Msg id="search"/>:</label>
+          <input type="text" className="form-control" maxLength="50" id="search-input"
+                 onChange={this.onChangeSearch} value={this.state._search} />
       </div>
-      <div className="input-group col-sm-5">
-        <div className="input-group-prepend">
-          <span className="input-group-text" id="tag-label"><Msg id="tags"/>:</span>
-        </div>
-        <select className="form-control" id="tag-input" onChange={this.onChangeTag} value={this.state.tag} aria-describedby="tag-label">
-          <option value={0}>--</option>
-          {window.__TAGS__.map(tag => <option value={tag[0]} key={tag[0]}>{tag[1]}</option>)}
-        </select>
+      <div className="form-group col-md-5 col-sm-12">
+        <label htmlFor="order-label"><Msg id="orderBy"/>:</label>
+        <Select isClearable options={this.order_options} onChange={(event) => this.onChange('order', event)} />
+      </div>
+      <div className="form-group col-md-6 col-sm-12">
+        <label htmlFor="search-label"><Msg id="tag"/>:</label>
+          <AsyncSelect cacheOptions defaultOptions isClearable
+                       loadOptions={(inputValue, callback) => this.loadOptions('tag', inputValue, callback)}
+                       onChange={(event) => this.onChange('tag', event)} />
+      </div>
+      <div className="form-group col-md-6 col-sm-12">
+        <label htmlFor="search-label"><Msg id="author"/>:</label>
+          <AsyncSelect cacheOptions defaultOptions isClearable
+                       loadOptions={(inputValue, callback) => this.loadOptions('author', inputValue, callback)}
+                       onChange={(event) => this.onChange('author', event)} />
       </div>
     </form>;
   }
 
   currentUrl() {
     let params = new URLSearchParams();
-    if (this.state.searchArg) {
-      params.set('search', this.state.searchArg);
-    }
-    if (this.state.tag > 0) {
-      params.set('tag', this.state.tag);
-    }
+    ['search', 'tag', 'author', 'order'].map(item => {
+      if ((this.state[item] !== null) && (this.state[item].length > 0)) {
+        params.set(`${item}`, this.state[item]);
+      }
+    });
     let result = params.toString();
-    result = result.length > 0 ? `${location.href}items/?${result}` : `${location.href}items/`;
-    return result;
+    return `${location.href}items/?${result}`;
   }
 
   render() {

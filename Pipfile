@@ -29,6 +29,7 @@ django-settings-export = "*"
 django-dotenv = "*"
 social-auth-app-django = "*"
 sentry-sdk = "*"
+django-filter = "*"
 
 [requires]
 python_version = "3.6"
