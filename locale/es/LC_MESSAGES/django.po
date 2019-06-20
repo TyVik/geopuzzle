@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-05 13:30+0000\n"
+"POT-Creation-Date: 2019-06-16 06:41+0000\n"
 "PO-Revision-Date: 2018-10-27 09:31\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -80,30 +80,22 @@ msgstr ""
 msgid "Import from OSM"
 msgstr ""
 
-#: mercator/settings/settings.py:193
+#: mercator/settings/settings.py:191
 msgid "English"
 msgstr ""
 
-#: mercator/settings/settings.py:194
+#: mercator/settings/settings.py:192
 msgid "Russian"
 msgstr ""
 
-#: mercator/views.py:27
-msgid "puzzle"
-msgstr ""
-
-#: mercator/views.py:28
+#: mercator/views.py:20
 msgid ""
 "In the Puzzle you need to drag the shape of the territory to the right "
 "place. Just like in childhood we collected pictures piece by piece, so here "
 "you can collect a country from regions or whole continents from countries!"
 msgstr ""
 
-#: mercator/views.py:36
-msgid "quiz"
-msgstr ""
-
-#: mercator/views.py:37
+#: mercator/views.py:21
 msgid ""
 "In the Quiz you need find the country by flag, emblem or the capital. Did "
 "you know that Monaco and Indonesia have the same flags? And that the flags "
@@ -112,11 +104,11 @@ msgid ""
 "brainstorming right now!"
 msgstr ""
 
-#: puzzle/views.py:39
+#: puzzle/views.py:34
 msgid "Puzzle \"{}\" has been assembled! Your time is "
 msgstr ""
 
-#: puzzle/views.py:39 quiz/views.py:30
+#: puzzle/views.py:34 quiz/views.py:30
 msgid "World map"
 msgstr ""
 
@@ -135,7 +127,7 @@ msgid "regions"
 msgstr ""
 
 #: templates/base.html:5
-msgid "Mercator puzzle of "
+msgid "Geographical game of "
 msgstr ""
 
 #: templates/base.html:5 templates/index.html:32
@@ -154,17 +146,17 @@ msgstr ""
 msgid "Workshop"
 msgstr ""
 
-#: templates/base.html:61
+#: templates/base.html:55
 msgid "logout"
 msgstr ""
 
-#: templates/base.html:63 users/templates/registration/login.html:5
+#: templates/base.html:57 users/templates/registration/login.html:5
 #: users/templates/registration/login.html:26
 #: users/templates/registration/registration.html:5
 msgid "Sign In"
 msgstr ""
 
-#: templates/base.html:64 users/templates/registration/login.html:5
+#: templates/base.html:58 users/templates/registration/login.html:5
 #: users/templates/registration/registration.html:5
 #: users/templates/registration/registration.html:31
 msgid "Sign Up"
@@ -220,7 +212,7 @@ msgid ""
 msgstr ""
 
 #: templates/share_image.html:8
-msgid "Games on political maps"
+msgid "Geographical game on the map"
 msgstr ""
 
 #: users/forms.py:15 users/forms.py:35
