@@ -40,9 +40,10 @@
     "emailMe": "email me",
     "tooManyRegions": "Too many regions",
 
-    "search": "Search",
-    "workshopSearch": "Search by title, tags or author...",
-    "tags": "Tags",
+    "search": "Search by title",
+    "tag": "Filter by tag",
+    "author": "Filter by author",
+    "orderBy": "Order by",
 
     "profile": "Profile",
     "publicProfile": "Public profile",

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'channels',
     'admirarchy',
     'social_django',
+    'django_filters',
 
     'users',
     'maps',
