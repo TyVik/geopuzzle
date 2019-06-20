@@ -11,6 +11,7 @@ module.exports = {
   setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
   collectCoverage: true,
   collectCoverageFrom: [
+    "!<rootDir>/coverage/**",
     "**/*.{js,jsx}",
   ],
   moduleNameMapper: {
