@@ -16,7 +16,7 @@ export default class ChangePasswordForm extends React.Component {
       let response = await CSRFfetch(`${window.location.pathname}?section=password`, options);
       let result = await response.json();
       if (Object.keys(result).length === 0) {
-        form.reset();
+        setTimeout(form.reset);
       }
       return result;
     } catch (Error) {
