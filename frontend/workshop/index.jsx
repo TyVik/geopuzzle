@@ -27,10 +27,10 @@ class Workshop extends React.Component {
     if ((inputValue === '') && (field !== 'tag')) {
       return callback([]);
     }
-    setTimeout(async () => {
+    setImmediate(async () => {
       let response = await CSRFfetch(`${window.location.pathname}suggest/?${field}=${inputValue}`, {});
       callback(await response.json());
-    }, 300);
+    });
   };
 
   onChange = (field, event) => {

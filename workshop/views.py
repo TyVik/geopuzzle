@@ -1,6 +1,7 @@
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.views.generic import TemplateView
 from django.utils.translation import get_language, ugettext as _
+from django.views.generic.list import BaseListView
 from django_filters import FilterSet, ModelChoiceFilter, OrderingFilter, CharFilter
 
 from common.views import ScrollListView
@@ -53,6 +54,33 @@ class WorkshopItems(ScrollListView):
             filter(user__isnull=False, is_published=True).\
             prefetch_related('translations')
         return WorkshopFilter(self.request.GET, qs).qs
+
+
+class TagFilter(FilterSet):
+    class Meta:
+        model = Tag
+        fields = ('name',)
+
+
+class TagView(BaseListView):
+    model = Tag
+
+    def get_queryset(self):
+        return TagFilter(self.request.GET, super(TagView, self).get_queryset()).qs
+
+    @staticmethod
+    def convert_item(item):
+        return {'value': str(item.id), 'label': item.name}
+
+    def render_to_response(self, context, **response_kwargs):
+        return JsonResponse([self.convert_item(item) for item in context['object_list']], safe=False)
+
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseBadRequest(status=401)
+
+        instance, _ = Tag.objects.get_or_create(name=request.POST['name'][:50])
+        return JsonResponse(self.convert_item(instance))
 
 
 def suggest(request):
