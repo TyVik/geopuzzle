@@ -42,7 +42,7 @@
 
     "search": "Search by title",
     "tag": "Filter by tag",
-    "author": "Filter by author",
+    "user": "Filter by user",
     "orderBy": "Order by",
 
     "profile": "Profile",

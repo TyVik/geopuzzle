@@ -11,7 +11,7 @@ class Workshop extends React.Component {
   constructor(props) {
     super(props);
     this.order_options = window.__ORDER__.map(item => {return {value: item[0], label: item[1]}});
-    this.state = {search: '', _search: '', order: null, tag: null, author: null};
+    this.state = {search: '', _search: '', order: null, tag: null, user: null};
   }
 
   onChangeSearch = (event) => {
@@ -28,7 +28,16 @@ class Workshop extends React.Component {
       return callback([]);
     }
     setImmediate(async () => {
-      let response = await CSRFfetch(`${window.location.pathname}suggest/?${field}=${inputValue}`, {});
+      let baseUrl = null;
+      switch (field) {
+        case 'tag':
+          baseUrl = '/workshop/tags/';
+          break;
+        case 'user':
+          baseUrl = '/accounts/users/';
+          break;
+      }
+      let response = await CSRFfetch(`${baseUrl}?name=${inputValue}`, {});
       callback(await response.json());
     });
   };
@@ -57,17 +66,17 @@ class Workshop extends React.Component {
                        onChange={(event) => this.onChange('tag', event)} />
       </div>
       <div className="form-group col-md-6 col-sm-12">
-        <label htmlFor="search-label"><Msg id="author"/>:</label>
+        <label htmlFor="search-label"><Msg id="user"/>:</label>
           <AsyncSelect cacheOptions defaultOptions isClearable
-                       loadOptions={(inputValue, callback) => this.loadOptions('author', inputValue, callback)}
-                       onChange={(event) => this.onChange('author', event)} />
+                       loadOptions={(inputValue, callback) => this.loadOptions('user', inputValue, callback)}
+                       onChange={(event) => this.onChange('user', event)} />
       </div>
     </form>;
   }
 
   currentUrl() {
     let params = new URLSearchParams();
-    ['search', 'tag', 'author', 'order'].map(item => {
+    ['search', 'tag', 'user', 'order'].map(item => {
       if ((this.state[item] !== null) && (this.state[item].length > 0)) {
         params.set(`${item}`, this.state[item]);
       }

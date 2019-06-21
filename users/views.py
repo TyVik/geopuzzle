@@ -6,7 +6,9 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.views.generic import FormView
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import BaseUpdateView
+from django.views.generic.list import BaseListView
 
+from users.filters import UserFilter
 from users.forms import AuthenticationForm, RegistrationForm, ProfileForm
 from users.models import User
 
@@ -62,3 +64,17 @@ class ProfileView(TemplateResponseMixin, BaseUpdateView):
 
     def get_object(self, queryset=None) -> User:
         return self.request.user
+
+
+class UserView(BaseListView):
+    model = User
+
+    def get_queryset(self):
+        return UserFilter(self.request.GET, super(UserView, self).get_queryset()).qs
+
+    @staticmethod
+    def convert_item(item):
+        return {'value': str(item.id), 'label': item.username}
+
+    def render_to_response(self, context, **response_kwargs):
+        return JsonResponse([self.convert_item(item) for item in context['object_list']], safe=False)
