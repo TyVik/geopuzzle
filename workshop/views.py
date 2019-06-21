@@ -6,13 +6,7 @@ from django.views.generic.list import BaseListView
 from common.views import ScrollListView
 from maps.models import Tag
 from puzzle.models import Puzzle
-from users.models import User
 from workshop.filters import WorkshopFilter, TagFilter, ORDER
-
-SUGGESTION = {
-    'author': {'model': User, 'field': 'username'},
-    'tag': {'model': Tag, 'field': 'name'}
-}
 
 
 class WorkshopView(TemplateView):
@@ -57,15 +51,3 @@ class TagView(BaseListView):
 
         instance, _ = Tag.objects.get_or_create(name=request.POST['name'][:50])
         return JsonResponse(self.convert_item(instance))
-
-
-def suggest(request):
-    for key in request.GET:
-        value = request.GET.get(key)
-        if value is not None:
-            params = SUGGESTION[key]
-            qs = params['model'].objects.filter(**{f'{params["field"]}__icontains': value}).values_list('id', params['field'])
-            result = [{'value': str(item[0]), 'label': item[1]} for item in qs]
-            return JsonResponse(result, safe=False)
-    else:
-        return HttpResponseBadRequest()
