@@ -1,6 +1,7 @@
 'use strict';
 import React from "react";
 import {Modal} from 'react-bootstrap';
+import {decode} from 'he';
 import {FormattedMessage as Msg} from "react-intl";
 
 
@@ -29,7 +30,7 @@ class Congratulation extends React.Component {
   };
 
   render() {
-    let text = this.state.text + this.props.result + '.';
+    let text = decode(this.state.text) + this.props.result + '.';
     return <Modal show={this.state.show} onHide={this.onClose} aria-labelledby="contained-modal-title-lg">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-lg"><Msg id="congratulations"/></Modal.Title>

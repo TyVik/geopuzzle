@@ -16,7 +16,7 @@
   {{ block.super }}
   <script type='text/javascript'>
     window.__MAP__ = {{ game.get_init_params|jsonify }};
-    window.__CONGRATULATION__ = {text: '{{ text|safe }}'};
+    window.__CONGRATULATION__ = {text: "{{ text }}"};
   </script>
   <script src="{% static 'maps/js/google.maps.Polygon.getBounds.js' %}"></script>
   <script type="text/javascript" src={% static "js/common.js" %}></script>

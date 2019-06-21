@@ -25,6 +25,6 @@ def puzzle(request: WSGIRequest, name: str) -> HttpResponse:
     context = {
         'game': puzzle,
         'name': trans.name,
-        'text': _('Puzzle \"{}\" has been assembled! Your time is ').format(trans.name if puzzle.id != 1 else _('World map'))
+        'text': _("""Puzzle \"{}\" has been assembled! Your time is """).format(trans.name if puzzle.id != 1 else _('World map'))
     }
     return render(request, 'puzzle/map.html', context=context)
