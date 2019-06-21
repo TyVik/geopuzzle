@@ -20,13 +20,13 @@ class AuthenticationForm(DefaultAuthenticationForm):
 class UsernameEmailValidation:
     def clean_username(self) -> str:
         username = self.cleaned_data['username'].lower()
-        if (self.initial['username'] != username) and User.objects.filter(username=username).exists():
+        if (self.initial.get('username') != username) and User.objects.filter(username=username).exists():
             raise forms.ValidationError("This username is already has been used")
         return username
 
     def clean_email(self) -> str:
         email = self.cleaned_data['email'].lower()
-        if (self.initial['email'] != email) and User.objects.filter(email=email).exists():
+        if (self.initial.get('email') != email) and User.objects.filter(email=email).exists():
             raise forms.ValidationError("This email is already has been used")
         return email
 
