@@ -35,12 +35,11 @@ def user_details(strategy, response, backend, is_new, user=None, *args, **kwargs
                 'image_url': response.get('photo'),
             })
         elif isinstance(backend, GoogleOAuth2):
-            image = response.get('image', {'url': None})
             fields.update({
-                'first_name': response['name'].get('givenName'),
-                'last_name': response['name'].get('familyName'),
-                'language': response['language'],
-                'image_url': image.get('url'),
+                'first_name': response.get('given_name'),
+                'last_name': response.get('family_name'),
+                'language': response['locale'],
+                'image_url': response['picture'],
             })
 
         user.first_name = fields['first_name']
