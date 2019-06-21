@@ -199,7 +199,7 @@ Array [
         for="search-label"
       >
         <span>
-          Filter by author
+          Filter by user
         </span>
         :
       </label>
