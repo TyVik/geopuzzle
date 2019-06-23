@@ -27,7 +27,7 @@ class ImageMixin(object):
     @classmethod
     def base_image_tag(cls, obj) -> str:
         image = getattr(obj, cls.image_field)
-        url = settings.THUMBNAIL_DUMMY_SOURCE.format(width=80)
+        url = settings.THUMBNAIL_DUMMY_SOURCE.replace('%(width)s', '80')
         try:
             thumb = get_thumbnail(image, 'x80', upscale=False, format='PNG')
             url = thumb.url
