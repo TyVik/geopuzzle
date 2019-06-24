@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
-from django.utils.crypto import get_random_string
 
+from common.utils import random_string
 from maps.models import Tag
 from users.factories import UserFactory
 from workshop.factories import TagFactory
@@ -27,7 +27,7 @@ class TagTestCase(TestCase):
         self.assertEqual(data['value'], str(tag.id))
         self.assertEqual(data['label'], tag.name)
 
-        long_name = get_random_string(length=55)
+        long_name = random_string(length=55)
         response = self.client.post(self.url, {'name': long_name})
         self.assertEqual(response.status_code, 200)
         data = response.json()
@@ -56,14 +56,14 @@ class TagTestCase(TestCase):
             self.assertIn(str(tag.id), ids)
 
     def test_filter(self):
-        tag = TagFactory(name=get_random_string())
+        tag = TagFactory()
 
         response = self.client.get(self.url, {'name': tag.name[2:5]})
         self.assertEqual(response.status_code, 200)
         data = response.json()
         self.assertEqual(len(data), 1)
 
-        unknown_name = get_random_string(length=20)
+        unknown_name = random_string(length=20)
         response = self.client.get(self.url, {'name': unknown_name})
         self.assertEqual(response.status_code, 200)
         data = response.json()

@@ -1,5 +1,7 @@
 import os
 import subprocess
+from pathlib import Path
+
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import ignore_logger
@@ -21,9 +23,9 @@ ignore_logger("django.security.DisallowedHost")
 
 DEBUG = TEMPLATE_DEBUG = True
 
-BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '..')
-LOG_DIR = os.path.join(BASE_DIR, 'logs')
-GEOJSON_DIR = os.path.join(BASE_DIR, 'geojson')
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+LOG_DIR = BASE_DIR.joinpath('logs')
+GEOJSON_DIR = BASE_DIR.joinpath('geojson')
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 ALLOWED_HOSTS = ('geopuzzle.org', 'www.geopuzzle.org', '127.0.0.1')
@@ -74,7 +76,7 @@ MIDDLEWARE = [
 
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
-    'DIRS': [os.path.join(BASE_DIR, 'templates')],
+    'DIRS': [BASE_DIR.joinpath('templates')],
     'APP_DIRS': True,
     'OPTIONS': {
         'context_processors': [
@@ -103,11 +105,12 @@ DATABASES = {
 
 # region CACHES & SESSIONS & WEB-SOCKETS
 REDIS_HOST = os.environ.get('REDIS_HOST')
+REDIS_CACHE_DB = os.environ.get('REDIS_CACHE_DB', 1)
 
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": 'redis://{}:6379/1'.format(REDIS_HOST),
+        "LOCATION": 'redis://{}:6379/{}'.format(REDIS_HOST, REDIS_CACHE_DB),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "COMPRESSOR": "django_redis.compressors.lzma.LzmaCompressor",
@@ -153,7 +156,7 @@ LOGGING = {
     "handlers": {
         "file": {
             "class": "logging.handlers.RotatingFileHandler",
-            'filename': os.path.join(LOG_DIR, 'django.errors'),
+            'filename': LOG_DIR.joinpath('django.errors'),
             "formatter": "verbose",
             "level": "INFO",
             "maxBytes": 10485760,
@@ -194,7 +197,7 @@ LANGUAGES = (
 )
 ALLOWED_LANGUAGES = tuple([x for x, _ in LANGUAGES])
 LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'),
+    BASE_DIR.joinpath('locale'),
 )
 # endregion
 
