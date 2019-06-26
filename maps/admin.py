@@ -41,8 +41,9 @@ class RegionChangeList(HierarchicalChangeList):
         return super(RegionChangeList, self).get_queryset(request).defer('polygon')
 
     def get_query_string(self, new_params=None, remove=None):
+        remove = [] if remove is None else remove
         result = super(RegionChangeList, self).get_query_string(new_params, remove)
-        if not 'parent=None' in result:
+        if 'parent=None' not in result:
             result = result.replace(self.model_admin.hierarchy.pid_field, self.model_admin.hierarchy.PARENT_ID_QS_PARAM)
         return result
 
@@ -50,6 +51,13 @@ class RegionChangeList(HierarchicalChangeList):
 class RegionTranslationAdmin(admin.TabularInline):
     model = RegionTranslation
     extra = 0
+
+
+class RegionAdjacencyList(AdjacencyList):
+    def hook_get_queryset(self, changelist, request):
+        super(RegionAdjacencyList, self).hook_get_queryset(changelist, request)
+        if changelist.params[self.pid_field] is None:
+            del changelist.params[self.pid_field]
 
 
 @admin.register(Region)
@@ -60,7 +68,7 @@ class RegionAdmin(HierarchicalModelAdmin):
     formfield_overrides = {
         MultiPolygonField: {'widget': MultiPolygonWidget},
     }
-    hierarchy = AdjacencyList('parent')
+    hierarchy = RegionAdjacencyList('parent')
     inlines = (RegionTranslationAdmin,)
     list_per_page = 20
     fieldsets = (
