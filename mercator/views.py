@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.db import connection
-from django.http import HttpResponsePermanentRedirect, JsonResponse
-from django.urls import reverse
+from django.http import JsonResponse
 from django.utils.translation import ugettext as _
 
 from django.core.handlers.wsgi import WSGIRequest
@@ -42,10 +41,6 @@ def index(request: WSGIRequest) -> HttpResponse:
 def infobox_by_id(request: WSGIRequest, pk: str) -> JsonResponse:
     obj = get_object_or_404(Region, pk=pk)
     return JsonResponse(obj.polygon_infobox[request.LANGUAGE_CODE])
-
-
-def deprecated_redirect(request: WSGIRequest, name: str) -> HttpResponsePermanentRedirect:
-    return HttpResponsePermanentRedirect(reverse('puzzle_map', kwargs={'name': name}))
 
 
 def error(request) -> HttpResponse:

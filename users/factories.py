@@ -1,3 +1,5 @@
+import string
+
 from factory import DjangoModelFactory
 from factory.fuzzy import FuzzyText
 
@@ -5,7 +7,8 @@ from users.models import User
 
 
 class UserFactory(DjangoModelFactory):
-    username = FuzzyText()
+    username = FuzzyText(chars=string.ascii_lowercase)
+    email = FuzzyText(suffix='@email.org', chars=string.ascii_lowercase)
 
     class Meta:
         model = User

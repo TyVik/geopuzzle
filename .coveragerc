@@ -3,6 +3,7 @@ omit =
     */migrations/*
     mercator/settings/*
     manage.py
+    */apps.py
 
 [report]
 exclude_lines =
