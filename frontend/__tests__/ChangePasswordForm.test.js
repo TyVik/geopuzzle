@@ -2,7 +2,6 @@
 import React from 'react';
 import {renderWithIntl, mountWithIntl, loadTranslation} from 'enzyme-react-intl';
 import ChangePasswordForm from '../profile/ChangePasswordForm';
-import {Field, Form} from "react-final-form";
 
 loadTranslation("./frontend/locale/en.json");
 
@@ -53,7 +52,7 @@ describe('shallow <ChangePasswordForm /> components', () => {
     global.fetch.mockResponse('{}');
     let wrapper = mountWithIntl(<ChangePasswordForm/>);
 
-    const form = wrapper.find(Form).instance();
+    const form = wrapper.find('ReactFinalForm').instance();
     form.form.change('old_password', 'old_password');
     form.form.change('new_password1', 'new_password');
     wrapper.find('form').simulate('submit');
