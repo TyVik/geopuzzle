@@ -34,4 +34,4 @@ class PuzzleAdmin(GameAdmin):
     list_filter = ('tags', 'is_published', 'on_main_page', 'user')
 
     def tag_list(self, obj: Puzzle) -> str:
-        return safe(', '.join(x.name_en for x in obj.tags.all()))
+        return safe(', '.join(x.name for x in obj.tags.all()))
