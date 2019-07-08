@@ -1,3 +1,5 @@
+import string
+
 import factory
 from django.conf import settings
 from django.contrib.gis.geos import Point,  MultiPolygon,  Polygon
@@ -36,7 +38,7 @@ class GameFactory(DjangoModelFactory):
     is_published = True
     center = Point(0,  0)
     zoom = 3
-    slug = FuzzyText()
+    slug = FuzzyText(chars=string.ascii_lowercase)
 
 
 class RegionFactory(DjangoModelFactory):
