@@ -63,7 +63,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "dependencies": {
-    "@sentry/cli": "1.46.0",
+    "@sentry/cli": "1.47.0",
     "final-form": "^4.16.1",
     "he": "^1.2.0",
     "js-cookie": "^2.2.0",
