@@ -1,4 +1,5 @@
 'use strict';
+import 'url-search-params-polyfill';
 import React from "react";
 import AsyncSelect from 'react-select/async';
 import Select from 'react-select';
