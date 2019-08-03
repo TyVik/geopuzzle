@@ -10,8 +10,8 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - run: npm install
       - run: mv /node_modules /root/repo
+      - run: npm install
       - run: npm run build
       - save_cache:
           key: bundles-{{ .Revision }}
@@ -29,8 +29,8 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - run: npm install --dev
       - run: mv /node_modules /root/repo
+      - run: npm install --dev
       - run: npm run test
       - save_cache:
           key: coverage-frontend-{{ .Revision }}
