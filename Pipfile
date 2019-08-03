@@ -30,6 +30,7 @@ django-dotenv = "*"
 social-auth-app-django = "*"
 sentry-sdk = "*"
 django-filter = "*"
+tqdm = "*"
 
 [requires]
 python_version = "3.6"

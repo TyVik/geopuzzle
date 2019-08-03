@@ -2,6 +2,7 @@ import json
 
 from django.core.cache import cache
 from django.core.management import BaseCommand, CommandError
+from tqdm import tqdm
 
 from maps.models import Region
 from mercator.settings.settings import POLYGON_CACHE_KEY
@@ -16,13 +17,13 @@ class Command(BaseCommand):
         )
 
     def _update(self, query, label, **kwargs):
-        for region in query.iterator():
+        for region in tqdm(query.iterator(), total=query.count()):
             cache.delete(POLYGON_CACHE_KEY.format(func=label, id=region.id))
             getattr(region, label)
 
     def _export(self, query, label, **kwargs):
         with open('geocache_{}.json'.format(label), 'w') as f:
-            for region in query.iterator():
+            for region in tqdm(query.iterator(), total=query.count()):
                 result = {region.id: getattr(region, label)}
                 f.write(json.dumps(result) + "\n")
 
