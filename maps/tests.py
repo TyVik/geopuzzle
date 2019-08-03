@@ -54,7 +54,7 @@ class RegionTestCase(DjangoTestCase):
         infobox = copy(INFOBOX)
         del infobox['geonamesID']
         del infobox['capital']['id']
-        infobox['marker'] = {'lat': 12.516, 'lon': -70.033}
+        infobox['marker'] = {'lat': 12.516, 'lng': -70.033}
 
         response = self.client.get(reverse('region', args=(self.region.id,)))
         self.assertEqual(response.status_code, 200)

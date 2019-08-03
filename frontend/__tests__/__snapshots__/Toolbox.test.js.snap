@@ -89,7 +89,7 @@ exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
                     "area": "32,300",
                     "capital": Object {
                       "lat": 52,
-                      "lon": 23,
+                      "lng": 23,
                       "name": "Брест",
                       "wiki": "https://ru.wikipedia.org/wiki/Брест",
                     },
@@ -100,7 +100,7 @@ exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
                   "loaded": true,
                   "marker": Object {
                     "lat": 52,
-                    "lon": 23,
+                    "lng": 23,
                   },
                   "name": "Брестская область",
                   "paths": Array [],
