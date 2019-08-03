@@ -77,6 +77,7 @@
     "react-intl": "^2.9.0",
     "react-select": "^3.0.4",
     "react-transition-group": "^4.2.2",
-    "url-search-params-polyfill": "^7.0.0"
+    "url-search-params-polyfill": "^7.0.0",
+    "webpack-sources": "^1.4.1"
   }
 }
