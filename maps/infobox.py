@@ -65,9 +65,10 @@ def query(statement: str) -> Dict:
                 result[field] = value
         return result
 
-    sparql = SPARQLWrapper("https://query.wikidata.org/bigdata/namespace/wdq/sparql")
+    sparql = SPARQLWrapper("https://query.wikidata.org/bigdata/namespace/wdq/sparql", agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36')
     sparql.setQuery(statement + '')  # convert SafeText -> str
     sparql.setReturnFormat(JSON)
+    sparql.addCustomHttpHeader('Accept', 'application/json')
     results = sparql.query().convert()
     results = results['results']['bindings']
     result = {}
@@ -77,14 +78,10 @@ def query(statement: str) -> Dict:
     return result
 
 
-def query_by_wikidata_id(country_id: str, item_id: str) -> Dict:
-    context = {
-        'country_id': country_id,
-        'item_id': item_id
-    }
-    query_text = render_to_string('wikidata.txt', context=context)
+def query_by_wikidata_id(template: str, context: dict) -> Dict:
+    query_text = render_to_string(template, context=context)
     result = query(str(query_text))
-    links = get_links(item_id)
+    links = get_links(context['item_id'])
     for lang in result:
         links[lang].update(result[lang])
     return links

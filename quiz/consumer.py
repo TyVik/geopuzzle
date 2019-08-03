@@ -1,5 +1,5 @@
 from common.consumer import LanguageConsumer, action
-from maps.models import Region, RegionCache
+from maps.models import RegionCache
 from quiz.forms import PointContainsForm
 
 

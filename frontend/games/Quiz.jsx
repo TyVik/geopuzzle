@@ -37,7 +37,7 @@ class Quiz extends Game {
   }
 
   static prepareQuestions(questions) {
-    let result = shuffle(questions
+    return shuffle(questions
       .map(question => {
         return ['title', 'flag', 'coat_of_arms', 'capital']
           .map(key => {
@@ -50,7 +50,6 @@ class Quiz extends Game {
           })
           .filter(item => item !== null);
     }).reduce((l, acc) => {acc = acc.concat(l); return acc}, []));
-    return result;
   }
 
   dispatchMessage = (event) => {

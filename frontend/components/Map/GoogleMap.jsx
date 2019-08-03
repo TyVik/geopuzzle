@@ -2,7 +2,7 @@
 import React from "react";
 
 import {GoogleMap, withGoogleMap, Marker} from "react-google-maps";
-import Region from "../Region";
+import {Region} from "./components";
 
 
 export default withGoogleMap(props => {

@@ -24,26 +24,34 @@ class MapContainer extends React.Component {
     }
   };
 
+  commonOptions(shape) {
+    return {
+      map: this._mapComponent,
+      options: {
+        strokeColor: shape.isSolved ? '#419641' : '#d9534f',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: shape.isSolved ? '#419641' : '#d9534f',
+        fillOpacity: 0.35,
+        geodesic: true,
+        id: shape.id,
+      },
+      onClick: this.props.onPolygonClick,
+      onDragPolygon: this.props.onDragPolygon
+    };
+  }
+
   preparePolygons(polygons) {
+    if (!polygons) {
+      return [];
+    }
     return polygons.map(polygon => {
-      return {
-        map: this._mapComponent,
-        key: `${polygon.draggable}${polygon.id}`,
-        options: {
-          strokeColor: polygon.isSolved ? '#419641' : '#d9534f',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: polygon.isSolved ? '#419641' : '#d9534f',
-          fillOpacity: 0.35,
-          geodesic: true,
-          draggable: polygon.draggable,
-          zIndex: polygon.draggable ? 2 : 1,
-          paths: polygon.paths,
-          id: polygon.id,
-        },
-        onClick: this.props.onPolygonClick,
-        onDragPolygon: this.props.onDragPolygon
-      };
+      let result = this.commonOptions(polygon);
+      result.key = `${polygon.draggable}${polygon.id}`;
+      result.draggable = polygon.draggable;
+      result.zIndex = polygon.draggable ? 2 : 1;
+      result.paths = polygon.paths;
+      return result;
     });
   }
 
@@ -54,7 +62,7 @@ class MapContainer extends React.Component {
         defaultAnimation: 2,
         position: {
           lat: infobox.marker.lat,
-          lng: infobox.marker.lon
+          lng: infobox.marker.lng
         }
       }
     }

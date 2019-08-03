@@ -82,7 +82,6 @@ class Puzzle extends Game {
         this.startGame({regions: Puzzle.extractData(data.questions, data.solved)});
       })
       .catch(response => {
-        console.log(response);
         this.setState({...this.state, isLoaded: false})
       });
   };

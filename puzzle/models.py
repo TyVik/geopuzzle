@@ -1,12 +1,8 @@
 import random
 from typing import Tuple
 
-from django.conf import settings
 from django.contrib.gis.db.models import MultiPointField
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.urls import reverse
 
 from maps.fields import RegionsField
 from maps.models import Game, GameTranslation, Region, Tag
@@ -24,9 +20,6 @@ class Puzzle(Game):
     def __init__(self, *args, **kwargs):
         self.__default_positions = []
         super(Puzzle, self).__init__(*args, **kwargs)
-
-    def get_absolute_url(self) -> str:
-        return reverse('puzzle_map', args=(self.slug,))
 
     def pop_position(self) -> Tuple:
         if len(self.__default_positions) == 0:
@@ -47,11 +40,3 @@ class PuzzleTranslation(GameTranslation):
     class Meta:
         unique_together = ('language_code', 'master')
         db_table = 'puzzle_puzzle_translation'
-
-
-@receiver(post_save, sender=Puzzle)
-def attach_translations(sender, instance, created, **kwargs):
-    if created:
-        common = {'master': instance, 'name': instance.slug}
-        for lang in settings.ALLOWED_LANGUAGES:
-            PuzzleTranslation.objects.create(language_code=lang, **common)

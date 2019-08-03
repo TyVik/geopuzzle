@@ -16,6 +16,7 @@ from django.db import models
 from django.db.models import Exists, OuterRef, F
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 from django.utils.translation import get_language
 from io import BytesIO
 
@@ -111,7 +112,7 @@ class Region(RegionInterface, models.Model):
         verbose_name_plural = 'Regions'
 
     def __str__(self):
-        return '{} ({})'.format(self.title, self.id)
+        return f'{self.title} ({self.id})'
 
     def __init__(self, *args, **kwargs):
         super(Region, self).__init__(*args, **kwargs)
@@ -178,10 +179,10 @@ class Region(RegionInterface, models.Model):
         def get_marker(infobox):
             by_capital = infobox.get('capital', {})
             if 'lat' in by_capital and 'lon' in by_capital:
-                return {'lat': by_capital['lat'], 'lon': by_capital['lon']}
+                return {'lat': by_capital['lat'], 'lng': by_capital['lon']}
             else:
                 center = self.polygon_center
-                return {'lat': center[1], 'lon': center[0]}
+                return {'lat': center[1], 'lng': center[0]}
 
         result = {}
         for trans in self.translations.all():
@@ -289,7 +290,8 @@ class Region(RegionInterface, models.Model):
             rows = {lang: {} for lang in settings.ALLOWED_LANGUAGES}
         else:
             wikidata_id = None if self.parent is None else self.parent.wikidata_id
-            rows = query_by_wikidata_id(country_id=wikidata_id, item_id=self.wikidata_id)
+            rows = query_by_wikidata_id('wikidata/regions.txt',
+                                        {'country_id': wikidata_id, 'item_id': self.wikidata_id})
         for lang, infobox in rows.items():
             fetch_logger.info(f'Update infobox: {lang}')
             if 'name' not in infobox:
@@ -338,7 +340,6 @@ class Game(models.Model):
     is_global = models.BooleanField(default=False)
     on_main_page = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
-    regions = models.ManyToManyField(Region)
 
     class Meta:
         abstract = True
@@ -347,7 +348,7 @@ class Game(models.Model):
         return self.slug
 
     def get_absolute_url(self) -> str:
-        raise NotImplementedError
+        return reverse(f'{self.__class__._meta.model_name}_map', args=(self.slug,))
 
     def load_translation(self, lang):
         for translation in self.translations.all():

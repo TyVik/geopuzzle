@@ -6,20 +6,18 @@ import Quiz from "./games/Quiz";
 import messages from "./i18n";
 import {IntlProvider} from "react-intl";
 
-
-let puzzle = document.getElementById('puzzle');
-if (puzzle !== null) {
-    render(
-      <IntlProvider locale={window.__LANGUAGE__} messages={messages[window.__LANGUAGE__]}>
-          <Puzzle />
-      </IntlProvider>, puzzle);
-}
+let games = {
+  'puzzle': <Puzzle />,
+  'quiz': <Quiz />,
+};
 
 
-let quiz = document.getElementById('quiz');
-if (quiz !== null) {
-    render(
-      <IntlProvider locale={window.__LANGUAGE__} messages={messages[window.__LANGUAGE__]}>
-          <Quiz />
-      </IntlProvider>, quiz);
+for (let [game, component] of Object.entries(games)) {
+  let node = document.getElementById(game);
+  if (node !== null) {
+      render(
+        <IntlProvider locale={window.__LANGUAGE__} messages={messages[window.__LANGUAGE__]}>
+          {component}
+        </IntlProvider>, node);
+  }
 }
