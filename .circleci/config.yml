@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - run: mv /node_modules /root/repo
-      - run: npm install --dev
+      - run: npm install --only=prod && npm install --only=dev
       - run: npm run build
       - save_cache:
           key: bundles-{{ .Revision }}
@@ -30,7 +30,7 @@ jobs:
     steps:
       - checkout
       - run: mv /node_modules /root/repo
-      - run: npm install --dev
+      - run: npm install --only=prod && npm install --only=dev
       - run: npm run test
       - save_cache:
           key: coverage-frontend-{{ .Revision }}
@@ -62,7 +62,7 @@ jobs:
           command: dockerize -wait tcp://localhost:5432 -timeout 30s
       - run:
           name: Install dev requirements
-          command: pipenv sync --dev --system
+          command: pipenv install --dev --system
       - run:
           name: Run tests
           command: coverage run --source='.' manage.py test
