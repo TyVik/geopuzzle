@@ -3,6 +3,7 @@ from typing import Tuple
 
 from django.contrib.gis.db.models import MultiPointField
 from django.db import models
+from django.utils.translation import ugettext as _
 
 from maps.fields import RegionsField
 from maps.models import Game, GameTranslation, Region, Tag
@@ -20,6 +21,14 @@ class Puzzle(Game):
     def __init__(self, *args, **kwargs):
         self.__default_positions = []
         super(Puzzle, self).__init__(*args, **kwargs)
+
+    @classmethod
+    def name(cls):
+        return _('Puzzle')
+
+    @classmethod
+    def description(cls):
+        return _('In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!')
 
     def pop_position(self) -> Tuple:
         if len(self.__default_positions) == 0:

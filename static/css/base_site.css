@@ -53,22 +53,15 @@ footer .social-wrap {
     font-size: xx-large;
 }
 
-.tab-content {
-    margin-top: -1px;
-}
-
 .container .nav-tabs {
     width: 100%;
     border-bottom: 0;
 }
 
-.container .nav-tabs>li {
-    display: table-cell;
-    width: 1%;
-}
 .container .nav-tabs>li>a {
     margin-bottom: 0;
-    border-radius: 4px 4px 0 0;
+    border-radius: 10px 10px 0 0;
+    width: 210px;
 }
 
 .nav-tabs a.puzzle-tab.active,
@@ -89,6 +82,7 @@ footer .social-wrap {
 .nav-tabs a.active:focus,
 .nav-tabs a.active:hover {
     border-bottom-width: 0;
+    min-width: 300px;
 }
 
 .created_by {
