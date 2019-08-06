@@ -62,7 +62,7 @@ class RegionAdjacencyList(AdjacencyList):
 
 @admin.register(Region)
 class RegionAdmin(HierarchicalModelAdmin):
-    list_display = ('__str__', 'wikidata_id', 'osm_id', 'infobox_status')
+    list_display = ('__str__', 'wikidata_url', 'osm_id', 'infobox_status')
     search_fields = ('id', 'title')
     actions = (update_infoboxes, update_polygons)
     formfield_overrides = {
@@ -85,6 +85,10 @@ class RegionAdmin(HierarchicalModelAdmin):
     def get_changelist(self, request, **kwargs):
         Hierarchy.init_hierarchy(self)
         return RegionChangeList
+
+    def wikidata_url(self, obj: Region):
+        link = obj._meta._forward_fields_map['wikidata_id'].link.format(id=obj.wikidata_id)
+        return safe(f'<a href="{link}">{obj.wikidata_id}</a>')
 
     def infobox_status(self, obj: Region) -> str:
         result = ''
