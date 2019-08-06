@@ -16,15 +16,8 @@ def index(request: WSGIRequest) -> HttpResponse:
     games = []
     for game in (Puzzle, Quiz):
         name = game.__name__.lower()
-        qs = game.objects.\
-            filter(translations__language_code=request.LANGUAGE_CODE, is_published=True, on_main_page=True).\
-            prefetch_related('translations').\
-            order_by('translations__name')
         games.append({
-            'items': {
-                'parts': [item.index for item in qs.all() if item.is_global],
-                'countries': [item.index for item in qs.all() if not item.is_global]
-            },
+            'items': game.index_items(request.LANGUAGE_CODE),
             'name': name,
             'link': f'{name}_map',
             'caption': game.name(),

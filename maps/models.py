@@ -361,6 +361,18 @@ class Game(models.Model):
         trans = self.load_translation(get_language())
         return {'image': self.image, 'slug': self.slug, 'name': trans.name}
 
+    @classmethod
+    def index_items(cls, language):
+        qs = cls.objects.\
+            filter(translations__language_code=language, is_published=True, on_main_page=True).\
+            prefetch_related('translations').\
+            order_by('translations__name')
+        return {
+            'world': [item.index for item in qs.all() if item.zoom == 3],
+            'parts': [item.index for item in qs.all() if item.zoom == 4],
+            'countries': [item.index for item in qs.all() if item.zoom > 4]
+        }
+
     def get_init_params(self) -> Dict:
         return {
             'zoom': self.zoom,
