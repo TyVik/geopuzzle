@@ -23,11 +23,12 @@ const NameListItem = (props) => {
 class Toolbox extends React.Component {
   COLLAPSE_ID = 'toolbox-collapse';
 
-  componentWillMount() {
-    this.setState({...this.state,
+  constructor(props) {
+    super(props);
+    this.state = {
       listNameMaxHeight: window.innerHeight - 220 + "px",
-      collapse: JSON.parse(localStorage.getItem('toolbox_collapse')) || false
-    });
+      collapse: JSON.parse(localStorage.getItem('toolbox_collapse')) || false,
+    };
   }
 
   toggleCollapse = () => {

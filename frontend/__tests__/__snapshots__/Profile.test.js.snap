@@ -9,7 +9,6 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
   >
     <div
       class="flex-column nav nav-pills"
-      role="tablist"
     >
       <div
         class="nav-item"

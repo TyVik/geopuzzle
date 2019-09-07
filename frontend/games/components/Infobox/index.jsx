@@ -9,10 +9,9 @@ import "./index.css";
 class Infobox extends React.Component {
   COLLAPSE_ID = 'infobox-collapse';
 
-  componentWillMount() {
-    this.setState({...this.state,
-      collapse: JSON.parse(localStorage.getItem('infobox_collapse')) || false
-    });
+  constructor(props) {
+    super(props);
+    this.state = {collapse: JSON.parse(localStorage.getItem('infobox_collapse')) || false};
   }
 
   renderAttribute(name) {
