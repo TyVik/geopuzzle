@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@sentry/cli": "1.47.1",
-    "final-form": "^4.16.1",
+    "final-form": "^4.18.5",
     "he": "^1.2.0",
     "js-cookie": "^2.2.1",
     "react": "^16.9.0",
