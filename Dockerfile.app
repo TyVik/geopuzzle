@@ -1,4 +1,4 @@
-FROM python:3.6-alpine3.7
+FROM python:3.6-alpine3.9
 
 RUN mkdir /app && mkdir /app/logs
 WORKDIR /app
