@@ -29,7 +29,6 @@
                                 <p>{{ game.rules }}</p>
                             </div>
                         </div>
-                        <h1 class="text-center">{% trans 'World' %}</h1>
                         <div class="row">
                             {% for part in game.items.world %}
                                 <div class="col-md-6 col-sm-6 col-12 my-4 item-container">
@@ -56,7 +55,6 @@
                                 </div>
                             {% endfor %}
                         </div>
-                        <h1 class="text-center">{% trans 'Country regions' %}</h1>
                         <div class="row">
                             {% for country in game.items.countries %}
                                 <div class="col-md-2 col-sm-3 col-6 my-2 item-container">

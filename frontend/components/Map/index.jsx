@@ -48,8 +48,8 @@ class MapContainer extends React.Component {
     return polygons.map(polygon => {
       let result = this.commonOptions(polygon);
       result.key = `${polygon.draggable}${polygon.id}`;
-      result.draggable = polygon.draggable;
-      result.zIndex = polygon.draggable ? 2 : 1;
+      result.options.draggable = polygon.draggable;
+      result.options.zIndex = polygon.draggable ? 2 : 1;
       result.paths = polygon.paths;
       return result;
     });

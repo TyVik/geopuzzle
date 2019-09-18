@@ -362,11 +362,15 @@ class Game(models.Model):
         return {'image': self.image, 'slug': self.slug, 'name': trans.name}
 
     @classmethod
-    def index_items(cls, language):
-        qs = cls.objects.\
+    def index_qs(cls, language):
+        return cls.objects.\
             filter(translations__language_code=language, is_published=True, on_main_page=True).\
             prefetch_related('translations').\
             order_by('translations__name')
+
+    @classmethod
+    def index_items(cls, language):
+        qs = cls.index_qs(language)
         return {
             'world': [item.index for item in qs.all() if item.zoom == 3],
             'parts': [item.index for item in qs.all() if item.zoom == 4],
