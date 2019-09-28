@@ -11,7 +11,7 @@ def share_image(request, game: Game):
     result = {
         'slug': request.path,
         'image': {
-            'url': static('images/share.png'),
+            'url': static('images/share.jpg'),
             'size': 750
         }
     }

@@ -10,6 +10,7 @@ class Command(BaseCommand):
         'png': 'image/png',
         'svg': 'image/svg+xml',
         'gif': 'image/gif',
+        'mp4': 'video/mp4',
 
         'css': 'text/css',
         'js': 'application/javascript',
