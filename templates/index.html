@@ -21,9 +21,10 @@
                 <div class="tab-pane{% if forloop.first %} active{% endif %}" id="{{ game.name }}">
                     <div class="{{ game.name }}-tab container">
                         <div class="media row p-3">
-                            {% with "images/"|add:game.name|add:".gif" as image_link %}
-                                <img src="{% static image_link %}" alt="{{ game.name }}"
-                                     class="pull-left mr-3 img-fluid">
+                            {% with "images/"|add:game.name|add:".mp4" as image_link %}
+                                <video autoplay loop muted playsinline class="pull-left mr-3 img-fluid">
+                                    <source src="{% static image_link %}" type="video/mp4">
+                                </video>
                             {% endwith %}
                             <div class="media-body blockquote">
                                 <p>{{ game.rules }}</p>
@@ -32,7 +33,7 @@
                         <div class="row">
                             {% for part in game.items.world %}
                                 <div class="col-md-6 col-sm-6 col-12 my-4 item-container">
-                                    {% thumbnail part.image "540x540" format="PNG" quality=80 as im %}
+                                    {% thumbnail part.image "540x540" format="JPEG" quality=70 as im %}
                                         <a href="{% url game.link part.slug %}">
                                             <img class="img-fluid rounded" src="{{ im.url }}"
                                                  alt="{{ part.name }}">
@@ -45,7 +46,7 @@
                         <div class="row">
                             {% for part in game.items.parts %}
                                 <div class="col-md-3 col-sm-3 col-6 my-4 item-container">
-                                    {% thumbnail part.image "250x250" format="PNG" quality=80 as im %}
+                                    {% thumbnail part.image "250x250" format="JPEG" quality=70 as im %}
                                         <a href="{% url game.link part.slug %}">
                                             <img class="img-fluid rounded" src="{{ im.url }}"
                                                  alt="{{ part.name }}">
@@ -58,7 +59,7 @@
                         <div class="row">
                             {% for country in game.items.countries %}
                                 <div class="col-md-2 col-sm-3 col-6 my-2 item-container">
-                                    {% thumbnail country.image "196x196" format="PNG" quality=80 as im %}
+                                    {% thumbnail country.image "196x196" format="JPEG" quality=70 as im %}
                                         <a href="{% url game.link country.slug %}">
                                             <img class="img-fluid rounded" src="{{ im.url }}"
                                                  alt="{{ country.name }}">
@@ -75,7 +76,7 @@
     </div>
     <div class="jumbotron row contacts blockquote">
         <p>
-            {% blocktrans %}All suggestions for improvement you can sent to me via
+            {% blocktrans %}All suggestions for improvement can be sent to me via
                 <a href="mailto:tyvik8@gmail.com?&subject=GeoPuzzle">email</a>,
                 <a href="https://vk.com/tyvik" target="_blank">Vk</a>
                 or <a href="https://www.facebook.com/TyVikZero" target="_blank">facebook</a>,
