@@ -58,7 +58,7 @@
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "webpack": "4.39.3",
-    "webpack-bundle-analyzer": "^3.4.1",
+    "webpack-bundle-analyzer": "^3.5.2",
     "webpack-cli": "^3.3.8",
     "webpack-sources": "^1.4.3",
     "whatwg-fetch": "^3.0.0"
