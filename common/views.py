@@ -17,7 +17,7 @@ class ScrollListView(BaseListView):
     def item_to_json(cls, item: Game) -> Dict:
         trans = item.load_translation(get_language())
         return {
-            'image': get_thumbnail(item.image.name, geometry_string='196x196', format='JPEG', quality='66').url,
+            'image': get_thumbnail(item.image.name, geometry_string='196x196', format='JPEG', quality=66).url,
             'url': item.get_absolute_url(),
             'name': trans.name,
             'user': item.user.username,
