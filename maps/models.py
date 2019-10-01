@@ -4,7 +4,7 @@ import os
 from zipfile import ZipFile
 
 import requests
-from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
+from django.contrib.gis.geos import GEOSGeometry, MultiPolygon, Polygon
 from typing import List, Dict, Union
 
 from django.conf import settings
@@ -21,7 +21,7 @@ from django.utils.translation import get_language
 from io import BytesIO
 
 from common.cachable import cacheable
-from maps.converter import encode_geometry, Point
+from maps.converter import encode_geometry
 from maps.fields import ExternalIdField
 from maps.infobox import query_by_wikidata_id
 from mercator.settings.settings import POLYGON_CACHE_KEY
@@ -123,7 +123,7 @@ class Region(RegionInterface, models.Model):
         return self.polygon.extent
 
     @property
-    def _strip_polygon(self) -> List[Point]:
+    def _strip_polygon(self) -> Union[Polygon, MultiPolygon]:
         precision = 0.01 + 0.004 * (self.polygon.area / 10.0)
         return self.polygon.simplify(precision, preserve_topology=True)
 
@@ -142,7 +142,7 @@ class Region(RegionInterface, models.Model):
 
     @property  # type: ignore
     @cacheable
-    def polygon_center(self) -> List:
+    def polygon_center(self) -> List[float]:
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
         def calc_polygon(strip, force):
             def calc_part(result, subpolygon):

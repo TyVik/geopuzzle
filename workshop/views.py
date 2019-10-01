@@ -28,7 +28,7 @@ class WorkshopView(TemplateView):
 class WorkshopItems(ScrollListView):
     model = Puzzle
 
-    def get_queryset(self) -> QuerySet:
+    def get_queryset(self) -> QuerySet[Puzzle]:
         qs = super(WorkshopItems, self).get_queryset().\
             filter(user__isnull=False, is_published=True,
                    translations__language_code=self.request.LANGUAGE_CODE).\
@@ -39,7 +39,7 @@ class WorkshopItems(ScrollListView):
 class TagView(BaseListView):
     model = Tag
 
-    def get_queryset(self) -> QuerySet:
+    def get_queryset(self) -> QuerySet[Tag]:
         return TagFilter(self.request.GET, super(TagView, self).get_queryset()).qs
 
     @staticmethod

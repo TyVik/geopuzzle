@@ -22,12 +22,12 @@ class RegionSitemap(Sitemap):
 
 
 class PuzzleSitemap(RegionSitemap):
-    def items(self) -> QuerySet:
+    def items(self) -> QuerySet[Puzzle]:
         return Puzzle.objects.filter(Q(is_published=True) | Q(slug='world')).order_by('id')
 
 
 class QuizSitemap(RegionSitemap):
-    def items(self) -> QuerySet:
+    def items(self) -> QuerySet[Quiz]:
         return Quiz.objects.filter(Q(is_published=True) | Q(slug='world')).order_by('id')
 
 
