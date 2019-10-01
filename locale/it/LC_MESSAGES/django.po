@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-16 06:41+0000\n"
+"POT-Creation-Date: 2019-10-01 06:37+0000\n"
 "PO-Revision-Date: 2018-11-09 21:01\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: Italian\n"
@@ -32,15 +32,15 @@ msgstr ""
 msgid "Update polygons"
 msgstr ""
 
-#: maps/admin.py:88
+#: maps/admin.py:100
 msgid "Infobox"
 msgstr ""
 
-#: maps/admin.py:94
+#: maps/admin.py:106
 msgid "Infobox was updated successfully."
 msgstr ""
 
-#: maps/admin.py:101
+#: maps/admin.py:113
 msgid "Polygon was imported successfully."
 msgstr ""
 
@@ -80,36 +80,44 @@ msgstr ""
 msgid "Import from OSM"
 msgstr ""
 
-#: mercator/settings/settings.py:191
+#: mercator/settings/settings.py:195
 msgid "English"
 msgstr ""
 
-#: mercator/settings/settings.py:192
+#: mercator/settings/settings.py:196
 msgid "Russian"
 msgstr ""
 
-#: mercator/views.py:20
+#: puzzle/models.py:27
+msgid "Puzzle"
+msgstr ""
+
+#: puzzle/models.py:31
 msgid ""
 "In the Puzzle you need to drag the shape of the territory to the right "
 "place. Just like in childhood we collected pictures piece by piece, so here "
 "you can collect a country from regions or whole continents from countries!"
 msgstr ""
 
-#: mercator/views.py:21
+#: puzzle/views.py:28
+msgid "Puzzle \"{}\" has been assembled! Your time is "
+msgstr ""
+
+#: puzzle/views.py:28 quiz/views.py:30
+msgid "World map"
+msgstr ""
+
+#: quiz/models.py:29
+msgid "Quiz"
+msgstr ""
+
+#: quiz/models.py:33
 msgid ""
 "In the Quiz you need find the country by flag, emblem or the capital. Did "
 "you know that Monaco and Indonesia have the same flags? And that the flags "
 "of the United States and Liberia differ only in the number of stars? So, "
 "these and other interesting things can be learned and remembered after "
 "brainstorming right now!"
-msgstr ""
-
-#: puzzle/views.py:34
-msgid "Puzzle \"{}\" has been assembled! Your time is "
-msgstr ""
-
-#: puzzle/views.py:34 quiz/views.py:30
-msgid "World map"
 msgstr ""
 
 #: quiz/views.py:29
@@ -130,7 +138,7 @@ msgstr ""
 msgid "Geographical game of "
 msgstr ""
 
-#: templates/base.html:5 templates/index.html:32
+#: templates/base.html:5
 msgid "World"
 msgstr ""
 
@@ -178,21 +186,9 @@ msgid ""
 "bePatron?u=11576139\">Patreon</a>."
 msgstr ""
 
-#: templates/index.html:39
-msgid "easy countries"
-msgstr ""
-
-#: templates/index.html:46
-msgid "all countries"
-msgstr ""
-
-#: templates/index.html:62
-msgid "Country regions"
-msgstr ""
-
-#: templates/index.html:83
+#: templates/index.html:79
 msgid ""
-"All suggestions for improvement you can sent to me via\n"
+"All suggestions for improvement can be sent to me via\n"
 "                <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle"
 "\">email</a>,\n"
 "                <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
@@ -202,7 +198,7 @@ msgid ""
 "geopuzzle\" target=\"_blank\">GitHub</a>."
 msgstr ""
 
-#: templates/index.html:90
+#: templates/index.html:86
 msgid ""
 "The project based on open data:\n"
 "                <a href=\"https://wambachers-osm.website/boundaries/\">OSM "
@@ -237,4 +233,20 @@ msgstr ""
 
 #: users/templates/registration/base.html:26
 msgid "or"
+msgstr ""
+
+#: workshop/filters.py:9
+msgid "Title ↓"
+msgstr ""
+
+#: workshop/filters.py:10
+msgid "Title ↑"
+msgstr ""
+
+#: workshop/filters.py:11
+msgid "Created ↓"
+msgstr ""
+
+#: workshop/filters.py:12
+msgid "Created ↑"
 msgstr ""

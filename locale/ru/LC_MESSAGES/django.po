@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-16 06:41+0000\n"
+"POT-Creation-Date: 2019-10-01 06:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,15 +39,15 @@ msgstr "Полигоны обновлены."
 msgid "Update polygons"
 msgstr "Обновить полигоны"
 
-#: maps/admin.py:88
+#: maps/admin.py:100
 msgid "Infobox"
 msgstr "Инфобокс"
 
-#: maps/admin.py:94
+#: maps/admin.py:106
 msgid "Infobox was updated successfully."
 msgstr "Инфобокс обновлён успешно."
 
-#: maps/admin.py:101
+#: maps/admin.py:113
 msgid "Polygon was imported successfully."
 msgstr "Полигон загружен успешно."
 
@@ -87,15 +87,21 @@ msgstr "Обновить инфобокс"
 msgid "Import from OSM"
 msgstr "Импорт из OSM"
 
-#: mercator/settings/settings.py:191
+#: mercator/settings/settings.py:195
 msgid "English"
 msgstr "Английский"
 
-#: mercator/settings/settings.py:192
+#: mercator/settings/settings.py:196
 msgid "Russian"
 msgstr "Русский"
 
-#: mercator/views.py:20
+#: puzzle/models.py:27
+#, fuzzy
+#| msgid "puzzle"
+msgid "Puzzle"
+msgstr "Паззл"
+
+#: puzzle/models.py:31
 msgid ""
 "In the Puzzle you need to drag the shape of the territory to the right "
 "place. Just like in childhood we collected pictures piece by piece, so here "
@@ -105,7 +111,19 @@ msgstr ""
 "мы собирали картины кусочек за кусочком, а здесь можно собрать страну из "
 "регионов или целые континенты из стран!"
 
-#: mercator/views.py:21
+#: puzzle/views.py:28
+msgid "Puzzle \"{}\" has been assembled! Your time is "
+msgstr "Пазл «{}» был собран! Ваше время "
+
+#: puzzle/views.py:28 quiz/views.py:30
+msgid "World map"
+msgstr "Карта мира"
+
+#: quiz/models.py:29
+msgid "Quiz"
+msgstr "Викторина"
+
+#: quiz/models.py:33
 msgid ""
 "In the Quiz you need find the country by flag, emblem or the capital. Did "
 "you know that Monaco and Indonesia have the same flags? And that the flags "
@@ -117,14 +135,6 @@ msgstr ""
 "Знали ли вы, что у Монако и Индонезии одинаковые флаги? А что флаги США и "
 "Либерии отличаются только количеством звёзд? Так вот, эти и другие "
 "интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
-
-#: puzzle/views.py:34
-msgid "Puzzle \"{}\" has been assembled! Your time is "
-msgstr "Пазл «{}» был собран! Ваше время "
-
-#: puzzle/views.py:34 quiz/views.py:30
-msgid "World map"
-msgstr "Карта мира"
 
 #: quiz/views.py:29
 #, python-brace-format
@@ -144,7 +154,7 @@ msgstr "регионы"
 msgid "Geographical game of "
 msgstr "Географическая игра - "
 
-#: templates/base.html:5 templates/index.html:32
+#: templates/base.html:5
 msgid "World"
 msgstr "Мир"
 
@@ -200,21 +210,9 @@ msgstr ""
 "меня. Пожалуйста, поддержите проект на <a href=\"https://www.patreon.com/"
 "bePatron?u=11576139\">Patreon</a>."
 
-#: templates/index.html:39
-msgid "easy countries"
-msgstr "лёгкие страны"
-
-#: templates/index.html:46
-msgid "all countries"
-msgstr "все страны"
-
-#: templates/index.html:62
-msgid "Country regions"
-msgstr "Регионы стран"
-
-#: templates/index.html:83
+#: templates/index.html:79
 msgid ""
-"All suggestions for improvement you can sent to me via\n"
+"All suggestions for improvement can be sent to me via\n"
 "                <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle"
 "\">email</a>,\n"
 "                <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
@@ -229,7 +227,7 @@ msgstr ""
 "target=\"_blank\">facebook</a>, а также сообщить об ошибках на <a href="
 "\"https://github.com/TyVik/geopuzzle\" target=\"_blank\">GitHub</a>."
 
-#: templates/index.html:90
+#: templates/index.html:86
 msgid ""
 "The project based on open data:\n"
 "                <a href=\"https://wambachers-osm.website/boundaries/\">OSM "
@@ -271,8 +269,30 @@ msgstr "Подписка на новости"
 msgid "or"
 msgstr "или"
 
-msgid "puzzle"
-msgstr "Паззл"
+#: workshop/filters.py:9
+msgid "Title ↓"
+msgstr "Название ↓"
 
-msgid "quiz"
-msgstr "Викторина"
+#: workshop/filters.py:10
+msgid "Title ↑"
+msgstr "Название ↑"
+
+#: workshop/filters.py:11
+msgid "Created ↓"
+msgstr "Создана ↓"
+
+#: workshop/filters.py:12
+msgid "Created ↑"
+msgstr "Создана ↑"
+
+#~ msgid "easy countries"
+#~ msgstr "лёгкие страны"
+
+#~ msgid "all countries"
+#~ msgstr "все страны"
+
+#~ msgid "Country regions"
+#~ msgstr "Регионы стран"
+
+#~ msgid "quiz"
+#~ msgstr "Викторина"
