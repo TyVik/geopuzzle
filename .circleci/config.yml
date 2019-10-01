@@ -64,6 +64,9 @@ jobs:
           name: Install dev requirements
           command: pipenv install --dev --system
       - run:
+          name: Run mypy
+          command: mypy .
+      - run:
           name: Run tests
           command: coverage run --source='.' manage.py test
       - run:
