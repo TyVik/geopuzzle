@@ -1,4 +1,5 @@
 import inspect
+from typing import Iterable, Tuple
 
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
 from django.utils.translation.trans_real import get_supported_language_variant, parse_accept_lang_header
@@ -50,13 +51,13 @@ class ReduxConsumer(AsyncJsonWebsocketConsumer):
 
 class LanguageConsumer(ReduxConsumer):
     async def connect(self):
-        def extract_lang(headers):
+        def extract_lang(headers: Iterable[Tuple[bytes, bytes]]) -> str:
             for header in headers:
                 if header[0] == b'accept-language':
                     return header[1].decode()
             return 'en'
 
-        def get_best(langs):
+        def get_best(langs: Iterable[Tuple[str, str]]) -> str:
             for lang, _ in langs:
                 try:
                     return get_supported_language_variant(lang)

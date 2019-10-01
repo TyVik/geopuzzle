@@ -9,7 +9,7 @@ class CloudFrontStorage(S3Boto3Storage):
         kwargs['custom_domain'] = settings.CLOUDFRONT_DOMAIN
         super(CloudFrontStorage, self).__init__(*args, **kwargs)
 
-    def url(self, name, *args, **kwargs):
+    def url(self, name: str, *args, **kwargs) -> str:
         result = super(CloudFrontStorage, self).url(name, *args, **kwargs)
         if self.location in result:
             result = result.replace(self.location, '')

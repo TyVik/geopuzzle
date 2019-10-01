@@ -5,7 +5,7 @@ from zipfile import ZipFile
 
 import requests
 from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
-from typing import List, Dict
+from typing import List, Dict, Union
 
 from django.conf import settings
 from django.contrib.gis.db.models import MultiPolygonField
@@ -13,7 +13,7 @@ from django.contrib.gis.db.models import PointField
 from django.contrib.postgres.fields import JSONField
 from django.core.cache import cache
 from django.db import models
-from django.db.models import Exists, OuterRef, F
+from django.db.models import Exists, OuterRef, F, QuerySet
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
@@ -21,7 +21,7 @@ from django.utils.translation import get_language
 from io import BytesIO
 
 from common.cachable import cacheable
-from maps.converter import encode_geometry
+from maps.converter import encode_geometry, Point
 from maps.fields import ExternalIdField
 from maps.infobox import query_by_wikidata_id
 from mercator.settings.settings import POLYGON_CACHE_KEY
@@ -39,27 +39,27 @@ fetch_logger = logging.getLogger('fetch_region')
 
 
 class RegionInterface(object):
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_bounds(self) -> List:
         raise NotImplementedError
 
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_strip(self) -> List:
         raise NotImplementedError
 
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_gmap(self) -> List:
         raise NotImplementedError
 
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_center(self) -> List:
         raise NotImplementedError
 
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_infobox(self) -> Dict:
         raise NotImplementedError
@@ -117,30 +117,30 @@ class Region(RegionInterface, models.Model):
     def __init__(self, *args, **kwargs):
         super(Region, self).__init__(*args, **kwargs)
 
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_bounds(self) -> List:
         return self.polygon.extent
 
     @property
-    def _strip_polygon(self):
+    def _strip_polygon(self) -> List[Point]:
         precision = 0.01 + 0.004 * (self.polygon.area / 10.0)
         return self.polygon.simplify(precision, preserve_topology=True)
 
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_strip(self) -> List:
         simplify = self._strip_polygon
         return encode_geometry(simplify, min_points=10)
 
-    @property
+    @property  # type: ignore
     @cacheable
-    def polygon_gmap(self) -> List:
+    def polygon_gmap(self) -> List[str]:
         precision = 0.005 + 0.001 * (self.polygon.area / 100.0)
         simplify = self.polygon.simplify(precision, preserve_topology=True)
         return encode_geometry(simplify)
 
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_center(self) -> List:
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
@@ -173,7 +173,7 @@ class Region(RegionInterface, models.Model):
         result['capital'] = result.get('capital') and isinstance(trans.infobox['capital'], dict)
         return result
 
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_infobox(self) -> Dict:
         def get_marker(infobox):
@@ -303,10 +303,10 @@ class Region(RegionInterface, models.Model):
             trans.save()
 
     @property
-    def translation(self):
+    def translation(self) -> 'RegionTranslation':
         return self.load_translation(get_language())
 
-    def load_translation(self, lang):
+    def load_translation(self, lang: str) -> 'RegionTranslation':
         result = self.translations.filter(language_code=lang).first()
         if result is None:
             result = RegionTranslation.objects.create(language_code=lang, master=self, name='(empty)')
@@ -350,7 +350,7 @@ class Game(models.Model):
     def get_absolute_url(self) -> str:
         return reverse(f'{self.__class__._meta.model_name}_map', args=(self.slug,))
 
-    def load_translation(self, lang):
+    def load_translation(self, lang: str):
         for translation in self.translations.all():
             if translation.language_code == lang:
                 return translation
@@ -362,14 +362,14 @@ class Game(models.Model):
         return {'image': self.image, 'slug': self.slug, 'name': trans.name}
 
     @classmethod
-    def index_qs(cls, language):
+    def index_qs(cls, language: str) -> QuerySet:
         return cls.objects.\
             filter(translations__language_code=language, is_published=True, on_main_page=True).\
             prefetch_related('translations').\
             order_by('translations__name')
 
     @classmethod
-    def index_items(cls, language):
+    def index_items(cls, language: str) -> dict:
         qs = cls.index_qs(language)
         return {
             'world': [item.index for item in qs.all() if item.zoom == 3],
@@ -388,7 +388,7 @@ class Game(models.Model):
         }
 
 
-class GameTranslation(models.Model):
+class GameTranslation(models.Model):  # type: ignore
     name = models.CharField(max_length=50)
     language_code = models.CharField(max_length=2, choices=settings.LANGUAGES, db_index=True)
     master = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='translations', editable=False)

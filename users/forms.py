@@ -1,4 +1,5 @@
 import base64
+from typing import Union
 
 from django import forms
 from django.conf import settings
@@ -55,7 +56,7 @@ class ProfileForm(UsernameEmailValidation, ModelForm):
         super(ProfileForm, self).__init__(*args, **kwargs)
         self.fields['image'].required = False
 
-    def clean_image(self):
+    def clean_image(self) -> Union[str, ContentFile]:
         value = self.data['image']
         if ';base64,' in value:
             format, imgstr = value.split(';base64,')

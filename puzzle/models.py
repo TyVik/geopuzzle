@@ -23,14 +23,14 @@ class Puzzle(Game):
         super(Puzzle, self).__init__(*args, **kwargs)
 
     @classmethod
-    def name(cls):
+    def name(cls) -> str:
         return _('Puzzle')
 
     @classmethod
-    def description(cls):
+    def description(cls) -> str:
         return _('In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!')
 
-    def pop_position(self) -> Tuple:
+    def pop_position(self) -> Tuple[float, float]:
         if len(self.__default_positions) == 0:
             self.__default_positions = self.default_positions[:]
             random.shuffle(self.__default_positions)

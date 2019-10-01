@@ -32,7 +32,7 @@ FROM (SELECT polygon from maps_region where id = {id}) As polygon,
 class QuizInfoboxForm(RegionForm):
     params = forms.CharField()
 
-    def clean_params(self) -> List:
+    def clean_params(self) -> List[str]:
         return self.cleaned_data['params'].split(',')
 
     def json(self) -> Dict:

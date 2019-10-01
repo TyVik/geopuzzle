@@ -61,7 +61,7 @@ class BoundsField(Field):
         'invalid': 'Enter comma separated numbers only.',
     }
 
-    def to_python(self, value):
+    def to_python(self, value: str) -> List[float]:
         try:
             value = [float(item.strip()) for item in value.split(',') if item.strip()]
         except (ValueError, TypeError):
