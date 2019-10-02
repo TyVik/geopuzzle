@@ -65,7 +65,7 @@ jobs:
           command: pipenv install --dev --system
       - run:
           name: Run mypy
-          command: PYTHONPATH=${PYTHONPATH}:${PWD} mypy .
+          command: PYTHONPATH=${PYTHONPATH}:${PWD} mypy . --show-traceback
       - run:
           name: Run tests
           command: coverage run --source='.' manage.py test
