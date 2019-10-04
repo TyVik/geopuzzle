@@ -1,8 +1,8 @@
-FROM node:carbon-slim
+FROM node:buster-slim
 
 RUN apt-get update && apt-get install -y git && apt-get clean
 ENV NODE_ENV=production
-COPY package.json .
-RUN npm install --only=dev && npm install --only=prod && npm cache clean --force
+COPY package* ./
+RUN npm install --unsafe-perm=true node-sass && npm install --only=dev && npm install --only=prod && npm cache clean --force
 
 CMD ["node"]
