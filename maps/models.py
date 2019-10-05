@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+from copy import deepcopy
 from zipfile import ZipFile
 
 import requests
@@ -186,7 +187,7 @@ class Region(RegionInterface, models.Model):
 
         result = {}
         for trans in self.translations.all():
-            infobox = trans.infobox
+            infobox = deepcopy(trans.infobox)
             infobox.pop('geonamesID', None)
             if isinstance(infobox.get('capital'), dict):
                 del (infobox['capital']['id'])

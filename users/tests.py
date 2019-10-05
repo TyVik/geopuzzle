@@ -78,6 +78,24 @@ class UserTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'user/profile.html')
 
+    def test_change_password(self):
+        url = f"{reverse('profile')}?section=password"
+        new_password = random_string()
+        data = {
+            'old_password': self.password,
+            'new_password1': new_password,
+            'new_password2': new_password,
+        }
+        self.user.refresh_from_db()
+        self.client.force_login(self.user, 'django.contrib.auth.backends.ModelBackend')
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 400)
+        self.user.set_password(self.password)
+        self.user.save()
+
 
 class UserListTestCase(TestCase):
     url = reverse('users')
