@@ -1,11 +1,9 @@
 'use strict';
 
 import React from "react";
-import {shallow, mount} from "enzyme";
-import {mountWithIntl, loadTranslation} from 'enzyme-react-intl';
+import {shallow} from "enzyme";
 import Toolbox from "../games/components/Toolbox";
-
-loadTranslation("./frontend/locale/en.json");
+import {createComponentWithIntl, mountComponentWithIntl} from "./utils";
 
 
 describe('shallow <Toolbox /> components', () => {
@@ -37,7 +35,7 @@ describe('shallow <Toolbox /> components', () => {
   });
 
   it('click collapse', () => {
-    let wrapper = mountWithIntl(<Toolbox {...props} regions={global.REGIONS}/>);
+    let wrapper = mountComponentWithIntl(<Toolbox {...props} regions={global.REGIONS}/>);
     let header = wrapper.find('.toolbox-header');
     expect(localStorage.getItem('toolbox_collapse')).toBe(null);
     expect(wrapper.find('#toolbox-collapse').hasClass('show')).toBeTruthy();
