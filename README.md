@@ -4,7 +4,7 @@
 
 # Intro
 
-![geopuzzle](https://raw.githubusercontent.com/TyVik/geopuzzle/master/static/images/puzzle.mp4) 
+![geopuzzle](https://github.com/TyVik/geopuzzle/raw/1e8c970da66e35d8e11f9805355c7d041c7ebc95/static/images/puzzle.gif) 
 Arrange the pieces of the world! You need to drag the shape of the territory to the right place. 
 Just like in childhood we collected pictures piece by piece, so here you can collect a country 
 from regions or whole continents from countries! 
