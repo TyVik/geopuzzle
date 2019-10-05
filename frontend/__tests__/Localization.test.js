@@ -1,6 +1,6 @@
 'use strict';
 import React from "react";
-import messages from "../i18n";
+import messages from "../messages";
 
 
 it('check fullness', () => {

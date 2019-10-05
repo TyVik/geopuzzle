@@ -9,6 +9,7 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
   >
     <div
       class="flex-column nav nav-pills"
+      role="tablist"
     >
       <div
         class="nav-item"
@@ -138,7 +139,6 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
                   <label
                     class="form-check-label"
                     title=""
-                    type="checkbox"
                   >
                     <span>
                       News subscription
