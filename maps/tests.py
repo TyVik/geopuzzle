@@ -1,5 +1,5 @@
 import json
-from copy import copy
+from copy import deepcopy
 from unittest import TestCase
 
 from django.contrib.gis.geos import MultiPolygon, Polygon
@@ -51,7 +51,7 @@ class RegionTestCase(DjangoTestCase):
         cls.region = RegionFactory(polygon=multipolygon_factory())
 
     def test_full_info(self):
-        infobox = copy(INFOBOX)
+        infobox = deepcopy(INFOBOX)
         del infobox['geonamesID']
         del infobox['capital']['id']
         infobox['marker'] = {'lat': 12.516, 'lng': -70.033}
