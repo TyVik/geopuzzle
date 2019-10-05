@@ -1,14 +1,11 @@
 'use strict';
 import React from "react";
-import {renderWithIntl, loadTranslation} from 'enzyme-react-intl';
 import Workshop from "../workshop/index";
-
-
-loadTranslation("./frontend/locale/en.json");
+import {createComponentWithIntl} from "./utils";
 
 
 describe('shallow <Workshop /> components', () => {
   it('render', () => {
-    expect(renderWithIntl(<Workshop/>)).toMatchSnapshot('Workshop');
+    expect(createComponentWithIntl(<Workshop/>)).toMatchSnapshot('Workshop');
   });
 });

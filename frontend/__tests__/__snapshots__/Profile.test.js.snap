@@ -2,118 +2,119 @@
 
 exports[`shallow <Profile /> components render: Profile 1`] = `
 <div
-  class="row"
+  className="row"
 >
   <div
-    class="col-lg-2 col-md-3 col-sm-3"
+    className="col-lg-2 col-md-3 col-sm-3"
   >
     <div
-      class="flex-column nav nav-pills"
+      className="flex-column nav nav-pills"
+      onKeyDown={[Function]}
       role="tablist"
     >
       <div
-        class="nav-item"
+        className="nav-item"
       >
         <a
-          aria-selected="true"
-          class="nav-link active"
+          aria-controls={null}
+          aria-selected={true}
+          className="nav-link active"
           data-rb-event-key="#main"
           href="#"
+          id={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
           role="tab"
         >
-          <span>
-            Profile
-          </span>
+          profile
         </a>
       </div>
     </div>
   </div>
   <div
-    class="col-lg-10 col-md-9 col-sm-9"
+    className="col-lg-10 col-md-9 col-sm-9"
   >
     <div
-      class="tab-content"
+      className="tab-content"
     >
       <div
-        aria-hidden="false"
-        class="fade tab-pane active show"
+        aria-hidden={false}
+        aria-labelledby={null}
+        className="fade tab-pane active show"
+        id={null}
         role="tabpanel"
       >
         <div
-          class="my-2 card"
+          className="my-2 card"
         >
           <div
-            class="card-header"
+            className="card-header"
           >
-            <span>
-              Public profile
-            </span>
+            publicProfile
           </div>
           <div
-            class="card-body"
+            className="card-body"
           >
             <form
-              class=""
+              className=""
+              onSubmit={[Function]}
             >
               <div
-                class="form-group"
+                className="form-group"
               >
                 <label
-                  class="form-label"
+                  className="form-label"
                 >
-                  <span>
-                    Username
-                  </span>
+                  username
                 </label>
                 <div
-                  class="input-group"
+                  className="input-group"
                 >
                   <div
-                    class="input-group-prepend"
+                    className="input-group-prepend"
                   >
                     <span
-                      class="input-group-text"
+                      className="input-group-text"
                     >
                       @
                     </span>
                   </div>
                   <input
-                    class="form-control"
+                    className="form-control"
+                    onChange={[Function]}
                     value="admin"
                   />
                 </div>
               </div>
               <div
-                class="form-group"
+                className="form-group"
               >
                 <label
-                  class="form-label"
+                  className="form-label"
                 >
-                  <span>
-                    Email
-                  </span>
+                  email
                 </label>
                 <input
-                  class="form-control"
+                  className="form-control"
+                  onChange={[Function]}
                   type="email"
                   value="admin@admin.com"
                 />
               </div>
               <div
-                class="form-group"
+                className="form-group"
               >
                 <label
-                  class="form-label"
+                  className="form-label"
                 >
-                  <span>
-                    Language
-                  </span>
+                  language
                 </label>
                 <select
-                  class="form-control"
+                  className="form-control"
+                  onChange={[Function]}
+                  value="en"
                 >
                   <option
-                    selected=""
                     value="en"
                   >
                     English
@@ -126,31 +127,32 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
                 </select>
               </div>
               <div
-                class="form-group"
+                className="form-group"
               >
                 <div
-                  class="form-check"
+                  className="form-check"
                 >
                   <input
-                    checked=""
-                    class="form-check-input"
+                    checked={true}
+                    className="form-check-input"
+                    disabled={false}
+                    onChange={[Function]}
                     type="checkbox"
                   />
                   <label
-                    class="form-check-label"
+                    className="form-check-label"
                     title=""
                   >
-                    <span>
-                      News subscription
-                    </span>
+                    subscribe
                   </label>
                 </div>
               </div>
               <div
-                class="form-group"
+                className="form-group"
               >
                 <input
                   accept="image/*"
+                  onChange={[Function]}
                   src="https://d2nepmml5nn7q0.cloudfront.net/avatars/e_28d3ad97.jpg"
                   type="file"
                 />
@@ -159,130 +161,119 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
                 />
               </div>
               <button
-                class="btn btn-primary"
+                className="btn btn-primary"
+                disabled={false}
                 type="submit"
               >
-                <span>
-                  Submit
-                </span>
+                submit
               </button>
             </form>
           </div>
         </div>
         <div
-          class="my-2 card"
+          className="my-2 card"
         >
           <div
-            class="card-header"
+            className="card-header"
           >
-            <span>
-              Change password
-            </span>
+            changePassword
           </div>
           <div
-            class="card-body"
+            className="card-body"
           >
             <form
-              class=""
+              className=""
+              onSubmit={[Function]}
             >
               <div
-                class="form-group"
+                className="form-group"
               >
                 <label
-                  class="form-label"
+                  className="form-label"
                 >
-                  <span>
-                    Current password
-                  </span>
+                  password.current
                 </label>
                 <input
-                  class="form-control"
+                  className="form-control"
+                  onChange={[Function]}
                   type="password"
                   value=""
                 />
               </div>
               <div
-                class="form-group"
+                className="form-group"
               >
                 <label
-                  class="form-label"
+                  className="form-label"
                 >
-                  <span>
-                    New password
-                  </span>
+                  password.new
                 </label>
                 <input
-                  class="form-control"
+                  className="form-control"
+                  onChange={[Function]}
                   type="password"
                   value=""
                 />
               </div>
               <button
-                class="btn btn-primary"
+                className="btn btn-primary"
+                disabled={false}
                 type="submit"
               >
-                <span>
-                  Change
-                </span>
+                password.change
               </button>
             </form>
           </div>
         </div>
         <div
-          class="my-2 card"
+          className="my-2 card"
         >
           <div
-            class="card-header"
+            className="card-header"
           >
-            <span>
-              Social accounts
-            </span>
+            socialProfile
           </div>
           <div
-            class="card-body"
+            className="card-body"
           >
             <div
-              class="row"
+              className="row"
             >
               <div
-                class="p-2 col-sm-4"
+                className="p-2 col-sm-4"
               >
                 <div
-                  class="btn btn-lg btn-facebook btn-block"
+                  className="btn btn-lg btn-facebook btn-block"
                 >
                   FB
                 </div>
                 <a
-                  class="text-center d-block"
+                  className="text-center d-block"
                   href="/accounts/social/disconnect/facebook/"
                 >
-                  <span>
-                    unlink
-                  </span>
+                  unlink
                 </a>
               </div>
               <div
-                class="p-2 col-sm-4"
+                className="p-2 col-sm-4"
               >
                 <div
-                  class="btn btn-lg btn-vk btn-block"
+                  className="btn btn-lg btn-vk btn-block"
                 >
                   VK
                 </div>
                 <a
-                  class="text-center d-block"
+                  className="text-center d-block"
                   href="/accounts/social/disconnect/vk-oauth2/"
                 >
-                  <span>
-                    unlink
-                  </span>
+                  unlink
                 </a>
               </div>
               <div
-                class="p-2 col-sm-4"
+                className="p-2 col-sm-4"
               >
                 <a
-                  class="btn btn-lg btn-google btn-block"
+                  className="btn btn-lg btn-google btn-block"
                   href="/accounts/social/login/google-oauth2/"
                 >
                   Google
