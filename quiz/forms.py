@@ -39,12 +39,14 @@ class QuizInfoboxForm(RegionForm):
         def extract_capital(capital) -> str:
             return capital['name'] if isinstance(capital, dict) else capital
 
+        should_be_solved = [x.region_id for x in self.game.quizregion_set.all() if x.is_solved]
         questions = []
         solved = []
         for region in self.regions:
             trans = region.translation
-            if trans.infobox is None:
-                solved.append(region)
+            if trans.infobox is None or region.id in should_be_solved:
+                solved.append(region.full_info(get_language()))
+                continue
             k = {}
             for param in self.cleaned_data['params']:
                 if param == 'capital':

@@ -43,7 +43,7 @@ class GameFactory(DjangoModelFactory):
 
 class RegionFactory(DjangoModelFactory):
     title = FuzzyText()
-    polygon = MultiPolygon()
+    polygon = MultiPolygon(*(Polygon(points) for points in POINTS))
     osm_id = FuzzyInteger(low=1, high=65535)
 
     class Meta:
