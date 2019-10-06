@@ -8,6 +8,9 @@ from sorl.thumbnail import get_thumbnail
 from maps.models import Game
 
 
+AutocompleteItem = Dict[str, str]
+
+
 class ScrollListView(BaseListView):
     model = None
     paginate_by = 30
@@ -23,5 +26,5 @@ class ScrollListView(BaseListView):
             'user': item.user.username,
         }
 
-    def render_to_response(self, context):
+    def render_to_response(self, context, **kwargs) -> JsonResponse:
         return JsonResponse([self.item_to_json(x) for x in context['page_obj'].object_list], safe=False)

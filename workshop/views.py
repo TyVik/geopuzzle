@@ -1,9 +1,12 @@
+from typing import Union
+
+from django.db.models import QuerySet
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.views.generic import TemplateView
 from django.utils.translation import get_language
 from django.views.generic.list import BaseListView
 
-from common.views import ScrollListView
+from common.views import ScrollListView, AutocompleteItem
 from maps.models import Tag
 from puzzle.models import Puzzle
 from workshop.filters import WorkshopFilter, TagFilter, ORDER
@@ -12,7 +15,7 @@ from workshop.filters import WorkshopFilter, TagFilter, ORDER
 class WorkshopView(TemplateView):
     template_name = 'puzzle/list.html'
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs) -> dict:
         context = super(WorkshopView, self).get_context_data(**kwargs)
         context.update({
             'count': Puzzle.objects.get_queryset().filter(user__isnull=False, is_published=True).count(),
@@ -25,7 +28,7 @@ class WorkshopView(TemplateView):
 class WorkshopItems(ScrollListView):
     model = Puzzle
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet:
         qs = super(WorkshopItems, self).get_queryset().\
             filter(user__isnull=False, is_published=True,
                    translations__language_code=self.request.LANGUAGE_CODE).\
@@ -36,17 +39,17 @@ class WorkshopItems(ScrollListView):
 class TagView(BaseListView):
     model = Tag
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet:
         return TagFilter(self.request.GET, super(TagView, self).get_queryset()).qs
 
     @staticmethod
-    def convert_item(item):
+    def convert_item(item: Tag) -> AutocompleteItem:
         return {'value': str(item.id), 'label': item.name}
 
-    def render_to_response(self, context, **response_kwargs):
+    def render_to_response(self, context, **response_kwargs) -> JsonResponse:
         return JsonResponse([self.convert_item(item) for item in context['object_list']], safe=False)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs) -> Union[JsonResponse, HttpResponseBadRequest]:
         if not request.user.is_authenticated:
             return HttpResponseBadRequest(status=401)
 

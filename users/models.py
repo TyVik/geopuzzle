@@ -11,5 +11,5 @@ class User(AbstractUser):
     is_subscribed = models.BooleanField(_('Subscribed on news'), default=True)
 
     @property
-    def games(self) -> QuerySet:
+    def games(self):
         return self.puzzle_set.all()

@@ -5,7 +5,7 @@ from django.core.management import BaseCommand
 from maps.models import Region
 
 
-def log(area, lang, text):
+def log(area: Region, lang: str, text: str):
     print('Region {} with language {}: {}'.format(area.id, lang, text))
 
 

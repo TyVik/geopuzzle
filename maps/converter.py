@@ -2,10 +2,15 @@
 Google encoded polyline algorithm.
 '''
 import math
+from typing import Tuple, List, Union, Iterable, Optional
+
 from django.contrib.gis.geos import MultiPolygon, Polygon
 
+Point = Tuple[float, float]
+PointList = Tuple[Point, ...]
 
-def encode_coords(coords):
+
+def encode_coords(coords: PointList) -> str:
     '''Encodes a polyline using Google's polyline algorithm
 
     See http://code.google.com/apis/maps/documentation/polylinealgorithm.html
@@ -37,7 +42,7 @@ def encode_coords(coords):
     return ''.join(c for r in result for c in r)
 
 
-def _split_into_chunks(value):
+def _split_into_chunks(value: int) -> Iterable[int]:
     while value >= 32:  # 2^5, while there are at least 5 bits
 
         # first & with 2^5-1, zeros out all the bits other than the first five
@@ -47,7 +52,7 @@ def _split_into_chunks(value):
     yield value
 
 
-def _encode_value(value):
+def _encode_value(value: int) -> Iterable[str]:
     # Step 2 & 4
     value = ~(value << 1) if value < 0 else (value << 1)
 
@@ -58,7 +63,7 @@ def _encode_value(value):
     return (chr(chunk + 63) for chunk in chunks)
 
 
-def decode(point_str):
+def decode(point_str: str) -> List[Point]:
     '''Decodes a polyline that has been encoded using Google's algorithm
     http://code.google.com/apis/maps/documentation/polylinealgorithm.html
 
@@ -73,7 +78,7 @@ def decode(point_str):
     '''
 
     # sone coordinate offset is represented by 4 to 5 binary chunks
-    coord_chunks = [[]]
+    coord_chunks: List[List[int]] = [[]]
     for char in point_str:
 
         # convert each character to decimal from ascii
@@ -90,7 +95,7 @@ def decode(point_str):
 
     del coord_chunks[-1]
 
-    coords = []
+    coords: List[float] = []
 
     for coord_chunk in coord_chunks:
         coord = 0
@@ -102,15 +107,13 @@ def decode(point_str):
         if coord & 0x1:
             coord = ~coord  # invert
         coord >>= 1
-        coord /= 100000.0
-
-        coords.append(coord)
+        coords.append(coord / 100000.0)
 
     # convert the 1 dimensional list to a 2 dimensional list and offsets to
     # actual values
     points = []
-    prev_x = 0
-    prev_y = 0
+    prev_x = 0.0
+    prev_y = 0.0
     for i in range(0, len(coords) - 1, 2):
         if coords[i] == 0 and coords[i + 1] == 0:
             continue
@@ -124,14 +127,14 @@ def decode(point_str):
     return points
 
 
-def encode_geometry(polygon, min_points=None):
-    def encode_part(subpolygon):
+def encode_geometry(polygon: Union[Polygon, MultiPolygon], min_points: Optional[int] = None) -> List[str]:
+    def encode_part(subpolygon: Polygon) -> List[str]:
         subpart = [encode_coords(subpolygon.coords[0])]
         if len(subpolygon.coords) > 1:
             subpart.append(encode_coords(subpolygon.coords[1]))
         return subpart
 
-    result = []
+    result: List[str] = []
     if isinstance(polygon, MultiPolygon):
         for part in polygon:
             if min_points is not None and part.num_points < min_points:
@@ -142,21 +145,21 @@ def encode_geometry(polygon, min_points=None):
     return result if len(result) > 0 else encode_geometry(polygon)
 
 
-def normalize_polygon(polygon, precision):
-    def normalize_subpolygon(subpolygon):
-        def process(coords):
+def normalize_polygon(polygon: Union[Polygon, MultiPolygon], precision) -> Union[Polygon, MultiPolygon]:
+    def normalize_subpolygon(subpolygon: Polygon) -> Tuple[PointList, ...]:
+        def process(coords: PointList) -> List[Point]:
             result = [coords[0]]
             for coord in coords:
                 prev = result[-1]
                 delta = (math.trunc(coord[0] - prev[0]), math.trunc(coord[1] - prev[1]))
                 steps = max(abs(delta[0]), abs(delta[1]))
                 if steps > 1:
-                    delta = (delta[0] * 0.4 / steps, delta[1] * 0.4 / steps)
+                    delta_coord = (delta[0] * 0.4 / steps, delta[1] * 0.4 / steps)
                     for i in range(steps):
                         prev = result[-1]
-                        result.append((prev[0] + delta[0], prev[1] + delta[1]))
+                        result.append((prev[0] + delta_coord[0], prev[1] + delta_coord[1]))
                 result.append(coord)
-            return tuple(result)
+            return result
 
         result = [process(subpolygon.coords[0])]
         if len(subpolygon.coords) > 1:

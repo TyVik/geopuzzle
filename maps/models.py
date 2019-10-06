@@ -5,8 +5,9 @@ from copy import deepcopy
 from zipfile import ZipFile
 
 import requests
-from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
-from typing import List, Dict
+from attr import dataclass
+from django.contrib.gis.geos import GEOSGeometry, MultiPolygon, Polygon
+from typing import List, Dict, Union
 
 from django.conf import settings
 from django.contrib.gis.db.models import MultiPolygonField
@@ -14,7 +15,7 @@ from django.contrib.gis.db.models import PointField
 from django.contrib.postgres.fields import JSONField
 from django.core.cache import cache
 from django.db import models
-from django.db.models import Exists, OuterRef, F
+from django.db.models import Exists, OuterRef, F, QuerySet
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
@@ -39,28 +40,42 @@ ZOOMS = (
 fetch_logger = logging.getLogger('fetch_region')
 
 
+@dataclass
+class IndexPageGame:
+    image: str
+    slug: str
+    name: str
+
+
+@dataclass
+class IndexPageGameType:
+    world: List[IndexPageGame]
+    parts: List[IndexPageGame]
+    countries: List[IndexPageGame]
+
+
 class RegionInterface(object):
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_bounds(self) -> List:
         raise NotImplementedError
 
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_strip(self) -> List:
         raise NotImplementedError
 
-    @property
+    @property  # type: ignore
     @cacheable
-    def polygon_gmap(self) -> List:
+    def polygon_gmap(self) -> List[str]:
         raise NotImplementedError
 
-    @property
+    @property  # type: ignore
     @cacheable
-    def polygon_center(self) -> List:
+    def polygon_center(self) -> List[float]:
         raise NotImplementedError
 
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_infobox(self) -> Dict:
         raise NotImplementedError
@@ -92,7 +107,7 @@ class RegionCache(RegionInterface, metaclass=RegionCacheMeta):
 
 
 class RegionManager(models.Manager):
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet:
         return super(RegionManager, self).get_queryset().defer('polygon')
 
 
@@ -118,32 +133,32 @@ class Region(RegionInterface, models.Model):
     def __init__(self, *args, **kwargs):
         super(Region, self).__init__(*args, **kwargs)
 
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_bounds(self) -> List:
         return self.polygon.extent
 
     @property
-    def _strip_polygon(self):
+    def _strip_polygon(self) -> Union[Polygon, MultiPolygon]:
         precision = 0.01 + 0.004 * (self.polygon.area / 10.0)
         return self.polygon.simplify(precision, preserve_topology=True)
 
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_strip(self) -> List:
         simplify = self._strip_polygon
         return encode_geometry(simplify, min_points=10)
 
-    @property
+    @property  # type: ignore
     @cacheable
-    def polygon_gmap(self) -> List:
+    def polygon_gmap(self) -> List[str]:
         precision = 0.005 + 0.001 * (self.polygon.area / 100.0)
         simplify = self.polygon.simplify(precision, preserve_topology=True)
         return encode_geometry(simplify)
 
-    @property
+    @property  # type: ignore
     @cacheable
-    def polygon_center(self) -> List:
+    def polygon_center(self) -> List[float]:
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
         def calc_polygon(strip, force):
             def calc_part(result, subpolygon):
@@ -174,7 +189,7 @@ class Region(RegionInterface, models.Model):
         result['capital'] = result.get('capital') and isinstance(trans.infobox['capital'], dict)
         return result
 
-    @property
+    @property  # type: ignore
     @cacheable
     def polygon_infobox(self) -> Dict:
         def get_marker(infobox):
@@ -304,10 +319,10 @@ class Region(RegionInterface, models.Model):
             trans.save()
 
     @property
-    def translation(self):
+    def translation(self) -> 'RegionTranslation':
         return self.load_translation(get_language())
 
-    def load_translation(self, lang):
+    def load_translation(self, lang: str) -> 'RegionTranslation':
         result = self.translations.filter(language_code=lang).first()
         if result is None:
             result = RegionTranslation.objects.create(language_code=lang, master=self, name='(empty)')
@@ -351,32 +366,32 @@ class Game(models.Model):
     def get_absolute_url(self) -> str:
         return reverse(f'{self.__class__._meta.model_name}_map', args=(self.slug,))
 
-    def load_translation(self, lang):
+    def load_translation(self, lang: str):
         for translation in self.translations.all():
             if translation.language_code == lang:
                 return translation
         return self.translations.all()[0]
 
     @property
-    def index(self) -> Dict:
+    def index(self) -> IndexPageGame:
         trans = self.load_translation(get_language())
-        return {'image': self.image, 'slug': self.slug, 'name': trans.name}
+        return IndexPageGame(image=self.image, slug=self.slug, name=trans.name)
 
     @classmethod
-    def index_qs(cls, language):
+    def index_qs(cls, language: str) -> QuerySet:
         return cls.objects.\
             filter(translations__language_code=language, is_published=True, on_main_page=True).\
             prefetch_related('translations').\
             order_by('translations__name')
 
     @classmethod
-    def index_items(cls, language):
+    def index_items(cls, language: str) -> IndexPageGameType:
         qs = cls.index_qs(language)
-        return {
-            'world': [item.index for item in qs.all() if item.zoom == 3],
-            'parts': [item.index for item in qs.all() if item.zoom == 4],
-            'countries': [item.index for item in qs.all() if item.zoom > 4]
-        }
+        return IndexPageGameType(
+            world=[item.index for item in qs.all() if item.zoom == 3],
+            parts=[item.index for item in qs.all() if item.zoom == 4],
+            countries=[item.index for item in qs.all() if item.zoom > 4]
+        )
 
     def get_init_params(self) -> Dict:
         return {

@@ -6,7 +6,7 @@ try:
     from django.utils import simplejson as json
 except ImportError:
     import json
-from django.utils.safestring import mark_safe
+from django.utils.safestring import mark_safe, SafeText
 from django.template import Library
 
 register = Library()
@@ -23,7 +23,7 @@ class CustomJSONEncoder(DjangoJSONEncoder):
 
 
 @register.filter
-def jsonify(obj):
+def jsonify(obj) -> SafeText:
     if isinstance(obj, QuerySet):
         return mark_safe(serialize('json', obj))
     return mark_safe(json.dumps(obj, cls=CustomJSONEncoder).replace('\\', '\\\\').replace("'", r"\'"))
