@@ -2,6 +2,7 @@ from django.core.cache import cache
 from django.test import TestCase
 from django.urls import reverse
 
+from maps.factories import RegionFactory, INFOBOX
 from puzzle.factories import PuzzleFactory
 from quiz.factories import QuizFactory
 
@@ -9,6 +10,18 @@ from quiz.factories import QuizFactory
 class StaticViewsTestCase(TestCase):
     def setUp(self) -> None:
         cache.delete_pattern('views.decorators.cache.cache_page*')
+
+    def test_index(self):
+        response = self.client.get(reverse('index'))
+        self.assertTemplateUsed(response, 'index.html')
+
+    def test_infobox_by_id(self):
+        region = RegionFactory()
+        response = self.client.get(reverse('infobox_by_id', kwargs={'pk': region.id}))
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        for key in ('area', 'name', 'population', 'wiki'):
+            self.assertEqual(data[key], INFOBOX[key])
 
     def test_robots_txt(self):
         response = self.client.get('/robots.txt')

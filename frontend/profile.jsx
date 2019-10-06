@@ -2,7 +2,7 @@
 import React from "react";
 import {render} from "react-dom";
 import Profile from "./profile/index";
-import messages from "./i18n";
+import messages from "./messages";
 import {IntlProvider} from "react-intl";
 
 

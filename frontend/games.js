@@ -3,7 +3,7 @@ import React from "react";
 import {render} from "react-dom";
 import Puzzle from "./games/Puzzle";
 import Quiz from "./games/Quiz";
-import messages from "./i18n";
+import messages from "./messages";
 import {IntlProvider} from "react-intl";
 
 let games = {

@@ -59,12 +59,15 @@ class ProfileView(TemplateResponseMixin, BaseUpdateView):
             auth_login(self.request, self.object, 'django.contrib.auth.backends.ModelBackend')
         return JsonResponse({})
 
+    def _get_section(self) -> str:
+        return self.request.GET.get('section', 'main')
+
     def get_form_class(self) -> Type[ProfileForms]:
-        return self.form_classes.get(self.request.GET.get('section'))
+        return self.form_classes[self._get_section()]
 
     def get_form_kwargs(self) -> dict:
         result = super(ProfileView, self).get_form_kwargs()
-        if self.request.GET.get('section') == 'password':
+        if self._get_section() == 'password':
             result['user'] = self.object
             del result['instance']
         return result

@@ -1,9 +1,7 @@
 'use strict';
 import React from 'react';
-import {renderWithIntl, mountWithIntl, loadTranslation} from 'enzyme-react-intl';
 import ChangePasswordForm from '../profile/ChangePasswordForm';
-
-loadTranslation("./frontend/locale/en.json");
+import {createComponentWithIntl, mountComponentWithIntl} from "./utils";
 
 
 describe('shallow <ChangePasswordForm /> components', () => {
@@ -12,12 +10,12 @@ describe('shallow <ChangePasswordForm /> components', () => {
   });
 
   it('render empty', () => {
-    expect(renderWithIntl(<ChangePasswordForm/>)).toMatchSnapshot('ChangePasswordForm');
+    expect(createComponentWithIntl(<ChangePasswordForm/>)).toMatchSnapshot('ChangePasswordForm');
   });
 
   it('submit form error', () => {
     global.fetch.mockReject('');
-    let wrapper = mountWithIntl(<ChangePasswordForm/>);
+    let wrapper = mountComponentWithIntl(<ChangePasswordForm/>);
 
     wrapper.find('form').simulate('submit');
     setImmediate(() => {
@@ -29,7 +27,7 @@ describe('shallow <ChangePasswordForm /> components', () => {
 
   it('submit form empty', () => {
     global.fetch.mockResponse(JSON.stringify({new_password1: ['Required field'], old_password: ['Required field']}));
-    let wrapper = mountWithIntl(<ChangePasswordForm/>);
+    let wrapper = mountComponentWithIntl(<ChangePasswordForm/>);
 
     wrapper.find('form').simulate('submit');
     expect(global.fetch).toHaveBeenCalledWith('/?section=password',
@@ -50,7 +48,7 @@ describe('shallow <ChangePasswordForm /> components', () => {
 
   it('submit form success', () => {
     global.fetch.mockResponse('{}');
-    let wrapper = mountWithIntl(<ChangePasswordForm/>);
+    let wrapper = mountComponentWithIntl(<ChangePasswordForm/>);
 
     const form = wrapper.find('ReactFinalForm').instance();
     form.form.change('old_password', 'old_password');

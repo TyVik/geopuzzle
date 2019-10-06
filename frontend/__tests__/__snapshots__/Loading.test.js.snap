@@ -2,14 +2,12 @@
 
 exports[`shallow <Loading /> components 1`] = `
 <div
-  class="loading_wrapper"
+  className="loading_wrapper"
 >
   <h2
-    class="loading"
+    className="loading"
   >
-    <span>
-      Loading...
-    </span>
+    loading
   </h2>
 </div>
 `;

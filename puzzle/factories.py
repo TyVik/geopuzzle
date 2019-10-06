@@ -1,9 +1,10 @@
 import factory
 from django.contrib.gis.geos import Point, MultiPoint
-from factory.django import ImageField
+from factory import SubFactory
+from factory.django import ImageField, DjangoModelFactory
 
-from maps.factories import GameFactory
-from puzzle.models import Puzzle
+from maps.factories import GameFactory, RegionFactory
+from puzzle.models import Puzzle, PuzzleRegion
 
 
 class PuzzleFactory(GameFactory):
@@ -18,3 +19,12 @@ class PuzzleFactory(GameFactory):
         for translation in self.translations.all():
             translation.name = f'{translation.name}-{translation.language_code}'
             translation.save()
+
+
+class PuzzleRegionFactory(DjangoModelFactory):
+    region = SubFactory(RegionFactory)
+    puzzle = SubFactory(PuzzleFactory)
+    is_solved = False
+
+    class Meta:
+        model = PuzzleRegion

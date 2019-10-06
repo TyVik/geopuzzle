@@ -42,7 +42,6 @@
     "css-loader": "^3.2.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "enzyme-react-intl": "^2.0.6",
     "git-revision-webpack-plugin": "^3.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
@@ -75,7 +74,7 @@
     "react-final-form": "4.1.0",
     "react-google-maps": "^9.4.5",
     "react-infinite-scroll-component": "^4.5.3",
-    "react-intl": "^2.9.0",
+    "react-intl": "^3.3.2",
     "react-select": "^3.0.8",
     "react-transition-group": "^4.3.0",
     "url-search-params-polyfill": "^7.0.0"

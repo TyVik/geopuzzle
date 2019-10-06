@@ -1,11 +1,10 @@
 'use strict';
 import React from 'react';
-import {renderWithIntl, loadTranslation} from 'enzyme-react-intl';
 import Loading from '../components/Loading';
+import {createComponentWithIntl} from "./utils";
 
-loadTranslation("./frontend/locale/en.json");
 
 
 it('shallow <Loading /> components', () => {
-  expect(renderWithIntl(<Loading text='test'/>)).toMatchSnapshot();
+  expect(createComponentWithIntl(<Loading text='test'/>)).toMatchSnapshot();
 });
