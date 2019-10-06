@@ -5,6 +5,7 @@ from copy import deepcopy
 from zipfile import ZipFile
 
 import requests
+from attr import dataclass
 from django.contrib.gis.geos import GEOSGeometry, MultiPolygon, Polygon
 from typing import List, Dict, Union
 
@@ -37,6 +38,20 @@ ZOOMS = (
     (9, 'region'),
 )
 fetch_logger = logging.getLogger('fetch_region')
+
+
+@dataclass
+class IndexPageGame:
+    image: str
+    slug: str
+    name: str
+
+
+@dataclass
+class IndexPageGameType:
+    world: List[IndexPageGame]
+    parts: List[IndexPageGame]
+    countries: List[IndexPageGame]
 
 
 class RegionInterface(object):
@@ -92,7 +107,7 @@ class RegionCache(RegionInterface, metaclass=RegionCacheMeta):
 
 
 class RegionManager(models.Manager):
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet:
         return super(RegionManager, self).get_queryset().defer('polygon')
 
 
@@ -358,9 +373,9 @@ class Game(models.Model):
         return self.translations.all()[0]
 
     @property
-    def index(self) -> Dict:
+    def index(self) -> IndexPageGame:
         trans = self.load_translation(get_language())
-        return {'image': self.image, 'slug': self.slug, 'name': trans.name}
+        return IndexPageGame(image=self.image, slug=self.slug, name=trans.name)
 
     @classmethod
     def index_qs(cls, language: str) -> QuerySet:
@@ -370,13 +385,13 @@ class Game(models.Model):
             order_by('translations__name')
 
     @classmethod
-    def index_items(cls, language: str) -> dict:
+    def index_items(cls, language: str) -> IndexPageGameType:
         qs = cls.index_qs(language)
-        return {
-            'world': [item.index for item in qs.all() if item.zoom == 3],
-            'parts': [item.index for item in qs.all() if item.zoom == 4],
-            'countries': [item.index for item in qs.all() if item.zoom > 4]
-        }
+        return IndexPageGameType(
+            world=[item.index for item in qs.all() if item.zoom == 3],
+            parts=[item.index for item in qs.all() if item.zoom == 4],
+            countries=[item.index for item in qs.all() if item.zoom > 4]
+        )
 
     def get_init_params(self) -> Dict:
         return {

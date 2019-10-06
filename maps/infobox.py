@@ -10,13 +10,18 @@ from SPARQLWrapper import SPARQLWrapper
 from django.conf import settings
 from django.contrib.gis.geos import Point, GEOSGeometry
 from django.template.loader import render_to_string
-
+from mypy_extensions import TypedDict
 
 fetch_logger = logging.getLogger('fetch_region')
 
 
-def get_links(instance: str) -> Dict:
-    result = {x: {} for x in settings.ALLOWED_LANGUAGES}
+class LinkDict(TypedDict):
+    wiki: str
+    name: str
+
+
+def get_links(instance: str) -> Dict[str, LinkDict]:
+    result: Dict[str, LinkDict] = {x: {'wiki': '', 'name': ''} for x in settings.ALLOWED_LANGUAGES}
     url = 'http://www.wikidata.org/entity/{}'.format(instance)
     response = urlopen(url).read().decode('utf8')
     response = json.loads(response)

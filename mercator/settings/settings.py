@@ -1,6 +1,7 @@
 import os
 import subprocess
 from pathlib import Path
+from typing import Tuple, List, Dict
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -195,7 +196,7 @@ LANGUAGES = (
     ('en', _('English')),
     ('ru', _('Russian')),
 )
-ALLOWED_LANGUAGES = tuple([x for x, _ in LANGUAGES])
+ALLOWED_LANGUAGES: Tuple[str, ...] = tuple([x for x, _ in LANGUAGES])
 LOCALE_PATHS = (
     BASE_DIR.joinpath('locale'),
 )
@@ -224,7 +225,7 @@ JSON_EDITOR_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/4.2.1/jsone
 # region USER & SOCIAL AUTH
 AUTH_USER_MODEL = 'users.User'
 LOGOUT_REDIRECT_URL = 'index'
-AUTH_PASSWORD_VALIDATORS = []
+AUTH_PASSWORD_VALIDATORS: List[Dict[str, str]] = []
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
     'social_core.backends.vk.VKOAuth2',
@@ -250,7 +251,7 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 }
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'public_profile']
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
-SOCIAL_AUTH_VK_OAUTH2_EXTRA_DATA = []  # https://vk.com/dev/users.get
+SOCIAL_AUTH_VK_OAUTH2_EXTRA_DATA: List[str] = []  # https://vk.com/dev/users.get
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
     'social_core.pipeline.social_auth.social_uid',

@@ -30,7 +30,7 @@ INFOBOX = {
 }
 
 
-def multipolygon_factory():
+def multipolygon_factory() -> MultiPolygon:
     return MultiPolygon(*(Polygon(points) for points in POINTS))
 
 
