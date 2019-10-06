@@ -12,7 +12,7 @@ from django.utils.translation import get_language
 
 from common.utils import random_string
 from maps.forms import RegionForm
-from maps.models import Tag
+from maps.models import Tag, Region
 from puzzle.models import PuzzleTranslation, Puzzle
 
 
@@ -22,7 +22,7 @@ class RegionContainsForm(forms.Form):
     south = forms.FloatField()
     west = forms.FloatField()
 
-    def __init__(self, region, zoom, *args, **kwargs):
+    def __init__(self, region: Region, zoom: int, *args, **kwargs):
         self.region = region
         self.zoom = zoom
         super(RegionContainsForm, self).__init__(*args, **kwargs)

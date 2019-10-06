@@ -26,5 +26,5 @@ class ScrollListView(BaseListView):
             'user': item.user.username,
         }
 
-    def render_to_response(self, context) -> JsonResponse:
+    def render_to_response(self, context, **kwargs) -> JsonResponse:
         return JsonResponse([self.item_to_json(x) for x in context['page_obj'].object_list], safe=False)

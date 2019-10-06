@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Iterable
 
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
@@ -22,12 +22,12 @@ class RegionSitemap(Sitemap):
 
 
 class PuzzleSitemap(RegionSitemap):
-    def items(self) -> QuerySet[Puzzle]:
+    def items(self) -> Iterable[Puzzle]:
         return Puzzle.objects.filter(Q(is_published=True) | Q(slug='world')).order_by('id')
 
 
 class QuizSitemap(RegionSitemap):
-    def items(self) -> QuerySet[Quiz]:
+    def items(self) -> Iterable[Quiz]:
         return Quiz.objects.filter(Q(is_published=True) | Q(slug='world')).order_by('id')
 
 

@@ -51,12 +51,12 @@ class RegionInterface(object):
 
     @property  # type: ignore
     @cacheable
-    def polygon_gmap(self) -> List:
+    def polygon_gmap(self) -> List[str]:
         raise NotImplementedError
 
     @property  # type: ignore
     @cacheable
-    def polygon_center(self) -> List:
+    def polygon_center(self) -> List[float]:
         raise NotImplementedError
 
     @property  # type: ignore
