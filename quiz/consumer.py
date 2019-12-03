@@ -8,7 +8,7 @@ class QuizConsumer(LanguageConsumer):
     async def check(self, message: dict, *args, **kwargs):
         region = RegionCache(id=message['id'])
         form = PointContainsForm(data=message['coords'], area=region)
-        if form.is_valid():
+        if await self.check_form(form):
             result = region.full_info(self.scope['lang'])
             result['type'] = 'QUIZ_CHECK_SUCCESS'
             await self.send_json(result)

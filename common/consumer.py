@@ -1,6 +1,7 @@
 import inspect
 from typing import Iterable, Tuple
 
+from channels.db import database_sync_to_async
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
 from django.utils.translation.trans_real import get_supported_language_variant, parse_accept_lang_header
 
@@ -50,6 +51,10 @@ class ReduxConsumer(AsyncJsonWebsocketConsumer):
 
 
 class LanguageConsumer(ReduxConsumer):
+    @database_sync_to_async
+    async def check_form(self, form):
+        return form.is_valid()
+
     async def connect(self):
         def extract_lang(headers: Iterable[Tuple[bytes, bytes]]) -> str:
             for header in headers:
