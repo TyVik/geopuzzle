@@ -78,6 +78,7 @@ exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
           universal={false}
         >
           <ListGroup
+            horizontal={null}
             variant={null}
           >
             <NameListItem
