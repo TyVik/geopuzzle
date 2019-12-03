@@ -12,9 +12,9 @@ from django.views.generic.edit import BaseUpdateView
 from django.views.generic.list import BaseListView
 
 from common.views import AutocompleteItem
-from users.filters import UserFilter
-from users.forms import AuthenticationForm, RegistrationForm, ProfileForm
-from users.models import User
+from .filters import UserFilter
+from .forms import AuthenticationForm, RegistrationForm, ProfileForm
+from .models import User
 
 
 class LoginView(DefaultLoginView):

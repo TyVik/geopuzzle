@@ -3,7 +3,7 @@ from django.contrib.admin import TabularInline
 from django.template.defaultfilters import safe
 
 from maps.admin import GameAdmin
-from puzzle.models import Puzzle, PuzzleTranslation, PuzzleRegion
+from .models import Puzzle, PuzzleTranslation, PuzzleRegion
 
 
 class PuzzleTranslationInline(TabularInline):

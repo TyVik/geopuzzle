@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.admin import TabularInline
 
 from maps.admin import GameAdmin
-from quiz.models import Quiz, QuizTranslation, QuizRegion
+from .models import Quiz, QuizTranslation, QuizRegion
 
 
 class QuizTranslationInline(TabularInline):

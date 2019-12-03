@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from puzzle.views import questions, puzzle
+from .views import questions, puzzle
 
 urlpatterns = [
     url(r'^(?P<name>[a-zA-Z0-9_]+)/questions/$', questions, name='puzzle_questions'),

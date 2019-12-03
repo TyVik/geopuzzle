@@ -3,7 +3,7 @@ from factory import SubFactory
 from factory.django import DjangoModelFactory
 
 from maps.factories import GameFactory, RegionFactory
-from quiz.models import Quiz, QuizRegion
+from .models import Quiz, QuizRegion
 
 
 class QuizFactory(GameFactory):

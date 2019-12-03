@@ -9,7 +9,7 @@ from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
 
 from common.utils import random_string
-from users.models import User
+from .models import User
 
 
 class AuthenticationForm(DefaultAuthenticationForm):

@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
-from maps.models import Region
+from .models import Region
 
 
 def region(request, pk: str) -> JsonResponse:

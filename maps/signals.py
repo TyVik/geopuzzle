@@ -1,6 +1,6 @@
 from django.conf import settings
 
-from maps.models import Game
+from .models import Game
 
 
 def attach_translations(sender, instance: Game, created: bool, **kwargs):

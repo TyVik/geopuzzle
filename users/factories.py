@@ -3,7 +3,7 @@ import string
 from factory import DjangoModelFactory
 from factory.fuzzy import FuzzyText
 
-from users.models import User
+from .models import User
 
 
 class UserFactory(DjangoModelFactory):

@@ -9,7 +9,7 @@ from django.views.generic.list import BaseListView
 from common.views import ScrollListView, AutocompleteItem
 from maps.models import Tag
 from puzzle.models import Puzzle
-from workshop.filters import WorkshopFilter, TagFilter, ORDER
+from .filters import WorkshopFilter, TagFilter, ORDER
 
 
 class WorkshopView(TemplateView):

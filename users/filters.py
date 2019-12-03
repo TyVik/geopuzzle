@@ -1,6 +1,6 @@
 from django_filters import FilterSet, CharFilter
 
-from users.models import User
+from .models import User
 
 
 class UserFilter(FilterSet):

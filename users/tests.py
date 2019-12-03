@@ -4,8 +4,8 @@ from django.test import TestCase
 from django.urls import reverse
 
 from common.utils import random_string
-from users.factories import UserFactory
-from users.models import User
+from .factories import UserFactory
+from .models import User
 
 
 class UserTestCase(TestCase):

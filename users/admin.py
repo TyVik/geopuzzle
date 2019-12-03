@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from social_django.models import UserSocialAuth
 
 from common.admin import ImageMixin
-from users.models import User
+from .models import User
 
 
 class SocialAuthInlines(TabularInline):

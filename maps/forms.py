@@ -1,7 +1,7 @@
 from django import forms
 from django.db.models import QuerySet
 
-from maps.models import Region, Game
+from .models import Region, Game
 
 
 class RegionForm(forms.Form):

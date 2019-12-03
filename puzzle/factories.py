@@ -4,7 +4,7 @@ from factory import SubFactory
 from factory.django import ImageField, DjangoModelFactory
 
 from maps.factories import GameFactory, RegionFactory
-from puzzle.models import Puzzle, PuzzleRegion
+from .models import Puzzle, PuzzleRegion
 
 
 class PuzzleFactory(GameFactory):

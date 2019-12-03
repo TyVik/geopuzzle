@@ -19,7 +19,7 @@ from django.templatetags.static import static
 from django.urls import reverse
 
 from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget
-from maps.models import Region, RegionTranslation, Tag, Game
+from .models import Region, RegionTranslation, Tag, Game
 
 
 def update_infoboxes(modeladmin, request, queryset) -> None:

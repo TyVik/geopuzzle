@@ -1,6 +1,6 @@
 from common.consumer import LanguageConsumer, action
-from puzzle.forms import RegionContainsForm
 from maps.models import RegionCache
+from .forms import RegionContainsForm
 
 
 class PuzzleConsumer(LanguageConsumer):

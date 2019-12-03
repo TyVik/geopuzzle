@@ -5,8 +5,8 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import never_cache
 
-from puzzle.forms import PuzzleForm
-from puzzle.models import Puzzle
+from .forms import PuzzleForm
+from .models import Puzzle
 
 
 @never_cache  # for HTTP headers

@@ -1,19 +1,12 @@
-import base64
-from random import uniform
 from typing import Dict, List
 
 from django import forms
-from django.conf import settings
-from django.contrib.gis.geos import MultiPoint, Point
 from django.core.exceptions import ValidationError
-from django.core.files.base import ContentFile
-from django.forms import ModelForm, Field
+from django.forms import Field
 from django.utils.translation import get_language
 
-from common.utils import random_string
 from maps.forms import RegionForm
-from maps.models import Tag, Region
-from puzzle.models import PuzzleTranslation, Puzzle
+from maps.models import RegionInterface
 
 
 class RegionContainsForm(forms.Form):
@@ -22,7 +15,7 @@ class RegionContainsForm(forms.Form):
     south = forms.FloatField()
     west = forms.FloatField()
 
-    def __init__(self, region: Region, zoom: int, *args, **kwargs):
+    def __init__(self, region: RegionInterface, zoom: int, *args, **kwargs):
         self.region = region
         self.zoom = zoom
         super(RegionContainsForm, self).__init__(*args, **kwargs)

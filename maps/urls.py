@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.views.decorators.cache import cache_page
 
 from common.constants import DAY
-from maps.views import region, items
+from .views import region, items
 
 urlpatterns = [
     url(r'^(?P<pk>\w+)/$', cache_page(DAY)(region), name='region'),

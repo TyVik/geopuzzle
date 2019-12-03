@@ -6,8 +6,8 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import never_cache
 
-from quiz.forms import QuizInfoboxForm
-from quiz.models import Quiz
+from .forms import QuizInfoboxForm
+from .models import Quiz
 
 
 @never_cache

@@ -23,10 +23,9 @@ from django.utils.translation import get_language
 from io import BytesIO
 
 from common.cachable import cacheable
-from maps.converter import encode_geometry
-from maps.fields import ExternalIdField
-from maps.infobox import query_by_wikidata_id
-from mercator.settings.settings import POLYGON_CACHE_KEY
+from .converter import encode_geometry
+from .fields import ExternalIdField
+from .infobox import query_by_wikidata_id
 
 ZOOMS = (
     (3, 'world'),
@@ -343,7 +342,7 @@ class RegionTranslation(models.Model):
 @receiver(post_save, sender=Region, dispatch_uid="clear_region_cache")
 def clear_region_cache(sender, instance: Region, **kwargs):
     for key in instance.caches():
-        cache.delete(POLYGON_CACHE_KEY.format(func=key, id=instance.id))
+        cache.delete(settings.POLYGON_CACHE_KEY.format(func=key, id=instance.id))
 
 
 class Game(models.Model):

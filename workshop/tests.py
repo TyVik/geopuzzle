@@ -6,7 +6,7 @@ from common.utils import random_string
 from maps.models import Tag
 from puzzle.factories import PuzzleFactory
 from users.factories import UserFactory
-from workshop.factories import TagFactory
+from .factories import TagFactory
 
 
 class TagTestCase(TestCase):

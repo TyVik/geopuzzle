@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from puzzle.factories import PuzzleFactory, PuzzleRegionFactory
+from .factories import PuzzleFactory, PuzzleRegionFactory
 
 
 class PuzzleTestCase(TestCase):
