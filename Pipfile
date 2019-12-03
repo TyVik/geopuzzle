@@ -13,7 +13,7 @@ mypy = "*"
 django-stubs = "*"
 
 [packages]
-django = "*"
+django = "<3.0"
 psycopg2-binary = "*"
 pillow = "*"
 sorl-thumbnail = "*"
