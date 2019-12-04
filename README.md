@@ -146,8 +146,10 @@ Stop:
 $ docker-compose stop
 ```
 
-You can download [sample database](https://drive.google.com/file/d/1V9JY5vsSzYVTc-2TTjtOJx11Zgg4K58V/view?usp=sharing).
+You can download [sample database](https://drive.google.com/open?id=1H_JUXr39Q-W2_153qHgbQD80FOUSU-JM).
 Unpack archive into `pgdata` directory.
+
+Or download dump as [sql file](https://drive.google.com/open?id=1OGXl7P9dkevD_v7QgBoW8CbsQxDjW7EI).
 
 Go to [http://localhost:8000](http://localhost:8000)
 

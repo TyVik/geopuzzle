@@ -11,7 +11,7 @@ services:
       - webnet
 
   postgres:
-    image: mdillon/postgis:9.6-alpine
+    image: circleci/postgres:12-postgis
     environment:
       POSTGRES_USER: geopuzzle
       POSTGRES_PASSWORD: geopuzzle
