@@ -1,20 +1,19 @@
-FROM python:3.6-alpine3.9
+FROM python:3.6-slim
 
 RUN mkdir /app && mkdir /app/logs
 WORKDIR /app
 
 COPY Pipfile* /app/
 
-RUN apk update --no-cache \
-  && apk add --no-cache git openssh-client \
-  && apk add --no-cache --virtual .postgres-deps py3-psycopg2 postgresql-libs postgresql-dev \
-  && apk add --no-cache --virtual .build-deps libffi-dev build-base zlib-dev jpeg-dev gcc \
-  && apk add --upgrade --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main libressl2.7-libcrypto \
-  && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main libressl2.7-libcrypto libcrypto1.1 \
-  && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community geos gdal \
+RUN apt update \
+  && apt install -y build-essential make gcc python3-gdal libgeos-dev wget git \
   && pip3 install pipenv \
   && pipenv install --dev --system \
   && wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz && rm dockerize-linux-amd64-v0.6.1.tar.gz \
-  && apk del .build-deps && apk del .postgres-deps
+  && rm -r /root/.cache/pip \
+  && rm -r /root/.cache/pipenv \
+  && apt-get remove -y --purge libgdal-dev make gcc build-essential wget \
+  && apt-get autoremove -y \
+  && rm -rf /var/lib/apt/lists/*
 
 CMD ["python3"]

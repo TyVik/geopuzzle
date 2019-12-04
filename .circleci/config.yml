@@ -48,12 +48,12 @@ jobs:
           DB_USER: geopuzzle
           DB_USER_PASSWORD: geopuzzle
           REDIS_HOST: localhost
-      - image: circleci/postgres:9.6-postgis-ram
+      - image: circleci/postgres:12-postgis-ram
         environment:
           POSTGRES_USER: geopuzzle
           POSTGRES_DB: geopuzzle
           POSTGRES_PASSWORD: geopuzzle
-      - image: circleci/redis:4.0.9
+      - image: circleci/redis:4.0-alpine
     working_directory: ~/repo
     steps:
       - checkout
