@@ -52,7 +52,7 @@ class ReduxConsumer(AsyncJsonWebsocketConsumer):
 
 class LanguageConsumer(ReduxConsumer):
     @database_sync_to_async
-    async def check_form(self, form):
+    def check_form(self, form):
         return form.is_valid()
 
     async def connect(self):
