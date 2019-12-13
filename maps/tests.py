@@ -68,14 +68,3 @@ class RegionTestCase(DjangoTestCase):
         self.assertEqual(content['id'], self.region.id)
         self.assertEqual(len(content['polygon']), 2)  # 2 islands
         self.assertDictEqual(content['infobox'], infobox)
-
-    def test_region_items(self):
-        subregions = [RegionFactory(parent=self.region) for _ in range(3)]
-        subsubregion = RegionFactory(parent=subregions[-1])
-        response = self.client.get(reverse('region_items', args=(self.region.id,)))
-        self.assertEqual(response.status_code, 200)
-        content = response.json()
-        ids = set(int(item['id']) for item in content)
-        self.assertEqual(ids, set(region.id for region in subregions))
-        region_with_subregion = next(item for item in content if item['items_exists'])
-        self.assertEqual(subsubregion.parent_id, int(region_with_subregion['id']))

@@ -195,20 +195,6 @@ class Region(RegionInterface, models.Model):
                 result.append(name)
         return result
 
-    def json(self, lang: str) -> RegionTreeNode:
-        translation = self.load_translation(lang)
-        items = self.items(lang)
-        return RegionTreeNode(id=str(self.id), name=translation.name, items=items, items_exists=len(items) > 0)
-
-    def items(self, lang: str) -> List[RegionTreeItem]:
-        child_query = Region.objects.filter(parent_id=OuterRef('pk'))
-        return [RegionTreeItem(id=str(x.id), name=x.lang, items_exists=x.items_exists) for x in
-                self.region_set
-                    .filter(translations__language_code=lang)
-                    .annotate(items_exists=Exists(child_query), lang=F('translations__name'))
-                    .order_by('lang')
-                    .distinct()]
-
     def fetch_polygon(self) -> None:
         def content():
             cache = os.path.join(settings.GEOJSON_DIR, '{}.geojson'.format(self.osm_id))
