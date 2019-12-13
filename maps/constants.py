@@ -39,19 +39,3 @@ class InitGameParams(TypedDict):
     zoom: Zoom
     center: Point
     options: InitGameMapOptions
-
-
-class RegionTreeItem(TypedDict):
-    id: str
-    name: str
-    items_exists: bool
-
-
-class RegionTreeNode(TypedDict):
-    id: str
-    name: str
-    items: List[RegionTreeItem]
-    items_exists: bool
-
-
-RegionTreeNodes = List[RegionTreeNode]

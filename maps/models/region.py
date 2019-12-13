@@ -13,7 +13,7 @@ from django.contrib.gis.db.models import MultiPolygonField
 from django.contrib.postgres.fields import JSONField
 from django.core.cache import cache
 from django.db import models
-from django.db.models import Exists, OuterRef, F, QuerySet
+from django.db.models import QuerySet
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import get_language
@@ -21,7 +21,6 @@ from io import BytesIO
 
 from common.cachable import cacheable
 from common.constants import Point
-from maps.constants import RegionTreeItem, RegionTreeNode
 from ..converter import encode_geometry
 from ..fields import ExternalIdField
 from ..infobox import query_by_wikidata_id
