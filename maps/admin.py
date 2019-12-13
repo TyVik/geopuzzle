@@ -1,6 +1,7 @@
 from admirarchy.utils import HierarchicalModelAdmin, AdjacencyList, HierarchicalChangeList, Hierarchy
 from django.contrib.gis.admin import OSMGeoAdmin
 from django.template.defaultfilters import safe
+from django.utils.safestring import SafeText
 from django.utils.translation import ugettext as _
 from typing import List
 
@@ -63,7 +64,7 @@ class RegionAdjacencyList(AdjacencyList):
 @admin.register(Region)
 class RegionAdmin(HierarchicalModelAdmin):
     list_display = ('__str__', 'wikidata_url', 'osm_id', 'infobox_status')
-    search_fields = ('id', 'title')
+    search_fields = ('id', 'title', 'wikidata_id')
     actions = (update_infoboxes, update_polygons)
     formfield_overrides = {
         MultiPolygonField: {'widget': MultiPolygonWidget},
@@ -86,11 +87,11 @@ class RegionAdmin(HierarchicalModelAdmin):
         Hierarchy.init_hierarchy(self)
         return RegionChangeList
 
-    def wikidata_url(self, obj: Region):
+    def wikidata_url(self, obj: Region) -> SafeText:
         link = obj._meta._forward_fields_map['wikidata_id'].link.format(id=obj.wikidata_id)
         return safe(f'<a href="{link}">{obj.wikidata_id}</a>')
 
-    def infobox_status(self, obj: Region) -> str:
+    def infobox_status(self, obj: Region) -> SafeText:
         result = ''
         if obj.id is not None:
             for key, value in obj.infobox_status(get_language()).items():
@@ -130,7 +131,7 @@ class GameAdmin(ImageMixin, OSMGeoAdmin):
     }
     list_per_page = 20
 
-    def names(self, obj: Game) -> str:
+    def names(self, obj: Game) -> SafeText:
         return safe("<br/>".join(f'{t.language_code}: {t.name}' for t in obj.translations.order_by('language_code').all()))
 
 

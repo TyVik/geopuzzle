@@ -1,10 +1,17 @@
+from typing import List
+
 from django.test import TestCase
 from django.urls import reverse
 
 from .factories import PuzzleFactory, PuzzleRegionFactory
+from .models import Puzzle, PuzzleRegion
 
 
 class PuzzleTestCase(TestCase):
+    puzzle: Puzzle
+    questions: List[PuzzleRegion]
+    solved = List[PuzzleRegion]
+
     QUESTIONS_COUNT = 3
     SOLVED_COUNT = 1
 
@@ -21,7 +28,7 @@ class PuzzleTestCase(TestCase):
         self.assertTemplateUsed(response, 'puzzle/map.html')
 
     def test_questions(self):
-        def get_ids(l):
+        def get_ids(l) -> List[int]:
             return [x['id'] for x in l]
 
         response = self.client.get(reverse('puzzle_questions', kwargs={'name': self.puzzle.slug}))

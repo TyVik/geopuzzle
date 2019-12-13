@@ -34,6 +34,7 @@
     "publishedToMe": "Доступно только мне",
     "publishedToAll": "Доступно всем пользователям",
     "selectAtLeastOneRegion": "Выберите хотя бы один регион",
+    "tags": "Тэги",
     "save": "Сохранить",
     "bugReport": "Что-то пошло не так. Пожалуйста, {mail}.",
     "unknownError": "Что-то пошло не так...",

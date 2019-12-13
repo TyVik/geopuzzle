@@ -34,6 +34,7 @@
     "publishedToMe": "Allow only you",
     "publishedToAll": "Allow to any users",
     "selectAtLeastOneRegion": "Select at least one region",
+    "tags": "Tags",
     "save": "Save",
     "bugReport": "Something went wrong. Please {mail}.",
     "unknownError": "Something went wrong...",

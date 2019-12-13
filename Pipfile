@@ -36,4 +36,4 @@ tqdm = "*"
 aiocontextvars = "*"  # remove after migrate to python 3.7
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"

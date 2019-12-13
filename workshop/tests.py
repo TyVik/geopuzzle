@@ -1,15 +1,22 @@
+from typing import Dict, Tuple, Iterable, List
+
 from django.conf import settings
+from django.http import JsonResponse
 from django.test import TestCase
 from django.urls import reverse
 
 from common.utils import random_string
+from common.views import ScrollListItem
 from maps.models import Tag
 from puzzle.factories import PuzzleFactory
+from puzzle.models import Puzzle
 from users.factories import UserFactory
+from users.models import User
 from .factories import TagFactory
 
 
 class TagTestCase(TestCase):
+    user: User
     url = reverse('tag')
 
     @classmethod
@@ -73,6 +80,10 @@ class TagTestCase(TestCase):
 
 
 class WorkshopTestCase(TestCase):
+    user: User
+    tag: Tag
+    puzzles: Dict[str, Puzzle]
+
     @classmethod
     def setUpTestData(cls):
         # 1 global
@@ -106,10 +117,11 @@ class WorkshopTestCase(TestCase):
         self.assertEqual(len(response.context_data['order']), 4)
         self.assertEqual(response.context_data['count'], 4)
 
-    def _check_response(self, response, puzzle_keys):
+    def _check_response(self, response: JsonResponse, puzzle_keys: Iterable[str]):
         self.assertEqual(response.status_code, 200)
         db_names = [self.puzzles[key].load_translation('en').name for key in puzzle_keys]
-        response_names = [item['name'] for item in response.json()]
+        items: List[ScrollListItem] = response.json()
+        response_names = [item['name'] for item in items]
         self.assertEqual(db_names, response_names)
 
     def test_list(self):

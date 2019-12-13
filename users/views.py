@@ -22,6 +22,7 @@ class LoginView(DefaultLoginView):
 
 
 class RegistrationView(FormView):
+    request: WSGILanguageRequest
     form_class = RegistrationForm
     template_name = 'registration/registration.html'
     success_url = '/accounts/profile/'
@@ -43,6 +44,7 @@ class ProfileView(TemplateResponseMixin, BaseUpdateView):
     template_name = 'user/profile.html'
     success_url = '/accounts/profile/'
     model = User
+    object: User
 
     def get_context_data(self, **kwargs) -> dict:
         kwargs['form'] = ProfileForm(instance=self.object)

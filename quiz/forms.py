@@ -4,6 +4,7 @@ from django import forms
 from django.db import connection
 from django.utils.translation import get_language
 
+from common.constants import GameQuestions
 from maps.forms import RegionForm
 
 
@@ -35,7 +36,7 @@ class QuizInfoboxForm(RegionForm):
     def clean_params(self) -> List[str]:
         return self.cleaned_data['params'].split(',')
 
-    def json(self) -> Dict:
+    def json(self) -> GameQuestions:
         def extract_capital(capital) -> str:
             return capital['name'] if isinstance(capital, dict) else capital
 
@@ -66,4 +67,4 @@ class QuizInfoboxForm(RegionForm):
                 questions.append(k)
             else:
                 solved.append(region.full_info(get_language()))
-        return {'questions': questions, 'solved': solved}
+        return GameQuestions(questions=questions, solved=solved)

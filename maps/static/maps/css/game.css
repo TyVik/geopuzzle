@@ -5,3 +5,7 @@ html, body, .gmap-game > div {
 .gmap-game {
     height: calc(100% - 56px);
 }
+
+.modal-footer {
+    justify-content: space-between;
+}

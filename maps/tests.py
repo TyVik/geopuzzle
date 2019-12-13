@@ -1,12 +1,14 @@
 import json
 from copy import deepcopy
+from typing import List
 from unittest import TestCase
 
 from django.contrib.gis.geos import MultiPolygon, Polygon
 from django.test import TestCase as DjangoTestCase
 from django.urls import reverse
 
-from .converter import encode_geometry, decode
+from .converter import encode_geometry, decode, Point
+from .models import Region
 from .factories import RegionFactory, INFOBOX, multipolygon_factory
 
 POLYGON_JSON = """[
@@ -24,6 +26,8 @@ FULL_ENCODE = [
 
 class DecoderTestCase(TestCase):
     maxDiff = None
+    points: List[List[Point]]
+    islands: List[Polygon]
 
     @classmethod
     def setUpClass(cls):
@@ -46,6 +50,8 @@ class DecoderTestCase(TestCase):
 
 
 class RegionTestCase(DjangoTestCase):
+    region: Region
+
     @classmethod
     def setUpTestData(cls):
         cls.region = RegionFactory(polygon=multipolygon_factory())

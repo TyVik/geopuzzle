@@ -7,9 +7,11 @@ from social_core.backends.facebook import FacebookOAuth2
 from social_core.backends.google import GoogleOAuth2
 from social_core.backends.vk import VKOAuth2
 
+from .models import User
+
 
 def user_details(strategy, response, backend, is_new, user=None, *args, **kwargs):
-    def save_image(user, url):
+    def save_image(user: User, url: str):
         if url:
             result = urlretrieve(url)
             user.image.save(os.path.basename(url), FileIO(result[0]))

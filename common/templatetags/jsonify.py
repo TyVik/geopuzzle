@@ -1,11 +1,9 @@
+import json
+
 from django.core.serializers import serialize
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models.fields.files import ImageFieldFile
 from django.db.models.query import QuerySet
-try:
-    from django.utils import simplejson as json
-except ImportError:
-    import json
 from django.utils.safestring import mark_safe, SafeText
 from django.template import Library
 
