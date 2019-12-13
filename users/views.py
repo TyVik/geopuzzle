@@ -11,6 +11,7 @@ from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import BaseUpdateView
 from django.views.generic.list import BaseListView
 
+from common.constants import WSGILanguageRequest
 from common.views import AutocompleteItem
 from .filters import UserFilter
 from .forms import AuthenticationForm, RegistrationForm, ProfileForm

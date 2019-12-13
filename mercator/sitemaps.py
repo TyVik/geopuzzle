@@ -1,6 +1,6 @@
-from typing import Iterable, List
+from typing import Iterable
 
-from django.contrib.sitemaps import Sitemap, GenericSitemap
+from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 from django.db.models import Q
 from django.utils import timezone
@@ -10,7 +10,7 @@ from puzzle.models import Puzzle
 from quiz.models import Quiz
 
 
-class RegionSitemap(GenericSitemap):
+class RegionSitemap(Sitemap):
     changefreq = "weekly"
     priority = 0.5
 
@@ -31,7 +31,7 @@ class QuizSitemap(RegionSitemap):
         return Quiz.objects.filter(Q(is_published=True) | Q(slug='world')).order_by('id')
 
 
-class WorldSitemap(GenericSitemap):
+class WorldSitemap(Sitemap):
     changefreq = "monthly"
     priority = 0.8
 

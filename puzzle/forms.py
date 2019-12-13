@@ -1,10 +1,11 @@
-from typing import Dict, List
+from typing import List
 
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import Field
 from django.utils.translation import get_language
 
+from common.constants import GameQuestions
 from maps.forms import RegionForm
 from maps.models import RegionInterface
 

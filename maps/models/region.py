@@ -5,52 +5,28 @@ from copy import deepcopy
 from zipfile import ZipFile
 
 import requests
-from attr import dataclass
 from django.contrib.gis.geos import GEOSGeometry, MultiPolygon, Polygon
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Tuple
 
 from django.conf import settings
 from django.contrib.gis.db.models import MultiPolygonField
-from django.contrib.gis.db.models import PointField
 from django.contrib.postgres.fields import JSONField
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Exists, OuterRef, F, QuerySet
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.urls import reverse
 from django.utils.translation import get_language
 from io import BytesIO
 
 from common.cachable import cacheable
-from .converter import encode_geometry
-from .fields import ExternalIdField
-from .infobox import query_by_wikidata_id
+from common.constants import Point
+from maps.constants import RegionTreeItem, RegionTreeNode
+from ..converter import encode_geometry
+from ..fields import ExternalIdField
+from ..infobox import query_by_wikidata_id
 
-ZOOMS = (
-    (3, 'world'),
-    (4, 'large country'),
-    (5, 'big country'),
-    (6, 'country'),
-    (7, 'small country'),
-    (8, 'little country'),
-    (9, 'region'),
-)
 fetch_logger = logging.getLogger('fetch_region')
-
-
-@dataclass
-class IndexPageGame:
-    image: str
-    slug: str
-    name: str
-
-
-@dataclass
-class IndexPageGameType:
-    world: List[IndexPageGame]
-    parts: List[IndexPageGame]
-    countries: List[IndexPageGame]
 
 
 class RegionInterface(object):
@@ -61,7 +37,7 @@ class RegionInterface(object):
 
     @property  # type: ignore
     @cacheable
-    def polygon_strip(self) -> List:
+    def polygon_strip(self) -> List[str]:
         raise NotImplementedError
 
     @property  # type: ignore
@@ -144,7 +120,7 @@ class Region(RegionInterface, models.Model):
 
     @property  # type: ignore
     @cacheable
-    def polygon_strip(self) -> List:
+    def polygon_strip(self) -> List[str]:
         simplify = self._strip_polygon
         return encode_geometry(simplify, min_points=10)
 
@@ -159,27 +135,28 @@ class Region(RegionInterface, models.Model):
     @cacheable
     def polygon_center(self) -> List[float]:
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
-        def calc_polygon(strip, force):
-            def calc_part(result, subpolygon):
+        def calc_polygon(strip, force) -> Tuple[Point, int]:
+            def calc_part(current, subtotal, subpolygon) -> Tuple[Point, int]:
                 for point in subpolygon.coords[0]:
-                    result['count'] += 1
-                    result['lat'] += point[0]
-                    result['lng'] += point[1]
-                return result
+                    subtotal += 1
+                    current['lat'] += point[0]
+                    current['lng'] += point[1]
+                return current, subtotal
 
-            result = {'lat': 0.0, 'lng': 0.0, 'count': 0}
+            point = Point(lat=0.0, lng=0.0)
+            count = 0
             if isinstance(strip, MultiPolygon):
                 for part in strip:
                     if force or part.num_points > 10:
-                        result = calc_part(result, part)
+                        point, count = calc_part(point, count, part)
             else:
-                result = calc_part(result, strip)
-            return result
+                point, count = calc_part(point, count, strip)
+            return point, count
 
-        result = calc_polygon(self._strip_polygon, force=False)
-        if result['count'] == 0:
-            result = calc_polygon(self._strip_polygon, force=True)
-        return [result['lat'] / result['count'], result['lng'] / result['count']]
+        point, count = calc_polygon(self._strip_polygon, force=False)
+        if count == 0:
+            point, count = calc_polygon(self._strip_polygon, force=True)
+        return [point['lat'] / count, point['lng'] / count]
 
     def infobox_status(self, lang: str) -> Dict:
         fields = ('name', 'wiki', 'capital', 'coat_of_arms', 'flag')
@@ -191,13 +168,13 @@ class Region(RegionInterface, models.Model):
     @property  # type: ignore
     @cacheable
     def polygon_infobox(self) -> Dict:
-        def get_marker(infobox):
+        def get_marker(infobox) -> Point:
             by_capital = infobox.get('capital', {})
             if 'lat' in by_capital and 'lon' in by_capital:
-                return {'lat': by_capital['lat'], 'lng': by_capital['lon']}
+                return Point(lat=by_capital['lat'], lng=by_capital['lon'])
             else:
                 center = self.polygon_center
-                return {'lat': center[1], 'lng': center[0]}
+                return Point(lat=center[1], lng=center[0])
 
         result = {}
         for trans in self.translations.all():
@@ -218,15 +195,14 @@ class Region(RegionInterface, models.Model):
                 result.append(name)
         return result
 
-    def json(self, lang: str) -> Dict:
+    def json(self, lang: str) -> RegionTreeNode:
         translation = self.load_translation(lang)
-        result = {'id': str(self.id), 'name': translation.name, 'items': self.items(lang)}
-        result['items_exists'] = len(result['items']) > 0
-        return result
+        items = self.items(lang)
+        return RegionTreeNode(id=str(self.id), name=translation.name, items=items, items_exists=len(items) > 0)
 
-    def items(self, lang: str) -> List[Dict]:
+    def items(self, lang: str) -> List[RegionTreeItem]:
         child_query = Region.objects.filter(parent_id=OuterRef('pk'))
-        return [{'id': str(x.id), 'name': x.lang, 'items_exists': x.items_exists} for x in
+        return [RegionTreeItem(id=str(x.id), name=x.lang, items_exists=x.items_exists) for x in
                 self.region_set
                     .filter(translations__language_code=lang)
                     .annotate(items_exists=Exists(child_query), lang=F('translations__name'))
@@ -343,78 +319,3 @@ class RegionTranslation(models.Model):
 def clear_region_cache(sender, instance: Region, **kwargs):
     for key in instance.caches():
         cache.delete(settings.POLYGON_CACHE_KEY.format(func=key, id=instance.id))
-
-
-class Game(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
-    image = models.ImageField(upload_to='games', blank=True, null=True)
-    slug = models.CharField(max_length=15, db_index=True)
-    center = PointField(geography=True)
-    zoom = models.PositiveSmallIntegerField(choices=ZOOMS)
-    is_published = models.BooleanField(default=False)
-    is_global = models.BooleanField(default=False)
-    on_main_page = models.BooleanField(default=False)
-    created = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        abstract = True
-
-    def __str__(self) -> str:
-        return self.slug
-
-    def get_absolute_url(self) -> str:
-        return reverse(f'{self.__class__._meta.model_name}_map', args=(self.slug,))
-
-    def load_translation(self, lang: str):
-        for translation in self.translations.all():
-            if translation.language_code == lang:
-                return translation
-        return self.translations.all()[0]
-
-    @property
-    def index(self) -> IndexPageGame:
-        trans = self.load_translation(get_language())
-        return IndexPageGame(image=self.image, slug=self.slug, name=trans.name)
-
-    @classmethod
-    def index_qs(cls, language: str) -> QuerySet:
-        return cls.objects.\
-            filter(translations__language_code=language, is_published=True, on_main_page=True).\
-            prefetch_related('translations').\
-            order_by('translations__name')
-
-    @classmethod
-    def index_items(cls, language: str) -> IndexPageGameType:
-        qs = cls.index_qs(language)
-        return IndexPageGameType(
-            world=[item.index for item in qs.all() if item.zoom == 3],
-            parts=[item.index for item in qs.all() if item.zoom == 4],
-            countries=[item.index for item in qs.all() if item.zoom > 4]
-        )
-
-    def get_init_params(self) -> Dict:
-        return {
-            'zoom': self.zoom,
-            'center': {'lng': self.center.coords[0], 'lat': self.center.coords[1]},
-            'options': {
-                'streetViewControl': False,
-                'mapTypeControl': False
-            }
-        }
-
-
-class GameTranslation(models.Model):
-    name = models.CharField(max_length=50)
-    language_code = models.CharField(max_length=2, choices=settings.LANGUAGES, db_index=True)
-    master = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='translations', editable=False)
-
-    class Meta:
-        unique_together = ('language_code', 'master')
-        abstract = True
-
-
-class Tag(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-
-    def __str__(self) -> str:
-        return self.name
