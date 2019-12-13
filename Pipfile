@@ -33,6 +33,7 @@ social-auth-app-django = "*"
 sentry-sdk = "*"
 django-filter = "*"
 tqdm = "*"
+django-enumfield = "*"
 
 [requires]
 python_version = "3.8"

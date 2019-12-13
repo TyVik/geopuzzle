@@ -1,6 +1,6 @@
 import json
 import logging
-from typing import Dict
+from typing import Dict, TypedDict
 
 from urllib.request import urlopen, unquote
 # from cairosvg.surface import PNGSurface
@@ -8,9 +8,8 @@ import requests
 from SPARQLWrapper import JSON
 from SPARQLWrapper import SPARQLWrapper
 from django.conf import settings
-from django.contrib.gis.geos import Point, GEOSGeometry
+from django.contrib.gis.geos import GEOSGeometry
 from django.template.loader import render_to_string
-from mypy_extensions import TypedDict
 
 fetch_logger = logging.getLogger('fetch_region')
 
