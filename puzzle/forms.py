@@ -1,10 +1,11 @@
-from typing import Dict, List
+from typing import List
 
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import Field
 from django.utils.translation import get_language
 
+from common.constants import GameQuestions
 from maps.forms import RegionForm
 from maps.models import RegionInterface
 
@@ -33,7 +34,7 @@ class RegionContainsForm(forms.Form):
 
 
 class PuzzleForm(RegionForm):
-    def json(self) -> Dict:
+    def json(self) -> GameQuestions:
         qs = self.regions.filter(id__in=self.game.puzzleregion_set.filter(is_solved=False).
                                  values_list('region_id', flat=True))
         questions = [{
@@ -46,7 +47,7 @@ class PuzzleForm(RegionForm):
         qs = self.regions.filter(id__in=self.game.puzzleregion_set.filter(is_solved=True).
                                  values_list('region_id', flat=True))
         solved = [region.full_info(get_language()) for region in qs]
-        return {'questions': questions, 'solved': solved}
+        return GameQuestions(questions=questions, solved=solved)
 
 
 class BoundsField(Field):

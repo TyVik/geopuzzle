@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import never_cache
 
+from common.constants import WSGILanguageRequest
 from .forms import PuzzleForm
 from .models import Puzzle
 
@@ -19,7 +20,7 @@ def questions(request: WSGIRequest, name: str) -> JsonResponse:
     return JsonResponse(form.json())
 
 
-def puzzle(request: WSGIRequest, name: str) -> HttpResponse:
+def puzzle(request: WSGILanguageRequest, name: str) -> HttpResponse:
     puzzle = get_object_or_404(Puzzle, slug=name)
     trans = puzzle.load_translation(request.LANGUAGE_CODE)
     context = {

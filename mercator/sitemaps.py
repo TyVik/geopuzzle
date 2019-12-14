@@ -1,8 +1,8 @@
-from typing import List, Iterable
+from typing import Iterable
 
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from django.db.models import Q, QuerySet
+from django.db.models import Q
 from django.utils import timezone
 
 from maps.models import Game
@@ -35,9 +35,8 @@ class WorldSitemap(Sitemap):
     changefreq = "monthly"
     priority = 0.8
 
-    def items(self) -> List[str]:
-        return ['index']
+    def items(self) -> Iterable[str]:
+        return 'index', 'workshop'
 
-    def location(self, object: str) -> str:
-        if object == 'index':
-            return reverse(object)
+    def location(self, obj: str) -> str:
+        return reverse(obj)

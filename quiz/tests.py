@@ -1,10 +1,17 @@
+from typing import List
+
 from django.test import TestCase
 from django.urls import reverse
 
 from .factories import QuizFactory, QuizRegionFactory
+from .models import QuizRegion, Quiz
 
 
 class QuizTestCase(TestCase):
+    quiz: Quiz
+    questions: List[QuizRegion]
+    solved = List[QuizRegion]
+
     QUESTIONS_COUNT = 3
     SOLVED_COUNT = 1
 

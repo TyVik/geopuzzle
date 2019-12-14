@@ -1,12 +1,14 @@
 import json
 from copy import deepcopy
+from typing import List
 from unittest import TestCase
 
 from django.contrib.gis.geos import MultiPolygon, Polygon
 from django.test import TestCase as DjangoTestCase
 from django.urls import reverse
 
-from .converter import encode_geometry, decode
+from .converter import encode_geometry, decode, Point
+from .models import Region
 from .factories import RegionFactory, INFOBOX, multipolygon_factory
 
 POLYGON_JSON = """[
@@ -24,6 +26,8 @@ FULL_ENCODE = [
 
 class DecoderTestCase(TestCase):
     maxDiff = None
+    points: List[List[Point]]
+    islands: List[Polygon]
 
     @classmethod
     def setUpClass(cls):
@@ -46,6 +50,8 @@ class DecoderTestCase(TestCase):
 
 
 class RegionTestCase(DjangoTestCase):
+    region: Region
+
     @classmethod
     def setUpTestData(cls):
         cls.region = RegionFactory(polygon=multipolygon_factory())
@@ -62,14 +68,3 @@ class RegionTestCase(DjangoTestCase):
         self.assertEqual(content['id'], self.region.id)
         self.assertEqual(len(content['polygon']), 2)  # 2 islands
         self.assertDictEqual(content['infobox'], infobox)
-
-    def test_region_items(self):
-        subregions = [RegionFactory(parent=self.region) for _ in range(3)]
-        subsubregion = RegionFactory(parent=subregions[-1])
-        response = self.client.get(reverse('region_items', args=(self.region.id,)))
-        self.assertEqual(response.status_code, 200)
-        content = response.json()
-        ids = set(int(item['id']) for item in content)
-        self.assertEqual(ids, set(region.id for region in subregions))
-        region_with_subregion = next(item for item in content if item['items_exists'])
-        self.assertEqual(subsubregion.parent_id, int(region_with_subregion['id']))

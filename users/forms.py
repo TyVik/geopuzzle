@@ -19,6 +19,9 @@ class AuthenticationForm(DefaultAuthenticationForm):
 
 
 class UsernameEmailValidation:
+    cleaned_data: dict
+    initial: dict
+
     def clean_username(self) -> str:
         username = self.cleaned_data['username'].lower()
         if (self.initial.get('username') != username) and User.objects.filter(username=username).exists():
@@ -52,7 +55,7 @@ class ProfileForm(UsernameEmailValidation, ModelForm):
         model = User
         fields = ('username', 'email', 'language', 'is_subscribed', 'image')
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super(ProfileForm, self).__init__(*args, **kwargs)
         self.fields['image'].required = False
 

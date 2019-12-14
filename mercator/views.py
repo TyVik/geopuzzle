@@ -1,4 +1,7 @@
+import re
+
 from django.conf import settings
+from django.core.cache import cache
 from django.db import connection
 from django.http import JsonResponse
 
@@ -7,39 +10,40 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from redis import StrictRedis
 
+from common.constants import DAY, WSGILanguageRequest
 from maps.models import Region
 from puzzle.models import Puzzle
 from quiz.models import Quiz
 
 
-def index(request: WSGIRequest) -> HttpResponse:
+def index(request: WSGILanguageRequest) -> HttpResponse:
     games = []
     for game in (Puzzle, Quiz):
         name = game.__name__.lower()
         games.append({
             'items': game.index_items(request.LANGUAGE_CODE),
             'name': name,
-            'link': f'{name}_map',
+            'link': game.reverse_link(),
             'caption': game.name(),
             'rules': game.description()
         })
-    return render(request, 'index.html', {'games': games})
+    return render(request, 'index.html', {'games': games, 'gmap_limit': not settings.GOOGLE_KEY})
 
 
-def infobox_by_id(request: WSGIRequest, pk: str) -> JsonResponse:
+def infobox_by_id(request: WSGILanguageRequest, pk: str) -> JsonResponse:
     obj = get_object_or_404(Region, pk=pk)
     return JsonResponse(obj.polygon_infobox[request.LANGUAGE_CODE])
 
 
-def error(request) -> HttpResponse:
+def error(request: WSGIRequest) -> HttpResponse:
     return HttpResponse('Something went wrong :(')
 
 
-def status(request) -> JsonResponse:
-    def check_redis():
+def status(request: WSGIRequest) -> JsonResponse:
+    def check_redis() -> None:
         StrictRedis.from_url(f'redis://{settings.REDIS_HOST}:6379/0').ping()
 
-    def check_database():
+    def check_database() -> None:
         connection.cursor()
 
     result = {}

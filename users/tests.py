@@ -9,6 +9,9 @@ from .models import User
 
 
 class UserTestCase(TestCase):
+    password: str
+    user: User
+
     @classmethod
     def setUpTestData(cls):
         cls.password = random_string()
@@ -16,7 +19,7 @@ class UserTestCase(TestCase):
         cls.user.set_password(cls.password)
         cls.user.save()
 
-    def _is_authenticated(self):
+    def _is_authenticated(self) -> bool:
         user = auth.get_user(self.client)
         return user.is_authenticated
 

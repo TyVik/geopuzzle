@@ -44,7 +44,8 @@ class Command(BaseCommand):
             raise CommandError('You must specify caches')
         else:
             if options['label'] not in Region.caches():
-                raise CommandError('`%s` unknown cache' % options['label'])
+                raise CommandError('`%s` unknown cache. Available: %s' %
+                                   (options['label'], ', '.join([cache for cache in Region.caches()])))
 
         query = Region.objects.all()
         if options['ids']:
