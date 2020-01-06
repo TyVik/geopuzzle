@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List
 
 from django import forms
 from django.db import connection
