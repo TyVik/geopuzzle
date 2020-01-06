@@ -1,7 +1,7 @@
 import os
 import subprocess
 from pathlib import Path
-from typing import Tuple, List, Dict
+from typing import Tuple, List, Dict, Literal
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -193,11 +193,12 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-LANGUAGES = (
+LanguageEnumType = Literal['en', 'ru']
+LANGUAGES: Tuple = (
     ('en', _('English')),
     ('ru', _('Russian')),
 )
-ALLOWED_LANGUAGES: Tuple[str, ...] = tuple([x for x, _ in LANGUAGES])
+ALLOWED_LANGUAGES: Tuple[LanguageEnumType, ...] = tuple([x for x, _ in LANGUAGES])
 LOCALE_PATHS = (
     BASE_DIR.joinpath('locale'),
 )
