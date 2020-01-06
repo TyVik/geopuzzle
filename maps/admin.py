@@ -71,7 +71,7 @@ class RegionAdmin(HierarchicalModelAdmin):
 
     def wikidata_url(self, obj: Region) -> SafeText:
         link = obj._meta._forward_fields_map['wikidata_id'].link.format(id=obj.wikidata_id)
-        return safe(f'<a href="{link}">{obj.wikidata_id}</a>')
+        return safe(f'<a href="{link}" rel="noopener">{obj.wikidata_id}</a>')
 
     def infobox_status(self, obj: Region) -> SafeText:
         result = ''
