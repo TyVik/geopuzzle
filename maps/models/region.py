@@ -16,6 +16,7 @@ from django.dispatch import receiver
 from django.utils.translation import get_language
 
 from common.cachable import cacheable
+from common.constants import Point
 from ..constants import OsmRegionData
 from ..converter import encode_geometry
 from ..fields import ExternalIdField
