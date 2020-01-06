@@ -151,7 +151,7 @@ class Region(RegionInterface, models.Model):
             point, count = calc_polygon(self._strip_polygon, force=True)
         return [point['lat'] / count, point['lng'] / count]
 
-    def infobox_status(self, lang: str) -> Dict[str, bool]:
+    def infobox_status(self, lang: settings.LanguageEnumType) -> Dict[str, bool]:
         fields = ('name', 'wiki', 'capital', 'coat_of_arms', 'flag')
         trans = self.load_translation(lang)
         result = {field: field in trans.infobox for field in fields}

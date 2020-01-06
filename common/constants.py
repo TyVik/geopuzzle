@@ -1,4 +1,4 @@
-from typing import TypedDict, Dict, List, Literal
+from typing import TypedDict, Dict, List
 
 from django.core.handlers.wsgi import WSGIRequest
 

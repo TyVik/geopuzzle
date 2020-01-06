@@ -33,7 +33,7 @@ class Game(models.Model):
     def get_absolute_url(self) -> str:
         return reverse(f'{self.__class__._meta.model_name}_map', args=(self.slug,))
 
-    def load_translation(self, lang: str) -> GameTranslation:
+    def load_translation(self, lang: settings.LanguageEnumType) -> GameTranslation:
         for translation in self.translations.all():
             if translation.language_code == lang:
                 return translation
@@ -49,14 +49,14 @@ class Game(models.Model):
         return IndexPageGame(image=self.image, slug=self.slug, name=trans.name)
 
     @classmethod
-    def index_qs(cls, language: str) -> QuerySet:
+    def index_qs(cls, language: settings.LanguageEnumType) -> QuerySet:
         return cls.objects.\
             filter(translations__language_code=language, is_published=True, on_main_page=True).\
             prefetch_related('translations').\
             order_by('translations__name')
 
     @classmethod
-    def index_items(cls, language: str) -> IndexPageGameType:
+    def index_items(cls, language: settings.LanguageEnumType) -> IndexPageGameType:
         qs = cls.index_qs(language)
         return IndexPageGameType(
             world=[item.index for item in qs.all() if item.zoom == Zoom.WORLD],
