@@ -1,5 +1,6 @@
 from admirarchy.utils import HierarchicalModelAdmin, AdjacencyList, HierarchicalChangeList, Hierarchy
 from django.contrib.gis.admin import OSMGeoAdmin
+from django.contrib.postgres.fields import JSONField
 from django.template.defaultfilters import safe
 from django.utils.safestring import SafeText
 from django.utils.translation import ugettext as _
@@ -18,6 +19,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.templatetags.static import static
 from django.urls import reverse
+from django_json_widget.widgets import JSONEditorWidget
 
 from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget
 from .models import Region, RegionTranslation, Tag, Game
@@ -52,6 +54,9 @@ class RegionChangeList(HierarchicalChangeList):
 class RegionTranslationAdmin(admin.TabularInline):
     model = RegionTranslation
     extra = 0
+    formfield_overrides = {
+        JSONField: {'widget': JSONEditorWidget},
+    }
 
 
 class RegionAdjacencyList(AdjacencyList):
@@ -68,13 +73,14 @@ class RegionAdmin(HierarchicalModelAdmin):
     actions = (update_infoboxes, update_polygons)
     formfield_overrides = {
         MultiPolygonField: {'widget': MultiPolygonWidget},
+        JSONField: {'widget': JSONEditorWidget},
     }
     hierarchy = RegionAdjacencyList('parent')
     inlines = (RegionTranslationAdmin,)
     list_per_page = 20
     fieldsets = (
         (None, {
-            'fields': (('title', 'parent', 'is_enabled'), ('osm_id', 'wikidata_id'), 'osm_data', 'polygon')
+            'fields': (('title', 'parent', 'is_enabled'), ('osm_id', 'wikidata_id'), '_osm_data', 'polygon')
         }),
     )
 

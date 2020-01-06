@@ -11,6 +11,9 @@ from maps.wikidata import Wikidata
 logger = logging.getLogger('commands')
 
 
+MAX_LEVEL = 8
+
+
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('action', metavar='action', help='One of (update)')
@@ -27,12 +30,13 @@ class Command(BaseCommand):
             'title': feature.name,
             'polygon': feature.geometry,
             'wikidata_id': feature.wikidata_id,
+            'parent': Region.objects.get(osm_id=feature.path[1]) if feature.path[1] != 0 else None,
             'osm_data': OsmRegionData(level=feature.level, boundary=feature.boundary, path=feature.path,
                                       alpha3=feature.alpha3, timezone=feature.timezone)
         }
         region, created = Region.objects.update_or_create(osm_id=feature.osm_id, defaults=defaults)
 
-        if with_wiki:
+        if with_wiki and feature.wikidata_id:
             wikidata = Wikidata(region.wikidata_id)
             parent_wiki = None if region.parent is None else region.parent.wikidata_id
             infoboxes = wikidata.get_infoboxes(parent_wiki)
@@ -46,6 +50,8 @@ class Command(BaseCommand):
             items = service.fetch_items_list()
             logger.info('Found %s descendants', len(items))
             for item in items:
+                if item.level > MAX_LEVEL:
+                    continue
                 self._update(item.id, item.level, recursive, with_wiki)
 
     def handle(self, **options):

@@ -16,7 +16,6 @@ from django.dispatch import receiver
 from django.utils.translation import get_language
 
 from common.cachable import cacheable
-from common.constants import Point, LanguageEnumType
 from ..constants import OsmRegionData
 from ..converter import encode_geometry
 from ..fields import ExternalIdField
@@ -200,7 +199,7 @@ class Region(RegionInterface, models.Model):
     def translation(self) -> RegionTranslation:
         return self.load_translation(get_language())
 
-    def load_translation(self, lang: LanguageEnumType) -> RegionTranslation:
+    def load_translation(self, lang: settings.LanguageEnumType) -> RegionTranslation:
         result = self.translations.filter(language_code=lang).first()
         if result is None:
             result = RegionTranslation.objects.create(language_code=lang, master=self, name='(empty)')

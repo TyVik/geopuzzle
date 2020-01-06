@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'admirarchy',
     'social_django',
     'django_filters',
+    'django_json_widget',
 
     'users',
     'maps',

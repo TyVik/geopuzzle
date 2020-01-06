@@ -7,9 +7,6 @@ HOUR = 60 * MINUTE
 DAY = 24 * HOUR
 
 
-LanguageEnumType = Literal['en', 'ru']
-
-
 class Point(TypedDict):
     lat: float
     lng: float
