@@ -8,6 +8,8 @@ from django.conf import settings
 from django.contrib.gis.geos import GEOSGeometry
 from django.template.loader import render_to_string
 
+from common.constants import LanguageEnumType
+
 fetch_logger = logging.getLogger('fetch_region')
 
 
@@ -40,8 +42,8 @@ class Wikidata:
         self.wikidata_id = wikidata_id
 
     @staticmethod
-    def get_links(instance: str) -> Dict[settings.LanguageEnumType, LinkDict]:
-        result: Dict[settings.LanguageEnumType, LinkDict] = {x: {'wiki': '', 'name': ''} for x in settings.ALLOWED_LANGUAGES}
+    def get_links(instance: str) -> Dict[LanguageEnumType, LinkDict]:
+        result: Dict[LanguageEnumType, LinkDict] = {x: {'wiki': '', 'name': ''} for x in settings.ALLOWED_LANGUAGES}
         response = requests.get(f'http://www.wikidata.org/entity/{instance}')
         data = response.json()
         for lang in result:
@@ -53,7 +55,7 @@ class Wikidata:
                 fetch_logger.warning('Links to wiki for %s (%s) are empty', instance, lang)
         return result
 
-    def prepare_row(self, row: Dict, lang: settings.LanguageEnumType) -> InfoboxDict:
+    def prepare_row(self, row: Dict, lang: LanguageEnumType) -> InfoboxDict:
         result = {}
         for field in row:
             value = row[field]['value']
@@ -101,6 +103,6 @@ class Wikidata:
         links = self.get_links(context['item_id'])
         return {lang: {**wiki.get(lang, {}), **links[lang]} for lang in settings.ALLOWED_LANGUAGES}
 
-    def get_infoboxes(self, parent_id: int) -> Dict[settings.LanguageEnumType, dict]:
+    def get_infoboxes(self, parent_id: int) -> Dict[LanguageEnumType, dict]:
         fetch_logger.info(f'Get infobox: {self.wikidata_id}')
         return self.query_by_wikidata_id('wikidata/regions.txt', {'country_id': parent_id, 'item_id': self.wikidata_id})

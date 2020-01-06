@@ -5,7 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import never_cache
 
-from common.constants import WSGILanguageRequest
+from common.middleware import WSGILanguageRequest
 from .forms import PuzzleForm
 from .models import Puzzle
 

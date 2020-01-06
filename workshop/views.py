@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from django.utils.translation import get_language
 from django.views.generic.list import BaseListView
 
-from common.constants import WSGILanguageRequest
+from common.middleware import WSGILanguageRequest
 from common.views import ScrollListView, AutocompleteItem
 from maps.models import Tag
 from puzzle.models import Puzzle

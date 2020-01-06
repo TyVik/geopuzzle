@@ -16,7 +16,7 @@ from django.dispatch import receiver
 from django.utils.translation import get_language
 
 from common.cachable import cacheable
-from common.constants import Point
+from common.constants import Point, LanguageEnumType
 from ..constants import OsmRegionData
 from ..converter import encode_geometry
 from ..fields import ExternalIdField
@@ -151,7 +151,7 @@ class Region(RegionInterface, models.Model):
             point, count = calc_polygon(self._strip_polygon, force=True)
         return [point['lat'] / count, point['lng'] / count]
 
-    def infobox_status(self, lang: settings.LanguageEnumType) -> Dict[str, bool]:
+    def infobox_status(self, lang: LanguageEnumType) -> Dict[str, bool]:
         fields = ('name', 'wiki', 'capital', 'coat_of_arms', 'flag')
         trans = self.load_translation(lang)
         result = {field: field in trans.infobox for field in fields}
@@ -200,7 +200,7 @@ class Region(RegionInterface, models.Model):
     def translation(self) -> RegionTranslation:
         return self.load_translation(get_language())
 
-    def load_translation(self, lang: settings.LanguageEnumType) -> RegionTranslation:
+    def load_translation(self, lang: LanguageEnumType) -> RegionTranslation:
         result = self.translations.filter(language_code=lang).first()
         if result is None:
             result = RegionTranslation.objects.create(language_code=lang, master=self, name='(empty)')

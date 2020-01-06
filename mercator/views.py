@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from redis import StrictRedis
 
-from common.constants import DAY, WSGILanguageRequest
+from common.middleware import WSGILanguageRequest
 from maps.models import Region
 from puzzle.models import Puzzle
 from quiz.models import Quiz

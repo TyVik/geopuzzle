@@ -9,6 +9,7 @@ from sentry_sdk.integrations.logging import ignore_logger
 
 from django.utils.translation import ugettext_lazy as _
 
+from common.constants import LanguageEnumType
 
 output = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], stdout=subprocess.PIPE)
 GIT_REVISION = output.stdout.decode().strip()
@@ -193,7 +194,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-LanguageEnumType = Literal['en', 'ru']
 LANGUAGES: Tuple = (
     ('en', _('English')),
     ('ru', _('Russian')),

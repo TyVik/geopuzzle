@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import never_cache
 
-from common.constants import WSGILanguageRequest
+from common.middleware import WSGILanguageRequest
 from .forms import QuizInfoboxForm
 from .models import Quiz
 
