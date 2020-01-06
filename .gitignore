@@ -13,7 +13,7 @@ geojson/
 .coverage
 .env
 .sentryclirc
-geopuzzle.sql.zip
+geopuzzle.sql*
 cache.zip
 reload
 frontend/coverage

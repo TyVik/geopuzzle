@@ -3,7 +3,11 @@ from django.http import HttpResponse
 from django.utils import translation
 from django.utils.deprecation import MiddlewareMixin
 
-from common.constants import WSGILanguageRequest
+from common.constants import LanguageEnumType
+
+
+class WSGILanguageRequest(WSGIRequest):
+    LANGUAGE_CODE: LanguageEnumType
 
 
 class CORSMiddleware(MiddlewareMixin):

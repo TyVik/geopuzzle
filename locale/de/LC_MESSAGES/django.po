@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-01 06:37+0000\n"
+"POT-Creation-Date: 2020-01-06 11:58+0000\n"
 "PO-Revision-Date: 2018-11-09 21:01\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: German\n"
@@ -16,75 +16,19 @@ msgstr ""
 "X-Crowdin-Language: de\n"
 "X-Crowdin-File: /develop/locale/ru/LC_MESSAGES/django.po\n"
 
-#: maps/admin.py:28
-msgid "Infoboxes were updated."
-msgstr ""
-
-#: maps/admin.py:29
-msgid "Update infoboxes"
-msgstr ""
-
-#: maps/admin.py:35
-msgid "Polygons were updated."
-msgstr ""
-
-#: maps/admin.py:36
-msgid "Update polygons"
-msgstr ""
-
-#: maps/admin.py:100
+#: maps/admin.py:83
 msgid "Infobox"
-msgstr ""
-
-#: maps/admin.py:106
-msgid "Infobox was updated successfully."
-msgstr ""
-
-#: maps/admin.py:113
-msgid "Polygon was imported successfully."
 msgstr ""
 
 #: maps/apps.py:6
 msgid "maps"
 msgstr ""
 
-#: maps/templates/admin/maps/country/change_form.html:10
-#: maps/templates/admin/maps/region/change_form.html:10
-msgid "History"
-msgstr ""
-
-#: maps/templates/admin/maps/country/change_form.html:13
-msgid "Import KML"
-msgstr ""
-
-#: maps/templates/admin/maps/country/change_form.html:15
-#: maps/templates/admin/maps/region/change_form.html:16
-msgid "View on site"
-msgstr ""
-
-#: maps/templates/admin/maps/country/map_kml_import.html:14
-#: maps/templates/admin/maps/region/map_kml_import.html:14
-msgid "Please correct the error below."
-msgstr ""
-
-#: maps/templates/admin/maps/country/map_kml_import.html:15
-#: maps/templates/admin/maps/region/map_kml_import.html:15
-msgid "Please correct the errors below."
-msgstr ""
-
-#: maps/templates/admin/maps/region/change_form.html:13
-msgid "Update Infobox"
-msgstr ""
-
-#: maps/templates/admin/maps/region/change_form.html:14
-msgid "Import from OSM"
-msgstr ""
-
-#: mercator/settings/settings.py:195
+#: mercator/settings/settings.py:198
 msgid "English"
 msgstr ""
 
-#: mercator/settings/settings.py:196
+#: mercator/settings/settings.py:199
 msgid "Russian"
 msgstr ""
 
@@ -99,19 +43,19 @@ msgid ""
 "you can collect a country from regions or whole continents from countries!"
 msgstr ""
 
-#: puzzle/views.py:28
+#: puzzle/views.py:29
 msgid "Puzzle \"{}\" has been assembled! Your time is "
 msgstr ""
 
-#: puzzle/views.py:28 quiz/views.py:30
+#: puzzle/views.py:29 quiz/views.py:30
 msgid "World map"
 msgstr ""
 
-#: quiz/models.py:29
+#: quiz/models.py:31
 msgid "Quiz"
 msgstr ""
 
-#: quiz/models.py:33
+#: quiz/models.py:35
 msgid ""
 "In the Quiz you need find the country by flag, emblem or the capital. Did "
 "you know that Monaco and Indonesia have the same flags? And that the flags "
@@ -183,51 +127,53 @@ msgstr ""
 msgid ""
 "This is a non-profit project, but servers and other resources are not free "
 "for me. Please, support the project on <a href=\"https://www.patreon.com/"
-"bePatron?u=11576139\">Patreon</a>."
+"bePatron?u=11576139\" target=\"_blank\" rel=\"noopener\">Patreon</a>."
 msgstr ""
 
 #: templates/index.html:79
 msgid ""
 "All suggestions for improvement can be sent to me via\n"
-"                <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle"
-"\">email</a>,\n"
-"                <a href=\"https://vk.com/tyvik\" target=\"_blank\">Vk</a>\n"
+"                <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\" "
+"target=\"_blank\" rel=\"noopener\">email</a>,\n"
+"                <a href=\"https://vk.com/tyvik\" target=\"_blank\" rel="
+"\"noopener\">Vk</a>\n"
 "                or <a href=\"https://www.facebook.com/TyVikZero\" target="
-"\"_blank\">facebook</a>,\n"
+"\"_blank\" rel=\"noopener\">facebook</a>,\n"
 "                and also add an issue on <a href=\"https://github.com/TyVik/"
-"geopuzzle\" target=\"_blank\">GitHub</a>."
+"geopuzzle\" target=\"_blank\" rel=\"noopener\">GitHub</a>."
 msgstr ""
 
 #: templates/index.html:86
 msgid ""
 "The project based on open data:\n"
-"                <a href=\"https://wambachers-osm.website/boundaries/\">OSM "
-"Admin Boundaries Map</a> for region polygons and\n"
-"                <a href=\"https://www.wikidata.org/wiki/Wikidata:Main_Page"
-"\">Wikidata</a> for information in infoboxes."
+"                <a href=\"https://wambachers-osm.website/boundaries/\" "
+"target=\"_blank\" rel=\"noopener\">OSM Admin Boundaries Map</a> for region "
+"polygons and\n"
+"                <a href=\"https://www.wikidata.org/wiki/Wikidata:Main_Page\" "
+"target=\"_blank\" rel=\"noopener\">Wikidata</a> for information in infoboxes."
 msgstr ""
 
 #: templates/share_image.html:8
 msgid "Geographical game on the map"
 msgstr ""
 
-#: users/forms.py:15 users/forms.py:35
+#: users/forms.py:17 users/forms.py:40
 msgid "Username"
 msgstr ""
 
-#: users/forms.py:17 users/forms.py:38
+#: users/forms.py:19 users/forms.py:43
 msgid "Password"
 msgstr ""
 
-#: users/models.py:9
+#: users/models.py:8
 msgid "Avatar"
 msgstr ""
 
-#: users/models.py:10
+#: users/models.py:9
 msgid "Language"
 msgstr ""
 
-#: users/models.py:11
+#: users/models.py:10
 msgid "Subscribed on news"
 msgstr ""
 

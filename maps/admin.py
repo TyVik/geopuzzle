@@ -1,40 +1,19 @@
 from admirarchy.utils import HierarchicalModelAdmin, AdjacencyList, HierarchicalChangeList, Hierarchy
 from django.contrib.gis.admin import OSMGeoAdmin
+from django.contrib.postgres.fields import JSONField
 from django.template.defaultfilters import safe
 from django.utils.safestring import SafeText
 from django.utils.translation import ugettext as _
-from typing import List
 
-from django.conf.urls import url
 from django.utils.translation import get_language
 from django.contrib import admin
-from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.messages import success
-from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import ImageField
 from django.contrib.gis.db.models import MultiPolygonField
-from django.http import HttpResponse
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
 from django.templatetags.static import static
-from django.urls import reverse
+from django_json_widget.widgets import JSONEditorWidget
 
 from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget
 from .models import Region, RegionTranslation, Tag, Game
-
-
-def update_infoboxes(modeladmin, request, queryset) -> None:
-    for area in queryset:
-        area.update_infobox()
-    success(request, _('Infoboxes were updated.'))
-update_infoboxes.short_description = _("Update infoboxes")
-
-
-def update_polygons(modeladmin, request, queryset) -> None:
-    for area in queryset:
-        area.fetch_polygon()
-    success(request, _('Polygons were updated.'))
-update_polygons.short_description = _("Update polygons")
 
 
 class RegionChangeList(HierarchicalChangeList):
@@ -52,6 +31,9 @@ class RegionChangeList(HierarchicalChangeList):
 class RegionTranslationAdmin(admin.TabularInline):
     model = RegionTranslation
     extra = 0
+    formfield_overrides = {
+        JSONField: {'widget': JSONEditorWidget},
+    }
 
 
 class RegionAdjacencyList(AdjacencyList):
@@ -65,16 +47,16 @@ class RegionAdjacencyList(AdjacencyList):
 class RegionAdmin(HierarchicalModelAdmin):
     list_display = ('__str__', 'wikidata_url', 'osm_id', 'infobox_status')
     search_fields = ('id', 'title', 'wikidata_id')
-    actions = (update_infoboxes, update_polygons)
     formfield_overrides = {
         MultiPolygonField: {'widget': MultiPolygonWidget},
+        JSONField: {'widget': JSONEditorWidget},
     }
     hierarchy = RegionAdjacencyList('parent')
     inlines = (RegionTranslationAdmin,)
     list_per_page = 20
     fieldsets = (
         (None, {
-            'fields': (('title', 'parent', 'is_enabled'), ('osm_id', 'wikidata_id'), 'osm_data', 'polygon')
+            'fields': (('title', 'parent', 'is_enabled'), ('osm_id', 'wikidata_id'), '_osm_data', 'polygon')
         }),
     )
 
@@ -89,7 +71,7 @@ class RegionAdmin(HierarchicalModelAdmin):
 
     def wikidata_url(self, obj: Region) -> SafeText:
         link = obj._meta._forward_fields_map['wikidata_id'].link.format(id=obj.wikidata_id)
-        return safe(f'<a href="{link}">{obj.wikidata_id}</a>')
+        return safe(f'<a href="{link}" rel="noopener">{obj.wikidata_id}</a>')
 
     def infobox_status(self, obj: Region) -> SafeText:
         result = ''
@@ -100,26 +82,6 @@ class RegionAdmin(HierarchicalModelAdmin):
         return safe(result)
     infobox_status.short_description = _('Infobox')
     infobox_status.allow_tags = True
-
-    def infobox_import(self, request: WSGIRequest, pk: str) -> HttpResponse:
-        region = get_object_or_404(Region, pk=pk)
-        region.update_infobox()
-        success(request, _('Infobox was updated successfully.'))
-        url = reverse('admin:{app}_{model}_change'.format(app=self.model._meta.app_label, model='region'), args=(pk,))
-        return HttpResponseRedirect(url)
-
-    def osm_import(self, request: WSGIRequest, pk: str) -> HttpResponse:
-        region = get_object_or_404(Region, pk=pk)
-        region.fetch_polygon()
-        success(request, _('Polygon was imported successfully.'))
-        url = reverse('admin:{app}_{model}_change'.format(app=self.model._meta.app_label, model='region'), args=(pk,))
-        return HttpResponseRedirect(url)
-
-    def get_urls(self) -> List:
-        return [
-            url(r'^(.+)/infobox_import/$', staff_member_required(self.infobox_import), name='infobox_import'),
-            url(r'^(.+)/osm_import/$', staff_member_required(self.osm_import), name='osm_import'),
-        ] + super(RegionAdmin, self).get_urls()
 
 
 class GameAdmin(ImageMixin, OSMGeoAdmin):

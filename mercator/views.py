@@ -1,7 +1,4 @@
-import re
-
 from django.conf import settings
-from django.core.cache import cache
 from django.db import connection
 from django.http import JsonResponse
 
@@ -10,7 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from redis import StrictRedis
 
-from common.constants import DAY, WSGILanguageRequest
+from common.middleware import WSGILanguageRequest
 from maps.models import Region
 from puzzle.models import Puzzle
 from quiz.models import Quiz

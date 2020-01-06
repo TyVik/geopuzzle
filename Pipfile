@@ -4,7 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-python-coveralls = "*"
+coveralls = "*"
 factory-boy = "*"
 django-extensions = "*"
 gprof2dot = "*"
@@ -34,6 +34,7 @@ sentry-sdk = "*"
 django-filter = "*"
 tqdm = "*"
 django-enumfield = "*"
+django-json-widget = "*"
 
 [requires]
 python_version = "3.8"

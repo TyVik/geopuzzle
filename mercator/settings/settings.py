@@ -1,7 +1,7 @@
 import os
 import subprocess
 from pathlib import Path
-from typing import Tuple, List, Dict
+from typing import Tuple, List, Dict, Literal
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -9,6 +9,7 @@ from sentry_sdk.integrations.logging import ignore_logger
 
 from django.utils.translation import ugettext_lazy as _
 
+from common.constants import LanguageEnumType
 
 output = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], stdout=subprocess.PIPE)
 GIT_REVISION = output.stdout.decode().strip()
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
     'admirarchy',
     'social_django',
     'django_filters',
+    'django_json_widget',
 
     'users',
     'maps',
@@ -192,11 +194,11 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-LANGUAGES = (
+LANGUAGES: Tuple = (
     ('en', _('English')),
     ('ru', _('Russian')),
 )
-ALLOWED_LANGUAGES: Tuple[str, ...] = tuple([x for x, _ in LANGUAGES])
+ALLOWED_LANGUAGES: Tuple[LanguageEnumType, ...] = tuple([x for x, _ in LANGUAGES])
 LOCALE_PATHS = (
     BASE_DIR.joinpath('locale'),
 )

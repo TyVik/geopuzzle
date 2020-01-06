@@ -8,6 +8,7 @@ from django.core.files.base import ContentFile
 from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
 
+from common.constants import LanguageEnumType
 from common.utils import random_string
 from .models import User
 
@@ -45,7 +46,7 @@ class RegistrationForm(UsernameEmailValidation, forms.Form):
         model = User
         fields = ('username', 'email', 'password')
 
-    def save(self, language: str) -> User:
+    def save(self, language: LanguageEnumType) -> User:
         self.cleaned_data['language'] = language if language in settings.ALLOWED_LANGUAGES else 'en'
         return User.objects.create_user(**self.cleaned_data)
 

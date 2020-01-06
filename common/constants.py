@@ -1,10 +1,10 @@
-from typing import TypedDict, Dict, List
-
-from django.core.handlers.wsgi import WSGIRequest
+from typing import TypedDict, Dict, List, Literal
 
 MINUTE = 60
 HOUR = 60 * MINUTE
 DAY = 24 * HOUR
+
+LanguageEnumType = Literal['en', 'ru']
 
 
 class Point(TypedDict):
@@ -15,7 +15,3 @@ class Point(TypedDict):
 class GameQuestions(TypedDict):
     questions: List[Dict]
     solved: List[Dict]
-
-
-class WSGILanguageRequest(WSGIRequest):
-    LANGUAGE_CODE: str

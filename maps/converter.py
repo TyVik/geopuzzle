@@ -1,6 +1,6 @@
-'''Provides utility functions for encoding and decoding linestrings using the
+"""Provides utility functions for encoding and decoding linestrings using the
 Google encoded polyline algorithm.
-'''
+"""
 import math
 from typing import Tuple, List, Union, Iterable, Optional
 
@@ -11,7 +11,7 @@ PointList = Tuple[Point, ...]
 
 
 def encode_coords(coords: PointList) -> str:
-    '''Encodes a polyline using Google's polyline algorithm
+    """Encodes a polyline using Google's polyline algorithm
 
     See http://code.google.com/apis/maps/documentation/polylinealgorithm.html
     for more information.
@@ -21,7 +21,7 @@ def encode_coords(coords: PointList) -> str:
     :type coords: list
     :returns: Google-encoded polyline string.
     :rtype: string
-    '''
+    """
 
     result = []
 
@@ -64,7 +64,7 @@ def _encode_value(value: int) -> Iterable[str]:
 
 
 def decode(point_str: str) -> List[Point]:
-    '''Decodes a polyline that has been encoded using Google's algorithm
+    """Decodes a polyline that has been encoded using Google's algorithm
     http://code.google.com/apis/maps/documentation/polylinealgorithm.html
 
     This is a generic method that returns a list of (latitude, longitude)
@@ -75,7 +75,7 @@ def decode(point_str: str) -> List[Point]:
     :returns: List of 2-tuples where each tuple is (latitude, longitude)
     :rtype: list
 
-    '''
+    """
 
     # sone coordinate offset is represented by 4 to 5 binary chunks
     coord_chunks: List[List[int]] = [[]]
