@@ -1,11 +1,8 @@
-import json
-import logging
-import os
-from copy import deepcopy
-from zipfile import ZipFile
+from __future__ import annotations
 
-import requests
-from django.contrib.gis.geos import GEOSGeometry, MultiPolygon, Polygon
+from copy import deepcopy
+
+from django.contrib.gis.geos import MultiPolygon, Polygon
 from typing import List, Dict, Union, Tuple
 
 from django.conf import settings
@@ -17,15 +14,12 @@ from django.db.models import QuerySet
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import get_language
-from io import BytesIO
 
 from common.cachable import cacheable
-from common.constants import Point
+from common.constants import Point, LanguageEnumType
+from ..constants import OsmRegionData
 from ..converter import encode_geometry
 from ..fields import ExternalIdField
-from ..infobox import query_by_wikidata_id
-
-fetch_logger = logging.getLogger('fetch_region')
 
 
 class RegionInterface(object):
@@ -92,7 +86,7 @@ class Region(RegionInterface, models.Model):
     modified = models.DateTimeField(auto_now=True)
     wikidata_id = ExternalIdField(max_length=20, link='https://www.wikidata.org/wiki/{id}', null=True)
     osm_id = models.PositiveIntegerField(unique=True)
-    osm_data = JSONField(default=dict)
+    _osm_data = JSONField(default=dict, db_column='osm_data')
     is_enabled = models.BooleanField(default=True)
 
     objects = RegionManager()
@@ -157,7 +151,7 @@ class Region(RegionInterface, models.Model):
             point, count = calc_polygon(self._strip_polygon, force=True)
         return [point['lat'] / count, point['lng'] / count]
 
-    def infobox_status(self, lang: str) -> Dict:
+    def infobox_status(self, lang: str) -> Dict[str, bool]:
         fields = ('name', 'wiki', 'capital', 'coat_of_arms', 'flag')
         trans = self.load_translation(lang)
         result = {field: field in trans.infobox for field in fields}
@@ -194,95 +188,19 @@ class Region(RegionInterface, models.Model):
                 result.append(name)
         return result
 
-    def fetch_polygon(self) -> None:
-        def content():
-            cache = os.path.join(settings.GEOJSON_DIR, '{}.geojson'.format(self.osm_id))
-            if not os.path.exists(cache):
-                url = settings.OSM_URL.format(id=self.osm_id, key=settings.OSM_KEY, level=self.osm_data['level'])
-                fetch_logger.info(f'Download from {url}')
-                response = requests.get(url)
-                if response.status_code != 200:
-                    raise Exception('Bad request')
-                zipfile = ZipFile(BytesIO(response.content))
-                zip_names = zipfile.namelist()
-                if len(zip_names) != 1:
-                    raise Exception('Too many geometries')
-                filename = zip_names.pop()
-                with open(cache, 'wb') as c:
-                    c.write(zipfile.open(filename).read())
-            with open(cache, 'r') as c:
-                return json.loads(c.read())
+    @property
+    def osm_data(self) -> OsmRegionData:
+        return OsmRegionData(**self._osm_data)
 
-        def update_self(properties, geometry, type):
-            def extract_data(properties):
-                result = {'level': int(properties['admin_level'])}
-                fields = ['boundary', 'ISO3166-1:alpha3', 'timezone']
-                for field in fields:
-                    result[field] = properties['alltags'].get(field, None)
-                return result
-
-            self.title = properties['name']
-            self.polygon = GEOSGeometry(json.dumps(geometry))
-            self.wikidata_id = properties.get('wikidata')
-            self.osm_id = properties['id']
-            self.osm_data = extract_data(properties)
-
-        fetch_logger.info(f'Update polygon: {self.id}')
-        feature = content()['features'][0]
-        update_self(**feature)
-        self.save()
-
-        for lang in settings.ALLOWED_LANGUAGES:
-            trans = self.load_translation(lang)
-            trans.master = self
-            trans.name = self.title
-            trans.save()
-
-    def fetch_items_list(self) -> Dict:
-        params = {'caller': 'boundaries-4.3.14', 'database': 'planet3', 'parent': self.osm_id}
-        headers = {
-            'Referer': 'https://wambachers-osm.website/boundaries/',
-            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36',
-            'X-Requested-With': 'XMLHttpRequest',
-            'Cookie': 'JSESSIONID=node01ln7zb8ljtnbacctakke8yb6s49.node0; osm_boundaries_map=1%7C40.65536999999962%7C45.25161549584642%7C10%7C0BT%7Copen; osm_boundaries_base=4%7Cfalse%7Cjson%7Czip%7Cnull%7Cfalse%7Clevels%7Cland%7C4.3%7Ctrue%7C3',
-        }
-        fetch_logger.info(f'Get items: {self.id}')
-        response = requests.post('https://wambachers-osm.website/boundaries/getJsTree6', params=params, headers=headers)
-        items = response.json()
-        fetch_logger.info(f'Count items for {self.id}: {len(items)}')
-        return items
-
-    def fetch_items(self) -> None:
-        for item in self.fetch_items_list():
-            if item['data']['admin_level'] >= 8:
-                continue
-            region, _ = Region.objects.get_or_create(osm_id=item['id'], defaults={'parent': self, 'osm_data': {'level': item['data']['admin_level']}})
-            region.fetch_polygon()
-            region.fetch_infobox()
-
-    def fetch_infobox(self) -> None:
-        fetch_logger.info(f'Get infobox: {self.wikidata_id}')
-        if self.wikidata_id is None or self.wikidata_id == '':
-            rows = {lang: {} for lang in settings.ALLOWED_LANGUAGES}
-        else:
-            wikidata_id = None if self.parent is None else self.parent.wikidata_id
-            rows = query_by_wikidata_id('wikidata/regions.txt',
-                                        {'country_id': wikidata_id, 'item_id': self.wikidata_id})
-        for lang, infobox in rows.items():
-            fetch_logger.info(f'Update infobox: {lang}')
-            if 'name' not in infobox:
-                infobox['name'] = self.title
-            trans = self.load_translation(lang)
-            trans.master = self
-            trans.infobox = infobox
-            trans.name = infobox['name']
-            trans.save()
+    @osm_data.setter
+    def osm_data(self, data: OsmRegionData) -> None:
+        self._osm_data = data
 
     @property
-    def translation(self) -> 'RegionTranslation':
+    def translation(self) -> RegionTranslation:
         return self.load_translation(get_language())
 
-    def load_translation(self, lang: str) -> 'RegionTranslation':
+    def load_translation(self, lang: LanguageEnumType) -> RegionTranslation:
         result = self.translations.filter(language_code=lang).first()
         if result is None:
             result = RegionTranslation.objects.create(language_code=lang, master=self, name='(empty)')

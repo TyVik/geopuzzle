@@ -1,10 +1,13 @@
-from typing import TypedDict, Dict, List
+from typing import TypedDict, Dict, List, Literal
 
 from django.core.handlers.wsgi import WSGIRequest
 
 MINUTE = 60
 HOUR = 60 * MINUTE
 DAY = 24 * HOUR
+
+
+LanguageEnumType = Literal['en', 'ru']
 
 
 class Point(TypedDict):

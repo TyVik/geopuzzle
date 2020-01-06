@@ -39,3 +39,11 @@ class InitGameParams(TypedDict):
     zoom: Zoom
     center: Point
     options: InitGameMapOptions
+
+
+class OsmRegionData(TypedDict):
+    level: int
+    boundary: str
+    path: List[int]
+    alpha3: str
+    timezone: str

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from django.conf import settings
 from django.contrib.gis.db.models import PointField
 from django.db import models
@@ -31,7 +33,7 @@ class Game(models.Model):
     def get_absolute_url(self) -> str:
         return reverse(f'{self.__class__._meta.model_name}_map', args=(self.slug,))
 
-    def load_translation(self, lang: str) -> 'GameTranslation':
+    def load_translation(self, lang: str) -> GameTranslation:
         for translation in self.translations.all():
             if translation.language_code == lang:
                 return translation
