@@ -1,7 +1,7 @@
 import os
 import subprocess
 from pathlib import Path
-from typing import Tuple, List, Dict, Literal
+from typing import Tuple, List, Dict
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -74,8 +74,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-# if DEBUG:
-#     MIDDLEWARE.append('common.middleware.CORSMiddleware')
 
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',

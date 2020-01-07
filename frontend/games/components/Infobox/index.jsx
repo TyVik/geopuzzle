@@ -43,7 +43,7 @@ class Infobox extends React.Component {
           <span>&times;</span>
         </button>
         <div className="row_name">
-          {this.props.name} <sup><a href={this.props.wiki} target="_blank" rel="noopener">wiki</a></sup>
+          {this.props.name} <sup><a href={this.props.wiki} target="_blank" rel="noopener noreferrer">wiki</a></sup>
         </div>
         <i
           className={"fas fa-angle-" + (this.state.collapse ? 'up' : 'down')}
@@ -63,7 +63,7 @@ class Infobox extends React.Component {
               {this.props.capital &&
                 <tr>
                   <td><Msg id="capital"/></td>
-                  <td><a href={this.props.capital.wiki} target="_blank" rel="noopener">{this.props.capital.name}</a></td>
+                  <td><a href={this.props.capital.wiki} target="_blank" rel="noopener noreferrer">{this.props.capital.name}</a></td>
                 </tr>}
               {this.renderAttribute('area')}
               {this.renderAttribute('population')}

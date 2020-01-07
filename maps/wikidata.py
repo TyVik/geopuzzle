@@ -44,14 +44,14 @@ class Wikidata:
     @staticmethod
     def get_links(instance: str) -> Dict[LanguageEnumType, LinkDict]:
         result: Dict[LanguageEnumType, LinkDict] = {x: {'wiki': '', 'name': ''} for x in settings.ALLOWED_LANGUAGES}
-        response = requests.get(f'http://www.wikidata.org/entity/{instance}')
+        response = requests.get(f'https://www.wikidata.org/entity/{instance}')
         data = response.json()
         for lang in result:
             try:
                 links = data['entities'][instance]['sitelinks'][f'{lang}wiki']
                 result[lang]['wiki'] = unquote(links['url'], 'utf-8')
                 result[lang]['name'] = links['title']
-            except:
+            except KeyError:
                 fetch_logger.warning('Links to wiki for %s (%s) are empty', instance, lang)
         return result
 

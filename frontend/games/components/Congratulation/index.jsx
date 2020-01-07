@@ -38,18 +38,18 @@ class Congratulation extends React.Component {
       <Modal.Body>{text}</Modal.Body>
       <Modal.Footer>
         <div className="pull-right">
-          <a className="btn btn-social-icon btn-vk" target="_blank"
+          <a className="btn btn-social-icon btn-vk" target="_blank" rel="noopener noreferrer"
              href={"https://vk.com/share.php?url=" + this.props.url + "&title=" + text}>
             <i className="fab fa-vk" />
           </a>
           <a className="btn btn-social-icon btn-facebook"
              href="#" onClick={this.share_fb}
-             target="_blank">
+             target="_blank" rel="noopener noreferrer">
             <i className="fab fa-facebook" />
           </a>
           <a className="btn btn-social-icon btn-twitter"
              href={"https://twitter.com/intent/tweet?text=" + text + "&url=" + this.props.url + "&hashtags=geopuzzle"}
-             target="_blank">
+             target="_blank" rel="noopener noreferrer">
             <i className="fab fa-twitter" />
           </a>
         </div>

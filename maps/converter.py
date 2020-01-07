@@ -155,7 +155,7 @@ def normalize_polygon(polygon: Union[Polygon, MultiPolygon], precision) -> Union
                 steps = max(abs(delta[0]), abs(delta[1]))
                 if steps > 1:
                     delta_coord = (delta[0] * 0.4 / steps, delta[1] * 0.4 / steps)
-                    for i in range(steps):
+                    for _ in range(steps):
                         prev = result[-1]
                         result.append((prev[0] + delta_coord[0], prev[1] + delta_coord[1]))
                 result.append(coord)

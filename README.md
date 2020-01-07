@@ -2,6 +2,16 @@
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=Fbm86tXoBBqACUnFaJqP)](https://www.browserstack.com/automate/public-build/Fbm86tXoBBqACUnFaJqP)
 [![Coverage Status](https://coveralls.io/repos/github/TyVik/geopuzzle/badge.svg?branch=develop)](https://coveralls.io/github/TyVik/geopuzzle?branch=develop)
 
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/TyVik/geopuzzle.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/TyVik/geopuzzle/alerts/)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/TyVik/geopuzzle.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/TyVik/geopuzzle/context:python)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/TyVik/geopuzzle.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/TyVik/geopuzzle/context:javascript)
+
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=TyVik_geopuzzle&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=TyVik_geopuzzle)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TyVik_geopuzzle&metric=alert_status)](https://sonarcloud.io/dashboard?id=TyVik_geopuzzle)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=TyVik_geopuzzle&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=TyVik_geopuzzle)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=TyVik_geopuzzle&metric=security_rating)](https://sonarcloud.io/dashboard?id=TyVik_geopuzzle)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=TyVik_geopuzzle&metric=sqale_index)](https://sonarcloud.io/dashboard?id=TyVik_geopuzzle)
+
 # Intro
 
 ![geopuzzle](https://github.com/TyVik/geopuzzle/raw/1e8c970da66e35d8e11f9805355c7d041c7ebc95/static/images/puzzle.gif) 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-06 11:58+0000\n"
+"POT-Creation-Date: 2020-01-07 07:41+0000\n"
 "PO-Revision-Date: 2018-11-09 21:01\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: French\n"
@@ -24,11 +24,11 @@ msgstr ""
 msgid "maps"
 msgstr ""
 
-#: mercator/settings/settings.py:198
+#: mercator/settings/settings.py:196
 msgid "English"
 msgstr ""
 
-#: mercator/settings/settings.py:199
+#: mercator/settings/settings.py:197
 msgid "Russian"
 msgstr ""
 
@@ -134,23 +134,24 @@ msgstr ""
 msgid ""
 "All suggestions for improvement can be sent to me via\n"
 "                <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\" "
-"target=\"_blank\" rel=\"noopener\">email</a>,\n"
+"target=\"_blank\" rel=\"noopener noreferrer\">email</a>,\n"
 "                <a href=\"https://vk.com/tyvik\" target=\"_blank\" rel="
-"\"noopener\">Vk</a>\n"
+"\"noopener noreferrer\">Vk</a>\n"
 "                or <a href=\"https://www.facebook.com/TyVikZero\" target="
-"\"_blank\" rel=\"noopener\">facebook</a>,\n"
+"\"_blank\" rel=\"noopener noreferrer\">facebook</a>,\n"
 "                and also add an issue on <a href=\"https://github.com/TyVik/"
-"geopuzzle\" target=\"_blank\" rel=\"noopener\">GitHub</a>."
+"geopuzzle\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a>."
 msgstr ""
 
 #: templates/index.html:86
 msgid ""
 "The project based on open data:\n"
 "                <a href=\"https://wambachers-osm.website/boundaries/\" "
-"target=\"_blank\" rel=\"noopener\">OSM Admin Boundaries Map</a> for region "
-"polygons and\n"
+"target=\"_blank\" rel=\"noopener noreferrer\">OSM Admin Boundaries Map</a> "
+"for region polygons and\n"
 "                <a href=\"https://www.wikidata.org/wiki/Wikidata:Main_Page\" "
-"target=\"_blank\" rel=\"noopener\">Wikidata</a> for information in infoboxes."
+"target=\"_blank\" rel=\"noopener noreferrer\">Wikidata</a> for information "
+"in infoboxes."
 msgstr ""
 
 #: templates/share_image.html:8
