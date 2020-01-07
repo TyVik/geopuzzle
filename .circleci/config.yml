@@ -102,6 +102,13 @@ jobs:
     - image: dmoscrop/circleci-sonar-scanner-docker
     working_directory: ~/repo
     steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - coverage-frontend-{{ .Revision }}
+      - restore_cache:
+          keys:
+            - coverage-backend-{{ .Revision }}
       - run: .circleci/sonarqube.sh
 
   deploy:
