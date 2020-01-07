@@ -79,9 +79,9 @@ jobs:
           paths:
             - coverage.xml
 
-  integrations:
+  coverage:
     docker:
-    - image: dmoscrop/circleci-sonar-scanner-docker
+      - image: tyvik/geopuzzle:app
     working_directory: ~/repo
     steps:
       - checkout
@@ -96,6 +96,12 @@ jobs:
           command: pipenv install --dev --system
       - run: coveralls
       - run: codecov
+
+  sonarqube:
+    docker:
+    - image: dmoscrop/circleci-sonar-scanner-docker
+    working_directory: ~/repo
+    steps:
       - run: .circleci/sonarqube.sh
 
   deploy:
@@ -165,7 +171,14 @@ workflows:
           filters:
             branches:
               ignore: master
-      - integrations:
+      - sonarqube:
+          requires:
+            - django
+            - jest
+          filters:
+            branches:
+              ignore: master
+      - coverage:
           requires:
             - django
             - jest
