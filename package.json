@@ -73,8 +73,8 @@
     "react-dom": "^16.12.0",
     "react-final-form": "4.1.0",
     "react-google-maps": "^9.4.5",
-    "react-infinite-scroll-component": "^4.5.3",
-    "react-intl": "^3.3.2",
+    "react-infinite-scroll-component": "^5.0.4",
+    "react-intl": "^3.9.3",
     "react-select": "^3.0.8",
     "react-transition-group": "^4.3.0",
     "url-search-params-polyfill": "^7.0.1"
