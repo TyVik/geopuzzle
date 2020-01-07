@@ -11,6 +11,7 @@ gprof2dot = "*"
 boto3 = "*"
 mypy = "*"
 django-stubs = "*"
+codecov = "*"
 
 [packages]
 django = "<3.0"

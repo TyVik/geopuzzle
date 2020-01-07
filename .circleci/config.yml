@@ -74,7 +74,6 @@ jobs:
           command: |
             coverage report
             coverage xml
-            coveralls
       - save_cache:
           key: coverage-backend-{{ .Revision }}
           paths:
@@ -92,6 +91,8 @@ jobs:
       - restore_cache:
           keys:
             - coverage-backend-{{ .Revision }}
+      - run: coveralls
+      - run: codecov
       - run: .circleci/sonarqube.sh
 
   deploy:
