@@ -79,7 +79,7 @@ jobs:
           paths:
             - coverage.xml
 
-  sonarqube:
+  integrations:
     docker:
     - image: dmoscrop/circleci-sonar-scanner-docker
     working_directory: ~/repo
@@ -91,6 +91,9 @@ jobs:
       - restore_cache:
           keys:
             - coverage-backend-{{ .Revision }}
+      - run:
+          name: Install dev requirements
+          command: pipenv install --dev --system
       - run: coveralls
       - run: codecov
       - run: .circleci/sonarqube.sh
@@ -162,7 +165,7 @@ workflows:
           filters:
             branches:
               ignore: master
-      - sonarqube:
+      - integrations:
           requires:
             - django
             - jest
