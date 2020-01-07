@@ -24,7 +24,7 @@ exports[`shallow <Infobox /> components check props: infobox 1`] = `
       <sup>
         <a
           href="wiki"
-          rel="noopener"
+          rel="noopener noreferrer"
           target="_blank"
         >
           wiki
@@ -71,7 +71,7 @@ exports[`shallow <Infobox /> components check props: infobox 1`] = `
             <td>
               <a
                 href="capital.wiki"
-                rel="noopener"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 capital.name
@@ -139,7 +139,7 @@ exports[`shallow <Infobox /> components check props: infobox-empty 1`] = `
        
       <sup>
         <a
-          rel="noopener"
+          rel="noopener noreferrer"
           target="_blank"
         >
           wiki
@@ -219,7 +219,7 @@ exports[`shallow <Infobox /> components click collapse: infobox 1`] = `
       <sup>
         <a
           href="wiki"
-          rel="noopener"
+          rel="noopener noreferrer"
           target="_blank"
         >
           wiki
@@ -266,7 +266,7 @@ exports[`shallow <Infobox /> components click collapse: infobox 1`] = `
             <td>
               <a
                 href="capital.wiki"
-                rel="noopener"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 capital.name
@@ -349,7 +349,7 @@ exports[`shallow <Infobox /> components click collapse: infobox-collapse 1`] = `
       <sup>
         <a
           href="wiki"
-          rel="noopener"
+          rel="noopener noreferrer"
           target="_blank"
         >
           wiki
@@ -396,7 +396,7 @@ exports[`shallow <Infobox /> components click collapse: infobox-collapse 1`] = `
             <td>
               <a
                 href="capital.wiki"
-                rel="noopener"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 capital.name

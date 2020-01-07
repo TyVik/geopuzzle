@@ -29,6 +29,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
       <a
         className="btn btn-social-icon btn-vk"
         href="https://vk.com/share.php?url=url&title=Congratulations! Your result is: result."
+        rel="noopener noreferrer"
         target="_blank"
       >
         <i
@@ -39,6 +40,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
         className="btn btn-social-icon btn-facebook"
         href="#"
         onClick={[Function]}
+        rel="noopener noreferrer"
         target="_blank"
       >
         <i
@@ -48,6 +50,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
       <a
         className="btn btn-social-icon btn-twitter"
         href="https://twitter.com/intent/tweet?text=Congratulations! Your result is: result.&url=url&hashtags=geopuzzle"
+        rel="noopener noreferrer"
         target="_blank"
       >
         <i
