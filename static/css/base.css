@@ -10,3 +10,9 @@ nav.menu {
 .donate-button iframe {
     max-width: 185px;
 }
+
+.patreon-widget {
+    height: 35px;
+    overflow:hidden;
+    border: none;
+}
