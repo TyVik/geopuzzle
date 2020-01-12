@@ -75,8 +75,8 @@ class Puzzle extends Game {
     this.setState({...this.state, regions: regions, infobox: infobox});
   };
 
-  mapInit = () => {
-    fetch(`${location.pathname}questions/` + location.search)
+  loadData = () => {
+    fetch(`${location.pathname}questions/${location.search}`)
       .then(response => response.json())
       .then(data => {
         this.startGame({regions: Puzzle.extractData(data.questions, data.solved)});

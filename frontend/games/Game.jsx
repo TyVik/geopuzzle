@@ -29,9 +29,9 @@ class Game extends React.Component {
     }
   };
 
-  startGame = (params) => {
+  setupWs = () => {
     let ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
-    let addr = ws_scheme + '://' + window.location.host + '/ws/' + this.GAME_NAME + '/';
+    let addr = `${ws_scheme}://${window.location.host}/ws/${this.GAME_NAME}/`;
     this.ws = new Sockette(addr, {
       timeout: 5e3,
       onopen: e => this.setState({...this.state, wsState: true}),
@@ -41,10 +41,18 @@ class Game extends React.Component {
       onclose: e => this.setState({...this.state, wsState: null}),
       onerror: e => this.setState({...this.state, wsState: false})
     });
+  };
+
+  startGame = (params) => {
     this.setState({...this.state, ...params, isLoaded: true, startTime: Date.now()});
   };
 
-  mapInit = () => {};
+  mapInit = () => {
+    this.setupWs();
+    this.loadData();
+  };
+
+  loadData = () => {};
 
   mapClick = (e) => {};
 
