@@ -378,7 +378,6 @@ Array [
     </div>
   </form>,
   <div
-    className="infinite-scroll-component__outerdiv"
     style={Object {}}
   >
     <div
