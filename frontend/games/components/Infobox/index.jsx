@@ -28,7 +28,7 @@ class Infobox extends React.Component {
   toggleCollapse = () => {
     let value = !this.state.collapse;
     localStorage.setItem('infobox_collapse', value);
-    this.setState({...this.state, collapse: value});
+    this.setState(state => ({...state, collapse: value}));
   };
 
   render() {

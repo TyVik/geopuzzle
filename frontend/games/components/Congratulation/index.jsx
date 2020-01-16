@@ -26,7 +26,7 @@ class Congratulation extends React.Component {
   };
 
   onClose = () => {
-    this.setState({...this.state, show: false});
+    this.setState(state => ({...state, show: false}));
   };
 
   render() {

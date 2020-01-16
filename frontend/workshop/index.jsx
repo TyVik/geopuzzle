@@ -20,8 +20,8 @@ class Workshop extends React.Component {
     if (this.timeout !== null) {
       clearTimeout(this.timeout);
     }
-    this.timeout = setTimeout(() => {this.setState({...this.state, search: value})}, 300);
-    this.setState({...this.state, _search: value});
+    this.timeout = setTimeout(() => {this.setState(state => ({...state, search: value}))}, 300);
+    this.setState(state => ({...state, _search: value}));
   };
 
   loadOptions = (field, inputValue, callback) => {

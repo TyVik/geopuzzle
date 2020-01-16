@@ -34,17 +34,17 @@ class Game extends React.Component {
     let addr = `${ws_scheme}://${window.location.host}/ws/${this.GAME_NAME}/`;
     this.ws = new Sockette(addr, {
       timeout: 5e3,
-      onopen: e => this.setState({...this.state, wsState: true}),
+      onopen: e => this.setState(state => ({...state, wsState: true})),
       onmessage: e => this.dispatchMessage(e),
-      onreconnect: e => this.setState({...this.state, wsState: null}),
-      onmaximum: e => this.setState({...this.state, wsState: false}),
-      onclose: e => this.setState({...this.state, wsState: null}),
-      onerror: e => this.setState({...this.state, wsState: false})
+      onreconnect: e => this.setState(state => ({...state, wsState: null})),
+      onmaximum: e => this.setState(state => ({...state, wsState: false})),
+      onclose: e => this.setState(state => ({...state, wsState: null})),
+      onerror: e => this.setState(state => ({...state, wsState: false}))
     });
   };
 
   startGame = (params) => {
-    this.setState({...this.state, ...params, isLoaded: true, startTime: Date.now()});
+    this.setState(state => ({...state, ...params, isLoaded: true, startTime: Date.now()}));
   };
 
   mapInit = () => {
@@ -57,33 +57,33 @@ class Game extends React.Component {
   mapClick = (e) => {};
 
   setMapType = (typeId) => {
-    let map = {...this.state.map, typeId: typeId};
-    this.setState({...this.state, map: map});
+    this.setState(state => ({...state, map: {...state.map, typeId: typeId}}));
   };
 
   closeInfobox = () => {
-    this.setState({...this.state, showInfobox: false});
+    this.setState(state => ({...state, showInfobox: false}));
   };
 
   openInfobox = (region) => {
-    this.setState({...this.state, showInfobox: true, infobox: region.infobox});
+    this.setState(state => ({...state, showInfobox: true, infobox: region.infobox}));
   };
 
-  onPolygonClick = (polygon) => {
+  onPolygonClick = async (polygon) => {
     if (polygon && (polygon.draggable !== undefined) && !polygon.draggable) {
       let region = this.state.regions.find(x => x.id === polygon.id);
       if (region.infobox.loaded) {
-        this.setState({...this.state, infobox: region.infobox, showInfobox: true});
+        this.setState(state => ({...state, infobox: region.infobox, showInfobox: true}));
       } else {
         let id = region.id;
-        fetch(window.location.origin + `/puzzle/area/${region.id}/infobox/`)
-          .then(response => response.json())
-          .then(json => {
-            let regions = this.state.regions.map((region) =>
-              region.id === id ? {...region, infobox: prepareInfobox(json)} : region);
-            this.setState({...this.state, regions: regions, infobox: json, showInfobox: true});
-          })
-          .catch(response => console.log(response));
+        try {
+          let response = await fetch(`${window.location.origin}/puzzle/area/${id}/infobox/`, {method: 'GET'});
+          let data = await response.json();
+          let regions = this.state.regions.map((region) =>
+            region.id === id ? {...region, infobox: prepareInfobox(data)} : region);
+          this.setState(state => ({...state, regions: regions, infobox: data, showInfobox: true}));
+        } catch (e) {
+          console.log(e);
+        }
       }
     }
   };
