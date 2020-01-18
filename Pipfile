@@ -14,7 +14,7 @@ django-stubs = "*"
 codecov = "*"
 
 [packages]
-django = "<3.0"
+django = "<4.0"
 psycopg2-binary = "*"
 pillow = "*"
 sorl-thumbnail = "*"
