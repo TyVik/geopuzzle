@@ -19,9 +19,9 @@ SELECT DISTINCT
     OPTIONAL { wd:{{ item_id }} wdt:P41 ?flag. }
     OPTIONAL {
         SELECT ?population ?qualifier WHERE {
-            wd:{{ item_id }} p:P1082 ?population_statemens.
-            ?population_statemens ps:P1082 ?population.
-            OPTIONAL { ?population_statemens pq:P585 ?qualifier. }
+            wd:{{ item_id }} p:P1082 ?population_statements.
+            ?population_statements ps:P1082 ?population.
+            OPTIONAL { ?population_statements pq:P585 ?qualifier. }
         } order by desc(?qualifier) limit 1
     }
     OPTIONAL { wd:{{ item_id }} wdt:P2046 ?area. }

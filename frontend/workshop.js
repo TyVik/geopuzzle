@@ -3,7 +3,7 @@ import React from "react";
 import {render} from "react-dom";
 import Workshop from "./workshop/index";
 import {IntlProvider} from "react-intl";
-import messages from './messages';
+import messages from './locale/messages';
 
 
 let node = document.getElementById('workshop');

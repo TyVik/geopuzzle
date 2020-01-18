@@ -2,7 +2,7 @@
 import 'whatwg-fetch';
 import Cookies from 'js-cookie';
 
-import messages from "./messages";
+import messages from "./locale/messages";
 
 
 function moveTo(paths, from, to) {

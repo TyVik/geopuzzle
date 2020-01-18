@@ -1,6 +1,6 @@
 'use strict';
-import messages_ru from "./locale/ru.json";
-import messages_en from "./locale/en.json";
+import messages_ru from "./ru.json";
+import messages_en from "./en.json";
 
 const messages = {
   'ru': messages_ru,
