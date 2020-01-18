@@ -1,5 +1,5 @@
 {% extends 'base_site.html' %}
-{% load static thumbnail i18n %}
+{% load static thumbnail i18n game_card %}
 
 {% block container %}
     <div class="jumbotron row">
@@ -32,41 +32,17 @@
                         </div>
                         <div class="row">
                             {% for part in game.items.world %}
-                                <div class="col-md-6 col-sm-6 col-12 my-4 item-container">
-                                    {% thumbnail part.image "540x540" format="JPEG" quality=70 as im %}
-                                        <a href="{% url game.link part.slug %}">
-                                            <img class="img-fluid rounded" src="{{ im.url }}"
-                                                 alt="{{ part.name }}">
-                                        </a>
-                                    {% endthumbnail %}
-                                    <div class="text-center">{{ part.name }}</div>
-                                </div>
+                                {% game_card game.link part 'lg' %}
                             {% endfor %}
                         </div>
                         <div class="row">
                             {% for part in game.items.parts %}
-                                <div class="col-md-3 col-sm-3 col-6 my-4 item-container">
-                                    {% thumbnail part.image "250x250" format="JPEG" quality=70 as im %}
-                                        <a href="{% url game.link part.slug %}">
-                                            <img class="img-fluid rounded" src="{{ im.url }}"
-                                                 alt="{{ part.name }}">
-                                        </a>
-                                    {% endthumbnail %}
-                                    <div class="text-center">{{ part.name }}</div>
-                                </div>
+                                {% game_card game.link part 'md' %}
                             {% endfor %}
                         </div>
                         <div class="row">
-                            {% for country in game.items.countries %}
-                                <div class="col-md-2 col-sm-3 col-6 my-2 item-container">
-                                    {% thumbnail country.image "196x196" format="JPEG" quality=70 as im %}
-                                        <a href="{% url game.link country.slug %}">
-                                            <img class="img-fluid rounded" src="{{ im.url }}"
-                                                 alt="{{ country.name }}">
-                                        </a>
-                                    {% endthumbnail %}
-                                    <div class="text-center">{{ country.name }}</div>
-                                </div>
+                            {% for part in game.items.countries %}
+                                {% game_card game.link part 'sm' %}
                             {% endfor %}
                         </div>
                     </div>
