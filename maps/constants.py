@@ -18,6 +18,7 @@ class Zoom(enum.Enum):
 
 @dataclass
 class IndexPageGame:
+    id: int
     image: str
     slug: str
     name: str
@@ -27,7 +28,6 @@ class IndexPageGame:
 class IndexPageGameType:
     world: List[IndexPageGame]
     parts: List[IndexPageGame]
-    countries: List[IndexPageGame]
 
 
 class InitGameMapOptions(TypedDict):

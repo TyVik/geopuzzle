@@ -46,6 +46,8 @@
     "user": "Filter by user",
     "orderBy": "Order by",
 
+    "loadMore": "load more...",
+
     "profile": "Profile",
     "publicProfile": "Public profile",
     "changePassword": "Change password",

@@ -12,6 +12,7 @@ module.exports = (env, argv) => {
       games: './games',
       workshop: './workshop',
       profile: './profile',
+      index_games: './index_games',
     },
     output: {
       path: path.resolve(__dirname, 'static', 'js'),

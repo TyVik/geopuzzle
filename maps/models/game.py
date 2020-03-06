@@ -46,7 +46,7 @@ class Game(models.Model):
     @property
     def index(self) -> IndexPageGame:
         trans = self.load_translation(get_language())
-        return IndexPageGame(image=self.image, slug=self.slug, name=trans.name)
+        return IndexPageGame(image=self.image.name, slug=self.slug, name=trans.name, id=self.id)
 
     @classmethod
     def index_qs(cls, language: LanguageEnumType) -> QuerySet:
@@ -57,11 +57,10 @@ class Game(models.Model):
 
     @classmethod
     def index_items(cls, language: LanguageEnumType) -> IndexPageGameType:
-        qs = cls.index_qs(language)
+        qs = cls.index_qs(language).filter(zoom__in=(Zoom.WORLD, Zoom.LARGE_COUNTRY))
         return IndexPageGameType(
             world=[item.index for item in qs.all() if item.zoom == Zoom.WORLD],
             parts=[item.index for item in qs.all() if item.zoom == Zoom.LARGE_COUNTRY],
-            countries=[item.index for item in qs.all() if item.zoom > Zoom.LARGE_COUNTRY]
         )
 
     @classmethod

@@ -1,6 +1,13 @@
 {% extends 'base_site.html' %}
 {% load static thumbnail i18n game_card %}
 
+{% block extra_js %}
+  {{ block.super }}
+  <script type="text/javascript" src={% static "js/common.js" %}></script>
+  <script type="text/javascript" src={% static "js/components.js" %}></script>
+  <script type="text/javascript" src={% static "js/index_games.js" %}></script>
+{% endblock %}
+
 {% block container %}
     <div class="jumbotron row">
         <h2>{% trans 'Arrange the pieces of the world!' %}</h2>
@@ -40,11 +47,7 @@
                                 {% game_card game.link part 'md' %}
                             {% endfor %}
                         </div>
-                        <div class="row">
-                            {% for part in game.items.countries %}
-                                {% game_card game.link part 'sm' %}
-                            {% endfor %}
-                        </div>
+                        <div class="index_games row" data-name="{{ game.name }}"></div>
                     </div>
                 </div>
             {% endfor %}
