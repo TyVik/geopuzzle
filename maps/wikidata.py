@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 
 from common.constants import LanguageEnumType
 
-fetch_logger = logging.getLogger('fetch_region')
+logger = logging.getLogger('commands')
 
 
 class LinkDict(TypedDict):
@@ -52,7 +52,7 @@ class Wikidata:
                 result[lang]['wiki'] = unquote(links['url'], 'utf-8')
                 result[lang]['name'] = links['title']
             except KeyError:
-                fetch_logger.warning('Links to wiki for %s (%s) are empty', instance, lang)
+                logger.warning('Links to wiki for %s (%s) are empty', instance, lang)
         return result
 
     def prepare_row(self, row: Dict, lang: LanguageEnumType) -> InfoboxDict:
@@ -104,5 +104,5 @@ class Wikidata:
         return {lang: {**links[lang], **wiki.get(lang, {})} for lang in settings.ALLOWED_LANGUAGES}
 
     def get_infoboxes(self, parent_id: int) -> Dict[LanguageEnumType, dict]:
-        fetch_logger.info(f'Get infobox: {self.wikidata_id}')
+        logger.info('Get infobox: %s', self.wikidata_id)
         return self.query_by_wikidata_id('wikidata/regions.txt', {'country_id': parent_id, 'item_id': self.wikidata_id})
