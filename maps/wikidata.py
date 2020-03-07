@@ -59,7 +59,7 @@ class Wikidata:
         result = {}
         for field in row:
             value = row[field]['value']
-            if field in ('flag', 'coat_of_arms'):
+            if field in ('flag', 'coat_of_arms', 'image'):
                 response = requests.head(value, allow_redirects=True)
                 result[field] = response.url
             elif field == 'area':
@@ -101,7 +101,7 @@ class Wikidata:
             wiki[lang] = self.prepare_row(row, lang)
 
         links = self.get_links(context['item_id'])
-        return {lang: {**wiki.get(lang, {}), **links[lang]} for lang in settings.ALLOWED_LANGUAGES}
+        return {lang: {**links[lang], **wiki.get(lang, {})} for lang in settings.ALLOWED_LANGUAGES}
 
     def get_infoboxes(self, parent_id: int) -> Dict[LanguageEnumType, dict]:
         fetch_logger.info(f'Get infobox: {self.wikidata_id}')

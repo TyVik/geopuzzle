@@ -163,6 +163,14 @@ LOGGING = {
             "maxBytes": 10485760,
             'backupCount': 10,
         },
+        "commands": {
+            "class": "logging.handlers.RotatingFileHandler",
+            'filename': LOG_DIR.joinpath('commands.log'),
+            "formatter": "verbose",
+            "level": "DEBUG",
+            "maxBytes": 10485760,
+            'backupCount': 30,
+        },
         'console': {
             'class': 'logging.StreamHandler',
         },
@@ -171,6 +179,14 @@ LOGGING = {
         },
     },
     'loggers': {
+        'commands': {
+            'level': 'DEBUG',
+            'handlers': ['commands', 'console'],
+        },
+        'wambachers': {
+            'level': 'DEBUG',
+            'handlers': ['commands', 'console'],
+        },
         'django.db.backends': {
             'handlers': [],
         },
