@@ -63,6 +63,9 @@ jobs:
       - run:
           name: Install dev requirements
           command: pipenv install --dev --system
+      - run:
+          name: Prepare environment
+          command: mkdir ~/repo/logs
 #      - run:
 #          name: Run mypy
 #          command: PYTHONPATH=${PYTHONPATH}:${PWD} mypy . --show-traceback
