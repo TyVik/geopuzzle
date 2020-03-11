@@ -1,6 +1,6 @@
 SELECT DISTINCT
   ?lang ?name ?geonamesID
-  ?flag ?coat_of_arms
+  ?flag ?coat_of_arms ?image ?seal
   ?population ?area
   ?capital_name ?capital_id ?capital_coord
   {% if country_id is None %} ?currency {% endif %}
@@ -16,7 +16,6 @@ SELECT DISTINCT
         wd:{{ item_id }} wdt:P36/rdfs:label ?capital_name.
         FILTER(lang(?capital_name) = ?lang)
     }
-    OPTIONAL { wd:{{ item_id }} wdt:P41 ?flag. }
     OPTIONAL {
         SELECT ?population ?qualifier WHERE {
             wd:{{ item_id }} p:P1082 ?population_statements.
@@ -24,10 +23,21 @@ SELECT DISTINCT
             OPTIONAL { ?population_statements pq:P585 ?qualifier. }
         } order by desc(?qualifier) limit 1
     }
-    OPTIONAL { wd:{{ item_id }} wdt:P2046 ?area. }
-    OPTIONAL { wd:{{ item_id }} wdt:P94 ?raw_coat_of_arms. }
+    OPTIONAL {
+        SELECT ?area WHERE {
+            wd:Q732548 wdt:P2046 ?area.
+            OPTIONAL { ?area pq:P585 ?qualifier. }
+        } order by desc(?qualifier) limit 1
+    }
+    OPTIONAL {
+        SELECT ?image WHERE {
+            wd:Q732548 wdt:P18 ?image.
+            OPTIONAL { ?image pq:P585 ?qualifier. }
+        } order by desc(?qualifier) limit 1
+    }
+    OPTIONAL { wd:{{ item_id }} wdt:P41 ?flag. }
+    OPTIONAL { wd:{{ item_id }} wdt:P94 ?coat_of_arms. }
     OPTIONAL { wd:{{ item_id }} wdt:P158 ?seal. }
-    BIND(coalesce(?raw_coat_of_arms, ?seal) as ?coat_of_arms)
     {% if country_id is None %}
         OPTIONAL {
             wd:{{ item_id }} p:P38 ?currency_statement.
