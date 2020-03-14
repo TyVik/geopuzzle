@@ -1,21 +1,25 @@
-from common.consumer import LanguageConsumer, action
+from channels.db import database_sync_to_async
+
+from common.consumer import GameConsumer, action
 from maps.models import RegionCache
 from .forms import PointContainsForm
 
 
-class QuizConsumer(LanguageConsumer):
+class QuizConsumer(GameConsumer):
+    PREFIX = 'QUIZ'
+    form = PointContainsForm
+
+    @database_sync_to_async
+    def get_object(self, pk: int):
+        return RegionCache(pk)
+
     @action('QUIZ_CHECK')
     async def check(self, message: dict, *args, **kwargs):
-        region = RegionCache(id=message['id'])
-        form = PointContainsForm(data=message['coords'], area=region)
-        if await self.check_form(form):
-            result = region.full_info(self.scope['lang'])
-            result['type'] = 'QUIZ_CHECK_SUCCESS'
-            await self.send_json(result)
+        for parent in QuizConsumer.__bases__:
+            method = getattr(parent, '_check')
+            if method:
+                await method(self, message['id'], data=message['coords'])
 
     @action('QUIZ_GIVEUP')
     async def give_up(self, message: dict, *args, **kwargs):
-        region = RegionCache(id=message['id'])
-        result = region.full_info(self.scope['lang'])
-        result['type'] = 'QUIZ_GIVEUP_DONE'
-        await self.send_json(result)
+        await self._give_up(message['id'])

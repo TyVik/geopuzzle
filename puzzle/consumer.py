@@ -1,22 +1,26 @@
-from common.consumer import LanguageConsumer, action
+from channels.db import database_sync_to_async
+
+from common.consumer import GameConsumer, action
 from maps.models import RegionCache
 from .forms import RegionContainsForm
 
 
-class PuzzleConsumer(LanguageConsumer):
+class PuzzleConsumer(GameConsumer):
+    PREFIX = 'PUZZLE'
+    form = RegionContainsForm
+
+    @database_sync_to_async
+    def get_object(self, pk: int):
+        return RegionCache(pk)
+
     @action('PUZZLE_CHECK')
     async def check(self, message: dict, *args, **kwargs):
-        region = RegionCache(id=message['id'])
-        form = RegionContainsForm(data=message['coords'], region=region, zoom=message['zoom'])
-        if await self.check_form(form):
-            result = region.full_info(self.scope['lang'])
-            result['type'] = 'PUZZLE_CHECK_SUCCESS'
-            await self.send_json(result)
+        await self._check(message['id'], data=message['coords'], zoom=message['zoom'])
 
     @action('PUZZLE_GIVEUP')
     async def give_up(self, message: dict, *args, **kwargs):
         result = {'type': 'PUZZLE_GIVEUP_DONE', 'solves': {}}
-        for id in message['ids']:
-            region = RegionCache(id=id)
-            result['solves'][id] = region.full_info(self.scope['lang'])
+        for pk in message['ids']:
+            region = await self.get_object(pk)
+            result['solves'][pk] = region.full_info(self.scope['lang'])
         await self.send_json(result)

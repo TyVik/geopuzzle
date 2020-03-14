@@ -16,8 +16,8 @@ class RegionContainsForm(forms.Form):
     south = forms.FloatField()
     west = forms.FloatField()
 
-    def __init__(self, region: RegionInterface, zoom: int, *args, **kwargs):
-        self.region = region
+    def __init__(self, area: RegionInterface, zoom: int, *args, **kwargs):
+        self.region = area
         self.zoom = zoom
         super(RegionContainsForm, self).__init__(*args, **kwargs)
 

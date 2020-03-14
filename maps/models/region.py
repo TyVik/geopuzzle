@@ -69,9 +69,9 @@ class RegionCacheMeta(type):
 
 
 class RegionCache(RegionInterface, metaclass=RegionCacheMeta):
-    def __init__(self, id: int):
+    def __init__(self, pk: int):
         super(RegionCache, self).__init__()
-        self.id = id
+        self.id = pk
 
 
 class RegionManager(models.Manager):
