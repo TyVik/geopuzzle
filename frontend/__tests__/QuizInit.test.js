@@ -1,8 +1,9 @@
 'use strict';
 import React from 'react';
 import {shallow} from 'enzyme';
-import QuizInit from '../games/components/QuizInit';
-import {Button, Modal} from "react-bootstrap";
+import {QuizInit} from '../games/components/QuizInit';
+import {Button} from "react-bootstrap";
+import {mountComponentWithIntl} from "./utils";
 
 
 describe('shallow <QuizInit /> components', () => {
@@ -22,14 +23,17 @@ describe('shallow <QuizInit /> components', () => {
   });
 
   it('check props', () => {
-    let wrapper = shallow(<QuizInit {...props}/>);
+    let wrapper = mountComponentWithIntl(<QuizInit {...props}/>);
     expect(wrapper.find(Button).prop('disabled')).toBe(false);
+    let quizInit = wrapper.find('QuizInit').instance();
     window.__OPTIONS__.map(key => {
-      wrapper.instance().toggle(key);
+      quizInit.toggle(key);
     });
+    wrapper.update();
     expect(wrapper.find(Button).prop('disabled')).toBe(true);
-    expect(wrapper.find(Modal.Footer).childAt(0).childAt(0).prop('id')).toMatch("quizInitCheck");
-    wrapper.instance().toggle('title');
+    expect(wrapper.find('i').childAt(0).prop('id')).toMatch("quizInitCheck");
+    quizInit.toggle('name');
+    wrapper.update();
     wrapper.find(Button).simulate('click');
     expect(onLoad).toHaveBeenCalledWith({name: true, flag: false, coat_of_arms: false, capital: false});
   });

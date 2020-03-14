@@ -19,75 +19,25 @@ exports[`shallow <QuizInit /> components render: quizinit 1`] = `
     </ModalTitle>
   </ModalHeader>
   <ModalBody>
-    <FormGroup
-      className="checkbox-group"
-      controlId="quiz"
-    >
-      <FormCheck
-        defaultChecked={true}
-        disabled={false}
-        inline={true}
-        isInvalid={false}
-        isValid={false}
-        label={
-          <FormattedMessage
-            id="title"
-            values={Object {}}
-          />
+    <QuizInitForm
+      available={
+        Array [
+          "name",
+          "flag",
+          "coat_of_arms",
+          "capital",
+        ]
+      }
+      data={
+        Object {
+          "capital": true,
+          "coat_of_arms": true,
+          "flag": true,
+          "name": true,
         }
-        onClick={[Function]}
-        title=""
-        type="checkbox"
-      />
-      <FormCheck
-        defaultChecked={true}
-        disabled={false}
-        inline={true}
-        isInvalid={false}
-        isValid={false}
-        label={
-          <FormattedMessage
-            id="flag"
-            values={Object {}}
-          />
-        }
-        onClick={[Function]}
-        title=""
-        type="checkbox"
-      />
-      <FormCheck
-        defaultChecked={true}
-        disabled={false}
-        inline={true}
-        isInvalid={false}
-        isValid={false}
-        label={
-          <FormattedMessage
-            id="coat_of_arms"
-            values={Object {}}
-          />
-        }
-        onClick={[Function]}
-        title=""
-        type="checkbox"
-      />
-      <FormCheck
-        defaultChecked={true}
-        disabled={false}
-        inline={true}
-        isInvalid={false}
-        isValid={false}
-        label={
-          <FormattedMessage
-            id="capital"
-            values={Object {}}
-          />
-        }
-        onClick={[Function]}
-        title=""
-        type="checkbox"
-      />
-    </FormGroup>
+      }
+      toggle={[Function]}
+    />
   </ModalBody>
   <ModalFooter>
     <Button

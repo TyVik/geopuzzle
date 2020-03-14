@@ -1,6 +1,6 @@
 'use strict';
 import React from "react";
-import QuizInit from './components/QuizInit/index';
+import {QuizInit} from './components/QuizInit/index';
 import QuizQuestion from './components/QuizQuestion/index';
 import Game from "./Game";
 import {decodePolygon, prepareInfobox, shuffle} from "../utils";
@@ -52,27 +52,40 @@ class Quiz extends Game {
     }).reduce((l, acc) => {acc = acc.concat(l); return acc}, []));
   }
 
+  changeRegionState(data, current) {
+    let regions = this.state.regions.map((polygon) => {
+      if (polygon.id === data.id) {
+        return {
+          draggable: false,
+          id: data.id,
+          isSolved: data.type === 'QUIZ_CHECK_SUCCESS',
+          infobox: {...prepareInfobox(data.infobox), loaded: true},
+          paths: decodePolygon(data.polygon),
+        };
+      }
+      return polygon;
+    });
+    let questions = this.state.questions.filter(element => {return element.id !== data.id});
+    let index = current === null ? this.state.question % questions.length : questions.findIndex(item => item.id === current.id);
+    if (index === -1) {
+      index = this.state.question % questions.length;
+    }
+    let infobox = current === null ? {...data.infobox} : this.state.infobox;
+    this.setState({...this.state, regions: regions, infobox: infobox, questions: questions, question: index});
+  }
+
   dispatchMessage = (event) => {
     let data = JSON.parse(event.data);
     switch(data.type) {
       case 'QUIZ_CHECK_SUCCESS':
       case 'QUIZ_GIVEUP_DONE':
-        let regions2 = this.state.regions.map((polygon) => {
-          if (polygon.id === data.id) {
-            return {
-              draggable: false,
-              id: data.id,
-              isSolved: data.type === 'QUIZ_CHECK_SUCCESS',
-              infobox: {...prepareInfobox(data.infobox), loaded: true},
-              paths: decodePolygon(data.polygon)
-            };
-          }
-          return polygon;
-        });
-        let questions = this.state.questions.filter(element => {return element.id !== data.id});
-        let index = this.state.question % questions.length;
-        this.setState({...this.state, regions: regions2, infobox: data.infobox, questions: questions, question: index});
+        this.changeRegionState(data, null);
         break;
+      case 'QUIZ_FOUND':
+        this.changeRegionState(data, this.state.questions[this.state.question]);
+        break;
+      default:
+        this._dispatchMessage(event);
     }
   };
 

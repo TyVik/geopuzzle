@@ -47,6 +47,8 @@ class Game extends React.Component {
     this.setState(state => ({...state, ...params, isLoaded: true, startTime: Date.now()}));
   };
 
+  _dispatchMessage = (event) => {};
+
   mapInit = () => {
     this.setupWs();
     this.loadData();
