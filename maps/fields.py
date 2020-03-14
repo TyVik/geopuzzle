@@ -6,7 +6,7 @@ class ExternalIdWidget(forms.TextInput):
     def render(self, name, value, attrs=None, renderer=None):
         result = super(ExternalIdWidget, self).render(name, value, attrs, renderer)
         if value is not None:
-            result += ' <a href="{link}" target="_blank" rel="noopener">link</a>'.format(link=self.attrs['link']).format(id=value)
+            result += ' <a href="{link}" target="_blank" rel="noopener noreferrer">link</a>'.format(link=self.attrs['link']).format(id=value)
         return result
 
 
