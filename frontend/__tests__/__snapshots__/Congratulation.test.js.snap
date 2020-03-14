@@ -20,7 +20,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
     </ModalTitle>
   </ModalHeader>
   <ModalBody>
-    Congratulations! Your result is: result.
+    Congratulations! Your result is: [object Object].
   </ModalBody>
   <ModalFooter>
     <div
@@ -28,7 +28,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
     >
       <a
         className="btn btn-social-icon btn-vk"
-        href="https://vk.com/share.php?url=url&title=Congratulations! Your result is: result."
+        href="https://vk.com/share.php?url=url&title=Congratulations! Your result is: [object Object]."
         rel="noopener noreferrer"
         target="_blank"
       >
@@ -49,7 +49,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
       </a>
       <a
         className="btn btn-social-icon btn-twitter"
-        href="https://twitter.com/intent/tweet?text=Congratulations! Your result is: result.&url=url&hashtags=geopuzzle"
+        href="https://twitter.com/intent/tweet?text=Congratulations! Your result is: [object Object].&url=url&hashtags=geopuzzle"
         rel="noopener noreferrer"
         target="_blank"
       >

@@ -3,6 +3,12 @@ import React from 'react';
 import GoogleMap from './GoogleMap';
 
 
+let COLORS = {
+  SOLVED: '#419641',
+  WRONG: '#d9534f',
+  UNKNOWN: '#ffffff',
+};
+
 class MapContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -24,14 +30,14 @@ class MapContainer extends React.Component {
     }
   };
 
-  commonOptions(shape) {
+  commonOptions(shape, color) {
     return {
       map: this._mapComponent,
       options: {
-        strokeColor: shape.isSolved ? '#419641' : '#d9534f',
+        strokeColor: color,
         strokeOpacity: 0.8,
         strokeWeight: 2,
-        fillColor: shape.isSolved ? '#419641' : '#d9534f',
+        fillColor: color,
         fillOpacity: 0.35,
         geodesic: true,
         id: shape.id,
@@ -46,7 +52,8 @@ class MapContainer extends React.Component {
       return [];
     }
     return polygons.map(polygon => {
-      let result = this.commonOptions(polygon);
+      let color = polygon.isSolved ? COLORS.SOLVED : COLORS.WRONG;
+      let result = this.commonOptions(polygon, color);
       result.key = `${polygon.draggable}${polygon.id}`;
       result.options.draggable = polygon.draggable;
       result.options.zIndex = polygon.draggable ? 2 : 1;

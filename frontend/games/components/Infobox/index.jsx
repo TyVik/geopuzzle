@@ -37,6 +37,7 @@ class Infobox extends React.Component {
     }
 
     let image = this.props.flag ? this.props.flag : this.props.coat_of_arms;
+    image = image ? image : this.props.image;
     return <div className="infobox">
       <div className="infobox-header">
         <button type="button" className="close" onClick={this.props.onClose}>

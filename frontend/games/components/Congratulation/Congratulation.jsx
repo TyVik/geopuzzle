@@ -29,8 +29,17 @@ class Congratulation extends React.Component {
     this.setState(state => ({...state, show: false}));
   };
 
+  getTime() {
+    let time = new Date(Date.now() - this.props.startTime);
+    return (time > 24 * 60 * 60 * 1000) ? <Msg id="timeOverhead"/> : time.toLocaleTimeString('ru-RU', {timeZone: 'UTC'});
+  }
+
+  getText() {
+    return decode(this.state.text) + this.getTime() + '.';
+  }
+
   render() {
-    let text = decode(this.state.text) + this.props.result + '.';
+    let text = this.getText();
     return <Modal show={this.state.show} onHide={this.onClose} aria-labelledby="contained-modal-title-lg">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-lg"><Msg id="congratulations"/></Modal.Title>

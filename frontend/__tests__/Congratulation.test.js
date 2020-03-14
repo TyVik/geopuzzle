@@ -5,7 +5,7 @@ import {Congratulation} from '../games/components/Congratulation';
 
 
 describe('shallow <Congratulation /> components', () => {
-  let props = {result: 'result', url: 'url'};
+  let props = {result: 'result', url: 'url', startTime: new Date('2020-01-01')};
   window.__CONGRATULATION__ = {text: 'Congratulations! Your result is: '};
 
   it('render', () => {
