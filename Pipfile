@@ -8,12 +8,12 @@ coveralls = "*"
 factory-boy = "*"
 django-extensions = "*"
 gprof2dot = "*"
-boto3 = "*"
 mypy = "*"
 django-stubs = "*"
 codecov = "*"
 
 [packages]
+boto3 = "*"
 django = "<3.0"
 psycopg2-binary = "*"
 pillow = "*"

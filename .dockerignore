@@ -1,6 +1,13 @@
 .git
-upload
+.mypy_cache
+.typecov
+favicon
 geojson
 logs
+mypy_report
 node_modules
-pgdata
+pgdata*
+upload
+.coverage
+.env
+geopuzzle.sql*
