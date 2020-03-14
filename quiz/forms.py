@@ -53,7 +53,7 @@ class QuizInfoboxForm(RegionForm):
                 if param == 'capital':
                     capital = trans.infobox.get('capital', None)
                     value = trans.infobox.get('name', None) if capital is None else extract_capital(capital)
-                elif param == 'title':
+                elif param == 'name':
                     value = trans.infobox.get('name', None)
                 else:
                     value = trans.infobox.get(param, None)

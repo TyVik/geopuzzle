@@ -39,7 +39,7 @@ class Quiz extends Game {
   static prepareQuestions(questions) {
     return shuffle(questions
       .map(question => {
-        return ['title', 'flag', 'coat_of_arms', 'capital']
+        return ['name', 'flag', 'coat_of_arms', 'capital']
           .map(key => {
             if (question[key] === undefined) {
               return null;
@@ -84,7 +84,7 @@ class Quiz extends Game {
   };
 
   loadQuiz = (options) => {
-    let quizBy = ['title', 'flag', 'coat_of_arms', 'capital'].filter((param) => options[param]);
+    let quizBy = ['name', 'flag', 'coat_of_arms', 'capital'].filter((param) => options[param]);
     let get_params = location.search ? location.search + '&' : '?';
     get_params += 'params=' + quizBy.join();
     fetch(`${location.pathname}questions/${get_params}`)

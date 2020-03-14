@@ -10,7 +10,7 @@ describe('shallow <QuizInit /> components', () => {
   let props = {show: true, load: onLoad};
 
   beforeEach(() => {
-    window.__OPTIONS__ = ['title', 'flag', 'coat_of_arms', 'capital'];
+    window.__OPTIONS__ = ['name', 'flag', 'coat_of_arms', 'capital'];
   });
 
   it('render hidden', () => {
@@ -31,6 +31,6 @@ describe('shallow <QuizInit /> components', () => {
     expect(wrapper.find(Modal.Footer).childAt(0).childAt(0).prop('id')).toMatch("quizInitCheck");
     wrapper.instance().toggle('title');
     wrapper.find(Button).simulate('click');
-    expect(onLoad).toHaveBeenCalledWith({title: true, flag: false, coat_of_arms: false, capital: false});
+    expect(onLoad).toHaveBeenCalledWith({name: true, flag: false, coat_of_arms: false, capital: false});
   });
 });
