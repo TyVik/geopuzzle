@@ -25,13 +25,13 @@ SELECT DISTINCT
     }
     OPTIONAL {
         SELECT ?area WHERE {
-            wd:Q732548 wdt:P2046 ?area.
+            wd:{{ item_id }} wdt:P2046 ?area.
             OPTIONAL { ?area pq:P585 ?qualifier. }
         } order by desc(?qualifier) limit 1
     }
     OPTIONAL {
         SELECT ?image WHERE {
-            wd:Q732548 wdt:P18 ?image.
+            wd:{{ item_id }} wdt:P18 ?image.
             OPTIONAL { ?image pq:P585 ?qualifier. }
         } order by desc(?qualifier) limit 1
     }
