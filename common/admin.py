@@ -1,3 +1,4 @@
+from admin_auto_filters.filters import AutocompleteFilter
 from django.conf import settings
 from django.forms import Media
 from django.template.defaultfilters import safe
@@ -46,3 +47,8 @@ class MultiPolygonWidget(BaseMultiPolygonWidget, BaseGMapWidget):
 
 class MultiPointWidget(BaseMultiPointWidget, BaseGMapWidget):
     google_maps_api_key = settings.GOOGLE_KEY
+
+
+class UserAutocompleteFilter(AutocompleteFilter):
+    title = 'user'
+    field_name = 'user'

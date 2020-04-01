@@ -21,7 +21,6 @@ class QuizRegionInline(TabularInline):
 
 @admin.register(Quiz)
 class QuizAdmin(GameAdmin):
-    list_display = ('id', 'image_tag', 'names', 'slug', 'is_published', 'is_global', 'user')
     inlines = (QuizTranslationInline, QuizRegionInline)
     fieldsets = (
         (None, {
@@ -29,4 +28,3 @@ class QuizAdmin(GameAdmin):
                        ('image', 'user'), ('center',))
         }),
     )
-    list_filter = ('is_published', 'on_main_page', 'user')

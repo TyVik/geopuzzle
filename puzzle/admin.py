@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.admin import TabularInline
 from django.template.defaultfilters import safe
 
+from common.admin import UserAutocompleteFilter
 from maps.admin import GameAdmin
 from .models import Puzzle, PuzzleTranslation, PuzzleRegion
 
@@ -31,7 +32,10 @@ class PuzzleAdmin(GameAdmin):
         }),
     )
     filter_horizontal = ('tags',)
-    list_filter = ('tags', 'is_published', 'on_main_page', 'user')
+    list_filter = ('is_published', 'on_main_page', UserAutocompleteFilter, 'tags')
+
+    class Media:
+        pass
 
     def tag_list(self, obj: Puzzle) -> str:
         return safe(', '.join(x.name for x in obj.tags.all()))

@@ -12,7 +12,7 @@ from django.contrib.gis.db.models import MultiPolygonField
 from django.templatetags.static import static
 from django_json_widget.widgets import JSONEditorWidget
 
-from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget
+from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget, UserAutocompleteFilter
 from .models import Region, RegionTranslation, Tag, Game
 
 
@@ -39,14 +39,14 @@ class RegionTranslationAdmin(admin.TabularInline):
 class RegionAdjacencyList(AdjacencyList):
     def hook_get_queryset(self, changelist, request):
         super(RegionAdjacencyList, self).hook_get_queryset(changelist, request)
-        if changelist.params[self.pid_field] is None:
+        if (self.pid_field in changelist.params) and (changelist.params[self.pid_field] is None):
             del changelist.params[self.pid_field]
 
 
 @admin.register(Region)
 class RegionAdmin(HierarchicalModelAdmin):
     list_display = ('__str__', 'wikidata_url', 'osm_id', 'infobox_status')
-    search_fields = ('id', 'title', 'wikidata_id')
+    search_fields = ('id', 'title', 'wikidata_id', 'translations__name')
     formfield_overrides = {
         MultiPolygonField: {'widget': MultiPolygonWidget},
         JSONField: {'widget': JSONEditorWidget},
@@ -85,13 +85,18 @@ class RegionAdmin(HierarchicalModelAdmin):
 
 
 class GameAdmin(ImageMixin, OSMGeoAdmin):
+    search_fields = ('translations__name',)
     list_display = ('id', 'image_tag', 'names', 'slug', 'is_published', 'is_global', 'user')
+    list_filter = ('is_published', 'on_main_page', UserAutocompleteFilter)
     list_display_links = ('image_tag', 'id')
-    autocomplete_fields = ('regions',)
+    autocomplete_fields = ('user',)
     formfield_overrides = {
         ImageField: {'widget': AdminImageWidget},
     }
     list_per_page = 20
+
+    class Media:
+        pass
 
     def names(self, obj: Game) -> SafeText:
         return safe("<br/>".join(f'{t.language_code}: {t.name}' for t in obj.translations.order_by('language_code').all()))

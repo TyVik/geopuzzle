@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'social_django',
     'django_filters',
     'django_json_widget',
+    'admin_auto_filters',
 
     'users',
     'maps',
