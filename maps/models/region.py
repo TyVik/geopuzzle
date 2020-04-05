@@ -17,6 +17,7 @@ from django.utils.translation import get_language
 
 from common.cachable import cacheable
 from common.constants import Point, LanguageEnumType
+from common.db import GinIndexTrgrm
 from ..constants import OsmRegionData
 from ..converter import encode_geometry
 from ..fields import ExternalIdField
@@ -84,7 +85,7 @@ class Region(RegionInterface, models.Model):
     polygon = MultiPolygonField(geography=True)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
     modified = models.DateTimeField(auto_now=True)
-    wikidata_id = ExternalIdField(max_length=20, link='https://www.wikidata.org/wiki/{id}', null=True)
+    wikidata_id = ExternalIdField(max_length=20, link='https://www.wikidata.org/wiki/{id}', null=True, db_index=True)
     osm_id = models.PositiveIntegerField(unique=True)
     _osm_data = JSONField(default=dict, db_column='osm_data')
     is_enabled = models.BooleanField(default=True)
@@ -214,6 +215,7 @@ class RegionTranslation(models.Model):
     master = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='translations', editable=False)
 
     class Meta:
+        indexes = (GinIndexTrgrm(fields=('name',)),)
         unique_together = ('language_code', 'master')
         db_table = 'maps_region_translation'
 

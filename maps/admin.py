@@ -46,7 +46,7 @@ class RegionAdjacencyList(AdjacencyList):
 @admin.register(Region)
 class RegionAdmin(HierarchicalModelAdmin):
     list_display = ('__str__', 'wikidata_url', 'osm_id', 'infobox_status')
-    search_fields = ('id', 'title', 'wikidata_id', 'translations__name')
+    search_fields = ('wikidata_id__exact', 'translations__name')
     formfield_overrides = {
         MultiPolygonField: {'widget': MultiPolygonWidget},
         JSONField: {'widget': JSONEditorWidget},

@@ -16,12 +16,12 @@ from ..constants import Zoom, IndexPageGame, IndexPageGameType, InitGameParams, 
 class Game(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='games', blank=True, null=True)
-    slug = models.CharField(max_length=15, db_index=True)
+    slug = models.CharField(max_length=15, db_index=True, unique=True)
     center = PointField(geography=True)
     zoom = enum.EnumField(Zoom, default=Zoom.COUNTRY)
-    is_published = models.BooleanField(default=False)
+    is_published = models.BooleanField(default=False, db_index=True)
     is_global = models.BooleanField(default=False)
-    on_main_page = models.BooleanField(default=False)
+    on_main_page = models.BooleanField(default=False, db_index=True)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
