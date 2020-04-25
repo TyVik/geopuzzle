@@ -3,11 +3,12 @@ from typing import List
 from django.test import TestCase
 from django.urls import reverse
 
+from common.tests import TestGameMixin
 from .factories import QuizFactory, QuizRegionFactory
 from .models import QuizRegion, Quiz
 
 
-class QuizTestCase(TestCase):
+class QuizTestCase(TestGameMixin, TestCase):
     quiz: Quiz
     questions: List[QuizRegion]
     solved = List[QuizRegion]
@@ -32,26 +33,8 @@ class QuizTestCase(TestCase):
         return f"{reverse('quiz_questions', kwargs={'name': self.quiz.slug})}?params=title,capital"
 
     def test_questions(self):
-        def get_ids(l):
-            return [x['id'] for x in l]
-
-        response = self.client.get(self._question_url)
-        self.assertEqual(response.status_code, 200)
-        data = response.json()
-        self.assertEqual(len(data['solved']), self.SOLVED_COUNT)
-        self.assertEqual(len(data['questions']), self.QUESTIONS_COUNT)
-        ids = get_ids(data['questions'])
-        self.assertEqual(set(x.region.id for x in self.questions), set(ids))
-
-        shuffled_retries = 4
-        while shuffled_retries > 0:
-            response = self.client.get(self._question_url)
-            data = response.json()
-            if ids != get_ids(data['questions']):
-                break
-            shuffled_retries -= 1
-        else:
-            self.failureException('Question random is broken')
+        ids = self.check_questions(self._question_url)
+        self.check_shuffle_questions(ids, self._question_url)
 
     def test_custom_questions(self):
         response = self.client.get(f'{self._question_url}&id=1,2,3')

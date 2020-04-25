@@ -14,10 +14,10 @@ class RegionSitemap(Sitemap):
     changefreq = "weekly"
     priority = 0.5
 
-    def location(self, game: Game) -> str:
-        return game.get_absolute_url()
+    def location(self, obj: Game) -> str:
+        return obj.get_absolute_url()
 
-    def lastmod(self, obj: Game):
+    def lastmod(self, _):
         return timezone.now()
 
 

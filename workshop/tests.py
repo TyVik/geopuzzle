@@ -1,10 +1,11 @@
-from typing import Dict, Tuple, Iterable, List
+from typing import Dict, Iterable, List
 
 from django.conf import settings
 from django.http import JsonResponse
 from django.test import TestCase
 from django.urls import reverse
 
+from common.tests import TestFilterListMixin
 from common.utils import random_string
 from common.views import ScrollListItem
 from maps.models import Tag
@@ -15,9 +16,10 @@ from users.models import User
 from .factories import TagFactory
 
 
-class TagTestCase(TestCase):
+class TagTestCase(TestFilterListMixin, TestCase):
     user: User
     url = reverse('tag')
+    filter_list_factory = TagFactory
 
     @classmethod
     def setUpTestData(cls):
@@ -33,7 +35,7 @@ class TagTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         data = response.json()
         tag = Tag.objects.get(name=tag_name)
-        self.assertEqual(data['value'], str(tag.id))
+        self.assertEqual(data['value'], str(tag.pk))
         self.assertEqual(data['label'], tag.name)
 
         long_name = random_string(length=55)
@@ -49,34 +51,8 @@ class TagTestCase(TestCase):
         response = self.client.post(self.url, {'name': tag.name})
         self.assertEqual(response.status_code, 200)
         data = response.json()
-        self.assertEqual(data['value'], str(tag.id))
+        self.assertEqual(data['value'], str(tag.pk))
         self.assertEqual(data['label'], tag.name)
-
-    def test_list(self):
-        count = 5
-        tags = [TagFactory() for _ in range(count)]
-
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, 200)
-        data = response.json()
-        self.assertEqual(len(data), count)
-        ids = [item['value'] for item in data]
-        for tag in tags:
-            self.assertIn(str(tag.id), ids)
-
-    def test_filter(self):
-        tag = TagFactory()
-
-        response = self.client.get(self.url, {'name': tag.name[2:5]})
-        self.assertEqual(response.status_code, 200)
-        data = response.json()
-        self.assertEqual(len(data), 1)
-
-        unknown_name = random_string(length=20)
-        response = self.client.get(self.url, {'name': unknown_name})
-        self.assertEqual(response.status_code, 200)
-        data = response.json()
-        self.assertEqual(len(data), 0)
 
 
 class WorkshopTestCase(TestCase):
@@ -136,19 +112,20 @@ class WorkshopTestCase(TestCase):
         self._check_response(response, should_be)
 
     def test_filter_tag(self):
-        response = self.client.get(reverse('workshop_items'), {'tag': self.tag.id})
+        response = self.client.get(reverse('workshop_items'), {'tag': self.tag.pk})
         should_be = ('published_filter_tag',)
         self._check_response(response, should_be)
 
     def test_filter_user(self):
-        response = self.client.get(reverse('workshop_items'), {'user': self.user.id})
+        response = self.client.get(reverse('workshop_items'), {'user': self.user.pk})
         should_be = ('published_filter_tag', 'published_search', 'published')
         self._check_response(response, should_be)
 
     def test_order(self):
         available = ('published_filter_user', 'published_filter_tag', 'published_search', 'published')
         response = self.client.get(reverse('workshop_items'), {'order': 'title_asc'})
-        temp = list({key: value.load_translation('en').name.lower() for key, value in self.puzzles.items() if key in available}.items())
+        temp = list({key: value.load_translation('en').name.lower()
+                     for key, value in self.puzzles.items() if key in available}.items())
         temp.sort(key=lambda x: x[1])
         should_be = [key[0] for key in temp]
         self._check_response(response, should_be)

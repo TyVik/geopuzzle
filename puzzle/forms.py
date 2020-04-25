@@ -3,11 +3,12 @@ from typing import List
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import Field
-from django.utils.translation import get_language
 
 from common.constants import GameQuestions
+from common.utils import get_language
 from maps.forms import RegionForm
 from maps.models import RegionInterface
+from puzzle.models import Puzzle
 
 
 class RegionContainsForm(forms.Form):
@@ -29,21 +30,22 @@ class RegionContainsForm(forms.Form):
         scale = 1.0 / (self.zoom - 2)
         points = [extent[i] + diff[i] * scale for i in range(4)]
         if not (data['north'] < points[3] and data['south'] > points[1] and
-                        data['east'] < points[2] and data['west'] > points[0]):
+                data['east'] < points[2] and data['west'] > points[0]):
             raise forms.ValidationError('Point not in polygons')
 
 
 class PuzzleForm(RegionForm):
+    game: Puzzle
+
     def json(self) -> GameQuestions:
         qs = self.regions.filter(id__in=self.game.puzzleregion_set.filter(is_solved=False).
                                  values_list('region_id', flat=True))
         questions = [{
-            'id': region.id,
+            'id': region.pk,
             'name': region.translation.name,
             'polygon': region.polygon_strip,
             'center': region.polygon_center,
-            'default_position': self.game.pop_position()}
-            for region in qs]
+            'default_position': self.game.pop_position()} for region in qs]
         qs = self.regions.filter(id__in=self.game.puzzleregion_set.filter(is_solved=True).
                                  values_list('region_id', flat=True))
         solved = [region.full_info(get_language()) for region in qs]
@@ -57,7 +59,6 @@ class BoundsField(Field):
 
     def to_python(self, value: str) -> List[float]:
         try:
-            value = [float(item.strip()) for item in value.split(',') if item.strip()]
+            return [float(item.strip()) for item in value.split(',') if item.strip()]
         except (ValueError, TypeError):
             raise ValidationError(self.error_messages['invalid'])
-        return value

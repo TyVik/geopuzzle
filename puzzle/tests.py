@@ -3,11 +3,12 @@ from typing import List
 from django.test import TestCase
 from django.urls import reverse
 
+from common.tests import TestGameMixin
 from .factories import PuzzleFactory, PuzzleRegionFactory
 from .models import Puzzle, PuzzleRegion
 
 
-class PuzzleTestCase(TestCase):
+class PuzzleTestCase(TestGameMixin, TestCase):
     puzzle: Puzzle
     questions: List[PuzzleRegion]
     solved = List[PuzzleRegion]
@@ -28,32 +29,16 @@ class PuzzleTestCase(TestCase):
         self.assertTemplateUsed(response, 'puzzle/map.html')
 
     def test_questions(self):
-        def get_ids(l) -> List[int]:
-            return [x['id'] for x in l]
-
-        response = self.client.get(reverse('puzzle_questions', kwargs={'name': self.puzzle.slug}))
-        self.assertEqual(response.status_code, 200)
-        data = response.json()
-        self.assertEqual(len(data['solved']), self.SOLVED_COUNT)
-        self.assertEqual(len(data['questions']), self.QUESTIONS_COUNT)
-        ids = get_ids(data['questions'])
-        self.assertEqual(set(x.region.id for x in self.questions), set(ids))
-
-        shuffled_retries = 4
-        while shuffled_retries > 0:
-            response = self.client.get(reverse('puzzle_questions', kwargs={'name': self.puzzle.slug}))
-            data = response.json()
-            if ids != get_ids(data['questions']):
-                break
-            shuffled_retries -= 1
-        else:
-            self.failureException('Question random is broken')
+        url = reverse('puzzle_questions', kwargs={'name': self.puzzle.slug})
+        ids = self.check_questions(url)
+        self.check_shuffle_questions(ids, reverse('puzzle_questions', kwargs={'name': self.puzzle.slug}))
 
     def test_custom_questions(self):
-        response = self.client.get(f"{reverse('puzzle_questions', kwargs={'name': self.puzzle.slug})}?id=1,2,3")
+        url = reverse('puzzle_questions', kwargs={'name': self.puzzle.slug})
+        response = self.client.get(f"{url}?id=1,2,3")
         self.assertEqual(response.status_code, 400)
         self.assertIn('id', response.json())
 
-        response = self.client.get(f"{reverse('puzzle_questions', kwargs={'name': self.puzzle.slug})}?id={self.questions[0].region_id}")
+        response = self.client.get(f"{url}?id={self.questions[0].region_id}")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()['questions']), 1)

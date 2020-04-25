@@ -10,21 +10,21 @@ from mercator.settings.settings import POLYGON_CACHE_KEY
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        parser.add_argument('action', metavar='action', help='One of (update/import/export)')
-        parser.add_argument('label', metavar='label', help='Cache for action')
+        parser.add_argument('content', metavar='content', help='One of (update/import/export)')
+        parser.add_argument('label', metavar='label', help='Cache for content')
         parser.add_argument(
             '--ids', dest='ids', help='Nominates a specific database to load fixtures into. Defaults to the "default" database.',
         )
 
     def _update(self, query, label, **kwargs):
         for region in tqdm(query.iterator(), total=query.count()):
-            cache.delete(POLYGON_CACHE_KEY.format(func=label, id=region.id))
+            cache.delete(POLYGON_CACHE_KEY.format(func=label, id=region.pk))
             getattr(region, label)
 
     def _export(self, query, label, **kwargs):
         with open('geocache_{}.json'.format(label), 'w') as f:
             for region in tqdm(query.iterator(), total=query.count()):
-                result = {region.id: getattr(region, label)}
+                result = {region.pk: getattr(region, label)}
                 f.write(json.dumps(result) + "\n")
 
     def _import(self, label, **kwargs):
@@ -36,9 +36,9 @@ class Command(BaseCommand):
                     cache.set(cache_key, region[rec], timeout=None)
 
     def handle(self, **options):
-        handler = getattr(self, '_{}'.format(options['action']), None)
+        handler = getattr(self, '_{}'.format(options['content']), None)
         if handler is None:
-            raise CommandError('Cannot find action')
+            raise CommandError('Cannot find content')
 
         if not options['label']:
             raise CommandError('You must specify caches')

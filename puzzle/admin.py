@@ -3,7 +3,7 @@ from django.contrib.admin import TabularInline
 from django.template.defaultfilters import safe
 
 from common.admin import UserAutocompleteFilter
-from maps.admin import GameAdmin
+from maps.admin import GameAdmin, GameItemsInline
 from .models import Puzzle, PuzzleTranslation, PuzzleRegion
 
 
@@ -12,13 +12,8 @@ class PuzzleTranslationInline(TabularInline):
     extra = 0
 
 
-class PuzzleRegionInline(TabularInline):
+class PuzzleRegionInline(GameItemsInline):
     model = PuzzleRegion
-    extra = 0
-    raw_id_fields = ('region',)
-    autocomplete_lookup_fields = {
-        'fk': ['region'],
-    }
 
 
 @admin.register(Puzzle)

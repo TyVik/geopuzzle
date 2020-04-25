@@ -1,5 +1,5 @@
 import inspect
-from typing import Iterable, Tuple
+from typing import Iterable, Tuple, Callable
 
 from channels.db import database_sync_to_async
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
@@ -7,8 +7,8 @@ from django import forms
 from django.utils.translation.trans_real import get_supported_language_variant, parse_accept_lang_header
 
 
-def action(action_type):
-    def wrap(func):
+def action(action_type) -> Callable:
+    def wrap(func: Callable) -> Callable:
         func.action_type = action_type
         return func
     return wrap
@@ -43,16 +43,17 @@ class ReduxConsumer(AsyncJsonWebsocketConsumer):
             groups.append(control)
         return groups
 
-    async def receive_json(self, action, multiplexer=None, **kwargs):
-        action_type = action['type'].upper()
+    async def receive_json(self, content, multiplexer=None, **kwargs):  # pylint: disable=arguments-differ
+        action_type = content['type'].upper()
         methods = await self._get_actions(action_type)
         if not methods:
             raise NotImplementedError('{} not implemented'.format(action_type))
-        [await method(action, multiplexer=multiplexer) for method in methods]
+        for method in methods:
+            await method(content, multiplexer=multiplexer)
 
 
 class GameConsumer(ReduxConsumer):
-    PREFIX = None
+    PREFIX: str
     form: forms.Form
 
     @database_sync_to_async

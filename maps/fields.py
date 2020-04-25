@@ -1,17 +1,20 @@
 from django import forms
 from django.db import models
+from django.utils.safestring import SafeText
 
 
 class ExternalIdWidget(forms.TextInput):
-    def render(self, name, value, attrs=None, renderer=None):
+    def render(self, name, value, attrs=None, renderer=None) -> SafeText:
         result = super(ExternalIdWidget, self).render(name, value, attrs, renderer)
         if value is not None:
-            result += ' <a href="{link}" target="_blank" rel="noopener noreferrer">link</a>'.format(link=self.attrs['link']).format(id=value)
+            result += ' <a href="{link}" target="_blank" rel="noopener noreferrer">link</a>'.\
+                format(link=self.attrs['link']).\
+                format(id=value)
         return result
 
 
 class ExternalIdFormField(forms.CharField):
-    def __init__(self, link='', *args, **kwargs):
+    def __init__(self, *args, link='', **kwargs):
         self.link = link
         super(ExternalIdFormField, self).__init__(*args, **kwargs)
 

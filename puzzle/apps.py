@@ -6,6 +6,6 @@ class PuzzleConfig(AppConfig):
     name = 'puzzle'
 
     def ready(self):
-        from maps.signals import attach_translations
+        from maps.signals import attach_translations  # pylint: disable=import-outside-toplevel
 
         post_save.connect(attach_translations, sender=self.models['puzzle'])

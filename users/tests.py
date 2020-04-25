@@ -3,6 +3,7 @@ from django.contrib import auth
 from django.test import TestCase
 from django.urls import reverse
 
+from common.tests import TestFilterListMixin
 from common.utils import random_string
 from .factories import UserFactory
 from .models import User
@@ -100,31 +101,6 @@ class UserTestCase(TestCase):
         self.user.save()
 
 
-class UserListTestCase(TestCase):
+class UserListTestCase(TestFilterListMixin, TestCase):
     url = reverse('users')
-
-    def test_list(self):
-        count = 5
-        tags = [UserFactory() for _ in range(count)]
-
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, 200)
-        data = response.json()
-        self.assertEqual(len(data), count)
-        ids = [item['value'] for item in data]
-        for tag in tags:
-            self.assertIn(str(tag.id), ids)
-
-    def test_filter(self):
-        user = UserFactory()
-
-        response = self.client.get(self.url, {'name': user.username[2:5]})
-        self.assertEqual(response.status_code, 200)
-        data = response.json()
-        self.assertEqual(len(data), 1)
-
-        unknown_name = random_string(length=20)
-        response = self.client.get(self.url, {'name': unknown_name})
-        self.assertEqual(response.status_code, 200)
-        data = response.json()
-        self.assertEqual(len(data), 0)
+    filter_list_factory = UserFactory

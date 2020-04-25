@@ -6,7 +6,7 @@ from maps.models import Region
 
 
 def log(area: Region, lang: str, text: str):
-    print('Region {} with language {}: {}'.format(area.id, lang, text))
+    print('Region {} with language {}: {}'.format(area.pk, lang, text))
 
 
 def check_link(area, lang, infobox, name, is_image):

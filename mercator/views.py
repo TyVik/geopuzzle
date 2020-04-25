@@ -37,10 +37,10 @@ def error(request: WSGIRequest) -> HttpResponse:
 
 
 def status(request: WSGIRequest) -> JsonResponse:
-    def check_redis() -> None:
+    def check_redis() -> None:  # pylint: disable=possibly-unused-variable
         StrictRedis.from_url(f'redis://{settings.REDIS_HOST}:6379/0').ping()
 
-    def check_database() -> None:
+    def check_database() -> None:  # pylint: disable=possibly-unused-variable
         connection.cursor()
 
     result = {}
@@ -48,6 +48,6 @@ def status(request: WSGIRequest) -> JsonResponse:
         try:
             locals()[f'check_{service}']()
             result[service] = 'success'
-        except Exception as e:
-            return JsonResponse({service: 'fail', 'message': str(e)}, status=503)
+        except Exception as exception:  # pylint: disable=broad-except
+            return JsonResponse({service: 'fail', 'message': str(exception)}, status=503)
     return JsonResponse(result)

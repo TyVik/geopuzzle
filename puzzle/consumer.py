@@ -10,7 +10,7 @@ class PuzzleConsumer(GameConsumer):
     form = RegionContainsForm
 
     @database_sync_to_async
-    def get_object(self, pk: int):
+    def get_object(self, pk: int) -> RegionCache:
         return RegionCache(pk)
 
     @action('PUZZLE_CHECK')

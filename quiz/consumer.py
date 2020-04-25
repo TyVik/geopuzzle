@@ -10,14 +10,14 @@ class QuizConsumer(GameConsumer):
     form = PointContainsForm
 
     @database_sync_to_async
-    def get_object(self, pk: int):
+    def get_object(self, pk: int) -> RegionCache:
         return RegionCache(pk)
 
     @action('QUIZ_CHECK')
     async def check(self, message: dict, *args, **kwargs):
         for parent in QuizConsumer.__bases__:
             method = getattr(parent, '_check')
-            if method:
+            if method:  # pylint: disable=using-constant-test
                 await method(self, message['id'], data=message['coords'])
 
     @action('QUIZ_GIVEUP')

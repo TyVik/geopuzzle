@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import TabularInline
 
-from maps.admin import GameAdmin
+from maps.admin import GameAdmin, GameItemsInline
 from .models import Quiz, QuizTranslation, QuizRegion
 
 
@@ -10,13 +10,8 @@ class QuizTranslationInline(TabularInline):
     extra = 0
 
 
-class QuizRegionInline(TabularInline):
+class QuizRegionInline(GameItemsInline):
     model = QuizRegion
-    extra = 0
-    raw_id_fields = ('region',)
-    autocomplete_lookup_fields = {
-        'fk': ['region'],
-    }
 
 
 @admin.register(Quiz)

@@ -32,7 +32,10 @@ class Quiz(Game):
 
     @classmethod
     def description(cls) -> str:
-        return _('In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!')
+        return _('In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and '
+                 'Indonesia have the same flags? And that the flags of the United States and Liberia differ only in '
+                 'the number of stars? So, these and other interesting things can be learned and remembered after '
+                 'brainstorming right now!')
 
 
 class QuizRegion(models.Model):

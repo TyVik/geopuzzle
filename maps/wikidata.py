@@ -85,7 +85,8 @@ class Wikidata:
     @staticmethod
     def query(statement: str) -> Dict:
         sparql = SPARQLWrapper("https://query.wikidata.org/bigdata/namespace/wdq/sparql",
-                               agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36')
+                               agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 '
+                                     '(KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36')
         sparql.setQuery(statement + '')  # convert SafeText -> str
         sparql.setReturnFormat(JSON)
         sparql.addCustomHttpHeader('Accept', 'application/json')

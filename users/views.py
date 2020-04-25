@@ -1,4 +1,6 @@
-from typing import Union, Type
+from __future__ import annotations
+
+from typing import Union, Type, Literal, Dict
 
 from django.conf import settings
 from django.contrib.auth import login as auth_login
@@ -35,10 +37,11 @@ class RegistrationView(FormView):
 
 
 ProfileForms = Union[ProfileForm, PasswordChangeForm]
+ProfileSection = Literal['main', 'password']
 
 
 class ProfileView(TemplateResponseMixin, BaseUpdateView):
-    form_classes = {
+    form_classes: Dict[ProfileSection, Type[ProfileForms]] = {
         'main': ProfileForm,
         'password': PasswordChangeForm
     }
@@ -50,7 +53,8 @@ class ProfileView(TemplateResponseMixin, BaseUpdateView):
     def get_context_data(self, **kwargs) -> dict:
         kwargs['form'] = ProfileForm(instance=self.object)
         connected_providers = list(self.object.social_auth.values_list('provider', flat=True))
-        kwargs['providers'] = [{'slug': key, 'connected': key in connected_providers, **value} for key, value in settings.BACKEND_DESCRIBERS.items()]
+        kwargs['providers'] = [{'slug': key, 'connected': key in connected_providers, **value}
+                               for key, value in settings.BACKEND_DESCRIBERS.items()]
         return super(ProfileView, self).get_context_data(**kwargs)
 
     def form_invalid(self, form: ProfileForms) -> JsonResponse:
@@ -62,7 +66,7 @@ class ProfileView(TemplateResponseMixin, BaseUpdateView):
             auth_login(self.request, self.object, 'django.contrib.auth.backends.ModelBackend')
         return JsonResponse({})
 
-    def _get_section(self) -> str:
+    def _get_section(self) -> ProfileSection:
         return self.request.GET.get('section', 'main')
 
     def get_form_class(self) -> Type[ProfileForms]:
@@ -75,19 +79,19 @@ class ProfileView(TemplateResponseMixin, BaseUpdateView):
             del result['instance']
         return result
 
-    def get_object(self, queryset: QuerySet = None) -> User:
+    def get_object(self, queryset: QuerySet[User] = None) -> User:
         return self.request.user
 
 
 class UserView(BaseListView):
     model = User
 
-    def get_queryset(self) -> QuerySet:
+    def get_queryset(self) -> QuerySet[User]:
         return UserFilter(self.request.GET, super(UserView, self).get_queryset()).qs
 
     @staticmethod
     def convert_item(item: User) -> AutocompleteItem:
-        return {'value': str(item.id), 'label': item.username}
+        return {'value': str(item.pk), 'label': item.username}
 
-    def render_to_response(self, context, **response_kwargs) -> JsonResponse:
+    def render_to_response(self, context, **kwargs) -> JsonResponse:
         return JsonResponse([self.convert_item(item) for item in context['object_list']], safe=False)

@@ -16,7 +16,8 @@ from .models import User
 class AuthenticationForm(DefaultAuthenticationForm):
     username = UsernameField(label=_("Username"), max_length=150,
                              widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control'}))
-    password = forms.CharField(label=_("Password"), strip=False, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label=_("Password"), strip=False,
+                               widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
 
 class UsernameEmailValidation:
@@ -40,7 +41,8 @@ class RegistrationForm(UsernameEmailValidation, forms.Form):
     username = UsernameField(label=_("Username"), max_length=150,
                              widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control'}))
     email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(label=_("Password"), strip=False, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label=_("Password"), strip=False,
+                               widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
@@ -63,8 +65,8 @@ class ProfileForm(UsernameEmailValidation, ModelForm):
     def clean_image(self) -> Union[str, ContentFile]:
         value = self.data['image']
         if ';base64,' in value:
-            format, imgstr = value.split(';base64,')
-            ext = format.split('/')[-1]
+            img_format, imgstr = value.split(';base64,')
+            ext = img_format.split('/')[-1]
 
             return ContentFile(base64.b64decode(imgstr), name=f'{random_string()}.{ext}')
         return value.replace('/upload/', '')

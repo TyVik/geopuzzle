@@ -8,7 +8,9 @@ from quiz.factories import QuizFactory
 
 
 class StaticViewsTestCase(TestCase):
-    def setUp(self) -> None:
+    @classmethod
+    def setUpClass(cls) -> None:
+        super().setUpClass()
         cache.delete_pattern('views.decorators.cache.cache_page*')
 
     def test_index(self):
@@ -17,7 +19,7 @@ class StaticViewsTestCase(TestCase):
 
     def test_infobox_by_id(self):
         region = RegionFactory()
-        response = self.client.get(reverse('infobox_by_id', kwargs={'pk': region.id}))
+        response = self.client.get(reverse('infobox_by_id', kwargs={'pk': region.pk}))
         self.assertEqual(response.status_code, 200)
         data = response.json()
         for key in ('area', 'name', 'population', 'wiki'):

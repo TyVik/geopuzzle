@@ -1,10 +1,10 @@
 from typing import Dict, TypedDict
 
-from django.utils.translation import get_language
 from django.http import JsonResponse
 from django.views.generic.list import BaseListView
 from sorl.thumbnail import get_thumbnail
 
+from common.utils import get_language
 from maps.models import Game
 
 
@@ -30,7 +30,7 @@ class ScrollListView(BaseListView):
             image=get_thumbnail(item.image.name, geometry_string='196x196', format='JPEG', quality=66).url,
             url=item.get_absolute_url(),
             name=trans.name,
-            user=item.user.username,
+            user=item.user.username if item.user else '',
         )
 
     def render_to_response(self, context, **kwargs) -> JsonResponse:

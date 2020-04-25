@@ -30,7 +30,7 @@ LOG_DIR = BASE_DIR.joinpath('logs')
 GEOJSON_DIR = BASE_DIR.joinpath('geojson')
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
-ALLOWED_HOSTS = ('geopuzzle.org', 'www.geopuzzle.org', '127.0.0.1')
+ALLOWED_HOSTS: Tuple[str, ...] = ('geopuzzle.org', 'www.geopuzzle.org', '127.0.0.1')
 INTERNAL_IPS = ALLOWED_HOSTS
 
 WSGI_APPLICATION = 'mercator.wsgi.application'

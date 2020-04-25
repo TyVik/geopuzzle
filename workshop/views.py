@@ -1,12 +1,14 @@
+from __future__ import annotations
+
 from typing import Union
 
 from django.db.models import QuerySet
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.views.generic import TemplateView
-from django.utils.translation import get_language
 from django.views.generic.list import BaseListView
 
 from common.middleware import WSGILanguageRequest
+from common.utils import get_language
 from common.views import ScrollListView, AutocompleteItem
 from maps.models import Tag
 from puzzle.models import Puzzle
@@ -30,7 +32,7 @@ class WorkshopItems(ScrollListView):
     request: WSGILanguageRequest
     model = Puzzle
 
-    def get_queryset(self) -> QuerySet:
+    def get_queryset(self) -> QuerySet[Puzzle]:
         qs = super(WorkshopItems, self).get_queryset().\
             filter(user__isnull=False, is_published=True,
                    translations__language_code=self.request.LANGUAGE_CODE).\
@@ -41,14 +43,14 @@ class WorkshopItems(ScrollListView):
 class TagView(BaseListView):
     model = Tag
 
-    def get_queryset(self) -> QuerySet:
+    def get_queryset(self) -> QuerySet[Tag]:
         return TagFilter(self.request.GET, super(TagView, self).get_queryset()).qs
 
     @staticmethod
     def convert_item(item: Tag) -> AutocompleteItem:
-        return {'value': str(item.id), 'label': item.name}
+        return {'value': str(item.pk), 'label': item.name}
 
-    def render_to_response(self, context, **response_kwargs) -> JsonResponse:
+    def render_to_response(self, context, **kwargs) -> JsonResponse:
         return JsonResponse([self.convert_item(item) for item in context['object_list']], safe=False)
 
     def post(self, request, *args, **kwargs) -> Union[JsonResponse, HttpResponseBadRequest]:

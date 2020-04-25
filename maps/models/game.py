@@ -5,11 +5,11 @@ from django.contrib.gis.db.models import PointField
 from django.db import models
 from django.db.models import QuerySet
 from django.urls import reverse
-from django.utils.translation import get_language
 
 from django_enumfield import enum
 
 from common.constants import Point, LanguageEnumType
+from common.utils import get_language
 from ..constants import Zoom, IndexPageGame, IndexPageGameType, InitGameParams, InitGameMapOptions
 
 
@@ -23,6 +23,8 @@ class Game(models.Model):
     is_global = models.BooleanField(default=False)
     on_main_page = models.BooleanField(default=False, db_index=True)
     created = models.DateTimeField(auto_now_add=True)
+
+    translations: QuerySet[GameTranslation]
 
     class Meta:
         abstract = True
@@ -46,7 +48,7 @@ class Game(models.Model):
     @property
     def index(self) -> IndexPageGame:
         trans = self.load_translation(get_language())
-        return IndexPageGame(image=self.image.name, slug=self.slug, name=trans.name, id=self.id)
+        return IndexPageGame(image=self.image.name, slug=self.slug, name=trans.name, id=self.pk)
 
     @classmethod
     def index_qs(cls, language: LanguageEnumType) -> QuerySet:

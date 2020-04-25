@@ -3,7 +3,7 @@ from django.conf import settings
 from .models import Game
 
 
-def attach_translations(sender, instance: Game, created: bool, **kwargs):
+def attach_translations(sender, instance: Game, created: bool, **kwargs):  # pylint: disable=unused-argument
     """This signal should be connected in apps.py each of game module."""
 
     if created:

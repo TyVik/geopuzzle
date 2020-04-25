@@ -16,7 +16,7 @@ MAX_LEVEL = 8
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        parser.add_argument('action', metavar='action', help='One of (update)')
+        parser.add_argument('content', metavar='content', help='One of (update)')
         parser.add_argument('pk', metavar='pk', type=int, help='Region ID')
         parser.add_argument('--recursive', action='store_true', default=False, help='Recursive')
         parser.add_argument('--with-wiki', action='store_true', default=False, help='Update infobox')
@@ -55,9 +55,9 @@ class Command(BaseCommand):
                 self._update(item.id, item.level, recursive, with_wiki)
 
     def handle(self, **options):
-        handler = getattr(self, '_{}'.format(options['action']), None)
+        handler = getattr(self, '_{}'.format(options['content']), None)
         if handler is None:
-            raise CommandError('Cannot find action')
+            raise CommandError('Cannot find content')
 
         try:
             region = Region.objects.get(pk=options['pk'])

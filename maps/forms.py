@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from django import forms
 from django.db.models import QuerySet
 
@@ -12,7 +14,7 @@ class RegionForm(forms.Form):
         super(RegionForm, self).__init__(*args, **kwargs)
 
     @property
-    def regions(self) -> QuerySet:
+    def regions(self) -> QuerySet[Region]:
         if len(self.cleaned_data['id']) > 0:
             return self.cleaned_data['id']
         return self.game.regions.order_by('?')

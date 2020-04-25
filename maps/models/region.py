@@ -13,11 +13,11 @@ from django.db import models
 from django.db.models import QuerySet
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.utils.translation import get_language
 
 from common.cachable import cacheable
 from common.constants import Point, LanguageEnumType
 from common.db import GinIndexTrgrm
+from common.utils import get_language
 from ..constants import OsmRegionData
 from ..converter import encode_geometry
 from ..fields import ExternalIdField
@@ -26,7 +26,7 @@ from ..fields import ExternalIdField
 class RegionInterface(object):
     @property  # type: ignore
     @cacheable
-    def polygon_bounds(self) -> List:
+    def polygon_bounds(self) -> List[float]:
         raise NotImplementedError
 
     @property  # type: ignore
@@ -50,7 +50,7 @@ class RegionInterface(object):
         raise NotImplementedError
 
     def full_info(self, lang: str) -> Dict:
-        return {'infobox': self.polygon_infobox[lang], 'polygon': self.polygon_gmap, 'id': self.id}
+        return {'infobox': self.polygon_infobox[lang], 'polygon': self.polygon_gmap, 'id': self.pk}
 
 
 class RegionCacheMeta(type):
@@ -63,7 +63,7 @@ class RegionCacheMeta(type):
 
     def wrapper(cls, name: str):
         def wrapper(region_cache, *args, **kwargs):
-            origin = Region.objects.get(pk=region_cache.id)
+            origin = Region.objects.get(pk=region_cache.pk)
             return getattr(origin, name)
         wrapper.__name__ = name
         return wrapper
@@ -72,11 +72,11 @@ class RegionCacheMeta(type):
 class RegionCache(RegionInterface, metaclass=RegionCacheMeta):
     def __init__(self, pk: int):
         super(RegionCache, self).__init__()
-        self.id = pk
+        self.pk = pk
 
 
 class RegionManager(models.Manager):
-    def get_queryset(self) -> QuerySet:
+    def get_queryset(self) -> QuerySet[Region]:
         return super(RegionManager, self).get_queryset().defer('polygon')
 
 
@@ -97,14 +97,14 @@ class Region(RegionInterface, models.Model):
         verbose_name_plural = 'Regions'
 
     def __str__(self):
-        return f'{self.title} ({self.id})'
+        return f'{self.title} ({self.pk})'
 
     def __init__(self, *args, **kwargs):
         super(Region, self).__init__(*args, **kwargs)
 
     @property  # type: ignore
     @cacheable
-    def polygon_bounds(self) -> List:
+    def polygon_bounds(self) -> List[float]:
         return self.polygon.extent
 
     @property
@@ -223,4 +223,4 @@ class RegionTranslation(models.Model):
 @receiver(post_save, sender=Region, dispatch_uid="clear_region_cache")
 def clear_region_cache(sender, instance: Region, **kwargs):
     for key in instance.caches():
-        cache.delete(settings.POLYGON_CACHE_KEY.format(func=key, id=instance.id))
+        cache.delete(settings.POLYGON_CACHE_KEY.format(func=key, id=instance.pk))

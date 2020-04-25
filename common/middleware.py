@@ -4,10 +4,12 @@ from django.utils import translation
 from django.utils.deprecation import MiddlewareMixin
 
 from common.constants import LanguageEnumType
+from common.utils import get_language
 
 
 class WSGILanguageRequest(WSGIRequest):
     LANGUAGE_CODE: LanguageEnumType
+    _cache_update_cache: bool
 
 
 class CORSMiddleware(MiddlewareMixin):
@@ -20,4 +22,4 @@ class UserLocaleMiddleware(MiddlewareMixin):
     def process_request(self, request: WSGILanguageRequest):
         if request.user.is_authenticated:
             translation.activate(request.user.language)
-            request.LANGUAGE_CODE = translation.get_language()
+            request.LANGUAGE_CODE = get_language()

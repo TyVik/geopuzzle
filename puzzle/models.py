@@ -28,7 +28,9 @@ class Puzzle(Game):
 
     @classmethod
     def description(cls) -> str:
-        return _('In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!')
+        return _('In the Puzzle you need to drag the shape of the territory to the right place. Just like in '
+                 'childhood we collected pictures piece by piece, so here you can collect a country from regions'
+                 ' or whole continents from countries!')
 
     def pop_position(self) -> Tuple[float, float]:
         if len(self.__default_positions) == 0:

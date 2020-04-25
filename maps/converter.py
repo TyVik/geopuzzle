@@ -85,7 +85,7 @@ def decode(point_str: str) -> List[Point]:
         value = ord(char) - 63
 
         # values that have a chunk following have an extra 1 on the left
-        split_after = not (value & 0x20)
+        split_after = not (value & 0x20)  # pylint: disable=superfluous-parens
         value &= 0x1F
 
         coord_chunks[-1].append(value)
