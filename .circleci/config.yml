@@ -62,7 +62,7 @@ jobs:
           command: dockerize -wait tcp://localhost:5432 -timeout 30s
       - run:
           name: Install dev requirements
-          command: pipenv install --dev --system
+          command: poetry install --no-root
       - run:
           name: Prepare environment
           command: mkdir ~/repo/logs
@@ -82,6 +82,19 @@ jobs:
           paths:
             - coverage.xml
 
+  pylint:
+    docker:
+      - image: tyvik/geopuzzle:app
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install dev requirements
+          command: poetry install --no-root
+      - run:
+          name: Run pylint
+          command: pylint *//*.py
+
   coverage:
     docker:
       - image: tyvik/geopuzzle:app
@@ -96,7 +109,7 @@ jobs:
             - coverage-backend-{{ .Revision }}
       - run:
           name: Install dev requirements
-          command: pipenv install --dev --system
+          command: poetry install --no-root
       - run: coveralls
       - run: codecov
 
@@ -171,7 +184,11 @@ workflows:
               ignore: master
       - django:
           requires:
-            - build
+            - pylint
+          filters:
+            branches:
+              ignore: master
+      - pylint:
           filters:
             branches:
               ignore: master
