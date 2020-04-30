@@ -4,6 +4,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.utils.translation import ugettext as _
 
+from common.constants import LanguageEnumType
 from maps.models import Game, GameTranslation, Region
 
 QUIZ_OPTIONS = (
@@ -36,6 +37,12 @@ class Quiz(Game):
                  'Indonesia have the same flags? And that the flags of the United States and Liberia differ only in '
                  'the number of stars? So, these and other interesting things can be learned and remembered after '
                  'brainstorming right now!')
+
+    def congratulation_text(self, language: LanguageEnumType) -> str:
+        trans = self.load_translation(language)
+        return _('Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is ').format(
+            name=trans.name if self.pk != 1 else _('World map'),
+            subjects=_('countries') if self.is_global else _('regions'))
 
 
 class QuizRegion(models.Model):

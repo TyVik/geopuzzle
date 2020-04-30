@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-07 07:41+0000\n"
+"POT-Creation-Date: 2020-04-29 18:21+0000\n"
 "PO-Revision-Date: 2018-11-09 21:01\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: Italian\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Crowdin-Language: it\n"
 "X-Crowdin-File: /develop/locale/ru/LC_MESSAGES/django.po\n"
 
-#: maps/admin.py:83
+#: maps/admin.py:91
 msgid "Infobox"
 msgstr ""
 
@@ -24,38 +24,38 @@ msgstr ""
 msgid "maps"
 msgstr ""
 
-#: mercator/settings/settings.py:196
+#: mercator/settings/settings.py:213
 msgid "English"
 msgstr ""
 
-#: mercator/settings/settings.py:197
+#: mercator/settings/settings.py:214
 msgid "Russian"
 msgstr ""
 
-#: puzzle/models.py:27
+#: puzzle/models.py:28
 msgid "Puzzle"
 msgstr ""
 
-#: puzzle/models.py:31
+#: puzzle/models.py:32
 msgid ""
 "In the Puzzle you need to drag the shape of the territory to the right "
 "place. Just like in childhood we collected pictures piece by piece, so here "
 "you can collect a country from regions or whole continents from countries!"
 msgstr ""
 
-#: puzzle/views.py:29
-msgid "Puzzle \"{}\" has been assembled! Your time is "
-msgstr ""
-
-#: puzzle/views.py:29 quiz/views.py:30
+#: puzzle/models.py:38 quiz/models.py:46
 msgid "World map"
 msgstr ""
 
-#: quiz/models.py:31
+#: puzzle/models.py:39
+msgid "Puzzle \"{}\" has been assembled! Your time is "
+msgstr ""
+
+#: quiz/models.py:34
 msgid "Quiz"
 msgstr ""
 
-#: quiz/models.py:35
+#: quiz/models.py:38
 msgid ""
 "In the Quiz you need find the country by flag, emblem or the capital. Did "
 "you know that Monaco and Indonesia have the same flags? And that the flags "
@@ -64,17 +64,17 @@ msgid ""
 "brainstorming right now!"
 msgstr ""
 
-#: quiz/views.py:29
+#: quiz/models.py:45
 #, python-brace-format
 msgid ""
 "Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is "
 msgstr ""
 
-#: quiz/views.py:31
+#: quiz/models.py:47
 msgid "countries"
 msgstr ""
 
-#: quiz/views.py:31
+#: quiz/models.py:47
 msgid "regions"
 msgstr ""
 
@@ -86,7 +86,7 @@ msgstr ""
 msgid "World"
 msgstr ""
 
-#: templates/base.html:6 templates/index.html:6 templates/share_image.html:7
+#: templates/base.html:6 templates/index.html:13 templates/share_image.html:7
 msgid "Arrange the pieces of the world!"
 msgstr ""
 
@@ -114,7 +114,7 @@ msgstr ""
 msgid "Sign Up"
 msgstr ""
 
-#: templates/index.html:7
+#: templates/index.html:14
 msgid ""
 "Here, in the form of a game, you can learn the names and locations of each "
 "country or state and have fun doing it. Select a region in its proper place "
@@ -123,14 +123,14 @@ msgid ""
 "from more than 100,000 regions after registration!"
 msgstr ""
 
-#: templates/index.html:8
+#: templates/index.html:15
 msgid ""
 "This is a non-profit project, but servers and other resources are not free "
 "for me. Please, support the project on <a href=\"https://www.patreon.com/"
 "bePatron?u=11576139\" target=\"_blank\" rel=\"noopener\">Patreon</a>."
 msgstr ""
 
-#: templates/index.html:79
+#: templates/index.html:58
 msgid ""
 "All suggestions for improvement can be sent to me via\n"
 "                <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\" "
@@ -143,7 +143,7 @@ msgid ""
 "geopuzzle\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a>."
 msgstr ""
 
-#: templates/index.html:86
+#: templates/index.html:65
 msgid ""
 "The project based on open data:\n"
 "                <a href=\"https://wambachers-osm.website/boundaries/\" "
@@ -158,11 +158,11 @@ msgstr ""
 msgid "Geographical game on the map"
 msgstr ""
 
-#: users/forms.py:17 users/forms.py:40
+#: users/forms.py:17 users/forms.py:41
 msgid "Username"
 msgstr ""
 
-#: users/forms.py:19 users/forms.py:43
+#: users/forms.py:19 users/forms.py:44
 msgid "Password"
 msgstr ""
 

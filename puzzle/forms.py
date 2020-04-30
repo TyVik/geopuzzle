@@ -8,7 +8,7 @@ from common.constants import GameQuestions
 from common.utils import get_language
 from maps.forms import RegionForm
 from maps.models import RegionInterface
-from puzzle.models import Puzzle
+from .models import Puzzle
 
 
 class RegionContainsForm(forms.Form):

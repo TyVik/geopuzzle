@@ -288,6 +288,7 @@ AWESOME_AVATAR = {
 
 # region External services
 GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
+DISABLE_GOOGLE_KEY = os.environ.get('DISABLE_GOOGLE_KEY', False)
 OSM_KEY = os.environ.get('OSM_KEY')
 OSM_URL = 'https://wambachers-osm.website/boundaries/exportBoundaries?cliVersion=1.0&cliKey={key}&exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}'
 # endregion
