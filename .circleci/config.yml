@@ -67,16 +67,18 @@ jobs:
     - image: tyvik/geopuzzle:frontend-builder
       environment:
         NODE_ENV: "production"
+        JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
     working_directory: ~/repo
     steps:
       - checkout
       - run: mv /app/node_modules /root/repo
-      - run: npm run test
+      - run: npm run testci
       - save_cache:
           key: coverage-frontend-{{ .Revision }}
           paths:
             - frontend/coverage/lcov.info
-
+      - store_test_results:
+          path: ./reports/junit/
   django:
     docker:
       - image: tyvik/geopuzzle:backend-tester
@@ -114,6 +116,8 @@ jobs:
           command: |
             coverage report
             coverage xml
+      - store_test_results:
+          path: .
       - save_cache:
           key: coverage-backend-{{ .Revision }}
           paths:
