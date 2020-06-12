@@ -3,14 +3,14 @@ jobs:
   build-backend:
     docker:
     - image: docker:19-git
-    working_directory: /app
+    working_directory: ~/repo
     steps:
       - checkout
       - setup_remote_docker:
           version: 19.03.8
       - run: echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_LOGIN --password-stdin
       - run:
-          name: Build builder if needed
+          name: Build builder
           command: |
             docker build --target backend-builder -t tyvik/geopuzzle:backend-builder -f Dockerfile.backend .
             docker push tyvik/geopuzzle:backend-builder
@@ -30,14 +30,14 @@ jobs:
   build-frontend:
     docker:
     - image: docker:19-git
-    working_directory: /app
+    working_directory: ~/repo
     steps:
       - checkout
       - setup_remote_docker:
           version: 19.03.8
       - run: echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_LOGIN --password-stdin
       - run:
-          name: Rebuild builder if needed
+          name: Rebuild builder
           command: |
             docker build --target frontend-builder -t tyvik/geopuzzle:frontend-builder -f Dockerfile.frontend .
             docker push tyvik/geopuzzle:frontend-builder
@@ -49,9 +49,10 @@ jobs:
         NODE_ENV: "production"
         SENTRY_ORG: "geopuzzle"
         SENTRY_PROJECT: "geopuzzle"
-    working_directory: /app
+    working_directory: ~/repo
     steps:
       - checkout
+      - run: mv /app/node_modules /root/repo
       - run: npm run build
       - save_cache:
           key: bundles-{{ .Revision }}
@@ -66,9 +67,10 @@ jobs:
     - image: tyvik/geopuzzle:frontend-builder
       environment:
         NODE_ENV: "production"
-    working_directory: /app
+    working_directory: ~/repo
     steps:
       - checkout
+      - run: mv /app/node_modules /root/repo
       - run: npm run test
       - save_cache:
           key: coverage-frontend-{{ .Revision }}
@@ -92,12 +94,15 @@ jobs:
           POSTGRES_DB: geopuzzle
           POSTGRES_PASSWORD: geopuzzle
       - image: circleci/redis:4.0-alpine
-    working_directory: /app
+    working_directory: ~/repo
     steps:
       - checkout
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 30s
+      - run:
+          name: Prepare environment
+          command: mkdir ~/repo/logs
 #      - run:
 #          name: Run mypy
 #          command: PYTHONPATH=${PYTHONPATH}:${PWD} mypy . --show-traceback
@@ -117,7 +122,7 @@ jobs:
   pylint:
     docker:
       - image: tyvik/geopuzzle:backend-tester
-    working_directory: /app
+    working_directory: ~/repo
     steps:
       - checkout
       - run:
@@ -127,7 +132,7 @@ jobs:
   coverage:
     docker:
       - image: tyvik/geopuzzle:backend-tester
-    working_directory: /app
+    working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
@@ -142,7 +147,7 @@ jobs:
   sonarqube:
     docker:
     - image: dmoscrop/circleci-sonar-scanner-docker
-    working_directory: /app
+    working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
@@ -156,7 +161,7 @@ jobs:
   deploy:
     docker:
       - image: tyvik/geopuzzle:backend
-    working_directory: /app
+    working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
