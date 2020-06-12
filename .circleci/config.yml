@@ -8,17 +8,11 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 19.03.8
-          docker_layer_caching: true
       - run: echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_LOGIN --password-stdin
-      - run:
-          name: Pull image cache
-          command: |
-            docker pull tyvik/geopuzzle:backend-builder
-            docker pull tyvik/geopuzzle:backend
       - run:
           name: Rebuild builder if needed
           command: |
-            docker build --cache-from tyvik/geopuzzle:backend-builder --target backend-builder -t tyvik/geopuzzle:backend-builder -f Dockerfile.backend .
+            docker build --target backend-builder -t tyvik/geopuzzle:backend-builder -f Dockerfile.backend .
             docker push tyvik/geopuzzle:backend-builder
       - run:
           name: Build image
@@ -36,16 +30,11 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 19.03.8
-          docker_layer_caching: true
       - run: echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_LOGIN --password-stdin
-      - run:
-          name: Pull image cache
-          command: |
-            docker pull tyvik/geopuzzle:frontend-builder
       - run:
           name: Rebuild builder if needed
           command: |
-            docker build --cache-from tyvik/geopuzzle:frontend-builder --target frontend-builder -t tyvik/geopuzzle:frontend-builder -f Dockerfile.frontend .
+            docker build --target frontend-builder -t tyvik/geopuzzle:frontend-builder -f Dockerfile.frontend .
             docker push tyvik/geopuzzle:frontend-builder
 
   build-bundles:
