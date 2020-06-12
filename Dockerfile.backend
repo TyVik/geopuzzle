@@ -36,3 +36,11 @@ WORKDIR /app
 
 ADD . /app/
 CMD ["python3"]
+
+
+FROM backend-builder as backend-tester
+
+RUN poetry config virtualenvs.create false \
+  && poetry install --no-dev --no-interaction --no-ansi \
+  && find / -name "*.pyc" -exec rm -f {} \; \
+  && rm -rf /root/.cache/
