@@ -1,7 +1,7 @@
-version: '3'
+version: '3.7'
 services:
   redis:
-    image: redis:4-alpine
+    image: redis:5-alpine
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 30s
@@ -27,7 +27,10 @@ services:
       - webnet
 
   app:
-    build: .
+    build:
+        context: .
+        dockerfile: Dockerfile.backend
+        target: backend
     restart: on-failure
     environment:
       DJANGO_SETTINGS_MODULE: mercator.settings.development

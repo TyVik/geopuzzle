@@ -1,8 +1,56 @@
 version: 2
 jobs:
-  build:
+  build-backend:
     docker:
-    - image: tyvik/geopuzzle:jsbuild
+    - image: docker:19-git
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.8
+          docker_layer_caching: true
+      - run: echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_LOGIN --password-stdin
+      - run:
+          name: Pull image cache
+          command: |
+            docker pull tyvik/geopuzzle:backend-builder
+            docker pull tyvik/geopuzzle:backend
+      - run:
+          name: Rebuild builder if needed
+          command: |
+            docker build --cache-from tyvik/geopuzzle:backend-builder --target backend-builder -t tyvik/geopuzzle:backend-builder -f Dockerfile.backend .
+            docker push tyvik/geopuzzle:backend-builder
+      - run:
+          name: Build image
+          command: |
+            docker build --build-arg GIT_REVISION=$(git rev-parse --short HEAD) -t tyvik/geopuzzle:backend -f Dockerfile.backend .
+            docker image tag tyvik/geopuzzle:backend tyvik/geopuzzle:$CIRCLE_SHA1-backend
+            docker push tyvik/geopuzzle:backend
+            docker push tyvik/geopuzzle:$CIRCLE_SHA1-backend
+
+  build-frontend:
+    docker:
+    - image: docker:19-git
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.8
+          docker_layer_caching: true
+      - run: echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_LOGIN --password-stdin
+      - run:
+          name: Pull image cache
+          command: |
+            docker pull tyvik/geopuzzle:frontend-builder
+      - run:
+          name: Rebuild builder if needed
+          command: |
+            docker build --cache-from tyvik/geopuzzle:frontend-builder --target frontend-builder -t tyvik/geopuzzle:frontend-builder -f Dockerfile.frontend .
+            docker push tyvik/geopuzzle:frontend-builder
+
+  build-bundles:
+    docker:
+    - image: tyvik/geopuzzle:frontend-builder
       environment:
         NODE_ENV: "production"
         SENTRY_ORG: "geopuzzle"
@@ -11,7 +59,6 @@ jobs:
     steps:
       - checkout
       - run: mv /node_modules /root/repo
-      - run: npm install --only=prod && npm install --only=dev
       - run: npm run build
       - save_cache:
           key: bundles-{{ .Revision }}
@@ -23,14 +70,13 @@ jobs:
 
   jest:
     docker:
-    - image: tyvik/geopuzzle:jsbuild
+    - image: tyvik/geopuzzle:frontend-builder
       environment:
         NODE_ENV: "production"
     working_directory: ~/repo
     steps:
       - checkout
       - run: mv /node_modules /root/repo
-      - run: npm install --only=prod && npm install --only=dev
       - run: npm run test
       - save_cache:
           key: coverage-frontend-{{ .Revision }}
@@ -39,7 +85,7 @@ jobs:
 
   django:
     docker:
-      - image: tyvik/geopuzzle:app
+      - image: tyvik/geopuzzle:backend-builder
         environment:
           DJANGO_SETTINGS_MODULE: "mercator.settings.circleci"
           DB_HOST: localhost
@@ -84,7 +130,7 @@ jobs:
 
   pylint:
     docker:
-      - image: tyvik/geopuzzle:app
+      - image: tyvik/geopuzzle:backend-builder
     working_directory: ~/repo
     steps:
       - checkout
@@ -97,7 +143,7 @@ jobs:
 
   coverage:
     docker:
-      - image: tyvik/geopuzzle:app
+      - image: tyvik/geopuzzle:backend-builder
     working_directory: ~/repo
     steps:
       - checkout
@@ -129,7 +175,7 @@ jobs:
 
   deploy:
     docker:
-      - image: tyvik/geopuzzle:app
+      - image: tyvik/geopuzzle:backend
     working_directory: ~/repo
     steps:
       - checkout
@@ -150,54 +196,22 @@ jobs:
 
 workflows:
   version: 2
-  release:
+  main:
     jobs:
-      - build:
-          filters:
-            branches:
-              only: master
+      - build-frontend
+      - build-backend
+      - build-bundles:
+          requires:
+            - build-frontend
       - django:
           requires:
-            - build
-          filters:
-            branches:
-              only: master
-      - jest:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
-      - deploy:
-          requires:
-            - django
-            - jest
-          filters:
-            branches:
-              only: master
-
-  development:
-    jobs:
-      - build:
-          filters:
-            branches:
-              ignore: master
-      - django:
-          requires:
-            - pylint
-          filters:
-            branches:
-              ignore: master
+            - build-backend
       - pylint:
-          filters:
-            branches:
-              ignore: master
+          requires:
+            - build-backend
       - jest:
           requires:
-            - build
-          filters:
-            branches:
-              ignore: master
+            - build-frontend
       - sonarqube:
           requires:
             - django
@@ -212,3 +226,10 @@ workflows:
           filters:
             branches:
               ignore: master
+      - deploy:
+          requires:
+            - django
+            - jest
+          filters:
+            branches:
+              only: master
