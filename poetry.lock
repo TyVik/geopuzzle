@@ -934,11 +934,11 @@ description = "Python Social Authentication, Django integration."
 name = "social-auth-app-django"
 optional = false
 python-versions = "*"
-version = "3.1.0"
+version = "3.4.0"
 
 [package.dependencies]
 six = "*"
-social-auth-core = ">=1.2.0"
+social-auth-core = ">=3.3.0"
 
 [[package]]
 category = "main"
@@ -1129,7 +1129,7 @@ test = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 
 [metadata]
-content-hash = "fd27e8937e1ea6bf5f1b1b37b937eb67648d9dc99b795579c9acbfdce8206a88"
+content-hash = "0cb39ed1df6068952baad00698a7a657fd72ed8570f108fda56f23bf7980d688"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -1672,9 +1672,9 @@ six = [
     {file = "six-1.14.0.tar.gz", hash = "sha256:236bdbdce46e6e6a3d61a337c0f8b763ca1e8717c03b369e87a7ec7ce1319c0a"},
 ]
 social-auth-app-django = [
-    {file = "social-auth-app-django-3.1.0.tar.gz", hash = "sha256:6d0dd18c2d9e71ca545097d57b44d26f59e624a12833078e8e52f91baf849778"},
-    {file = "social_auth_app_django-3.1.0-py2-none-any.whl", hash = "sha256:f151396e5b16e2eee12cd2e211004257826ece24fc4ae97a147df386c1cd7082"},
-    {file = "social_auth_app_django-3.1.0-py3-none-any.whl", hash = "sha256:9237e3d7b6f6f59494c3b02e0cce6efc69c9d33ad9d1a064e3b2318bcbe89ae3"},
+    {file = "social-auth-app-django-3.4.0.tar.gz", hash = "sha256:09575f5c7dd91465df3a898c58e7c4ae1e78f31edba36b8b7be47ab0aeef2789"},
+    {file = "social_auth_app_django-3.4.0-py2-none-any.whl", hash = "sha256:02b561e175d4a93896e4436b591586b61e647bd8eeef14c99a26344eb3b48d0e"},
+    {file = "social_auth_app_django-3.4.0-py3-none-any.whl", hash = "sha256:47d1720115a9eaad78a67e99987d556abaa01222b9c2b9538182bbdbb10304ba"},
 ]
 social-auth-core = [
     {file = "social-auth-core-3.3.3.tar.gz", hash = "sha256:2f6ce1af8ec2b2cc37b86d647f7d4e4292f091ee556941db34b1e0e2dee77fc0"},
