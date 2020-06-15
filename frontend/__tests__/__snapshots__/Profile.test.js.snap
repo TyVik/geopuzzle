@@ -16,12 +16,10 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
         className="nav-item"
       >
         <a
-          aria-controls={null}
           aria-selected={true}
           className="nav-link active"
           data-rb-event-key="#main"
           href="#"
-          id={null}
           onClick={[Function]}
           onKeyDown={[Function]}
           role="tab"
