@@ -9,7 +9,7 @@ class CloudFrontStorage(S3Boto3Storage):  # pylint: disable=abstract-method
         kwargs['custom_domain'] = settings.CLOUDFRONT_DOMAIN
         super(CloudFrontStorage, self).__init__(*args, **kwargs)
 
-    def url(self, name: str, *args, **kwargs) -> str:  # pylint: disable=arguments-differ
+    def url(self, name: str, *args, **kwargs) -> str:  # pylint: disable=signature-differs
         result = super(CloudFrontStorage, self).url(name, *args, **kwargs)
         if self.location in result:
             result = result.replace(self.location, '')

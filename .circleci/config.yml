@@ -4,6 +4,7 @@ jobs:
     docker:
     - image: docker:19-git
     working_directory: ~/repo
+    resource_class: small
     steps:
       - checkout
       - setup_remote_docker:
@@ -31,6 +32,7 @@ jobs:
     docker:
     - image: docker:19-git
     working_directory: ~/repo
+    resource_class: small
     steps:
       - checkout
       - setup_remote_docker:
@@ -69,6 +71,7 @@ jobs:
         NODE_ENV: "production"
         JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
     working_directory: ~/repo
+    resource_class: small
     steps:
       - checkout
       - run: mv /app/node_modules /root/repo
@@ -79,6 +82,7 @@ jobs:
             - frontend/coverage/lcov.info
       - store_test_results:
           path: ./reports/junit/
+
   django:
     docker:
       - image: tyvik/geopuzzle:backend-tester
@@ -97,6 +101,7 @@ jobs:
           POSTGRES_PASSWORD: geopuzzle
       - image: circleci/redis:4.0-alpine
     working_directory: ~/repo
+    resource_class: small
     steps:
       - checkout
       - run:
@@ -127,6 +132,7 @@ jobs:
     docker:
       - image: tyvik/geopuzzle:backend-tester
     working_directory: ~/repo
+    resource_class: small
     steps:
       - checkout
       - run:
@@ -137,6 +143,7 @@ jobs:
     docker:
       - image: tyvik/geopuzzle:backend-tester
     working_directory: ~/repo
+    resource_class: small
     steps:
       - checkout
       - restore_cache:
@@ -152,6 +159,7 @@ jobs:
     docker:
     - image: dmoscrop/circleci-sonar-scanner-docker
     working_directory: ~/repo
+    resource_class: small
     steps:
       - checkout
       - restore_cache:
@@ -166,6 +174,7 @@ jobs:
     docker:
       - image: tyvik/geopuzzle:backend
     working_directory: ~/repo
+    resource_class: small
     steps:
       - checkout
       - restore_cache:
