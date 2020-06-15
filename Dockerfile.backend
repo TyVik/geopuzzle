@@ -1,0 +1,46 @@
+FROM python:3.8-slim-buster as backend-builder
+
+RUN mkdir /app && mkdir /app/logs
+WORKDIR /app
+
+RUN apt update \
+  && apt install -y --no-install-recommends build-essential make gcc gdal-bin wget git \
+  && wget -q https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz && rm dockerize-linux-amd64-v0.6.1.tar.gz \
+  && apt-get autoremove -y \
+  && apt-get clean
+
+RUN wget -q https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py && POETRY_HOME=/opt/poetry python get-poetry.py \
+  && find / -name "*.pyc" -exec rm -f {} \;
+
+ENV PATH="${PATH}:/opt/poetry/bin"
+ADD poetry.lock pyproject.toml /app/
+RUN poetry config virtualenvs.create false \
+  && poetry install --no-dev --no-interaction --no-ansi \
+  && find / -name "*.pyc" -exec rm -f {} \; \
+  && rm -rf /root/.cache/
+
+FROM python:3.8-slim as backend
+
+RUN apt update \
+  && apt install -y --no-install-recommends gdal-bin \
+  && apt-get autoremove -y \
+  && apt-get clean
+
+COPY --from=backend-builder /usr/local/lib/python3.8/site-packages/ /usr/local/lib/python3.8/site-packages/
+COPY --from=backend-builder /usr/local/bin/ /usr/local/bin/
+
+ARG GIT_REVISION
+ENV GIT_REVISION=${GIT_REVISION:-unknown}
+
+WORKDIR /app
+
+ADD . /app/
+CMD ["python3"]
+
+
+FROM backend-builder as backend-tester
+
+RUN poetry config virtualenvs.create false \
+  && poetry install --no-interaction --no-ansi \
+  && find / -name "*.pyc" -exec rm -f {} \; \
+  && rm -rf /root/.cache/

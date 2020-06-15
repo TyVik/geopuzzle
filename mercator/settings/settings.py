@@ -11,8 +11,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from common.constants import LanguageEnumType
 
-output = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], stdout=subprocess.PIPE)
-GIT_REVISION = output.stdout.decode().strip()
+# output = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], stdout=subprocess.PIPE)
+GIT_REVISION = os.environ.get('GIT_REVISION')
 
 sentry_sdk.init(
     dsn=os.environ.get('RAVEN_DSN'),

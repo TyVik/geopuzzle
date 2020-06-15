@@ -131,15 +131,15 @@ Management command usually run via manage.py script, for example: `./manage.py i
 
 Project has 2 Dockerfiles:
 
-* /Dockerfile.app - for server side (django tests and deploy)
-* /Dockerfile.jsbuild - for client side (webpack build bundles and jest tests for future)
+* /Dockerfile.backend - for server side (django tests and deploy)
+* /Dockerfile.frontend - for client side (webpack build bundles and jest tests for future)
 
 All images should be up to date with all installed dependencies. This allows you to significantly reduce the time to perform tasks CI.
 Command for update image (frontend, by example):
 
 ```bash
-$ docker build -t tyvik/geopuzzle:jsbuild -f Dockerfile.jsbuild .
-$ docker push tyvik/geopuzzle:jsbuild
+$ docker build -t tyvik/geopuzzle:frontend -f Dockerfile.frontend .
+$ docker push tyvik/geopuzzle:frontend
 ```
 
 # Run in dev mode with Docker Compose
