@@ -26,7 +26,7 @@
   "homepage": "https://bitbucket.org/TyVik8/geopuzzle#readme",
   "devDependencies": {
     "@babel/cli": "7.8.4",
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.10.2",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.9.5",
     "@babel/plugin-transform-runtime": "^7.9.0",
