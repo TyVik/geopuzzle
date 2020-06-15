@@ -1,5 +1,4 @@
 import os
-import subprocess
 from pathlib import Path
 from typing import Tuple, List, Dict
 
@@ -11,7 +10,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from common.constants import LanguageEnumType
 
-# output = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], stdout=subprocess.PIPE)
 GIT_REVISION = os.environ.get('GIT_REVISION')
 
 sentry_sdk.init(
