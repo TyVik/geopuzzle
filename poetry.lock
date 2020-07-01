@@ -359,8 +359,8 @@ category = "dev"
 description = "Extensions for Django"
 name = "django-extensions"
 optional = false
-python-versions = "*"
-version = "2.2.9"
+python-versions = ">=3.5"
+version = "3.0.2"
 
 [package.dependencies]
 six = ">=1.2"
@@ -1138,7 +1138,7 @@ test = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 
 [metadata]
-content-hash = "fd27e8937e1ea6bf5f1b1b37b937eb67648d9dc99b795579c9acbfdce8206a88"
+content-hash = "f0d1aa2566e7ed770cb8cdb2069cbbaaf21cd6368bf71af65eebf25fcf4146fc"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -1327,8 +1327,8 @@ django-enumfield = [
     {file = "django_enumfield-2.0.1-py2.py3-none-any.whl", hash = "sha256:bb8fb54253b98c0923d29c3492715bf76d22ea183f7482fc60f005436b4240e0"},
 ]
 django-extensions = [
-    {file = "django-extensions-2.2.9.tar.gz", hash = "sha256:2f81b618ba4d1b0e58603e25012e5c74f88a4b706e0022a3b21f24f0322a6ce6"},
-    {file = "django_extensions-2.2.9-py2.py3-none-any.whl", hash = "sha256:b19182d101a441fe001c5753553a901e2ef3ff60e8fbbe38881eb4a61fdd17c4"},
+    {file = "django-extensions-3.0.2.tar.gz", hash = "sha256:c4e8cff39a26bfb72438cd52ab37d760a2aa146b715b6cd27fa8b862ac29fdc5"},
+    {file = "django_extensions-3.0.2-py2.py3-none-any.whl", hash = "sha256:2b96bb937329b4038809d0fa79c55f6c1e941bce5057ca9ff5f3207aadffcbb9"},
 ]
 django-filter = [
     {file = "django-filter-2.3.0.tar.gz", hash = "sha256:11e63dd759835d9ba7a763926ffb2662cf8a6dcb4c7971a95064de34dbc7e5af"},
@@ -1657,6 +1657,7 @@ redis = [
     {file = "redis-3.5.3.tar.gz", hash = "sha256:0e7e0cfca8660dea8b7d5cd8c4f6c5e29e11f31158c0b0ae91a397f00e5a05a2"},
 ]
 requests = [
+    {file = "requests-2.23.0-py2.7.egg", hash = "sha256:5d2d0ffbb515f39417009a46c14256291061ac01ba8f875b90cad137de83beb4"},
     {file = "requests-2.23.0-py2.py3-none-any.whl", hash = "sha256:43999036bfa82904b6af1d99e4882b560e5e2c68e5c4b0aa03b655f3d7d73fee"},
     {file = "requests-2.23.0.tar.gz", hash = "sha256:b3f43d496c6daba4493e7c431722aeb7dbc6288f52a6e04e7b6023b0247817e6"},
 ]
