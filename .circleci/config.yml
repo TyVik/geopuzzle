@@ -155,21 +155,6 @@ jobs:
       - run: coveralls
       - run: codecov
 
-  sonarqube:
-    docker:
-    - image: dmoscrop/circleci-sonar-scanner-docker
-    working_directory: ~/repo
-    resource_class: small
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - coverage-frontend-{{ .Revision }}
-      - restore_cache:
-          keys:
-            - coverage-backend-{{ .Revision }}
-      - run: .circleci/sonarqube.sh
-
   deploy:
     docker:
       - image: tyvik/geopuzzle:backend
@@ -210,13 +195,6 @@ workflows:
       - jest:
           requires:
             - build-frontend
-      - sonarqube:
-          requires:
-            - django
-            - jest
-          filters:
-            branches:
-              ignore: master
       - coverage:
           requires:
             - django
