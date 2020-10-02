@@ -5,7 +5,7 @@ from django.utils.safestring import SafeText
 
 class ExternalIdWidget(forms.TextInput):
     def render(self, name, value, attrs=None, renderer=None) -> SafeText:
-        result = super(ExternalIdWidget, self).render(name, value, attrs, renderer)
+        result = super().render(name, value, attrs, renderer)
         if value is not None:
             result += ' <a href="{link}" target="_blank" rel="noopener noreferrer">link</a>'.\
                 format(link=self.attrs['link']).\
@@ -16,10 +16,10 @@ class ExternalIdWidget(forms.TextInput):
 class ExternalIdFormField(forms.CharField):
     def __init__(self, *args, link='', **kwargs):
         self.link = link
-        super(ExternalIdFormField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def widget_attrs(self, widget):
-        result = super(ExternalIdFormField, self).widget_attrs(widget)
+        result = super().widget_attrs(widget)
         result.update({'link': self.link})
         return result
 
@@ -27,13 +27,13 @@ class ExternalIdFormField(forms.CharField):
 class ExternalIdField(models.CharField):
     def __init__(self, *args, **kwargs):
         self.link = kwargs.pop('link', '')
-        super(ExternalIdField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def formfield(self, **kwargs):
         defaults = kwargs
         # (link='https://www.wikidata.org/wiki/{id}')
         defaults.update({'form_class': ExternalIdFormField, 'widget': ExternalIdWidget, 'link': self.link})
-        return super(ExternalIdField, self).formfield(**defaults)
+        return super().formfield(**defaults)
 
 
 class RegionsField(models.ManyToManyField):

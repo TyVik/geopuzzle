@@ -40,7 +40,7 @@ class Wambachers:
     features: List
 
     def __init__(self, osm_id: int):
-        super(Wambachers, self).__init__()
+        super().__init__()
         self.osm_id = osm_id
         logger.debug('Created Wambachers service with OSM ID %s', osm_id)
 

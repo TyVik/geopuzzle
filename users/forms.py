@@ -59,7 +59,7 @@ class ProfileForm(UsernameEmailValidation, ModelForm):
         fields = ('username', 'email', 'language', 'is_subscribed', 'image')
 
     def __init__(self, *args, **kwargs) -> None:
-        super(ProfileForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields['image'].required = False
 
     def clean_image(self) -> Union[str, ContentFile]:

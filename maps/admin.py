@@ -22,11 +22,11 @@ from .models import Region, RegionTranslation, Tag, Game
 
 class RegionChangeList(HierarchicalChangeList):
     def get_queryset(self, request):
-        return super(RegionChangeList, self).get_queryset(request).defer('polygon')
+        return super().get_queryset(request).defer('polygon')
 
     def get_query_string(self, new_params=None, remove=None):
         remove = [] if remove is None else remove
-        result = super(RegionChangeList, self).get_query_string(new_params, remove)
+        result = super().get_query_string(new_params, remove)
         if 'parent=None' not in result:
             result = result.replace(self.model_admin.hierarchy.pid_field,
                                     self.model_admin.hierarchy.PARENT_ID_QS_PARAM)
@@ -43,7 +43,7 @@ class RegionTranslationAdmin(admin.TabularInline):
 
 class RegionAdjacencyList(AdjacencyList):
     def hook_get_queryset(self, changelist, request):
-        super(RegionAdjacencyList, self).hook_get_queryset(changelist, request)
+        super().hook_get_queryset(changelist, request)
         if (self.pid_field in changelist.params) and (changelist.params[self.pid_field] is None):
             del changelist.params[self.pid_field]
 

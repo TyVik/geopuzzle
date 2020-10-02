@@ -11,7 +11,7 @@ from sorl.thumbnail.admin.current import AdminImageWidget as SorlImageWidget
 class AdminImageWidget(SorlImageWidget):
     def render(self, name, value, attrs=None, **kwargs) -> str:
         try:
-            result = super(AdminImageWidget, self).render(name, value, attrs, **kwargs)
+            result = super().render(name, value, attrs, **kwargs)
         except TypeError:
             result = 'Original image does not exists'
         return result
@@ -43,7 +43,7 @@ class MultiPolygonWidget(BaseMultiPolygonWidget, BaseGMapWidget):  # pylint: dis
 
     @property
     def media(self):
-        return super(MultiPolygonWidget, self).media + Media(js=('gis/MapBoxExtend.js', ))
+        return super().media + Media(js=('gis/MapBoxExtend.js', ))
 
 
 class MultiPointWidget(BaseMultiPointWidget, BaseGMapWidget):  # pylint: disable=too-many-ancestors

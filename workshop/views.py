@@ -19,7 +19,7 @@ class WorkshopView(TemplateView):
     template_name = 'puzzle/list.html'
 
     def get_context_data(self, **kwargs) -> dict:
-        context = super(WorkshopView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context.update({
             'count': Puzzle.objects.get_queryset().filter(user__isnull=False, is_published=True).count(),
             'language': get_language(),
@@ -33,7 +33,7 @@ class WorkshopItems(ScrollListView):
     model = Puzzle
 
     def get_queryset(self) -> QuerySet[Puzzle]:
-        qs = super(WorkshopItems, self).get_queryset().\
+        qs = super().get_queryset().\
             filter(user__isnull=False, is_published=True,
                    translations__language_code=self.request.LANGUAGE_CODE).\
             prefetch_related('translations')
@@ -44,7 +44,7 @@ class TagView(BaseListView):
     model = Tag
 
     def get_queryset(self) -> QuerySet[Tag]:
-        return TagFilter(self.request.GET, super(TagView, self).get_queryset()).qs
+        return TagFilter(self.request.GET, super().get_queryset()).qs
 
     @staticmethod
     def convert_item(item: Tag) -> AutocompleteItem:

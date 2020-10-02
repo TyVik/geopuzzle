@@ -20,10 +20,10 @@ class RegionContainsForm(forms.Form):
     def __init__(self, area: RegionInterface, zoom: int, *args, **kwargs):
         self.region = area
         self.zoom = zoom
-        super(RegionContainsForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def clean(self):
-        cleaned_data = super(RegionContainsForm, self).clean()
+        cleaned_data = super().clean()
         data = {part: cleaned_data[part] for part in ['north', 'south', 'west', 'east']}
         diff = (-1, -1, 1, 1)
         extent = self.region.polygon_bounds
@@ -60,5 +60,5 @@ class BoundsField(Field):
     def to_python(self, value: str) -> List[float]:
         try:
             return [float(item.strip()) for item in value.split(',') if item.strip()]
-        except (ValueError, TypeError):
-            raise ValidationError(self.error_messages['invalid'])
+        except (ValueError, TypeError) as exception:
+            raise ValidationError(self.error_messages['invalid']) from exception
