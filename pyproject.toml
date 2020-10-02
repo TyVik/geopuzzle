@@ -33,7 +33,6 @@ sparqlwrapper = "^1.8"
 tqdm = "^4.50"
 
 [tool.poetry.dev-dependencies]
-coveralls = "^2.0"
 codecov = "^2.0"
 django-extensions = "^2.2"
 django-stubs = "^1.5"
