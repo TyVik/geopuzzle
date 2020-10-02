@@ -29,9 +29,8 @@ exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
         className="fas fa-angle-down"
       />
     </div>
-    <Collapse
+    <ForwardRef
       appear={false}
-      dimension="height"
       getDimensionValue={[Function]}
       in={true}
       mountOnEnter={false}
@@ -77,10 +76,7 @@ exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
           thumbMinSize={30}
           universal={false}
         >
-          <ListGroup
-            horizontal={null}
-            variant={null}
-          >
+          <ListGroup>
             <NameListItem
               click={[Function]}
               key="5054"
@@ -147,7 +143,7 @@ exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
           </ListGroup>
         </Scrollbars>
       </div>
-    </Collapse>
+    </ForwardRef>
   </div>
 </div>
 `;

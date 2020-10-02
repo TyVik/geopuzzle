@@ -1,9 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`shallow <Congratulation /> components render 1`] = `
-<Bootstrap(Modal)
+<Modal
+  animation={true}
   aria-labelledby="contained-modal-title-lg"
+  autoFocus={true}
+  backdrop={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  keyboard={true}
   onHide={[Function]}
+  restoreFocus={true}
   show={true}
 >
   <ModalHeader
@@ -59,5 +72,5 @@ exports[`shallow <Congratulation /> components render 1`] = `
       </a>
     </div>
   </ModalFooter>
-</Bootstrap(Modal)>
+</Modal>
 `;

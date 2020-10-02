@@ -1,8 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`shallow <QuizInit /> components render: quizinit 1`] = `
-<Bootstrap(Modal)
+<Modal
+  animation={true}
+  autoFocus={true}
+  backdrop={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
   dialogClassName="custom-modal"
+  enforceFocus={true}
+  keyboard={true}
+  restoreFocus={true}
   show={true}
 >
   <ModalHeader
@@ -44,7 +57,6 @@ exports[`shallow <QuizInit /> components render: quizinit 1`] = `
       active={false}
       disabled={false}
       onClick={[Function]}
-      type="button"
       variant="primary"
     >
       <FormattedMessage
@@ -53,5 +65,5 @@ exports[`shallow <QuizInit /> components render: quizinit 1`] = `
       />
     </Button>
   </ModalFooter>
-</Bootstrap(Modal)>
+</Modal>
 `;
