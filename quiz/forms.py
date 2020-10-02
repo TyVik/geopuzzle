@@ -19,10 +19,10 @@ FROM (SELECT polygon from maps_region where id = {id}) As polygon,
 
     def __init__(self, area, *args, **kwargs):
         self.area = area
-        super(PointContainsForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def clean(self):
-        cleaned_data = super(PointContainsForm, self).clean()
+        cleaned_data = super().clean()
         with connection.cursor() as cursor:
             cursor.execute(self.CONTAINS_SQL.format(id=self.area.pk, lat=cleaned_data.get('lat'),
                                                     lon=cleaned_data.get('lng')))

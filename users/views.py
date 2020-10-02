@@ -55,7 +55,7 @@ class ProfileView(TemplateResponseMixin, BaseUpdateView):
         connected_providers = list(self.object.social_auth.values_list('provider', flat=True))
         kwargs['providers'] = [{'slug': key, 'connected': key in connected_providers, **value}
                                for key, value in settings.BACKEND_DESCRIBERS.items()]
-        return super(ProfileView, self).get_context_data(**kwargs)
+        return super().get_context_data(**kwargs)
 
     def form_invalid(self, form: ProfileForms) -> JsonResponse:
         return JsonResponse(form.errors, status=400)
@@ -73,7 +73,7 @@ class ProfileView(TemplateResponseMixin, BaseUpdateView):
         return self.form_classes[self._get_section()]
 
     def get_form_kwargs(self) -> dict:
-        result = super(ProfileView, self).get_form_kwargs()
+        result = super().get_form_kwargs()
         if self._get_section() == 'password':
             result['user'] = self.object
             del result['instance']
@@ -87,7 +87,7 @@ class UserView(BaseListView):
     model = User
 
     def get_queryset(self) -> QuerySet[User]:
-        return UserFilter(self.request.GET, super(UserView, self).get_queryset()).qs
+        return UserFilter(self.request.GET, super().get_queryset()).qs
 
     @staticmethod
     def convert_item(item: User) -> AutocompleteItem:

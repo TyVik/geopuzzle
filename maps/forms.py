@@ -11,7 +11,7 @@ class RegionForm(forms.Form):
 
     def __init__(self, game: Game, *args, **kwargs):
         self.game = game
-        super(RegionForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     @property
     def regions(self) -> QuerySet[Region]:

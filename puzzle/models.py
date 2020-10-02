@@ -21,7 +21,7 @@ class Puzzle(Game):
 
     def __init__(self, *args, **kwargs):
         self.__default_positions = []
-        super(Puzzle, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     @classmethod
     def name(cls) -> str:

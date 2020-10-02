@@ -93,6 +93,6 @@ class GameConsumer(ReduxConsumer):
                     continue
             return 'en'
 
-        await super(GameConsumer, self).connect()
+        await super().connect()
         self.scope['lang'] = self.scope['user'].language if self.scope['user'].is_authenticated else \
             get_best(parse_accept_lang_header(extract_lang(self.scope['headers'])))
