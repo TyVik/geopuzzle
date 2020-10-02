@@ -12,7 +12,7 @@ if [ "$CIRCLE_BRANCH" = "develop" ]; then
   SONAR_OPTS="${SONAR_OPTS} -Dsonar.analysis.mode=publish"
 else
   if [ "$CIRCLE_PULL_REQUEST" != "" ]; then
-    PR=$(echo -n $CIRCLE_PULL_REQUEST | tail -c 2)
+    PR=$(echo -n $CIRCLE_PULL_REQUEST | tail -c 3)
     SONAR_OPTS="${SONAR_OPTS} -Dsonar.pullrequest.key=${PR}"
     SONAR_OPTS="${SONAR_OPTS} -Dsonar.pullrequest.base=develop"
     SONAR_OPTS="${SONAR_OPTS} -Dsonar.pullrequest.branch=${CIRCLE_BRANCH}"
