@@ -54,7 +54,7 @@
     "jspolyfill-array.prototype.find": "^0.1",
     "jspolyfill-array.prototype.findIndex": "^0.1",
     "node-sass": "^4.14",
-    "postcss-loader": "^3.0",
+    "postcss-loader": "^4.0",
     "react-test-renderer": "16.13",
     "sass-loader": "^8.0",
     "style-loader": "^1.2",
