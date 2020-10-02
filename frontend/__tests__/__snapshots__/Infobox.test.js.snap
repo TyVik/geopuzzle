@@ -38,9 +38,8 @@ exports[`shallow <Infobox /> components check props: infobox 1`] = `
       onClick={[Function]}
     />
   </div>
-  <Collapse
+  <ForwardRef
     appear={false}
-    dimension="height"
     getDimensionValue={[Function]}
     in={true}
     mountOnEnter={false}
@@ -114,7 +113,7 @@ exports[`shallow <Infobox /> components check props: infobox 1`] = `
         </tbody>
       </table>
     </div>
-  </Collapse>
+  </ForwardRef>
 </div>
 `;
 
@@ -153,9 +152,8 @@ exports[`shallow <Infobox /> components check props: infobox-empty 1`] = `
       onClick={[Function]}
     />
   </div>
-  <Collapse
+  <ForwardRef
     appear={false}
-    dimension="height"
     getDimensionValue={[Function]}
     in={true}
     mountOnEnter={false}
@@ -179,7 +177,7 @@ exports[`shallow <Infobox /> components check props: infobox-empty 1`] = `
         </tbody>
       </table>
     </div>
-  </Collapse>
+  </ForwardRef>
 </div>
 `;
 
@@ -233,9 +231,8 @@ exports[`shallow <Infobox /> components click collapse: infobox 1`] = `
       onClick={[Function]}
     />
   </div>
-  <Collapse
+  <ForwardRef
     appear={false}
-    dimension="height"
     getDimensionValue={[Function]}
     in={true}
     mountOnEnter={false}
@@ -309,7 +306,7 @@ exports[`shallow <Infobox /> components click collapse: infobox 1`] = `
         </tbody>
       </table>
     </div>
-  </Collapse>
+  </ForwardRef>
 </div>
 `;
 
@@ -363,9 +360,8 @@ exports[`shallow <Infobox /> components click collapse: infobox-collapse 1`] = `
       onClick={[Function]}
     />
   </div>
-  <Collapse
+  <ForwardRef
     appear={false}
-    dimension="height"
     getDimensionValue={[Function]}
     in={false}
     mountOnEnter={false}
@@ -439,6 +435,6 @@ exports[`shallow <Infobox /> components click collapse: infobox-collapse 1`] = `
         </tbody>
       </table>
     </div>
-  </Collapse>
+  </ForwardRef>
 </div>
 `;
