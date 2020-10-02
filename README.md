@@ -1,6 +1,5 @@
 [![CircleCI](https://circleci.com/gh/TyVik/geopuzzle.svg?style=svg)](https://circleci.com/gh/TyVik/geopuzzle)
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=Fbm86tXoBBqACUnFaJqP)](https://www.browserstack.com/automate/public-build/Fbm86tXoBBqACUnFaJqP)
-[![Coverage Status](https://coveralls.io/repos/github/TyVik/geopuzzle/badge.svg?branch=develop)](https://coveralls.io/github/TyVik/geopuzzle?branch=develop)
 [![codecov](https://codecov.io/gh/TyVik/geopuzzle/branch/develop/graph/badge.svg)](https://codecov.io/gh/TyVik/geopuzzle)
 
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/TyVik/geopuzzle.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/TyVik/geopuzzle/alerts/)

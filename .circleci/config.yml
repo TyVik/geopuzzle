@@ -152,7 +152,6 @@ jobs:
       - restore_cache:
           keys:
             - coverage-backend-{{ .Revision }}
-      - run: coveralls
       - run: codecov
 
   deploy:
