@@ -21,7 +21,7 @@ sentry_sdk.init(
 ignore_logger("django.security.DisallowedHost")
 
 
-DEBUG = TEMPLATE_DEBUG = True
+DEBUG = TEMPLATE_DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 LOG_DIR = BASE_DIR.joinpath('logs')
