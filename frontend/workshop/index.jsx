@@ -6,7 +6,7 @@ import Select from 'react-select';
 import {FormattedMessage as Msg} from 'react-intl';
 import GameScrollList from "../components/GamesScrollList";
 import {CSRFfetch} from "../utils";
-import {debounce} from "lodash";
+import {debounce, defer} from "lodash";
 
 
 class Workshop extends React.Component {
@@ -31,7 +31,7 @@ class Workshop extends React.Component {
     if ((inputValue === '') && (field !== 'tag')) {
       return callback([]);
     }
-    setImmediate(async () => {
+    defer(async () => {
       let baseUrl = null;
       switch (field) {
         case 'tag':
