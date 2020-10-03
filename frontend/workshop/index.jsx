@@ -6,6 +6,7 @@ import Select from 'react-select';
 import {FormattedMessage as Msg} from 'react-intl';
 import GameScrollList from "../components/GamesScrollList";
 import {CSRFfetch} from "../utils";
+import {debounce} from "lodash";
 
 
 class Workshop extends React.Component {
@@ -15,13 +16,15 @@ class Workshop extends React.Component {
     this.state = {search: '', _search: '', order: null, tag: null, user: null};
   }
 
+  applySearch = debounce(() => {
+    this.setState(state => ({...state, search: state['_search']}));
+  }, 300);
+
   onChangeSearch = (event) => {
     let value = event && event.target.value || '';
-    if (this.timeout !== null) {
-      clearTimeout(this.timeout);
-    }
-    this.timeout = setTimeout(() => {this.setState(state => ({...state, search: value}))}, 300);
-    this.setState(state => ({...state, _search: value}));
+    this.setState(state => ({...state, _search: value}), () => {
+      this.applySearch();
+    });
   };
 
   loadOptions = (field, inputValue, callback) => {
