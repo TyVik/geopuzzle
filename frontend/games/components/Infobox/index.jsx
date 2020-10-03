@@ -11,7 +11,7 @@ class Infobox extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {collapse: JSON.parse(localStorage.getItem('infobox_collapse')) || false};
+    this.state = {collapse: JSON.parse(localStorage.getItem('infobox-collapse')) || false};
   }
 
   renderAttribute(name) {
@@ -27,7 +27,7 @@ class Infobox extends React.Component {
 
   toggleCollapse = () => {
     let value = !this.state.collapse;
-    localStorage.setItem('infobox_collapse', value);
+    localStorage.setItem('infobox-collapse', value);
     this.setState(state => ({...state, collapse: value}));
   };
 
@@ -43,7 +43,7 @@ class Infobox extends React.Component {
         <button type="button" className="close" onClick={this.props.onClose}>
           <span>&times;</span>
         </button>
-        <div className="row_name">
+        <div className="row-name">
           {this.props.name} <sup><a href={this.props.wiki} target="_blank" rel="noopener noreferrer">wiki</a></sup>
         </div>
         <i

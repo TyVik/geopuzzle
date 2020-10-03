@@ -15,7 +15,6 @@ exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
     >
       <FormattedMessage
         id="found"
-        values={Object {}}
       />
       : 
       <span>
@@ -41,20 +40,20 @@ exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
         id="toolbox-collapse"
       >
         <div
-          className="map_switcher_wrapper"
+          className="map-switcher-wrapper"
         >
           <img
-            className="map_switcher"
+            className="map-switcher"
             onClick={[Function]}
             src="/static/images/map/terrain.png"
           />
           <img
-            className="map_switcher"
+            className="map-switcher"
             onClick={[Function]}
             src="/static/images/map/hybrid.png"
           />
           <img
-            className="map_switcher"
+            className="map-switcher"
             onClick={[Function]}
             src="/static/images/map/satellite.png"
           />

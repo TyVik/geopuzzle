@@ -11,7 +11,7 @@ class Congratulation extends React.Component {
     this.state = {...window.__CONGRATULATION__, show: true};
   }
 
-  share_fb = () => {
+  shareFb = () => {
     FB.ui({
       app_id: 1273749826026102,
       method: 'feed',
@@ -19,10 +19,6 @@ class Congratulation extends React.Component {
       link: this.props.url,
       caption: this.props.share
     }, function(response){});
-  };
-
-  share_google = () => {
-    window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
   };
 
   onClose = () => {
@@ -52,7 +48,7 @@ class Congratulation extends React.Component {
             <i className="fab fa-vk" />
           </a>
           <a className="btn btn-social-icon btn-facebook"
-             href="#" onClick={this.share_fb}
+             href="#" onClick={this.shareFb}
              target="_blank" rel="noopener noreferrer">
             <i className="fab fa-facebook" />
           </a>

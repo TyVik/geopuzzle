@@ -11,7 +11,7 @@ import {CSRFfetch} from "../utils";
 class Workshop extends React.Component {
   constructor(props) {
     super(props);
-    this.order_options = window.__ORDER__.map(item => {return {value: item[0], label: item[1]}});
+    this.orderOptions = window.__ORDER__.map(item => {return {value: item[0], label: item[1]}});
     this.state = {search: '', _search: '', order: null, tag: null, user: null};
   }
 
@@ -58,7 +58,7 @@ class Workshop extends React.Component {
       </div>
       <div className="form-group col-md-5 col-sm-12">
         <label htmlFor="order-label"><Msg id="orderBy"/>:</label>
-        <Select isClearable options={this.order_options} onChange={(event) => this.onChange('order', event)} />
+        <Select isClearable options={this.orderOptions} onChange={(event) => this.onChange('order', event)} />
       </div>
       <div className="form-group col-md-6 col-sm-12">
         <label htmlFor="search-label"><Msg id="tag"/>:</label>

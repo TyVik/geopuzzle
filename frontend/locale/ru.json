@@ -14,9 +14,9 @@
     "networkError": "Соединение с сервером...",
 
     "found": "Найдено",
-    "give_up": "сдаюсь",
-    "fix_problem": "игра сломалась!",
-    "once_again": "ещё раз",
+    "giveUp": "сдаюсь",
+    "fixProblem": "игра сломалась!",
+    "onceAgain": "ещё раз",
     "congratulations": "Поздравляем!",
     "timeOverhead": "больше, чем за день",
     "start": "Начали!",

@@ -16,16 +16,16 @@ class QuizQuestion extends React.Component {
     return <div className="quiz-question">
       <table>
         <tbody>
-          {question.name && <tr><th className="row_name">{question.name}</th></tr>}
-          {question.flag && <tr><td className="row_name"><img src={question.flag}/></td></tr>}
-          {question.coat_of_arms && <tr><td className="row_name"><img src={question.coat_of_arms}/></td></tr>}
-          {question.capital && <tr><td className="row_name">{question.capital}</td></tr>}
+          {question.name && <tr><th className="row-name">{question.name}</th></tr>}
+          {question.flag && <tr><td className="row-name"><img src={question.flag}/></td></tr>}
+          {question.coat_of_arms && <tr><td className="row-name"><img src={question.coat_of_arms}/></td></tr>}
+          {question.capital && <tr><td className="row-name">{question.capital}</td></tr>}
         </tbody>
       </table>
       <div className="quiz-bottom">
         <i className="fas fa-angle-left" onClick={this.props.onPrevious} />
         <Button variant="success" onClick={this.props.giveUp}>
-          <Msg id="give_up"/>
+          <Msg id="giveUp"/>
         </Button>
         <i className="fas fa-angle-right" onClick={this.props.onNext} />
       </div>

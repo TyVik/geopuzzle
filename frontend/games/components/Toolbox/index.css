@@ -14,17 +14,17 @@
     flex-direction: column;
 }
 
-.toolbox #network_connection_label {
+.toolbox #network-connection-label {
     color: red;
     font-size: 10px;
 }
 
-.map_switcher_wrapper {
+.map-switcher-wrapper {
     display: flex;
     justify-content: center;
 }
 
-.map_switcher {
+.map-switcher {
     width: 60px;
     height: 60px;
     cursor: pointer;
