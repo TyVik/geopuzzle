@@ -54,6 +54,6 @@ class TestGameMixin:
             data = response.json()
             if ids != self._get_ids(data['questions']):
                 break
-            shuffled_retries -= 1
+            shuffled_retries -= 1  # pragma: no cover
         else:
             self.failureException('Question random is broken')
