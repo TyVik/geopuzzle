@@ -27,7 +27,6 @@ exports[`shallow <QuizInit /> components render: quizinit 1`] = `
     >
       <FormattedMessage
         id="quizInitCaption"
-        values={Object {}}
       />
     </ModalTitle>
   </ModalHeader>
@@ -61,7 +60,6 @@ exports[`shallow <QuizInit /> components render: quizinit 1`] = `
     >
       <FormattedMessage
         id="start"
-        values={Object {}}
       />
     </Button>
   </ModalFooter>

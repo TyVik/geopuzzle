@@ -28,7 +28,6 @@ exports[`shallow <Congratulation /> components render 1`] = `
     >
       <FormattedMessage
         id="congratulations"
-        values={Object {}}
       />
     </ModalTitle>
   </ModalHeader>

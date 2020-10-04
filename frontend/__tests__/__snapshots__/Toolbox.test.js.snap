@@ -15,7 +15,6 @@ exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
     >
       <FormattedMessage
         id="found"
-        values={Object {}}
       />
       : 
       <span>
