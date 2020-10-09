@@ -14,7 +14,7 @@ class QuizInit extends React.Component {
   }
 
   toggle = (param) => {
-    this.setState({...this.state, [param]: !this.state[param]});
+    this.setState(state => ({...state, [param]: !state[param]}));
   };
 
   renderFooter() {

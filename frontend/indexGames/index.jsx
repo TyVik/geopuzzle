@@ -23,7 +23,8 @@ class IndexScroll extends React.Component {
     let url = `/index/scroll/${this.props.game}/?limit=${this.state.limitPerLoad}&ids=${exclude.join(',')}`;
     let response = await CSRFfetch(url, {});
     let data = await response.json();
-    this.setState({...this.state, items: [...this.state.items, ...data], hasMore: data.length === this.state.limitPerLoad});
+    this.setState(state =>
+      ({...state, items: [...state.items, ...data], hasMore: data.length === state.limitPerLoad}));
   };
 
   renderItem = (item) => {

@@ -1,4 +1,4 @@
-from mercator.settings.settings import *
+from mercator.settings.settings import *  # lgtm [py/polluting-import]
 
 DEBUG = False
 ALLOWED_HOSTS = ('geopuzzle.org', '206.81.16.242')
