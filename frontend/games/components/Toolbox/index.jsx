@@ -27,13 +27,13 @@ class Toolbox extends React.Component {
     super(props);
     this.state = {
       listNameMaxHeight: window.innerHeight - 220 + "px",
-      collapse: JSON.parse(localStorage.getItem('toolbox_collapse')) || false,
+      collapse: JSON.parse(localStorage.getItem('toolbox-collapse')) || false,
     };
   }
 
   toggleCollapse = () => {
     let value = !this.state.collapse;
-    localStorage.setItem('toolbox_collapse', value);
+    localStorage.setItem('toolbox-collapse', value);
     this.setState({collapse: value});
   };
 
@@ -44,18 +44,18 @@ class Toolbox extends React.Component {
       <div className="toolbox">
         <div className="toolbox-header" onClick={this.toggleCollapse} aria-controls={this.COLLAPSE_ID} aria-expanded={!this.state.collapse}>
           {this.props.wsState !== true &&
-            <div id="network_connection_label"><Msg id="networkError"/></div>}
+            <div id="network-connection-label"><Msg id="networkError"/></div>}
           <Msg id="found"/>: <span>{solved}</span>/<span>{this.props.regions.length}</span>
           <i className={"fas fa-angle-" + (this.state.collapse ? 'up' : 'down')} />
         </div>
         <Collapse in={!this.state.collapse}>
           <div id={this.COLLAPSE_ID}>
-            <div className="map_switcher_wrapper">
-              <img className="map_switcher" src={img + "images/map/terrain.png"}
+            <div className="map-switcher-wrapper">
+              <img className="map-switcher" src={img + "images/map/terrain.png"}
                    onClick={() => {this.props.setMapType(google.maps.MapTypeId.TERRAIN)}}/>
-              <img className="map_switcher" src={img + "images/map/hybrid.png"}
+              <img className="map-switcher" src={img + "images/map/hybrid.png"}
                    onClick={() => {this.props.setMapType(google.maps.MapTypeId.HYBRID)}}/>
-              <img className="map_switcher" src={img + "images/map/satellite.png"}
+              <img className="map-switcher" src={img + "images/map/satellite.png"}
                    onClick={() => {this.props.setMapType(google.maps.MapTypeId.SATELLITE)}}/>
             </div>
             <Scrollbars autoHide={true} autoHeight={true} autoHeightMax={this.state.listNameMaxHeight}>

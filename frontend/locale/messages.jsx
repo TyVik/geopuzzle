@@ -1,10 +1,10 @@
 'use strict';
-import messages_ru from "./ru.json";
-import messages_en from "./en.json";
+import messagesRU from "./ru.json";
+import messagesEN from "./en.json";
 
 const messages = {
-  'ru': messages_ru,
-  'en': messages_en
+  'ru': messagesRU,
+  'en': messagesEN
 };
 
 export default messages;

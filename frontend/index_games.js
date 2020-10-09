@@ -1,12 +1,12 @@
 'use strict';
 import React from "react";
 import {render} from "react-dom";
-import IndexGames from "./index_games/index";
+import IndexGames from "./indexGames/index";
 import {IntlProvider} from "react-intl";
 import messages from './locale/messages';
 
 
-let nodes = document.getElementsByClassName('index_games');
+let nodes = document.getElementsByClassName('index-games');
 
 for (var i = 0; i < nodes.length; i++) {
   render(

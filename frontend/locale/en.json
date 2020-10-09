@@ -14,9 +14,9 @@
     "networkError": "Connecting to server...",
 
     "found": "Found",
-    "give_up": "give up",
-    "fix_problem": "game is broken",
-    "once_again": "once again",
+    "giveUp": "give up",
+    "fixProblem": "game is broken",
+    "onceAgain": "once again",
     "congratulations": "Congratulations!",
     "timeOverhead": "more then day",
     "start": "Start",

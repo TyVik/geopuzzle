@@ -17,7 +17,7 @@ class QuizInit extends React.Component {
     this.setState({...this.state, [param]: !this.state[param]});
   };
 
-  render_footer() {
+  renderFooter() {
     if (this.state.name || this.state.flag || this.state.coat_of_arms || this.state.capital) {
       return <Button onClick={() => this.props.load(this.state)}><Msg id="start"/></Button>;
     } else {
@@ -38,7 +38,7 @@ class QuizInit extends React.Component {
         <QuizInitForm available={window.__OPTIONS__} data={this.state} toggle={this.toggle}/>
       </Modal.Body>
       <Modal.Footer>
-        {this.render_footer()}
+        {this.renderFooter()}
       </Modal.Footer>
     </Modal>;
   }
