@@ -13,19 +13,12 @@ class Workshop extends React.Component {
   constructor(props) {
     super(props);
     this.order_options = window.__ORDER__.map(item => {return {value: item[0], label: item[1]}});
-    this.state = {search: '', _search: '', order: null, tag: null, user: null};
+    this.state = {search: '', order: null, tag: null, user: null};
   }
 
-  applySearch = debounce(() => {
-    this.setState(state => ({...state, search: state['_search']}));
+  onChangeSearch = debounce((value) => {
+    this.setState(state => ({...state, search: value || ''}));
   }, 300);
-
-  onChangeSearch = (event) => {
-    let value = event && event.target.value || '';
-    this.setState(state => ({...state, _search: value}), () => {
-      this.applySearch();
-    });
-  };
 
   loadOptions = (field, inputValue, callback) => {
     if ((inputValue === '') && (field !== 'tag')) {
@@ -57,7 +50,7 @@ class Workshop extends React.Component {
       <div className="form-group col-md-7 col-sm-12">
         <label htmlFor="search-label"><Msg id="search"/>:</label>
           <input type="text" className="form-control" maxLength="50" id="search-input"
-                 onChange={this.onChangeSearch} value={this.state._search} />
+                 onChange={(event) => this.onChangeSearch(event.target.value)} />
       </div>
       <div className="form-group col-md-5 col-sm-12">
         <label htmlFor="order-label"><Msg id="orderBy"/>:</label>
