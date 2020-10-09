@@ -6,29 +6,25 @@ import Select from 'react-select';
 import {FormattedMessage as Msg} from 'react-intl';
 import GameScrollList from "../components/GamesScrollList";
 import {CSRFfetch} from "../utils";
+import {debounce, defer} from "lodash";
 
 
 class Workshop extends React.Component {
   constructor(props) {
     super(props);
     this.orderOptions = window.__ORDER__.map(item => {return {value: item[0], label: item[1]}});
-    this.state = {search: '', _search: '', order: null, tag: null, user: null};
+    this.state = {search: '', order: null, tag: null, user: null};
   }
 
-  onChangeSearch = (event) => {
-    let value = event && event.target.value || '';
-    if (this.timeout !== null) {
-      clearTimeout(this.timeout);
-    }
-    this.timeout = setTimeout(() => {this.setState(state => ({...state, search: value}))}, 300);
-    this.setState(state => ({...state, _search: value}));
-  };
+  onChangeSearch = debounce((value) => {
+    this.setState(state => ({...state, search: value || ''}));
+  }, 300);
 
   loadOptions = (field, inputValue, callback) => {
     if ((inputValue === '') && (field !== 'tag')) {
       return callback([]);
     }
-    setImmediate(async () => {
+    defer(async () => {
       let baseUrl = null;
       switch (field) {
         case 'tag':
@@ -54,7 +50,7 @@ class Workshop extends React.Component {
       <div className="form-group col-md-7 col-sm-12">
         <label htmlFor="search-label"><Msg id="search"/>:</label>
           <input type="text" className="form-control" maxLength="50" id="search-input"
-                 onChange={this.onChangeSearch} value={this.state._search} />
+                 onChange={(event) => this.onChangeSearch(event.target.value)} />
       </div>
       <div className="form-group col-md-5 col-sm-12">
         <label htmlFor="order-label"><Msg id="orderBy"/>:</label>

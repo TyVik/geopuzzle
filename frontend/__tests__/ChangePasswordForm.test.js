@@ -2,6 +2,7 @@
 import React from 'react';
 import ChangePasswordForm from '../profile/ChangePasswordForm';
 import {createComponentWithIntl, mountComponentWithIntl} from "./utils";
+import {defer} from "lodash";
 
 
 describe('shallow <ChangePasswordForm /> components', () => {
@@ -18,7 +19,7 @@ describe('shallow <ChangePasswordForm /> components', () => {
     let wrapper = mountComponentWithIntl(<ChangePasswordForm/>);
 
     wrapper.find('form').simulate('submit');
-    setImmediate(() => {
+    defer(() => {
       wrapper.update();
       expect(wrapper.find('.spinner-border').length).toBe(0);
       expect(wrapper.find('.unknown-error').length).toBe(1);
@@ -39,7 +40,7 @@ describe('shallow <ChangePasswordForm /> components', () => {
 
     wrapper.update();
     expect(wrapper.find('.spinner-border').length).toBe(1);
-    setImmediate(() => {
+    defer(() => {
       wrapper.update();
       expect(wrapper.find('.spinner-border').length).toBe(0);
       expect(wrapper.find('.invalid-feedback').length).toBe(2);
@@ -63,7 +64,7 @@ describe('shallow <ChangePasswordForm /> components', () => {
     expect(formData).toMatchObject({old_password: 'old_password', new_password1: 'new_password', new_password2: 'new_password'});
     wrapper.update();
     expect(wrapper.find('.spinner-border').length).toBe(1);
-    setImmediate(() => {
+    defer(() => {
       wrapper.update();
       expect(wrapper.find('.spinner-border').length).toBe(0);
       expect(wrapper.find('.alert-success').length).toBe(1);

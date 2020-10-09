@@ -20,7 +20,6 @@ Array [
         maxLength="50"
         onChange={[Function]}
         type="text"
-        value=""
       />
     </div>
     <div
