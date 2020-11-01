@@ -73,7 +73,7 @@ class Workshop extends React.Component {
 
   currentUrl() {
     let params = new URLSearchParams();
-    ['search', 'tag', 'user', 'order'].map(item => {
+    ['search', 'tag', 'user', 'order'].forEach(item => {
       if ((this.state[item] !== null) && (this.state[item].length > 0)) {
         params.set(`${item}`, this.state[item]);
       }

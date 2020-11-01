@@ -107,14 +107,13 @@ footer .social-wrap {
 
 .btn-social-icon {
     position: relative;
-    padding-left: 44px;
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     height: 34px;
     width: 34px;
-    padding: 0;
+    padding: 0 0 0 44px;
     border-color: rgba(0,0,0,0.2);
     color: #fff;
 }

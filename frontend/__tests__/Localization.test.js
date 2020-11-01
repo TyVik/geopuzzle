@@ -9,7 +9,7 @@ it('check fullness', () => {
 
   expect(Object.keys(messages['en'])).toStrictEqual(Object.keys(messages['ru']));
 
-  Object.keys(messages['en']).map(key => {
+  Object.keys(messages['en']).forEach(key => {
     expect(messages['en'][key]).not.toBe('');
     expect(messages['ru'][key]).not.toBe('');
     expect(messages['en'][key]).not.toBe(messages['ru'][key]);

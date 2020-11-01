@@ -20,10 +20,11 @@ describe('shallow <Toolbox /> components', () => {
     let wrapper = shallow(<Toolbox {...props}/>);
     let switchers = wrapper.find('.map-switcher').getElements();
     expect(switchers.length).toBe(3);
-    [google.maps.MapTypeId.TERRAIN, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.SATELLITE].map((item, index) => {
-      switchers[index].props.onClick();
-      expect(onSetMapType).toHaveBeenCalledWith(item);
-    });
+    [google.maps.MapTypeId.TERRAIN, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.SATELLITE].forEach(
+      (item, index) => {
+        switchers[index].props.onClick();
+        expect(onSetMapType).toHaveBeenCalledWith(item);
+      });
   });
 
   it('ws disconnect', () => {
