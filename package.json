@@ -79,7 +79,7 @@
     "react-bootstrap": "^1.4",
     "react-custom-scrollbars": "^4.2",
     "react-dom": "^16.14",
-    "react-final-form": "4.1.0",
+    "react-final-form": "6.5.2",
     "react-google-maps": "^9.4",
     "react-infinite-scroll-component": "^5.1",
     "react-intl": "^5.10",
