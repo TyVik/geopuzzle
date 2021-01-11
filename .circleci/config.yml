@@ -137,6 +137,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Prepare environment
+          command: mkdir ~/repo/logs
+      - run:
           name: Run pylint
           command: pylint *//*.py
 
