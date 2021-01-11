@@ -8,8 +8,8 @@ from quiz.consumer import QuizConsumer
 application = ProtocolTypeRouter({
     'websocket': AuthMiddlewareStack(
         URLRouter([
-            url(r'^ws/puzzle/', PuzzleConsumer),
-            url(r'^ws/quiz/', QuizConsumer),
+            url(r'^ws/puzzle/', PuzzleConsumer.as_asgi()),
+            url(r'^ws/quiz/', QuizConsumer.as_asgi()),
         ]),
     ),
 })
