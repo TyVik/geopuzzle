@@ -62,7 +62,7 @@
     "style-loader": "*",
     "webpack": "^4.46",
     "webpack-bundle-analyzer": "*",
-    "webpack-cli": "^3.3",
+    "webpack-cli": "^4.4",
     "webpack-sources": "^2.2",
     "whatwg-fetch": "*"
   },
