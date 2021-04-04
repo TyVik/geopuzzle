@@ -13,7 +13,7 @@ exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
       className="toolbox-header"
       onClick={[Function]}
     >
-      <FormattedMessage
+      <MemoizedFormattedMessage
         id="found"
       />
       : 

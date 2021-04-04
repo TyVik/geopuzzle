@@ -1,5 +1,5 @@
 import string
-from factory import DjangoModelFactory
+from factory.django import DjangoModelFactory
 from factory.fuzzy import FuzzyText
 
 from maps.models import Tag

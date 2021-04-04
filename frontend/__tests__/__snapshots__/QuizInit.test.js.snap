@@ -25,7 +25,7 @@ exports[`shallow <QuizInit /> components render: quizinit 1`] = `
     <ModalTitle
       id="contained-modal-title-lg"
     >
-      <FormattedMessage
+      <MemoizedFormattedMessage
         id="quizInitCaption"
       />
     </ModalTitle>
@@ -58,7 +58,7 @@ exports[`shallow <QuizInit /> components render: quizinit 1`] = `
       onClick={[Function]}
       variant="primary"
     >
-      <FormattedMessage
+      <MemoizedFormattedMessage
         id="start"
       />
     </Button>
