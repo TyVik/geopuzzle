@@ -2,13 +2,13 @@ version: 2
 jobs:
   build-backend:
     docker:
-    - image: docker:19-git
+    - image: docker:20.10.5-git
     working_directory: ~/repo
     resource_class: small
     steps:
       - checkout
       - setup_remote_docker:
-          version: 19.03.8
+          version: 19.03.13
       - run: echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_LOGIN --password-stdin
       - run:
           name: Build builder
@@ -30,13 +30,13 @@ jobs:
 
   build-frontend:
     docker:
-    - image: docker:19-git
+    - image: docker:20.10.5-git
     working_directory: ~/repo
     resource_class: small
     steps:
       - checkout
       - setup_remote_docker:
-          version: 19.03.8
+          version: 19.03.13
       - run: echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_LOGIN --password-stdin
       - run:
           name: Rebuild builder

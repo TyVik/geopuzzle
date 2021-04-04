@@ -26,7 +26,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
     <ModalTitle
       id="contained-modal-title-lg"
     >
-      <FormattedMessage
+      <MemoizedFormattedMessage
         id="congratulations"
       />
     </ModalTitle>
