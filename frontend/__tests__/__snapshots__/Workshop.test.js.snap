@@ -35,6 +35,12 @@ Array [
         className=" css-2b097c-container"
         onKeyDown={[Function]}
       >
+        <span
+          aria-atomic="false"
+          aria-live="polite"
+          aria-relevant="additions text"
+          className="css-7pg0cj-a11yText"
+        />
         <div
           className=" css-yk16xz-control"
           onMouseDown={[Function]}
@@ -120,7 +126,7 @@ Array [
             >
               <svg
                 aria-hidden="true"
-                className="css-19bqh2r"
+                className="css-8mmkcg"
                 focusable="false"
                 height={20}
                 viewBox="0 0 20 20"
@@ -148,6 +154,12 @@ Array [
         className=" css-2b097c-container"
         onKeyDown={[Function]}
       >
+        <span
+          aria-atomic="false"
+          aria-live="polite"
+          aria-relevant="additions text"
+          className="css-7pg0cj-a11yText"
+        />
         <div
           className=" css-yk16xz-control"
           onMouseDown={[Function]}
@@ -247,7 +259,7 @@ Array [
             >
               <svg
                 aria-hidden="true"
-                className="css-19bqh2r"
+                className="css-8mmkcg"
                 focusable="false"
                 height={20}
                 viewBox="0 0 20 20"
@@ -275,6 +287,12 @@ Array [
         className=" css-2b097c-container"
         onKeyDown={[Function]}
       >
+        <span
+          aria-atomic="false"
+          aria-live="polite"
+          aria-relevant="additions text"
+          className="css-7pg0cj-a11yText"
+        />
         <div
           className=" css-yk16xz-control"
           onMouseDown={[Function]}
@@ -360,7 +378,7 @@ Array [
             >
               <svg
                 aria-hidden="true"
-                className="css-19bqh2r"
+                className="css-8mmkcg"
                 focusable="false"
                 height={20}
                 viewBox="0 0 20 20"
