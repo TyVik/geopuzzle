@@ -1,0 +1,87 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "22:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: gprof2dot
+    versions:
+    - 2021.2.21
+  - dependency-name: boto3
+    versions:
+    - 1.16.63
+    - 1.17.43
+  - dependency-name: mypy
+    versions:
+    - "0.800"
+    - "0.812"
+  - dependency-name: django
+    versions:
+    - 2.2.18
+    - 3.1.5
+    - 3.1.6
+  - dependency-name: tqdm
+    versions:
+    - 4.59.0
+  - dependency-name: django-extensions
+    versions:
+    - 3.1.1
+  - dependency-name: urllib3
+    versions:
+    - 1.26.3
+  - dependency-name: cryptography
+    versions:
+    - 3.3.2
+  - dependency-name: django-redis-sessions
+    versions:
+    - 0.6.2
+  - dependency-name: factory-boy
+    versions:
+    - 3.2.0
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "22:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: react-select
+    versions:
+    - 4.0.2
+    - 4.1.0
+    - 4.3.0
+  - dependency-name: webpack-cli
+    versions:
+    - 4.4.0
+    - 4.5.0
+    - 4.6.0
+  - dependency-name: whatwg-fetch
+    versions:
+    - 3.5.0
+    - 3.6.2
+  - dependency-name: react-intl
+    versions:
+    - 5.11.0
+    - 5.15.5
+  - dependency-name: "@types/jest"
+    versions:
+    - 26.0.20
+    - 26.0.22
+  - dependency-name: bufferutil
+    versions:
+    - 4.0.3
+  - dependency-name: babel-jest
+    versions:
+    - 26.6.3
+  - dependency-name: webpack-bundle-analyzer
+    versions:
+    - 4.4.0
+  - dependency-name: utf-8-validate
+    versions:
+    - 5.0.4
+  - dependency-name: react-final-form
+    versions:
+    - 6.5.2
