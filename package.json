@@ -82,7 +82,7 @@
     "react-final-form": "4.1.0",
     "react-google-maps": "^9.4",
     "react-infinite-scroll-component": "^5.1",
-    "react-intl": "^5.15.7",
+    "react-intl": "^5.17.2",
     "react-select": "^4.3.0",
     "react-transition-group": "*",
     "url-search-params-polyfill": "^8.1.1",
