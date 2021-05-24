@@ -81,7 +81,7 @@
     "react-dom": "^16.14",
     "react-final-form": "4.1.0",
     "react-google-maps": "^9.4",
-    "react-infinite-scroll-component": "^5.1",
+    "react-infinite-scroll-component": "^6.1",
     "react-intl": "^5.18.1",
     "react-select": "^4.3.1",
     "react-transition-group": "*",
