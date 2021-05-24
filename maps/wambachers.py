@@ -70,13 +70,13 @@ class Wambachers:
         response = requests.get(url)
         assert response.status_code == 200, f'Bad request, status {response.status_code}'
         logger.debug('Unpack polygon data for %s', osm_id)
-        zipfile = ZipFile(BytesIO(response.content))
-        zip_names = zipfile.namelist()
-        assert len(zip_names) == 1, 'Too many geometries'
-        filename = zip_names.pop()
-        logger.debug('Save polygon data in cache for %s', osm_id)
-        with open(self.geojson_path, 'wb') as dst:
-            dst.write(zipfile.open(filename).read())
+        with ZipFile(BytesIO(response.content)) as zipfile:
+            zip_names = zipfile.namelist()
+            assert len(zip_names) == 1, 'Too many geometries'
+            filename = zip_names.pop()
+            logger.debug('Save polygon data in cache for %s', osm_id)
+            with open(self.geojson_path, 'wb') as dst:
+                dst.write(zipfile.open(filename).read())
 
     def _parse(self, feature) -> Feature:
         def langs(tags: Dict[str, str]) -> Dict[str, str]:
