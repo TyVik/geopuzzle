@@ -60,7 +60,7 @@
     "sass": "^1.34.0",
     "sass-loader": "^10.2.0",
     "style-loader": "^2.0.0",
-    "webpack": "^4.46",
+    "webpack": "^5.37",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.0",
     "webpack-sources": "^2.2",
