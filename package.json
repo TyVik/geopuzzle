@@ -63,7 +63,7 @@
     "webpack": "^4.46",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.0",
-    "webpack-sources": "^2.2",
+    "webpack-sources": "^2.3",
     "whatwg-fetch": "^3.6.2"
   },
   "dependencies": {
