@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-29 18:21+0000\n"
+"POT-Creation-Date: 2021-06-25 17:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,11 +31,11 @@ msgstr "Инфобокс"
 msgid "maps"
 msgstr "карты"
 
-#: mercator/settings/settings.py:213
+#: mercator/settings/settings.py:211
 msgid "English"
 msgstr "Английский"
 
-#: mercator/settings/settings.py:214
+#: mercator/settings/settings.py:212
 msgid "Russian"
 msgstr "Русский"
 
@@ -55,7 +55,7 @@ msgstr ""
 "мы собирали картины кусочек за кусочком, а здесь можно собрать страну из "
 "регионов или целые континенты из стран!"
 
-#: puzzle/models.py:38 quiz/models.py:46
+#: puzzle/models.py:38 quiz/models.py:44
 msgid "World map"
 msgstr "Карта мира"
 
@@ -63,11 +63,11 @@ msgstr "Карта мира"
 msgid "Puzzle \"{}\" has been assembled! Your time is "
 msgstr "Пазл «{}» был собран! Ваше время "
 
-#: quiz/models.py:34
+#: quiz/models.py:32
 msgid "Quiz"
 msgstr "Викторина"
 
-#: quiz/models.py:38
+#: quiz/models.py:36
 msgid ""
 "In the Quiz you need find the country by flag, emblem or the capital. Did "
 "you know that Monaco and Indonesia have the same flags? And that the flags "
@@ -80,17 +80,17 @@ msgstr ""
 "Либерии отличаются только количеством звёзд? Так вот, эти и другие "
 "интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
 
-#: quiz/models.py:45
+#: quiz/models.py:43
 #, python-brace-format
 msgid ""
 "Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is "
 msgstr "Викторина \"{name}\" пройдена! Вы нашли все {subjects}. Ваше время "
 
-#: quiz/models.py:47
+#: quiz/models.py:45
 msgid "countries"
 msgstr "страны"
 
-#: quiz/models.py:47
+#: quiz/models.py:45
 msgid "regions"
 msgstr "регионы"
 
@@ -174,18 +174,17 @@ msgstr ""
 "об ошибках на <a href=\"https://github.com/TyVik/geopuzzle\" target=\"_blank"
 "\" rel=\"noopener noreferrer\">GitHub</a>."
 
-#: templates/index.html:65
 msgid ""
 "The project based on open data:\n"
-"                <a href=\"https://wambachers-osm.website/boundaries/\" "
-"target=\"_blank\" rel=\"noopener noreferrer\">OSM Admin Boundaries Map</a> "
-"for region polygons and\n"
+"                <a href=\"https://osm-boundaries.com/\" target=\"_blank\" "
+"rel=\"noopener noreferrer\">OSM Admin Boundaries Map</a> for region polygons "
+"and\n"
 "                <a href=\"https://www.wikidata.org/wiki/Wikidata:Main_Page\" "
 "target=\"_blank\" rel=\"noopener noreferrer\">Wikidata</a> for information "
 "in infoboxes."
 msgstr ""
 "Проект использует данные из открытых источников:\n"
-"                <a href=\"https://wambachers-osm.website/boundaries/\" "
+"                <a href=\"https://osm-boundaries.com/\" "
 "target=\"_blank\" rel=\"noopener noreferrer\">OSM Admin Boundaries Map</a> "
 "для полигонов регионов и\n"
 "                <a href=\"https://www.wikidata.org/wiki/Wikidata:Main_Page\" "
