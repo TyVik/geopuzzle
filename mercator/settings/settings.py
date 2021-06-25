@@ -180,7 +180,7 @@ LOGGING = {
     'loggers': {
         'commands': {
             'level': 'DEBUG',
-            'handlers': ['commands', 'console'],
+            'handlers': ['commands'],
         },
         'wambachers': {
             'level': 'DEBUG',
