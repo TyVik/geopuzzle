@@ -32,8 +32,13 @@ def check_link(area, lang, infobox, name, is_image) -> Optional[Dict[LanguageEnu
 
 
 class Command(BaseCommand):
+    def add_arguments(self, parser):
+        parser.add_argument('--since', action='store', type=int, default=None, help='Since id')
+
     def handle(self, *args, **options):
         query = Region.objects.order_by('id').all()
+        if options['since']:
+            query = query.filter(pk__gte=options['since'])
         for area in tqdm(query.iterator(), total=query.count()):
             logger.debug('Check region %s', area)
             updated = None
