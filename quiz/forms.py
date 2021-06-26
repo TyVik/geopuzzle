@@ -25,7 +25,7 @@ FROM (SELECT polygon from maps_region where id = {id}) As polygon,
         cleaned_data = super().clean()
         with connection.cursor() as cursor:
             cursor.execute(self.CONTAINS_SQL.format(id=self.area.pk, lat=cleaned_data.get('lat'),
-                                                    lon=cleaned_data.get('lng')))
+                                                    lon=cleaned_data.get('lng')))  # lgtm [py/sql-injection]
             row = cursor.fetchone()
             result = row[0]
         if not result:
