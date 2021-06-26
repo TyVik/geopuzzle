@@ -29,8 +29,7 @@ class Command(BaseCommand):
 
     def _import(self, label, **kwargs):
         with open('geocache_{}.json'.format(label), 'r') as f:
-            while True:
-                region = json.loads(f.readline())
+            while region := json.loads(f.readline()):
                 for rec in region.keys():
                     cache_key = POLYGON_CACHE_KEY.format(func=label, id=rec)
                     cache.set(cache_key, region[rec], timeout=None)

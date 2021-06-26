@@ -180,7 +180,7 @@ LOGGING = {
     'loggers': {
         'commands': {
             'level': 'DEBUG',
-            'handlers': ['commands', 'console'],
+            'handlers': ['commands'],
         },
         'wambachers': {
             'level': 'DEBUG',
@@ -288,7 +288,7 @@ AWESOME_AVATAR = {
 GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
 DISABLE_GOOGLE_KEY = os.environ.get('DISABLE_GOOGLE_KEY', False)
 OSM_KEY = os.environ.get('OSM_KEY')
-OSM_URL = 'https://wambachers-osm.website/boundaries/exportBoundaries?cliVersion=1.0&cliKey={key}&exportFormat=json&exportLayout=levels&exportAreas=land&union=false&selected={id}'
+OSM_URL = 'https://osm-boundaries.com/Download/Submit?apiKey={key}&format=GeoJSON&srid=4326&db=osm20210531&osmIds={id}&landOnly&includeAllTags'
 # endregion
 
 SETTINGS_EXPORT = ['GIT_REVISION', 'STATIC_URL', 'GOOGLE_KEY']

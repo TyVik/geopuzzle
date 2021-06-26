@@ -5,7 +5,7 @@ from django.core.management import BaseCommand, CommandError
 
 from maps.constants import OsmRegionData
 from maps.models import Region
-from maps.wambachers import Wambachers
+from maps.wambachers import Wambachers, WambachersNode
 from maps.wikidata import Wikidata
 
 logger = logging.getLogger('commands')
@@ -15,22 +15,21 @@ MAX_LEVEL = 8
 
 
 class Command(BaseCommand):
+    service = Wambachers()
+
     def add_arguments(self, parser):
-        parser.add_argument('content', metavar='content', help='One of (update)')
         parser.add_argument('pk', metavar='pk', type=int, help='Region ID')
         parser.add_argument('--recursive', action='store_true', default=False, help='Recursive')
         parser.add_argument('--with-wiki', action='store_true', default=False, help='Update infobox')
 
-    def _update(self, osm_id: int, level: int, recursive: bool, with_wiki: bool):
-        logger.info('Start process item: osm_id %s, level %s', osm_id, level)
-        service = Wambachers(osm_id)
-        service.load(level)
-        feature = service.features[0]
+    def _update_geometry(self, item: WambachersNode, with_wiki: bool):
+        logger.info('Update geometry for osm_id %s', item.id)
+        feature = self.service.load(item)
         defaults = {
             'title': feature.name,
             'polygon': feature.geometry,
             'wikidata_id': feature.wikidata_id,
-            'parent': Region.objects.get(osm_id=feature.path[1]) if feature.path[1] != 0 else None,
+            'parent': Region.objects.get(osm_id=feature.path[0]) if feature.path else None,
             'osm_data': OsmRegionData(level=feature.level, boundary=feature.boundary, path=feature.path,
                                       alpha3=feature.alpha3, timezone=feature.timezone)
         }
@@ -46,22 +45,20 @@ class Command(BaseCommand):
                 trans.save()
 
         logger.info('Save item %s (new: %s)', region, created)
-        if recursive:
-            items = service.fetch_items_list()
-            logger.info('Found %s descendants', len(items))
-            for item in items:
+        if item.children:
+            logger.info('Found %s descendants', len(item.children))
+            for item in item.children:
                 if item.level > MAX_LEVEL:
                     continue
-                self._update(item.id, item.level, recursive, with_wiki)
+                self._update_geometry(item, with_wiki)
 
     def handle(self, **options):
-        handler = getattr(self, '_{}'.format(options['content']), None)
-        if handler is None:
-            raise CommandError('Cannot find content')
-
         try:
             region = Region.objects.get(pk=options['pk'])
         except ValueError:
-            raise CommandError('Please. specify the pk')
+            raise CommandError('Please specify the pk')
 
-        handler(region.osm_id, region.osm_data['level'], options['recursive'], options['with_wiki'])
+        item = WambachersNode(id=region.osm_id)
+        if options['recursive']:
+            item.children = self.service.fetch_items_list(item)
+        self._update_geometry(item, options['with_wiki'])

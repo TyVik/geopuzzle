@@ -1,15 +1,14 @@
+import gzip
 import json
 import logging
 import os
 from dataclasses import dataclass
 from io import BytesIO
-from typing import Dict, List
-from zipfile import ZipFile
+from typing import Dict, List, Optional
 
 import requests
 from django.conf import settings
 from django.contrib.gis.geos import GEOSGeometry
-
 
 logger = logging.getLogger('wambachers')
 
@@ -17,8 +16,21 @@ logger = logging.getLogger('wambachers')
 @dataclass
 class WambachersNode:
     id: int
-    text: str
-    level: int
+    text: Optional[str] = None
+    level: Optional[int] = None
+    children: List['WambachersNode'] = None
+
+    @property
+    def osm_id(self) -> int:
+        return -1 * self.id
+
+    @property
+    def geojson_path(self) -> str:
+        return settings.GEOJSON_DIR.joinpath(f'{self.id}.geojson')
+
+    @property
+    def boundaries_url(self) -> str:
+        return settings.OSM_URL.format(id=self.osm_id, key=settings.OSM_KEY)
 
 
 @dataclass
@@ -36,47 +48,48 @@ class Feature:  # pylint: disable=too-many-instance-attributes
 
 
 class Wambachers:
-    osm_id: int
-    features: List
+    def fetch_items_list(self, item: WambachersNode) -> List[WambachersNode]:
+        def parse(items: List) -> List[WambachersNode]:
+            return [WambachersNode(
+                id=abs(item['id']),
+                text=item['name'],
+                level=item['admin_level'],
+                children=parse(item['children']))
+                    for item in items if item['boundary'] == 'administrative']
 
-    def __init__(self, osm_id: int):
-        super().__init__()
-        self.osm_id = osm_id
-        logger.debug('Created Wambachers service with OSM ID %s', osm_id)
+        def find_subtree(tree: List[WambachersNode], item: WambachersNode) -> Optional[WambachersNode]:
+            for child in tree:
+                if child.id == item.id:
+                    return child
+                in_tree = find_subtree(child.children, item)
+                if in_tree:
+                    return in_tree
+            return None
 
-    def fetch_items_list(self) -> List[WambachersNode]:
-        params = {'caller': 'boundaries-4.6.4', 'database': 'planet3', 'parent': self.osm_id, 'addi': 810, 'debug': 3}
+        feature = self.load(item)
+        root = WambachersNode(feature.path[-1]) if feature.path else item
+        params = {'db': 'osm20210531', 'rootId': root.osm_id}
         headers = {
-            'Referer': 'https://wambachers-osm.website/boundaries/',
+            'Referer': 'https://osm-boundaries.com/',
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 '
                           '(KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36',
             'X-Requested-With': 'XMLHttpRequest',
-            'Cookie': 'JSESSIONID=node01ln7zb8ljtnbacctakke8yb6s49.node0; osm_boundaries_map='
-                      '1%7C40.65536999999962%7C45.25161549584642%7C10%7C0BT%7Copen; osm_boundaries_base='
-                      '4%7Cfalse%7Cjson%7Czip%7Cnull%7Cfalse%7Clevels%7Cland%7C4.3%7Ctrue%7C3',
         }
-        response = requests.post('https://wambachers-osm.website/boundaries/getJsTree7',
+        response = requests.post('https://osm-boundaries.com/Ajax/GetTreeContent',
                                  params=params, headers=headers)
-        return [WambachersNode(id=item['id'], text=item['text'], level=item['data']['admin_level'])
-                for item in response.json()]
+        tree = parse(response.json())
+        subtree = find_subtree(tree, item)
+        return subtree.children
 
-    @property
-    def geojson_path(self) -> str:
-        return os.path.join(settings.GEOJSON_DIR, f'{self.osm_id}.geojson')
-
-    def fetch_geojson(self, osm_id, level):
-        logger.debug('Fetch polygon data for %s', osm_id)
-        url = settings.OSM_URL.format(id=osm_id, key=settings.OSM_KEY, level=level)
-        response = requests.get(url)
+    def fetch_geojson(self, item: WambachersNode) -> None:
+        logger.debug('Fetch polygon data for %s', item)
+        response = requests.get(item.boundaries_url)
         assert response.status_code == 200, f'Bad request, status {response.status_code}'
-        logger.debug('Unpack polygon data for %s', osm_id)
-        with ZipFile(BytesIO(response.content)) as zipfile:
-            zip_names = zipfile.namelist()
-            assert len(zip_names) == 1, 'Too many geometries'
-            filename = zip_names.pop()
-            logger.debug('Save polygon data in cache for %s', osm_id)
-            with open(self.geojson_path, 'wb') as dst:
-                dst.write(zipfile.open(filename).read())
+        logger.debug('Unpack polygon data for %s', item)
+        with gzip.open(BytesIO(response.content)) as zipfile:
+            logger.debug('Save polygon data in cache for %s', item)
+            with open(item.geojson_path, 'wb') as dst:
+                dst.write(zipfile.read())
 
     def _parse(self, feature) -> Feature:
         def langs(tags: Dict[str, str]) -> Dict[str, str]:
@@ -85,25 +98,25 @@ class Wambachers:
         assert feature['type'] == 'Feature'
         return Feature(
             geometry=GEOSGeometry(json.dumps(feature['geometry'])),
-            osm_id=int(feature['properties']['id']),
-            wikidata_id=feature['properties']['wikidata'],
+            osm_id=abs(int(feature['properties']['osm_id'])),
+            wikidata_id=feature['properties']['all_tags']['wikidata'],
             level=feature['properties']['admin_level'],
             boundary=feature['properties']['boundary'],
             name=feature['properties']['name'],
-            path=[int(x) for x in feature['properties']['rpath'].split(',')],
-            alpha3=feature['properties']['alltags'].get('ISO3166-1:alpha3'),
-            timezone=feature['properties']['alltags'].get('timezone'),
-            lang=langs(feature['properties']['alltags'])
+            path=[abs(int(x)) for x in feature['properties']['parents'].split(',')]
+            if feature['properties']['parents'] else [],
+            alpha3=feature['properties']['all_tags'].get('ISO3166-1:alpha3'),
+            timezone=feature['properties']['all_tags'].get('timezone'),
+            lang=langs(feature['properties']['all_tags'])
         )
 
-    def load(self, level: int) -> None:
-        cache = self.geojson_path
+    def load(self, item: WambachersNode) -> Feature:
+        cache = item.geojson_path
         if not os.path.exists(cache):
-            logger.debug('Missing cache for %s', self.osm_id)
-            self.fetch_geojson(self.osm_id, level)
+            logger.debug('Missing cache for %s', item)
+            self.fetch_geojson(item)
         with open(cache, 'r') as src:
             data = json.loads(src.read())
-            logger.debug('GeoJSON for %s was parsed', self.osm_id)
+            logger.debug('GeoJSON for %s was parsed', item)
             assert data['type'] == 'FeatureCollection', f'Found unknown type: {data["type"]}'
-            self.features = [self._parse(feature) for feature in data['features']]
-        assert len(self.features) == 1
+            return [self._parse(feature) for feature in data['features']][0]

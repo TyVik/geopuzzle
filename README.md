@@ -106,10 +106,10 @@ $ npm run build
 
 # Load data
 
-I find excellent service for load geojson files with polygons - https://wambachers-osm.website/boundaries/.
+I find excellent service for load geojson files with polygons - https://osm-boundaries.com/.
 Just select the country (or many or with regions) and click 'Export'. URL must be like:
 ```
-https://wambachers-osm.website/boundaries/exportBoundaries?apiversion=1.0&apikey=434e16bd-cdd3-489f-ab39-d0ee2e6f894f&exportFormat=json&exportLayout=levels&exportAreas=land&from_al=2&to_al=4&union=false&selected=16239
+https://osm-boundaries.com/Download/Submit?apiKey=74ba654a378b8daf80f&db=osm20210531&osmIds=-5682946,-5682950&format=GeoJSON&srid=4326
 ```
 And download content by that link. You've got zip archive with GeoJson files, unpack them into `geojson` folder.
 After that you can run management command `(venv)$ ./manage.py update_regions` for load polygons into database.
@@ -165,7 +165,7 @@ Go to [http://localhost:8000](http://localhost:8000)
 
 # Useful links
 
-* https://wambachers-osm.website/boundaries/
+* https://osm-boundaries.com/
 * http://global.mapit.mysociety.org/areas/O03 - http://mapit.poplus.org/docs/self-hosted/how-data-is-stored/
 * http://geo.koltyrin.ru/
 * http://www.marineregions.org/gazetteer.php?p=browser&id=1900&expand=true#ct

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-29 18:21+0000\n"
+"POT-Creation-Date: 2021-06-25 17:36+0000\n"
 "PO-Revision-Date: 2018-11-09 21:01\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: French\n"
@@ -24,11 +24,11 @@ msgstr ""
 msgid "maps"
 msgstr ""
 
-#: mercator/settings/settings.py:213
+#: mercator/settings/settings.py:211
 msgid "English"
 msgstr ""
 
-#: mercator/settings/settings.py:214
+#: mercator/settings/settings.py:212
 msgid "Russian"
 msgstr ""
 
@@ -43,7 +43,7 @@ msgid ""
 "you can collect a country from regions or whole continents from countries!"
 msgstr ""
 
-#: puzzle/models.py:38 quiz/models.py:46
+#: puzzle/models.py:38 quiz/models.py:44
 msgid "World map"
 msgstr ""
 
@@ -51,11 +51,11 @@ msgstr ""
 msgid "Puzzle \"{}\" has been assembled! Your time is "
 msgstr ""
 
-#: quiz/models.py:34
+#: quiz/models.py:32
 msgid "Quiz"
 msgstr ""
 
-#: quiz/models.py:38
+#: quiz/models.py:36
 msgid ""
 "In the Quiz you need find the country by flag, emblem or the capital. Did "
 "you know that Monaco and Indonesia have the same flags? And that the flags "
@@ -64,17 +64,17 @@ msgid ""
 "brainstorming right now!"
 msgstr ""
 
-#: quiz/models.py:45
+#: quiz/models.py:43
 #, python-brace-format
 msgid ""
 "Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is "
 msgstr ""
 
-#: quiz/models.py:47
+#: quiz/models.py:45
 msgid "countries"
 msgstr ""
 
-#: quiz/models.py:47
+#: quiz/models.py:45
 msgid "regions"
 msgstr ""
 
@@ -146,9 +146,9 @@ msgstr ""
 #: templates/index.html:65
 msgid ""
 "The project based on open data:\n"
-"                <a href=\"https://wambachers-osm.website/boundaries/\" "
-"target=\"_blank\" rel=\"noopener noreferrer\">OSM Admin Boundaries Map</a> "
-"for region polygons and\n"
+"                <a href=\"https://osm-boundaries.com/\" target=\"_blank\" "
+"rel=\"noopener noreferrer\">OSM Admin Boundaries Map</a> for region polygons "
+"and\n"
 "                <a href=\"https://www.wikidata.org/wiki/Wikidata:Main_Page\" "
 "target=\"_blank\" rel=\"noopener noreferrer\">Wikidata</a> for information "
 "in infoboxes."
