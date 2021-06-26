@@ -10,7 +10,6 @@ import requests
 from django.conf import settings
 from django.contrib.gis.geos import GEOSGeometry
 
-
 logger = logging.getLogger('wambachers')
 
 
@@ -51,16 +50,21 @@ class Feature:  # pylint: disable=too-many-instance-attributes
 class Wambachers:
     def fetch_items_list(self, item: WambachersNode) -> List[WambachersNode]:
         def parse(items: List) -> List[WambachersNode]:
-            return [WambachersNode(id=abs(item['id']), text=item['name'], level=item['admin_level'], children=parse(item['children']))
+            return [WambachersNode(
+                id=abs(item['id']),
+                text=item['name'],
+                level=item['admin_level'],
+                children=parse(item['children']))
                     for item in items if item['boundary'] == 'administrative']
 
-        def find_subtree(tree: List[WambachersNode], item: WambachersNode) -> WambachersNode:
+        def find_subtree(tree: List[WambachersNode], item: WambachersNode) -> Optional[WambachersNode]:
             for child in tree:
                 if child.id == item.id:
                     return child
                 in_tree = find_subtree(child.children, item)
                 if in_tree:
                     return in_tree
+            return None
 
         feature = self.load(item)
         root = WambachersNode(feature.path[-1]) if feature.path else item
@@ -99,7 +103,8 @@ class Wambachers:
             level=feature['properties']['admin_level'],
             boundary=feature['properties']['boundary'],
             name=feature['properties']['name'],
-            path=[abs(int(x)) for x in feature['properties']['parents'].split(',')] if feature['properties']['parents'] else [],
+            path=[abs(int(x)) for x in feature['properties']['parents'].split(',')]
+            if feature['properties']['parents'] else [],
             alpha3=feature['properties']['all_tags'].get('ISO3166-1:alpha3'),
             timezone=feature['properties']['all_tags'].get('timezone'),
             lang=langs(feature['properties']['all_tags'])
