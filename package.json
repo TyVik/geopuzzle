@@ -38,7 +38,7 @@
     "@types/markerclustererplus": "*",
     "@types/react": "^16.14.8",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^26.6.3",
+    "babel-jest": "^27.0.5",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.6",
     "enzyme": "*",

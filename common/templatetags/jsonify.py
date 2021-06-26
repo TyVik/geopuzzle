@@ -11,13 +11,13 @@ register = Library()
 
 
 class CustomJSONEncoder(DjangoJSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, ImageFieldFile):
+    def default(self, o):
+        if isinstance(o, ImageFieldFile):
             try:
-                return obj.url
+                return o.url
             except ValueError:
                 return ''
-        return super(CustomJSONEncoder, self).default(obj)
+        return super().default(o)
 
 
 @register.filter

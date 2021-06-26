@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 from copy import deepcopy
-
-from django.contrib.gis.geos import MultiPolygon, Polygon
 from typing import List, Dict, Union, Tuple
 
+from django.contrib.gis.geos import MultiPolygon, Polygon
 from django.conf import settings
 from django.contrib.gis.db.models import MultiPolygonField
 from django.contrib.postgres.fields import JSONField
@@ -23,7 +22,7 @@ from ..converter import encode_geometry
 from ..fields import ExternalIdField
 
 
-class RegionInterface(object):
+class RegionInterface:
     @property  # type: ignore
     @cacheable
     def polygon_bounds(self) -> List[float]:
@@ -54,12 +53,12 @@ class RegionInterface(object):
 
 
 class RegionCacheMeta(type):
-    def __new__(mcs, name, bases, dct):
-        cls = type.__new__(mcs, name, bases, dct)
-        for name, value in bases[0].__dict__.items():
-            if name.startswith('polygon_'):
-                setattr(cls, name, property(cacheable(cls.wrapper(name))))
-        return cls
+    def __new__(cls, name, bases, dct):
+        new = type.__new__(cls, name, bases, dct)
+        for method_name, _ in bases[0].__dict__.items():
+            if method_name.startswith('polygon_'):
+                setattr(new, method_name, property(cacheable(new.wrapper(method_name))))
+        return new
 
     def wrapper(cls, name: str):
         def wrapper(region_cache, *args, **kwargs):
@@ -69,15 +68,15 @@ class RegionCacheMeta(type):
         return wrapper
 
 
-class RegionCache(RegionInterface, metaclass=RegionCacheMeta):
+class RegionCache(RegionInterface, metaclass=RegionCacheMeta):  # pylint: disable=abstract-method
     def __init__(self, pk: int):
-        super(RegionCache, self).__init__()
+        super().__init__()
         self.pk = pk
 
 
 class RegionManager(models.Manager):
     def get_queryset(self) -> QuerySet[Region]:
-        return super(RegionManager, self).get_queryset().defer('polygon')
+        return super().get_queryset().defer('polygon')
 
 
 class Region(RegionInterface, models.Model):
@@ -98,9 +97,6 @@ class Region(RegionInterface, models.Model):
 
     def __str__(self):
         return f'{self.title} ({self.pk})'
-
-    def __init__(self, *args, **kwargs):
-        super(Region, self).__init__(*args, **kwargs)
 
     @property  # type: ignore
     @cacheable
@@ -166,16 +162,16 @@ class Region(RegionInterface, models.Model):
             by_capital = infobox.get('capital', {})
             if 'lat' in by_capital and 'lon' in by_capital:
                 return Point(lat=by_capital['lat'], lng=by_capital['lon'])
-            else:
-                center = self.polygon_center
-                return Point(lat=center[1], lng=center[0])
+
+            center = self.polygon_center
+            return Point(lat=center[1], lng=center[0])
 
         result = {}
         for trans in self.translations.all():
             infobox = deepcopy(trans.infobox)
             infobox.pop('geonamesID', None)
             if isinstance(infobox.get('capital'), dict):
-                del (infobox['capital']['id'])
+                infobox['capital'] = {k: v for k, v in infobox['capital'].items() if k != 'id'}
             infobox['marker'] = get_marker(infobox)
             result[trans.language_code] = infobox
         return result
@@ -221,6 +217,6 @@ class RegionTranslation(models.Model):
 
 
 @receiver(post_save, sender=Region, dispatch_uid="clear_region_cache")
-def clear_region_cache(sender, instance: Region, **kwargs):
+def clear_region_cache(sender, instance: Region, **kwargs):  # pylint: disable=unused-argument
     for key in instance.caches():
         cache.delete(settings.POLYGON_CACHE_KEY.format(func=key, id=instance.pk))
