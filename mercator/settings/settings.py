@@ -211,7 +211,7 @@ LANGUAGES: Tuple = (
     ('en', _('English')),
     ('ru', _('Russian')),
 )
-ALLOWED_LANGUAGES: Tuple[LanguageEnumType, ...] = tuple([x for x, _ in LANGUAGES])
+ALLOWED_LANGUAGES: Tuple[LanguageEnumType, ...] = tuple((x for x, _ in LANGUAGES))
 LOCALE_PATHS = (
     BASE_DIR.joinpath('locale'),
 )
@@ -288,7 +288,7 @@ AWESOME_AVATAR = {
 GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
 DISABLE_GOOGLE_KEY = os.environ.get('DISABLE_GOOGLE_KEY', False)
 OSM_KEY = os.environ.get('OSM_KEY')
-OSM_URL = 'https://osm-boundaries.com/Download/Submit?apiKey={key}&format=GeoJSON&srid=4326&db=osm20210531&osmIds={id}&landOnly&includeAllTags'
+OSM_URL = 'https://osm-boundaries.com/Download/Submit?apiKey={key}&format=GeoJSON&srid=4326&db=osm20210531&osmIds={id}&landOnly&includeAllTags'  # pylint: disable=line-too-long
 # endregion
 
 SETTINGS_EXPORT = ['GIT_REVISION', 'STATIC_URL', 'GOOGLE_KEY']

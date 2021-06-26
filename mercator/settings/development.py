@@ -3,6 +3,10 @@ from mercator.settings.settings import *  # lgtm [py/polluting-import]
 STATIC_ROOT = 'collected_static'
 ALLOWED_HOSTS = ('*',)
 
+INSTALLED_APPS += ('django_extensions',)
+
+RAVEN_CONFIG = {}
+
 # GEOS_LIBRARY_PATH = '/usr/lib/libgeos_c.so.1'
 # GDAL_LIBRARY_PATH = '/usr/lib/libgdal.so.20'
 
