@@ -1,8 +1,8 @@
-from django.conf.urls import url
+from django.urls import path
 
 from .views import QuizView, QuizQuestionView
 
 urlpatterns = [
-    url(r'^(?P<name>[a-zA-Z0-9_]+)/questions/', QuizQuestionView.as_view(), name='quiz_questions'),
-    url(r'^(?P<name>[a-zA-Z0-9_]+)/', QuizView.as_view(), name='quiz_map'),
+    path('<name>/questions/', QuizQuestionView.as_view(), name='quiz_questions'),
+    path('<name>/', QuizView.as_view(), name='quiz_map'),
 ]

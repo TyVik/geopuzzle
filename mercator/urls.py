@@ -14,10 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
+from django.urls import path, include
 from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
@@ -34,20 +34,20 @@ sitemaps = {
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^accounts/', include('users.urls')),
-    url(r'^puzzle/', include('puzzle.urls')),
-    url(r'^quiz/', include('quiz.urls')),
-    url(r'', include('maps.urls')),
-    url(r'^workshop/', include('workshop.urls')),
-    url(r'^puzzle/area/(?P<pk>\d+)/infobox/', cache_page(DAY)(views.infobox_by_id), name='infobox_by_id'),
+    path('admin/', admin.site.urls),
+    path('accounts/', include('users.urls')),
+    path('puzzle/', include('puzzle.urls')),
+    path('quiz/', include('quiz.urls')),
+    path('', include('maps.urls')),
+    path('workshop/', include('workshop.urls')),
+    path('puzzle/area/<int:pk>/infobox/', cache_page(DAY)(views.infobox_by_id), name='infobox_by_id'),
 
-    url(r'^robots\.txt$', cache_page(DAY)(TemplateView.as_view(template_name='robots.txt')), name='robots'),
-    url(r'^sitemap\.xml$', cache_page(HOUR)(sitemap), {'sitemaps': sitemaps}, name='sitemap'),
+    path('robots.txt', cache_page(DAY)(TemplateView.as_view(template_name='robots.txt')), name='robots'),
+    path('sitemap.xml', cache_page(HOUR)(sitemap), {'sitemaps': sitemaps}, name='sitemap'),
 
-    url(r'^error/$', cache_page(DAY)(views.error), name='error'),
-    url(r'^status/$', cache_page(MINUTE)(views.status), name='status'),
-    url(r'^$', views.index, name='index'),
+    path('error/', cache_page(DAY)(views.error), name='error'),
+    path('status/', cache_page(MINUTE)(views.status), name='status'),
+    path('', views.index, name='index'),
 ]
 
 if settings.DEBUG:
