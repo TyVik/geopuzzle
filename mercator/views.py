@@ -48,6 +48,6 @@ def status(request: WSGIRequest) -> JsonResponse:
         try:
             locals()[f'check_{service}']()
             result[service] = 'success'
-        except Exception as exception:  # pylint: disable=broad-except
+        except Exception:  # pylint: disable=broad-except
             return JsonResponse({service: 'fail'}, status=503)
     return JsonResponse(result)

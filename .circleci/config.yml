@@ -141,7 +141,7 @@ jobs:
           command: mkdir ~/repo/logs
       - run:
           name: Run pylint
-          command: pylint *//*.py
+          command: env $(cat .env_template | xargs)  pylint *//*.py
 
   coverage:
     docker:
