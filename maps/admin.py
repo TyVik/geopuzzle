@@ -2,10 +2,13 @@ from typing import Tuple, Union, Type
 
 from admirarchy.utils import HierarchicalModelAdmin, AdjacencyList, HierarchicalChangeList, \
     Hierarchy
+from django.conf.urls import url
 from django.contrib.admin import TabularInline
 from django.contrib.gis.admin import OSMGeoAdmin
 from django.contrib.postgres.fields import JSONField
+from django.shortcuts import get_object_or_404
 from django.template.defaultfilters import safe
+from django.template.response import TemplateResponse
 from django.utils.safestring import SafeText
 from django.utils.translation import ugettext as _
 
@@ -17,6 +20,7 @@ from django_json_widget.widgets import JSONEditorWidget
 
 from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget, UserAutocompleteFilter
 from common.utils import get_language
+from .forms import UpdateRegionForm
 from .models import Region, RegionTranslation, Tag, Game
 
 
@@ -90,6 +94,31 @@ class RegionAdmin(HierarchicalModelAdmin):
         return safe(result)
     infobox_status.short_description = _('Infobox')
     infobox_status.allow_tags = True
+
+    def update_region(self, request, pk):
+        region = get_object_or_404(Region, pk=pk)
+        log = None
+        if request.POST:
+            form = UpdateRegionForm(request.POST)
+            if form.is_valid():
+                log = form.handle(region)
+        else:
+            form = UpdateRegionForm()
+        context = {
+            'form': form,
+            'region': region,
+            'log': log,
+        }
+        return TemplateResponse(request, 'admin/maps/region/update_region.html', context)
+
+    def get_urls(self):
+        urls = super(RegionAdmin, self).get_urls()
+        custom_urls = [
+            url(r'^update_region/(?P<pk>\d+)/$',
+                self.admin_site.admin_view(self.update_region),
+                name='update_region'),
+        ]
+        return custom_urls + urls
 
 
 class GameItemsInline(TabularInline):

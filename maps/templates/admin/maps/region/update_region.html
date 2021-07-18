@@ -1,0 +1,14 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ region }}
+    {{ form.as_p }}
+    <div class="submit-row">
+      <input type="submit" class="default" value="Submit">
+    </div>
+  </form>
+  <div>Log</div>
+  <pre>{{ log }}</pre>
+{% endblock %}
