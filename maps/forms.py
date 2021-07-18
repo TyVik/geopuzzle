@@ -62,10 +62,10 @@ class UpdateRegionForm(forms.Form):
         logger.info('Save item %s (new: %s)', region, created)
         if item.children:
             logger.info('Found %s descendants', len(item.children))
-            for item in item.children:
-                if item.level > max_level:
+            for child in item.children:
+                if child.level > max_level:
                     continue
-                self._update_geometry(item, with_wiki, max_level)
+                self._update_geometry(child, with_wiki, max_level)
 
     def handle(self, region: Region):
         root_logger = logging.getLogger()

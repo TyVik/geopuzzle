@@ -1,14 +1,14 @@
 import gzip
 import json
 import logging
-import os
 from dataclasses import dataclass
 from io import BytesIO
+from pathlib import Path
 from typing import Dict, List, Optional
 
 import requests
 from django.conf import settings
-from django.contrib.gis.geos import GEOSGeometry
+from django.contrib.gis.geos import GEOSGeometry, MultiPolygon, Polygon
 
 logger = logging.getLogger('wambachers')
 
@@ -25,7 +25,7 @@ class WambachersNode:
         return -1 * self.id
 
     @property
-    def geojson_path(self) -> str:
+    def geojson_path(self) -> Path:
         return settings.GEOJSON_DIR.joinpath(f'{self.id}.geojson')
 
     @property
@@ -79,7 +79,7 @@ class Wambachers:
                                  params=params, headers=headers)
         tree = parse(response.json())
         subtree = find_subtree(tree, item)
-        return subtree.children
+        return subtree.children if subtree else tree  # in case of item is the root element
 
     def fetch_geojson(self, item: WambachersNode) -> None:
         logger.debug('Fetch polygon data for %s', item)
@@ -96,7 +96,7 @@ class Wambachers:
             return {lang: tags.get(f'name:{lang}', '(empty)') for lang in settings.ALLOWED_LANGUAGES}
 
         assert feature['type'] == 'Feature'
-        return Feature(
+        result = Feature(
             geometry=GEOSGeometry(json.dumps(feature['geometry'])),
             osm_id=abs(int(feature['properties']['osm_id'])),
             wikidata_id=feature['properties']['all_tags']['wikidata'],
@@ -109,10 +109,14 @@ class Wambachers:
             timezone=feature['properties']['all_tags'].get('timezone'),
             lang=langs(feature['properties']['all_tags'])
         )
+        if isinstance(result.geometry, Polygon):
+            result.geometry = MultiPolygon(result.geometry)
+        return result
 
     def load(self, item: WambachersNode) -> Feature:
         cache = item.geojson_path
-        if not os.path.exists(cache):
+        if not cache.exists():
+            settings.GEOJSON_DIR.mkdir(exist_ok=True)
             logger.debug('Missing cache for %s', item)
             self.fetch_geojson(item)
         with open(cache, 'r') as src:

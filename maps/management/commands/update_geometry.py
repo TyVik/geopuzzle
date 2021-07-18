@@ -23,7 +23,7 @@ class Command(BaseCommand):
         params = {
             'recursive': options['recursive'],
             'with_wiki': options['with_wiki'],
-            'max_level': 8
+            'max_level': 12
         }
         form = UpdateRegionForm(params)
         if form.is_valid():
