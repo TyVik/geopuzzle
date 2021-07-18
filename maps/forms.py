@@ -77,8 +77,6 @@ class UpdateRegionForm(forms.Form):
                 item.children = self.service.fetch_items_list(item)
             self._update_geometry(item, self.cleaned_data['with_wiki'], self.cleaned_data['max_level'])
             return "\n".join(handler.read())
-        except Exception as e:  # pylint: disable=broad-except
-            return str(e)
         finally:
             handler.close()
             root_logger.removeHandler(handler)

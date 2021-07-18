@@ -1,3 +1,4 @@
+import traceback
 from typing import Tuple, Union, Type
 
 from admirarchy.utils import HierarchicalModelAdmin, AdjacencyList, HierarchicalChangeList, \
@@ -101,7 +102,10 @@ class RegionAdmin(HierarchicalModelAdmin):
         if request.POST:
             form = UpdateRegionForm(request.POST)
             if form.is_valid():
-                log = form.handle(region)
+                try:
+                    log = form.handle(region)
+                except BaseException:  # pylint: disable=broad-except
+                    log = traceback.format_exc()
         else:
             form = UpdateRegionForm()
         context = {
