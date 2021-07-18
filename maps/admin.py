@@ -116,7 +116,7 @@ class RegionAdmin(HierarchicalModelAdmin):
         return TemplateResponse(request, 'admin/maps/region/update_region.html', context)
 
     def get_urls(self):
-        urls = super(RegionAdmin, self).get_urls()
+        urls = super().get_urls()
         custom_urls = [
             url(r'^update_region/(?P<pk>\d+)/$',
                 self.admin_site.admin_view(self.update_region),

@@ -36,7 +36,8 @@ class UpdateRegionForm(forms.Form):
     service = Wambachers()
 
     def _update_geometry(self, item: WambachersNode, with_wiki: bool, max_level: int):
-        logger.info('Update geometry for osm_id %s (%s, %s, %s)', item.id, with_wiki, item.children is not None, max_level)
+        logger.info('Update geometry for osm_id %s (%s, %s, %s)',
+                    item.id, with_wiki, item.children is not None, max_level)
         feature = self.service.load(item)
         defaults = {
             'title': feature.name,
