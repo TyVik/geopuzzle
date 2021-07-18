@@ -24,27 +24,27 @@ from ..fields import ExternalIdField
 
 class RegionInterface:
     @property  # type: ignore
-    @cacheable
+    @cacheable()
     def polygon_bounds(self) -> List[float]:
         raise NotImplementedError
 
     @property  # type: ignore
-    @cacheable
+    @cacheable()
     def polygon_strip(self) -> List[str]:
         raise NotImplementedError
 
     @property  # type: ignore
-    @cacheable
+    @cacheable()
     def polygon_gmap(self) -> List[str]:
         raise NotImplementedError
 
     @property  # type: ignore
-    @cacheable
+    @cacheable()
     def polygon_center(self) -> List[float]:
         raise NotImplementedError
 
     @property  # type: ignore
-    @cacheable
+    @cacheable()
     def polygon_infobox(self) -> Dict:
         raise NotImplementedError
 
@@ -57,7 +57,7 @@ class RegionCacheMeta(type):
         new = type.__new__(cls, name, bases, dct)
         for method_name, _ in bases[0].__dict__.items():
             if method_name.startswith('polygon_'):
-                setattr(new, method_name, property(cacheable(new.wrapper(method_name))))
+                setattr(new, method_name, property(cacheable()(new.wrapper(method_name))))
         return new
 
     def wrapper(cls, name: str):
@@ -99,7 +99,7 @@ class Region(RegionInterface, models.Model):
         return f'{self.title} ({self.pk})'
 
     @property  # type: ignore
-    @cacheable
+    @cacheable()
     def polygon_bounds(self) -> List[float]:
         return self.polygon.extent
 
@@ -109,20 +109,20 @@ class Region(RegionInterface, models.Model):
         return self.polygon.simplify(precision, preserve_topology=True)
 
     @property  # type: ignore
-    @cacheable
+    @cacheable()
     def polygon_strip(self) -> List[str]:
         simplify = self._strip_polygon
         return encode_geometry(simplify, min_points=10)
 
     @property  # type: ignore
-    @cacheable
+    @cacheable()
     def polygon_gmap(self) -> List[str]:
         precision = 0.005 + 0.001 * (self.polygon.area / 100.0)
         simplify = self.polygon.simplify(precision, preserve_topology=True)
         return encode_geometry(simplify)
 
     @property  # type: ignore
-    @cacheable
+    @cacheable()
     def polygon_center(self) -> List[float]:
         # http://lists.osgeo.org/pipermail/postgis-users/2007-February/014612.html
         def calc_polygon(strip, force) -> Tuple[Point, int]:
@@ -156,7 +156,7 @@ class Region(RegionInterface, models.Model):
         return result
 
     @property  # type: ignore
-    @cacheable
+    @cacheable()
     def polygon_infobox(self) -> Dict:
         def get_marker(infobox) -> Point:
             by_capital = infobox.get('capital', {})
