@@ -8,6 +8,7 @@ from django.conf import settings
 from django.contrib.gis.geos import GEOSGeometry
 from django.template.loader import render_to_string
 
+from common.cachable import cacheable
 from common.constants import LanguageEnumType
 
 logger = logging.getLogger('commands')
@@ -42,6 +43,7 @@ class Wikidata:
         self.wikidata_id = wikidata_id
 
     @staticmethod
+    @cacheable(ttl=3600)
     def get_links(instance: str) -> Dict[LanguageEnumType, LinkDict]:
         result: Dict[LanguageEnumType, LinkDict] = {x: {'wiki': '', 'name': ''} for x in settings.ALLOWED_LANGUAGES}
         response = requests.get(f'https://www.wikidata.org/entity/{instance}')
