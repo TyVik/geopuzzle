@@ -51,6 +51,8 @@ class RegionFactory(DjangoModelFactory):
     title = FuzzyText()
     polygon = MultiPolygon(*(Polygon(points) for points in POINTS))
     osm_id = FuzzyInteger(low=1, high=65535)
+    parent = None
+    wikidata_id = None
 
     class Meta:
         model = Region
