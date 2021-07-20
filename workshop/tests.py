@@ -7,8 +7,8 @@ from django.urls import reverse
 
 from common.tests import TestFilterListMixin
 from common.utils import random_string
-from common.views import ScrollListItem
 from maps.models import Tag
+from maps.views import ScrollListItem
 from puzzle.factories import PuzzleFactory
 from puzzle.models import Puzzle
 from users.factories import UserFactory

@@ -47,3 +47,9 @@ class OsmRegionData(TypedDict):
     path: List[int]
     alpha3: str
     timezone: str
+
+
+GAMES = {
+    'puzzle': ('puzzle', 'Puzzle'),
+    'quiz': ('quiz', 'Quiz'),
+}

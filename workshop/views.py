@@ -9,8 +9,8 @@ from django.views.generic.list import BaseListView
 
 from common.middleware import WSGILanguageRequest
 from common.utils import get_language
-from common.views import ScrollListView, AutocompleteItem
 from maps.models import Tag
+from maps.views import ScrollListView, AutocompleteItem
 from puzzle.models import Puzzle
 from .filters import WorkshopFilter, TagFilter, ORDER
 

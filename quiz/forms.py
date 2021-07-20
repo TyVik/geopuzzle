@@ -6,7 +6,7 @@ from django.db import connection
 from common.constants import GameQuestions
 from common.utils import get_language
 from maps.forms import RegionForm
-from quiz.models import Quiz
+from .models import Quiz
 
 
 class PointContainsForm(forms.Form):

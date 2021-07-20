@@ -1,6 +1,7 @@
 from channels.db import database_sync_to_async
 
-from common.consumer import GameConsumer, action
+from common.consumer import action
+from maps.consumer import GameConsumer
 from maps.models import RegionCache
 from .forms import PointContainsForm
 

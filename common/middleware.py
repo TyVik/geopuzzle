@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.utils import translation
 from django.utils.deprecation import MiddlewareMixin
 
-from common.constants import LanguageEnumType
-from common.utils import get_language
+from .constants import LanguageEnumType
+from .utils import get_language
 
 
 class WSGILanguageRequest(WSGIRequest):
