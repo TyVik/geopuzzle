@@ -296,7 +296,7 @@ bcrypt = ["bcrypt"]
 
 [[package]]
 name = "django-admin-autocomplete-filter"
-version = "0.6.1"
+version = "0.7"
 description = "A simple Django app to render list filters in django admin using autocomplete widget"
 category = "main"
 optional = false
@@ -1110,7 +1110,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "514d74892680414d2f354ca567e25b03a7af4a8bc207b1709c7415ad6ae234bc"
+content-hash = "f97abcb9f863242d2d1fd3a5a8a994238da0565f1244de8385b60a905c234637"
 
 [metadata.files]
 aioredis = [
@@ -1309,8 +1309,8 @@ django = [
     {file = "Django-2.2.24.tar.gz", hash = "sha256:3339ff0e03dee13045aef6ae7b523edff75b6d726adf7a7a48f53d5a501f7db7"},
 ]
 django-admin-autocomplete-filter = [
-    {file = "django-admin-autocomplete-filter-0.6.1.tar.gz", hash = "sha256:0358594110e5e498306388a9e4a0a2b57dde3abd302f9945337396003345af04"},
-    {file = "django_admin_autocomplete_filter-0.6.1-py3-none-any.whl", hash = "sha256:5016a8cb9aff7a7e7a796870ac572ac248a17d36339215878df9ba24761ce65f"},
+    {file = "django-admin-autocomplete-filter-0.7.tar.gz", hash = "sha256:20246758625f0aabab26c54e0972c0db5fd4742ff9eb89621cb460d4f2021c82"},
+    {file = "django_admin_autocomplete_filter-0.7-py3-none-any.whl", hash = "sha256:430034ba93e8ee7ef601dc67a5885b4fec39642939da12933841d415cfc3a758"},
 ]
 django-admirarchy = [
     {file = "django-admirarchy-1.2.1.tar.gz", hash = "sha256:2d17414b2881a0792af1dfce4ebe59b0c46092391da2a4e52cb7e658b97ce33c"},
@@ -1602,8 +1602,11 @@ psycopg2-binary = [
     {file = "psycopg2_binary-2.8.6-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:2dac98e85565d5688e8ab7bdea5446674a83a3945a8f416ad0110018d1501b94"},
     {file = "psycopg2_binary-2.8.6-cp38-cp38-win32.whl", hash = "sha256:bd1be66dde2b82f80afb9459fc618216753f67109b859a361cf7def5c7968729"},
     {file = "psycopg2_binary-2.8.6-cp38-cp38-win_amd64.whl", hash = "sha256:8cd0fb36c7412996859cb4606a35969dd01f4ea34d9812a141cd920c3b18be77"},
+    {file = "psycopg2_binary-2.8.6-cp39-cp39-macosx_10_9_x86_64.macosx_10_9_intel.macosx_10_10_intel.macosx_10_10_x86_64.whl", hash = "sha256:89705f45ce07b2dfa806ee84439ec67c5d9a0ef20154e0e475e2b2ed392a5b83"},
     {file = "psycopg2_binary-2.8.6-cp39-cp39-manylinux1_i686.whl", hash = "sha256:42ec1035841b389e8cc3692277a0bd81cdfe0b65d575a2c8862cec7a80e62e52"},
     {file = "psycopg2_binary-2.8.6-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:7312e931b90fe14f925729cde58022f5d034241918a5c4f9797cac62f6b3a9dd"},
+    {file = "psycopg2_binary-2.8.6-cp39-cp39-win32.whl", hash = "sha256:6422f2ff0919fd720195f64ffd8f924c1395d30f9a495f31e2392c2efafb5056"},
+    {file = "psycopg2_binary-2.8.6-cp39-cp39-win_amd64.whl", hash = "sha256:15978a1fbd225583dd8cdaf37e67ccc278b5abecb4caf6b2d6b8e2b948e953f6"},
 ]
 pyasn1 = [
     {file = "pyasn1-0.4.8-py2.4.egg", hash = "sha256:fec3e9d8e36808a28efb59b489e4528c10ad0f480e57dcc32b4de5c9d8c9fdf3"},
