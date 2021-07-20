@@ -14,7 +14,7 @@ from django.views.generic.edit import BaseUpdateView
 from django.views.generic.list import BaseListView
 
 from common.middleware import WSGILanguageRequest
-from common.views import AutocompleteItem
+from maps.views import AutocompleteItem
 from .filters import UserFilter
 from .forms import AuthenticationForm, RegistrationForm, ProfileForm
 from .models import User

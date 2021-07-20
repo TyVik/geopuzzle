@@ -1,4 +1,4 @@
-from common.views import GameView, QuestionView
+from maps.views import GameView, QuestionView
 from .forms import QuizInfoboxForm
 from .models import Quiz
 

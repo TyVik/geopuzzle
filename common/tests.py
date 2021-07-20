@@ -1,6 +1,6 @@
 from typing import List
 
-from common.utils import random_string
+from .utils import random_string
 
 
 class TestFilterListMixin:
