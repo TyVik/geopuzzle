@@ -29,17 +29,9 @@ class Congratulation extends React.Component {
     return (time > 24 * 60 * 60 * 1000) ? <Msg id="timeOverhead"/> : time.toLocaleTimeString('ru-RU', {timeZone: 'UTC'});
   }
 
-  getParams() {
-    let part = window.__GAME__.is_global ? 'countries' : 'regions';
-    return {
-      'name': window.__GAME__.name,
-      'subjects': this.props.intl.formatMessage({id: part}),
-      'time': this.getTime()
-    };
-  }
-
   render() {
-    let text = this.props.intl.formatMessage({id: this.props.text}, this.getParams());
+    let params = {'name': window.__GAME__.name, 'subjects': window.__GAME__.parts, 'time': this.getTime()};
+    let text = this.props.intl.formatMessage({id: this.props.text}, params);
     return <Modal show={this.state.show} onHide={this.onClose} aria-labelledby="contained-modal-title-lg">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-lg"><Msg id="congratulations"/></Modal.Title>

@@ -74,11 +74,14 @@ class Game(models.Model):
     def description(cls) -> str:
         raise NotImplementedError()
 
+    def parts(self) -> str:
+        return _('countries') if self.is_global else _('regions')
+
     def get_game_data(self, language: LanguageEnumType) -> GameData:
         trans = self.load_translation(language)
         return GameData(
             name=trans.name if self.pk != 1 else _('World map'),
-            is_global=self.is_global
+            parts=self.parts()
         )
 
     def get_init_params(self) -> InitGameParams:

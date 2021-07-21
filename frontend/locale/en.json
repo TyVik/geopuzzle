@@ -20,8 +20,6 @@
     "congratulations": "Congratulations!",
     "congratulations.puzzle": "Puzzle \"{name}\" has been assembled! You sort out all {subjects}. Your time is {time}.",
     "congratulations.quiz": "Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is {time}.",
-    "countries": "countries",
-    "regions": "regions",
     "timeOverhead": "more then day",
     "start": "Start",
 

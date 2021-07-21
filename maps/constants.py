@@ -43,7 +43,7 @@ class InitGameParams(TypedDict):
 
 class GameData(TypedDict):
     name: str
-    is_global: bool
+    parts: str
 
 
 class OsmRegionData(TypedDict):
