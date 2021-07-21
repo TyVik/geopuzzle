@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-25 17:36+0000\n"
+"POT-Creation-Date: 2021-07-21 16:49+0000\n"
 "PO-Revision-Date: 2018-11-09 21:01\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: Italian\n"
@@ -16,12 +16,20 @@ msgstr ""
 "X-Crowdin-Language: it\n"
 "X-Crowdin-File: /develop/locale/ru/LC_MESSAGES/django.po\n"
 
-#: maps/admin.py:91
+#: maps/admin.py:96
 msgid "Infobox"
 msgstr ""
 
 #: maps/apps.py:6
 msgid "maps"
+msgstr ""
+
+#: maps/models/game.py:80
+msgid "World map"
+msgstr ""
+
+#: maps/templates/admin/maps/region/change_form.html:6
+msgid "Update region"
 msgstr ""
 
 #: mercator/settings/settings.py:211
@@ -32,50 +40,28 @@ msgstr ""
 msgid "Russian"
 msgstr ""
 
-#: puzzle/models.py:28
+#: puzzle/models.py:27
 msgid "Puzzle"
 msgstr ""
 
-#: puzzle/models.py:32
+#: puzzle/models.py:31
 msgid ""
 "In the Puzzle you need to drag the shape of the territory to the right "
 "place. Just like in childhood we collected pictures piece by piece, so here "
 "you can collect a country from regions or whole continents from countries!"
 msgstr ""
 
-#: puzzle/models.py:38 quiz/models.py:44
-msgid "World map"
-msgstr ""
-
-#: puzzle/models.py:39
-msgid "Puzzle \"{}\" has been assembled! Your time is "
-msgstr ""
-
-#: quiz/models.py:32
+#: quiz/models.py:31
 msgid "Quiz"
 msgstr ""
 
-#: quiz/models.py:36
+#: quiz/models.py:35
 msgid ""
 "In the Quiz you need find the country by flag, emblem or the capital. Did "
 "you know that Monaco and Indonesia have the same flags? And that the flags "
 "of the United States and Liberia differ only in the number of stars? So, "
 "these and other interesting things can be learned and remembered after "
 "brainstorming right now!"
-msgstr ""
-
-#: quiz/models.py:43
-#, python-brace-format
-msgid ""
-"Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is "
-msgstr ""
-
-#: quiz/models.py:45
-msgid "countries"
-msgstr ""
-
-#: quiz/models.py:45
-msgid "regions"
 msgstr ""
 
 #: templates/base.html:5

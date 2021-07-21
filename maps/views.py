@@ -74,11 +74,9 @@ class GameView(View):
 
     def get(self, request: WSGILanguageRequest, name: str, *args, **kwargs) -> HttpResponse:
         obj = get_object_or_404(self.model, slug=name)
-        trans = obj.load_translation(request.LANGUAGE_CODE)
         context = {
             'game': obj,
-            'name': trans.name,
-            'text': obj.congratulation_text(request.LANGUAGE_CODE),
+            'game_data': obj.get_game_data(request.LANGUAGE_CODE),
             'gmap_key': self._google_key(request),
         }
         return render(request, self.template, context=context)

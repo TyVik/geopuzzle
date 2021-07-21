@@ -18,6 +18,10 @@
     "fixProblem": "игра сломалась!",
     "onceAgain": "ещё раз",
     "congratulations": "Поздравляем!",
+    "congratulations.puzzle": "Пазл \"{name}\" был собран! Вы правильно расставили все {subjects}. Ваше время {time}.",
+    "congratulations.quiz": "Викторина \"{name}\" пройдена! Вы нашли все {subjects}. Ваше время {time}.",
+    "countries": "страны",
+    "regions": "регионы",
     "timeOverhead": "больше, чем за день",
     "start": "Начали!",
 

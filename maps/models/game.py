@@ -5,12 +5,13 @@ from django.contrib.gis.db.models import PointField
 from django.db import models
 from django.db.models import QuerySet
 from django.urls import reverse
+from django.utils.translation import ugettext as _
 
 from django_enumfield import enum
 
 from common.constants import Point, LanguageEnumType
 from common.utils import get_language
-from ..constants import Zoom, IndexPageGame, IndexPageGameType, InitGameParams, InitGameMapOptions
+from ..constants import Zoom, IndexPageGame, IndexPageGameType, InitGameParams, InitGameMapOptions, GameData
 
 
 class Game(models.Model):
@@ -72,6 +73,13 @@ class Game(models.Model):
     @classmethod
     def description(cls) -> str:
         raise NotImplementedError()
+
+    def get_game_data(self, language: LanguageEnumType) -> GameData:
+        trans = self.load_translation(language)
+        return GameData(
+            name=trans.name if self.pk != 1 else _('World map'),
+            is_global=self.is_global
+        )
 
     def get_init_params(self) -> InitGameParams:
         return InitGameParams(

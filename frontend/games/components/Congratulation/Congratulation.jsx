@@ -1,14 +1,13 @@
 'use strict';
 import React from "react";
 import {Modal} from 'react-bootstrap';
-import {decode} from 'he';
-import {FormattedMessage as Msg} from "react-intl";
+import {FormattedMessage as Msg, injectIntl} from "react-intl";
 
 
 class Congratulation extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {...window.__CONGRATULATION__, show: true};
+    this.state = {show: true};
   }
 
   shareFb = () => {
@@ -30,12 +29,17 @@ class Congratulation extends React.Component {
     return (time > 24 * 60 * 60 * 1000) ? <Msg id="timeOverhead"/> : time.toLocaleTimeString('ru-RU', {timeZone: 'UTC'});
   }
 
-  getText() {
-    return decode(this.state.text) + this.getTime() + '.';
+  getParams() {
+    let part = window.__GAME__.is_global ? 'countries' : 'regions';
+    return {
+      'name': window.__GAME__.name,
+      'subjects': this.props.intl.formatMessage({id: part}),
+      'time': this.getTime()
+    };
   }
 
   render() {
-    let text = this.getText();
+    let text = this.props.intl.formatMessage({id: this.props.text}, this.getParams());
     return <Modal show={this.state.show} onHide={this.onClose} aria-labelledby="contained-modal-title-lg">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-lg"><Msg id="congratulations"/></Modal.Title>
@@ -64,4 +68,4 @@ class Congratulation extends React.Component {
 }
 
 
-export default Congratulation;
+export default injectIntl(Congratulation);

@@ -41,6 +41,11 @@ class InitGameParams(TypedDict):
     options: InitGameMapOptions
 
 
+class GameData(TypedDict):
+    name: str
+    is_global: bool
+
+
 class OsmRegionData(TypedDict):
     level: int
     boundary: str

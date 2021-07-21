@@ -1,20 +1,21 @@
 'use strict';
 import React from 'react';
-import {shallow} from 'enzyme';
 import {Congratulation} from '../games/components/Congratulation';
+import {mountComponentWithIntl} from "./utils";
 
 
 describe('shallow <Congratulation /> components', () => {
-  let props = {result: 'result', url: 'url', startTime: new Date('2020-01-01')};
-  window.__CONGRATULATION__ = {text: 'Congratulations! Your result is: '};
+  let props = {result: 'result', url: 'url', startTime: new Date('2020-01-01'), text: 'congratulations.puzzle'};
+  window.__GAME__ = {name: 'Belarus', is_global: false};
 
   it('render', () => {
-    expect(shallow(<Congratulation {...props}/>)).toMatchSnapshot();
+    expect(mountComponentWithIntl(<Congratulation {...props}/>)).toMatchSnapshot();
   });
 
   it('click close', () => {
-    let wrapper = shallow(<Congratulation {...props}/>);
-    wrapper.instance().onClose();
-    expect(wrapper.html()).toBe('');
+    let wrapper = mountComponentWithIntl(<Congratulation {...props}/>);
+    let instance = wrapper.find('Congratulation').instance()
+    instance.onClose();
+    expect(instance.state.show).toBe(false);
   });
 });
