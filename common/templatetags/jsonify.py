@@ -24,4 +24,5 @@ class CustomJSONEncoder(DjangoJSONEncoder):
 def jsonify(obj) -> SafeText:
     if isinstance(obj, QuerySet):
         return mark_safe(serialize('json', obj))
-    return mark_safe(json.dumps(obj, cls=CustomJSONEncoder, ensure_ascii=False).replace('\\', '\\\\').replace("'", r"\'"))
+    dumps = json.dumps(obj, cls=CustomJSONEncoder, ensure_ascii=False)
+    return mark_safe(dumps.replace('\\', '\\\\').replace("'", r"\'"))
