@@ -73,7 +73,7 @@
     "fibers": "^5.0",
     "final-form": "^4.20.2",
     "he": "^1.2",
-    "js-cookie": "^2.2",
+    "js-cookie": "^3.0",
     "lodash": "^4.17.21",
     "react": "^16.14",
     "react-bootstrap": "^1.6.1",
