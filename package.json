@@ -30,7 +30,7 @@
     "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.14.7",
     "@babel/plugin-transform-runtime": "^7.14.5",
-    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-env": "^7.15.6",
     "@babel/preset-react": "^7.14.5",
     "@sentry/webpack-plugin": "^1.16.0",
     "@types/googlemaps": "^3.43.3",
