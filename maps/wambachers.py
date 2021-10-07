@@ -119,7 +119,7 @@ class Wambachers:
             settings.GEOJSON_DIR.mkdir(exist_ok=True)
             logger.debug('Missing cache for %s', item)
             self.fetch_geojson(item)
-        with open(cache, 'r') as src:
+        with open(cache, 'r', encoding='utf-8') as src:
             data = json.loads(src.read())
             logger.debug('GeoJSON for %s was parsed', item)
             assert data['type'] == 'FeatureCollection', f'Found unknown type: {data["type"]}'
