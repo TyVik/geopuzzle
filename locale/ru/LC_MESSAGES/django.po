@@ -39,10 +39,6 @@ msgstr "страны"
 msgid "regions"
 msgstr "регионы"
 
-#: maps/models/game.py:78
-msgid "Update region"
-msgstr "Обновить регион"
-
 #: maps/models/game.py:83
 msgid "World map"
 msgstr "Карта мира"
