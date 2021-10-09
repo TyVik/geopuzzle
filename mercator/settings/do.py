@@ -25,6 +25,7 @@ AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_REGION = 'eu-west-1'
 AWS_STORAGE_BUCKET_NAME = 'geo-puzzle'
+AWS_DEFAULT_ACL = 'public-read'
 
 DEFAULT_FILE_STORAGE = 'mercator.storages.CloudFrontStorage'
 THUMBNAIL_STORAGE = DEFAULT_FILE_STORAGE
