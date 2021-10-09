@@ -159,7 +159,7 @@ jobs:
           command: mkdir ~/repo/logs
       - run:
           name: Run compilemessages
-          command: manage.py compilemessages
+          command: python manage.py compilemessages
 
   coverage:
     docker:
@@ -211,6 +211,9 @@ workflows:
           requires:
             - build-backend
       - pylint:
+          requires:
+            - build-backend
+      - messages:
           requires:
             - build-backend
       - jest:
