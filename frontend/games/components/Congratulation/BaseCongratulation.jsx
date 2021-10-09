@@ -1,6 +1,6 @@
 'use strict';
 import React from "react";
-import {Button, Modal} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 import {FormattedMessage as Msg} from "react-intl";
 
 import "./index.css";
