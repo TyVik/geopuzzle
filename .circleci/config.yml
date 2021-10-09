@@ -49,7 +49,7 @@ jobs:
     - image: tyvik/geopuzzle:frontend-builder
       environment:
         NODE_ENV: "production"
-        SENTRY_ORG: "geopuzzle"
+        SENTRY_ORG: "geogames"
         SENTRY_PROJECT: "geopuzzle"
     working_directory: ~/repo
     resource_class: small
