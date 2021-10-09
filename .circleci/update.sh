@@ -2,8 +2,9 @@
 
 source /home/tyvik/venv/bin/activate
 git pull
-pipenv install
+echo "GIT_REVISION=$(git rev-parse HEAD)" >> .env
+poetry install --no-dev --no-root
 python manage.py clearcache
 python manage.py compilemessages
 python manage.py migrate
-touch reload
+sudo supervisorctl restart all

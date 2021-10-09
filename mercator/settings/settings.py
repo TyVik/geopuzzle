@@ -5,6 +5,7 @@ from typing import Tuple, List, Dict
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import ignore_logger
+from sentry_sdk.integrations.redis import RedisIntegration
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -12,11 +13,12 @@ from common.constants import LanguageEnumType
 
 GIT_REVISION = os.environ.get('GIT_REVISION')
 
-sentry_sdk.init(
+sentry_client = sentry_sdk.init(
     dsn=os.environ.get('RAVEN_DSN'),
+    environment=os.environ.get('ENVIRONMENT', 'production'),
     release=GIT_REVISION,
     request_bodies='always',
-    integrations=[DjangoIntegration()]
+    integrations=[DjangoIntegration(), RedisIntegration()]
 )
 ignore_logger("django.security.DisallowedHost")
 
@@ -70,6 +72,7 @@ MIDDLEWARE = [
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'common.middleware.UserLocaleMiddleware',
+    'common.middleware.CORSMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
