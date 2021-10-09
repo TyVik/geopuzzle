@@ -147,7 +147,7 @@ jobs:
 
   messages:
     docker:
-      - image: tyvik/geopuzzle:backend-tester
+      - image: tyvik/geopuzzle:backend
         environment:
           DJANGO_SETTINGS_MODULE: "mercator.settings.circleci"
     working_directory: ~/repo
@@ -157,6 +157,9 @@ jobs:
       - run:
           name: Prepare environment
           command: mkdir ~/repo/logs
+      - run:
+          name: Install gettext
+          command: apt-get install -y --no-install-recommends gettext
       - run:
           name: Run compilemessages
           command: python manage.py compilemessages
