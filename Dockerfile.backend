@@ -42,7 +42,8 @@ FROM backend-builder as backend-tester
 
 WORKDIR /app
 
-RUN poetry config virtualenvs.create false \
+RUN apt-get install -y --no-install-recommends gettext \
+  && poetry config virtualenvs.create false \
   && poetry install --no-interaction --no-ansi \
   && find / -name "*.pyc" -exec rm -f {} \; \
   && rm -rf /root/.cache/
