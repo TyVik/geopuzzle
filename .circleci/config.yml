@@ -89,11 +89,11 @@ jobs:
       - image: tyvik/geopuzzle:backend-tester
         environment:
           DJANGO_SETTINGS_MODULE: "mercator.settings.circleci"
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_NAME: geopuzzle
-          DB_USER: geopuzzle
-          DB_USER_PASSWORD: geopuzzle
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_DB: geopuzzle
+          POSTGRES_USER: geopuzzle
+          POSTGRES_PASSWORD: geopuzzle
           REDIS_HOST: localhost
       - image: circleci/postgres:12-postgis-ram
         environment:
