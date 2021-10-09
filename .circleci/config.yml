@@ -145,6 +145,22 @@ jobs:
           name: Run pylint
           command: pylint common maps mercator puzzle quiz users workshop
 
+  messages:
+    docker:
+      - image: tyvik/geopuzzle:backend-tester
+        environment:
+          DJANGO_SETTINGS_MODULE: "mercator.settings.circleci"
+    working_directory: ~/repo
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Prepare environment
+          command: mkdir ~/repo/logs
+      - run:
+          name: Run compilemessages
+          command: python manage.py compilemessages
+
   coverage:
     docker:
       - image: tyvik/geopuzzle:backend-tester
@@ -195,6 +211,9 @@ workflows:
           requires:
             - build-backend
       - pylint:
+          requires:
+            - build-backend
+      - messages:
           requires:
             - build-backend
       - jest:
