@@ -74,8 +74,7 @@ class Quiz extends Game {
     this.setState({...this.state, regions: regions, infobox: infobox, questions: questions, question: index});
   }
 
-  dispatchMessage = (event) => {
-    let data = JSON.parse(event.data);
+  _dispatchMessage = (data) => {
     switch(data.type) {
       case 'QUIZ_CHECK_SUCCESS':
       case 'QUIZ_GIVEUP_DONE':
@@ -84,8 +83,6 @@ class Quiz extends Game {
       case 'QUIZ_FOUND':
         this.changeRegionState(data, this.state.questions[this.state.question]);
         break;
-      default:
-        this._dispatchMessage(event);
     }
   };
 
@@ -96,18 +93,20 @@ class Quiz extends Game {
     }
   };
 
-  loadQuiz = (options) => {
-    let quizBy = ['name', 'flag', 'coat_of_arms', 'capital'].filter((param) => options[param]);
-    let get_params = location.search ? location.search + '&' : '?';
-    get_params += 'params=' + quizBy.join();
-    fetch(`${location.pathname}questions/${get_params}`)
-      .then(response => response.json())
-      .then(data => {
-        let regions = Quiz.extractData(data.questions, data.solved);
-        this.startGame({regions: regions, questions: Quiz.prepareQuestions(data.questions), question: 0});
-      })
-      .catch(response => {this.setState({...this.state, isLoaded: false})});
-    this.setState({...this.state, showInit: false});
+  loadData = (options) => {
+    if (options) {
+      let quizBy = ['name', 'flag', 'coat_of_arms', 'capital'].filter((param) => options[param]);
+      let get_params = location.search ? location.search + '&' : '?';
+      get_params += 'params=' + quizBy.join();
+      fetch(`${location.pathname}questions/${get_params}`)
+        .then(response => response.json())
+        .then(data => {
+          let regions = Quiz.extractData(data.questions, data.solved);
+          this.startGame({regions: regions, questions: Quiz.prepareQuestions(data.questions), question: 0});
+        })
+        .catch(response => {this.setState({...this.state, isLoaded: false})});
+      this.setState({...this.state, showInit: false});
+    }
   };
 
   giveUp = () => {
@@ -129,7 +128,7 @@ class Quiz extends Game {
   }
 
   render_popup() {
-    return <QuizInit load={this.loadQuiz} show={this.state.showInit}/>;
+    return <QuizInit load={this.loadData} show={this.state.showInit}/>;
   }
 }
 

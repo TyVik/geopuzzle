@@ -5,7 +5,7 @@ import {mountComponentWithIntl} from "./utils";
 
 
 describe('shallow <Congratulation /> components', () => {
-  let props = {result: 'result', url: 'url', startTime: new Date('2020-01-01'), text: 'congratulations.puzzle'};
+  let props = {text: 'congratulations.puzzle', options: {'score': 60}};
   window.__GAME__ = {name: 'Belarus', is_global: false};
 
   it('render', () => {
@@ -14,7 +14,7 @@ describe('shallow <Congratulation /> components', () => {
 
   it('click close', () => {
     let wrapper = mountComponentWithIntl(<Congratulation {...props}/>);
-    let instance = wrapper.find('Congratulation').instance()
+    let instance = wrapper.find('BaseCongratulation').instance();
     instance.onClose();
     expect(instance.state.show).toBe(false);
   });

@@ -35,8 +35,7 @@ class Puzzle extends Game {
     });
   }
 
-  dispatchMessage = (event) => {
-    let data = JSON.parse(event.data);
+  _dispatchMessage = (data) => {
     let regions = this.state.regions;
     let infobox = this.state.infobox;
     switch(data.type) {
@@ -55,6 +54,7 @@ class Puzzle extends Game {
           }
         });
         infobox = data.infobox;
+        this.setState(state => ({...state, regions: regions, infobox: infobox}));
         break;
       case 'PUZZLE_GIVEUP_DONE':
         regions = regions.map((polygon) => {
@@ -70,9 +70,9 @@ class Puzzle extends Game {
             return polygon;
           }
         });
+        this.setState(state => ({...state, regions: regions, infobox: infobox}));
         break;
     }
-    this.setState({...this.state, regions: regions, infobox: infobox});
   };
 
   loadData = () => {

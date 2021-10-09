@@ -10,13 +10,15 @@ exports[`shallow <Congratulation /> components render 1`] = `
   onError={[Function]}
   textComponent={Symbol(react.fragment)}
 >
-  <injectIntl(Congratulation)
-    result="result"
-    startTime={2020-01-01T00:00:00.000Z}
+  <injectIntl(BaseCongratulation)
+    options={
+      Object {
+        "score": 60,
+      }
+    }
     text="congratulations.puzzle"
-    url="url"
   >
-    <Congratulation
+    <BaseCongratulation
       intl={
         Object {
           "defaultFormats": Object {},
@@ -53,10 +55,12 @@ exports[`shallow <Congratulation /> components render 1`] = `
           "wrapRichTextChunksInFragment": undefined,
         }
       }
-      result="result"
-      startTime={2020-01-01T00:00:00.000Z}
+      options={
+        Object {
+          "score": 60,
+        }
+      }
       text="congratulations.puzzle"
-      url="url"
     >
       <Modal
         animation={true}
@@ -135,17 +139,23 @@ exports[`shallow <Congratulation /> components render 1`] = `
                         <div
                           class="modal-body"
                         >
-                          congratulations.puzzle
+                          <div>
+                            congratulations.puzzle
+                          </div>
                         </div>
                         <div
                           class="modal-footer"
                         >
+                          <iframe
+                            class="patreon-widget"
+                            src="https://www.patreon.com/platform/iframe?widget=become-patron-button&redirectURI=https%3A%2F%2Fgeopuzzle.org%2Fpuzzle%2Fworkshop%2F&creatorID=11576139"
+                          />
                           <div
                             class="pull-right"
                           >
                             <a
                               class="btn btn-social-icon btn-vk"
-                              href="https://vk.com/share.php?url=url&title=congratulations.puzzle"
+                              href="https://vk.com/share.php?url=http://localhost/&title=congratulations.puzzle"
                               rel="noopener noreferrer"
                               target="_blank"
                             >
@@ -165,7 +175,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                             </a>
                             <a
                               class="btn btn-social-icon btn-twitter"
-                              href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=url&hashtags=geopuzzle"
+                              href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=http://localhost/&hashtags=geopuzzle"
                               rel="noopener noreferrer"
                               target="_blank"
                             >
@@ -233,17 +243,23 @@ exports[`shallow <Congratulation /> components render 1`] = `
                             <div
                               class="modal-body"
                             >
-                              congratulations.puzzle
+                              <div>
+                                congratulations.puzzle
+                              </div>
                             </div>
                             <div
                               class="modal-footer"
                             >
+                              <iframe
+                                class="patreon-widget"
+                                src="https://www.patreon.com/platform/iframe?widget=become-patron-button&redirectURI=https%3A%2F%2Fgeopuzzle.org%2Fpuzzle%2Fworkshop%2F&creatorID=11576139"
+                              />
                               <div
                                 class="pull-right"
                               >
                                 <a
                                   class="btn btn-social-icon btn-vk"
-                                  href="https://vk.com/share.php?url=url&title=congratulations.puzzle"
+                                  href="https://vk.com/share.php?url=http://localhost/&title=congratulations.puzzle"
                                   rel="noopener noreferrer"
                                   target="_blank"
                                 >
@@ -263,7 +279,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                                 </a>
                                 <a
                                   class="btn btn-social-icon btn-twitter"
-                                  href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=url&hashtags=geopuzzle"
+                                  href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=http://localhost/&hashtags=geopuzzle"
                                   rel="noopener noreferrer"
                                   target="_blank"
                                 >
@@ -339,17 +355,23 @@ exports[`shallow <Congratulation /> components render 1`] = `
                         <div
                           class="modal-body"
                         >
-                          congratulations.puzzle
+                          <div>
+                            congratulations.puzzle
+                          </div>
                         </div>
                         <div
                           class="modal-footer"
                         >
+                          <iframe
+                            class="patreon-widget"
+                            src="https://www.patreon.com/platform/iframe?widget=become-patron-button&redirectURI=https%3A%2F%2Fgeopuzzle.org%2Fpuzzle%2Fworkshop%2F&creatorID=11576139"
+                          />
                           <div
                             class="pull-right"
                           >
                             <a
                               class="btn btn-social-icon btn-vk"
-                              href="https://vk.com/share.php?url=url&title=congratulations.puzzle"
+                              href="https://vk.com/share.php?url=http://localhost/&title=congratulations.puzzle"
                               rel="noopener noreferrer"
                               target="_blank"
                             >
@@ -369,7 +391,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                             </a>
                             <a
                               class="btn btn-social-icon btn-twitter"
-                              href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=url&hashtags=geopuzzle"
+                              href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=http://localhost/&hashtags=geopuzzle"
                               rel="noopener noreferrer"
                               target="_blank"
                             >
@@ -454,17 +476,23 @@ exports[`shallow <Congratulation /> components render 1`] = `
                       <div
                         class="modal-body"
                       >
-                        congratulations.puzzle
+                        <div>
+                          congratulations.puzzle
+                        </div>
                       </div>
                       <div
                         class="modal-footer"
                       >
+                        <iframe
+                          class="patreon-widget"
+                          src="https://www.patreon.com/platform/iframe?widget=become-patron-button&redirectURI=https%3A%2F%2Fgeopuzzle.org%2Fpuzzle%2Fworkshop%2F&creatorID=11576139"
+                        />
                         <div
                           class="pull-right"
                         >
                           <a
                             class="btn btn-social-icon btn-vk"
-                            href="https://vk.com/share.php?url=url&title=congratulations.puzzle"
+                            href="https://vk.com/share.php?url=http://localhost/&title=congratulations.puzzle"
                             rel="noopener noreferrer"
                             target="_blank"
                           >
@@ -484,7 +512,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                           </a>
                           <a
                             class="btn btn-social-icon btn-twitter"
-                            href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=url&hashtags=geopuzzle"
+                            href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=http://localhost/&hashtags=geopuzzle"
                             rel="noopener noreferrer"
                             target="_blank"
                           >
@@ -648,19 +676,25 @@ exports[`shallow <Congratulation /> components render 1`] = `
                             <div
                               className="modal-body"
                             >
-                              congratulations.puzzle
+                              <div>
+                                congratulations.puzzle
+                              </div>
                             </div>
                           </ModalBody>
                           <ModalFooter>
                             <div
                               className="modal-footer"
                             >
+                              <iframe
+                                className="patreon-widget"
+                                src="https://www.patreon.com/platform/iframe?widget=become-patron-button&redirectURI=https%3A%2F%2Fgeopuzzle.org%2Fpuzzle%2Fworkshop%2F&creatorID=11576139"
+                              />
                               <div
                                 className="pull-right"
                               >
                                 <a
                                   className="btn btn-social-icon btn-vk"
-                                  href="https://vk.com/share.php?url=url&title=congratulations.puzzle"
+                                  href="https://vk.com/share.php?url=http://localhost/&title=congratulations.puzzle"
                                   rel="noopener noreferrer"
                                   target="_blank"
                                 >
@@ -681,7 +715,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                                 </a>
                                 <a
                                   className="btn btn-social-icon btn-twitter"
-                                  href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=url&hashtags=geopuzzle"
+                                  href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=http://localhost/&hashtags=geopuzzle"
                                   rel="noopener noreferrer"
                                   target="_blank"
                                 >
@@ -702,7 +736,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
           </Portal>
         </Modal>
       </Modal>
-    </Congratulation>
-  </injectIntl(Congratulation)>
+    </BaseCongratulation>
+  </injectIntl(BaseCongratulation)>
 </IntlProvider>
 `;

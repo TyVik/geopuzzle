@@ -2,12 +2,11 @@
 import React from "react";
 import Loading from "../components/Loading/index";
 import Sockette from './ws';
-import {Congratulation} from "./components/Congratulation";
 import {prepareInfobox} from "../utils";
 import Toolbox from "./components/Toolbox/index";
 import Infobox from "./components/Infobox/index";
 import Map from '../components/Map/index';
-
+import {Congratulation} from "./components/Congratulation";
 
 import './index.css';
 
@@ -16,7 +15,8 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {isLoaded: null, startTime: null, regions: [], showInfobox: true, infobox: null,
-        map: {typeId: google.maps.MapTypeId.TERRAIN}, wsState: null, showMap: true};
+      congratulations: null,
+      map: {typeId: google.maps.MapTypeId.TERRAIN}, wsState: null, showMap: true};
     this.ws = null;
   }
 
@@ -46,7 +46,16 @@ class Game extends React.Component {
     this.setState(state => ({...state, ...params, isLoaded: true, startTime: Date.now()}));
   };
 
-  _dispatchMessage = (event) => {};
+  dispatchMessage = (event) => {
+    let data = JSON.parse(event.data);
+    this._dispatchMessage(data);
+    if (this.state.regions.every(obj => obj.isSolved)) {
+      let score = new Date(Date.now() - this.state.startTime).getSeconds();
+      this.setState(state => ({...state, congratulations: {score: score}}));
+    }
+  };
+
+  _dispatchMessage = (data) => {};
 
   mapInit = () => {
     this.setupWs();
@@ -73,7 +82,7 @@ class Game extends React.Component {
     if (polygon && (polygon.draggable !== undefined) && !polygon.draggable) {
       let region = this.state.regions.find(x => x.id === polygon.id);
       if (region.infobox.loaded) {
-        this.setState(state => ({...state, infobox: region.infobox, showInfobox: true}));
+        this.openInfobox(region);
       } else {
         let id = region.id;
         try {
@@ -90,17 +99,14 @@ class Game extends React.Component {
   };
 
   render_loaded() {
-    return this.state.isLoaded === true ? null :
-      <Loading hasError={this.state.isLoaded !== null}/>;
+    return this.state.isLoaded === true ? null : <Loading hasError={this.state.isLoaded !== null}/>;
   }
 
   render_congratulation() {
-    if (this.state.regions.length > 0 && this.state.regions.filter(el => el.isSolved === false).length === 0) {
-      return <Congratulation url={location.href} startTime={this.state.startTime}
-                             text={`congratulations.${this.GAME_NAME}`}/>;
-    } else {
-      return null;
+    if ((this.state.isLoaded) && (this.state.congratulations)) {
+      return <Congratulation text={`congratulations.${this.GAME_NAME}`} options={this.state.congratulations}/>;
     }
+    return null;
   }
 
   render_question() {
