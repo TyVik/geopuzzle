@@ -36,7 +36,7 @@ class WorkshopItems(ScrollListView):
         qs = super().get_queryset().\
             filter(user__isnull=False, is_published=True,
                    translations__language_code=self.request.LANGUAGE_CODE).\
-            prefetch_related('translations')
+            prefetch_related('translations', 'user')
         return WorkshopFilter(self.request.GET, qs).qs.distinct()
 
 
