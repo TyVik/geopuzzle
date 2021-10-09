@@ -7,8 +7,8 @@ from django.urls import reverse
 
 from common.tests import TestFilterListMixin
 from common.utils import random_string
+from maps.constants import IndexPageGame
 from maps.models import Tag
-from maps.views import ScrollListItem
 from puzzle.factories import PuzzleFactory
 from puzzle.models import Puzzle
 from users.factories import UserFactory
@@ -96,7 +96,7 @@ class WorkshopTestCase(TestCase):
     def _check_response(self, response: JsonResponse, puzzle_keys: Iterable[str]):
         self.assertEqual(response.status_code, 200)
         db_names = [self.puzzles[key].load_translation('en').name for key in puzzle_keys]
-        items: List[ScrollListItem] = response.json()
+        items: List[IndexPageGame] = response.json()
         response_names = [item['name'] for item in items]
         self.assertEqual(db_names, response_names)
 

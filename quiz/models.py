@@ -22,6 +22,8 @@ class Quiz(Game):
     regions = models.ManyToManyField(Region, through='QuizRegion')
     options = ArrayField(models.CharField(max_length=12, choices=QUIZ_OPTIONS), default=default_quiz_options)
 
+    category = 'quiz'
+
     class Meta:
         verbose_name = 'Quiz'
         verbose_name_plural = 'Quizzes'
@@ -30,12 +32,6 @@ class Quiz(Game):
     def name(cls) -> str:
         return _('Quiz')
 
-    @classmethod
-    def description(cls) -> str:
-        return _('In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and '
-                 'Indonesia have the same flags? And that the flags of the United States and Liberia differ only in '
-                 'the number of stars? So, these and other interesting things can be learned and remembered after '
-                 'brainstorming right now!')
 
 class QuizRegion(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)

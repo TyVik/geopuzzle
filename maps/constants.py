@@ -1,5 +1,4 @@
-from dataclasses import dataclass
-from typing import List, TypedDict
+from typing import List, TypedDict, Optional
 
 from django_enumfield import enum
 
@@ -16,16 +15,15 @@ class Zoom(enum.Enum):
     REGION = 9
 
 
-@dataclass
-class IndexPageGame:
+class IndexPageGame(TypedDict):
     id: int
     image: str
-    slug: str
     name: str
+    url: str
+    user: str
 
 
-@dataclass
-class IndexPageGameType:
+class IndexPageGameType(TypedDict):
     world: List[IndexPageGame]
     parts: List[IndexPageGame]
 
@@ -49,9 +47,9 @@ class GameData(TypedDict):
 class OsmRegionData(TypedDict):
     level: int
     boundary: str
-    path: List[int]
-    alpha3: str
-    timezone: str
+    path: Optional[List[int]]
+    alpha3: Optional[str]
+    timezone: Optional[str]
 
 
 GAMES = {

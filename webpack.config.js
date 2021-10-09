@@ -12,6 +12,7 @@ module.exports = (env, argv) => {
   let result = {
     context: __dirname + '/frontend',
     entry: {
+      index: './index',
       games: './games',
       workshop: './workshop',
       profile: './profile',

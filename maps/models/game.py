@@ -8,8 +8,9 @@ from django.urls import reverse
 from django.utils.translation import ugettext as _
 
 from django_enumfield import enum
+from sorl.thumbnail import get_thumbnail
 
-from common.constants import Point, LanguageEnumType
+from common.constants import Point, LanguageEnumType, GameCategoryEnumType
 from common.utils import get_language
 from ..constants import Zoom, IndexPageGame, IndexPageGameType, InitGameParams, InitGameMapOptions, GameData
 
@@ -25,6 +26,7 @@ class Game(models.Model):
     on_main_page = models.BooleanField(default=False, db_index=True)
     created = models.DateTimeField(auto_now_add=True)
 
+    category: GameCategoryEnumType
     translations: QuerySet[GameTranslation]
 
     class Meta:
@@ -34,7 +36,7 @@ class Game(models.Model):
         return self.slug
 
     def get_absolute_url(self) -> str:
-        return reverse(f'{self.__class__._meta.model_name}_map', args=(self.slug,))
+        return reverse(self.reverse_link(), args=(self.slug,))
 
     def load_translation(self, lang: LanguageEnumType) -> GameTranslation:
         for translation in self.translations.all():
@@ -47,31 +49,34 @@ class Game(models.Model):
         return f'{cls._meta.model_name}_map'
 
     @property
-    def index(self) -> IndexPageGame:
+    def trans_name(self) -> str:
         trans = self.load_translation(get_language())
-        return IndexPageGame(image=self.image.name, slug=self.slug, name=trans.name, id=self.pk)
+        return trans.name
+
+    def index(self, size: str) -> IndexPageGame:
+        image = get_thumbnail(self.image.name, size, format='JPEG', quality=70).url if self.image else None
+        return IndexPageGame(image=image, name=self.trans_name, id=self.pk,
+                             url=self.get_absolute_url(),
+                             user=self.user.username if self.user_id else '')
 
     @classmethod
-    def index_qs(cls, language: LanguageEnumType) -> QuerySet:
+    def index_qs(cls, language: LanguageEnumType, with_user: bool = False) -> QuerySet:
+        related = ['translations', 'user'] if with_user else ['translations']
         return cls.objects.\
             filter(translations__language_code=language, is_published=True, on_main_page=True).\
-            prefetch_related('translations').\
+            prefetch_related(*related).\
             order_by('translations__name')
 
     @classmethod
     def index_items(cls, language: LanguageEnumType) -> IndexPageGameType:
-        qs = cls.index_qs(language).filter(zoom__in=(Zoom.WORLD, Zoom.LARGE_COUNTRY))
+        prefetch = cls.index_qs(language).filter(zoom__in=(Zoom.WORLD, Zoom.LARGE_COUNTRY)).all()
         return IndexPageGameType(
-            world=[item.index for item in qs.all() if item.zoom == Zoom.WORLD],
-            parts=[item.index for item in qs.all() if item.zoom == Zoom.LARGE_COUNTRY],
+            world=[item.index('540x540') for item in prefetch if item.zoom == Zoom.WORLD],
+            parts=[item.index('250x250') for item in prefetch if item.zoom == Zoom.LARGE_COUNTRY]
         )
 
     @classmethod
     def name(cls) -> str:
-        raise NotImplementedError()
-
-    @classmethod
-    def description(cls) -> str:
         raise NotImplementedError()
 
     def parts(self) -> str:

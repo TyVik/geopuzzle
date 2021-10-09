@@ -4,7 +4,7 @@ import React from "react";
 import AsyncSelect from 'react-select/async';
 import Select from 'react-select';
 import {FormattedMessage as Msg} from 'react-intl';
-import GameScrollList from "../components/GamesScrollList";
+import GameScrollList from "../components/GamesScrollList/GameScrollList";
 import {CSRFfetch} from "../utils";
 import {debounce, defer} from "lodash";
 

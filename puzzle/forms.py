@@ -43,8 +43,9 @@ class PuzzleForm(RegionForm):
         questions = [{
             'id': region.pk,
             'name': region.translation.name,
-            'polygon': region.polygon_strip,
-            'center': region.polygon_center,
+            'polygon': region.polygon_leaflet
+                       if self.cleaned_data.get('map', '') == 'leaflet' else region.polygon_strip,
+            'center': region.polygon_center,  # deprecated for Leaflet
             'default_position': self.game.pop_position()} for region in qs]
         qs = self.regions.filter(id__in=self.game.puzzleregion_set.filter(is_solved=True).
                                  values_list('region_id', flat=True))
