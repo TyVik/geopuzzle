@@ -31,7 +31,7 @@ describe('shallow <ChangePasswordForm /> components', () => {
     let wrapper = mountComponentWithIntl(<ChangePasswordForm/>);
 
     wrapper.find('form').simulate('submit');
-    expect(global.fetch).toHaveBeenCalledWith('/?section=password',
+    expect(global.fetch).toHaveBeenCalledWith('blank?section=password',
       expect.objectContaining({ method: 'POST', body: expect.any(FormData) })
     );
     const formData = Array.from(global.fetch.mock.calls[0][1].body.entries())
@@ -56,7 +56,7 @@ describe('shallow <ChangePasswordForm /> components', () => {
     form.form.change('new_password1', 'new_password');
     wrapper.find('form').simulate('submit');
 
-    expect(global.fetch).toHaveBeenCalledWith('/?section=password',
+    expect(global.fetch).toHaveBeenCalledWith('blank?section=password',
       expect.objectContaining({ method: 'POST', body: expect.any(FormData) })
     );
     const formData = Array.from(global.fetch.mock.calls[0][1].body.entries())

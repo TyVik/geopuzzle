@@ -155,7 +155,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                           >
                             <a
                               class="btn btn-social-icon btn-vk"
-                              href="https://vk.com/share.php?url=http://localhost/&title=congratulations.puzzle"
+                              href="https://vk.com/share.php?url=about:blank&title=congratulations.puzzle"
                               rel="noopener noreferrer"
                               target="_blank"
                             >
@@ -175,7 +175,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                             </a>
                             <a
                               class="btn btn-social-icon btn-twitter"
-                              href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=http://localhost/&hashtags=geopuzzle"
+                              href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=about:blank&hashtags=geopuzzle"
                               rel="noopener noreferrer"
                               target="_blank"
                             >
@@ -259,7 +259,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                               >
                                 <a
                                   class="btn btn-social-icon btn-vk"
-                                  href="https://vk.com/share.php?url=http://localhost/&title=congratulations.puzzle"
+                                  href="https://vk.com/share.php?url=about:blank&title=congratulations.puzzle"
                                   rel="noopener noreferrer"
                                   target="_blank"
                                 >
@@ -279,7 +279,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                                 </a>
                                 <a
                                   class="btn btn-social-icon btn-twitter"
-                                  href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=http://localhost/&hashtags=geopuzzle"
+                                  href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=about:blank&hashtags=geopuzzle"
                                   rel="noopener noreferrer"
                                   target="_blank"
                                 >
@@ -371,7 +371,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                           >
                             <a
                               class="btn btn-social-icon btn-vk"
-                              href="https://vk.com/share.php?url=http://localhost/&title=congratulations.puzzle"
+                              href="https://vk.com/share.php?url=about:blank&title=congratulations.puzzle"
                               rel="noopener noreferrer"
                               target="_blank"
                             >
@@ -391,7 +391,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                             </a>
                             <a
                               class="btn btn-social-icon btn-twitter"
-                              href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=http://localhost/&hashtags=geopuzzle"
+                              href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=about:blank&hashtags=geopuzzle"
                               rel="noopener noreferrer"
                               target="_blank"
                             >
@@ -492,7 +492,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                         >
                           <a
                             class="btn btn-social-icon btn-vk"
-                            href="https://vk.com/share.php?url=http://localhost/&title=congratulations.puzzle"
+                            href="https://vk.com/share.php?url=about:blank&title=congratulations.puzzle"
                             rel="noopener noreferrer"
                             target="_blank"
                           >
@@ -512,7 +512,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                           </a>
                           <a
                             class="btn btn-social-icon btn-twitter"
-                            href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=http://localhost/&hashtags=geopuzzle"
+                            href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=about:blank&hashtags=geopuzzle"
                             rel="noopener noreferrer"
                             target="_blank"
                           >
@@ -694,7 +694,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                               >
                                 <a
                                   className="btn btn-social-icon btn-vk"
-                                  href="https://vk.com/share.php?url=http://localhost/&title=congratulations.puzzle"
+                                  href="https://vk.com/share.php?url=about:blank&title=congratulations.puzzle"
                                   rel="noopener noreferrer"
                                   target="_blank"
                                 >
@@ -715,7 +715,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                                 </a>
                                 <a
                                   className="btn btn-social-icon btn-twitter"
-                                  href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=http://localhost/&hashtags=geopuzzle"
+                                  href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=about:blank&hashtags=geopuzzle"
                                   rel="noopener noreferrer"
                                   target="_blank"
                                 >
