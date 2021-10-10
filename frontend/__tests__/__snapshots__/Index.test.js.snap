@@ -1,0 +1,276 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shallow <Index /> components render: Index 1`] = `
+Array [
+  <div
+    className="nav nav-tabs nav-fill"
+    onKeyDown={[Function]}
+    role="tablist"
+  >
+    <div
+      className="nav-item"
+    >
+      <a
+        aria-controls="indexTab-tabpane-puzzle"
+        aria-selected={true}
+        className="puzzle-tab nav-link active"
+        data-rb-event-key="puzzle"
+        href="#"
+        id="indexTab-tab-puzzle"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="tab"
+      >
+        Puzzle
+      </a>
+    </div>
+    <div
+      className="nav-item"
+    >
+      <a
+        aria-controls="indexTab-tabpane-quiz"
+        aria-selected={false}
+        className="quiz-tab nav-link"
+        data-rb-event-key="quiz"
+        href="#"
+        id="indexTab-tab-quiz"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="tab"
+      >
+        Quiz
+      </a>
+    </div>
+  </div>,
+  <div
+    className="tab-content"
+  >
+    <div
+      aria-hidden={false}
+      aria-labelledby="indexTab-tab-puzzle"
+      className="fade puzzle-tab tab-pane active show"
+      id="indexTab-tabpane-puzzle"
+      role="tabpanel"
+    >
+      <div
+        className="media row p-3"
+      >
+        <video
+          autoPlay={true}
+          className="pull-left mr-3 img-fluid"
+          loop={true}
+          muted={true}
+          playsInline={true}
+        >
+          <source
+            src="/static/images/puzzle.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <div
+          className="media-body blockquote"
+        >
+          <p>
+            index.description.puzzle
+          </p>
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-12 my-4 item-container col-md-6 col-sm-6"
+        >
+          <a
+            href="/puzzle/hard/"
+          >
+            <img
+              alt="hard"
+              className="img-fluid rounded"
+              src="hard.jpg"
+            />
+          </a>
+          <div
+            className="text-center"
+          >
+            hard
+          </div>
+        </div>
+        <div
+          className="col-12 my-4 item-container col-md-6 col-sm-6"
+        >
+          <a
+            href="/puzzle/easy/"
+          >
+            <img
+              alt="easy"
+              className="img-fluid rounded"
+              src="easy.jpg"
+            />
+          </a>
+          <div
+            className="text-center"
+          >
+            easy
+          </div>
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-6 my-4 item-container col-md-3 col-sm-3"
+        >
+          <a
+            href="/puzzle/europe/"
+          >
+            <img
+              alt="europe"
+              className="img-fluid rounded"
+              src="europe.jpg"
+            />
+          </a>
+          <div
+            className="text-center"
+          >
+            europe
+          </div>
+        </div>
+        <div
+          className="col-6 my-4 item-container col-md-3 col-sm-3"
+        >
+          <a
+            href="/puzzle/america/"
+          >
+            <img
+              alt="america"
+              className="img-fluid rounded"
+              src="america.jpg"
+            />
+          </a>
+          <div
+            className="text-center"
+          >
+            america
+          </div>
+        </div>
+        <div
+          className="col-6 my-4 item-container col-md-3 col-sm-3"
+        >
+          <a
+            href="/puzzle/asia/"
+          >
+            <img
+              alt="asia"
+              className="img-fluid rounded"
+              src="asia.jpg"
+            />
+          </a>
+          <div
+            className="text-center"
+          >
+            asia
+          </div>
+        </div>
+        <div
+          className="col-6 my-4 item-container col-md-3 col-sm-3"
+        >
+          <a
+            href="/puzzle/africa/"
+          >
+            <img
+              alt="africa"
+              className="img-fluid rounded"
+              src="africa.jpg"
+            />
+          </a>
+          <div
+            className="text-center"
+          >
+            africa
+          </div>
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-6 my-2 item-container col-md-2 col-sm-3"
+        >
+          <a
+            href="/puzzle/belarus/"
+          >
+            <img
+              alt="belarus"
+              className="img-fluid rounded"
+              src="belarus.jpg"
+            />
+          </a>
+          <div
+            className="text-center"
+          >
+            belarus
+          </div>
+        </div>
+        <div
+          className="col-6 my-2 item-container col-md-2 col-sm-3"
+        >
+          <a
+            href="/puzzle/russia/"
+          >
+            <img
+              alt="russia"
+              className="img-fluid rounded"
+              src="russia.jpg"
+            />
+          </a>
+          <div
+            className="text-center"
+          >
+            russia
+          </div>
+        </div>
+        <div
+          className="col-6 my-2 item-container col-md-2 col-sm-3"
+        >
+          <a
+            href="/puzzle/us/"
+          >
+            <img
+              alt="us"
+              className="img-fluid rounded"
+              src="us.jpg"
+            />
+          </a>
+          <div
+            className="text-center"
+          >
+            us
+          </div>
+        </div>
+        <div
+          className="col-6 my-2 item-container col-md-2 col-sm-3"
+        >
+          <a
+            href="/puzzle/uk/"
+          >
+            <img
+              alt="uk"
+              className="img-fluid rounded"
+              src="uk.jpg"
+            />
+          </a>
+          <div
+            className="text-center"
+          >
+            uk
+          </div>
+        </div>
+      </div>
+      <div
+        className="row"
+      />
+    </div>
+  </div>,
+]
+`;

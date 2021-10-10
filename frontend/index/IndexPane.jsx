@@ -36,13 +36,13 @@ export default class IndexPane extends React.Component {
         </div>
       </div>
       <div className="row">
-        {game.items.world.map(item => <Card size="lg" baseUrl={game.name} item={item} multiplayer={game.name !== 'puzzle'} key={item.id}/>)}
+        {game.items.world.map(item => <Card size="lg" baseUrl={game.name} item={item} key={item.id}/>)}
       </div>
       <div className="row">
-        {game.items.parts.map(item => <Card size="md" baseUrl={game.name} item={item} multiplayer={game.name !== 'puzzle'} key={item.id}/>)}
+        {game.items.parts.map(item => <Card size="md" baseUrl={game.name} item={item} key={item.id}/>)}
       </div>
       <div className="row">
-        {this.state.items.map(item => <Card size="sm" baseUrl={game.name} item={item} multiplayer={game.name !== 'puzzle'} key={item.id}/>)}
+        {this.state.items.map(item => <Card size="sm" baseUrl={game.name} item={item} key={item.id}/>)}
       </div>
       <div className="row">
         {this.state.hasMore &&

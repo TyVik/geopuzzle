@@ -19,21 +19,8 @@ export default class Card extends React.Component {
   render() {
     let size = this.SIZES[this.props.size];
     let className = `col-${size.col} my-${size.my} item-container`;
-    return <Col md={size.md} sm={size.sm} className={className} key={`${this.props.item.id}${this.props.multiplayer}`}>
-      {!this.props.multiplayer && this.renderImage(this.props.item.url, this.props.item.image, this.props.item.name)}
-      {this.props.multiplayer &&
-        <div className="flip-card">
-          <div className="flip-card-inner">
-            <div className="flip-card-front">
-              {this.renderImage(this.props.item.url, this.props.item.image, this.props.item.name)}
-            </div>
-            <div className="flip-card-back">
-              <a type="button" className="btn btn-primary" href={this.props.item.url}>single mode</a>
-              <a type="button" className="btn btn-secondary" href={`${this.props.item.url}?multiplayer=new`}>multiplayer</a>
-            </div>
-          </div>
-        </div>
-      }
+    return <Col md={size.md} sm={size.sm} className={className} key={`${this.props.item.id}`}>
+      {this.renderImage(this.props.item.url, this.props.item.image, this.props.item.name)}
       <div className="text-center">
         {this.props.item.name}
       </div>
