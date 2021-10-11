@@ -15,7 +15,7 @@
 
     "found": "Found",
     "giveUp": "give up",
-    "fixProblem": "game is broken",
+    "fixProblem": "fix game",
     "onceAgain": "once again",
     "congratulations": "Congratulations!",
     "congratulations.puzzle": "Puzzle \"{name}\" has been assembled! You sort out all {subjects}. Your time is {time}.",
@@ -48,7 +48,9 @@
     "user": "Filter by user",
     "orderBy": "Order by",
 
-    "loadMore": "load more...",
+    "index.loadMore": "load more...",
+    "index.description.puzzle": "In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!",
+    "index.description.quiz": "In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!",
 
     "profile": "Profile",
     "publicProfile": "Public profile",

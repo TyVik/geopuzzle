@@ -14,6 +14,8 @@ class Puzzle(Game):
     regions = RegionsField(Region, through='PuzzleRegion')
     tags = models.ManyToManyField(Tag, blank=True)
 
+    category = 'puzzle'
+
     class Meta:
         verbose_name = 'Puzzle'
         verbose_name_plural = 'Puzzles'
@@ -25,12 +27,6 @@ class Puzzle(Game):
     @classmethod
     def name(cls) -> str:
         return _('Puzzle')
-
-    @classmethod
-    def description(cls) -> str:
-        return _('In the Puzzle you need to drag the shape of the territory to the right place. Just like in '
-                 'childhood we collected pictures piece by piece, so here you can collect a country from regions'
-                 ' or whole continents from countries!')
 
     def pop_position(self) -> Tuple[float, float]:
         if len(self.__default_positions) == 0:

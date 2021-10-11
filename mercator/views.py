@@ -14,17 +14,15 @@ from quiz.models import Quiz
 
 
 def index(request: WSGILanguageRequest) -> HttpResponse:
-    games = []
-    for game in (Puzzle, Quiz):
-        name = game.__name__.lower()
-        games.append({
-            'items': game.index_items(request.LANGUAGE_CODE),
-            'name': name,
-            'link': game.reverse_link(),
-            'caption': game.name(),
-            'rules': game.description()
-        })
-    return render(request, 'index.html', {'games': games, 'gmap_limit': not settings.GOOGLE_KEY})
+    games = [{
+        'items': game.index_items(request.LANGUAGE_CODE),
+        'name': game.category,
+        'link': game.reverse_link(),
+        'caption': game.name(),
+    } for game in (Puzzle, Quiz)]
+    google_key = settings.GOOGLE_KEY \
+        if not settings.DISABLE_GOOGLE_KEY or request.user.has_perm('puzzle.patron') else ''
+    return render(request, 'index.html', {'games': games, 'gmap_key': google_key})
 
 
 def infobox_by_id(request: WSGILanguageRequest, pk: str) -> JsonResponse:

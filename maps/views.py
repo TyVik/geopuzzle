@@ -1,5 +1,4 @@
-from dataclasses import asdict
-from typing import Type, TypedDict, Dict
+from typing import Type, Dict
 
 from django.apps import apps
 from django.conf import settings
@@ -8,10 +7,8 @@ from django.shortcuts import get_object_or_404, render
 from django.views import View
 from django.views.decorators.cache import never_cache
 from django.views.generic.list import BaseListView
-from sorl.thumbnail import get_thumbnail
 
 from common.middleware import WSGILanguageRequest
-from common.utils import get_language
 from .constants import Zoom, GAMES
 from .models import Region, Game
 
@@ -26,24 +23,15 @@ def index_scroll(request, game: str) -> JsonResponse:
     limit = min(24, int(request.GET.get('limit', 24)))
     exclude = request.GET.get('ids', '')
     exclude = exclude.split(',') if exclude else []
-    qs = (klass.index_qs(request.LANGUAGE_CODE)
+    qs = (klass.index_qs(request.LANGUAGE_CODE, with_user=True)
           .exclude(zoom__in=(Zoom.WORLD, Zoom.LARGE_COUNTRY))
           .exclude(id__in=exclude)
           .order_by('?')[:limit])
-    result = [item.index for item in qs.all()]
-    for item in result:
-        item.image = get_thumbnail(item.image, '196x196', format='JPEG', quality=70).url
-    return JsonResponse([asdict(item) for item in result], safe=False)
+    result = [item.index('196x196') for item in qs.all()]
+    return JsonResponse(result, safe=False)
 
 
 AutocompleteItem = Dict[str, str]
-
-
-class ScrollListItem(TypedDict):
-    image: str
-    url: str
-    name: str
-    user: str
 
 
 class ScrollListView(BaseListView):
@@ -51,18 +39,8 @@ class ScrollListView(BaseListView):
     paginate_by = 30
     ordering = ('-id',)
 
-    @classmethod
-    def item_to_json(cls, item: Game) -> ScrollListItem:
-        trans = item.load_translation(get_language())
-        return ScrollListItem(
-            image=get_thumbnail(item.image.name, geometry_string='196x196', format='JPEG', quality=66).url,
-            url=item.get_absolute_url(),
-            name=trans.name,
-            user=item.user.username if item.user else '',
-        )
-
     def render_to_response(self, context, **kwargs) -> JsonResponse:
-        return JsonResponse([self.item_to_json(x) for x in context['page_obj'].object_list], safe=False)
+        return JsonResponse([x.index('196x196') for x in context['page_obj'].object_list], safe=False)
 
 
 class GameView(View):
@@ -83,6 +61,8 @@ class GameView(View):
 
 
 class QuestionView(View):
+    model: Game
+
     @never_cache  # for HTTP headers
     def get(self, request: WSGILanguageRequest, name: str, *args, **kwargs) -> JsonResponse:
         request._cache_update_cache = False  # disable internal cache pylint: disable=protected-access

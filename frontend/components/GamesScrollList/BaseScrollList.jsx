@@ -2,13 +2,14 @@
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loading from "../Loading";
-import {Col} from "react-bootstrap";
 
 
-export default class GameScrollList extends React.Component {
+export default class BaseScrollList extends React.Component {
+  className = "row";
+
   constructor(props) {
     super(props);
-    this.state = GameScrollList.getInitialState(props);
+    this.state = BaseScrollList.getInitialState(props);
   }
 
   componentDidMount() {
@@ -23,7 +24,7 @@ export default class GameScrollList extends React.Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.url !== prevProps.url) {
-      this.setState(GameScrollList.getInitialState(this.props), () => {this.fetchPage(1, false).then()});
+      this.setState(BaseScrollList.getInitialState(this.props), () => {this.fetchPage(1, false).then()});
     }
   }
 
@@ -44,23 +45,15 @@ export default class GameScrollList extends React.Component {
     this.fetchPage(this.state.page + 1, false).then();
   };
 
-  renderItem = (item) => {
-    return <Col md={3} sm={4} xs={6} xl={2} className="my-2 item-container" key={item.url}>
-      <a href={item.url}>
-        <i className="created_by">by {item.user}</i>
-        <img className="img-fluid rounded" src={item.image} alt={item.name}/>
-      </a>
-      <div className="text-center">
-        {item.name}
-      </div>
-    </Col>;
-  };
+  renderContent() {
+    return null;
+  }
 
   render() {
     let items = this.state.items;
-    return <InfiniteScroll dataLength={items.length} children={items} next={this.fetchNextPage} className="row"
+    return <InfiniteScroll dataLength={items.length} hasChildren={items.length > 0} next={this.fetchNextPage} className={this.className}
                            hasMore={this.state.hasMore} loader={<Loading/>}>
-      {items.map(this.renderItem)}
+      {this.renderContent(items)}
     </InfiniteScroll>;
   }
 }

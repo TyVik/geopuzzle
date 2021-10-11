@@ -17,6 +17,7 @@ logger = logging.getLogger('commands')
 
 class RegionForm(forms.Form):
     id = forms.ModelMultipleChoiceField(queryset=Region.objects.all(), required=False)
+    map = forms.CharField(required=False)
 
     def __init__(self, game: Game, *args, **kwargs):
         self.game = game
@@ -43,7 +44,7 @@ class UpdateRegionForm(forms.Form):
             'title': feature.name,
             'polygon': feature.geometry,
             'wikidata_id': feature.wikidata_id,
-            'parent': Region.objects.get(osm_id=feature.path[0]) if feature.path else None,
+            'parent': Region.objects.get(osm_id=feature.path[-1]) if feature.path else None,
             'osm_data': OsmRegionData(level=feature.level, boundary=feature.boundary, path=feature.path,
                                       alpha3=feature.alpha3, timezone=feature.timezone)
         }

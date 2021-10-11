@@ -6,10 +6,10 @@
   <script type="text/javascript" src="https://vk.com/js/api/share.js?94" charset="windows-1251"></script>
 {% endblock %}
 
-{% block title %}{{ name }}{% endblock %}
+{% block title %}{{ game_data.name }}{% endblock %}
 
 {% block content %}
-  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=quarterly&libraries=geometry&language={{ request.LANGUAGE_CODE }}&key={{ settings.GOOGLE_KEY }}"></script>
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=quarterly&libraries=geometry&language={{ request.LANGUAGE_CODE }}&key={{ gmap_key }}"></script>
 {% endblock %}
 
 {% block extra_js %}

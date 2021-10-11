@@ -1,6 +1,7 @@
 """Provides utility functions for encoding and decoding linestrings using the
 Google encoded polyline algorithm.
 """
+import json
 import math
 from typing import Tuple, List, Union, Iterable, Optional
 
@@ -143,6 +144,27 @@ def encode_geometry(polygon: Union[Polygon, MultiPolygon], min_points: Optional[
     else:
         result += encode_part(polygon)
     return result if len(result) > 0 else encode_geometry(polygon)
+
+
+def encode_geojson(polygon: Union[Polygon, MultiPolygon], min_points: Optional[int] = None) -> List[List[str]]:
+    def encode_part(polygon) -> List[str]:
+        result = []
+        for subp in polygon:
+            if min_points is not None and len(subp) < min_points:
+                continue
+            result.append(encode_coords(subp))
+        return result
+
+    result: List[List[str]] = []
+    coords = json.loads(polygon.geojson)
+    if isinstance(polygon, MultiPolygon):
+        for part in coords['coordinates']:
+            encoded = encode_part(part)
+            if encoded:
+                result += encoded
+    else:
+        result += encode_part(coords['coordinates'])
+    return result if len(result) > 0 else encode_geojson(polygon)
 
 
 def normalize_polygon(polygon: Union[Polygon, MultiPolygon], precision) -> Union[Polygon, MultiPolygon]:
