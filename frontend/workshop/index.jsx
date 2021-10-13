@@ -12,8 +12,8 @@ import {debounce, defer} from "lodash";
 class Workshop extends React.Component {
   constructor(props) {
     super(props);
-    this.orderOptions = window.__ORDER__.map(item => {return {value: item[0], label: item[1]}});
-    this.state = {search: '', order: null, tag: null, user: null};
+    this.orderOptions = props.orderOptions;
+    this.state = props.state;
   }
 
   onChangeSearch = debounce((value) => {
