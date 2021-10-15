@@ -35,11 +35,11 @@ sitemaps = {
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('users.urls')),
-    path('puzzle/', include('puzzle.urls')),
-    path('quiz/', include('quiz.urls')),
+    path('accounts/', include('users.urls', namespace='accounts')),
+    path('puzzle/', include('puzzle.urls', namespace='puzzle')),
+    path('quiz/', include('quiz.urls', namespace = 'quiz')),
     path('', include('maps.urls')),
-    path('workshop/', include('workshop.urls')),
+    path('workshop/', include('workshop.urls', namespace='workshop')),
     path('puzzle/area/<int:pk>/infobox/', cache_page(DAY)(views.infobox_by_id), name='infobox_by_id'),
 
     path('robots.txt', cache_page(DAY)(TemplateView.as_view(template_name='robots.txt')), name='robots'),
