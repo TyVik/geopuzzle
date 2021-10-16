@@ -11,11 +11,13 @@ exports[`shallow <Congratulation /> components render 1`] = `
   textComponent={Symbol(react.fragment)}
 >
   <injectIntl(BaseCongratulation)
+    name="Belarus"
     options={
       Object {
         "score": 60,
       }
     }
+    parts={Array []}
     text="congratulations.puzzle"
   >
     <BaseCongratulation
@@ -55,11 +57,13 @@ exports[`shallow <Congratulation /> components render 1`] = `
           "wrapRichTextChunksInFragment": undefined,
         }
       }
+      name="Belarus"
       options={
         Object {
           "score": 60,
         }
       }
+      parts={Array []}
       text="congratulations.puzzle"
     >
       <Modal

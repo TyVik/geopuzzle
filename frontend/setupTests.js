@@ -27,18 +27,6 @@ function copyProps(src, target) {
 
 window.__STATIC_URL__ = '/static/';
 window.__LANGUAGE__ = 'en';
-window.__USER__ = {
-  "username": "admin", "email": "admin@admin.com", "image": "https://d2nepmml5nn7q0.cloudfront.net/avatars/e_28d3ad97.jpg",
-  "language": "en", "is_subscribed": true};
-window.__PROVIDERS__ = [
-  {"slug": "facebook", "connected": true, "label": "FB", "class": "facebook"},
-  {"slug": "vk-oauth2", "connected": true, "label": "VK", "class": "vk"},
-  {"slug": "google-oauth2", "connected": false, "label": "Google", "class": "google"}
-];
-window.__ORDER__ = [
-  ["title_asc", "Title \u2193"], ["title_desc", "Title \u2191"],
-  ["created_asc", "Created \u2193"], ["created_desc", "Created \u2191"]
-];
 
 global.REGIONS = [{
   draggable: false, id: 5054,

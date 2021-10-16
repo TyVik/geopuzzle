@@ -57,7 +57,7 @@ const handle = (target, onChange) => {
 const ImageInput = ({input, meta, ...params}) => {
   return <Form.Group>
     <input type="file" accept="image/*" src={input.value} onChange={e => handle(e.currentTarget, input.onChange)} />
-    <img src={input.value} />
+    <img src={input.value} className="w-25 d-block"/>
   </Form.Group>;
 };
 

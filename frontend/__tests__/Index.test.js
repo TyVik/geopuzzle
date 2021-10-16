@@ -11,14 +11,14 @@ describe('shallow <Index /> components', () => {
     return {id: id, image: `${name}.jpg`, name: name, url: `/puzzle/${name}/`};
   };
 
-  beforeAll(() => {
+  let generateGames = () => {
     let world = ["hard", "easy"].map(item => game(item));
     let parts = ["europe", "america", "asia", "africa"].map(item => game(item));
-    window.__GAMES__ = [
+    return [
       {items: {world: world, parts: parts}, name: "puzzle", link: "puzzle_map", caption: "Puzzle"},
       {items: {world: world, parts: parts}, name: "quiz", link: "quiz_map", caption: "Quiz"}
     ];
-  });
+  };
 
   beforeEach(() => {
       global.fetch.resetMocks();
@@ -26,7 +26,7 @@ describe('shallow <Index /> components', () => {
 
   it('render', done => {
     global.fetch.mockResponse(JSON.stringify(["belarus", "russia", "us", "uk"].map(item => game(item))));
-    let index = createComponentWithIntl(<Index/>);
+    let index = createComponentWithIntl(<Index games={generateGames()}/>);
     setImmediate(() => {
       expect(index).toMatchSnapshot('Index');
       let headers = new Headers();

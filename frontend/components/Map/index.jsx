@@ -76,7 +76,7 @@ class MapContainer extends React.Component {
   }
 
   render() {
-    let props = {...this.props, ...window.__MAP__, mapTypeId: this.props.mapTypeId};
+    let props = {...this.props, ...this.props.map, mapTypeId: this.props.mapTypeId};
     if (!this.props.showMap) {
       return null;
     }

@@ -28,7 +28,7 @@ class BaseCongratulation extends React.Component {
 
   getText() {
     let time = new Date(this.props.options.score * 1000);
-    let params = {'name': window.__GAME__.name, 'subjects': window.__GAME__.parts, 'time': time.toLocaleTimeString('ru-RU', {timeZone: 'UTC'})};
+    let params = {'name': this.props.name, 'subjects': this.props.subjects, 'time': time.toLocaleTimeString('ru-RU', {timeZone: 'UTC'})};
     return this.props.intl.formatMessage({id: this.props.text}, params);
   }
 

@@ -27,7 +27,7 @@ export default class Profile extends React.Component {
               <Card className="my-2">
                 <Card.Header><Msg id="publicProfile"/></Card.Header>
                 <Card.Body>
-                  <ProfileForm fields={window.__USER__}/>
+                  <ProfileForm fields={this.props.user}/>
                 </Card.Body>
               </Card>
               <Card className="my-2">
@@ -39,7 +39,7 @@ export default class Profile extends React.Component {
               <Card className="my-2">
                 <Card.Header><Msg id="socialProfile"/></Card.Header>
                 <Card.Body>
-                  <SocialLinksForm/>
+                  <SocialLinksForm providers={this.props.providers}/>
                 </Card.Body>
               </Card>
             </Tab.Pane>
