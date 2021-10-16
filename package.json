@@ -14,13 +14,6 @@
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/TyVik8/geopuzzle.git"
   },
-  "jest": {
-    "verbose": true,
-    "testURL": "http://127.0.0.1/",
-    "setupFiles": [
-      "jest-localstorage-mock"
-    ]
-  },
   "author": "TyVik",
   "license": "ISC",
   "homepage": "https://bitbucket.org/TyVik8/geopuzzle#readme",

@@ -23,7 +23,7 @@ describe('shallow <QuizInit /> components', () => {
     let wrapper = mountComponentWithIntl(<QuizInit {...props}/>);
     expect(wrapper.find(Button).prop('disabled')).toBe(false);
     let quizInit = wrapper.find('QuizInit').instance();
-    options.map(key => {
+    options.forEach(key => {
       quizInit.toggle(key);
     });
     wrapper.update();
