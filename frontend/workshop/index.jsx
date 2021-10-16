@@ -12,8 +12,8 @@ import {debounce, defer} from "lodash";
 class Workshop extends React.Component {
   constructor(props) {
     super(props);
-    this.orderOptions = props.orderOptions;
-    this.state = props.state;
+    this.prop = props.prop;
+    this.state = {search: '', order: null, tag: null, user: null};
   }
 
   onChangeSearch = debounce((value) => {
@@ -54,7 +54,7 @@ class Workshop extends React.Component {
       </div>
       <div className="form-group col-md-5 col-sm-12">
         <label htmlFor="order-label"><Msg id="orderBy"/>:</label>
-        <Select isClearable options={this.orderOptions} onChange={(event) => this.onChange('order', event)} />
+        <Select isClearable options={this.prop.orderOptions} onChange={(event) => this.onChange('order', event)} />
       </div>
       <div className="form-group col-md-6 col-sm-12">
         <label htmlFor="search-label"><Msg id="tag"/>:</label>
