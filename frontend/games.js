@@ -7,8 +7,8 @@ import messages from "./locale/messages";
 import {IntlProvider} from "react-intl";
 
 let games = {
-  'puzzle': <Puzzle />,
-  'quiz': <Quiz />,
+  'puzzle': <Puzzle map={window.__MAP__} game={window.__GAME__}/>,
+  'quiz': <Quiz map={window.__MAP__} game={window.__GAME__} options={window.__OPTIONS__}/>,
 };
 
 

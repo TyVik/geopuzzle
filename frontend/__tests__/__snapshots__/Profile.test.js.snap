@@ -155,6 +155,7 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
                   type="file"
                 />
                 <img
+                  className="w-25 d-block"
                   src="https://d2nepmml5nn7q0.cloudfront.net/avatars/e_28d3ad97.jpg"
                 />
               </div>

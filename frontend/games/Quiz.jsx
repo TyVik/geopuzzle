@@ -128,7 +128,7 @@ class Quiz extends Game {
   }
 
   render_popup() {
-    return <QuizInit load={this.loadData} show={this.state.showInit}/>;
+    return <QuizInit load={this.loadData} show={this.state.showInit} options={this.props.options}/>;
   }
 }
 
