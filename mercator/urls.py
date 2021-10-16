@@ -32,7 +32,6 @@ sitemaps = {
     'quiz': QuizSitemap,
 }
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('users.urls', namespace='accounts')),
