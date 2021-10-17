@@ -96,7 +96,7 @@ class Puzzle extends Game {
   };
 
   onDragPolygon = (id, coords, path) => {
-    this.wsSend({type: 'PUZZLE_CHECK', coords: coords, id: id, zoom: window.__MAP__.zoom});
+    this.wsSend({type: 'PUZZLE_CHECK', coords: coords, id: id, zoom: this.props.map.zoom});
     let regions = this.state.regions.map((polygon) => {return (polygon.id === id) ? {...polygon, paths: path} : polygon});
     this.setState({...this.state, regions: regions});
   };

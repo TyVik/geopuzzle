@@ -5,8 +5,7 @@ import {mountComponentWithIntl} from "./utils";
 
 
 describe('shallow <Congratulation /> components', () => {
-  let props = {text: 'congratulations.puzzle', options: {'score': 60}};
-  window.__GAME__ = {name: 'Belarus', is_global: false};
+  let props = {text: 'congratulations.puzzle', options: {'score': 60}, name: 'Belarus', parts: []};
 
   it('render', () => {
     expect(mountComponentWithIntl(<Congratulation {...props}/>)).toMatchSnapshot();

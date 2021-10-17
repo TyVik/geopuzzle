@@ -7,6 +7,9 @@ module.exports = {
   testURL: "http://localhost/",
   testMatch: ["**/*.test.js"],
   rootDir: 'frontend',
+  "setupFiles": [
+    "jest-localstorage-mock"
+  ],
   snapshotSerializers: ["enzyme-to-json/serializer"],
   setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
   collectCoverage: true,

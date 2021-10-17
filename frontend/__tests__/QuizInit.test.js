@@ -8,14 +8,11 @@ import {mountComponentWithIntl} from "./utils";
 
 describe('shallow <QuizInit /> components', () => {
   let onLoad = jest.fn();
-  let props = {show: true, load: onLoad};
-
-  beforeEach(() => {
-    window.__OPTIONS__ = ['name', 'flag', 'coat_of_arms', 'capital'];
-  });
+  let options = ['name', 'flag', 'coat_of_arms', 'capital'];
+  let props = {show: true, load: onLoad, options: options};
 
   it('render hidden', () => {
-    expect(shallow(<QuizInit show={false}/>).html()).toBe('');
+    expect(shallow(<QuizInit show={false} options={[]}/>).html()).toBe('');
   });
 
   it('render', () => {
@@ -26,7 +23,7 @@ describe('shallow <QuizInit /> components', () => {
     let wrapper = mountComponentWithIntl(<QuizInit {...props}/>);
     expect(wrapper.find(Button).prop('disabled')).toBe(false);
     let quizInit = wrapper.find('QuizInit').instance();
-    window.__OPTIONS__.map(key => {
+    options.forEach(key => {
       quizInit.toggle(key);
     });
     wrapper.update();

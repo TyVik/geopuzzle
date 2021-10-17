@@ -12,7 +12,7 @@ export default class Index extends React.Component {
   }
 
   render() {
-    return <GameTabs games={window.__GAMES__} tabContent={this.tabContent} />
+    return <GameTabs games={this.props.games} tabContent={this.tabContent} />
   }
 }
 
