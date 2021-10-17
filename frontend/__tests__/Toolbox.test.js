@@ -3,7 +3,7 @@
 import React from "react";
 import {shallow} from "enzyme";
 import Toolbox from "../games/components/Toolbox";
-import {createComponentWithIntl, mountComponentWithIntl} from "./utils";
+import {mountComponentWithIntl} from "./utils";
 
 
 describe('shallow <Toolbox /> components', () => {

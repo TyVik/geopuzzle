@@ -104,7 +104,8 @@ class Game extends React.Component {
 
   render_congratulation() {
     if ((this.state.isLoaded) && (this.state.congratulations)) {
-      return <Congratulation text={`congratulations.${this.GAME_NAME}`} options={this.state.congratulations}/>;
+      return <Congratulation text={`congratulations.${this.GAME_NAME}`} options={this.state.congratulations}
+                             name={this.props.game.name} subjects={this.props.game.parts}/>;
     }
     return null;
   }
@@ -122,7 +123,7 @@ class Game extends React.Component {
       {this.render_loaded()}
       <Map initCallback={this.mapInit} mapClick={this.mapClick} mapTypeId={this.state.map.typeId}
            infobox={this.state.infobox} regions={this.state.regions} showMap={this.state.showMap}
-           onPolygonClick={this.onPolygonClick} onDragPolygon={this.onDragPolygon}/>
+           onPolygonClick={this.onPolygonClick} onDragPolygon={this.onDragPolygon} map={this.props.map}/>
       {this.render_popup()}
       <div className="game-box">
         <Toolbox setMapType={this.setMapType} regions={this.state.regions} wsState={this.state.wsState}

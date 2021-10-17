@@ -10,7 +10,7 @@ import QuizInitForm from "./QuizInitForm";
 class QuizInit extends React.Component {
   constructor(props) {
     super(props);
-    this.state = window.__OPTIONS__.reduce((prev, current) => {prev[current] = true; return prev;}, {});
+    this.state = props.options.reduce((prev, current) => {prev[current] = true; return prev;}, {});
   }
 
   toggle = (param) => {
@@ -35,7 +35,7 @@ class QuizInit extends React.Component {
         <Modal.Title id="contained-modal-title-lg"><Msg id="quizInitCaption"/></Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <QuizInitForm available={window.__OPTIONS__} data={this.state} toggle={this.toggle}/>
+        <QuizInitForm available={this.props.options} data={this.state} toggle={this.toggle}/>
       </Modal.Body>
       <Modal.Footer>
         {this.renderFooter()}

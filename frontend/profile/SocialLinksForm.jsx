@@ -10,7 +10,6 @@ export default class SocialLinksForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.links = window.__PROVIDERS__;
   }
 
   render_link = (item) => {
@@ -26,7 +25,7 @@ export default class SocialLinksForm extends React.Component {
 
   render() {
     return <Row>
-      {this.links.map(item => {
+      {this.props.providers.map(item => {
         return <Col key={item.slug} sm={4} className="p-2">
           {item.connected ? this.render_unlink(item) : this.render_link(item)}
         </Col>;
