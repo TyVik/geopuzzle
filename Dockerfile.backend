@@ -42,7 +42,7 @@ FROM backend-builder as backend-tester
 
 WORKDIR /app
 
-RUN curl -Os https://uploader.codecov.io/latest/linux/codecov \
+RUN wget https://uploader.codecov.io/latest/linux/codecov \
   && chmod +x codecov \
   && ./codecov -t ${CODECOV_TOKEN}
 
