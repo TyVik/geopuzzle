@@ -177,6 +177,7 @@ jobs:
       - restore_cache:
           keys:
             - coverage-backend-{{ .Revision }}
+      - run: codecov -t $CODECOV_TOKEN
       - run: codecov
 
   deploy:

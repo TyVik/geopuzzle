@@ -42,6 +42,10 @@ FROM backend-builder as backend-tester
 
 WORKDIR /app
 
+RUN curl -Os https://uploader.codecov.io/latest/linux/codecov \
+  && chmod +x codecov \
+  && ./codecov -t ${CODECOV_TOKEN}
+
 RUN poetry config virtualenvs.create false \
   && poetry install --no-interaction --no-ansi \
   && find / -name "*.pyc" -exec rm -f {} \; \

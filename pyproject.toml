@@ -33,7 +33,6 @@ sparqlwrapper = "*"
 tqdm = "*"
 
 [tool.poetry.dev-dependencies]
-codecov = "*"
 django-extensions = "*"
 django-stubs = "*"
 factory-boy = "^3.2"
