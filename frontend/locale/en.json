@@ -10,7 +10,7 @@
     "km2": "sq. km.",
 
     "loading": "Loading...",
-    "loadingError": "Something wrong :(",
+    "loadingError": "Something went wrong :(",
     "networkError": "Connecting to server...",
 
     "found": "Found",
@@ -18,7 +18,7 @@
     "fixProblem": "fix game",
     "onceAgain": "once again",
     "congratulations": "Congratulations!",
-    "congratulations.puzzle": "Puzzle \"{name}\" has been assembled! You sort out all {subjects}. Your time is {time}.",
+    "congratulations.puzzle": "Puzzle \"{name}\" has been assembled! You sorted out all {subjects}. Your time is {time}.",
     "congratulations.quiz": "Quiz \"{name}\" has been solved! You guessed all {subjects}. Your time is {time}.",
     "timeOverhead": "more then day",
     "start": "Start",
@@ -38,7 +38,7 @@
     "selectAtLeastOneRegion": "Select at least one region",
     "tags": "Tags",
     "save": "Save",
-    "bugReport": "Something went wrong. Please {mail}.",
+    "bugReport": "Something went wrong? Please send a mail to {mail}.",
     "unknownError": "Something went wrong...",
     "emailMe": "email me",
     "tooManyRegions": "Too many regions",
@@ -49,8 +49,8 @@
     "orderBy": "Order by",
 
     "index.loadMore": "load more...",
-    "index.description.puzzle": "In the Puzzle you need to drag the shape of the territory to the right place. Just like in childhood we collected pictures piece by piece, so here you can collect a country from regions or whole continents from countries!",
-    "index.description.quiz": "In the Quiz you need find the country by flag, emblem or the capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, these and other interesting things can be learned and remembered after brainstorming right now!",
+    "index.description.puzzle": "In this Puzzle, you need to drag the shape of the territory to its correct place. Just as in our childhood, we collected pictures piece by piece, so here you can assemble a country from regions or even a whole continent from countries!",
+    "index.description.quiz": "In this Quiz, you need to find the country by flag, emblem or its capital. Did you know that Monaco and Indonesia have the same flags? And that the flags of the United States and Liberia differ only in the number of stars? So, similar other interesting things can be learnt and remembered after brainstorming, just like now!",
 
     "profile": "Profile",
     "publicProfile": "Public profile",
