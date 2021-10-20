@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-21 18:48+0000\n"
+"POT-Creation-Date: 2021-10-20 18:44+0000\n"
 "PO-Revision-Date: 2018-11-09 21:01\n"
 "Last-Translator: tyvik <tyvik8@gmail.com>\n"
 "Language-Team: French\n"
@@ -24,15 +24,15 @@ msgstr ""
 msgid "maps"
 msgstr ""
 
-#: maps/models/game.py:78
+#: maps/models/game.py:83
 msgid "countries"
 msgstr ""
 
-#: maps/models/game.py:78
+#: maps/models/game.py:83
 msgid "regions"
 msgstr ""
 
-#: maps/models/game.py:83
+#: maps/models/game.py:88
 msgid "World map"
 msgstr ""
 
@@ -40,36 +40,20 @@ msgstr ""
 msgid "Update region"
 msgstr ""
 
-#: mercator/settings/settings.py:211
+#: mercator/settings/settings.py:215
 msgid "English"
 msgstr ""
 
-#: mercator/settings/settings.py:212
+#: mercator/settings/settings.py:216
 msgid "Russian"
 msgstr ""
 
-#: puzzle/models.py:27
+#: puzzle/models.py:29
 msgid "Puzzle"
 msgstr ""
 
-#: puzzle/models.py:31
-msgid ""
-"In the Puzzle you need to drag the shape of the territory to the right "
-"place. Just like in childhood we collected pictures piece by piece, so here "
-"you can collect a country from regions or whole continents from countries!"
-msgstr ""
-
-#: quiz/models.py:31
+#: quiz/models.py:33
 msgid "Quiz"
-msgstr ""
-
-#: quiz/models.py:35
-msgid ""
-"In the Quiz you need find the country by flag, emblem or the capital. Did "
-"you know that Monaco and Indonesia have the same flags? And that the flags "
-"of the United States and Liberia differ only in the number of stars? So, "
-"these and other interesting things can be learned and remembered after "
-"brainstorming right now!"
 msgstr ""
 
 #: templates/base.html:5
@@ -80,7 +64,7 @@ msgstr ""
 msgid "World"
 msgstr ""
 
-#: templates/base.html:6 templates/index.html:13 templates/share_image.html:7
+#: templates/base.html:6 templates/index.html:11 templates/share_image.html:7
 msgid "Arrange the pieces of the world!"
 msgstr ""
 
@@ -108,23 +92,32 @@ msgstr ""
 msgid "Sign Up"
 msgstr ""
 
-#: templates/index.html:14
+#: templates/index.html:7
 msgid ""
-"Here, in the form of a game, you can learn the names and locations of each "
-"country or state and have fun doing it. Select a region in its proper place "
-"or from a list and look at it flag, coat of arms and perhaps even more "
-"information to help you learn geography. You can create your own puzzles "
-"from more than 100,000 regions after registration!"
+"I'm sorry, I already spent a lot of money for Google Maps API in that month. "
+"So I disabled billing, and the map looks a little bit strange. But all games "
+"are still working properly. Any <a href=\"https://www.patreon.com/bePatron?"
+"u=11576139\">Patreon</a> donations helps me."
 msgstr ""
 
-#: templates/index.html:15
+#: templates/index.html:12
+msgid ""
+"Here, in the form of a game, you can learn the names as well as locations of "
+"each country or a state while having fun doing it. To begin the game, select "
+"a region from the map or the list and look at its flag, coat of arms and "
+"perhaps, even more information to help you learn geography. after "
+"Registration, you can create your puzzles from more than 100,000 regions!"
+msgstr ""
+
+#: templates/index.html:13
 msgid ""
 "This is a non-profit project, but servers and other resources are not free "
-"for me. Please, support the project on <a href=\"https://www.patreon.com/"
-"bePatron?u=11576139\" target=\"_blank\" rel=\"noopener\">Patreon</a>."
+"for me. Please consider supporting the project on <a href=\"https://www."
+"patreon.com/bePatron?u=11576139\" target=\"_blank\" rel=\"noopener"
+"\">Patreon</a>."
 msgstr ""
 
-#: templates/index.html:58
+#: templates/index.html:18
 msgid ""
 "All suggestions for improvement can be sent to me via\n"
 "                <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\" "
@@ -137,7 +130,7 @@ msgid ""
 "geopuzzle\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a>."
 msgstr ""
 
-#: templates/index.html:65
+#: templates/index.html:25
 msgid ""
 "The project based on open data:\n"
 "                <a href=\"https://osm-boundaries.com/\" target=\"_blank\" "

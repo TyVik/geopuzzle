@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geopuzzle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-21 18:48+0000\n"
+"POT-Creation-Date: 2021-10-20 18:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,15 +31,15 @@ msgstr "Инфобокс"
 msgid "maps"
 msgstr "карты"
 
-#: maps/models/game.py:78
+#: maps/models/game.py:83
 msgid "countries"
 msgstr "страны"
 
-#: maps/models/game.py:78
+#: maps/models/game.py:83
 msgid "regions"
 msgstr "регионы"
 
-#: maps/models/game.py:83
+#: maps/models/game.py:88
 msgid "World map"
 msgstr "Карта мира"
 
@@ -47,44 +47,21 @@ msgstr "Карта мира"
 msgid "Update region"
 msgstr "Обновить регион"
 
-#: mercator/settings/settings.py:211
+#: mercator/settings/settings.py:215
 msgid "English"
 msgstr "Английский"
 
-#: mercator/settings/settings.py:212
+#: mercator/settings/settings.py:216
 msgid "Russian"
 msgstr "Русский"
 
-#: puzzle/models.py:27
+#: puzzle/models.py:29
 msgid "Puzzle"
 msgstr "Паззл"
 
-#: puzzle/models.py:31
-msgid ""
-"In this Puzzle, you need to drag the shape of the territory to its correct"
-"place on the map. Just as in our childhood, we collected pictures piece by piece, so here "
-"you can assemble a country from regions or even a whole continent from countries!"
-msgstr ""
-"В игре \"Паззл\" нужно перетащить контур территории на её место. В детстве "
-"мы собирали картины кусочек за кусочком, а здесь можно собрать страну из "
-"регионов или целые континенты из стран!"
-
-#: quiz/models.py:31
+#: quiz/models.py:33
 msgid "Quiz"
 msgstr "Викторина"
-
-#: quiz/models.py:35
-msgid ""
-"In this Quiz, you need to find the country by flag, emblem or its capital. Did "
-"you know that Monaco and Indonesia have the same flags? And that, the flags "
-"of the United States and Liberia differ only in the number of stars? So, "
-"similar other interesting things can be learnt and remembered after "
-"brainstorming, just like now!"
-msgstr ""
-"В игре «Викторина» искать страну нужно будет по флагу, гербу или столице. "
-"Знали ли вы, что у Монако и Индонезии одинаковые флаги? А что флаги США и "
-"Либерии отличаются только количеством звёзд? Так вот, эти и другие "
-"интересности можно узнать и запомнить, пройдя мозговой штурм прямо сейчас!"
 
 #: templates/base.html:5
 msgid "Geographical game of "
@@ -94,7 +71,7 @@ msgstr "Географическая игра - "
 msgid "World"
 msgstr "Мир"
 
-#: templates/base.html:6 templates/index.html:13 templates/share_image.html:7
+#: templates/base.html:6 templates/index.html:11 templates/share_image.html:7
 msgid "Arrange the pieces of the world!"
 msgstr "Собери мир по кусочкам!"
 
@@ -122,13 +99,26 @@ msgstr "Войти"
 msgid "Sign Up"
 msgstr "Регистрация"
 
-#: templates/index.html:14
+#: templates/index.html:7
 msgid ""
-"Here, in the form of a game, you can learn the names as well as locations of each"
-"country or a state while having fun doing it. To begin the game, select a region from the map"
-"or the list and look at its flag, coat of arms and perhaps, even more"
-"information to help you learn geography. after Registration, you can create your puzzles"
-"from more than 100,000 regions !"
+"I'm sorry, I already spent a lot of money for Google Maps API in that month. "
+"So I disabled billing, and the map looks a little bit strange. But all games "
+"are still working properly. Any <a href=\"https://www.patreon.com/bePatron?"
+"u=11576139\">Patreon</a> donations helps me."
+msgstr ""
+"Сожалею, но я уже прилично потратился на покупку показов Google Maps, так что "
+"вынужден отключить свой платный доступ. Из-за этого игра выглядит несколько "
+"странно, но это нисколько не сказалось на работоспособности. Любые "
+"пожертвования через <a href=\"https://www.patreon.com/bePatron?"
+"u=11576139\">Patreon</a> помогут мне реже сталкиваться с этой проблемой."
+
+#: templates/index.html:12
+msgid ""
+"Here, in the form of a game, you can learn the names as well as locations of "
+"each country or a state while having fun doing it. To begin the game, select "
+"a region from the map or the list and look at its flag, coat of arms and "
+"perhaps, even more information to help you learn geography. after "
+"Registration, you can create your puzzles from more than 100,000 regions!"
 msgstr ""
 "В игровой форме здесь можно выучить не только расположение и название страны "
 "или региона, но и их флаг, герб и столицу. Под вашей рукой все государства "
@@ -136,17 +126,18 @@ msgstr ""
 "получить более детальную информацию по нему. После регистрации вы можете "
 "создавать свои собственные игры из более чем 100 000 элементов!"
 
-#: templates/index.html:15
+#: templates/index.html:13
 msgid ""
-"This is a non-profit project but servers and other resources are not free "
-"for me. Please consider supporting the project on <a href=\"https://www.patreon.com/"
-"bePatron?u=11576139\" target=\"_blank\" rel=\"noopener\">Patreon</a>."
+"This is a non-profit project, but servers and other resources are not free "
+"for me. Please consider supporting the project on <a href=\"https://www."
+"patreon.com/bePatron?u=11576139\" target=\"_blank\" rel=\"noopener"
+"\">Patreon</a>."
 msgstr ""
 "Это не коммерческий проект, но сервера и другие ресурсы не бесплатны для "
 "меня. Пожалуйста, поддержите проект на <a href=\"https://www.patreon.com/"
 "bePatron?u=11576139\" target=\"_blank\" rel=\"noopener\">Patreon</a>."
 
-#: templates/index.html:58
+#: templates/index.html:18
 msgid ""
 "All suggestions for improvement can be sent to me via\n"
 "                <a href=\"mailto:tyvik8@gmail.com?&subject=GeoPuzzle\" "
@@ -166,7 +157,7 @@ msgstr ""
 "об ошибках на <a href=\"https://github.com/TyVik/geopuzzle\" target=\"_blank"
 "\" rel=\"noopener noreferrer\">GitHub</a>."
 
-#: templates/index.html:65
+#: templates/index.html:25
 msgid ""
 "The project based on open data:\n"
 "                <a href=\"https://osm-boundaries.com/\" target=\"_blank\" "
