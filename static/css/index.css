@@ -1,0 +1,50 @@
+.tab-pane button {
+    margin: 10px auto;
+}
+
+.item-container img {
+    max-width: 100%;
+}
+
+.puzzle-tab {
+    background-color: rgba(132, 132, 56, 0.2);
+}
+
+.quiz-tab {
+    background-color: rgba(56, 132, 132, 0.2);
+}
+
+.nav-tabs {
+    font-size: xx-large;
+}
+
+.container .nav-tabs {
+    width: 100%;
+    border-bottom: 0;
+}
+
+.container .nav-tabs>div>a {
+    margin-bottom: 0;
+    border-radius: 10px 10px 0 0;
+}
+
+.nav-tabs a.puzzle-tab.active,
+.nav-tabs a.puzzle-tab.active:focus,
+.nav-tabs a.puzzle-tab.active:hover,
+.nav-tabs a.puzzle-tab:hover {
+    background-color: rgba(132, 132, 56, 0.2);
+}
+
+.nav-tabs a.quiz-tab.active,
+.nav-tabs a.quiz-tab.active:focus,
+.nav-tabs a.quiz-tab.active:hover,
+.nav-tabs a.quiz-tab:hover {
+    background-color: rgba(56, 132, 132, 0.2);
+}
+
+.nav-tabs a.active,
+.nav-tabs a.active:focus,
+.nav-tabs a.active:hover {
+    border-bottom-width: 0;
+    min-width: 300px;
+}
