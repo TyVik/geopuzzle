@@ -60,7 +60,7 @@
     "whatwg-fetch": "^3.6.2"
   },
   "dependencies": {
-    "@sentry/cli": "^1.69.1",
+    "@sentry/cli": "^1.72.1",
     "bufferutil": "^4.0.4",
     "canvas": "^2.8.0",
     "fibers": "^5.0",
