@@ -38,7 +38,7 @@
     "enzyme-adapter-react-16": "^1.15.6",
     "git-revision-webpack-plugin": "^5.0.0",
     "identity-obj-proxy": "*",
-    "jest": "^27.2.5",
+    "jest": "^27.4.7",
     "jest-enzyme": "*",
     "jest-fetch-mock": "*",
     "jest-google-maps-mock": "^1.0.7",
