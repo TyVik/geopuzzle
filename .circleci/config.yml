@@ -95,12 +95,12 @@ jobs:
           POSTGRES_USER: geopuzzle
           POSTGRES_PASSWORD: geopuzzle
           REDIS_HOST: localhost
-      - image: circleci/postgres:12-postgis-ram
+      - image: circleci/postgres:13-postgis-ram
         environment:
           POSTGRES_USER: geopuzzle
           POSTGRES_DB: geopuzzle
           POSTGRES_PASSWORD: geopuzzle
-      - image: circleci/redis:4.0-alpine
+      - image: circleci/redis:6.0-alpine
     working_directory: ~/repo
     resource_class: small
     steps:

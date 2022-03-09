@@ -42,7 +42,7 @@
     "jest-enzyme": "*",
     "jest-fetch-mock": "*",
     "jest-google-maps-mock": "^1.0.7",
-    "jest-junit": "^12.3.0",
+    "jest-junit": "^13.0.0",
     "jest-localstorage-mock": "^2.4.19",
     "jspolyfill-array.prototype.find": "*",
     "jspolyfill-array.prototype.findIndex": "*",

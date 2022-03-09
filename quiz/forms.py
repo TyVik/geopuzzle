@@ -65,7 +65,7 @@ class QuizInfoboxForm(RegionForm):
                     k[param] = value
 
             # if question has not values - set them as founded
-            if k != {}:
+            if k:
                 k['id'] = region.pk
                 k['name'] = trans.infobox.get('name', None)
                 questions.append(k)
