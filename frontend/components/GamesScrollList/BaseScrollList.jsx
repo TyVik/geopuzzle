@@ -35,7 +35,7 @@ export default class BaseScrollList extends React.Component {
       let response = await fetch(url.toString(), {method: 'GET'});
       let data = await response.json();
       let items = replace ? data : this.state.items.concat(data);
-      this.setState(state => ({...state, items: items, page: page, hasMore: data.length === 30}));
+      this.setState(state => ({...state, items: items, page: page, hasMore: data.length === 50}));
     } catch {
       this.setState(state => ({...state, page: page - 1, hasMore: false}));
     }

@@ -36,7 +36,7 @@ AutocompleteItem = Dict[str, str]
 
 class ScrollListView(BaseListView):
     model = None
-    paginate_by = 30
+    paginate_by = 50
     ordering = ('-id',)
 
     def render_to_response(self, context, **kwargs) -> JsonResponse:

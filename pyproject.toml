@@ -31,6 +31,7 @@ social-auth-app-django = "*"
 sorl-thumbnail = "*"
 sparqlwrapper = "*"
 tqdm = "*"
+aiohttp = "^3.8.1"  # for sentry-sdk
 
 [tool.poetry.dev-dependencies]
 codecov = "*"
