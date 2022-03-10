@@ -16,12 +16,12 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
         className="nav-item"
       >
         <a
-          aria-controls="react-aria3223682136-1-tabpane-#main"
+          aria-controls="react-aria5886336164-1-tabpane-#main"
           aria-selected={true}
           className="nav-link active"
           data-rr-ui-event-key="#main"
           disabled={false}
-          id="react-aria3223682136-1-tab-#main"
+          id="react-aria5886336164-1-tab-#main"
           onClick={[Function]}
           role="tab"
         >
@@ -37,9 +37,9 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
       className="tab-content"
     >
       <div
-        aria-labelledby="react-aria3223682136-1-tab-#main"
+        aria-labelledby="react-aria5886336164-1-tab-#main"
         className="fade tab-pane active show"
-        id="react-aria3223682136-1-tabpane-#main"
+        id="react-aria5886336164-1-tabpane-#main"
         role="tabpanel"
       >
         <div
