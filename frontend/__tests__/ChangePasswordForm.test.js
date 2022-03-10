@@ -51,9 +51,8 @@ describe('shallow <ChangePasswordForm /> components', () => {
     global.fetch.mockResponse('{}');
     let wrapper = mountComponentWithIntl(<ChangePasswordForm/>);
 
-    const form = wrapper.find('ReactFinalForm').instance();
-    form.form.change('old_password', 'old_password');
-    form.form.change('new_password1', 'new_password');
+    wrapper.find('input').at(0).simulate('change', {target: {name: 'old_password', value: 'old_password'}});
+    wrapper.find('input').at(1).simulate('change', {target: {name: 'new_password', value: 'new_password'}});
     wrapper.find('form').simulate('submit');
 
     expect(global.fetch).toHaveBeenCalledWith('blank?section=password',

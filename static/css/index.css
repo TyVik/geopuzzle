@@ -6,11 +6,11 @@
     max-width: 100%;
 }
 
-.puzzle-tab {
+.puzzle-tab, .puzzle-tab.nav-link {
     background-color: rgba(132, 132, 56, 0.2);
 }
 
-.quiz-tab {
+.quiz-tab, .quiz-tab.nav-link {
     background-color: rgba(56, 132, 132, 0.2);
 }
 

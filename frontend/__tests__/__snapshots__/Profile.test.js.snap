@@ -5,7 +5,7 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
   className="row"
 >
   <div
-    className="col-lg-2 col-md-3 col-sm-3"
+    className="profile-pills col-lg-2 col-md-3 col-sm-3"
   >
     <div
       className="flex-column nav nav-pills"
@@ -16,12 +16,13 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
         className="nav-item"
       >
         <a
+          aria-controls="react-aria3223682136-1-tabpane-#main"
           aria-selected={true}
           className="nav-link active"
-          data-rb-event-key="#main"
-          href="#"
+          data-rr-ui-event-key="#main"
+          disabled={false}
+          id="react-aria3223682136-1-tab-#main"
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="tab"
         >
           profile
@@ -36,10 +37,9 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
       className="tab-content"
     >
       <div
-        aria-hidden={false}
-        aria-labelledby={null}
+        aria-labelledby="react-aria3223682136-1-tab-#main"
         className="fade tab-pane active show"
-        id={null}
+        id="react-aria3223682136-1-tabpane-#main"
         role="tabpanel"
       >
         <div
@@ -68,15 +68,11 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
                 <div
                   className="input-group"
                 >
-                  <div
-                    className="input-group-prepend"
+                  <span
+                    className="input-group-text"
                   >
-                    <span
-                      className="input-group-text"
-                    >
-                      @
-                    </span>
-                  </div>
+                    @
+                  </span>
                   <input
                     className="form-control"
                     onChange={[Function]}
@@ -95,7 +91,6 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
                 <input
                   className="form-control"
                   onChange={[Function]}
-                  type="email"
                   value="admin@admin.com"
                 />
               </div>
@@ -108,7 +103,7 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
                   language
                 </label>
                 <select
-                  className="form-control"
+                  className="form-select"
                   onChange={[Function]}
                   value="en"
                 >
@@ -242,7 +237,7 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
                 className="p-2 col-sm-4"
               >
                 <div
-                  className="btn btn-lg btn-facebook btn-block"
+                  className="btn btn-lg btn-facebook btn-block w-100"
                 >
                   FB
                 </div>
@@ -257,7 +252,7 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
                 className="p-2 col-sm-4"
               >
                 <div
-                  className="btn btn-lg btn-vk btn-block"
+                  className="btn btn-lg btn-vk btn-block w-100"
                 >
                   VK
                 </div>
@@ -272,7 +267,7 @@ exports[`shallow <Profile /> components render: Profile 1`] = `
                 className="p-2 col-sm-4"
               >
                 <a
-                  className="btn btn-lg btn-google btn-block"
+                  className="btn btn-lg btn-google btn-block w-100"
                   href="/accounts/social/login/google-oauth2/"
                 >
                   Google

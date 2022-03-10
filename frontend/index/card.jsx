@@ -21,7 +21,7 @@ export default class Card extends React.Component {
     let className = `col-${size.col} my-${size.my} item-container`;
     return <Col md={size.md} sm={size.sm} className={className} key={`${this.props.item.id}`}>
       {this.renderImage(this.props.item.url, this.props.item.image, this.props.item.name)}
-      <div className="text-center">
+      <div>
         {this.props.item.name}
       </div>
     </Col>;

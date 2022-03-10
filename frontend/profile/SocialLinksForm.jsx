@@ -13,12 +13,12 @@ export default class SocialLinksForm extends React.Component {
   }
 
   render_link = (item) => {
-    return <a href={`${this.LINK_URL}${item.slug}/`} className={`btn btn-lg btn-${item.class} btn-block`}>{item.label}</a>;
+    return <a href={`${this.LINK_URL}${item.slug}/`} className={`btn btn-lg btn-${item.class} btn-block w-100`}>{item.label}</a>;
   };
 
   render_unlink = (item) => {
     return <React.Fragment>
-      <div className={`btn btn-lg btn-${item.class} btn-block`}>{item.label}</div>
+      <div className={`btn btn-lg btn-${item.class} btn-block w-100`}>{item.label}</div>
       <a href={`${this.UNLINK_URL}${item.slug}/`} className="text-center d-block"><Msg id="unlink"/></a>
     </React.Fragment>;
   };

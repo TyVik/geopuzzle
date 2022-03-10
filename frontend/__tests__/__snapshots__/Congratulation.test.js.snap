@@ -90,229 +90,12 @@ exports[`shallow <Congratulation /> components render 1`] = `
           autoFocus={true}
           backdrop={true}
           backdropTransition={[Function]}
-          containerClassName="modal-open"
           enforceFocus={true}
           keyboard={true}
           manager={
             BootstrapModalManager {
-              "containers": Array [
-                <body
-                  class="modal-open"
-                  style="padding-right: 0px;"
-                >
-                  <div
-                    class="fade modal-backdrop show"
-                  />
-                  <div
-                    aria-labelledby="contained-modal-title-lg"
-                    aria-modal="true"
-                    class="fade modal show"
-                    role="dialog"
-                    style="display: block;"
-                    tabindex="-1"
-                  >
-                    <div
-                      class="modal-dialog"
-                    >
-                      <div
-                        class="modal-content"
-                      >
-                        <div
-                          class="modal-header"
-                        >
-                          <div
-                            class="modal-title h4"
-                            id="contained-modal-title-lg"
-                          >
-                            congratulations
-                          </div>
-                          <button
-                            class="close"
-                            type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                            >
-                              ×
-                            </span>
-                            <span
-                              class="sr-only"
-                            >
-                              Close
-                            </span>
-                          </button>
-                        </div>
-                        <div
-                          class="modal-body"
-                        >
-                          <div>
-                            congratulations.puzzle
-                          </div>
-                        </div>
-                        <div
-                          class="modal-footer"
-                        >
-                          <iframe
-                            class="patreon-widget"
-                            src="https://www.patreon.com/platform/iframe?widget=become-patron-button&redirectURI=https%3A%2F%2Fgeopuzzle.org%2Fpuzzle%2Fworkshop%2F&creatorID=11576139"
-                          />
-                          <div
-                            class="pull-right"
-                          >
-                            <a
-                              class="btn btn-social-icon btn-vk"
-                              href="https://vk.com/share.php?url=about:blank&title=congratulations.puzzle"
-                              rel="noopener noreferrer"
-                              target="_blank"
-                            >
-                              <i
-                                class="fab fa-vk"
-                              />
-                            </a>
-                            <a
-                              class="btn btn-social-icon btn-facebook"
-                              href="#"
-                              rel="noopener noreferrer"
-                              target="_blank"
-                            >
-                              <i
-                                class="fab fa-facebook"
-                              />
-                            </a>
-                            <a
-                              class="btn btn-social-icon btn-twitter"
-                              href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=about:blank&hashtags=geopuzzle"
-                              rel="noopener noreferrer"
-                              target="_blank"
-                            >
-                              <i
-                                class="fab fa-twitter"
-                              />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </body>,
-              ],
-              "data": Array [
-                Object {
-                  "classes": Array [
-                    "modal-open",
-                  ],
-                  "modals": Array [
-                    Object {
-                      "add": [Function],
-                      "backdrop": <div
-                        class="fade modal-backdrop show"
-                      />,
-                      "dialog": <div
-                        aria-labelledby="contained-modal-title-lg"
-                        aria-modal="true"
-                        class="fade modal show"
-                        role="dialog"
-                        style="display: block;"
-                        tabindex="-1"
-                      >
-                        <div
-                          class="modal-dialog"
-                        >
-                          <div
-                            class="modal-content"
-                          >
-                            <div
-                              class="modal-header"
-                            >
-                              <div
-                                class="modal-title h4"
-                                id="contained-modal-title-lg"
-                              >
-                                congratulations
-                              </div>
-                              <button
-                                class="close"
-                                type="button"
-                              >
-                                <span
-                                  aria-hidden="true"
-                                >
-                                  ×
-                                </span>
-                                <span
-                                  class="sr-only"
-                                >
-                                  Close
-                                </span>
-                              </button>
-                            </div>
-                            <div
-                              class="modal-body"
-                            >
-                              <div>
-                                congratulations.puzzle
-                              </div>
-                            </div>
-                            <div
-                              class="modal-footer"
-                            >
-                              <iframe
-                                class="patreon-widget"
-                                src="https://www.patreon.com/platform/iframe?widget=become-patron-button&redirectURI=https%3A%2F%2Fgeopuzzle.org%2Fpuzzle%2Fworkshop%2F&creatorID=11576139"
-                              />
-                              <div
-                                class="pull-right"
-                              >
-                                <a
-                                  class="btn btn-social-icon btn-vk"
-                                  href="https://vk.com/share.php?url=about:blank&title=congratulations.puzzle"
-                                  rel="noopener noreferrer"
-                                  target="_blank"
-                                >
-                                  <i
-                                    class="fab fa-vk"
-                                  />
-                                </a>
-                                <a
-                                  class="btn btn-social-icon btn-facebook"
-                                  href="#"
-                                  rel="noopener noreferrer"
-                                  target="_blank"
-                                >
-                                  <i
-                                    class="fab fa-facebook"
-                                  />
-                                </a>
-                                <a
-                                  class="btn btn-social-icon btn-twitter"
-                                  href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=about:blank&hashtags=geopuzzle"
-                                  rel="noopener noreferrer"
-                                  target="_blank"
-                                >
-                                  <i
-                                    class="fab fa-twitter"
-                                  />
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>,
-                      "isTopModal": [Function],
-                      "remove": [Function],
-                      "setBackdropRef": [Function],
-                      "setDialogRef": [Function],
-                    },
-                  ],
-                  "overflowing": true,
-                  "style": Object {
-                    "overflow": "",
-                    "paddingRight": "",
-                  },
-                },
-              ],
               "handleContainerOverflow": true,
-              "hideSiblingNodes": true,
+              "isRTL": false,
               "modals": Array [
                 Object {
                   "add": [Function],
@@ -324,7 +107,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                     aria-modal="true"
                     class="fade modal show"
                     role="dialog"
-                    style="display: block;"
+                    style="display: block; padding-right: 0px;"
                     tabindex="-1"
                   >
                     <div
@@ -343,20 +126,10 @@ exports[`shallow <Congratulation /> components render 1`] = `
                             congratulations
                           </div>
                           <button
-                            class="close"
+                            aria-label="Close"
+                            class="btn-close"
                             type="button"
-                          >
-                            <span
-                              aria-hidden="true"
-                            >
-                              ×
-                            </span>
-                            <span
-                              class="sr-only"
-                            >
-                              Close
-                            </span>
-                          </button>
+                          />
                         </div>
                         <div
                           class="modal-body"
@@ -416,7 +189,14 @@ exports[`shallow <Congratulation /> components render 1`] = `
                   "setDialogRef": [Function],
                 },
               ],
-              "scrollbarSize": 0,
+              "ownerDocument": undefined,
+              "state": Object {
+                "scrollBarWidth": 1024,
+                "style": Object {
+                  "overflow": "",
+                  "paddingRight": "",
+                },
+              },
             }
           }
           onEnter={[Function]}
@@ -435,7 +215,8 @@ exports[`shallow <Congratulation /> components render 1`] = `
             containerInfo={
               <body
                 class="modal-open"
-                style="padding-right: 0px;"
+                data-rr-ui-modal-open=""
+                style="padding-right: 1024px;"
               >
                 <div
                   class="fade modal-backdrop show"
@@ -445,7 +226,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                   aria-modal="true"
                   class="fade modal show"
                   role="dialog"
-                  style="display: block;"
+                  style="display: block; padding-right: 0px;"
                   tabindex="-1"
                 >
                   <div
@@ -464,20 +245,10 @@ exports[`shallow <Congratulation /> components render 1`] = `
                           congratulations
                         </div>
                         <button
-                          class="close"
+                          aria-label="Close"
+                          class="btn-close"
                           type="button"
-                        >
-                          <span
-                            aria-hidden="true"
-                          >
-                            ×
-                          </span>
-                          <span
-                            class="sr-only"
-                          >
-                            Close
-                          </span>
-                        </button>
+                        />
                       </div>
                       <div
                         class="modal-body"
@@ -545,27 +316,45 @@ exports[`shallow <Congratulation /> components render 1`] = `
                 timeout={null}
                 unmountOnExit={false}
               >
-                <Transition
+                <ForwardRef
                   addEndListener={[Function]}
                   appear={true}
-                  enter={true}
-                  exit={true}
+                  childRef={[Function]}
                   in={true}
                   mountOnEnter={false}
                   onEnter={[Function]}
-                  onEntered={[Function]}
-                  onEntering={[Function]}
-                  onExit={[Function]}
-                  onExited={[Function]}
-                  onExiting={[Function]}
                   timeout={null}
                   unmountOnExit={false}
                 >
-                  <div
-                    className="fade modal-backdrop show"
-                    onClick={[Function]}
-                  />
-                </Transition>
+                  <Transition
+                    addEndListener={[Function]}
+                    appear={true}
+                    enter={true}
+                    exit={true}
+                    in={true}
+                    mountOnEnter={false}
+                    nodeRef={
+                      Object {
+                        "current": <div
+                          class="fade modal-backdrop show"
+                        />,
+                      }
+                    }
+                    onEnter={[Function]}
+                    onEntered={[Function]}
+                    onEntering={[Function]}
+                    onExit={[Function]}
+                    onExited={[Function]}
+                    onExiting={[Function]}
+                    timeout={null}
+                    unmountOnExit={false}
+                  >
+                    <div
+                      className="fade modal-backdrop show"
+                      onClick={[Function]}
+                    />
+                  </Transition>
+                </ForwardRef>
               </Fade>
             </BackdropTransition>
             <DialogTransition
@@ -588,155 +377,250 @@ exports[`shallow <Congratulation /> components render 1`] = `
                 timeout={null}
                 unmountOnExit={true}
               >
-                <Transition
+                <ForwardRef
                   addEndListener={[Function]}
                   appear={true}
-                  enter={true}
-                  exit={true}
+                  childRef={[Function]}
                   in={true}
                   mountOnEnter={false}
                   onEnter={[Function]}
-                  onEntered={[Function]}
                   onEntering={[Function]}
                   onExit={[Function]}
                   onExited={[Function]}
-                  onExiting={[Function]}
                   timeout={null}
                   unmountOnExit={true}
                 >
-                  <div
-                    aria-labelledby="contained-modal-title-lg"
-                    aria-modal={true}
-                    className="fade modal show"
-                    onClick={[Function]}
-                    onMouseUp={[Function]}
-                    role="dialog"
-                    style={
+                  <Transition
+                    addEndListener={[Function]}
+                    appear={true}
+                    enter={true}
+                    exit={true}
+                    in={true}
+                    mountOnEnter={false}
+                    nodeRef={
                       Object {
-                        "paddingLeft": undefined,
-                        "paddingRight": undefined,
+                        "current": <div
+                          aria-labelledby="contained-modal-title-lg"
+                          aria-modal="true"
+                          class="fade modal show"
+                          role="dialog"
+                          style="display: block; padding-right: 0px;"
+                          tabindex="-1"
+                        >
+                          <div
+                            class="modal-dialog"
+                          >
+                            <div
+                              class="modal-content"
+                            >
+                              <div
+                                class="modal-header"
+                              >
+                                <div
+                                  class="modal-title h4"
+                                  id="contained-modal-title-lg"
+                                >
+                                  congratulations
+                                </div>
+                                <button
+                                  aria-label="Close"
+                                  class="btn-close"
+                                  type="button"
+                                />
+                              </div>
+                              <div
+                                class="modal-body"
+                              >
+                                <div>
+                                  congratulations.puzzle
+                                </div>
+                              </div>
+                              <div
+                                class="modal-footer"
+                              >
+                                <iframe
+                                  class="patreon-widget"
+                                  src="https://www.patreon.com/platform/iframe?widget=become-patron-button&redirectURI=https%3A%2F%2Fgeopuzzle.org%2Fpuzzle%2Fworkshop%2F&creatorID=11576139"
+                                />
+                                <div
+                                  class="pull-right"
+                                >
+                                  <a
+                                    class="btn btn-social-icon btn-vk"
+                                    href="https://vk.com/share.php?url=about:blank&title=congratulations.puzzle"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                  >
+                                    <i
+                                      class="fab fa-vk"
+                                    />
+                                  </a>
+                                  <a
+                                    class="btn btn-social-icon btn-facebook"
+                                    href="#"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                  >
+                                    <i
+                                      class="fab fa-facebook"
+                                    />
+                                  </a>
+                                  <a
+                                    class="btn btn-social-icon btn-twitter"
+                                    href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=about:blank&hashtags=geopuzzle"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                  >
+                                    <i
+                                      class="fab fa-twitter"
+                                    />
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>,
                       }
                     }
-                    tabIndex={-1}
+                    onEnter={[Function]}
+                    onEntered={[Function]}
+                    onEntering={[Function]}
+                    onExit={[Function]}
+                    onExited={[Function]}
+                    onExiting={[Function]}
+                    timeout={null}
+                    unmountOnExit={true}
                   >
-                    <ModalDialog
-                      onMouseDown={[Function]}
+                    <div
+                      aria-labelledby="contained-modal-title-lg"
+                      aria-modal={true}
+                      className="fade modal show"
+                      onClick={[Function]}
+                      onMouseUp={[Function]}
+                      role="dialog"
+                      style={
+                        Object {
+                          "paddingLeft": undefined,
+                          "paddingRight": 0,
+                        }
+                      }
+                      tabIndex={-1}
                     >
-                      <div
-                        className="modal-dialog"
+                      <ModalDialog
                         onMouseDown={[Function]}
                       >
                         <div
-                          className="modal-content"
+                          className="modal-dialog"
+                          onMouseDown={[Function]}
                         >
-                          <ModalHeader
-                            closeButton={true}
-                            closeLabel="Close"
+                          <div
+                            className="modal-content"
                           >
-                            <div
-                              className="modal-header"
+                            <ModalHeader
+                              closeButton={true}
+                              closeLabel="Close"
                             >
-                              <ModalTitle
-                                id="contained-modal-title-lg"
+                              <ForwardRef
+                                className="modal-header"
+                                closeButton={true}
+                                closeLabel="Close"
                               >
-                                <ForwardRef
-                                  className="modal-title"
-                                  id="contained-modal-title-lg"
+                                <div
+                                  className="modal-header"
                                 >
-                                  <div
-                                    className="modal-title h4"
+                                  <ModalTitle
                                     id="contained-modal-title-lg"
                                   >
-                                    <FormattedMessage
-                                      id="congratulations"
+                                    <ForwardRef
+                                      className="modal-title"
+                                      id="contained-modal-title-lg"
                                     >
-                                      congratulations
-                                    </FormattedMessage>
-                                  </div>
-                                </ForwardRef>
-                              </ModalTitle>
-                              <CloseButton
-                                label="Close"
-                                onClick={[Function]}
-                              >
-                                <button
-                                  className="close"
-                                  onClick={[Function]}
-                                  type="button"
-                                >
-                                  <span
-                                    aria-hidden="true"
+                                      <div
+                                        className="modal-title h4"
+                                        id="contained-modal-title-lg"
+                                      >
+                                        <FormattedMessage
+                                          id="congratulations"
+                                        >
+                                          congratulations
+                                        </FormattedMessage>
+                                      </div>
+                                    </ForwardRef>
+                                  </ModalTitle>
+                                  <CloseButton
+                                    aria-label="Close"
+                                    onClick={[Function]}
                                   >
-                                    ×
-                                  </span>
-                                  <span
-                                    className="sr-only"
-                                  >
-                                    Close
-                                  </span>
-                                </button>
-                              </CloseButton>
-                            </div>
-                          </ModalHeader>
-                          <ModalBody>
-                            <div
-                              className="modal-body"
-                            >
-                              <div>
-                                congratulations.puzzle
-                              </div>
-                            </div>
-                          </ModalBody>
-                          <ModalFooter>
-                            <div
-                              className="modal-footer"
-                            >
-                              <iframe
-                                className="patreon-widget"
-                                src="https://www.patreon.com/platform/iframe?widget=become-patron-button&redirectURI=https%3A%2F%2Fgeopuzzle.org%2Fpuzzle%2Fworkshop%2F&creatorID=11576139"
-                              />
+                                    <button
+                                      aria-label="Close"
+                                      className="btn-close"
+                                      onClick={[Function]}
+                                      type="button"
+                                    />
+                                  </CloseButton>
+                                </div>
+                              </ForwardRef>
+                            </ModalHeader>
+                            <ModalBody>
                               <div
-                                className="pull-right"
+                                className="modal-body"
                               >
-                                <a
-                                  className="btn btn-social-icon btn-vk"
-                                  href="https://vk.com/share.php?url=about:blank&title=congratulations.puzzle"
-                                  rel="noopener noreferrer"
-                                  target="_blank"
-                                >
-                                  <i
-                                    className="fab fa-vk"
-                                  />
-                                </a>
-                                <a
-                                  className="btn btn-social-icon btn-facebook"
-                                  href="#"
-                                  onClick={[Function]}
-                                  rel="noopener noreferrer"
-                                  target="_blank"
-                                >
-                                  <i
-                                    className="fab fa-facebook"
-                                  />
-                                </a>
-                                <a
-                                  className="btn btn-social-icon btn-twitter"
-                                  href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=about:blank&hashtags=geopuzzle"
-                                  rel="noopener noreferrer"
-                                  target="_blank"
-                                >
-                                  <i
-                                    className="fab fa-twitter"
-                                  />
-                                </a>
+                                <div>
+                                  congratulations.puzzle
+                                </div>
                               </div>
-                            </div>
-                          </ModalFooter>
+                            </ModalBody>
+                            <ModalFooter>
+                              <div
+                                className="modal-footer"
+                              >
+                                <iframe
+                                  className="patreon-widget"
+                                  src="https://www.patreon.com/platform/iframe?widget=become-patron-button&redirectURI=https%3A%2F%2Fgeopuzzle.org%2Fpuzzle%2Fworkshop%2F&creatorID=11576139"
+                                />
+                                <div
+                                  className="pull-right"
+                                >
+                                  <a
+                                    className="btn btn-social-icon btn-vk"
+                                    href="https://vk.com/share.php?url=about:blank&title=congratulations.puzzle"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                  >
+                                    <i
+                                      className="fab fa-vk"
+                                    />
+                                  </a>
+                                  <a
+                                    className="btn btn-social-icon btn-facebook"
+                                    href="#"
+                                    onClick={[Function]}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                  >
+                                    <i
+                                      className="fab fa-facebook"
+                                    />
+                                  </a>
+                                  <a
+                                    className="btn btn-social-icon btn-twitter"
+                                    href="https://twitter.com/intent/tweet?text=congratulations.puzzle&url=about:blank&hashtags=geopuzzle"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                  >
+                                    <i
+                                      className="fab fa-twitter"
+                                    />
+                                  </a>
+                                </div>
+                              </div>
+                            </ModalFooter>
+                          </div>
                         </div>
-                      </div>
-                    </ModalDialog>
-                  </div>
-                </Transition>
+                      </ModalDialog>
+                    </div>
+                  </Transition>
+                </ForwardRef>
               </Fade>
             </DialogTransition>
           </Portal>

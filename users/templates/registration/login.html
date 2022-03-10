@@ -8,17 +8,17 @@
 {% block form %}
   <form role="form" method="post" action="{% url 'login' %}">
     {% csrf_token %}
-    <div class="form-group">
+    <div class="mb-3">
       {{ form.username.label_tag }}
       {{ form.username }}
       {{ form.username.errors }}
     </div>
-    <div class="form-group">
+    <div class="mb-3">
       {{ form.password.label_tag }}
       {{ form.password }}
       {{ form.password.errors }}
     </div>
-    <ul class="list-errors">
+    <ul class="list-errors mb-3">
       {% for error in form.non_field_errors %}
         <span class="help-block">{{ error }}</span>
       {% endfor %}

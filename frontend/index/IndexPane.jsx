@@ -27,11 +27,11 @@ export default class IndexPane extends React.Component {
   render() {
     let game = this.props.game;
     return <React.Fragment>
-      <div className="media row p-3">
-        <video autoPlay loop muted playsInline className="pull-left mr-3 img-fluid">
+      <div className="p-3 d-flex">
+        <video autoPlay loop muted playsInline className="flex-shrink-0">
           <source src={`${window.__STATIC_URL__}images/${game.name}.mp4`} type="video/mp4"/>
         </video>
-        <div className="media-body blockquote">
+        <div className="blockquote flex-grow-1 ms-3">
           <p><Msg id={`index.description.${game.name}`}/></p>
         </div>
       </div>

@@ -14,11 +14,10 @@ Array [
         aria-controls="indexTab-tabpane-puzzle"
         aria-selected={true}
         className="puzzle-tab nav-link active"
-        data-rb-event-key="puzzle"
-        href="#"
+        data-rr-ui-event-key="puzzle"
+        disabled={false}
         id="indexTab-tab-puzzle"
         onClick={[Function]}
-        onKeyDown={[Function]}
         role="tab"
       >
         Puzzle
@@ -28,15 +27,13 @@ Array [
       className="nav-item"
     >
       <a
-        aria-controls="indexTab-tabpane-quiz"
-        aria-selected={false}
         className="quiz-tab nav-link"
-        data-rb-event-key="quiz"
-        href="#"
+        data-rr-ui-event-key="quiz"
+        disabled={false}
         id="indexTab-tab-quiz"
         onClick={[Function]}
-        onKeyDown={[Function]}
         role="tab"
+        tabIndex={-1}
       >
         Quiz
       </a>
@@ -46,18 +43,17 @@ Array [
     className="tab-content"
   >
     <div
-      aria-hidden={false}
       aria-labelledby="indexTab-tab-puzzle"
       className="fade puzzle-tab tab-pane active show"
       id="indexTab-tabpane-puzzle"
       role="tabpanel"
     >
       <div
-        className="media row p-3"
+        className="p-3 d-flex"
       >
         <video
           autoPlay={true}
-          className="pull-left mr-3 img-fluid"
+          className="flex-shrink-0"
           loop={true}
           muted={true}
           playsInline={true}
@@ -68,7 +64,7 @@ Array [
           />
         </video>
         <div
-          className="media-body blockquote"
+          className="blockquote flex-grow-1 ms-3"
         >
           <p>
             index.description.puzzle
@@ -90,9 +86,7 @@ Array [
               src="hard.jpg"
             />
           </a>
-          <div
-            className="text-center"
-          >
+          <div>
             hard
           </div>
         </div>
@@ -108,9 +102,7 @@ Array [
               src="easy.jpg"
             />
           </a>
-          <div
-            className="text-center"
-          >
+          <div>
             easy
           </div>
         </div>
@@ -130,9 +122,7 @@ Array [
               src="europe.jpg"
             />
           </a>
-          <div
-            className="text-center"
-          >
+          <div>
             europe
           </div>
         </div>
@@ -148,9 +138,7 @@ Array [
               src="america.jpg"
             />
           </a>
-          <div
-            className="text-center"
-          >
+          <div>
             america
           </div>
         </div>
@@ -166,9 +154,7 @@ Array [
               src="asia.jpg"
             />
           </a>
-          <div
-            className="text-center"
-          >
+          <div>
             asia
           </div>
         </div>
@@ -184,9 +170,7 @@ Array [
               src="africa.jpg"
             />
           </a>
-          <div
-            className="text-center"
-          >
+          <div>
             africa
           </div>
         </div>
@@ -206,9 +190,7 @@ Array [
               src="belarus.jpg"
             />
           </a>
-          <div
-            className="text-center"
-          >
+          <div>
             belarus
           </div>
         </div>
@@ -224,9 +206,7 @@ Array [
               src="russia.jpg"
             />
           </a>
-          <div
-            className="text-center"
-          >
+          <div>
             russia
           </div>
         </div>
@@ -242,9 +222,7 @@ Array [
               src="us.jpg"
             />
           </a>
-          <div
-            className="text-center"
-          >
+          <div>
             us
           </div>
         </div>
@@ -260,9 +238,7 @@ Array [
               src="uk.jpg"
             />
           </a>
-          <div
-            className="text-center"
-          >
+          <div>
             uk
           </div>
         </div>

@@ -2,7 +2,7 @@
 import React from "react";
 import {Alert, Button, Form} from "react-bootstrap";
 import {CSRFfetch, getFormData} from "../utils";
-import {Input} from '../components/Input';
+import { Input, PasswordInput } from '../components/Input';
 import {Field, Form as FormWrapper} from "react-final-form";
 import {FormattedMessage as Msg} from "react-intl";
 
@@ -41,8 +41,8 @@ export default class ChangePasswordForm extends React.Component {
     let state = form.getState();
     return <Form onSubmit={handleSubmit}>
       {state.submitSucceeded && <Alert variant="success"><Msg id="password.changed"/></Alert>}
-      <Field name="old_password" component={Input} label={<Msg id="password.current"/>} type="password"/>
-      <Field name="new_password1" component={Input} label={<Msg id="password.new"/>} type="password"/>
+      <Field name="old_password" component={PasswordInput} label={<Msg id="password.current"/>} type="password"/>
+      <Field name="new_password1" component={PasswordInput} label={<Msg id="password.new"/>} type="password"/>
       <Button variant="primary" type="submit"><Msg id="password.change"/></Button>
       {this.renderFooter(submitting, {...errors, ...submitErrors})}
     </Form>;

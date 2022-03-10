@@ -16,3 +16,8 @@ nav.menu {
     overflow:hidden;
     border: none;
 }
+
+.row .form-group {
+    margin-bottom: 1rem;
+    padding: 0 10px;
+}

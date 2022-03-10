@@ -16,7 +16,7 @@ export default class Profile extends React.Component {
   render() {
     return <Tab.Container defaultActiveKey={this.defaultTab}>
       <Row>
-        <Col md={3} sm={3} lg={2}>
+        <Col md={3} sm={3} lg={2} className="profile-pills">
           <Nav className="flex-column" variant="pills">
             <Nav.Item><Nav.Link eventKey="#main"><Msg id="profile"/></Nav.Link></Nav.Item>
           </Nav>
