@@ -1,4 +1,4 @@
-FROM node:14-slim as frontend-builder
+FROM node:14.19.0-slim as frontend-builder
 
 WORKDIR /app
 
