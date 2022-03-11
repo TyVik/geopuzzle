@@ -25,7 +25,8 @@ body::after {
     border-radius: 0.3rem;
 }
 
-.nav-link {
+.nav-tabs .nav-link {
+    border-width: 0;
     cursor: pointer;
 }
 
