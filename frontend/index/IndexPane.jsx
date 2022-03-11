@@ -44,7 +44,7 @@ export default class IndexPane extends React.Component {
       <div className="row">
         {this.state.items.map(item => <Card size="sm" baseUrl={game.name} item={item} key={item.id}/>)}
       </div>
-      <div className="row">
+      <div className="text-center">
         {this.state.hasMore &&
           <Button variant="primary" onClick={this.loadMore}>
             <Msg id="index.loadMore"/>

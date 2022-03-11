@@ -25,15 +25,8 @@ body::after {
     border-radius: 0.3rem;
 }
 
-.row>* {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.row {
-    margin-top: 0;
-    margin-right: 0;
-    margin-left: 0;
+.nav-link {
+    cursor: pointer;
 }
 
 .row>.img-fluid {
