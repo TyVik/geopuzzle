@@ -29,7 +29,7 @@
     "@types/googlemaps": "^3.43.3",
     "@types/jest": "^27.0.24",
     "@types/markerclustererplus": "*",
-    "@types/react": "^16.14.23",
+    "@types/react": "^16.14.24",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.3",
