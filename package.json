@@ -75,7 +75,7 @@
     "react-final-form": "^6.5",
     "react-google-maps": "^9.4",
     "react-infinite-scroll-component": "^6.1",
-    "react-intl": "^5.24.6",
+    "react-intl": "^6.1.0",
     "react-select": "^5.2.2",
     "react-transition-group": "^4.4.2",
     "url-search-params-polyfill": "^8.1.1",
