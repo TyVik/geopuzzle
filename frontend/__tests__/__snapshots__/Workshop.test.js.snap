@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`shallow <Workshop /> components render: Workshop 1`] = `
-Array [
+[
   <form
     className="row justify-content-between"
   >
@@ -65,11 +65,9 @@ Array [
             >
               <input
                 aria-autocomplete="list"
-                aria-controls="react-select-2-listbox"
                 aria-describedby="react-select-2-placeholder"
                 aria-expanded={false}
                 aria-haspopup={true}
-                aria-owns="react-select-2-listbox"
                 autoCapitalize="none"
                 autoComplete="off"
                 autoCorrect="off"
@@ -82,7 +80,7 @@ Array [
                 role="combobox"
                 spellCheck="false"
                 style={
-                  Object {
+                  {
                     "background": 0,
                     "border": 0,
                     "color": "inherit",
@@ -175,11 +173,9 @@ Array [
             >
               <input
                 aria-autocomplete="list"
-                aria-controls="react-select-3-listbox"
                 aria-describedby="react-select-3-placeholder"
                 aria-expanded={false}
                 aria-haspopup={true}
-                aria-owns="react-select-3-listbox"
                 autoCapitalize="none"
                 autoComplete="off"
                 autoCorrect="off"
@@ -192,7 +188,7 @@ Array [
                 role="combobox"
                 spellCheck="false"
                 style={
-                  Object {
+                  {
                     "background": 0,
                     "border": 0,
                     "color": "inherit",
@@ -299,11 +295,9 @@ Array [
             >
               <input
                 aria-autocomplete="list"
-                aria-controls="react-select-4-listbox"
                 aria-describedby="react-select-4-placeholder"
                 aria-expanded={false}
                 aria-haspopup={true}
-                aria-owns="react-select-4-listbox"
                 autoCapitalize="none"
                 autoComplete="off"
                 autoCorrect="off"
@@ -316,7 +310,7 @@ Array [
                 role="combobox"
                 spellCheck="false"
                 style={
-                  Object {
+                  {
                     "background": 0,
                     "border": 0,
                     "color": "inherit",
@@ -383,12 +377,12 @@ Array [
   </form>,
   <div
     className="infinite-scroll-component__outerdiv"
-    style={Object {}}
+    style={{}}
   >
     <div
       className="infinite-scroll-component row"
       style={
-        Object {
+        {
           "WebkitOverflowScrolling": "touch",
           "height": "auto",
           "overflow": "auto",

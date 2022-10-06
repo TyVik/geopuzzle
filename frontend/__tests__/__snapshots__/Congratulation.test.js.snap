@@ -2,29 +2,31 @@
 
 exports[`shallow <Congratulation /> components render 1`] = `
 <IntlProvider
-  defaultFormats={Object {}}
+  defaultFormats={{}}
   defaultLocale="en"
   fallbackOnEmptyString={true}
-  formats={Object {}}
+  formats={{}}
   locale="en"
-  messages={Object {}}
+  messages={{}}
   onError={[Function]}
+  onWarn={[Function]}
   textComponent={Symbol(react.fragment)}
 >
   <injectIntl(BaseCongratulation)
     name="Belarus"
     options={
-      Object {
+      {
         "score": 60,
       }
     }
-    parts={Array []}
+    parts={[]}
     text="congratulations.puzzle"
   >
     <BaseCongratulation
       intl={
-        Object {
-          "defaultFormats": Object {},
+        {
+          "$t": [Function],
+          "defaultFormats": {},
           "defaultLocale": "en",
           "defaultRichTextElements": undefined,
           "fallbackOnEmptyString": true,
@@ -41,8 +43,8 @@ exports[`shallow <Congratulation /> components render 1`] = `
           "formatRelativeTime": [Function],
           "formatTime": [Function],
           "formatTimeToParts": [Function],
-          "formats": Object {},
-          "formatters": Object {
+          "formats": {},
+          "formatters": {
             "getDateTimeFormat": [Function],
             "getDisplayNames": [Function],
             "getListFormat": [Function],
@@ -52,8 +54,9 @@ exports[`shallow <Congratulation /> components render 1`] = `
             "getRelativeTimeFormat": [Function],
           },
           "locale": "en",
-          "messages": Object {},
+          "messages": {},
           "onError": [Function],
+          "onWarn": [Function],
           "textComponent": Symbol(react.fragment),
           "timeZone": undefined,
           "wrapRichTextChunksInFragment": undefined,
@@ -61,11 +64,11 @@ exports[`shallow <Congratulation /> components render 1`] = `
       }
       name="Belarus"
       options={
-        Object {
+        {
           "score": 60,
         }
       }
-      parts={Array []}
+      parts={[]}
       text="congratulations.puzzle"
     >
       <Modal
@@ -74,7 +77,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
         autoFocus={true}
         backdrop={true}
         dialogAs={
-          Object {
+          {
             "$$typeof": Symbol(react.forward_ref),
             "displayName": "ModalDialog",
             "render": [Function],
@@ -96,8 +99,8 @@ exports[`shallow <Congratulation /> components render 1`] = `
             BootstrapModalManager {
               "handleContainerOverflow": true,
               "isRTL": false,
-              "modals": Array [
-                Object {
+              "modals": [
+                {
                   "add": [Function],
                   "backdrop": <div
                     class="fade modal-backdrop show"
@@ -190,9 +193,9 @@ exports[`shallow <Congratulation /> components render 1`] = `
                 },
               ],
               "ownerDocument": undefined,
-              "state": Object {
+              "state": {
                 "scrollBarWidth": 1024,
-                "style": Object {
+                "style": {
                   "overflow": "",
                   "paddingRight": "",
                 },
@@ -334,7 +337,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                     in={true}
                     mountOnEnter={false}
                     nodeRef={
-                      Object {
+                      {
                         "current": <div
                           class="fade modal-backdrop show"
                         />,
@@ -398,7 +401,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                     in={true}
                     mountOnEnter={false}
                     nodeRef={
-                      Object {
+                      {
                         "current": <div
                           aria-labelledby="contained-modal-title-lg"
                           aria-modal="true"
@@ -499,7 +502,8 @@ exports[`shallow <Congratulation /> components render 1`] = `
                       onMouseUp={[Function]}
                       role="dialog"
                       style={
-                        Object {
+                        {
+                          "display": "block",
                           "paddingLeft": undefined,
                           "paddingRight": 0,
                         }
