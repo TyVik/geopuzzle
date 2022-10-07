@@ -4,7 +4,7 @@ RUN mkdir /app && mkdir /app/logs
 WORKDIR /app
 
 RUN apt update \
-  && apt install -y --no-install-recommends build-essential make gcc gdal-bin wget git \
+  && apt install -y --no-install-recommends build-essential make gcc gdal-bin curl git \
   && wget -q https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz && rm dockerize-linux-amd64-v0.6.1.tar.gz \
   && apt-get autoremove -y \
   && apt-get clean
