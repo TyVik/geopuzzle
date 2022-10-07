@@ -9,10 +9,11 @@ RUN apt update \
   && apt-get autoremove -y \
   && apt-get clean
 
-RUN POETRY_HOME=/opt/poetry curl -sSL https://install.python-poetry.org | python3 - \
+ENV POETRY_HOME="/opt/poetry"
+RUN curl -sSL https://install.python-poetry.org | python3 - \
   && find / -name "*.pyc" -exec rm -f {} \;
 
-ENV PATH="${PATH}:/opt/poetry/bin"
+ENV PATH="${PATH}:${POETRY_HOME}/bin"
 ADD poetry.lock pyproject.toml /app/
 RUN poetry config virtualenvs.create false \
   && poetry install --no-dev --no-interaction --no-ansi \
