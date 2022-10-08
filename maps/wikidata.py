@@ -46,7 +46,7 @@ class Wikidata:
     @cacheable(ttl=3600)
     def get_links(instance: str) -> Dict[LanguageEnumType, LinkDict]:
         result: Dict[LanguageEnumType, LinkDict] = {x: {'wiki': '', 'name': ''} for x in settings.ALLOWED_LANGUAGES}
-        response = requests.get(f'https://www.wikidata.org/entity/{instance}')
+        response = requests.get(f'https://www.wikidata.org/entity/{instance}', timeout=60)
         data = response.json()
         for lang in result:
             try:
@@ -62,7 +62,7 @@ class Wikidata:
         for field in row:
             value = row[field]['value']
             if field in ('flag', 'coat_of_arms', 'image'):
-                response = requests.head(value, allow_redirects=True)
+                response = requests.head(value, allow_redirects=True, timeout=60)
                 result[field] = response.url
             elif field == 'area':
                 result[field] = str(int(float(value)))

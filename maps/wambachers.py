@@ -76,14 +76,14 @@ class Wambachers:
             'X-Requested-With': 'XMLHttpRequest',
         }
         response = requests.post('https://osm-boundaries.com/Ajax/GetTreeContent',
-                                 params=params, headers=headers)
+                                 params=params, headers=headers, timeout=60)
         tree = parse(response.json())
         subtree = find_subtree(tree, item)
         return subtree.children if subtree else tree  # in case of item is the root element
 
     def fetch_geojson(self, item: WambachersNode) -> None:
         logger.debug('Fetch polygon data for %s', item)
-        response = requests.get(item.boundaries_url)
+        response = requests.get(item.boundaries_url, timeout=60)
         assert response.status_code == 200, f'Bad request, status {response.status_code}'
         logger.debug('Unpack polygon data for %s', item)
         with gzip.open(BytesIO(response.content)) as zipfile:
