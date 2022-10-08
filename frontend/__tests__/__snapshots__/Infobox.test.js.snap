@@ -188,11 +188,11 @@ exports[`shallow <Infobox /> components click collapse: infobox 1`] = `
       className="close"
       onClick={
         [MockFunction] {
-          "calls": Array [
-            Array [],
+          "calls": [
+            [],
           ],
-          "results": Array [
-            Object {
+          "results": [
+            {
               "type": "return",
               "value": undefined,
             },
@@ -313,11 +313,11 @@ exports[`shallow <Infobox /> components click collapse: infobox-collapse 1`] = `
       className="close"
       onClick={
         [MockFunction] {
-          "calls": Array [
-            Array [],
+          "calls": [
+            [],
           ],
-          "results": Array [
-            Object {
+          "results": [
+            {
               "type": "return",
               "value": undefined,
             },

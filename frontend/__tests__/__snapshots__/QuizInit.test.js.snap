@@ -6,7 +6,7 @@ exports[`shallow <QuizInit /> components render: quizinit 1`] = `
   autoFocus={true}
   backdrop={true}
   dialogAs={
-    Object {
+    {
       "$$typeof": Symbol(react.forward_ref),
       "displayName": "ModalDialog",
       "render": [Function],
@@ -33,7 +33,7 @@ exports[`shallow <QuizInit /> components render: quizinit 1`] = `
   <ModalBody>
     <QuizInitForm
       available={
-        Array [
+        [
           "name",
           "flag",
           "coat_of_arms",
@@ -41,7 +41,7 @@ exports[`shallow <QuizInit /> components render: quizinit 1`] = `
         ]
       }
       data={
-        Object {
+        {
           "capital": true,
           "coat_of_arms": true,
           "flag": true,
