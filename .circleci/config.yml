@@ -134,6 +134,7 @@ jobs:
       - image: tyvik/geopuzzle:backend-tester
         environment:
           DJANGO_SETTINGS_MODULE: "mercator.settings.circleci"
+          SECRET_KEY: "mY_sup#r_sec3t+KEY"
     working_directory: ~/repo
     resource_class: small
     steps:
@@ -143,7 +144,7 @@ jobs:
           command: mkdir ~/repo/logs
       - run:
           name: Run pylint
-          command: pylint common maps mercator puzzle quiz users workshop
+          command: PYTHONPATH="$PYTHONPATH:." pylint common maps mercator puzzle quiz users workshop
 
   messages:
     docker:

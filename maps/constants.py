@@ -5,7 +5,7 @@ from django_enumfield import enum
 from common.constants import Point
 
 
-class Zoom(enum.Enum):
+class Zoom(enum.Enum):  # pylint: disable=invalid-enum-extension
     WORLD = 3
     LARGE_COUNTRY = 4
     BIG_COUNTRY = 5
