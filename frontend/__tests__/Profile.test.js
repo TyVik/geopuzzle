@@ -17,8 +17,7 @@ describe('shallow <Profile /> components', () => {
     ];
 
   it('render', () => {
-    // todo
-    // expect(createComponentWithIntl(<Profile user={user} providers={providers}/>)).toMatchSnapshot('Profile');
+    expect(createComponentWithIntl(<Profile user={user} providers={providers}/>)).toMatchSnapshot('Profile');
   });
 
   it('profileFormUpdate', () => {

@@ -1,7 +1,7 @@
 import gzip
 import json
 import logging
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from io import BytesIO
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -18,7 +18,7 @@ class WambachersNode:
     id: int
     text: Optional[str] = None
     level: Optional[int] = None
-    children: List['WambachersNode'] = None
+    children: List['WambachersNode'] = field(default_factory=list)
 
     @property
     def osm_id(self) -> int:

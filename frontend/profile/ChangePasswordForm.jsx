@@ -2,13 +2,13 @@
 import React from "react";
 import {Alert, Button, Form} from "react-bootstrap";
 import {CSRFfetch, getFormData} from "../utils";
-import { Input, PasswordInput } from '../components/Input';
+import {PasswordInput} from '../components/Input';
 import {Field, Form as FormWrapper} from "react-final-form";
 import {FormattedMessage as Msg} from "react-intl";
 
 
 export default class ChangePasswordForm extends React.Component {
-  onSubmit = async (values, form, callback) => {
+  onSubmit = async (values, form) => {
     let data = getFormData(values);
     data.append('new_password2', values['new_password1']);
     let options = {method: 'POST', body: data};
