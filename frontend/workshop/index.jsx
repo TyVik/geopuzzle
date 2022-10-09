@@ -20,7 +20,7 @@ class Workshop extends React.Component {
   }, 300);
 
   loadOptions = (field, inputValue, callback) => {
-    if ((inputValue === '') && (field !== 'tag')) {
+    if ((inputValue === '') && (field !== 'tag') && (field !== 'user')) {
       return callback([]);
     }
     defer(async () => {
