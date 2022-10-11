@@ -35,30 +35,36 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('--since', action='store', type=int, default=None, help='Since id')
 
+    def update_translation(self, area: Region, updated):
+        for lang in settings.ALLOWED_LANGUAGES:
+            trans = area.load_translation(lang)
+            trans.infobox = updated[lang]
+            trans.save()
+
+    def update_region(self, area: Region):
+        updated = None
+        for lang in settings.ALLOWED_LANGUAGES:
+            trans = area.load_translation(lang)
+            infobox = trans.infobox
+            if 'capital' in infobox and isinstance(infobox['capital'], dict) and 'wiki' in infobox['capital']:
+                updated = check_link(area, lang, infobox['capital'], 'wiki', False)
+
+            if 'wiki' in infobox and updated is None:
+                updated = check_link(area, lang, infobox, 'wiki', False)
+            if 'flag' in infobox and updated is None:
+                updated = check_link(area, lang, infobox, 'flag', True)
+            if 'coat_of_arms' in infobox and updated is None:
+                updated = check_link(area, lang, infobox, 'coat_of_arms', True)
+
+        if updated:
+            logger.info('Update translation for %s', area)
+            self.update_translation(area, updated)
+
     def handle(self, *args, **options):
         query = Region.objects.order_by('id').all()
         if options['since']:
             query = query.filter(pk__gte=options['since'])
         for area in tqdm(query.iterator(), total=query.count()):
             logger.debug('Check region %s', area)
-            updated = None
-            for lang in settings.ALLOWED_LANGUAGES:
-                trans = area.load_translation(lang)
-                infobox = trans.infobox
-                if 'capital' in infobox and isinstance(infobox['capital'], dict) and 'wiki' in infobox['capital']:
-                    updated = check_link(area, lang, infobox['capital'], 'wiki', False)
-
-                if 'wiki' in infobox and updated is None:
-                    updated = check_link(area, lang, infobox, 'wiki', False)
-                if 'flag' in infobox and updated is None:
-                    updated = check_link(area, lang, infobox, 'flag', True)
-                if 'coat_of_arms' in infobox and updated is None:
-                    updated = check_link(area, lang, infobox, 'coat_of_arms', True)
-
-            if updated:
-                logger.info('Update translation for %s', area)
-                for lang in settings.ALLOWED_LANGUAGES:
-                    trans = area.load_translation(lang)
-                    trans.infobox = updated[lang]
-                    trans.save()
+            self.update_region(area)
             sleep(3)

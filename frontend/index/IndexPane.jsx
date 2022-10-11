@@ -1,5 +1,5 @@
 'use strict';
-import {Button, Tab} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import {FormattedMessage as Msg} from "react-intl";
 import Card from "./card";
 import React from "react";

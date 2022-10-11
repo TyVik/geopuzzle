@@ -33,12 +33,12 @@ class Game extends React.Component {
     let addr = `${ws_scheme}://${window.location.host}/ws/${this.GAME_NAME}/`;
     this.ws = new Sockette(addr, {
       timeout: 5e3,
-      onopen: e => this.setState(state => ({...state, wsState: true})),
+      onopen: () => this.setState(state => ({...state, wsState: true})),
       onmessage: e => this.dispatchMessage(e),
-      onreconnect: e => this.setState(state => ({...state, wsState: null})),
-      onmaximum: e => this.setState(state => ({...state, wsState: false})),
-      onclose: e => this.setState(state => ({...state, wsState: null})),
-      onerror: e => this.setState(state => ({...state, wsState: false}))
+      onreconnect: () => this.setState(state => ({...state, wsState: null})),
+      onmaximum: () => this.setState(state => ({...state, wsState: false})),
+      onclose: () => this.setState(state => ({...state, wsState: null})),
+      onerror: () => this.setState(state => ({...state, wsState: false}))
     });
   };
 
@@ -88,8 +88,8 @@ class Game extends React.Component {
         try {
           let response = await fetch(`${window.location.origin}/puzzle/area/${id}/infobox/`, {method: 'GET'});
           let data = await response.json();
-          let regions = this.state.regions.map((region) =>
-            region.id === id ? {...region, infobox: prepareInfobox(data)} : region);
+          let regions = this.state.regions.map((item) =>
+            item.id === id ? {...item, infobox: prepareInfobox(data)} : item);
           this.setState(state => ({...state, regions: regions, infobox: data, showInfobox: true}));
         } catch (e) {
           console.log(e);
@@ -136,7 +136,7 @@ class Game extends React.Component {
       </div>
       {this.render_congratulation()}
     </div>;
-  };
+  }
 }
 
 export default Game;

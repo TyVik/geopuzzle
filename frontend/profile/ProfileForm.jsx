@@ -16,10 +16,10 @@ export default class ProfileForm extends React.Component {
   onSubmit = async (values) => {
     let options = {method: 'POST', body: getFormData(values)};
     let response = await CSRFfetch(`${window.location.pathname}?section=main`, options);
-    return await response.json();
+    return response.json();
   };
 
-  _render = ({handleSubmit, form, submitting}) => {
+  _render = ({handleSubmit, _form, submitting}) => {
     return <Form onSubmit={handleSubmit}>
       <Field name="username" component={UsernameInput} label={<Msg id="username"/>}/>
       <Field name="email" component={Input} label={<Msg id="email"/>} type="email"/>
