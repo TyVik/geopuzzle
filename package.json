@@ -76,7 +76,7 @@
     "react-google-maps": "^9.4",
     "react-infinite-scroll-component": "^6.1",
     "react-intl": "^6.1.2",
-    "react-select": "^5.4.0",
+    "react-select": "^5.5.9",
     "react-transition-group": "^4.4.5",
     "url-search-params-polyfill": "^8.1.1",
     "utf-8-validate": "^5.0.9"
