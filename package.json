@@ -62,7 +62,7 @@
   "dependencies": {
     "@sentry/cli": "^2.7.0",
     "bufferutil": "^4.0.6",
-    "canvas": "^2.10.1",
+    "canvas": "^2.11.0",
     "fibers": "^5.0.3",
     "final-form": "^4.20.7",
     "he": "^1.2",
