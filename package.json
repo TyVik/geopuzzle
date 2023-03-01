@@ -79,6 +79,6 @@
     "react-select": "^5.4.0",
     "react-transition-group": "^4.4.5",
     "url-search-params-polyfill": "^8.1.1",
-    "utf-8-validate": "^5.0.9"
+    "utf-8-validate": "^6.0.3"
   }
 }
