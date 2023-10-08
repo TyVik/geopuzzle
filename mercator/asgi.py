@@ -1,5 +1,4 @@
 import os
-from pathlib import Path
 
 import django
 from channels.routing import ProtocolTypeRouter
