@@ -3,6 +3,7 @@ from __future__ import annotations
 from copy import deepcopy
 from typing import List, Dict, Union, Tuple
 
+from asgiref.sync import sync_to_async
 from django.contrib.gis.geos import MultiPolygon, Polygon
 from django.conf import settings
 from django.contrib.gis.db.models import MultiPolygonField
