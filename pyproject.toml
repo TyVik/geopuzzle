@@ -14,7 +14,7 @@ dependencies = [
     "channels",
     "channels-redis",
     "daphne",
-    "django==3.2",
+    "django==3.2.22",
     "django-admin-autocomplete-filter",
     "django-admirarchy",
     "django-dotenv",
