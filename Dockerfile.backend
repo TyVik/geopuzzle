@@ -20,7 +20,7 @@ RUN poetry config virtualenvs.create false \
   && find / -name "*.pyc" -exec rm -f {} \; \
   && rm -rf /root/.cache/
 
-FROM python:3.8-slim as backend
+FROM python:3.8-slim-buster as backend
 
 RUN apt update \
   && apt install -y --no-install-recommends gdal-bin \
