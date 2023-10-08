@@ -46,12 +46,12 @@ class RegionTranslationAdmin(admin.TabularInline):
 
 
 class RegionAdjacencyList(AdjacencyList):
-    def hook_filter_queryset(self, changelist, qs):
-        qs = super().hook_filter_queryset(changelist, qs)
+    def hook_filter_queryset(self, changelist, query_set):
+        qs = super().hook_filter_queryset(changelist, query_set)
 
         if self.pid is None:
-            q = f'{self.pid_field}__isnull'
-            qs = qs.filter(**{q: True})
+            field = f'{self.pid_field}__isnull'
+            qs = qs.filter(**{field: True})
 
         return qs
 

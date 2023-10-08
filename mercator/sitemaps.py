@@ -14,8 +14,8 @@ class RegionSitemap(Sitemap):
     changefreq = "weekly"
     priority = 0.5
 
-    def location(self, obj: Game) -> str:
-        return obj.get_absolute_url()
+    def location(self, item: Game) -> str:
+        return item.get_absolute_url()
 
     def lastmod(self, _):
         return timezone.now()
@@ -38,5 +38,5 @@ class WorldSitemap(Sitemap):
     def items(self) -> Iterable[str]:
         return 'index', 'workshop'
 
-    def location(self, obj: str) -> str:
-        return reverse(obj)
+    def location(self, item: str) -> str:
+        return reverse(item)
