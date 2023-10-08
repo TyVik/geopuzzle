@@ -1,9 +1,6 @@
 from admin_auto_filters.filters import AutocompleteFilter
 from django.conf import settings
-from django.forms import Media
 from django.template.defaultfilters import safe
-from floppyforms.gis import MultiPolygonWidget as BaseMultiPolygonWidget, BaseGMapWidget, \
-    MultiPointWidget as BaseMultiPointWidget
 from sorl.thumbnail import get_thumbnail
 from sorl.thumbnail.admin.current import AdminImageWidget as SorlImageWidget
 
@@ -36,18 +33,6 @@ class ImageMixin:
         except Exception as exception:  # pylint: disable=broad-except
             print(exception)
         return safe('<img src="{}"/>'.format(url))
-
-
-class MultiPolygonWidget(BaseMultiPolygonWidget, BaseGMapWidget):  # pylint: disable=too-many-ancestors
-    google_maps_api_key = settings.GOOGLE_KEY
-
-    @property
-    def media(self):
-        return super().media + Media(js=('gis/MapBoxExtend.js', ))
-
-
-class MultiPointWidget(BaseMultiPointWidget, BaseGMapWidget):  # pylint: disable=too-many-ancestors
-    google_maps_api_key = settings.GOOGLE_KEY
 
 
 class UserAutocompleteFilter(AutocompleteFilter):

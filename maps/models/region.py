@@ -6,7 +6,7 @@ from typing import List, Dict, Union, Tuple
 from django.contrib.gis.geos import MultiPolygon, Polygon
 from django.conf import settings
 from django.contrib.gis.db.models import MultiPolygonField
-from django.contrib.postgres.fields import JSONField
+from django.db.models import JSONField
 from django.core.cache import cache
 from django.db import models
 from django.db.models import QuerySet
