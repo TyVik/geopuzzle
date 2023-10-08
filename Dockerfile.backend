@@ -40,7 +40,6 @@ FROM backend-builder as backend-tester
 
 WORKDIR /app
 
-RUN poetry config virtualenvs.create false \
-  && poetry install --no-interaction --no-ansi \
+RUN pdm sync -g -p /app --no-self --dev \
   && find / -name "*.pyc" -exec rm -f {} \; \
   && rm -rf /root/.cache/
