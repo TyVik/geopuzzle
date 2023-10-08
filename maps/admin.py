@@ -15,11 +15,10 @@ from django.utils.translation import ugettext as _
 
 from django.contrib import admin
 from django.db.models import ImageField
-from django.contrib.gis.db.models import MultiPolygonField
 from django.templatetags.static import static
 from django_json_widget.widgets import JSONEditorWidget
 
-from common.admin import ImageMixin, AdminImageWidget, MultiPolygonWidget, UserAutocompleteFilter
+from common.admin import ImageMixin, AdminImageWidget, UserAutocompleteFilter
 from common.utils import get_language
 from .forms import UpdateRegionForm
 from .models import Region, RegionTranslation, Tag, Game
@@ -47,6 +46,15 @@ class RegionTranslationAdmin(admin.TabularInline):
 
 
 class RegionAdjacencyList(AdjacencyList):
+    def hook_filter_queryset(self, changelist, qs):
+        qs = super().hook_filter_queryset(changelist, qs)
+
+        if self.pid is None:
+            q = f'{self.pid_field}__isnull'
+            qs = qs.filter(**{q: True})
+
+        return qs
+
     def hook_get_queryset(self, changelist, request):
         super().hook_get_queryset(changelist, request)
         if (self.pid_field in changelist.params) and (changelist.params[self.pid_field] is None):
@@ -54,11 +62,10 @@ class RegionAdjacencyList(AdjacencyList):
 
 
 @admin.register(Region)
-class RegionAdmin(HierarchicalModelAdmin):
+class RegionAdmin(HierarchicalModelAdmin, OSMGeoAdmin):
     list_display = ('__str__', 'wikidata_url', 'osm_id', 'infobox_status')
     search_fields = ('wikidata_id__exact', 'translations__name')
     formfield_overrides = {
-        MultiPolygonField: {'widget': MultiPolygonWidget},
         JSONField: {'widget': JSONEditorWidget},
     }
     hierarchy = RegionAdjacencyList('parent')

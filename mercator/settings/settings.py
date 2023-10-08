@@ -34,10 +34,12 @@ ALLOWED_HOSTS: Tuple[str, ...] = ('geopuzzle.org', 'www.geopuzzle.org', '127.0.0
 INTERNAL_IPS = ALLOWED_HOSTS
 
 WSGI_APPLICATION = 'mercator.wsgi.application'
+ASGI_APPLICATION = 'mercator.asgi.application'
 ROOT_URLCONF = 'mercator.urls'
 
 # region BASE
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,9 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
 
     'common',
-    'floppyforms',
     'sorl.thumbnail',
-    'channels',
     'admirarchy',
     'social_django',
     'django_filters',
@@ -104,6 +104,7 @@ DATABASES = {
         'ATOMIC_REQUESTS': True,
     }
 }
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # endregion
 
 # region CACHES & SESSIONS & WEB-SOCKETS
@@ -133,7 +134,7 @@ SESSION_REDIS = {
 
 POLYGON_CACHE_KEY = '{func}_{id}'
 
-ASGI_APPLICATION = "mercator.routing.application"
+# ASGI_APPLICATION = "mercator.routing.application"
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
