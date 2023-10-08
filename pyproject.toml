@@ -1,48 +1,77 @@
-[tool.poetry]
+[project]
 name = "geopuzzle"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
-authors = ["TyVik <tyvik8@gmail.com>"]
-license = "MIT"
+authors = [
+    {name = "TyVik", email = "geopuzzle@tyvik.ru"}
+]
+license = {text = "MIT"}
+requires-python = ">=3.8"
 
-[tool.poetry.dependencies]
-python = "^3.8"
-apidev-django-floppyforms = "*"
-boto3 = "*"
-channels = "*"
-channels-redis = "*"
-daphne = "*"
-django = "^3.2"
-django-admin-autocomplete-filter = "*"
-django-admirarchy = "*"
-django-dotenv = "*"
-django-enumfield = "*"
-django-filter = "*"
-django-json-widget = "*"
-django-redis = "*"
-django-redis-sessions = "*"
-django-settings-export = "*"
-django-storages = "*"
-psycopg2-binary = "*"
-pillow = "*"
-requests = "*"
-sentry-sdk = "*"
-social-auth-app-django = "*"
-sorl-thumbnail = "*"
-sparqlwrapper = "*"
-tqdm = "*"
-aiohttp = "^3.8.1"  # for sentry-sdk
+dependencies = [
+    "apidev-django-floppyforms",
+    "boto3",
+    "channels",
+    "channels-redis",
+    "daphne",
+    "django==3.2",
+    "django-admin-autocomplete-filter",
+    "django-admirarchy",
+    "django-dotenv",
+    "django-enumfield",
+    "django-filter",
+    "django-json-widget",
+    "django-redis",
+    "django-redis-sessions",
+    "django-settings-export",
+    "django-storages",
+    "gunicorn",
+    "psycopg2-binary",  # https://github.com/psycopg/psycopg2/issues/1293
+    "pillow",
+    "requests",
+    "sentry-sdk",
+    "social-auth-app-django",
+    "sorl-thumbnail",
+    "sparqlwrapper",
+    "tqdm"
+]
 
-[tool.poetry.dev-dependencies]
-codecov = "*"
-django-extensions = "*"
-django-stubs = "*"
-factory-boy = "*"
-gprof2dot = "*"
-mypy = "*"
-pylint = "*"
-pylint-django = "*"
+readme = "README.md"
+
+[project.urls]
+#Homepage = "https://pdm.fming.dev"
+#Repository = "https://github.com/pdm-project/pdm"
+#Documentation = "https://pdm.fming.dev"
+#Changelog = "https://pdm.fming.dev/latest/dev/changelog/"
+
+[project.scripts]
+pdm = "pdm.core:main"
+
+[tool.pdm.scripts]
+#pre_release = "python tasks/max_versions.py"
+#release = "python tasks/release.py"
+#test = "pytest"
+#tox = "tox"
+#doc = {shell = "cd docs && mkdocs serve", help = "Start the dev server for doc preview"}
+#lint = "pre-commit run --all-files"
+#complete = {call = "tasks.complete:main", help = "Create autocomplete files for bash and fish"}
+
+[tool.pdm.dev-dependencies]
+lint = [
+    "mypy",
+    "django-stubs",
+    "pylint",
+    "pylint-django",
+]
+test = [
+    "codecov",
+    "factory-boy"
+]
+prod = [
+    "django-extensions",
+    "gprof2dot"
+]
 
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
