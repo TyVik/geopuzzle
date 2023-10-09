@@ -26,21 +26,36 @@ services:
     networks:
       - webnet
 
-  wsgi:
-    image: geopuzzle
+  app:
+    build:
+        context: .
+        dockerfile: Dockerfile.backend
+        target: backend
     restart: on-failure
-    env_file:
-      - .env
-    network_mode: host
-    command: gunicorn mercator.wsgi:application -b 0.0.0.0:8000
+    environment:
+      DJANGO_SETTINGS_MODULE: mercator.settings.development
+      SECRET_KEY: 123
 
-  asgi:
-    image: geopuzzle
-    restart: on-failure
-    env_file:
-      - .env
-    network_mode: host
-    command: daphne mercator.asgi:application -b 0.0.0.0 -p 8001
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: geopuzzle
+      POSTGRES_USER: geopuzzle
+      POSTGRES_PASSWORD: geopuzzle
+
+      REDIS_HOST: redis
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+      - redis
+    links:
+      - postgres
+      - redis
+    networks:
+      - webnet
+    volumes:
+      - .:/app
+    command: ./manage.py runserver 0.0.0.0:8000
 
 networks:
   webnet:

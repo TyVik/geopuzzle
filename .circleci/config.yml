@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          version: 19.03.13
+          version: 20.10.23
       - run: echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_LOGIN --password-stdin
       - run:
           name: Build builder
@@ -105,9 +105,6 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://localhost:5432 -timeout 30s
       - run:
           name: Prepare environment
           command: mkdir ~/repo/logs

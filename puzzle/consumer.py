@@ -23,5 +23,5 @@ class PuzzleConsumer(GameConsumer):
         result = {'type': 'PUZZLE_GIVEUP_DONE', 'solves': {}}
         for pk in message['ids']:
             region = await self.get_object(pk)
-            result['solves'][pk] = region.full_info(self.scope['lang'])
+            result['solves'][pk] = await self.get_info(region, self.scope['lang'])
         await self.send_json(result)
