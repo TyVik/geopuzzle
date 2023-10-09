@@ -46,21 +46,21 @@ exports[`shallow <Workshop /> components render: Workshop 1`] = `
           className="css-7pg0cj-a11yText"
         />
         <div
-          className=" css-1s2u09g-control"
+          className=" css-13cymwt-control"
           onMouseDown={[Function]}
           onTouchEnd={[Function]}
         >
           <div
-            className=" css-1d8n9bt"
+            className=" css-hlgwow"
           >
             <div
-              className=" css-14el2xx-placeholder"
+              className=" css-1jqq78o-placeholder"
               id="react-select-2-placeholder"
             >
               Select...
             </div>
             <div
-              className=" css-ackcql"
+              className=" css-19bb58m"
               data-value=""
             >
               <input
@@ -105,11 +105,11 @@ exports[`shallow <Workshop /> components render: Workshop 1`] = `
             className=" css-1wy0on6"
           >
             <span
-              className=" css-1okebmr-indicatorSeparator"
+              className=" css-1u9des2-indicatorSeparator"
             />
             <div
               aria-hidden="true"
-              className=" css-tlfecz-indicatorContainer"
+              className=" css-1xc3v61-indicatorContainer"
               onMouseDown={[Function]}
               onTouchEnd={[Function]}
             >
@@ -154,21 +154,21 @@ exports[`shallow <Workshop /> components render: Workshop 1`] = `
           className="css-7pg0cj-a11yText"
         />
         <div
-          className=" css-1s2u09g-control"
+          className=" css-13cymwt-control"
           onMouseDown={[Function]}
           onTouchEnd={[Function]}
         >
           <div
-            className=" css-1d8n9bt"
+            className=" css-hlgwow"
           >
             <div
-              className=" css-14el2xx-placeholder"
+              className=" css-1jqq78o-placeholder"
               id="react-select-3-placeholder"
             >
               Select...
             </div>
             <div
-              className=" css-ackcql"
+              className=" css-19bb58m"
               data-value=""
             >
               <input
@@ -214,7 +214,7 @@ exports[`shallow <Workshop /> components render: Workshop 1`] = `
           >
             <div
               aria-hidden="true"
-              className=" css-at12u2-loadingIndicator"
+              className=" css-pogzpp-loadingIndicator"
             >
               <span
                 className="css-19b349s"
@@ -227,11 +227,11 @@ exports[`shallow <Workshop /> components render: Workshop 1`] = `
               />
             </div>
             <span
-              className=" css-1okebmr-indicatorSeparator"
+              className=" css-1u9des2-indicatorSeparator"
             />
             <div
               aria-hidden="true"
-              className=" css-tlfecz-indicatorContainer"
+              className=" css-1xc3v61-indicatorContainer"
               onMouseDown={[Function]}
               onTouchEnd={[Function]}
             >
@@ -276,21 +276,21 @@ exports[`shallow <Workshop /> components render: Workshop 1`] = `
           className="css-7pg0cj-a11yText"
         />
         <div
-          className=" css-1s2u09g-control"
+          className=" css-13cymwt-control"
           onMouseDown={[Function]}
           onTouchEnd={[Function]}
         >
           <div
-            className=" css-1d8n9bt"
+            className=" css-hlgwow"
           >
             <div
-              className=" css-14el2xx-placeholder"
+              className=" css-1jqq78o-placeholder"
               id="react-select-4-placeholder"
             >
               Select...
             </div>
             <div
-              className=" css-ackcql"
+              className=" css-19bb58m"
               data-value=""
             >
               <input
@@ -336,7 +336,7 @@ exports[`shallow <Workshop /> components render: Workshop 1`] = `
           >
             <div
               aria-hidden="true"
-              className=" css-at12u2-loadingIndicator"
+              className=" css-pogzpp-loadingIndicator"
             >
               <span
                 className="css-19b349s"
@@ -349,11 +349,11 @@ exports[`shallow <Workshop /> components render: Workshop 1`] = `
               />
             </div>
             <span
-              className=" css-1okebmr-indicatorSeparator"
+              className=" css-1u9des2-indicatorSeparator"
             />
             <div
               aria-hidden="true"
-              className=" css-tlfecz-indicatorContainer"
+              className=" css-1xc3v61-indicatorContainer"
               onMouseDown={[Function]}
               onTouchEnd={[Function]}
             >

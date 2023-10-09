@@ -72,21 +72,8 @@ exports[`shallow <Congratulation /> components render 1`] = `
       text="congratulations.puzzle"
     >
       <Modal
-        animation={true}
         aria-labelledby="contained-modal-title-lg"
-        autoFocus={true}
-        backdrop={true}
-        dialogAs={
-          {
-            "$$typeof": Symbol(react.forward_ref),
-            "displayName": "ModalDialog",
-            "render": [Function],
-          }
-        }
-        enforceFocus={true}
-        keyboard={true}
         onHide={[Function]}
-        restoreFocus={true}
         show={true}
       >
         <Modal
@@ -311,23 +298,25 @@ exports[`shallow <Congratulation /> components render 1`] = `
             <BackdropTransition
               appear={true}
               in={true}
+              mountOnEnter={true}
+              unmountOnExit={true}
             >
               <Fade
                 appear={true}
                 in={true}
-                mountOnEnter={false}
+                mountOnEnter={true}
                 timeout={null}
-                unmountOnExit={false}
+                unmountOnExit={true}
               >
                 <ForwardRef
                   addEndListener={[Function]}
                   appear={true}
                   childRef={[Function]}
                   in={true}
-                  mountOnEnter={false}
+                  mountOnEnter={true}
                   onEnter={[Function]}
                   timeout={null}
-                  unmountOnExit={false}
+                  unmountOnExit={true}
                 >
                   <Transition
                     addEndListener={[Function]}
@@ -335,7 +324,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                     enter={true}
                     exit={true}
                     in={true}
-                    mountOnEnter={false}
+                    mountOnEnter={true}
                     nodeRef={
                       {
                         "current": <div
@@ -350,7 +339,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                     onExited={[Function]}
                     onExiting={[Function]}
                     timeout={null}
-                    unmountOnExit={false}
+                    unmountOnExit={true}
                   >
                     <div
                       className="fade modal-backdrop show"
@@ -363,6 +352,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
             <DialogTransition
               appear={true}
               in={true}
+              mountOnEnter={true}
               onEnter={[Function]}
               onEntering={[Function]}
               onExit={[Function]}
@@ -372,7 +362,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
               <Fade
                 appear={true}
                 in={true}
-                mountOnEnter={false}
+                mountOnEnter={true}
                 onEnter={[Function]}
                 onEntering={[Function]}
                 onExit={[Function]}
@@ -385,7 +375,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                   appear={true}
                   childRef={[Function]}
                   in={true}
-                  mountOnEnter={false}
+                  mountOnEnter={true}
                   onEnter={[Function]}
                   onEntering={[Function]}
                   onExit={[Function]}
@@ -399,7 +389,7 @@ exports[`shallow <Congratulation /> components render 1`] = `
                     enter={true}
                     exit={true}
                     in={true}
-                    mountOnEnter={false}
+                    mountOnEnter={true}
                     nodeRef={
                       {
                         "current": <div
@@ -522,7 +512,6 @@ exports[`shallow <Congratulation /> components render 1`] = `
                           >
                             <ModalHeader
                               closeButton={true}
-                              closeLabel="Close"
                             >
                               <ForwardRef
                                 className="modal-header"

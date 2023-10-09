@@ -2,26 +2,10 @@
 
 exports[`shallow <QuizInit /> components render: quizinit 1`] = `
 <Modal
-  animation={true}
-  autoFocus={true}
-  backdrop={true}
-  dialogAs={
-    {
-      "$$typeof": Symbol(react.forward_ref),
-      "displayName": "ModalDialog",
-      "render": [Function],
-    }
-  }
   dialogClassName="custom-modal"
-  enforceFocus={true}
-  keyboard={true}
-  restoreFocus={true}
   show={true}
 >
-  <ModalHeader
-    closeButton={false}
-    closeLabel="Close"
-  >
+  <ModalHeader>
     <ModalTitle
       id="contained-modal-title-lg"
     >
@@ -53,10 +37,7 @@ exports[`shallow <QuizInit /> components render: quizinit 1`] = `
   </ModalBody>
   <ModalFooter>
     <Button
-      active={false}
-      disabled={false}
       onClick={[Function]}
-      variant="primary"
     >
       <MemoizedFormattedMessage
         id="start"

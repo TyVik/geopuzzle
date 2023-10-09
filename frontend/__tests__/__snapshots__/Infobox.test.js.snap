@@ -39,12 +39,7 @@ exports[`shallow <Infobox /> components check props: infobox 1`] = `
     />
   </div>
   <ForwardRef
-    appear={false}
-    getDimensionValue={[Function]}
     in={true}
-    mountOnEnter={false}
-    timeout={300}
-    unmountOnExit={false}
   >
     <div
       id="infobox-collapse"
@@ -149,12 +144,7 @@ exports[`shallow <Infobox /> components check props: infobox-empty 1`] = `
     />
   </div>
   <ForwardRef
-    appear={false}
-    getDimensionValue={[Function]}
     in={true}
-    mountOnEnter={false}
-    timeout={300}
-    unmountOnExit={false}
   >
     <div
       id="infobox-collapse"
@@ -228,12 +218,7 @@ exports[`shallow <Infobox /> components click collapse: infobox 1`] = `
     />
   </div>
   <ForwardRef
-    appear={false}
-    getDimensionValue={[Function]}
     in={true}
-    mountOnEnter={false}
-    timeout={300}
-    unmountOnExit={false}
   >
     <div
       id="infobox-collapse"
@@ -353,12 +338,7 @@ exports[`shallow <Infobox /> components click collapse: infobox-collapse 1`] = `
     />
   </div>
   <ForwardRef
-    appear={false}
-    getDimensionValue={[Function]}
     in={false}
-    mountOnEnter={false}
-    timeout={300}
-    unmountOnExit={false}
   >
     <div
       id="infobox-collapse"
