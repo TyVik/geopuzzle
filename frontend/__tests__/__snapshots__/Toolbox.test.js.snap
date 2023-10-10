@@ -29,12 +29,7 @@ exports[`shallow <Toolbox /> components check props: toolbox 1`] = `
       />
     </div>
     <ForwardRef
-      appear={false}
-      getDimensionValue={[Function]}
       in={true}
-      mountOnEnter={false}
-      timeout={300}
-      unmountOnExit={false}
     >
       <div
         id="toolbox-collapse"

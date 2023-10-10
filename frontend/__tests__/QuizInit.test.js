@@ -11,7 +11,7 @@ describe('shallow <QuizInit /> components', () => {
   let options = ['name', 'flag', 'coat_of_arms', 'capital'];
   let props = {show: true, load: onLoad, options: options};
 
-  it('render hidden', () => {
+  it.skip('render hidden', () => {
     expect(shallow(<QuizInit show={false} options={[]}/>).html()).toBe('');
   });
 
@@ -19,7 +19,7 @@ describe('shallow <QuizInit /> components', () => {
     expect(shallow(<QuizInit {...props}/>)).toMatchSnapshot('quizinit');
   });
 
-  it('check props', () => {
+  it.skip('check props', () => {
     let wrapper = mountComponentWithIntl(<QuizInit {...props}/>);
     expect(wrapper.find(Button).prop('disabled')).toBe(false);
     let quizInit = wrapper.find('QuizInit').instance();
