@@ -143,6 +143,23 @@ jobs:
           name: Run pylint
           command: PYTHONPATH="$PYTHONPATH:." pylint --rcfile pyproject.toml common maps mercator puzzle quiz users workshop
 
+  ruff:
+    docker:
+      - image: tyvik/geopuzzle:backend-tester
+        environment:
+          DJANGO_SETTINGS_MODULE: "mercator.settings.circleci"
+          SECRET_KEY: "mY_sup#r_sec3t+KEY"
+    working_directory: ~/repo
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Prepare environment
+          command: mkdir ~/repo/logs
+      - run:
+          name: Run ruff
+          command: PYTHONPATH="$PYTHONPATH:." ruff check .
+
   messages:
     docker:
       - image: tyvik/geopuzzle:backend
@@ -212,6 +229,9 @@ workflows:
           requires:
             - build-backend
       - pylint:
+          requires:
+            - build-backend
+      - ruff:
           requires:
             - build-backend
       - messages:

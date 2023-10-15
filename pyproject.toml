@@ -53,6 +53,7 @@ lint = [
     "django-stubs",
     "pylint",
     "pylint-django",
+    "ruff"
 ]
 test = [
     "codecov",
@@ -146,3 +147,17 @@ ignore-imports = false
 
 [tool.pylint.IMPORTS]
 deprecated-modules = ["optparse", "tkinter.tix"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".ruff_cache",
+    "__pypackages__",
+    "node_modules",
+    "migrations",
+    "pgdata",
+    "settings"
+]
