@@ -1,3 +1,4 @@
+# ruff: noqa: E501
 import json
 from typing import List
 from unittest import TestCase

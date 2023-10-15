@@ -1,7 +1,7 @@
 import json
 
 from django.core.cache import cache
-from django.core.management import BaseCommand, CommandError
+from django.core.management import BaseCommand
 from tqdm import tqdm
 
 from maps.models import Region

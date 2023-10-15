@@ -2,7 +2,7 @@
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=Fbm86tXoBBqACUnFaJqP)](https://www.browserstack.com/automate/public-build/Fbm86tXoBBqACUnFaJqP)
 [![codecov](https://codecov.io/gh/TyVik/geopuzzle/branch/develop/graph/badge.svg)](https://codecov.io/gh/TyVik/geopuzzle)
 [![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/pylint-dev/pylint)
-
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=TyVik_geopuzzle&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=TyVik_geopuzzle)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TyVik_geopuzzle&metric=alert_status)](https://sonarcloud.io/dashboard?id=TyVik_geopuzzle)
