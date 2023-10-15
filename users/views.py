@@ -20,11 +20,28 @@ from .forms import AuthenticationForm, RegistrationForm, ProfileForm
 from .models import User
 
 
-class LoginView(DefaultLoginView):
+def social_providers():
+    result = {}
+    if settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY:
+        result['google-oauth2'] = {'label': 'Google', 'class': 'google'}
+    if settings.SOCIAL_AUTH_FACEBOOK_KEY:
+        result['facebook'] = {'label': 'FB', 'class': 'facebook'}
+    if settings.SOCIAL_AUTH_VK_OAUTH2_KEY:
+        result['vk-oauth2'] = {'label': 'VK', 'class': 'vk'}
+    return result
+
+
+class SocialProviderMixin:
+    def get_context_data(self, **kwargs):
+        kwargs['providers'] = social_providers()
+        return super().get_context_data(**kwargs)
+
+
+class LoginView(SocialProviderMixin, DefaultLoginView):
     form_class = AuthenticationForm
 
 
-class RegistrationView(FormView):
+class RegistrationView(SocialProviderMixin, FormView):
     request: WSGILanguageRequest
     form_class = RegistrationForm
     template_name = 'registration/registration.html'
@@ -54,7 +71,7 @@ class ProfileView(TemplateResponseMixin, BaseUpdateView):
         kwargs['form'] = ProfileForm(instance=self.object)
         connected_providers = list(self.object.social_auth.values_list('provider', flat=True))
         kwargs['providers'] = [{'slug': key, 'connected': key in connected_providers, **value}
-                               for key, value in settings.BACKEND_DESCRIBERS.items()]
+                               for key, value in social_providers().items()]
         return super().get_context_data(**kwargs)
 
     def form_invalid(self, form: ProfileForms) -> JsonResponse:

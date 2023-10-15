@@ -10,21 +10,29 @@
   <div class="container login-container">
     <div class="main">
       <h3>{% block top %}{% endblock %}</h3>
-      <div class="row">
-        <div class="col-12 col-sm-4 col-md-4 p-2">
-          <a href="{% url "social:begin" "facebook" %}" class="btn btn-lg btn-facebook btn-block w-100">FB</a>
+      {% if providers %}
+        <div class="row">
+          {% if 'facebook' in providers %}
+            <div class="col-12 col-sm-4 col-md-4 p-2">
+              <a href="{% url "social:begin" "facebook" %}" class="btn btn-lg btn-facebook btn-block w-100">FB</a>
+            </div>
+          {% endif %}
+          {% if 'vk-oauth2' in providers %}
+            <div class="col-12 col-sm-4 col-md-4 p-2">
+              <a href="{% url "social:begin" "vk-oauth2" %}" class="btn btn-lg btn-vk btn-block w-100">VK</a>
+            </div>
+          {% endif %}
+          {% if 'google-oauth2' in providers %}
+            <div class="col-12 col-sm-4 col-md-4 p-2">
+              <a href="{% url "social:begin" "google-oauth2" %}" class="btn btn-lg btn-google btn-block w-100">Google</a>
+            </div>
+          {% endif %}
         </div>
-        <div class="col-12 col-sm-4 col-md-4 p-2">
-          <a href="{% url "social:begin" "vk-oauth2" %}" class="btn btn-lg btn-vk btn-block w-100">VK</a>
+        <div class="login-or">
+          <hr class="hr-or">
+          <span class="span-or">{% trans "or" %}</span>
         </div>
-        <div class="col-12 col-sm-4 col-md-4 p-2">
-          <a href="{% url "social:begin" "google-oauth2" %}" class="btn btn-lg btn-google btn-block w-100">Google</a>
-        </div>
-      </div>
-      <div class="login-or">
-        <hr class="hr-or">
-        <span class="span-or">{% trans "or" %}</span>
-      </div>
+      {% endif %}
       {% block form %}
       {% endblock %}
     </div>

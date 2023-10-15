@@ -235,19 +235,14 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
-BACKEND_DESCRIBERS = {
-    'facebook': {'label': 'FB', 'class': 'facebook'},
-    'vk-oauth2': {'label': 'VK', 'class': 'vk'},
-    'google-oauth2': {'label': 'Google', 'class': 'google'},
-}
 SOCIAL_AUTH_USER_MODEL = 'users.User'
 SOCIAL_AUTH_SANITIZE_REDIRECTS = True
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/error/'
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '800277227889-g5173earcca4k7spc50k9n0t31o3fhek.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('SOCIAL_GOOGLE_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SOCIAL_GOOGLE_SECRET')
-SOCIAL_AUTH_FACEBOOK_KEY = '1273749826026102'
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get('SOCIAL_FACEBOOK_KEY')
 SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('SOCIAL_FACEBOOK_SECRET')
-SOCIAL_AUTH_VK_OAUTH2_KEY = '5849697'
+SOCIAL_AUTH_VK_OAUTH2_KEY = os.environ.get('SOCIAL_VK_KEY')
 SOCIAL_AUTH_VK_OAUTH2_SECRET = os.environ.get('SOCIAL_VK_SECRET')
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
   'fields': 'id, name, email, first_name, last_name, locale, picture'
