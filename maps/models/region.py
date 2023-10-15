@@ -53,8 +53,8 @@ class RegionInterface:
 
 
 class RegionCacheMeta(type):
-    def __new__(cls, name, bases, dct):
-        new = type.__new__(cls, name, bases, dct)
+    def __new__(mcs, name, bases, dct):
+        new = type.__new__(mcs, name, bases, dct)
         for method_name, _ in bases[0].__dict__.items():
             if method_name.startswith('polygon_'):
                 setattr(new, method_name, property(cacheable()(new.wrapper(method_name))))

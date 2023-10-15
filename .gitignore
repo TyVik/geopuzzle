@@ -18,3 +18,9 @@ cache.zip
 reload
 frontend/coverage
 mercator/settings/local.py
+
+.pdm-build/
+collected_static/
+geojson/
+logs/
+upload/
