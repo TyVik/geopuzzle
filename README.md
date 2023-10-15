@@ -1,10 +1,8 @@
 [![CircleCI](https://circleci.com/gh/TyVik/geopuzzle.svg?style=svg)](https://circleci.com/gh/TyVik/geopuzzle)
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=Fbm86tXoBBqACUnFaJqP)](https://www.browserstack.com/automate/public-build/Fbm86tXoBBqACUnFaJqP)
 [![codecov](https://codecov.io/gh/TyVik/geopuzzle/branch/develop/graph/badge.svg)](https://codecov.io/gh/TyVik/geopuzzle)
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/pylint-dev/pylint)
 
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/TyVik/geopuzzle.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/TyVik/geopuzzle/alerts/)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/TyVik/geopuzzle.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/TyVik/geopuzzle/context:python)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/TyVik/geopuzzle.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/TyVik/geopuzzle/context:javascript)
 
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=TyVik_geopuzzle&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=TyVik_geopuzzle)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TyVik_geopuzzle&metric=alert_status)](https://sonarcloud.io/dashboard?id=TyVik_geopuzzle)
@@ -26,85 +24,90 @@ or the capital.
 
 This is just web application, so you need:
 
-1. nginx 
-2. uwsgi
-3. supervisor
-4. python >= 3.8
-5. redis
-6. postgres >= 12
-7. nodejs >= 12.13
+1. nginx (as balancer)
+2. wsgi (gunicorn, for example)
+3. asgi (daphne, for example)
+4. supervisor (or run apps in docker compose)
+5. python >= 3.11 (with pdm)
+6. redis >= 5.0
+7. postgres >= 12
+8. nodejs >= 20.8
 
-## System applications
+## Postgres
 
-Install nginx, uwsgi, supervisor and other packages:
-```bash
-$ sudo apt install nginx uwsgi uwsgi-plugin-python3 supervisor redis-server
-$ sudo apt install gdal-bin gettext build-essential python3-dev libpq-dev
+This extensions must be installed:
+
+- postgis
+- postgis_topology
+- postgis_sfcgal
+- fuzzystrmatch
+- address_standardizer
+- postgis_tiger_geocoder
+
+For example:
+
+```postgresql
+create user geopuzzle with password 'geopuzzle';
+create database geopuzzle owner geopuzzle;
+create extension postgis;
 ```
 
-Template config files for nginx, uwsgi and supervisor are placed in `deploy` directory.
-I hope python 3 with pipenv already installed :)
+## Nodejs
 
-## Create virtual environment
+Necessary for build frontend. npm commands:
 
-```bash
-$ pipenv install
-```
+- `test` - run test locally
+- `testci` - run test on CI/CD
+- `analyze` - analyze build
+- `dev` - run dev server
+- `build` - build static for production
 
-## Create database
+## python && pdm
 
-1. Install Postgres with PostGIS:
-    ```
-    $ sudo apt install postgresql postgresql-contrib postgis
-    ```
+I use pdm for manage dependencies and run commands. Install [pdm-django](https://pypi.org/project/pdm-django/) plugin via `pdm plugin add pdm-django`. 
+Run management commands like `pdm manage runserver` - to run dev server.
 
-2. Install postgis extension:
-    ```
-    $ sudo su postgres -c psql
-    postgres=# create user geopuzzle with password 'geopuzzle';
-    postgres=# create database geopuzzle owner geopuzzle;
-    ``` 
-3. Create user and database:
-    ```
-    $ sudo su postgres -c psql
-    postgres=# \c geopuzzle
-    geopuzzle=# create extension postgis;
-    geopuzzle=# create extension postgis_topology;
-    geopuzzle=# create extension postgis_sfcgal;
-    geopuzzle=# create extension fuzzystrmatch;
-    geopuzzle=# create extension address_standardizer;
-    geopuzzle=# create extension postgis_tiger_geocoder;
-    ```
-4. Create `.env` file (based on `.env_template`) in project root with environment settings. 
-Required parameters were already initialed default values in template file;
-5. Create tables:
-    ```
-    (venv)$ ./manage.py migrate
-    ```
+### Special management commands
 
-## Set up env variables
+- `cache` - update/import/export and recalculate polygon cache (from postgres to redis)
+- `clearcache` - clear django decorators cache
+- `deploystatic` - upload static to S3
+- `update_geometry` - update polygon and wiki data from external source (OSM and Wikidata)
+- `validate_infoboxes` - check that all required data in all infoboxes is filled and correct
 
-All environment variables are collected in .env file (.env_template is template for that). 
-Some variables such as REDIS_HOST or DJANGO_SETTINGS_MODULE do not require explanation. 
-But some are specific to the project:
+## nginx
 
-* OSM_KEY need only for load polygons into database
-* GOOGLE_KEY is production key for Google Maps API (preferred, but not required)
-* RAVEN_DSN for collect errors to Sentry (optional)
-* AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY need only for AWS settings usage. Can left them blank.
+Nginx requires for traffic balancer:
 
+- `/` to wsgi app
+- `/ws` to asgi app
 
-## Build static files
+Example configuration is placed in `deploy` directory.
 
-Install nodejs:
-```
-$ sudo apt install nodejs npm
-$ npm init
-$ npm run build
-(geopuzzle) $ ./manage.py collectstatic
-```
+## wsgi / asgi
 
-# Load data
+Games work via websockets, so you have to run both wsgi and asgi server for production:
+
+- wsgi - `gunicorn mercator.wsgi:application -b 0.0.0.0:8000`
+- asgi - `daphne mercator.asgi:application -b 0.0.0.0 -p 8001`
+
+`./manage.py runserver` starts both of them at the same time. This project is a django application so envs are common.
+
+### Environment variables
+
+All envs are placed in `.env_template` file. Most of them have a default value, so you can copy `.env_template` to `.env` for the first run.
+
+Describe some special variables:
+
+- `OSM_KEY` - load polygons from OpenStreetMap
+- `GOOGLE_KEY` - production key for Google Maps API (not required)
+- `DISABLE_GOOGLE_KEY` - temporary disable `GOOGLE_KEY` (empty or "True")
+- `AWS_ACCESS_KEY_ID`/`AWS_SECRET_ACCESS_KEY` - AWS uses to deploy static and CDN
+- `SOCIAL_VK_KEY`/`SOCIAL_VK_SECRET` - enable VK authorization
+- `SOCIAL_FACEBOOK_KEY`/`SOCIAL_FACEBOOK_SECRET` - enable Facebook authorization
+- `SOCIAL_GOOGLE_KEY`/`SOCIAL_GOOGLE_SECRET` - enable Google authorization
+
+### Load data
 
 I find excellent service for load geojson files with polygons - https://osm-boundaries.com/.
 Just select the country (or many or with regions) and click 'Export'. URL must be like:
@@ -116,52 +119,22 @@ After that you can run management command `(venv)$ ./manage.py update_regions` f
 Take into account - data from OSM is not perfect and some regions can have bad or recursive links to each other.
 In most cases, restarting can help :) 
 
-# Management commands
+You can download [sample database](https://drive.google.com/open?id=1H_JUXr39Q-W2_153qHgbQD80FOUSU-JM).
+Unpack archive into `pgdata` directory.
 
-Management command usually run via manage.py script, for example: `./manage.py import_region`.
-
-* `cache` - import/export and recalculate cache (from postgres)
-* `import_region` - load one .geojson into database
-* `update_infobox` - update infobox from WikiData
-* `update_regions` - load all .geojson into database from `geojson` folder
-* `validate_infoboxes` - check that all required data in all infoboxes is filled and correct
-
-# Docker images
+## Docker images
 
 Project has 2 Dockerfiles:
 
 * /Dockerfile.backend - for server side (django tests and deploy)
-* /Dockerfile.frontend - for client side (webpack build bundles and jest tests for future)
+* /Dockerfile.frontend - for client side (webpack build bundles and jest tests)
 
 All images should be up to date with all installed dependencies. This allows you to significantly reduce the time to perform tasks CI.
-Command for update image (frontend, by example):
+Command for update image (backend, by example):
 
 ```bash
-$ docker build -t tyvik/geopuzzle:frontend -f Dockerfile.frontend .
-$ docker push tyvik/geopuzzle:frontend
+$ docker build --build-arg GIT_REVISION=$(git rev-parse --short HEAD) -t tyvik/geopuzzle:backend --target backend -f Dockerfile.backend .
 ```
-
-# Run in dev mode with Docker Compose
-
-Build and run:
-
-```bash
-$ docker-compose build
-$ docker-compose up -d
-```
-
-Stop:
-
-```bash
-$ docker-compose stop
-```
-
-You can download [sample database](https://drive.google.com/open?id=1H_JUXr39Q-W2_153qHgbQD80FOUSU-JM).
-Unpack archive into `pgdata` directory.
-
-Or download dump as [sql file](https://drive.google.com/open?id=1OGXl7P9dkevD_v7QgBoW8CbsQxDjW7EI).
-
-Go to [http://localhost:8000](http://localhost:8000)
 
 # Useful links
 

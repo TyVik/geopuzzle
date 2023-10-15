@@ -10,11 +10,9 @@ from mercator.settings.settings import POLYGON_CACHE_KEY
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        parser.add_argument('content', metavar='content', help='One of (update/import/export)')
-        parser.add_argument('label', metavar='label', help='Cache for content')
-        parser.add_argument(
-            '--ids', dest='ids', help='Nominates a specific database to load fixtures into. Defaults to the "default" database.',
-        )
+        parser.add_argument('action', metavar='action', choices=["update", "import", "export"])
+        parser.add_argument('label', metavar='label', choices=[cache for cache in Region.caches()])
+        parser.add_argument('--ids', dest='ids', help='Objects pk in database')
 
     def _update(self, query, label, **kwargs):
         for region in tqdm(query.iterator(), total=query.count()):
@@ -35,17 +33,7 @@ class Command(BaseCommand):
                     cache.set(cache_key, region[rec], timeout=None)
 
     def handle(self, **options):
-        handler = getattr(self, '_{}'.format(options['content']), None)
-        if handler is None:
-            raise CommandError('Cannot find content')
-
-        if not options['label']:
-            raise CommandError('You must specify caches')
-        else:
-            if options['label'] not in Region.caches():
-                raise CommandError('`%s` unknown cache. Available: %s' %
-                                   (options['label'], ', '.join([cache for cache in Region.caches()])))
-
+        handler = getattr(self, '_{}'.format(options['action']), None)
         query = Region.objects.all()
         if options['ids']:
             pks = options['ids'].split(',')

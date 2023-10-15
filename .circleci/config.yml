@@ -141,7 +141,7 @@ jobs:
           command: mkdir ~/repo/logs
       - run:
           name: Run pylint
-          command: PYTHONPATH="$PYTHONPATH:." pylint common maps mercator puzzle quiz users workshop
+          command: PYTHONPATH="$PYTHONPATH:." pylint --rcfile pyproject.toml common maps mercator puzzle quiz users workshop
 
   messages:
     docker:
