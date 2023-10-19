@@ -72,6 +72,7 @@ Run management commands like `pdm manage runserver` - to run dev server.
 - `cache` - update/import/export and recalculate polygon cache (from postgres to redis)
 - `clearcache` - clear django decorators cache
 - `deploystatic` - upload static to S3
+- `fix_infobox_links` - update wiki if any link is not valid
 - `update_geometry` - update polygon and wiki data from external source (OSM and Wikidata)
 - `validate_infoboxes` - check that all required data in all infoboxes is filled and correct
 
