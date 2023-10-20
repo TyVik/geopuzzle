@@ -46,6 +46,9 @@ pdm = "pdm.core:main"
 
 [tool.pdm.scripts]
 _.env_file = ".env"
+pylint = {cmd = "pylint --rcfile pyproject.toml common maps puzzle quiz users workshop"}
+ruff = {cmd = "ruff check ."}
+lint = {composite = ["pylint", "ruff"]}
 
 [tool.pdm.dev-dependencies]
 lint = [
