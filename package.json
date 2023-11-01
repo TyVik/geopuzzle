@@ -50,7 +50,7 @@
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "react": "^16.14.0",
-    "react-bootstrap": "^2.9.0",
+    "react-bootstrap": "^2.9.1",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.14.0",
     "react-final-form": "^6.5.9",
