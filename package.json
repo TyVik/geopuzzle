@@ -18,7 +18,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/TyVik8/geopuzzle#readme",
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.22.15",
+    "@babel/plugin-transform-runtime": "^7.23.4",
     "@babel/preset-env": "^7.22.20",
     "@babel/preset-react": "^7.22.15",
     "@sentry/webpack-plugin": "^2.8.0",
