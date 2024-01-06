@@ -1,9 +1,10 @@
-import os
-from io import FileIO
+from io import BytesIO
 from typing import Optional
-from urllib.request import urlretrieve
+from urllib.parse import unquote, urlparse
 
+import requests
 from django.conf import settings
+from django.utils.crypto import get_random_string
 from social_core.backends.facebook import FacebookOAuth2
 from social_core.backends.google import GoogleOAuth2
 from social_core.backends.vk import VKOAuth2
@@ -14,8 +15,9 @@ from .models import User
 def user_details(strategy, response, backend, is_new, *args, user=None, **kwargs):
     def save_image(user: User, url: Optional[str]) -> None:
         if url:
-            result = urlretrieve(url)
-            user.image.save(os.path.basename(url), FileIO(result[0]))
+            result = requests.get(unquote(url), timeout=2.0)
+            ext = urlparse(url).path.split('.')[-1]
+            user.image.save(f'{get_random_string(16)}.{ext}', BytesIO(result.content))
             user.save()
 
     if user is not None and is_new:
