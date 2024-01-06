@@ -14,7 +14,7 @@ class SocialAuthInlines(TabularInline):
 
 @admin.register(User)
 class UserAdmin(ImageMixin, BaseUserAdmin):
-    search_fields = ('username',)
+    search_fields = ('username', 'email')
     list_filter = ('language', 'is_staff', 'is_subscribed')
     list_display = ('id', 'image_tag', 'username', 'is_active', 'language')
     list_display_links = ('image_tag', 'username')
