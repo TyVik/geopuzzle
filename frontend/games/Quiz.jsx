@@ -36,10 +36,10 @@ class Quiz extends Game {
     });
   }
 
-  static prepareQuestions(questions) {
+  static prepareQuestions(questions, quizBy) {
     return shuffle(questions
       .map(question => {
-        return ['name', 'flag', 'coat_of_arms', 'capital']
+        return quizBy
           .map(key => {
             if (question[key] === undefined) {
               return null;
@@ -102,7 +102,7 @@ class Quiz extends Game {
         .then(response => response.json())
         .then(data => {
           let regions = Quiz.extractData(data.questions, data.solved);
-          this.startGame({regions: regions, questions: Quiz.prepareQuestions(data.questions), question: 0});
+          this.startGame({regions: regions, questions: Quiz.prepareQuestions(data.questions, quizBy), question: 0});
         })
         .catch(response => {this.setState({...this.state, isLoaded: false})});
       this.setState({...this.state, showInit: false});
