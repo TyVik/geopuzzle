@@ -10,7 +10,7 @@ import "./index.css";
 
 
 const NameListItem = (props) => {
-  if (!props.polygon.draggable) {
+  if (props.polygon.isOpen) {
     return <ListGroup.Item variant={props.polygon.isSolved ? 'success' : 'danger'} onClick={props.click} action={true}>
       {props.polygon.infobox.name}
     </ListGroup.Item>;
@@ -37,6 +37,20 @@ class Toolbox extends React.Component {
     this.setState({collapse: value});
   };
 
+
+  switchMap() {
+    let img = window.__STATIC_URL__;
+
+    return <div className="map-switcher-wrapper">
+      <img className="map-switcher" src={img + "images/map/terrain.png"}
+           onClick={() => {this.props.setMapType(google.maps.MapTypeId.TERRAIN)}}/>
+      <img className="map-switcher" src={img + "images/map/hybrid.png"}
+           onClick={() => {this.props.setMapType(google.maps.MapTypeId.HYBRID)}}/>
+      <img className="map-switcher" src={img + "images/map/satellite.png"}
+           onClick={() => {this.props.setMapType(google.maps.MapTypeId.SATELLITE)}}/>
+    </div>;
+  }
+
   render() {
     let img = window.__STATIC_URL__;
     let solved = this.props.regions.filter(obj => (obj.isSolved)).length;
@@ -50,14 +64,7 @@ class Toolbox extends React.Component {
         </div>
         <Collapse in={!this.state.collapse}>
           <div id={this.COLLAPSE_ID}>
-            <div className="map-switcher-wrapper">
-              <img className="map-switcher" src={img + "images/map/terrain.png"}
-                   onClick={() => {this.props.setMapType(google.maps.MapTypeId.TERRAIN)}}/>
-              <img className="map-switcher" src={img + "images/map/hybrid.png"}
-                   onClick={() => {this.props.setMapType(google.maps.MapTypeId.HYBRID)}}/>
-              <img className="map-switcher" src={img + "images/map/satellite.png"}
-                   onClick={() => {this.props.setMapType(google.maps.MapTypeId.SATELLITE)}}/>
-            </div>
+            {this.switchMap()}
             <Scrollbars autoHide={true} autoHeight={true} autoHeightMax={this.state.listNameMaxHeight}>
               <ListGroup>
                 {this.props.regions.map(polygon => (

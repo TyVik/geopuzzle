@@ -18,8 +18,9 @@ class Quiz extends Game {
     return polygons.map(polygon => {
       return {
         id: polygon.id,
-        draggable: true,
+        draggable: false,
         isSolved: false,
+        isOpen: false,
         infobox: {name: polygon.name, loaded: false},
         paths: []
       }
@@ -28,6 +29,7 @@ class Quiz extends Game {
         id: region.id,
         draggable: false,
         isSolved: true,
+        isOpen: true,
         infobox: region.infobox,
         paths: decodePolygon(region.polygon)
       }
@@ -59,6 +61,7 @@ class Quiz extends Game {
           draggable: false,
           id: data.id,
           isSolved: data.type === 'QUIZ_CHECK_SUCCESS',
+          isOpen: true,
           infobox: {...prepareInfobox(data.infobox), loaded: true},
           paths: decodePolygon(data.polygon),
         };
@@ -86,10 +89,10 @@ class Quiz extends Game {
     }
   };
 
-  mapClick = (e) => {
+  mapClick = (lat, lng) => {
     let question = this.state.questions[this.state.question];
     if (question) {
-      this.wsSend({type: 'QUIZ_CHECK', coords: {lat: e.latLng.lat(), lng: e.latLng.lng()}, id: question.id});
+      this.wsSend({type: 'QUIZ_CHECK', coords: {lat: lat, lng: lng}, id: question.id});
     }
   };
 

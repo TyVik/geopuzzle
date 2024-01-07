@@ -16,6 +16,8 @@ class Puzzle extends Game {
         id: country.id,
         draggable: true,
         isSolved: false,
+        isOpen: false,
+        defaultPosition: country.default_position,
         infobox: {name: country.name, loaded: false},
         paths: moveTo(
           paths,
@@ -27,6 +29,7 @@ class Puzzle extends Game {
         id: region.id,
         draggable: false,
         isSolved: true,
+        isOpen: true,
         infobox: region.infobox,
         paths: decodePolygon(region.polygon)
       }
@@ -46,6 +49,7 @@ class Puzzle extends Game {
               ...region,
               draggable: false,
               isSolved: true,
+              isOpen: true,
               infobox: {...prepareInfobox(data.infobox), loaded: true},
               paths: decodePolygon(data.polygon),
             };
@@ -63,6 +67,7 @@ class Puzzle extends Game {
             return {
               ...polygon,
               draggable: false,
+              isOpen: true,
               infobox: {...prepareInfobox(solve.infobox), loaded: true},
               paths: decodePolygon(solve.polygon),
             };
@@ -97,8 +102,6 @@ class Puzzle extends Game {
 
   onDragPolygon = (id, coords, path) => {
     this.wsSend({type: 'PUZZLE_CHECK', coords: coords, id: id, zoom: this.props.map.zoom});
-    let regions = this.state.regions.map((polygon) => {return (polygon.id === id) ? {...polygon, paths: path} : polygon});
-    this.setState({...this.state, regions: regions});
   };
 
   render_question() {
