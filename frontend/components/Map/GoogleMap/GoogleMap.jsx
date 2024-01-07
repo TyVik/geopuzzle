@@ -2,21 +2,21 @@
 import React from "react";
 
 import {GoogleMap, withGoogleMap, Marker} from "react-google-maps";
-import {Region} from "./components";
+import Region from "./Region";
 
 
 export default withGoogleMap(props => {
   return <GoogleMap
     ref={props.onMapLoad}
-    defaultZoom={props.zoom}
-    defaultCenter={props.center}
+    defaultZoom={props.map.zoom}
+    defaultCenter={props.map.center}
     mapTypeId={props.mapTypeId}
-    options={props.options}
+    options={props.map.options}
     onClick={props.onMapClick}
   >
-    {props.polygons.map(polygon => (
+    <Marker {...props.marker}/>
+    {props.regions.map(polygon => (
       <Region key={polygon.key} {...polygon} />
     ))}
-    <Marker {...props.marker}/>
   </GoogleMap>;
 });

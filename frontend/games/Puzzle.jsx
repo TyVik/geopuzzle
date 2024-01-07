@@ -4,6 +4,7 @@ import Game from "./Game";
 import { prepareInfobox } from "./utils";
 import {Button} from "react-bootstrap";
 import {FormattedMessage as Msg} from "react-intl";
+import Map from "../components/Map";
 
 
 class Puzzle extends Game {
@@ -11,7 +12,8 @@ class Puzzle extends Game {
 
   static extractData(polygons, solved) {
     return polygons.map(country => {
-      let paths = decodePolygon(country.polygon);
+      let paths = Map.preparePolygon(country.polygon, true);
+      paths = Map.moveTo(paths, country.center, country.default_position);
       return {
         id: country.id,
         draggable: true,
@@ -19,10 +21,7 @@ class Puzzle extends Game {
         isOpen: false,
         defaultPosition: country.default_position,
         infobox: {name: country.name, loaded: false},
-        paths: moveTo(
-          paths,
-          new google.maps.LatLng(country.center[1], country.center[0]),
-          new google.maps.LatLng(country.default_position[1], country.default_position[0]))
+        paths: paths
       }
     }).concat(solved.map(region => {
       return {
@@ -31,7 +30,7 @@ class Puzzle extends Game {
         isSolved: true,
         isOpen: true,
         infobox: region.infobox,
-        paths: decodePolygon(region.polygon)
+        paths: Map.preparePolygon(region.polygon)
       }
     })).sort((one, another) => {
       return one.infobox.name > another.infobox.name ? 1 : -1
@@ -51,7 +50,7 @@ class Puzzle extends Game {
               isSolved: true,
               isOpen: true,
               infobox: {...prepareInfobox(data.infobox), loaded: true},
-              paths: decodePolygon(data.polygon),
+              paths: Map.preparePolygon(data.polygon),
             };
           } else {
             return region;
@@ -69,7 +68,7 @@ class Puzzle extends Game {
               draggable: false,
               isOpen: true,
               infobox: {...prepareInfobox(solve.infobox), loaded: true},
-              paths: decodePolygon(solve.polygon),
+              paths: Map.preparePolygon(solve.polygon),
             };
           } else {
             return polygon;

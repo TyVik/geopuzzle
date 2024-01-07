@@ -2,6 +2,7 @@
 import React from "react";
 import {QuizInit} from './components/QuizInit/index';
 import QuizQuestion from './components/QuizQuestion/index';
+import Map from "../components/Map";
 import Game from "./Game";
 import {prepareInfobox, shuffle} from "./utils";
 
@@ -31,7 +32,7 @@ class Quiz extends Game {
         isSolved: true,
         isOpen: true,
         infobox: region.infobox,
-        paths: decodePolygon(region.polygon)
+        paths: Map.preparePolygon(region.polygon)
       }
     })).sort((one, another) => {
       return one.infobox.name > another.infobox.name ? 1 : -1
@@ -63,7 +64,7 @@ class Quiz extends Game {
           isSolved: data.type === 'QUIZ_CHECK_SUCCESS',
           isOpen: true,
           infobox: {...prepareInfobox(data.infobox), loaded: true},
-          paths: decodePolygon(data.polygon),
+          paths: Map.preparePolygon(data.polygon),
         };
       }
       return polygon;

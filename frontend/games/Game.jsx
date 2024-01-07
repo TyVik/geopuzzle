@@ -5,7 +5,7 @@ import Sockette from './ws';
 import {prepareInfobox} from "./utils";
 import Toolbox from "./components/Toolbox/index";
 import Infobox from "./components/Infobox/index";
-import Map from '../components/Map/index';
+import Map from '../components/Map/GoogleMap';
 import {Congratulation} from "./components/Congratulation";
 
 import './index.css';
