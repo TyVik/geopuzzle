@@ -1,6 +1,6 @@
 'use strict';
 import React from "react";
-import {render} from "react-dom";
+import { createRoot } from "react-dom/client";
 import Puzzle from "./games/Puzzle";
 import Quiz from "./games/Quiz";
 import messages from "./locale/messages";
@@ -15,9 +15,11 @@ let games = {
 for (let [game, component] of Object.entries(games)) {
   let node = document.getElementById(game);
   if (node !== null) {
-      render(
-        <IntlProvider locale={window.__LANGUAGE__} messages={messages[window.__LANGUAGE__]}>
-          {component}
-        </IntlProvider>, node);
+    let root = createRoot(node);
+    root.render(
+      <IntlProvider locale={window.__LANGUAGE__} messages={messages[window.__LANGUAGE__]}>
+        {component}
+      </IntlProvider>
+    );
   }
 }

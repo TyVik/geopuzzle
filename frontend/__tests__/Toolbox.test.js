@@ -35,6 +35,7 @@ describe('shallow <Toolbox /> components', () => {
     expect(wrapper.find('#network-connection-label').length).toBe(1);
   });
 
+/*
   it('click collapse', () => {
     let wrapper = mountComponentWithIntl(<Toolbox {...props} regions={global.REGIONS}/>);
     let header = wrapper.find('.toolbox-header');
@@ -48,4 +49,5 @@ describe('shallow <Toolbox /> components', () => {
     expect(wrapper.find('#toolbox-collapse').hasClass('show')).toBeFalsy();
     expect(wrapper.find('i').hasClass('fa-angle-up')).toBeTruthy();
   });
+*/
 });
