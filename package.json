@@ -23,7 +23,7 @@
     "@babel/preset-react": "^7.22.15",
     "@sentry/webpack-plugin": "^2.8.0",
     "@types/googlemaps": "^3.43.3",
-    "@types/jest": "^29.5.5",
+    "@types/jest": "^29.5.11",
     "@types/markerclustererplus": "^2.1.33",
     "@types/react": "^18.2.46",
     "babel-loader": "^9.1.3",
