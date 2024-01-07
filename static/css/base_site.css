@@ -42,6 +42,10 @@ body::after {
     padding: 0 10px;
 }
 
+.col-6.my-2.item-container {
+    height: 200px;
+}
+
 footer {
     position: absolute;
     bottom: 0;
