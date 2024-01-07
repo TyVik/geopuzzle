@@ -3,7 +3,7 @@ import React from "react";
 import {QuizInit} from './components/QuizInit/index';
 import QuizQuestion from './components/QuizQuestion/index';
 import Game from "./Game";
-import {decodePolygon, prepareInfobox, shuffle} from "../utils";
+import {prepareInfobox, shuffle} from "./utils";
 
 
 class Quiz extends Game {

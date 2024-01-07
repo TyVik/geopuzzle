@@ -2,7 +2,7 @@
 import React from "react";
 import Loading from "../components/Loading/index";
 import Sockette from './ws';
-import {prepareInfobox} from "../utils";
+import {prepareInfobox} from "./utils";
 import Toolbox from "./components/Toolbox/index";
 import Infobox from "./components/Infobox/index";
 import Map from '../components/Map/index';
@@ -16,7 +16,7 @@ class Game extends React.Component {
     super(props);
     this.state = {isLoaded: null, startTime: null, regions: [], showInfobox: true, infobox: null,
       congratulations: null,
-      map: {typeId: google.maps.MapTypeId.TERRAIN}, wsState: null, showMap: true};
+      map: {typeId: 'terrain'}, wsState: null, showMap: true};
     this.ws = null;
   }
 

@@ -1,7 +1,7 @@
 'use strict';
 import React from "react";
 import Game from "./Game";
-import {decodePolygon, moveTo, prepareInfobox} from "../utils";
+import { prepareInfobox } from "./utils";
 import {Button} from "react-bootstrap";
 import {FormattedMessage as Msg} from "react-intl";
 
