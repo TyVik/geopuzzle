@@ -1,0 +1,56 @@
+@startuml
+!include  https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(admin, "Administrator")
+Person(vk, "VK")
+Person(user, "User")
+
+System_Boundary(geopuzzle, "GeoPuzzle") {
+  Container(backend, "Backend")
+  Container(vkapp, "VK app")
+  Container(frontend, "Frontend")
+  Container_Ext(cloudfront, "CloudFront")
+  Container_Ext(vercel, "Vercel")
+}
+
+Rel(vk, vercel, "")
+Rel(vercel, vkapp, "")
+Rel(vkapp, backend, "")
+Rel(frontend, backend, "")
+Rel(user, cloudfront, "")
+Rel(cloudfront, frontend, "")
+Rel(admin, backend, "Admin")
+
+System_Boundary(integrations, "Integrations") {
+  Container_Ext(google, "Google")
+  Container_Ext(facebook, "Facebook")
+  Container_Ext(vkintegration, "VK")
+  Container_Ext(patreon, "Patreon")
+}
+Rel_U(backend, integrations, "Social auth")
+
+System_Ext(sentry, "Sentry")
+System_Ext(ganalytics, "Google Analytics")
+System_Ext(logrocket, "LogRocket")
+System_Ext(amplitude, "Amplitude")
+System_Ext(growthbook, "Growthbook")
+Lay_U(ganalytics, logrocket)
+
+Rel(backend, growthbook, "Feature flags")
+Rel_R(frontend, sentry, "Errors")
+Rel_R(backend, sentry, "Errors")
+Rel_L(frontend, logrocket, "Sessions")
+Rel(frontend, ganalytics, "Analytics")
+Rel(backend, amplitude, "Analytics")
+
+System_Ext(osm, "OpenStreetMap")
+System_Ext(wikidata, "Wikidata")
+Rel(backend, osm, "Retrieve polygons")
+Rel(backend, wikidata, "Retrieve info")
+
+System_Boundary(maps, "Maps") {
+  System_Ext(gmaps, "Google Maps")
+  System_Ext(leaflet, "OSM")
+}
+
+@enduml

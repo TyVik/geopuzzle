@@ -1,0 +1,49 @@
+@startuml
+
+actor User as u
+participant frontend as f
+participant backend as b
+database redis as r
+database mongo as m
+participant Growthbook as gb
+
+== Инициализация ==
+
+u->b: Запрашивает игру
+b->gb: Какой тип карт разрешён пользователю?
+gb->b: (OSM / Google)
+b->u: zoom, center, options, name, layout
+u->f: инициализация приложения
+f-->b: устанавливает ws-соединение
+f->b: запрашивает вопросы
+b->r: сохраняет состояние (sticky)
+b->f: questions, solved, sticky
+f->f: распаковывает урезанные полигоны (extractData)
+f->u: показывает карту с полигонами
+
+== Игровой процесс ==
+
+u->f: перетащил полигон
+f-->b: сообщение PUZZLE_CHECK (sticky)
+group ответил верно
+b-->f: сообщение PUZZLE_CHECK_SUCCESS
+b->r: отмечаем решённым
+f->f: заполняет инфобокс
+f->f: рисует подробный полигон
+alt если последний полигон
+b->m: сохраняем результат
+b->b: проверка на рекорд (личный или сайта)
+b-->f: сообщение GAME_FINISHED
+f->u: показывает поздравление
+end
+end
+
+== Игрок сдаётся ==
+
+u->f: Кликнул "сдаюсь"
+f-->b: сообщение PUZZLE_GIVEUP (id нерешённых)
+b-->f: сообщение PUZZLE_GIVEUP_DONE
+f->f: заполняет инфобокс
+f->f: рисует подробные полигоны
+
+@enduml
