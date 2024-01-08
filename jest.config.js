@@ -4,13 +4,16 @@
 module.exports = {
   automock: false,
   verbose: true,
-  testURL: "http://localhost/",
   testMatch: ["**/*.test.js"],
   rootDir: 'frontend',
+  testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    url: "http://localhost/",
+  },
   "setupFiles": [
     "jest-localstorage-mock"
   ],
-  snapshotSerializers: ["enzyme-to-json/serializer"],
+  // snapshotSerializers: ["enzyme-to-json/serializer"],
   setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
   collectCoverage: true,
   collectCoverageFrom: [

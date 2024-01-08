@@ -1,11 +1,12 @@
 'use strict';
 import React from 'react';
-import {shallow} from 'enzyme';
 import QuizQuestion from "../games/components/QuizQuestion";
+import { render } from "./utils";
 
 
-describe('shallow <QuizQuestion /> components', () => {
-  it('render hidden', () => {
-    expect(shallow(<QuizQuestion question={null}/>).html()).toBe(null);
+describe('<QuizQuestion />', () => {
+  test('render hidden', async () => {
+    const wrapper = render(<QuizQuestion question={null}/>);
+    expect(wrapper.container.children.length).toBe(0);
   });
 });

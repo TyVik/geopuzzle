@@ -1,37 +1,45 @@
 'use strict';
 import React from 'react';
-import {shallow} from 'enzyme';
 import {QuizInit} from '../games/components/QuizInit';
-import {Button} from "react-bootstrap";
-import {mountComponentWithIntl} from "./utils";
+import { render } from "./utils";
+import { fireEvent } from "@testing-library/react";
 
 
-describe('shallow <QuizInit /> components', () => {
+describe('<QuizInit />', () => {
   let onLoad = jest.fn();
   let options = ['name', 'flag', 'coat_of_arms', 'capital'];
   let props = {show: true, load: onLoad, options: options};
 
-  it.skip('render hidden', () => {
-    expect(shallow(<QuizInit show={false} options={[]}/>).html()).toBe('');
+  test('render hidden', async () => {
+    const wrapper = render(<QuizInit show={false} options={[]}/>);
+    expect(wrapper.container.children.length).toBe(0);
   });
 
-  it('render', () => {
-    expect(shallow(<QuizInit {...props}/>)).toMatchSnapshot('quizinit');
+  test('render', async () => {
+    const wrapper = render(<QuizInit {...props}/>);
+    const checkers = await wrapper.findAllByRole('checkbox');
+    expect(checkers.length).toBe(options.length);
+    checkers.forEach(
+      (item) => {
+        expect(item).toBeChecked();
+      }
+    );
+    expect(wrapper.getByRole('button')).toBeEnabled();
   });
 
-  it.skip('check props', () => {
-    let wrapper = mountComponentWithIntl(<QuizInit {...props}/>);
-    expect(wrapper.find(Button).prop('disabled')).toBe(false);
-    let quizInit = wrapper.find('QuizInit').instance();
-    options.forEach(key => {
-      quizInit.toggle(key);
-    });
-    wrapper.update();
-    expect(wrapper.find(Button).prop('disabled')).toBe(true);
-    expect(wrapper.find('i').childAt(0).prop('id')).toMatch("quizInitCheck");
-    quizInit.toggle('name');
-    wrapper.update();
-    wrapper.find(Button).simulate('click');
+  test('check props', async () => {
+    let wrapper = render(<QuizInit {...props}/>);
+    const checkers = await wrapper.findAllByRole('checkbox');
+
+    checkers.forEach(
+      (item) => {
+        fireEvent.click(item);
+      }
+    );
+    expect(wrapper.getByRole('button')).toBeDisabled();
+
+    fireEvent.click(checkers[0]);
+    fireEvent.click(wrapper.getByRole('button'));
     expect(onLoad).toHaveBeenCalledWith({name: true, flag: false, coat_of_arms: false, capital: false});
   });
 });

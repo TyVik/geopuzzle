@@ -1,38 +1,52 @@
 'use strict';
 
 import React from "react";
-import {shallow} from "enzyme";
 import Toolbox from "../games/components/Toolbox";
-import {mountComponentWithIntl} from "./utils";
+import { render, screen, fireEvent } from "./utils";
 
 
-describe('shallow <Toolbox /> components', () => {
+describe('<Toolbox />', () => {
   let onSetMapType = jest.fn();
   let onOpenInfobox = jest.fn();
   let props = {setMapType: onSetMapType, regions: [], wsState: true, openInfobox: onOpenInfobox};
 
-  it('check props', () => {
-    let wrapper = shallow(<Toolbox {...props} regions={global.REGIONS}/>);
-    expect(wrapper).toMatchSnapshot('toolbox');
+  test('check items', async () => {
+    const wrapper = render(<Toolbox {...props} regions={global.REGIONS}/>);
+
+    const items = await wrapper.findAllByRole('button');
+    items.forEach(
+      (item) => {
+        expect(item).toHaveClass('list-group-item-action');
+        if (item.classList.contains('list-group-item-success')) {
+          expect(item.textContent).toBe("Брестская область");
+        } else {
+          expect(item.textContent).toBe("Витебская область");
+        }
+      }
+    );
+
+    expect(wrapper.getByText(/found/)).toHaveTextContent('found: 1/3');
+    // screen.debug();
   });
 
-  it('check map type switcher', () => {
-    let wrapper = shallow(<Toolbox {...props}/>);
-    let switchers = wrapper.find('.map-switcher').getElements();
-    expect(switchers.length).toBe(3);
-    [google.maps.MapTypeId.TERRAIN, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.SATELLITE].forEach(
-      (item, index) => {
-        switchers[index].props.onClick();
-        expect(onSetMapType).toHaveBeenCalledWith(item);
-      });
+  test('check map type switcher', async () => {
+    const wrapper = render(<Toolbox {...props}/>);
+    const items = await wrapper.findAllByRole('img');
+    expect(items).toHaveLength(3);
+    items.forEach(
+      (item) => {
+        expect(item).toHaveClass('map-switcher');
+        fireEvent.click(item);
+        const mapType = item.src.split('/').pop().split('.')[0];
+        expect(onSetMapType).toHaveBeenCalledWith(mapType);
+      }
+    );
   });
 
-  it('ws disconnect', () => {
-    let wrapper = shallow(<Toolbox {...props}/>);
-    expect(wrapper.find('#network-connection-label').length).toBe(0);
-
-    wrapper = shallow(<Toolbox {...props} wsState={false}/>);
-    expect(wrapper.find('#network-connection-label').length).toBe(1);
+  test.each([true, false])('ws status %p', async (status) => {
+    const count = status ? 0 : 1;
+    const wrapper = render(<Toolbox {...props} wsState={status}/>);
+    expect(wrapper.queryAllByText('networkError')).toHaveLength(count);
   });
 
 /*

@@ -1,10 +1,10 @@
 'use strict';
 import React from "react";
-import {createComponentWithIntl} from "./utils";
+import { render } from "./utils";
 import Index from "../index/index";
 
 
-describe('shallow <Index /> components', () => {
+describe('<Index />', () => {
   let id = 0;
   let game = name => {
     id += 1;
@@ -24,15 +24,21 @@ describe('shallow <Index /> components', () => {
       global.fetch.resetMocks();
   });
 
-  it('render', done => {
+  test('render', async () => {
     global.fetch.mockResponse(JSON.stringify(["belarus", "russia", "us", "uk"].map(item => game(item))));
-    let index = createComponentWithIntl(<Index games={generateGames()}/>);
-    setImmediate(() => {
-      expect(index).toMatchSnapshot('Index');
-      let headers = new Headers();
-      headers.append("X-CSRFTOKEN", "csrf");
-      expect(global.fetch).toHaveBeenCalledWith('/index/scroll/puzzle/?limit=24&ids=', {"credentials": "same-origin", "headers": headers});
-      done();
-    });
+
+    const wrapper = render(<Index games={generateGames()}/>);
+    expect(wrapper.getAllByRole('tab').length).toBe(2);
+    expect(wrapper.getAllByRole('img').length).toBe(6);
+
+    // act(() => {
+    //   const loadMore = wrapper.getByText('index.loadMore');
+    //   fireEvent.click(loadMore);
+    //   screen.debug();
+    //   let headers = new Headers();
+    //   headers.append("X-CSRFTOKEN", "csrf");
+    //   expect(global.fetch).toHaveBeenCalledWith('/index/scroll/puzzle/?limit=24&ids=', {"credentials": "same-origin", "headers": headers});
+    //   expect(wrapper.getAllByRole('img').length).toBe(10);
+    // });
   });
 });

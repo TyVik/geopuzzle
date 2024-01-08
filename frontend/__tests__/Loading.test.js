@@ -1,10 +1,13 @@
 'use strict';
 import React from 'react';
 import Loading from '../components/Loading';
-import {createComponentWithIntl} from "./utils";
+import {render, screen} from "./utils";
 
 
-
-it('shallow <Loading /> components', () => {
-  expect(createComponentWithIntl(<Loading text='test'/>)).toMatchSnapshot();
+test.each([
+  [true, "loadingError"],
+  [false, "loading"],
+])("<Loading /> %p", async (hasError, str) => {
+  render(<Loading hasError={hasError}/>);
+  expect(screen.getByRole("heading").textContent).toBe(str);
 });

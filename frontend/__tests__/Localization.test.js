@@ -1,9 +1,12 @@
 'use strict';
 import React from "react";
 import messages from "../locale/messages";
+import { IntlProvider } from "react-intl";
+import Loading from "../components/Loading";
+import { render, screen } from "./utils";
 
 
-it('check fullness', () => {
+test('check fullness', async () => {
   expect(messages).toHaveProperty('en');
   expect(messages).toHaveProperty('ru');
 
@@ -14,4 +17,11 @@ it('check fullness', () => {
     expect(messages['ru'][key]).not.toBe('');
     expect(messages['en'][key]).not.toBe(messages['ru'][key]);
   });
+});
+
+
+test('shallow <Loading /> components', async () => {
+  const locale = 'en';
+  render(<IntlProvider locale={locale} messages={messages[locale]}><Loading hasError={true}/></IntlProvider>);
+  expect(screen.getByRole("heading").textContent).toBe("Something went wrong :(");
 });
